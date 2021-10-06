@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "rigoranthusemortisreborn:blocks/jessic_crafting_table_front",
+    "north": "rigoranthusemortisreborn:blocks/jessic_crafting_table_front",
+    "south": "rigoranthusemortisreborn:blocks/jessic_crafting_table_side",
+    "east": "rigoranthusemortisreborn:blocks/jessic_crafting_table_side",
+    "west": "rigoranthusemortisreborn:blocks/jessic_crafting_table_front",
+    "up": "rigoranthusemortisreborn:blocks/jessic_crafting_table_top",
+    "down": "rigoranthusemortisreborn:blocks/jessic_planks"
+  }
+}

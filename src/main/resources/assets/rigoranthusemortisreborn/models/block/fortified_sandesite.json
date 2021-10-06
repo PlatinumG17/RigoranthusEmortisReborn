@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "rigoranthusemortisreborn:blocks/fortified_sandesite",
+    "particle": "rigoranthusemortisreborn:blocks/fortified_sandesite"
+  }
+}

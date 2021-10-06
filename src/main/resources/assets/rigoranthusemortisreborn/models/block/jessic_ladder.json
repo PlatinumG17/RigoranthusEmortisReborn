@@ -1,0 +1,8 @@
+{
+  "parent": "rigoranthusemortisreborn:custom/jessic_ladder",
+  "textures": {
+    "all": "rigoranthusemortisreborn:blocks/jessic_ladder",
+    "particle": "rigoranthusemortisreborn:blocks/jessic_planks",
+    "2": "rigoranthusemortisreborn:blocks/jessic_ladder"
+  }
+}

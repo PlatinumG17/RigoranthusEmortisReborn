@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/button_pressed",
+  "textures": {
+    "particle": "rigoranthusemortisreborn:blocks/azuloreal_planks",
+    "texture": "rigoranthusemortisreborn:blocks/azuloreal_planks"
+  }
+}

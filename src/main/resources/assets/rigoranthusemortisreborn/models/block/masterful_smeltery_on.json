@@ -1,0 +1,8 @@
+{
+    "parent": "rigoranthusemortisreborn:custom/smeltery",
+    "textures": {
+      "all": "rigoranthusemortisreborn:blocks/smeltery_on",
+      "particle": "rigoranthusemortisreborn:blocks/smeltery_side",
+      "2": "rigoranthusemortisreborn:blocks/smeltery_on"
+    }
+}

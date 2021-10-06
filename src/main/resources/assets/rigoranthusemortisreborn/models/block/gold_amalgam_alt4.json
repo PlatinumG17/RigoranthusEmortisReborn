@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "rigoranthusemortisreborn:blocks/gold_amalgam_alt4",
+    "particle": "rigoranthusemortisreborn:blocks/gold_amalgam"
+  }
+}

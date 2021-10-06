@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "rigoranthusemortisreborn:blocks/fragmented_cobblestone",
+    "particle": "rigoranthusemortisreborn:blocks/fragmented_cobblestone"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "rigoranthusemortisreborn:blocks/jessic_log_top",
+    "side": "rigoranthusemortisreborn:blocks/jessic_log",
+    "particle": "rigoranthusemortisreborn:blocks/jessic_log"
+  }
+}

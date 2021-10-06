@@ -1,0 +1,21 @@
+{
+  "group": "armor",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BFB",
+    "BFB",
+    "BFB"
+  ],
+  "key": {
+    "B": {
+      "item": "rigoranthusemortisreborn:bone_fragment"
+    },
+    "F": {
+      "item": "rigoranthusemortisreborn:dweller_flesh"
+    }
+  },
+  "result": {
+    "item": "rigoranthusemortisreborn:dweller_thorax",
+    "count": 1
+  }
+}

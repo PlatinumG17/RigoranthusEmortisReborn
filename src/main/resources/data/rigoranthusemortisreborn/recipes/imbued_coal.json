@@ -1,0 +1,26 @@
+{
+  "group": "rigoranthusemortisreborn",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "01",
+    "23"
+  ],
+  "key": {
+    "0": {
+      "item": "minecraft:soul_sand"
+    },
+    "1": {
+      "item": "minecraft:coal"
+    },
+    "2": {
+      "item": "minecraft:coal"
+    },
+    "3": {
+      "item": "minecraft:soul_sand"
+    }
+  },
+  "result": {
+    "item": "rigoranthusemortisreborn:soul_coal",
+    "count": 1
+  }
+}

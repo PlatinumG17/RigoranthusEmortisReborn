@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "rigoranthusemortisreborn:blocks/jessic_lamp_on"
+  }
+}

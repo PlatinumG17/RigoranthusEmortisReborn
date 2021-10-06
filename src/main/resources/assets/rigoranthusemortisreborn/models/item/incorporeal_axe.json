@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "rigoranthusemortisreborn:items/incorporeal_netherite_axe"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "rigoranthusemortisreborn:custom/azuloreal_ladder",
+  "textures": {
+    "all": "rigoranthusemortisreborn:blocks/azuloreal_ladder",
+    "particle": "rigoranthusemortisreborn:blocks/azuloreal_planks",
+    "2": "rigoranthusemortisreborn:blocks/azuloreal_ladder"
+  }
+}

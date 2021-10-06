@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "rigoranthusemortisreborn:blocks/abyssalite_alt2",
+    "particle": "rigoranthusemortisreborn:blocks/abyssalite"
+  }
+}

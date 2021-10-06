@@ -1,0 +1,25 @@
+{
+  "group": "items",
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:dirt"
+    },
+    {
+      "tag": "forge:dirt"
+    },
+    {
+      "tag": "forge:buckets/water"
+    },
+    {
+      "tag": "forge:dirt"
+    },
+    {
+      "tag": "forge:dirt"
+    }
+  ],
+  "result": {
+    "item": "rigoranthusemortisreborn:mud_glob",
+    "count": 8
+  }
+}

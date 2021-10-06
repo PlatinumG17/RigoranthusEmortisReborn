@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "rigoranthusemortisreborn:blocks/azuloreal_leaves",
+    "particle": "rigoranthusemortisreborn:blocks/azuloreal_leaves"
+  }
+}

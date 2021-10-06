@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/door_top_rh",
+  "textures": {
+    "top": "rigoranthusemortisreborn:blocks/azuloreal_door_top",
+    "bottom": "rigoranthusemortisreborn:blocks/azuloreal_door_bottom",
+    "particle": "rigoranthusemortisreborn:blocks/azuloreal_door_bottom"
+  }
+}

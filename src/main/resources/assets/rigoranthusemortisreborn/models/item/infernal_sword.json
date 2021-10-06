@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "rigoranthusemortisreborn:items/infernal_netherite_sword"
+  }
+}

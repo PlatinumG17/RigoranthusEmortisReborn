@@ -1,0 +1,30 @@
+package com.platinumg17.rigoranthusemortisreborn.container;
+
+import com.platinumg17.rigoranthusemortisreborn.tileentity.SmelteryTileEntityBase;
+
+import net.minecraft.inventory.container.Slot;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+
+public class SlotMasterfulSmelteryFuel extends Slot {
+	SmelteryTileEntityBase te;
+
+    public SlotMasterfulSmelteryFuel(SmelteryTileEntityBase te, int index, int x, int y) {
+        super(te, index, x, y);
+        this.te = te;
+    }
+
+    @Override
+    public boolean mayPlace(ItemStack stack) {
+        return SmelteryTileEntityBase.isItemFuel(stack) || isBucket(stack);
+    }
+
+    @Override
+    public int getMaxStackSize(ItemStack stack) {
+        return isBucket(stack) ? 1 : super.getMaxStackSize(stack);
+    }
+
+    public static boolean isBucket(ItemStack stack) {
+        return stack.getItem() == Items.BUCKET;
+    }
+}

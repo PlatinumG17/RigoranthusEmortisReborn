@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/fence_side",
+  "textures": {
+    "texture": "rigoranthusemortisreborn:blocks/jessic_planks",
+    "particle": "rigoranthusemortisreborn:blocks/jessic_planks"
+  }
+}

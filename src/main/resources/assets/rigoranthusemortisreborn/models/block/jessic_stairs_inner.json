@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "particle": "rigoranthusemortisreborn:blocks/jessic_planks",
+    "bottom": "rigoranthusemortisreborn:blocks/jessic_planks",
+    "top": "rigoranthusemortisreborn:blocks/jessic_planks",
+    "side": "rigoranthusemortisreborn:blocks/jessic_planks"
+  }
+}

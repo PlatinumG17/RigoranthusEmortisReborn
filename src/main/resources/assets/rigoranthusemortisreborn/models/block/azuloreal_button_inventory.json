@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/button_inventory",
+  "textures": {
+    "particle": "rigoranthusemortisreborn:blocks/azuloreal_planks",
+    "texture": "rigoranthusemortisreborn:blocks/azuloreal_planks"
+  }
+}

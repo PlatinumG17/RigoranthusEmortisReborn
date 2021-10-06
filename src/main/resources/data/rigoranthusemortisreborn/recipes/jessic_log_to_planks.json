@@ -1,0 +1,13 @@
+{
+  "group": "jessic",
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:logs/jessic"
+    }
+  ],
+  "result": {
+    "item": "rigoranthusemortisreborn:jessic_planks",
+    "count": 4
+  }
+}

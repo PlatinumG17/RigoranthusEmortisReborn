@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "rigoranthusemortisreborn:items/deepslate_copper_ore_fragment"
+  }
+}

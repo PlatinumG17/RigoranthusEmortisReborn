@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "rigoranthusemortisreborn:items/remex_netherite_sword"
+  }
+}

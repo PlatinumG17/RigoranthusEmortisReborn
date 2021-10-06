@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_fence_gate_wall",
+  "textures": {
+    "texture": "rigoranthusemortisreborn:blocks/azuloreal_planks",
+    "particle": "rigoranthusemortisreborn:blocks/azuloreal_planks"
+  }
+}

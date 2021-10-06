@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "rigoranthusemortisreborn:blocks/himalayan_salt_alt2",
+    "particle": "rigoranthusemortisreborn:blocks/himalayan_salt"
+  }
+}

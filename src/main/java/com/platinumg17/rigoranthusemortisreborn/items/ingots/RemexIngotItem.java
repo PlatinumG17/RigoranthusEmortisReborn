@@ -33,9 +33,6 @@ public class RemexIngotItem extends Item {
             tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".remex_ingot7").setStyle(Style.EMPTY));
             tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".remex_ingot8").setStyle(Style.EMPTY));
             tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".remex_ingot9").setStyle(Style.EMPTY));
-            tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".remex_ingot10").setStyle(Style.EMPTY));
-            tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".remex_ingot11").setStyle(Style.EMPTY));
-            tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".remex_ingot12").setStyle(Style.EMPTY));
         } else {
             tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".remex_ingot_shift").setStyle(Style.EMPTY));
         }

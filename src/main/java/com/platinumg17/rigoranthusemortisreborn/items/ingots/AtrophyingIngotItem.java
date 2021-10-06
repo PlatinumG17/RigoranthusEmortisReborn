@@ -29,12 +29,6 @@ public class AtrophyingIngotItem extends Item {
             tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".atrophying_ingot4").setStyle(Style.EMPTY));
             tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".atrophying_ingot5").setStyle(Style.EMPTY));
             tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".atrophying_ingot6").setStyle(Style.EMPTY));
-            tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".atrophying_ingot7").setStyle(Style.EMPTY));
-            tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".atrophying_ingot8").setStyle(Style.EMPTY));
-            tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".atrophying_ingot9").setStyle(Style.EMPTY));
-            tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".atrophying_ingot10").setStyle(Style.EMPTY));
-            tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".atrophying_ingot11").setStyle(Style.EMPTY));
-            tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".atrophying_ingot12").setStyle(Style.EMPTY));
         } else {
             tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".atrophying_ingot_shift").setStyle(Style.EMPTY));
         }

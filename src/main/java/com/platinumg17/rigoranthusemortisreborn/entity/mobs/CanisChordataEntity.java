@@ -844,7 +844,7 @@ public class CanisChordataEntity extends AbstractChestedHorseEntity implements I
         }
         if (tame) {
             this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(10.0D);
-            this.setHealth(10.0F);
+            this.setHealth(100.0F);
         } else {
             this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(4.0D);
         }

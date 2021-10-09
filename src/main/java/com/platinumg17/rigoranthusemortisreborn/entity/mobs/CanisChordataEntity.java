@@ -78,7 +78,6 @@ public class CanisChordataEntity extends AbstractChestedHorseEntity implements I
     private final AnimationFactory animationFactory = new AnimationFactory(this);
 
     private static final DataParameter<Boolean> DATA_INTERESTED_ID = EntityDataManager.defineId(CanisChordataEntity.class, DataSerializers.BOOLEAN);
-    private static final DataParameter<Integer> DATA_COLLAR_COLOR = EntityDataManager.defineId(CanisChordataEntity.class, DataSerializers.INT);
     private static final DataParameter<Integer> DATA_REMAINING_ANGER_TIME = EntityDataManager.defineId(CanisChordataEntity.class, DataSerializers.INT);
     public static final Predicate<LivingEntity> PREY_SELECTOR = (p_213440_0_) -> {
         EntityType<?> entitytype = p_213440_0_.getType();
@@ -286,14 +285,19 @@ public class CanisChordataEntity extends AbstractChestedHorseEntity implements I
         if (!itemstack.isEmpty()) {
             if (this.isFood(itemstack) && this.getHealth() < this.getMaxHealth()) {
                 this.heal(10);
-                return this.fedFood(sourceentity, itemstack);
-               // if (this.getHealth() < this.getMaxHealth()) {
-
-               // }
+                sourceentity.swing(hand);
+                if (this.level.isClientSide()) {
+                    level.playSound(null, blockpos, SoundEvents.GENERIC_EAT, SoundCategory.NEUTRAL, 1.0F, (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F);
+                }
+                if (!sourceentity.isCreative()) {
+                    itemstack.shrink(1);
+                }
             }
             if (itemstack.getItem() == ItemInit.PACT_OF_SERVITUDE.get()) {
                 sourceentity.swing(Hand.MAIN_HAND, true);
-                itemstack.shrink(1);
+                if (!sourceentity.isCreative()) {
+                    itemstack.shrink(1);
+                }
                 if (this.level.isClientSide()) {
                     level.playSound(null, blockpos, SoundEvents.BOOK_PAGE_TURN, SoundCategory.NEUTRAL, 1.0F, (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F);
                 }
@@ -737,7 +741,6 @@ public class CanisChordataEntity extends AbstractChestedHorseEntity implements I
         this.entityData.define(DATA_FLAGS_ID, (byte)0);
         this.entityData.define(DATA_OWNERUUID_ID, Optional.empty());
         this.entityData.define(DATA_INTERESTED_ID, false);
-        this.entityData.define(DATA_COLLAR_COLOR, DyeColor.RED.getId());
         this.entityData.define(DATA_REMAINING_ANGER_TIME, 0);
         this.entityData.define(STATE, 0);
     }

@@ -75,12 +75,10 @@ public class Registration {
     public static final RegistryObject<ItemAugmentFuel> FUEL_AUGMENT = ITEMS.register("augment_fuel", () -> new ItemAugmentFuel(new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)));
     public static final RegistryObject<ItemSmelteryCopy> ITEM_COPY = ITEMS.register("item_copy", () -> new ItemSmelteryCopy(new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)));
 
-    public static final Item BONE_SPEAR = new SwordItem(RigoranthusItemTier.BONE, Config.bone_spear_damage.get(), Config.bone_spear_speed.get().floatValue(), new Item.Properties().rarity(Rarity.COMMON).tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).stacksTo(1)).setRegistryName("bone_spear");
-
-
 //    public static Item APOGEAN_NETHERITE_HELMET = new RigoranthusArmorItem(RigoranthusArmorMaterial.APOGEAN_NETHERITE, EquipmentSlotType.HEAD, new Item.Properties().fireResistant().rarity(Rarity.EPIC).tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)).setRegistryName("apogean_netherite_helmet");
 
-
+//    public static final Item BONE_SPEAR = new SwordItem(RigoranthusItemTier.BONE, Config.bone_spear_damage.get(), Config.bone_spear_speed.get().floatValue(), new Item.Properties().rarity(Rarity.COMMON).tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).stacksTo(1)).setRegistryName("bone_spear");
+    public static final RegistryObject<Item> BONE_SPEAR = ITEMS.register("bone_spear", () -> new SwordItem(RigoranthusItemTier.BONE, Config.bone_spear_damage.get(), Config.bone_spear_speed.get().floatValue(), new Item.Properties().rarity(Rarity.COMMON).tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).stacksTo(1)));
     public static final Item APOGEAN_SWORD = new SwordItem(RigoranthusItemTier.APOGEAN, Config.apogean_sword_damage.get(), Config.apogean_sword_speed.get().floatValue(), new Item.Properties().fireResistant().rarity(Rarity.EPIC).tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).stacksTo(1)).setRegistryName("apogean_sword");
     public static final Item APOGEAN_AXE = new AxeItem(RigoranthusItemTier.APOGEAN, Config.apogean_axe_damage.get(), Config.apogean_axe_speed.get().floatValue(), new Item.Properties().fireResistant().rarity(Rarity.EPIC).tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).stacksTo(1)).setRegistryName("apogean_axe");
     public static final Item APOGEAN_NETHERITE_HELMET = new ArmorItem(RigoranthusArmorMaterial.APOGEAN_NETHERITE, EquipmentSlotType.HEAD, new Item.Properties().fireResistant().rarity(Rarity.EPIC).tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)).setRegistryName("apogean_netherite_helmet");

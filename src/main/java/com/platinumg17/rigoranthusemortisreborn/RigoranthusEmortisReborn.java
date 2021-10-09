@@ -3,7 +3,7 @@ package com.platinumg17.rigoranthusemortisreborn;
 import com.google.common.collect.ImmutableMap;
 import com.platinumg17.rigoranthusemortisreborn.blocks.custom.RigoranthusWoodTypes;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
-import com.platinumg17.rigoranthusemortisreborn.container.MasterfulSmelteryContainerBase;
+import com.platinumg17.rigoranthusemortisreborn.core.events.RigoranthusForgeEventBusSubscriber;
 import com.platinumg17.rigoranthusemortisreborn.core.init.*;
 import com.platinumg17.rigoranthusemortisreborn.core.init.network.messages.Messages;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusSoundRegistry;
@@ -13,20 +13,17 @@ import com.platinumg17.rigoranthusemortisreborn.entity.render.LanguidDwellerRend
 import com.platinumg17.rigoranthusemortisreborn.entity.render.NecrawFasciiRenderer;
 import com.platinumg17.rigoranthusemortisreborn.entity.render.SunderedCadaverRenderer;
 import com.platinumg17.rigoranthusemortisreborn.fluid.CadaverousIchorFluid;
-import com.platinumg17.rigoranthusemortisreborn.gui.MasterfulSmelteryScreen;
 import com.platinumg17.rigoranthusemortisreborn.tileentity.RigoranthusTileEntities;
-import com.platinumg17.rigoranthusemortisreborn.util.BoneBowModelProperties;
 import net.minecraft.block.Block;
 import net.minecraft.block.WoodType;
-import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.Atlases;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.client.renderer.tileentity.SignTileEntityRenderer;
-import net.minecraft.entity.EntityType;
-import net.minecraft.item.*;
+import net.minecraft.item.AxeItem;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemModelsProperties;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.event.RenderTooltipEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -46,8 +43,6 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.util.function.Supplier;
 
 @Mod("rigoranthusemortisreborn")
 @Mod.EventBusSubscriber(modid = RigoranthusEmortisReborn.MOD_ID, bus = Bus.MOD)
@@ -70,7 +65,6 @@ public class RigoranthusEmortisReborn {
         CadaverousIchorFluid.register(bus);
         RigoranthusSoundRegistry.register(bus);
         RigoranthusEntityTypes.register(bus);
-        //RigoranthusRecipeTypes.register(bus);
         //RigoranthusBiomes.register(bus);
         //RigoranthusStructures.register(bus);
         if (Config.enableNewWoodTypes.get()) {
@@ -91,6 +85,7 @@ public class RigoranthusEmortisReborn {
         Config.loadConfig(Config.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve("rigoranthusemortisreborn.toml"));
 
         FMLJavaModLoadingContext.get().getModEventBus().addListener(ScreenInit::init);
+        //FMLJavaModLoadingContext.get().getModEventBus().addListener(RigoranthusForgeEventBusSubscriber::playerInventoryChangedEvent);
 	}
 	
     @SubscribeEvent
@@ -133,8 +128,7 @@ public class RigoranthusEmortisReborn {
             RenderTypeLookup.setRenderLayer(CadaverousIchorFluid.CADAVEROUS_ICHOR_BLOCK.get(), RenderType.translucent());
             RenderTypeLookup.setRenderLayer(CadaverousIchorFluid.CADAVEROUS_ICHOR_FLOWING.get(), RenderType.translucent());
 
-            BoneBowModelProperties.makeBow(ItemInit.BONE_BOW.get());
-
+            makeBow(ItemInit.BONE_BOW.get());
             ClientRegistry.bindTileEntityRenderer(RigoranthusTileEntities.SIGN_TILE_ENTITIES.get(),
                     SignTileEntityRenderer::new);
             Atlases.addWoodType(RigoranthusWoodTypes.AZULOREAL);
@@ -148,19 +142,16 @@ public class RigoranthusEmortisReborn {
     private void makeBow(Item item) {
         ItemModelsProperties.register(item, new ResourceLocation("pull"),
                 (p_239429_0_, p_239429_1_, p_239429_2_) -> {
-                    if (p_239429_2_ == null) {
-                        return 0.0F;
-                    } else {
-                        return p_239429_2_.getUseItem() != p_239429_0_ ? 0.0F :
-                                (float) (p_239429_0_.getUseDuration() - p_239429_2_.getUseItemRemainingTicks()) / 20.0F;
-                    }
-                });
-
+            if (p_239429_2_ == null) {
+                return 0.0F;
+            } else {
+                return p_239429_2_.getUseItem() != p_239429_0_ ? 0.0F : (float) (p_239429_0_.getUseDuration() - p_239429_2_.getUseItemRemainingTicks()) / 20.0F;
+            }
+        });
         ItemModelsProperties.register(item, new ResourceLocation("pulling"),
                 (p_239428_0_, p_239428_1_, p_239428_2_) -> {
-                    return p_239428_2_ != null && p_239428_2_.isUsingItem() &&
-                            p_239428_2_.getUseItem() == p_239428_0_ ? 1.0F : 0.0F;
-                });
+            return p_239428_2_ != null && p_239428_2_.isUsingItem() && p_239428_2_.getUseItem() == p_239428_0_ ? 1.0F : 0.0F;
+        });
     }
     private void enqueueIMC(final InterModEnqueueEvent event) {
     }

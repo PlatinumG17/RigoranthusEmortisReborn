@@ -72,7 +72,7 @@ public class RigoranthusEmortisReborn {
         }
 		
 		MinecraftForge.EVENT_BUS.register(this);
-		
+        MinecraftForge.EVENT_BUS.register(new RigoranthusForgeEventBusSubscriber());
         Messages.registerMessages("rigoranthusemortisreborn_network");
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.CLIENT_CONFIG);
@@ -85,7 +85,6 @@ public class RigoranthusEmortisReborn {
         Config.loadConfig(Config.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve("rigoranthusemortisreborn.toml"));
 
         FMLJavaModLoadingContext.get().getModEventBus().addListener(ScreenInit::init);
-        //FMLJavaModLoadingContext.get().getModEventBus().addListener(RigoranthusForgeEventBusSubscriber::playerInventoryChangedEvent);
 	}
 	
     @SubscribeEvent

@@ -16,11 +16,9 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class RemexIngotItem extends Item {
-
     public RemexIngotItem(Properties p_i48487_1_) {
         super(p_i48487_1_);
     }
-    @OnlyIn(Dist.CLIENT)
     @Override
     public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         if (Screen.hasShiftDown()) {

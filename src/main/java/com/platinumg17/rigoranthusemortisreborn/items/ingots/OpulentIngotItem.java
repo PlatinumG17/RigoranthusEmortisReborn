@@ -19,7 +19,6 @@ public class OpulentIngotItem extends Item {
     public OpulentIngotItem(Properties p_i48487_1_) {
         super(p_i48487_1_);
     }
-    @OnlyIn(Dist.CLIENT)
     @Override
     public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         if (Screen.hasShiftDown()) {

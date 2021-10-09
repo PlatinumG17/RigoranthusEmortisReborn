@@ -1,6 +1,6 @@
 {
     "parent": "minecraft:item/bow",
     "textures": {
-        "layer0": "rigoranthusemortisreborn:items/bow_pulling_1"
+        "layer0": "rigoranthusemortisreborn:items/bone_bow_pulling_1"
     }
 }

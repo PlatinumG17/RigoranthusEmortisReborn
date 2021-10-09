@@ -26,6 +26,7 @@ public class Config {
     public static final String CATEGORY_GENERAL = "general";
     public static final String CATEGORY_SMELTERY = "smeltery";
     public static final String CATEGORY_ORES = "ores";
+    public static final String CATEGORY_WEAPONS = "weapons";
     public static final String CATEGORY_DWELLER_ARMOR = "dweller_armor";
     public static final String CATEGORY_APOGEAN_ARMOR = "apogean_armor";
     public static final String CATEGORY_AQUEOUS_ARMOR = "aqueous_armor";
@@ -52,6 +53,16 @@ public class Config {
     public static ForgeConfigSpec.BooleanValue enableJeiClickArea;
 
     public static ForgeConfigSpec.BooleanValue enableNetheriteAdditions;
+
+    public static ForgeConfigSpec.IntValue bone_bow_projectile_range;
+    public static ForgeConfigSpec.IntValue bone_bow_durability;
+
+    public static ForgeConfigSpec.DoubleValue bone_spear_speed;
+    public static ForgeConfigSpec.IntValue bone_spear_damage;
+    public static ForgeConfigSpec.IntValue bone_tier_durability;
+    public static ForgeConfigSpec.DoubleValue bone_tier_speed;
+    public static ForgeConfigSpec.DoubleValue bone_tier_damage;
+    public static ForgeConfigSpec.IntValue bone_tier_enchantability;
 
     public static ForgeConfigSpec.DoubleValue apogean_axe_speed;
     public static ForgeConfigSpec.IntValue apogean_axe_damage;
@@ -331,7 +342,7 @@ public class Config {
 
         CLIENT_BUILDER.pop();
 
-        CLIENT_BUILDER.comment("Armor, Weapons, & Resources").push(CATEGORY_MISC);
+        CLIENT_BUILDER.comment("Misc & Resources").push(CATEGORY_MISC);
 
         enableNetheriteAdditions = CLIENT_BUILDER
                 .comment(" Enable or Disable the custom Netherite Armors/Weapons.").define("armor.enable_or_disable_netherite_additions", true);
@@ -350,6 +361,12 @@ public class Config {
 
         showErrors = CLIENT_BUILDER
                 .comment(" Debugging Tool that prints Smeltery Settings errors in chat.").define("display.errors", false);
+
+        CLIENT_BUILDER.pop();
+
+        CLIENT_BUILDER.comment("Weapons [other than netherite]").push(CATEGORY_WEAPONS);
+
+        setupWeaponConfig(COMMON_BUILDER, CLIENT_BUILDER);
 
         CLIENT_BUILDER.pop();
 
@@ -373,7 +390,18 @@ public class Config {
         smelteryXPDropValue = CLIENT_BUILDER.comment(" Value indicating when the Masterful Smeltery should 'overload' and auto-eject the stored xp. \n Default: 10, Recipes").defineInRange("smeltery_xp_drop.value", 10, 1, 500);
         smelteryXPDropValue2 = CLIENT_BUILDER.comment(" Value indicating when the smeltery should 'overload' and auto-eject the stored xp. \n Default: 100000, Single recipe uses").defineInRange("smeltery_xp_drop.value_two", 100000, 1, 1000000);
     }
+    private static void setupWeaponConfig(ForgeConfigSpec.Builder COMMON_BUILDER, ForgeConfigSpec.Builder CLIENT_BUILDER) {
+        bone_spear_speed = CLIENT_BUILDER.comment(" Default: 9.0").defineInRange("spear.speed", 9.0, 0.0, 1000);
+        bone_spear_damage = CLIENT_BUILDER.comment(" Default: 4.0").defineInRange("spear.damage", 2, 0, 1000);
+        bone_tier_durability = CLIENT_BUILDER.comment(" Default: 230").defineInRange("tier.durability", 230, 0, 100000);
+        bone_tier_speed = CLIENT_BUILDER.comment(" Default: 9.0").defineInRange("tier.speed", 9.0, 0.0, 1000);
+        bone_tier_damage = CLIENT_BUILDER.comment(" Default: 2.0").defineInRange("tier.damage", 2.0, 0.0, 1000);
+        bone_tier_enchantability = CLIENT_BUILDER.comment(" Default: 20").defineInRange("tier.enchantability", 20, 0, 100);
 
+        bone_bow_projectile_range = CLIENT_BUILDER.comment(" Set Default Projectile Range of the Bone Bow.\n Default: 15").defineInRange("range.bone_bow", 15, 1, 1000);
+        bone_bow_durability = CLIENT_BUILDER.comment(" Set Durability of the Bone Bow.\n Vanilla Bow Default: 384\n Bone Bow Default: 500").defineInRange("durability.bone_bow", 500, 1, 100000);
+
+    }
     private static void setupApogeanConfig(ForgeConfigSpec.Builder COMMON_BUILDER, ForgeConfigSpec.Builder CLIENT_BUILDER) {
         apogean_sword_speed = CLIENT_BUILDER.comment(" Default:80\n Default Netherite: 9.0").defineInRange("sword.speed", 80.0, 0.0, 1000);
         apogean_sword_damage = CLIENT_BUILDER.comment(" Default:50\n Default Netherite: 4.0").defineInRange("sword.damage", 50, 0, 1000);
@@ -636,7 +664,7 @@ public class Config {
                 .defineInRange("general_values.knockback_resistance", 0.0, 0.0, 1.0);
     }
     private static void setupDwellerConfig(ForgeConfigSpec.Builder COMMON_BUILDER, ForgeConfigSpec.Builder CLIENT_BUILDER) {
-        dweller_thorax_chestplate_damage_reduction = CLIENT_BUILDER.comment(" \nChestplate Damage Reduction Value.\n Default: 7")
+        dweller_thorax_chestplate_damage_reduction = CLIENT_BUILDER.comment(" Chestplate Damage Reduction Value.\n Default: 7")
                 .defineInRange("damage_reduction_for_each_slot.dweller_thorax_damage_reduction", 7, 0, 1000);
         dweller_thorax_durability_multiplier = CLIENT_BUILDER.comment(" Default: 25")
                 .defineInRange("general_values.durability_multiplier", 25, 0, 1000);

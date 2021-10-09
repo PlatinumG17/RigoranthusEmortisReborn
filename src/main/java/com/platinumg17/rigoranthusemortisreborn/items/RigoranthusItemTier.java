@@ -28,7 +28,13 @@ public enum RigoranthusItemTier implements IItemTier {
     PHANTASMAL(4, Config.phantasmal_tier_durability.get(), Config.phantasmal_tier_speed.get().floatValue(), Config.phantasmal_tier_damage.get().floatValue(), Config.phantasmal_tier_enchantability.get(),
             () -> Ingredient.of(ItemInit.PHANTASMAL_NETHERITE_INGOT.get())),
     REMEX(4, Config.remex_tier_durability.get(), Config.remex_tier_speed.get().floatValue(), Config.remex_tier_damage.get().floatValue(), Config.remex_tier_enchantability.get(),
-            () -> Ingredient.of(ItemInit.REMEX_NETHERITE_INGOT.get()));
+            () -> Ingredient.of(ItemInit.REMEX_NETHERITE_INGOT.get())),
+    BONE(2, Config.bone_tier_durability.get(), Config.bone_tier_speed.get().floatValue(), Config.bone_tier_damage.get().floatValue(), Config.bone_tier_enchantability.get(),
+            () -> Ingredient.of(ItemInit.BONE_FRAGMENT.get()));
+
+   // IRON(2, 250, 6.0F, 2.0F, 14, () -> {
+   //     return Ingredient.of(Items.IRON_INGOT);
+  //  }),
 
     private final int level;
     private final int uses;

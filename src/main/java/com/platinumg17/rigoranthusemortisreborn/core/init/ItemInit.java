@@ -1,6 +1,7 @@
 package com.platinumg17.rigoranthusemortisreborn.core.init;
 
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
+import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusItemGroup;
 
 import com.platinumg17.rigoranthusemortisreborn.entity.RigoranthusEntityTypes;
@@ -56,11 +57,7 @@ public class ItemInit {
 			() -> new ArrowItem(new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)));
 
 	public static final RegistryObject<Item> BONE_BOW = ITEMS.register("bone_bow",
-			() -> new BoneBow(new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).stacksTo(1)));
-
-	public static final RegistryObject<Item> BONE_SPEAR = ITEMS.register("bone_spear",
-			() -> new Item(new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).stacksTo(1)));
-
+			() -> new BoneBow(new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).stacksTo(1).durability(Config.bone_bow_durability.get())));
 
 	public static final RegistryObject<Item> DWELLER_FLESH = ITEMS.register("dweller_flesh",
 			() -> new Item(new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)));

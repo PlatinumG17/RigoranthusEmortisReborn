@@ -53,6 +53,7 @@ public class Config {
     public static ForgeConfigSpec.BooleanValue enableJeiClickArea;
 
     public static ForgeConfigSpec.BooleanValue enableNetheriteAdditions;
+    public static ForgeConfigSpec.BooleanValue enableArmorSetBonuses;
 
     public static ForgeConfigSpec.IntValue bone_bow_projectile_range;
     public static ForgeConfigSpec.IntValue bone_bow_durability;
@@ -343,6 +344,8 @@ public class Config {
         CLIENT_BUILDER.pop();
 
         CLIENT_BUILDER.comment("Misc & Resources").push(CATEGORY_MISC);
+        enableArmorSetBonuses = CLIENT_BUILDER
+                .comment(" Enable or Disable the Full Armor Set Bonuses.").define("armor.enable_or_disable_armor_bonuses", true);
 
         enableNetheriteAdditions = CLIENT_BUILDER
                 .comment(" Enable or Disable the custom Netherite Armors/Weapons.").define("armor.enable_or_disable_netherite_additions", true);

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "rigoranthusemortisreborn:blocks/apogean_netherite_block",
+    "particle": "rigoranthusemortisreborn:blocks/apogean_netherite_block"
+  }
+}

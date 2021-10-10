@@ -1,4 +1,16 @@
 {
+  "_comment": "ADVANCEMENTS",
+  "rigoranthus.advancements.story.root.title": "Emortic Records",
+  "rigoranthus.advancements.story.root.description": "An endeavor to gain insight regarding that which has been lost sight of.",
+  "rigoranthus.advancements.story.power_seeker.title": "Seeker of Power",
+  "rigoranthus.advancements.story.power_seeker.description": "Kill a member of the Lost Species.",
+  "rigoranthus.advancements.story.living_lore.title": "Living the Lore",
+  "rigoranthus.advancements.story.living_lore.description": "Learn more about the Lost Species The 'Languid Dweller' by listening to a Forgotten Record.",
+  "rigoranthus.advancements.story.knowledge_seeker.title": "Seeker of Knowledge",
+  "rigoranthus.advancements.story.knowledge_seeker.description": "Obtain a record of the Lost Species.",
+
+
+
   "_comment": "BLOCKS", 
   "block.rigoranthusemortisreborn.abyssalite": "§5Abyssalite",
   "block.rigoranthusemortisreborn.fortified_sandesite": "Fortified Sandesite",
@@ -6,6 +18,18 @@
   "block.rigoranthusemortisreborn.fragmented_netherrack": "Fragmented Netherrack",
   "block.rigoranthusemortisreborn.gold_amalgam": "§6Gold Amalgam",
   "block.rigoranthusemortisreborn.himalayan_salt": "§dHimalayan Salt",
+
+  "block.rigoranthusemortisreborn.apogean_netherite_block": "§d§oApogean Netherite Block",
+  "block.rigoranthusemortisreborn.aqueous_netherite_block": "§1§oAqueous Netherite Block",
+  "block.rigoranthusemortisreborn.atrophying_netherite_block": "§8§oCachexic Netherite Block",
+  "block.rigoranthusemortisreborn.incorporeal_netherite_block": "§b§oIncorporeal Netherite Block",
+  "block.rigoranthusemortisreborn.infernal_netherite_block": "\u00A7c§oInfernal Netherite Block",
+  "block.rigoranthusemortisreborn.opulent_netherite_block": "§e§oOpulent Netherite Block",
+  "block.rigoranthusemortisreborn.pernicious_netherite_block": "§a§oPernicious Netherite Block",
+  "block.rigoranthusemortisreborn.phantasmal_netherite_block": "§6§oPhantasmal Netherite Block",
+  "block.rigoranthusemortisreborn.remex_netherite_block": "§f§oRemex Netherite Block",
+  "block.rigoranthusemortisreborn.block_of_esotericum": "Block of Esotericum",
+  "block.rigoranthusemortisreborn.recondite_ore": "Recondite Ore",
 
   "block.rigoranthusemortisreborn.jessic_button": "Jessic Button",
   "block.rigoranthusemortisreborn.jessic_crafting_table": "Jessic Crafting Table",
@@ -119,6 +143,8 @@
 
   "_comment": "ITEMS",
   "itemGroup.rigoranthusemortistab": "Rigoranthus Emortis",
+  "item.rigoranthusemortisreborn.forgotten_record": "Forgotten Record",
+  "item.rigoranthusemortisreborn.forgotten_record.desc": "Forgotten Record",
   "item.rigoranthusemortisreborn.bone_spear": "Bone Spear",
   "item.rigoranthusemortisreborn.bone_bow": "Bone Bow",
   "item.rigoranthusemortisreborn.bone_bow_pulling_0": "Bone Bow",
@@ -242,6 +268,9 @@
   "item.rigoranthusemortisreborn.uranium_ore_fragment": "Uranium Ore Fragment",
   "item.rigoranthusemortisreborn.zinc_ore_fragment": "Zinc Ore Fragment",
 
+  "item.rigoranthusemortisreborn.powdered_esotericum": "Powdered Esotericum",
+  "item.rigoranthusemortisreborn._netherite_block": " Netherite Block",
+
 
   "_comment": "Spawn Eggs",
   "item.rigoranthusemortisreborn.canis_chordata_spawn_egg": "Canis Chordata Spawn Egg",
@@ -253,6 +282,7 @@
   "item.rigoranthusemortisreborn.sundered_cadaver_spawn_egg": "Sundered Cadaver Spawn Egg",
 
   "_comment": "Armors_Weapons_Tools",
+  "item.rigoranthusemortisreborn.apogean_netherite_block": "§d§oApogean Netherite Block",
   "item.rigoranthusemortisreborn.apogean_netherite_ingot": "§d§oApogean Ingot",
   "item.rigoranthusemortisreborn.apogean_netherite_helmet": "§bApogean Netherite Helmet",
   "item.rigoranthusemortisreborn.apogean_netherite_chestplate": "§bApogean Netherite Chestplate",
@@ -261,6 +291,7 @@
   "item.rigoranthusemortisreborn.apogean_sword": "§bApogean Sword",
   "item.rigoranthusemortisreborn.apogean_axe": "§bApogean Axe",  
 
+  "item.rigoranthusemortisreborn.aqueous_netherite_block": "§1§oAqueous Netherite Block",
   "item.rigoranthusemortisreborn.aqueous_netherite_ingot": "§1§oAqueous Ingot",
   "item.rigoranthusemortisreborn.aqueous_netherite_helmet": "§9Aqueous Netherite Helmet",
   "item.rigoranthusemortisreborn.aqueous_netherite_chestplate": "§9Aqueous Netherite Chestplate",
@@ -269,6 +300,7 @@
   "item.rigoranthusemortisreborn.aqueous_sword": "Aqueous Sword",
   "item.rigoranthusemortisreborn.aqueous_axe": "Aqueous Axe",
 
+  "item.rigoranthusemortisreborn.atrophying_netherite_block": "§8§oCachexic Netherite Block",
   "item.rigoranthusemortisreborn.atrophying_netherite_ingot": "§8§oCachexic Ingot",
   "item.rigoranthusemortisreborn.atrophying_netherite_helmet": "§8Atrophying Netherite Helmet",
   "item.rigoranthusemortisreborn.atrophying_netherite_chestplate": "§8Atrophying Netherite Chestplate",
@@ -279,6 +311,7 @@
 
   "item.rigoranthusemortisreborn.dweller_thorax_chestplate": "Dweller Thorax",
 
+  "item.rigoranthusemortisreborn.incorporeal_netherite_block": "§b§oIncorporeal Netherite Block",
   "item.rigoranthusemortisreborn.incorporeal_netherite_ingot": "§b§oIncorporeal Ingot",
   "item.rigoranthusemortisreborn.incorporeal_netherite_helmet": "§bIncorporeal Netherite Helmet",
   "item.rigoranthusemortisreborn.incorporeal_netherite_chestplate": "§bIncorporeal Netherite Chestplate",
@@ -287,6 +320,7 @@
   "item.rigoranthusemortisreborn.incorporeal_sword": "Incorporeal Sword",
   "item.rigoranthusemortisreborn.incorporeal_axe": "Incorporeal Axe",
 
+  "item.rigoranthusemortisreborn.infernal_netherite_block": "\u00A7c§oInfernal Netherite Block",
   "item.rigoranthusemortisreborn.infernal_netherite_ingot": "\u00A7c§oInfernal Ingot",
   "item.rigoranthusemortisreborn.infernal_netherite_helmet": "\u00A7cInfernal Netherite Helmet",
   "item.rigoranthusemortisreborn.infernal_netherite_chestplate": "\u00A7cInfernal Netherite Chestplate",
@@ -295,6 +329,7 @@
   "item.rigoranthusemortisreborn.infernal_sword": "Infernal Sword",
   "item.rigoranthusemortisreborn.infernal_axe": "Infernal Axe",
 
+  "item.rigoranthusemortisreborn.opulent_netherite_block": "§e§oOpulent Netherite Block",
   "item.rigoranthusemortisreborn.opulent_netherite_ingot": "§e§oOpulent Ingot",
   "item.rigoranthusemortisreborn.opulent_netherite_helmet": "§eOpulent Netherite Helmet",
   "item.rigoranthusemortisreborn.opulent_netherite_chestplate": "§eOpulent Netherite Chestplate",
@@ -303,6 +338,7 @@
   "item.rigoranthusemortisreborn.opulent_sword": "Opulent Sword",
   "item.rigoranthusemortisreborn.opulent_axe": "Opulent Axe",
 
+  "item.rigoranthusemortisreborn.pernicious_netherite_block": "§a§oPernicious Netherite Block",
   "item.rigoranthusemortisreborn.pernicious_netherite_ingot": "§a§oPernicious Ingot",
   "item.rigoranthusemortisreborn.pernicious_netherite_helmet": "§2Pernicious Netherite Helmet",
   "item.rigoranthusemortisreborn.pernicious_netherite_chestplate": "§2Pernicious Netherite Chestplate",
@@ -311,6 +347,7 @@
   "item.rigoranthusemortisreborn.pernicious_sword": "Pernicious Sword",
   "item.rigoranthusemortisreborn.pernicious_axe": "Pernicious Axe",
 
+  "item.rigoranthusemortisreborn.phantasmal_netherite_block": "§6§oPhantasmal Netherite Block",
   "item.rigoranthusemortisreborn.phantasmal_netherite_ingot": "§6§oPhantasmal Ingot",
   "item.rigoranthusemortisreborn.phantasmal_netherite_helmet": "§6Phantasmal Netherite Helmet",
   "item.rigoranthusemortisreborn.phantasmal_netherite_chestplate": "§6Phantasmal Netherite Chestplate",
@@ -319,6 +356,7 @@
   "item.rigoranthusemortisreborn.phantasmal_sword": "Phantasmal Sword",
   "item.rigoranthusemortisreborn.phantasmal_axe": "Phantasmal Axe",
 
+  "item.rigoranthusemortisreborn.remex_netherite_block": "§f§oRemex Netherite Block",
   "item.rigoranthusemortisreborn.remex_netherite_ingot": "§f§oRemex Ingot",
   "item.rigoranthusemortisreborn.remex_netherite_helmet": "Remex Netherite Helmet",
   "item.rigoranthusemortisreborn.remex_netherite_chestplate": "Remex Netherite Chestplate",
@@ -406,15 +444,35 @@
   "tooltip.rigoranthusemortisreborn.crushing_hammer3": "resources into fragments, or process",
   "tooltip.rigoranthusemortisreborn.crushing_hammer4": "ore fragments into nuggets.",
 
+  "tooltip.rigoranthusemortisreborn.forgotten_record": "A crumbling record.",
+  "tooltip.rigoranthusemortisreborn.forgotten_record2": "Perhaps it contains knowledge",
+  "tooltip.rigoranthusemortisreborn.forgotten_record3": "of things long since forgotten",
+  "tooltip.rigoranthusemortisreborn.forgotten_record_shift": "Hold \u00A76[SHIFT]\u00A7f for info.",
+
 
 
   "_comment": "Block Tooltips",
+  "tooltip.rigoranthusemortisreborn.esotericum": "A resource coveted by the Languid Dweller",
+  "tooltip.rigoranthusemortisreborn.esotericum2": "",
+  "tooltip.rigoranthusemortisreborn.esotericum_obfuscated": "\u00A7kA resource coveted by the Languid Dweller",
+  "tooltip.rigoranthusemortisreborn.recondite_ore": "\u00A7kA resource coveted by the Languid Dweller",
   "tooltip.block.rigoranthusemortisreborn.abyssalite": "Strengthen Obsidian Futher by Smelting it.",
   "tooltip.block.rigoranthusemortisreborn.fortified_sandesite": "Sandesite that has been strengthened by melting the Zinc/Iron within it to create an amalgam.",
   "tooltip.block.rigoranthusemortisreborn.fragmented_cobblestone": "Smelt it to get stone, or Combine with clay to get an Unfired Brick",
   "tooltip.block.rigoranthusemortisreborn.fragmented_netherrack": "Smelt it to get Netherrack, or Combine with clay to get an Unfired Nether Brick",
   "tooltip.block.rigoranthusemortisreborn.gold_amalgam": "Is there a way to get my gold back from this? No?",
   "tooltip.block.rigoranthusemortisreborn.himalayan_salt": "Gives salt a purpose as a decorative/building block",
+
+  "tooltip.block.rigoranthusemortisreborn.apogean_netherite_block": "§d§oApogean Storage Block",
+  "tooltip.block.rigoranthusemortisreborn.aqueous_netherite_block": "§1§oAqueous Storage Block",
+  "tooltip.block.rigoranthusemortisreborn.atrophying_netherite_block": "§8§oCachexic Storage Block",
+  "tooltip.block.rigoranthusemortisreborn.incorporeal_netherite_block": "§b§oIncorporeal Storage Block",
+  "tooltip.block.rigoranthusemortisreborn.infernal_netherite_block": "\u00A7c§oInfernal Storage Block",
+  "tooltip.block.rigoranthusemortisreborn.opulent_netherite_block": "§e§oOpulent Storage Block",
+  "tooltip.block.rigoranthusemortisreborn.pernicious_netherite_block": "§a§oPernicious Storage Block",
+  "tooltip.block.rigoranthusemortisreborn.phantasmal_netherite_block": "§6§oPhantasmal Storage Block",
+  "tooltip.block.rigoranthusemortisreborn.remex_netherite_block": "§f§oRemex Storage Block",
+  "tooltip.block.rigoranthusemortisreborn.block_of_esotericum": "Block of Esotericum",
 
   "tooltip.block.rigoranthusemortisreborn.jessic_button": "",
   "tooltip.block.rigoranthusemortisreborn.jessic_crafting_table": "",

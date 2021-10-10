@@ -1,0 +1,38 @@
+{
+  "parent": "rigoranthusemortisreborn:story/obtain_a_forgotten_record",
+  "display": {
+    "icon": {
+      "item": "rigoranthusemortisreborn:powdered_esotericum"
+    },
+    "title": {
+      "translate": "rigoranthus.advancements.story.living_lore.title"
+    },
+    "description": {
+      "translate": "rigoranthus.advancements.story.living_lore.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "play_record": {
+      "trigger": "minecraft:item_used_on_block",
+      "conditions": {
+        "location": {
+          "block": {
+            "block": "minecraft:jukebox"
+          }
+        },
+        "item": {
+          "item": "rigoranthusemortisreborn:forgotten_record"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "play_record"
+    ]
+  ]
+}

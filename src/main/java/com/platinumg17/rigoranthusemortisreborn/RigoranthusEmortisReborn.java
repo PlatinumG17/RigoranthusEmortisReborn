@@ -3,7 +3,6 @@ package com.platinumg17.rigoranthusemortisreborn;
 import com.google.common.collect.ImmutableMap;
 import com.platinumg17.rigoranthusemortisreborn.blocks.custom.RigoranthusWoodTypes;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
-import com.platinumg17.rigoranthusemortisreborn.core.events.RigoranthusForgeEventBusSubscriber;
 import com.platinumg17.rigoranthusemortisreborn.core.init.*;
 import com.platinumg17.rigoranthusemortisreborn.core.init.network.messages.Messages;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusSoundRegistry;
@@ -72,7 +71,6 @@ public class RigoranthusEmortisReborn {
         }
 		
 		MinecraftForge.EVENT_BUS.register(this);
-        MinecraftForge.EVENT_BUS.register(new RigoranthusForgeEventBusSubscriber());
         Messages.registerMessages("rigoranthusemortisreborn_network");
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.CLIENT_CONFIG);

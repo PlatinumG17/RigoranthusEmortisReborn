@@ -233,6 +233,10 @@ public class Config {
     public static ForgeConfigSpec.DoubleValue remex_toughness;
     public static ForgeConfigSpec.DoubleValue remex_knockback_resistance;
 
+    public static ForgeConfigSpec.IntValue minOreHeight;
+    public static ForgeConfigSpec.IntValue maxOreHeight;
+    public static ForgeConfigSpec.IntValue maxVeinSize;
+
     public static ForgeConfigSpec.BooleanValue enableHammersAndVanillaOreFragments;
     public static ForgeConfigSpec.BooleanValue enableModdedOreFragments;
     public static ForgeConfigSpec.IntValue stone_hammer_durability;
@@ -241,6 +245,7 @@ public class Config {
     public static ForgeConfigSpec.IntValue diamond_hammer_durability;
     public static ForgeConfigSpec.IntValue abyssalite_hammer_durability;
 
+    public static ForgeConfigSpec.BooleanValue enableBoneWeapons;
     public static ForgeConfigSpec.BooleanValue enableSoulCoal;
     public static ForgeConfigSpec.IntValue soulCoalBurnTime;
     public static ForgeConfigSpec.BooleanValue enableNewWoodTypes;
@@ -337,7 +342,7 @@ public class Config {
 
         CLIENT_BUILDER.pop();
 
-        CLIENT_BUILDER.comment("Ore Fragments and Ore-Crushing Hammers").push(CATEGORY_ORES);
+        CLIENT_BUILDER.comment("Ore Generation, Ore Fragments, and Crushing Hammers").push(CATEGORY_ORES);
 
         setupOreConfig(COMMON_BUILDER, CLIENT_BUILDER);
 
@@ -346,6 +351,9 @@ public class Config {
         CLIENT_BUILDER.comment("Misc & Resources").push(CATEGORY_MISC);
         enableArmorSetBonuses = CLIENT_BUILDER
                 .comment(" Enable or Disable the Full Armor Set Bonuses.").define("armor.enable_or_disable_armor_bonuses", true);
+
+        enableBoneWeapons = CLIENT_BUILDER
+                .comment(" Enable or Disable Bone Weapons. [Bone Spear/Bow/Arrows]").define("bone.enable_or_disable_bone_weapons", true);
 
         enableNetheriteAdditions = CLIENT_BUILDER
                 .comment(" Enable or Disable the custom Netherite Armors/Weapons.").define("armor.enable_or_disable_netherite_additions", true);
@@ -378,6 +386,10 @@ public class Config {
     }
 
     private static void setupOreConfig(ForgeConfigSpec.Builder COMMON_BUILDER, ForgeConfigSpec.Builder CLIENT_BUILDER) {
+        maxVeinSize = CLIENT_BUILDER.comment(" The Maximum Vein Size of Ores from this mod.\n Default: 3").defineInRange("ore.max_vein_size", 3, 0, 50);
+        minOreHeight = CLIENT_BUILDER.comment(" The Minimum Height at which Ores from this mod can Generate.\n Default: 1").defineInRange("ore.min_ore_height", 1, 0, 254);
+        maxOreHeight = CLIENT_BUILDER.comment(" The Maximum Height at which Ores from this mod can Generate.\n Default: 14").defineInRange("ore.max_ore_height", 14, 0, 255);
+
         enableModdedOreFragments = CLIENT_BUILDER.comment(" Enable or disable Modded Ore Fragments.\n (You still need this mod's datapack if you wish to have Ores drop fragments when mined)\n (Datapack Only works with ores from the mods 'AllTheOres' and 'Mystical World')").define("ores.datapack_stuff.modded_ore_fragments", true);
         enableHammersAndVanillaOreFragments = CLIENT_BUILDER.comment(" Enable or disable Vanilla Ore Fragments and Ore Crushing Hammers.\n (You still need this mod's datapack if you wish to have Ores drop fragments when mined)").define("ores.hammers_and_vanilla_ore_fragments", true);
         stone_hammer_durability = CLIENT_BUILDER.comment(" The Durability of Stone Hammers.\n Default: 25").defineInRange("stone_hammers.durability", 25, 1, 10000);

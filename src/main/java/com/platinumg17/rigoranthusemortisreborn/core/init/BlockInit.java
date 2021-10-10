@@ -77,6 +77,47 @@ public class BlockInit {
 			() -> new GravelBlock(AbstractBlock.Properties.of(Material.SAND, MaterialColor.COLOR_PINK).strength(0.6f, 0.6f)
 					.harvestTool(ToolType.SHOVEL).harvestLevel(0).sound(SoundType.GRAVEL)), "tooltip.block.rigoranthusemortisreborn.pink_salt");
 
+	public static final RegistryObject<Block> BLOCK_OF_ESOTERICUM = registerBlock("block_of_esotericum",
+			() -> new GravelBlock(AbstractBlock.Properties.of(Material.SAND, MaterialColor.STONE).strength(1f, 1f)
+					.harvestTool(ToolType.SHOVEL).harvestLevel(0).sound(SoundType.GRAVEL)), "tooltip.block.rigoranthusemortisreborn.block_of_esotericum");
+
+	public static final RegistryObject<Block> APOGEAN_NETHERITE_BLOCK = registerBlock("apogean_netherite_block",
+			() -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.METAL).lightLevel((p_235452_0_) -> { return 5; }).strength(25f, 30f)
+					.harvestTool(ToolType.PICKAXE).harvestLevel(4).requiresCorrectToolForDrops().sound(SoundType.STONE)), "tooltip.block.rigoranthusemortisreborn.apogean_netherite_block");
+
+	public static final RegistryObject<Block> AQUEOUS_NETHERITE_BLOCK = registerBlock("aqueous_netherite_block",
+			() -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.METAL).lightLevel((p_235452_0_) -> { return 5; }).strength(25f, 30f)
+					.harvestTool(ToolType.PICKAXE).harvestLevel(4).requiresCorrectToolForDrops().sound(SoundType.STONE)), "tooltip.block.rigoranthusemortisreborn.aqueous_netherite_block");
+
+	public static final RegistryObject<Block> ATROPHYING_NETHERITE_BLOCK = registerBlock("atrophying_netherite_block",
+			() -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.METAL).lightLevel((p_235452_0_) -> { return 5; }).strength(25f, 30f)
+					.harvestTool(ToolType.PICKAXE).harvestLevel(4).requiresCorrectToolForDrops().sound(SoundType.STONE)), "tooltip.block.rigoranthusemortisreborn.atrophying_netherite_block");
+
+	public static final RegistryObject<Block> OPULENT_NETHERITE_BLOCK = registerBlock("opulent_netherite_block",
+			() -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.METAL).lightLevel((p_235452_0_) -> { return 5; }).strength(25f, 30f)
+					.harvestTool(ToolType.PICKAXE).harvestLevel(4).requiresCorrectToolForDrops().sound(SoundType.STONE)), "tooltip.block.rigoranthusemortisreborn.opulent_netherite_block");
+
+	public static final RegistryObject<Block> PERNICIOUS_NETHERITE_BLOCK = registerBlock("pernicious_netherite_block",
+			() -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.METAL).lightLevel((p_235452_0_) -> { return 5; }).strength(25f, 30f)
+					.harvestTool(ToolType.PICKAXE).harvestLevel(4).requiresCorrectToolForDrops().sound(SoundType.STONE)), "tooltip.block.rigoranthusemortisreborn.pernicious_netherite_block");
+
+	public static final RegistryObject<Block> PHANTASMAL_NETHERITE_BLOCK = registerBlock("phantasmal_netherite_block",
+			() -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.METAL).lightLevel((p_235452_0_) -> { return 5; }).strength(25f, 30f)
+					.harvestTool(ToolType.PICKAXE).harvestLevel(4).requiresCorrectToolForDrops().sound(SoundType.STONE)), "tooltip.block.rigoranthusemortisreborn.phantasmal_netherite_block");
+
+	public static final RegistryObject<Block> INCORPOREAL_NETHERITE_BLOCK = registerBlock("incorporeal_netherite_block",
+			() -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.METAL).lightLevel((p_235452_0_) -> { return 5; }).strength(25f, 30f)
+					.harvestTool(ToolType.PICKAXE).harvestLevel(4).requiresCorrectToolForDrops().sound(SoundType.STONE)), "tooltip.block.rigoranthusemortisreborn.incorporeal_netherite_block");
+
+	public static final RegistryObject<Block> INFERNAL_NETHERITE_BLOCK = registerBlock("infernal_netherite_block",
+			() -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.METAL).lightLevel((p_235452_0_) -> { return 5; }).strength(25f, 30f)
+					.harvestTool(ToolType.PICKAXE).harvestLevel(4).requiresCorrectToolForDrops().sound(SoundType.STONE)), "tooltip.block.rigoranthusemortisreborn.infernal_netherite_block");
+
+	public static final RegistryObject<Block> REMEX_NETHERITE_BLOCK = registerBlock("remex_netherite_block",
+			() -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.METAL).lightLevel((p_235452_0_) -> { return 5; }).strength(25f, 30f)
+					.harvestTool(ToolType.PICKAXE).harvestLevel(4).requiresCorrectToolForDrops().sound(SoundType.STONE)), "tooltip.block.rigoranthusemortisreborn.remex_netherite_block");
+
+
 	private static ToIntFunction<BlockState> litBlockEmission(int var0) {
 		return (p_lambda$litBlockEmission$34_1_) -> {
 			return (Boolean)p_lambda$litBlockEmission$34_1_.getValue(BlockStateProperties.LIT) ? var0 : 0;

@@ -4,16 +4,20 @@ import com.platinumg17.rigoranthusemortisreborn.blocks.custom.RigoranthusStandin
 import com.platinumg17.rigoranthusemortisreborn.blocks.custom.RigoranthusWallSignBlock;
 import com.platinumg17.rigoranthusemortisreborn.blocks.custom.RigoranthusWoodTypes;
 import com.platinumg17.rigoranthusemortisreborn.items.*;
+import com.platinumg17.rigoranthusemortisreborn.items.armor.RigoranthusArmorMaterial;
 import com.platinumg17.rigoranthusemortisreborn.items.armor.armorsets.*;
 import com.platinumg17.rigoranthusemortisreborn.items.smeltery.*;
+import com.platinumg17.rigoranthusemortisreborn.items.weapons.BoneBow;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.material.MaterialColor;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.*;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ToolType;
 import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.RegistryObject;
@@ -62,12 +66,7 @@ public class Registration {
     // public static final RegistryObject<Block> POTTED_JESSIC_SAPLING = BLOCKS.register("potted_jessic_sapling", () -> new FlowerPotBlock(JESSIC_SAPLING, AbstractBlock.Properties.of(Material.DECORATION).instabreak().noOcclusion()));
     // public static final RegistryObject<Block> POTTED_AZULOREAL_SAPLING = BLOCKS.register("potted_azuloreal_sapling", () -> new FlowerPotBlock(AZULOREAL_SAPLING, AbstractBlock.Properties.of(Material.DECORATION).instabreak().noOcclusion()));
 
-    public static void registerBlocks(RegistryEvent.Register<Block> event)
-    {
-    //    if (Config.enableNewWoodTypes.get())
-    //    {
-    //        event.getRegistry().register();
-    //    }
+    public static void registerBlocks(RegistryEvent.Register<Block> event) {
     }
 
     public static final RegistryObject<ItemAugmentBlasting> BLASTING_AUGMENT = ITEMS.register("augment_blasting", () -> new ItemAugmentBlasting(new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)));
@@ -75,11 +74,11 @@ public class Registration {
     public static final RegistryObject<ItemAugmentSpeed> SPEED_AUGMENT = ITEMS.register("augment_speed", () -> new ItemAugmentSpeed(new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)));
     public static final RegistryObject<ItemAugmentFuel> FUEL_AUGMENT = ITEMS.register("augment_fuel", () -> new ItemAugmentFuel(new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)));
     public static final RegistryObject<ItemSmelteryCopy> ITEM_COPY = ITEMS.register("item_copy", () -> new ItemSmelteryCopy(new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)));
+    public static final RegistryObject<Block> RECONDITE_ORE = BLOCKS.register("recondite_ore", () -> new OreBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.STONE).strength(10f, 12f).harvestTool(ToolType.PICKAXE).harvestLevel(2).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final RegistryObject<Item> RECONDITE_ORE_ITEM = ITEMS.register("recondite_ore", () -> new BlockItem(RECONDITE_ORE.get(), new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)));
+    public static final RegistryObject<Item> POWDERED_ESOTERICUM = ITEMS.register("powdered_esotericum", () -> new Esotericum(new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)));
 
-//    public static Item APOGEAN_NETHERITE_HELMET = new RigoranthusArmorItem(RigoranthusArmorMaterial.APOGEAN_NETHERITE, EquipmentSlotType.HEAD, new Item.Properties().fireResistant().rarity(Rarity.EPIC).tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)).setRegistryName("apogean_netherite_helmet");
-
-//    public static final Item BONE_SPEAR = new SwordItem(RigoranthusItemTier.BONE, Config.bone_spear_damage.get(), Config.bone_spear_speed.get().floatValue(), new Item.Properties().rarity(Rarity.COMMON).tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).stacksTo(1)).setRegistryName("bone_spear");
-    public static final RegistryObject<Item> BONE_SPEAR = ITEMS.register("bone_spear", () -> new SwordItem(RigoranthusItemTier.BONE, Config.bone_spear_damage.get(), Config.bone_spear_speed.get().floatValue(), new Item.Properties().rarity(Rarity.COMMON).tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).stacksTo(1)));
+    //    public static Item APOGEAN_NETHERITE_HELMET = new RigoranthusArmorItem(RigoranthusArmorMaterial.APOGEAN_NETHERITE, EquipmentSlotType.HEAD, new Item.Properties().fireResistant().rarity(Rarity.EPIC).tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)).setRegistryName("apogean_netherite_helmet");
     public static final Item APOGEAN_SWORD = new SwordItem(RigoranthusItemTier.APOGEAN, Config.apogean_sword_damage.get(), Config.apogean_sword_speed.get().floatValue(), new Item.Properties().fireResistant().rarity(Rarity.EPIC).tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).stacksTo(1)).setRegistryName("apogean_sword");
     public static final Item APOGEAN_AXE = new AxeItem(RigoranthusItemTier.APOGEAN, Config.apogean_axe_damage.get(), Config.apogean_axe_speed.get().floatValue(), new Item.Properties().fireResistant().rarity(Rarity.EPIC).tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).stacksTo(1)).setRegistryName("apogean_axe");
     public static final Item APOGEAN_NETHERITE_HELMET = new ApogeanArmor(RigoranthusArmorMaterial.APOGEAN_NETHERITE, EquipmentSlotType.HEAD, new Item.Properties().fireResistant().rarity(Rarity.EPIC).tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)).setRegistryName("apogean_netherite_helmet");
@@ -165,8 +164,18 @@ public class Registration {
     public static final Item UNFIRED_BRICK = new Item(new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)).setRegistryName("unfired_brick");
     public static final Item UNFIRED_NETHER_BRICK = new Item(new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)).setRegistryName("unfired_nether_brick");
 
+    public static final Item BONE_ARROW = new ArrowItem(new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)).setRegistryName("bone_arrow");
+    //public static final Item BONE_BOW = new BoneBow(new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).stacksTo(1).durability(Config.bone_bow_durability.get())).setRegistryName("bone_bow");
+    public static final Item BONE_SPEAR = new SwordItem(RigoranthusItemTier.BONE, Config.bone_spear_damage.get(), Config.bone_spear_speed.get().floatValue(), new Item.Properties().rarity(Rarity.UNCOMMON).tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).stacksTo(1)).setRegistryName("bone_spear");
+
     public static void registerItems(RegistryEvent.Register<Item> event)
     {
+        if (Config.enableBoneWeapons.get())
+        {
+            event.getRegistry().register(BONE_SPEAR);
+            //event.getRegistry().register(BONE_BOW);
+            event.getRegistry().register(BONE_ARROW);
+        }
         if (Config.enableUnfiredBricks.get())
         {
             event.getRegistry().register(MUD_GLOB);

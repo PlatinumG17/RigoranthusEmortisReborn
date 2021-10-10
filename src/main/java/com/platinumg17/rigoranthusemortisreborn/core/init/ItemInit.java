@@ -4,28 +4,24 @@ import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusItemGroup;
 
+import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusSoundRegistry;
 import com.platinumg17.rigoranthusemortisreborn.entity.RigoranthusEntityTypes;
 import com.platinumg17.rigoranthusemortisreborn.fluid.CadaverousIchorFluid;
-import com.platinumg17.rigoranthusemortisreborn.items.CrushingHammerItem;
-import com.platinumg17.rigoranthusemortisreborn.items.RigoranthusArmorMaterial;
-import com.platinumg17.rigoranthusemortisreborn.items.RigoranthusItemTier;
+import com.platinumg17.rigoranthusemortisreborn.items.ForgottenRecord;
+import com.platinumg17.rigoranthusemortisreborn.items.armor.RigoranthusArmorMaterial;
 import com.platinumg17.rigoranthusemortisreborn.items.RigoranthusSpawnEgg;
 import com.platinumg17.rigoranthusemortisreborn.items.ingots.*;
 import com.platinumg17.rigoranthusemortisreborn.items.weapons.BoneBow;
-import net.minecraft.block.Block;
-import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundEvents;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import javax.annotation.Nullable;
-import java.util.List;
 import java.util.function.Supplier;
 
 public class ItemInit {
@@ -52,9 +48,6 @@ public class ItemInit {
 
 	public static final RegistryObject<Item> BONE_FRAGMENT = ITEMS.register("bone_fragment",
 			() -> new Item(new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)));
-
-	public static final RegistryObject<Item> BONE_ARROW = ITEMS.register("bone_arrow",
-			() -> new ArrowItem(new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)));
 
 	public static final RegistryObject<Item> BONE_BOW = ITEMS.register("bone_bow",
 			() -> new BoneBow(new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).stacksTo(1).durability(Config.bone_bow_durability.get())));
@@ -92,6 +85,10 @@ public class ItemInit {
 
 	public static final RegistryObject<Item> REMEX_NETHERITE_INGOT = ITEMS.register("remex_netherite_ingot",
 			() -> new RemexIngotItem(new Item.Properties().fireResistant().rarity(Rarity.EPIC).tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)));
+
+	public static final RegistryObject<Item> FORGOTTEN_RECORD = ITEMS.register("forgotten_record",
+			() -> new MusicDiscItem(1, RigoranthusSoundRegistry.FORGOTTEN_RECORD, (new Item.Properties())
+					.stacksTo(1).tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).fireResistant().rarity(Rarity.RARE)));
 
 	public static final RegistryObject<Item> JESSIC_SIGN = ITEMS.register("jessic_sign",
 			() -> new SignItem(new Item.Properties().stacksTo(16).tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP),

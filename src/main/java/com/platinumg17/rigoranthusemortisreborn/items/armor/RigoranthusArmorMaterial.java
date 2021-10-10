@@ -1,4 +1,4 @@
-package com.platinumg17.rigoranthusemortisreborn.items;
+package com.platinumg17.rigoranthusemortisreborn.items.armor;
 
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;

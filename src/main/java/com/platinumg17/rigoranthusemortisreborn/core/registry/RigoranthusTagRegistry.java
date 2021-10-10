@@ -12,7 +12,8 @@ import net.minecraftforge.common.Tags.IOptionalNamedTag;
 public class RigoranthusTagRegistry {
     public static class Blocks {
 
-
+        public static final Tags.IOptionalNamedTag<Block> ORE =
+                createTag("ore");
 
         public static final Tags.IOptionalNamedTag<Block> JESSIC_LOGS =
                 createTag("jessic_logs");
@@ -25,6 +26,45 @@ public class RigoranthusTagRegistry {
 
         public static final Tags.IOptionalNamedTag<Block> AZULOREAL =
                 createTag("azuloreal");
+
+        public static final Tags.IOptionalNamedTag<Block> APOGEAN =
+                createForgeTag("storage_blocks/apogean");
+
+        public static final Tags.IOptionalNamedTag<Block> AQUEOUS =
+                createForgeTag("storage_blocks/aqueous");
+
+        public static final Tags.IOptionalNamedTag<Block> ATROPHYING =
+                createForgeTag("storage_blocks/atrophying");
+
+        public static final Tags.IOptionalNamedTag<Block> PERNICIOUS =
+                createForgeTag("storage_blocks/pernicious");
+
+        public static final Tags.IOptionalNamedTag<Block> PHANTASMAL =
+                createForgeTag("storage_blocks/phantasmal");
+
+        public static final Tags.IOptionalNamedTag<Block> OPULENT =
+                createForgeTag("storage_blocks/opulent");
+
+        public static final Tags.IOptionalNamedTag<Block> INCORPOREAL =
+                createForgeTag("storage_blocks/incorporeal");
+
+        public static final Tags.IOptionalNamedTag<Block> INFERNAL =
+                createForgeTag("storage_blocks/infernal");
+
+        public static final Tags.IOptionalNamedTag<Block> REMEX =
+                    createForgeTag("storage_blocks/remex");
+
+        public static final Tags.IOptionalNamedTag<Block> ESOTERICUM =
+                createForgeTag("storage_blocks/esotericum");
+
+        public static final Tags.IOptionalNamedTag<Block> RECONDITE_ORE =
+                createForgeTag("ores/recondite");
+
+        public static final Tags.IOptionalNamedTag<Block> ORES =
+                createForgeTag("ores");
+
+        public static final Tags.IOptionalNamedTag<Block> STORAGE_BLOCKS =
+                createForgeTag("storage_blocks");
 
         public static final Tags.IOptionalNamedTag<Block> MASTERFUL =
                 createForgeTag("furnaces/masterful");
@@ -57,6 +97,39 @@ public class RigoranthusTagRegistry {
     }
 
     public static class Items {
+
+        public static final Tags.IOptionalNamedTag<Item> APOGEAN =
+                createForgeTag("storage_blocks/apogean");
+
+        public static final Tags.IOptionalNamedTag<Item> AQUEOUS =
+                createForgeTag("storage_blocks/aqueous");
+
+        public static final Tags.IOptionalNamedTag<Item> ATROPHYING =
+                createForgeTag("storage_blocks/atrophying");
+
+        public static final Tags.IOptionalNamedTag<Item> PERNICIOUS =
+                createForgeTag("storage_blocks/pernicious");
+
+        public static final Tags.IOptionalNamedTag<Item> PHANTASMAL =
+                createForgeTag("storage_blocks/phantasmal");
+
+        public static final Tags.IOptionalNamedTag<Item> OPULENT =
+                createForgeTag("storage_blocks/opulent");
+
+        public static final Tags.IOptionalNamedTag<Item> INCORPOREAL =
+                createForgeTag("storage_blocks/incorporeal");
+
+        public static final Tags.IOptionalNamedTag<Item> INFERNAL =
+                createForgeTag("storage_blocks/infernal");
+
+        public static final Tags.IOptionalNamedTag<Item> REMEX =
+                createForgeTag("storage_blocks/remex");
+
+        public static final Tags.IOptionalNamedTag<Item> STORAGE_BLOCKS =
+                createForgeTag("storage_blocks");
+
+        public static final Tags.IOptionalNamedTag<Item> ESOTERICUM =
+                createForgeTag("storage_blocks/esotericum");
 
         public static final Tags.IOptionalNamedTag<Item> CRUSHING_HAMMER =
                 createTag("crushing_hammer");
@@ -153,6 +226,34 @@ public class RigoranthusTagRegistry {
 
         public static final Tags.IOptionalNamedTag<Item> INGOTS =
                 createForgeTag("ingots");
+
+        public static final Tags.IOptionalNamedTag<Item> APOGEAN_INGOT =
+                createForgeTag("ingots/apogean");
+
+        public static final Tags.IOptionalNamedTag<Item> AQUEOUS_INGOT =
+                createForgeTag("ingots/aqueous");
+
+        public static final Tags.IOptionalNamedTag<Item> ATROPHYING_INGOT =
+                createForgeTag("ingots/atrophying");
+
+        public static final Tags.IOptionalNamedTag<Item> PERNICIOUS_INGOT =
+                createForgeTag("ingots/pernicious");
+
+        public static final Tags.IOptionalNamedTag<Item> PHANTASMAL_INGOT =
+                createForgeTag("ingots/phantasmal");
+
+        public static final Tags.IOptionalNamedTag<Item> OPULENT_INGOT =
+                createForgeTag("ingots/opulent");
+
+        public static final Tags.IOptionalNamedTag<Item> INCORPOREAL_INGOT =
+                createForgeTag("ingots/incorporeal");
+
+        public static final Tags.IOptionalNamedTag<Item> INFERNAL_INGOT =
+                createForgeTag("ingots/infernal");
+
+        public static final Tags.IOptionalNamedTag<Item> REMEX_INGOT =
+                createForgeTag("ingots/remex");
+
 
         public static final Tags.IOptionalNamedTag<Item> LEATHER =
                 createForgeTag("leather");

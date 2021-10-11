@@ -51,17 +51,10 @@ public class Registration {
         BlockPos pos = data.readBlockPos();
         World world = inv.player.getEntity().level;
         return new MasterfulSmelteryContainer(windowId, world, pos, inv, inv.player);}));
-    public static final RegistryObject<Block> JESSIC_SIGN = BLOCKS.register("jessic_sign",
-            () -> new RigoranthusStandingSignBlock(AbstractBlock.Properties.of(Material.WOOD), RigoranthusWoodTypes.JESSIC));
-
-    public static final RegistryObject<Block> JESSIC_WALL_SIGN = BLOCKS.register("jessic_wall_sign",
-            () -> new RigoranthusWallSignBlock(AbstractBlock.Properties.of(Material.WOOD), RigoranthusWoodTypes.JESSIC));
-
-    public static final RegistryObject<Block> AZULOREAL_SIGN = BLOCKS.register("azuloreal_sign",
-            () -> new RigoranthusStandingSignBlock(AbstractBlock.Properties.of(Material.WOOD), RigoranthusWoodTypes.AZULOREAL));
-
-    public static final RegistryObject<Block> AZULOREAL_WALL_SIGN = BLOCKS.register("azuloreal_wall_sign",
-            () -> new RigoranthusWallSignBlock(AbstractBlock.Properties.of(Material.WOOD), RigoranthusWoodTypes.AZULOREAL));
+    public static final RegistryObject<Block> JESSIC_SIGN = BLOCKS.register("jessic_sign", () -> new RigoranthusStandingSignBlock(AbstractBlock.Properties.of(Material.WOOD), RigoranthusWoodTypes.JESSIC));
+    public static final RegistryObject<Block> JESSIC_WALL_SIGN = BLOCKS.register("jessic_wall_sign", () -> new RigoranthusWallSignBlock(AbstractBlock.Properties.of(Material.WOOD), RigoranthusWoodTypes.JESSIC));
+    public static final RegistryObject<Block> AZULOREAL_SIGN = BLOCKS.register("azuloreal_sign", () -> new RigoranthusStandingSignBlock(AbstractBlock.Properties.of(Material.WOOD), RigoranthusWoodTypes.AZULOREAL));
+    public static final RegistryObject<Block> AZULOREAL_WALL_SIGN = BLOCKS.register("azuloreal_wall_sign", () -> new RigoranthusWallSignBlock(AbstractBlock.Properties.of(Material.WOOD), RigoranthusWoodTypes.AZULOREAL));
 
     // public static final RegistryObject<Block> POTTED_JESSIC_SAPLING = BLOCKS.register("potted_jessic_sapling", () -> new FlowerPotBlock(JESSIC_SAPLING, AbstractBlock.Properties.of(Material.DECORATION).instabreak().noOcclusion()));
     // public static final RegistryObject<Block> POTTED_AZULOREAL_SAPLING = BLOCKS.register("potted_azuloreal_sapling", () -> new FlowerPotBlock(AZULOREAL_SAPLING, AbstractBlock.Properties.of(Material.DECORATION).instabreak().noOcclusion()));
@@ -74,7 +67,7 @@ public class Registration {
     public static final RegistryObject<ItemAugmentSpeed> SPEED_AUGMENT = ITEMS.register("augment_speed", () -> new ItemAugmentSpeed(new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)));
     public static final RegistryObject<ItemAugmentFuel> FUEL_AUGMENT = ITEMS.register("augment_fuel", () -> new ItemAugmentFuel(new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)));
     public static final RegistryObject<ItemSmelteryCopy> ITEM_COPY = ITEMS.register("item_copy", () -> new ItemSmelteryCopy(new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)));
-    public static final RegistryObject<Block> RECONDITE_ORE = BLOCKS.register("recondite_ore", () -> new OreBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.STONE).strength(10f, 12f).harvestTool(ToolType.PICKAXE).harvestLevel(2).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final RegistryObject<Block> RECONDITE_ORE = BLOCKS.register("recondite_ore", () -> new OreBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.STONE).strength(10f, 12f).harvestTool(ToolType.PICKAXE).harvestLevel(3).requiresCorrectToolForDrops().sound(SoundType.STONE)));
     public static final RegistryObject<Item> RECONDITE_ORE_ITEM = ITEMS.register("recondite_ore", () -> new BlockItem(RECONDITE_ORE.get(), new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)));
     public static final RegistryObject<Item> POWDERED_ESOTERICUM = ITEMS.register("powdered_esotericum", () -> new Esotericum(new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)));
 

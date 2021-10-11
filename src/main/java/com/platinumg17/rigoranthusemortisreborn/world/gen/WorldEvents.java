@@ -10,6 +10,6 @@ public class WorldEvents {
     @SubscribeEvent
     public static void biomeLoadinGevent(final BiomeLoadingEvent event) {
         EmortisOreGen.generateOres(event);
-        //EmortisTreeGen.generateTrees(event);
+        EmortisTreeGen.generateTrees(event);
     }
 }

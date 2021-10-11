@@ -4,7 +4,6 @@ import com.google.common.collect.ImmutableList;
 import com.platinumg17.rigoranthusemortisreborn.core.init.BlockInit;
 import com.platinumg17.rigoranthusemortisreborn.core.init.BuildingBlockInit;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
@@ -25,7 +24,7 @@ public class RigoranthusConfiguredFeatures {
                     new BaseTreeFeatureConfig.Builder(
                             new SimpleBlockStateProvider(BuildingBlockInit.AZULOREAL_LOG.get().defaultBlockState()),
                             new SimpleBlockStateProvider(BuildingBlockInit.AZULOREAL_LEAVES.get().defaultBlockState()),
-                            new FancyFoliagePlacer(FeatureSpread.of(2, 0), FeatureSpread.of(4, 2), 4),
+                            new FancyFoliagePlacer(FeatureSpread.of(2, 1), FeatureSpread.of(4, 2), 4),
                             new FancyTrunkPlacer(3, 11, 0),
                             new TwoLayerFeature(0, 0, 0,
                             OptionalInt.of(4)))).ignoreVines().heightmap(Heightmap.Type.MOTION_BLOCKING).build()));
@@ -38,7 +37,7 @@ public class RigoranthusConfiguredFeatures {
                             new AcaciaFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(0)),
                             new ForkyTrunkPlacer(5, 2, 2),
                             new TwoLayerFeature(1, 0, 2,
-                                    OptionalInt.of(4)))).ignoreVines().heightmap(Heightmap.Type.MOTION_BLOCKING).build()));
+                            OptionalInt.of(4)))).ignoreVines().heightmap(Heightmap.Type.MOTION_BLOCKING).build()));
 
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> MEGA_AZULOREAL =
             register("mega_azuloreal", Feature.TREE.configured((
@@ -55,7 +54,7 @@ public class RigoranthusConfiguredFeatures {
                     new BaseTreeFeatureConfig.Builder(
                             new SimpleBlockStateProvider(BuildingBlockInit.JESSIC_LOG.get().defaultBlockState()),
                             new SimpleBlockStateProvider(BuildingBlockInit.JESSIC_LEAVES.get().defaultBlockState()),
-                            new FancyFoliagePlacer(FeatureSpread.of(2, 0), FeatureSpread.of(4, 2), 4),
+                            new FancyFoliagePlacer(FeatureSpread.of(2, 1), FeatureSpread.of(4, 2), 4),
                             new FancyTrunkPlacer(3, 11, 0),
                             new TwoLayerFeature(0, 0, 0,
                             OptionalInt.of(4)))).ignoreVines().heightmap(Heightmap.Type.MOTION_BLOCKING).build()));
@@ -78,7 +77,7 @@ public class RigoranthusConfiguredFeatures {
                             new MegaPineFoliagePlacer(FeatureSpread.fixed(0), FeatureSpread.fixed(0), FeatureSpread.of(13, 4)),
                             new GiantTrunkPlacer(13, 2, 14),
                             new TwoLayerFeature(1, 1, 2))).decorators(ImmutableList.of(
-                    new AlterGroundTreeDecorator(new SimpleBlockStateProvider(States.FRAGMENTED_COBBLESTONE)))).build()));
+                            new AlterGroundTreeDecorator(new SimpleBlockStateProvider(States.FRAGMENTED_COBBLESTONE)))).build()));
 
     private static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> register(String key, ConfiguredFeature<FC, ?> configuredFeature) {
         return WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE, key, configuredFeature);

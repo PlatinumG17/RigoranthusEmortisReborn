@@ -1,13 +1,16 @@
 package com.platinumg17.rigoranthusemortisreborn.config;
 
+import com.electronwill.nightconfig.core.UnmodifiableConfig;
 import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import com.electronwill.nightconfig.core.io.WritingMode;
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
+import com.platinumg17.rigoranthusemortisreborn.world.gen.OreType;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.IWorld;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.world.WorldEvent;
@@ -253,8 +256,29 @@ public class Config {
     public static ForgeConfigSpec.BooleanValue GIVEN_COAL;
     public static ForgeConfigSpec.BooleanValue showErrors;
 
+//    public static ForgeConfigSpec.BooleanValue mountains;
+//    public static ForgeConfigSpec.BooleanValue modified;
+//    public static ForgeConfigSpec.BooleanValue forest;
+//    public static ForgeConfigSpec.BooleanValue savanna;
+//    public static ForgeConfigSpec.BooleanValue coniferous;
+//    public static ForgeConfigSpec.BooleanValue jungle;
+//    public static ForgeConfigSpec.BooleanValue spooky;
+//    public static ForgeConfigSpec.BooleanValue dead;
+//    public static ForgeConfigSpec.BooleanValue lush;
+//    public static ForgeConfigSpec.BooleanValue mushroom;
+//    public static ForgeConfigSpec.BooleanValue magical;
+//    public static ForgeConfigSpec.BooleanValue rare;
+//    public static ForgeConfigSpec.BooleanValue plateau;
+//    public static ForgeConfigSpec.BooleanValue mesa;
+//    public static ForgeConfigSpec.BooleanValue plains;
+//    public static ForgeConfigSpec.BooleanValue hills;
+//    public static ForgeConfigSpec.BooleanValue swamp;
+//    public static ForgeConfigSpec.BooleanValue snowy;
+//    public static ForgeConfigSpec.BooleanValue wasteland;
+
     //CACHE
     public static ForgeConfigSpec.IntValue cache_capacity;
+    public static ForgeConfigSpec.BooleanValue enableTreeGeneration;
 
     static {
         ForgeConfigSpec.Builder COMMON_BUILDER = new ForgeConfigSpec.Builder();
@@ -349,6 +373,7 @@ public class Config {
         CLIENT_BUILDER.pop();
 
         CLIENT_BUILDER.comment("Misc & Resources").push(CATEGORY_MISC);
+
         enableArmorSetBonuses = CLIENT_BUILDER
                 .comment(" Enable or Disable the Full Armor Set Bonuses.").define("armor.enable_or_disable_armor_bonuses", true);
 
@@ -357,6 +382,9 @@ public class Config {
 
         enableNetheriteAdditions = CLIENT_BUILDER
                 .comment(" Enable or Disable the custom Netherite Armors/Weapons.").define("armor.enable_or_disable_netherite_additions", true);
+
+        enableTreeGeneration = CLIENT_BUILDER
+                .comment(" Enable or Disable Natural Tree Generation.").define("tree.world_gen", true);
 
         enableSoulCoal = CLIENT_BUILDER
                 .comment(" Enable or disable Soul Coal").define("enable.soul_coal", true);

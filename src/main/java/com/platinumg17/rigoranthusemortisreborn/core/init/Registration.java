@@ -7,7 +7,6 @@ import com.platinumg17.rigoranthusemortisreborn.items.*;
 import com.platinumg17.rigoranthusemortisreborn.items.armor.RigoranthusArmorMaterial;
 import com.platinumg17.rigoranthusemortisreborn.items.armor.armorsets.*;
 import com.platinumg17.rigoranthusemortisreborn.items.smeltery.*;
-import com.platinumg17.rigoranthusemortisreborn.items.weapons.BoneBow;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -55,7 +54,7 @@ public class Registration {
     public static final RegistryObject<Block> JESSIC_WALL_SIGN = BLOCKS.register("jessic_wall_sign", () -> new RigoranthusWallSignBlock(AbstractBlock.Properties.of(Material.WOOD), RigoranthusWoodTypes.JESSIC));
     public static final RegistryObject<Block> AZULOREAL_SIGN = BLOCKS.register("azuloreal_sign", () -> new RigoranthusStandingSignBlock(AbstractBlock.Properties.of(Material.WOOD), RigoranthusWoodTypes.AZULOREAL));
     public static final RegistryObject<Block> AZULOREAL_WALL_SIGN = BLOCKS.register("azuloreal_wall_sign", () -> new RigoranthusWallSignBlock(AbstractBlock.Properties.of(Material.WOOD), RigoranthusWoodTypes.AZULOREAL));
-
+    //public static final RegistryObject<Block> POTTED_JESSIC = BLOCKS.register("potted_jessic_sapling", () -> new FlowerPotBlock(JESSIC_SAPLING, AbstractBlock.Properties.of(Blocks.FLOWER_POT)).addPlant(Block.getRegistryName(), () -> RigoranthusWoodTypes.JESSIC);
     // public static final RegistryObject<Block> POTTED_JESSIC_SAPLING = BLOCKS.register("potted_jessic_sapling", () -> new FlowerPotBlock(JESSIC_SAPLING, AbstractBlock.Properties.of(Material.DECORATION).instabreak().noOcclusion()));
     // public static final RegistryObject<Block> POTTED_AZULOREAL_SAPLING = BLOCKS.register("potted_azuloreal_sapling", () -> new FlowerPotBlock(AZULOREAL_SAPLING, AbstractBlock.Properties.of(Material.DECORATION).instabreak().noOcclusion()));
 

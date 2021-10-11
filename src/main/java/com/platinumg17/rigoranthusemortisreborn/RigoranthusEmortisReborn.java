@@ -65,7 +65,6 @@ public class RigoranthusEmortisReborn {
         RigoranthusSoundRegistry.register(bus);
         RigoranthusEntityTypes.register(bus);
         //RigoranthusBiomes.register(bus);
-        //RigoranthusStructures.register(bus);
         if (Config.enableNewWoodTypes.get()) {
             BuildingBlockInit.register(bus);
         }
@@ -99,6 +98,7 @@ public class RigoranthusEmortisReborn {
 
     private void setup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
+            //EmortisStructures.setupStructures();
             AxeItem.STRIPABLES = new ImmutableMap.Builder<Block, Block>().putAll(AxeItem.STRIPABLES)
                     .put(BuildingBlockInit.JESSIC_LOG.get(), BuildingBlockInit.STRIPPED_JESSIC_LOG.get())
                     .put(BuildingBlockInit.JESSIC_WOOD.get(), BuildingBlockInit.STRIPPED_JESSIC_WOOD.get())

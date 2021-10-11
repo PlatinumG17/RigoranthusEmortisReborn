@@ -34,8 +34,8 @@ public class RigoranthusConfiguredFeatures {
                     new BaseTreeFeatureConfig.Builder(
                             new SimpleBlockStateProvider(BuildingBlockInit.AZULOREAL_LOG.get().defaultBlockState()),
                             new SimpleBlockStateProvider(BuildingBlockInit.AZULOREAL_LEAVES.get().defaultBlockState()),
-                            new AcaciaFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(0)),
-                            new ForkyTrunkPlacer(5, 2, 2),
+                            new AcaciaFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(0)), //was fixed(2)
+                            new ForkyTrunkPlacer(5, 4, 4), //new ForkyTrunkPlacer(5, 2, 2),
                             new TwoLayerFeature(1, 0, 2,
                             OptionalInt.of(4)))).ignoreVines().heightmap(Heightmap.Type.MOTION_BLOCKING).build()));
 
@@ -45,7 +45,7 @@ public class RigoranthusConfiguredFeatures {
                             new SimpleBlockStateProvider(BuildingBlockInit.AZULOREAL_LOG.get().defaultBlockState()),
                             new SimpleBlockStateProvider(BuildingBlockInit.AZULOREAL_LEAVES.get().defaultBlockState()),
                             new MegaPineFoliagePlacer(FeatureSpread.fixed(0), FeatureSpread.fixed(0), FeatureSpread.of(13, 4)),
-                            new GiantTrunkPlacer(13, 2, 14),
+                            new GiantTrunkPlacer(12, 2, 14),
                             new TwoLayerFeature(1, 1, 2))).decorators(ImmutableList.of(
                             new AlterGroundTreeDecorator(new SimpleBlockStateProvider(States.FRAGMENTED_COBBLESTONE)))).build()));
 
@@ -64,8 +64,8 @@ public class RigoranthusConfiguredFeatures {
                     new BaseTreeFeatureConfig.Builder(
                             new SimpleBlockStateProvider(BuildingBlockInit.JESSIC_LOG.get().defaultBlockState()),
                             new SimpleBlockStateProvider(BuildingBlockInit.JESSIC_LEAVES.get().defaultBlockState()),
-                            new AcaciaFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(0)),
-                            new ForkyTrunkPlacer(5, 2, 2),
+                            new AcaciaFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(0)), //was fixed(2)
+                            new ForkyTrunkPlacer(5, 4, 4),  //new ForkyTrunkPlacer(5, 2, 2),
                             new TwoLayerFeature(1, 0, 2,
                             OptionalInt.of(4)))).ignoreVines().heightmap(Heightmap.Type.MOTION_BLOCKING).build()));
 
@@ -75,7 +75,7 @@ public class RigoranthusConfiguredFeatures {
                             new SimpleBlockStateProvider(BuildingBlockInit.JESSIC_LOG.get().defaultBlockState()),
                             new SimpleBlockStateProvider(BuildingBlockInit.JESSIC_LEAVES.get().defaultBlockState()),
                             new MegaPineFoliagePlacer(FeatureSpread.fixed(0), FeatureSpread.fixed(0), FeatureSpread.of(13, 4)),
-                            new GiantTrunkPlacer(13, 2, 14),
+                            new GiantTrunkPlacer(12, 2, 14),
                             new TwoLayerFeature(1, 1, 2))).decorators(ImmutableList.of(
                             new AlterGroundTreeDecorator(new SimpleBlockStateProvider(States.FRAGMENTED_COBBLESTONE)))).build()));
 

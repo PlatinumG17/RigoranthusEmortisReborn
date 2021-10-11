@@ -81,7 +81,7 @@ public class DwellerThoraxModel<T extends LivingEntity> extends ArmorModel<T> {
         final ModelRenderer cube_r13_r1;
         final ModelRenderer cube_r12_r2;
 
-        //public ModelDwellerThorax() {
+//        public DwellerThoraxModel() {
             texWidth = 32;
             texHeight = 32;
 
@@ -489,17 +489,16 @@ public class DwellerThoraxModel<T extends LivingEntity> extends ArmorModel<T> {
             cube_r12_r2.texOffs(13, 0).addBox(-1.0F, -0.6F, -0.5F, 2.0F, 1.0F, 1.0F, 0.0F, true);
         }
 
-        //@Override
-        //public void setRotationAngles(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks,
-        //                              float netHeadYaw, float headPitch) {
-            // previously the render function, render code was moved to a method below
-       // }
-
-        //@Override
-        //public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red,
-        //                   float green, float blue, float alpha) {
-        //    thorax.render(matrixStack, buffer, packedLight, packedOverlay);
-       // }
+//        @Override
+//        public void setRotationAngles(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks,
+//                                      float netHeadYaw, float headPitch) {
+//        }
+//
+//        @Override
+//        public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red,
+//                           float green, float blue, float alpha) {
+//            thorax.render(matrixStack, buffer, packedLight, packedOverlay);
+//        }
 
         public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
             modelRenderer.xRot = x;

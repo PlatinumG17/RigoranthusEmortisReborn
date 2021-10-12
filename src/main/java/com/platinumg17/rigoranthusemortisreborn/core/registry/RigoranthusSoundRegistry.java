@@ -45,6 +45,15 @@ public class RigoranthusSoundRegistry {
 	public static final DeferredRegister<SoundEvent> SOUND_EVENTS =
 			DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, RigoranthusEmortisReborn.MOD_ID);
 
+	public static final RegistryObject<SoundEvent> UN_DIA_DE_ABRIL =
+			registerSoundEvent("un_dia_de_abril");
+	public static final RegistryObject<SoundEvent> CALM_RIGHT =
+			registerSoundEvent("calm_right");
+	public static final RegistryObject<SoundEvent> LEVEL_UP =
+			registerSoundEvent("level_up");
+	public static final RegistryObject<SoundEvent> NEON_LIGHTS =
+			registerSoundEvent("neon_lights");
+
 	public static final RegistryObject<SoundEvent> CANIS_AMBIENT =
 			registerSoundEvent("canis_ambient");
 	public static final RegistryObject<SoundEvent> CANIS_DEATH =

@@ -92,6 +92,14 @@ public class ItemInit {
 			() -> new MusicDiscItem(1, RigoranthusSoundRegistry.FORGOTTEN_RECORD, (new Item.Properties())
 					.stacksTo(1).tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).fireResistant().rarity(Rarity.RARE)));
 
+	public static final RegistryObject<Item> MUSIC_DISK_KICKSTART = ITEMS.register("music_disk_kickstart",
+			() -> new MusicDiscItem(2, RigoranthusSoundRegistry.LEVEL_UP, (new Item.Properties())
+					.stacksTo(1).tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).fireResistant().rarity(Rarity.RARE)));
+
+	public static final RegistryObject<Item> MUSIC_DISK_NEON_LIGHTS = ITEMS.register("music_disk_neon_lights",
+			() -> new MusicDiscItem(3, RigoranthusSoundRegistry.NEON_LIGHTS, (new Item.Properties())
+					.stacksTo(1).tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).fireResistant().rarity(Rarity.RARE)));
+
 	public static final RegistryObject<Item> JESSIC_SIGN = ITEMS.register("jessic_sign",
 			() -> new SignItem(new Item.Properties().stacksTo(16).tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP),
 					Registration.JESSIC_SIGN.get(), Registration.JESSIC_WALL_SIGN.get()));

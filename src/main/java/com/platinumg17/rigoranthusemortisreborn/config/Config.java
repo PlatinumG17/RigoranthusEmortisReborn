@@ -43,6 +43,7 @@ public class Config {
     public static final String CATEGORY_BLOCKS = "blocks";
     public static final String CATEGORY_JEI = "jei";
     public static final String CATEGORY_MISC = "misc";
+    public static final String CATEGORY_BIOME = "biome";
 
     public static ForgeConfigSpec COMMON_CONFIG;
     public static ForgeConfigSpec CLIENT_CONFIG;
@@ -256,6 +257,16 @@ public class Config {
     public static ForgeConfigSpec.BooleanValue GIVEN_COAL;
     public static ForgeConfigSpec.BooleanValue showErrors;
 
+    public static ForgeConfigSpec.BooleanValue enableTreeGeneration;
+    public static ForgeConfigSpec.IntValue verdurousWoodlandsSpawnWeight;
+    public static ForgeConfigSpec.IntValue jessicSpawnWeight;
+    public static ForgeConfigSpec.IntValue loomingJessicSpawnWeight;
+    public static ForgeConfigSpec.IntValue megaJessicSpawnWeight;
+    public static ForgeConfigSpec.IntValue azulorealSpawnWeight;
+    public static ForgeConfigSpec.IntValue loomingAzulorealSpawnWeight;
+    public static ForgeConfigSpec.IntValue megaAzulorealSpawnWeight;
+    public static ForgeConfigSpec.IntValue lakeSpawnWeight;
+
 //    public static ForgeConfigSpec.BooleanValue mountains;
 //    public static ForgeConfigSpec.BooleanValue modified;
 //    public static ForgeConfigSpec.BooleanValue forest;
@@ -278,7 +289,6 @@ public class Config {
 
     //CACHE
     public static ForgeConfigSpec.IntValue cache_capacity;
-    public static ForgeConfigSpec.BooleanValue enableTreeGeneration;
 
     static {
         ForgeConfigSpec.Builder COMMON_BUILDER = new ForgeConfigSpec.Builder();
@@ -372,6 +382,12 @@ public class Config {
 
         CLIENT_BUILDER.pop();
 
+        CLIENT_BUILDER.comment("Biome Config").push(CATEGORY_BIOME);
+
+        setupBiomeConfig(COMMON_BUILDER, CLIENT_BUILDER);
+
+        CLIENT_BUILDER.pop();
+
         CLIENT_BUILDER.comment("Misc & Resources").push(CATEGORY_MISC);
 
         enableArmorSetBonuses = CLIENT_BUILDER
@@ -412,7 +428,17 @@ public class Config {
         COMMON_CONFIG = COMMON_BUILDER.build();
         CLIENT_CONFIG = CLIENT_BUILDER.build();
     }
+    private static void setupBiomeConfig(ForgeConfigSpec.Builder COMMON_BUILDER, ForgeConfigSpec.Builder CLIENT_BUILDER) {
+        verdurousWoodlandsSpawnWeight = CLIENT_BUILDER.comment(" Spawn Weight of Verdurous Woodlands Biome.\n [Set to 0 to Disable Biome Generation]").defineInRange("biome.spawn_weight", 20, 0, 1000);
+        lakeSpawnWeight = CLIENT_BUILDER.comment(" Spawn Weight of Lakes in the Verdurous Woodlands Biome.\n [Set to 0 to Disable Lake Generation]").defineInRange("biome.lake_spawn_weight", 2, 0, 1000);
+        jessicSpawnWeight = CLIENT_BUILDER.comment(" Spawn Weight of Jessic Trees in Verdurous Woodlands Biome.\n [Set to 0 to Disable Generation]").defineInRange("jessic.jessic_spawn_weight", 10, 0, 1000);
+        loomingJessicSpawnWeight = CLIENT_BUILDER.comment(" Spawn Weight of Looming Jessic Trees in Verdurous Woodlands Biome.\n [Set to 0 to Disable Generation]").defineInRange("jessic.looming_jessic_spawn_weight", 8, 0, 1000);
+        megaJessicSpawnWeight = CLIENT_BUILDER.comment(" Spawn Weight of Mega Jessic Trees in Verdurous Woodlands Biome.\n [Set to 0 to Disable Generation]").defineInRange("jessic.mega_jessic_spawn_weight", 5, 0, 1000);
 
+        azulorealSpawnWeight = CLIENT_BUILDER.comment(" Spawn Weight of Azuloreal Trees in Verdurous Woodlands Biome.\n [Set to 0 to Disable Generation]").defineInRange("azuloreal.azuloreal_spawn_weight", 10, 0, 1000);
+        loomingAzulorealSpawnWeight = CLIENT_BUILDER.comment(" Spawn Weight of Looming Azuloreal Trees in Verdurous Woodlands Biome.\n [Set to 0 to Disable Generation]").defineInRange("azuloreal.looming_azuloreal_spawn_weight", 8, 0, 1000);
+        megaAzulorealSpawnWeight = CLIENT_BUILDER.comment(" Spawn Weight of Mega Azuloreal Trees in Verdurous Woodlands Biome.\n [Set to 0 to Disable Generation]").defineInRange("azuloreal.mega_azuloreal_spawn_weight", 5, 0, 1000);
+    }
     private static void setupOreConfig(ForgeConfigSpec.Builder COMMON_BUILDER, ForgeConfigSpec.Builder CLIENT_BUILDER) {
         maxVeinSize = CLIENT_BUILDER.comment(" The Maximum Vein Size of Ores from this mod.\n Default: 3").defineInRange("ore.max_vein_size", 3, 0, 50);
         minOreHeight = CLIENT_BUILDER.comment(" The Minimum Height at which Ores from this mod can Generate.\n Default: 1").defineInRange("ore.min_ore_height", 1, 0, 254);

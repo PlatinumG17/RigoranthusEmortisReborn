@@ -10,6 +10,7 @@ import com.platinumg17.rigoranthusemortisreborn.entity.RigoranthusEntityTypes;
 import com.platinumg17.rigoranthusemortisreborn.entity.render.*;
 import com.platinumg17.rigoranthusemortisreborn.fluid.CadaverousIchorFluid;
 import com.platinumg17.rigoranthusemortisreborn.tileentity.RigoranthusTileEntities;
+import com.platinumg17.rigoranthusemortisreborn.world.biome.EmortisBiomes;
 import net.minecraft.block.Block;
 import net.minecraft.block.WoodType;
 import net.minecraft.client.renderer.Atlases;
@@ -61,7 +62,7 @@ public class RigoranthusEmortisReborn {
         CadaverousIchorFluid.register(bus);
         RigoranthusSoundRegistry.register(bus);
         RigoranthusEntityTypes.register(bus);
-        //RigoranthusBiomes.register(bus);
+        EmortisBiomes.register();
         if (Config.enableNewWoodTypes.get()) {
             BuildingBlockInit.register(bus);
         }

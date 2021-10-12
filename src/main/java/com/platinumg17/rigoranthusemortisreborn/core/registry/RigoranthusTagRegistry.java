@@ -97,6 +97,8 @@ public class RigoranthusTagRegistry {
     }
 
     public static class Items {
+        public static final Tags.IOptionalNamedTag<Item> MUSIC_DISKS =
+                createForgeTag("music_disks");
 
         public static final Tags.IOptionalNamedTag<Item> APOGEAN =
                 createForgeTag("storage_blocks/apogean");

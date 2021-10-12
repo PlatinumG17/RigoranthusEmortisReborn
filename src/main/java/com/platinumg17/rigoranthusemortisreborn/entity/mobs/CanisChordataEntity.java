@@ -83,8 +83,6 @@ public class CanisChordataEntity extends AbstractChestedHorseEntity implements I
         EntityType<?> entitytype = p_213440_0_.getType();
         return entitytype == EntityType.SHEEP || entitytype == EntityType.RABBIT || entitytype == EntityType.FOX;
     };
-    private float interestedAngle;
-    private float interestedAngleO;
     private static final RangedInteger PERSISTENT_ANGER_TIME = TickRangeConverter.rangeOfSeconds(20, 39);
     private UUID persistentAngerTarget;
     //private boolean isTamed;
@@ -867,27 +865,6 @@ public class CanisChordataEntity extends AbstractChestedHorseEntity implements I
             this.entityData.set(DATA_FLAGS_ID, (byte)(b0 & -2));
         }
     }
-    @Override
-    public void tick() {
-        CanisChordataEntity.this.setTarget((LivingEntity)null);
-        super.tick();
-        if (this.isAlive()) {
-            this.interestedAngleO = this.interestedAngle;
-            if (this.isInterested()) {
-                this.interestedAngle += (1.0F - this.interestedAngle) * 0.4F;
-            } else {
-                this.interestedAngle += (0.0F - this.interestedAngle) * 0.4F;
-            }
-
-        }
-    }
-    public void setIsInterested(boolean p_70918_1_) {
-        this.entityData.set(DATA_INTERESTED_ID, p_70918_1_);
-    }
-
-    public boolean isInterested() {
-        return this.entityData.get(DATA_INTERESTED_ID);
-    }*/
     @Override
     public boolean hurt(DamageSource p_70097_1_, float p_70097_2_) {
         if (this.isInvulnerableTo(p_70097_1_)) {

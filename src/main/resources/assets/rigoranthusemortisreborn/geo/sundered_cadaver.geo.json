@@ -12,16 +12,9 @@
 			},
 			"bones": [
 				{
-					"name": "bb_main",
-					"pivot": [0, 0, 0],
-					"cubes": [
-						{"origin": [-3.5, 5.44198, 4.6], "size": [7, 2, 3], "pivot": [0, 8.44198, 4.49343], "rotation": [85, 0, 0], "uv": [23, 0]}
-					]
-				},
-				{
 					"name": "head",
 					"pivot": [0, 11.44198, 4.49343],
-					"rotation": [20, 0, 0],
+					"rotation": [160, 0, 180],
 					"cubes": [
 						{"origin": [-4, 9.44198, 0.49343], "size": [8, 7, 8], "uv": [0, 0]}
 					],
@@ -34,8 +27,8 @@
 					"parent": "head",
 					"pivot": [0, 12.44198, 8.49343],
 					"cubes": [
-						{"origin": [-3, 12, 7.7], "size": [1, 1, 1], "uv": [0, 1]},
-						{"origin": [1, 12, 7.7], "size": [1, 1, 1], "uv": [0, 1]}
+						{"origin": [-3, 12, 0.4], "size": [1, 1, 1], "uv": [0, 1]},
+						{"origin": [1, 12, 0.4], "size": [1, 1, 1], "uv": [0, 1]}
 					],
 					"locators": {
 						"ocularlocator": [0, 0, 0]
@@ -46,11 +39,22 @@
 					"parent": "head",
 					"pivot": [0, 7.72099, 3.24672],
 					"cubes": [
-						{"origin": [-3.9, 7.44198, 2.3], "size": [7.8, 2, 6], "uv": [27, 10]}
+						{"origin": [-3.9, 7.44198, 0.55], "size": [7.8, 2, 6], "uv": [27, 10]}
 					],
 					"locators": {
-						"jaw_locator": [0, 8, 2.2]
+						"jaw_locator": {
+							"offset": [0, 8, 2.2],
+							"rotation": [-180, -180, 180]
+						}
 					}
+				},
+				{
+					"name": "bb_main",
+					"parent": "head",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{"origin": [-3.5, 6.44198, 3.6], "size": [7, 2, 3], "pivot": [0, 8.44198, 4.49343], "rotation": [85, 0, 0], "uv": [23, 0]}
+					]
 				},
 				{
 					"name": "body",
@@ -66,6 +70,17 @@
 					}
 				},
 				{
+					"name": "viscera",
+					"parent": "body",
+					"pivot": [0, 0.85966, -3.43148],
+					"cubes": [
+						{"origin": [-3.9, -0.9, -8.1], "size": [7.8, 6, 3.4], "pivot": [0, 1.71933, -6.36296], "rotation": [-90, 0, 0], "uv": [25, 19]}
+					],
+					"locators": {
+						"viscera_locator": [0, 2, -7]
+					}
+				},
+				{
 					"name": "Arms",
 					"pivot": [0, 0, 0],
 					"locators": {
@@ -75,7 +90,7 @@
 				{
 					"name": "left_arm",
 					"parent": "Arms",
-					"pivot": [6, 4.99456, 3.48897],
+					"pivot": [6, 7.99456, 4.48897],
 					"mirror": true,
 					"cubes": [
 						{"origin": [4, 0, 1], "size": [3.9, 6, 4], "uv": [14, 40], "mirror": false}
@@ -98,7 +113,7 @@
 				{
 					"name": "right_arm",
 					"parent": "Arms",
-					"pivot": [-6, 5.01685, 3.53236],
+					"pivot": [-6, 8.01685, 4.53236],
 					"cubes": [
 						{"origin": [-7.9, 0, 1], "size": [3.9, 6, 4], "uv": [35, 36]}
 					]
@@ -106,7 +121,7 @@
 				{
 					"name": "bone2",
 					"parent": "right_arm",
-					"pivot": [-6, 3, 3],
+					"pivot": [-6, 7, 4],
 					"cubes": [
 						{"origin": [-8, 4.0337, 2.06473], "size": [4, 6, 4], "pivot": [-6, 7.0337, 4.06473], "rotation": [-35, 0, 0], "uv": [21, 29]}
 					],
@@ -115,16 +130,6 @@
 							"offset": [-6, 6.42642, 3.81915],
 							"rotation": [-35, -35, 35]
 						}
-					}
-				},
-				{
-					"name": "viscera",
-					"pivot": [0, 0.85966, -3.43148],
-					"cubes": [
-						{"origin": [-3.9, -0.9, -8.1], "size": [7.8, 6, 3.4], "pivot": [0, 1.71933, -6.36296], "rotation": [-90, 0, 0], "uv": [25, 19]}
-					],
-					"locators": {
-						"viscera_locator": [0, 2, -7]
 					}
 				}
 			]

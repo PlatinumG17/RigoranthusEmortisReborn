@@ -7,10 +7,7 @@ import com.platinumg17.rigoranthusemortisreborn.core.init.*;
 import com.platinumg17.rigoranthusemortisreborn.core.init.network.messages.Messages;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusSoundRegistry;
 import com.platinumg17.rigoranthusemortisreborn.entity.RigoranthusEntityTypes;
-import com.platinumg17.rigoranthusemortisreborn.entity.render.CanisChordataRenderer;
-import com.platinumg17.rigoranthusemortisreborn.entity.render.LanguidDwellerRenderer;
-import com.platinumg17.rigoranthusemortisreborn.entity.render.NecrawFasciiRenderer;
-import com.platinumg17.rigoranthusemortisreborn.entity.render.SunderedCadaverRenderer;
+import com.platinumg17.rigoranthusemortisreborn.entity.render.*;
 import com.platinumg17.rigoranthusemortisreborn.fluid.CadaverousIchorFluid;
 import com.platinumg17.rigoranthusemortisreborn.tileentity.RigoranthusTileEntities;
 import net.minecraft.block.Block;
@@ -99,6 +96,7 @@ public class RigoranthusEmortisReborn {
     private void setup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             //EmortisStructures.setupStructures();
+            VanillaCompatRigoranthus.setup();
             AxeItem.STRIPABLES = new ImmutableMap.Builder<Block, Block>().putAll(AxeItem.STRIPABLES)
                     .put(BuildingBlockInit.JESSIC_LOG.get(), BuildingBlockInit.STRIPPED_JESSIC_LOG.get())
                     .put(BuildingBlockInit.JESSIC_WOOD.get(), BuildingBlockInit.STRIPPED_JESSIC_WOOD.get())
@@ -131,6 +129,7 @@ public class RigoranthusEmortisReborn {
             Atlases.addWoodType(RigoranthusWoodTypes.AZULOREAL);
             Atlases.addWoodType(RigoranthusWoodTypes.JESSIC);
         });
+        RenderingRegistry.registerEntityRenderingHandler(RigoranthusEntityTypes.BOAT, BoatRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(RigoranthusEntityTypes.CANIS_CHORDATA.get(), CanisChordataRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(RigoranthusEntityTypes.NECRAW_FASCII.get(), NecrawFasciiRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(RigoranthusEntityTypes.SUNDERED_CADAVER.get(), SunderedCadaverRenderer::new);

@@ -1,6 +1,7 @@
 package com.platinumg17.rigoranthusemortisreborn.entity;
 
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
+import com.platinumg17.rigoranthusemortisreborn.entity.item.BoatEntityRigoranthus;
 import com.platinumg17.rigoranthusemortisreborn.entity.mobs.CanisChordataEntity;
 import com.platinumg17.rigoranthusemortisreborn.entity.mobs.LanguidDwellerEntity;
 import com.platinumg17.rigoranthusemortisreborn.entity.mobs.NecrawFasciiEntity;
@@ -16,6 +17,11 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class RigoranthusEntityTypes {
     public static DeferredRegister<EntityType<?>> ENTITY_TYPES
             = DeferredRegister.create(ForgeRegistries.ENTITIES, RigoranthusEmortisReborn.MOD_ID);
+
+    public static final EntityType<BoatEntityRigoranthus> BOAT =
+            EntityType.Builder.<BoatEntityRigoranthus>of(BoatEntityRigoranthus::new,
+                    EntityClassification.MISC).sized(1.375f, 0.5625f).setCustomClientFactory(BoatEntityRigoranthus::new).clientTrackingRange(10)
+                    .build(RigoranthusEmortisReborn.MOD_ID + ":boat");
 
     public static final RegistryObject<EntityType<CanisChordataEntity>> CANIS_CHORDATA =
             ENTITY_TYPES.register("canis_chordata",

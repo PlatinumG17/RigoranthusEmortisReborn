@@ -6,10 +6,12 @@ import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusItemGro
 
 import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusSoundRegistry;
 import com.platinumg17.rigoranthusemortisreborn.entity.RigoranthusEntityTypes;
+import com.platinumg17.rigoranthusemortisreborn.entity.item.BoatEntityRigoranthus;
 import com.platinumg17.rigoranthusemortisreborn.fluid.CadaverousIchorFluid;
 import com.platinumg17.rigoranthusemortisreborn.items.ForgottenRecord;
 import com.platinumg17.rigoranthusemortisreborn.items.armor.RigoranthusArmorMaterial;
 import com.platinumg17.rigoranthusemortisreborn.items.RigoranthusSpawnEgg;
+import com.platinumg17.rigoranthusemortisreborn.items.boat.BoatItemRigoranthus;
 import com.platinumg17.rigoranthusemortisreborn.items.ingots.*;
 import com.platinumg17.rigoranthusemortisreborn.items.weapons.BoneBow;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -97,6 +99,12 @@ public class ItemInit {
 	public static final RegistryObject<Item> AZULOREAL_SIGN = ITEMS.register("azuloreal_sign",
 			() -> new SignItem(new Item.Properties().stacksTo(16).tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP),
 					Registration.AZULOREAL_SIGN.get(), Registration.AZULOREAL_WALL_SIGN.get()));
+
+	public static final RegistryObject<Item> JESSIC_BOAT = ITEMS.register("jessic_boat",
+			() -> new BoatItemRigoranthus(BoatEntityRigoranthus.BoatModel.JESSIC));
+
+	public static final RegistryObject<Item> AZULOREAL_BOAT = ITEMS.register("azuloreal_boat",
+			() -> new BoatItemRigoranthus(BoatEntityRigoranthus.BoatModel.AZULOREAL));
 
 	public static final RegistryObject<RigoranthusSpawnEgg> CANIS_CHORDATA_SPAWN_EGG = ITEMS.register("canis_chordata_spawn_egg",
 			() -> new RigoranthusSpawnEgg(RigoranthusEntityTypes.CANIS_CHORDATA, 0x999999, 0xffffff,

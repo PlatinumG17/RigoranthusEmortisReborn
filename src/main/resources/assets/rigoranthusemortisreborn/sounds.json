@@ -122,6 +122,24 @@
       }
     ]
   },
+  "music_disk_kickstart": {
+      "category": "record",
+      "sounds": [
+      {
+        "name": "rigoranthusemortisreborn:music_disk_kickstart",
+        "stream": false
+      }
+    ]
+  },
+  "music_disk_neon_lights": {
+   "category": "record",
+   "sounds": [
+      {
+        "name": "rigoranthusemortisreborn:music_disk_neon_lights",
+        "stream": false
+      }
+    ]
+  },
   "necraw_ambient": {
     "category": "hostile",
     "sounds": [
@@ -264,6 +282,24 @@
       },
       {
         "name": "rigoranthusemortisreborn:cadaver_ambient_4",
+        "stream": false
+      }
+    ]
+  },
+  "un_dia_de_abril": {
+    "category": "ambient",
+    "sounds": [
+      {
+        "name": "rigoranthusemortisreborn:un_dia_de_abril",
+        "stream": false
+      }
+    ]
+  },
+  "calm_right": {
+    "category": "ambient",
+    "sounds": [
+      {
+        "name": "rigoranthusemortisreborn:calm_right",
         "stream": false
       }
     ]

@@ -27,6 +27,8 @@ public class EmortisTreeGen {
                 List<Supplier<ConfiguredFeature<?, ?>>> base =
                         event.getGeneration().getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION);
 
+                base.add(() -> RigoranthusConfiguredFeatures.FLOWERS_VERDUROUS);
+                base.add(() -> RigoranthusConfiguredFeatures.TREES_VERDUROUS);
                 base.add(() -> RigoranthusConfiguredFeatures.JESSIC
                         .decorated(Features.Placements.HEIGHTMAP_SQUARE)
                         .decorated(Placement.COUNT_EXTRA.configured(

@@ -113,10 +113,7 @@ public class RigoranthusEmortisReborn {
     private void setup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
 //            WorldFeatures.load();
-            //EmortisStructures.setupStructures();
-//            EmortisBiomes.addBiomeTypes();
-//            EmortisBiomes.registerBiomesToDictionary();
-//            EmortisBiomes.addSubBiomes();
+//            EmortisStructures.setupStructures();
             VanillaCompatRigoranthus.setup();
             AxeItem.STRIPABLES = new ImmutableMap.Builder<Block, Block>().putAll(AxeItem.STRIPABLES)
                     .put(BuildingBlockInit.JESSIC_LOG.get(), BuildingBlockInit.STRIPPED_JESSIC_LOG.get())
@@ -138,6 +135,8 @@ public class RigoranthusEmortisReborn {
             RenderTypeLookup.setRenderLayer(BuildingBlockInit.AZULOREAL_TRAPDOOR.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(BuildingBlockInit.AZULOREAL_LEAVES.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(BuildingBlockInit.AZULOREAL_SAPLING.get(), RenderType.cutout());
+            RenderTypeLookup.setRenderLayer(BuildingBlockInit.AZULOREAL_ORCHID.get(), RenderType.cutout());
+            RenderTypeLookup.setRenderLayer(BuildingBlockInit.LISIANTHUS.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(Registration.MASTERFUL_SMELTERY.get(), RenderType.cutout());
 
             RenderTypeLookup.setRenderLayer(CadaverousIchorFluid.CADAVEROUS_ICHOR_FLUID.get(), RenderType.translucent());

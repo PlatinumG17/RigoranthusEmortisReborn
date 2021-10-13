@@ -1,14 +1,14 @@
 {
     "variants": {
-        "half=lower": [ { "model": "block/lisianthus_bottom" },
-			{ "model": "block/lisianthus_bottom1" },
-			{ "model": "block/lisianthus_bottom2" },
-			{ "model": "block/lisianthus_bottom3" },
-			{ "model": "block/lisianthus_bottom4" }],
-        "half=upper": [ { "model": "block/lisianthus_top" },
-			{ "model": "block/lisianthus_top1" },
-			{ "model": "block/lisianthus_top2" },
-			{ "model": "block/lisianthus_top3" },
-			{ "model": "block/lisianthus_top4" } ]
+        "half=lower": [ { "model": "rigoranthusemortisreborn:block/lisianthus_bottom" },
+			{ "model": "rigoranthusemortisreborn:block/lisianthus_bottom1" },
+			{ "model": "rigoranthusemortisreborn:block/lisianthus_bottom2" },
+			{ "model": "rigoranthusemortisreborn:block/lisianthus_bottom3" },
+			{ "model": "rigoranthusemortisreborn:block/lisianthus_bottom4" }],
+        "half=upper": [ { "model": "rigoranthusemortisreborn:block/lisianthus_top" },
+			{ "model": "rigoranthusemortisreborn:block/lisianthus_top1" },
+			{ "model": "rigoranthusemortisreborn:block/lisianthus_top2" },
+			{ "model": "rigoranthusemortisreborn:block/lisianthus_top3" },
+			{ "model": "rigoranthusemortisreborn:block/lisianthus_top4" } ]
     }
 }

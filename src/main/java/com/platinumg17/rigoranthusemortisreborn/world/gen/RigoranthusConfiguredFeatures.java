@@ -39,8 +39,8 @@ public class RigoranthusConfiguredFeatures {
                     new BaseTreeFeatureConfig.Builder(
                             new SimpleBlockStateProvider(BuildingBlockInit.AZULOREAL_LOG.get().defaultBlockState()),
                             new SimpleBlockStateProvider(BuildingBlockInit.AZULOREAL_LEAVES.get().defaultBlockState()),
-                            new AcaciaFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(0)), //was fixed(2)
-                            new ForkyTrunkPlacer(5, 4, 4), //new ForkyTrunkPlacer(5, 2, 2),
+                            new AcaciaFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(0)), //was fixed(2)
+                            new ForkyTrunkPlacer(5, 2, 2), //new ForkyTrunkPlacer(5, 2, 2),
                             new TwoLayerFeature(1, 0, 2,
                             OptionalInt.of(4)))).ignoreVines().heightmap(Heightmap.Type.MOTION_BLOCKING).build()));
 
@@ -69,8 +69,8 @@ public class RigoranthusConfiguredFeatures {
                     new BaseTreeFeatureConfig.Builder(
                             new SimpleBlockStateProvider(BuildingBlockInit.JESSIC_LOG.get().defaultBlockState()),
                             new SimpleBlockStateProvider(BuildingBlockInit.JESSIC_LEAVES.get().defaultBlockState()),
-                            new AcaciaFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(0)), //was fixed(2)
-                            new ForkyTrunkPlacer(5, 4, 4),  //new ForkyTrunkPlacer(5, 2, 2),
+                            new AcaciaFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(0)), //was fixed(2)
+                            new ForkyTrunkPlacer(5, 2, 2),  //new ForkyTrunkPlacer(5, 2, 2),
                             new TwoLayerFeature(1, 0, 2,
                             OptionalInt.of(4)))).ignoreVines().heightmap(Heightmap.Type.MOTION_BLOCKING).build()));
 
@@ -86,16 +86,17 @@ public class RigoranthusConfiguredFeatures {
 
     public static final ConfiguredFeature<?, ?> FLOWERS_VERDUROUS = register("flowers_verdurous", Feature.RANDOM_PATCH
             .configured((new BlockClusterFeatureConfig.Builder((new WeightedBlockStateProvider())
-                    //.add(BlockInit.AZULOREAL_ORCHID.get().defaultBlockState(), 200)
-                    //.add(BlockInit.LISIANTHUS.get().defaultBlockState(), 100)
-                    .add(Blocks.BLUE_ORCHID.defaultBlockState(), 70)
-                    .add(Blocks.OXEYE_DAISY.defaultBlockState(), 50)
-                    .add(Blocks.WHITE_TULIP.defaultBlockState(), 50)
+                    .add(BuildingBlockInit.AZULOREAL_ORCHID.get().defaultBlockState(), 200)
+                    .add(BuildingBlockInit.LISIANTHUS.get().defaultBlockState(), 180)
+                    .add(Blocks.BLUE_ORCHID.defaultBlockState(), 100)
+                    .add(Blocks.OXEYE_DAISY.defaultBlockState(), 60)
+                    .add(Blocks.WHITE_TULIP.defaultBlockState(), 60)
+                    .add(Blocks.GRASS.defaultBlockState(), 1200)
                     .add(Blocks.LILY_OF_THE_VALLEY.defaultBlockState(), 50), SimpleBlockPlacer.INSTANCE))
-                    .tries(64).build())
+                    .tries(44).build())
             .decorated(Features.Placements.ADD_32)
             .decorated(Features.Placements.HEIGHTMAP_SQUARE)
-            .count(2));
+            .count(8));
     public static final ConfiguredFeature<?, ?> TREES_VERDUROUS = register("trees_verdurous", Feature.RANDOM_SELECTOR
             .configured(new MultipleRandomFeatureConfig(ImmutableList.of(Features.FANCY_OAK_BEES_0002.weighted(0.1F)), Features.OAK_BEES_0002))
             .decorated(Features.Placements.HEIGHTMAP_SQUARE)

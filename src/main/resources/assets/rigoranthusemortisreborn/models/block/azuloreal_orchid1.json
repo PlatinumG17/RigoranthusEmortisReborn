@@ -1,0 +1,6 @@
+{
+    "parent": "minecraft:block/cross",
+    "textures": {
+        "cross": "rigoranthusemortisreborn:blocks/azuloreal_orchid1"
+    }
+}

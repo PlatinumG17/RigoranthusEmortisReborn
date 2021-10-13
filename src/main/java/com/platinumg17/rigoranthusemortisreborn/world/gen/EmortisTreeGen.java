@@ -28,13 +28,8 @@ public class EmortisTreeGen {
         AzulorealTree azulorealTree = new AzulorealTree();
         Random random = new Random();
 
-        RegistryKey<Biome> key = RegistryKey.create(Registry.BIOME_REGISTRY, event.getName());
-        Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(key);
-        ResourceLocation biomeName = event.getName();
-
-        if(Config.enableTreeGeneration.get()) {
-            //if (DataUtil.matchesKeys(biomeName, EmortisBiomes.VERDUROUS_WOODLANDS.getKey())) {// || (DataUtil.matchesKeys(biomeName, EmortisBiomes.VERDUROUS_FIELDS.getKey()))) {
-             if(types.contains(BiomeDictionary.Type.MOUNTAIN)) { // || types.contains(BiomeDictionary.Type.MODIFIED)) {
+        if (Config.enableTreeGeneration.get()) {
+            if (new ResourceLocation(EmortisBiomes.VERDUROUS_WOODLANDS.get().toString()).equals(event.getName())) {
                 List<Supplier<ConfiguredFeature<?, ?>>> base =
                         event.getGeneration().getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION);
 

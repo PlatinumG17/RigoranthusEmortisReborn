@@ -1,0 +1,6 @@
+{
+    "parent": "minecraft:block/cross",
+    "textures": {
+        "cross": "rigoranthusemortisreborn:blocks/lisianthus_top2"
+    }
+}

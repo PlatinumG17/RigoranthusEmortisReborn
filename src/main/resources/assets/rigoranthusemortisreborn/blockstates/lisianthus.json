@@ -1,0 +1,14 @@
+{
+    "variants": {
+        "half=lower": [ { "model": "block/lisianthus_bottom" },
+			{ "model": "block/lisianthus_bottom1" },
+			{ "model": "block/lisianthus_bottom2" },
+			{ "model": "block/lisianthus_bottom3" },
+			{ "model": "block/lisianthus_bottom4" }],
+        "half=upper": [ { "model": "block/lisianthus_top" },
+			{ "model": "block/lisianthus_top1" },
+			{ "model": "block/lisianthus_top2" },
+			{ "model": "block/lisianthus_top3" },
+			{ "model": "block/lisianthus_top4" } ]
+    }
+}

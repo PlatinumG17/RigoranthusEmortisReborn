@@ -85,7 +85,7 @@ public class BuildingBlockInit {
             () -> new LadderBlock(AbstractBlock.Properties.of(Material.DECORATION).sound(SoundType.LADDER).strength(0.4F).harvestTool(ToolType.AXE).noOcclusion()), "tooltip.block.rigoranthusemortisreborn.jessic_ladder");
 
     public static final RegistryObject<Block> JESSIC_LEAVES = registerBlock("jessic_leaves",
-            () -> new LeavesBlock(AbstractBlock.Properties.of(Material.LEAVES).sound(SoundType.CROP).strength(0.2F).randomTicks().noCollission().noOcclusion().lightLevel((p_235455_0_) -> {return 15;})), "tooltip.block.rigoranthusemortisreborn.jessic_leaves");
+            () -> new LeavesBlock(AbstractBlock.Properties.of(Material.LEAVES).sound(SoundType.CROP).strength(0.2F).randomTicks().noOcclusion().lightLevel((p_235455_0_) -> {return 15;})), "tooltip.block.rigoranthusemortisreborn.jessic_leaves");
 
     public static final RegistryObject<Block> JESSIC_SAPLING = registerBlock("jessic_sapling",
             () -> new SaplingBlock(new JessicTree(), AbstractBlock.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)), "tooltip.block.rigoranthusemortisreborn.jessic_sapling");
@@ -148,9 +148,8 @@ public class BuildingBlockInit {
             () -> new LadderBlock(AbstractBlock.Properties.of(Material.DECORATION).sound(SoundType.LADDER).strength(0.4F).harvestTool(ToolType.AXE).noOcclusion()), "tooltip.block.rigoranthusemortisreborn.azuloreal_ladder");
 
     public static final RegistryObject<Block> AZULOREAL_LEAVES = registerBlock("azuloreal_leaves",
-            () -> new LeavesBlock(AbstractBlock.Properties.of(Material.LEAVES).sound(SoundType.CROP).strength(0.2F).randomTicks().noCollission().noOcclusion().lightLevel((p_235455_0_) -> {
-                return 15;
-            })), "tooltip.block.rigoranthusemortisreborn.azuloreal_leaves");
+            () -> new LeavesBlock(AbstractBlock.Properties.of(Material.LEAVES).sound(SoundType.CROP).strength(0.2F).randomTicks().noOcclusion().lightLevel((p_235455_0_) -> {
+                return 15;})), "tooltip.block.rigoranthusemortisreborn.azuloreal_leaves");
 
     public static final RegistryObject<Block> AZULOREAL_SAPLING = registerBlock("azuloreal_sapling",
             () -> new SaplingBlock(new AzulorealTree(), AbstractBlock.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)), "tooltip.block.rigoranthusemortisreborn.azuloreal_sapling");

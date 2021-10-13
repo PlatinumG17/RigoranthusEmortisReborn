@@ -10,4 +10,7 @@ public class EmortisSurfaceBuilder {
         BiomeRegistration.SURFACE_BUILDERS.register("logging_default", () -> new SurfaceBuildLog<>(() -> SurfaceBuilder.DEFAULT, SurfaceBuilderConfig.CODEC));
     public static void register() {
     }
+    //public static void register(IEventBus bus) {
+      //  SURFACE_BUILDERS.register(bus);
+    //}
 }

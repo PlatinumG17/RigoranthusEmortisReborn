@@ -1,16 +1,19 @@
 package com.platinumg17.rigoranthusemortisreborn;
 
 import com.google.common.collect.ImmutableMap;
+//import com.minecraftabnormals.abnormals_core.core.util.registry.RegistryHelper;
 import com.platinumg17.rigoranthusemortisreborn.blocks.custom.RigoranthusWoodTypes;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.core.init.*;
 import com.platinumg17.rigoranthusemortisreborn.core.init.network.messages.Messages;
+import com.platinumg17.rigoranthusemortisreborn.core.registry.BiomeRegistration;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusSoundRegistry;
 import com.platinumg17.rigoranthusemortisreborn.entity.RigoranthusEntityTypes;
 import com.platinumg17.rigoranthusemortisreborn.entity.render.*;
 import com.platinumg17.rigoranthusemortisreborn.fluid.CadaverousIchorFluid;
 import com.platinumg17.rigoranthusemortisreborn.tileentity.RigoranthusTileEntities;
 import com.platinumg17.rigoranthusemortisreborn.world.biome.EmortisBiomes;
+import com.platinumg17.rigoranthusemortisreborn.world.biome.EmortisSurfaceBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.block.WoodType;
 import net.minecraft.client.renderer.Atlases;
@@ -41,14 +44,19 @@ import net.minecraftforge.fml.loading.FMLPaths;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+//import com.platinumg17.rigoranthusemortisreborn.world.biome.EmortisSurfaceBuilder;
+//import com.platinumg17.rigoranthusemortisreborn.world.gen.feature.WorldFeatures;
+
 @Mod("rigoranthusemortisreborn")
 @Mod.EventBusSubscriber(modid = RigoranthusEmortisReborn.MOD_ID, bus = Bus.MOD)
 public class RigoranthusEmortisReborn {
 	public static final Logger LOGGER = LogManager.getLogger();
 	public static final String MOD_ID = "rigoranthusemortisreborn";
+//    public static final RegistryHelper REGISTRY_HELPER = new RegistryHelper(MOD_ID);
 
 	public RigoranthusEmortisReborn() {
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+//        REGISTRY_HELPER.register(bus);
 
 		bus.addListener(this::setup);
 		bus.addListener(this::enqueueIMC);
@@ -63,9 +71,7 @@ public class RigoranthusEmortisReborn {
         RigoranthusSoundRegistry.register(bus);
         RigoranthusEntityTypes.register(bus);
         EmortisBiomes.register();
-        if (Config.enableNewWoodTypes.get()) {
-            BuildingBlockInit.register(bus);
-        }
+        BuildingBlockInit.register(bus);
 		
 		MinecraftForge.EVENT_BUS.register(this);
         Messages.registerMessages("rigoranthusemortisreborn_network");
@@ -80,7 +86,14 @@ public class RigoranthusEmortisReborn {
         Config.loadConfig(Config.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve("rigoranthusemortisreborn.toml"));
 
         FMLJavaModLoadingContext.get().getModEventBus().addListener(ScreenInit::init);
-	}
+        registerBiomeBuilders();
+    }
+
+    private void registerBiomeBuilders() {
+        BiomeRegistration.init();
+        EmortisBiomes.register();
+        EmortisSurfaceBuilder.register();
+    }
 	
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event)
@@ -94,9 +107,16 @@ public class RigoranthusEmortisReborn {
         Registration.registerBlocks(event);
     }
 
+    public static ResourceLocation resourceLoc(String path) {
+        return new ResourceLocation(MOD_ID, path);
+    }
     private void setup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
+//            WorldFeatures.load();
             //EmortisStructures.setupStructures();
+//            EmortisBiomes.addBiomeTypes();
+//            EmortisBiomes.registerBiomesToDictionary();
+//            EmortisBiomes.addSubBiomes();
             VanillaCompatRigoranthus.setup();
             AxeItem.STRIPABLES = new ImmutableMap.Builder<Block, Block>().putAll(AxeItem.STRIPABLES)
                     .put(BuildingBlockInit.JESSIC_LOG.get(), BuildingBlockInit.STRIPPED_JESSIC_LOG.get())
@@ -159,6 +179,5 @@ public class RigoranthusEmortisReborn {
     @SubscribeEvent
     public void onServerStarting(FMLServerStartingEvent event) {
         LOGGER.info("Ah baby! Da mod man make a message thing!");
-        //RigoranthusRandomRegistry.init();
     }
 }

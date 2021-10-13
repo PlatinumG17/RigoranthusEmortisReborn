@@ -21,7 +21,7 @@ public class BiomeRegistration {
             BIOMES.register(bus);
             SURFACE_BUILDERS.register(bus);
         }
-//    public static ResourceKey<Biome> alps = register("alps");
+//    public static ResourceKey<Biome> verdurous_woodlands = register("verdurous_woodlands");
 //
 //    private static ResourceKey<Biome> register(String name)
 //    {

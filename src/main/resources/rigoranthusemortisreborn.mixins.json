@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "package": "com.platinumg17.rigoranthusemortisreborn.common.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "minVersion": "0.8",
+  "refmap": "rigoranthusemortisreborn.mixins.refmap.json",
+  "mixins": [
+    "ClientPlayerEntityMixin"
+  ],
+  "client": [
+    "ClientWorldMixin"
+  ],
+  "server": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

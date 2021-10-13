@@ -1,8 +1,5 @@
 package com.platinumg17.rigoranthusemortisreborn.world.biome;
 
-//import com.minecraftabnormals.abnormals_core.core.util.BiomeUtil;
-//import com.minecraftabnormals.abnormals_core.core.util.registry.BiomeSubRegistryHelper;
-
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.BiomeRegistration;
@@ -46,13 +43,9 @@ public class EmortisBiomes {
         DefaultBiomeFeatures.addDefaultOres(builder);
         DefaultBiomeFeatures.addSwampClayDisk(builder);
 
-
         MobSpawnInfo.Builder mobSpawnInfo = new MobSpawnInfo.Builder().setPlayerCanSpawn();
 
-
-
         builder.addFeature(GenerationStage.Decoration.LAKES, Features.LAKE_WATER.chance(Config.lakeSpawnWeight.get()));
-
         builder.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION.ordinal(), () -> RigoranthusConfiguredFeatures.TREES_VERDUROUS);
         builder.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION.ordinal(), () -> RigoranthusConfiguredFeatures.FLOWERS_VERDUROUS);
 
@@ -92,7 +85,6 @@ public class EmortisBiomes {
         mobbuilder.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.SLIME, 100, 4, 4));
         mobbuilder.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.ENDERMAN, 10, 1, 4));
         mobbuilder.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.WITCH, 5, 1, 1));
-
 
         return (new Biome.Builder())
                 .precipitation(Biome.RainType.RAIN).biomeCategory(Biome.Category.FOREST).depth(depth).scale(scale)

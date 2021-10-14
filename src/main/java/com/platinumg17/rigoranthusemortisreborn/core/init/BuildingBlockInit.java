@@ -159,11 +159,13 @@ public class BuildingBlockInit {
             () -> new SaplingBlock(new AzulorealTree(), AbstractBlock.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
 
     public static final RegistryObject<Block> AZULOREAL_ORCHID = registerBlock("azuloreal_orchid",
-            () -> new FlowerBlock(Effects.HEAL, 20, AbstractBlock.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak().noOcclusion()));
+            () -> new FlowerBlock(Effects.HEAL, 9, AbstractBlock.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak().noOcclusion()));
+
+    public static final RegistryObject<Block> IRIDESCENT_SPROUTS = registerBlock("iridescent_sprouts",
+            () -> new FlowerBlock(Effects.NIGHT_VISION, 10, AbstractBlock.Properties.of(Material.PLANT).sound(SoundType.GRASS).lightLevel((p_235452_0_) -> { return 5; }).noCollission().instabreak().noOcclusion()));
 
     public static final RegistryObject<TallFlowerBlock> LISIANTHUS = registerBlock("lisianthus",
             () -> new TallFlowerBlock(AbstractBlock.Properties.of(Material.REPLACEABLE_PLANT).noCollission().instabreak().sound(SoundType.GRASS)));
-
 
     public static final RegistryObject<Block> APOGEAN_NETHERITE_BLOCK = registerBlock("apogean_netherite_block",
             () -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.METAL).lightLevel((p_235452_0_) -> { return 5; }).strength(25f, 30f)

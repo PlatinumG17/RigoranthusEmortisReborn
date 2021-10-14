@@ -12,6 +12,9 @@
 
 
   "_comment": "BLOCKS", 
+  "block.rigoranthusemortisreborn.azuloreal_orchid": "Azuloreal Orchid",
+  "block.rigoranthusemortisreborn.lisianthus": "Lisianthus",
+
   "block.rigoranthusemortisreborn.abyssalite": "§5Abyssalite",
   "block.rigoranthusemortisreborn.fortified_sandesite": "Fortified Sandesite",
   "block.rigoranthusemortisreborn.fragmented_cobblestone": "Fragmented Cobblestone",
@@ -114,6 +117,8 @@
   "entity.rigoranthusemortisreborn.languid_dweller": "Languid Dweller",
   "entity.rigoranthusemortisreborn.necraw_fascii": "Necraw Fascii",
   "entity.rigoranthusemortisreborn.sundered_cadaver": "Sundered Cadaver",
+  "entity.rigoranthusemortisreborn.jessic_boat": "Jessic Boat",
+  "entity.rigoranthusemortisreborn.azuloreal_boat": "Azuloreal Boat",
 
   
   "_comment": "FLUIDS",
@@ -145,6 +150,10 @@
   "itemGroup.rigoranthusemortistab": "Rigoranthus Emortis",
   "item.rigoranthusemortisreborn.forgotten_record": "Forgotten Record",
   "item.rigoranthusemortisreborn.forgotten_record.desc": "Forgotten Record",
+  "item.rigoranthusemortisreborn.music_disk_kickstart": "Music Disk: Kickstart",
+  "item.rigoranthusemortisreborn.music_disk_kickstart.desc": "Music Disk: Kickstart",
+  "item.rigoranthusemortisreborn.music_disk_neon_lights": "Music Disk: Neon Lights",
+  "item.rigoranthusemortisreborn.music_disk_neon_lights.desc": "Music Disk: Neon Lights",
   "item.rigoranthusemortisreborn.bone_spear": "Bone Spear",
   "item.rigoranthusemortisreborn.bone_bow": "Bone Bow",
   "item.rigoranthusemortisreborn.bone_bow_pulling_0": "Bone Bow",
@@ -156,7 +165,6 @@
   "item.rigoranthusemortisreborn.augment_fuel": "Fuel Efficiency Augment",
   "item.rigoranthusemortisreborn.augment_redstone": "Redstone Control Augment",
   "item.rigoranthusemortisreborn.gui": "Inventory Config Augment",
-  "item.rigoranthusemortisreborn.upgrade_masterful": "Furnace to Masterful Smeltery Upgrade",
   "item.rigoranthusemortisreborn.item_copy": "Smeltery Settings Duplicator",
   "item.rigoranthusemortisreborn.item_linker": "Lol this ain't asposed to exist",
   "item.minecraft.potion.effect.necrotizing_fasciitis": "Necrotizing Fasciitis",
@@ -185,6 +193,9 @@
   "item.rigoranthusemortisreborn.dweller_thorax": "Dweller Thorax",
 
   "_comment": "Blocks",
+  "item.rigoranthusemortisreborn.azuloreal_orchid": "Azuloreal Orchid",
+  "item.rigoranthusemortisreborn.lisianthus": "Lisianthus",
+
   "item.rigoranthusemortisreborn.abyssalite": "§5Abyssalite",
   "item.rigoranthusemortisreborn.fortified_sandesite": "Fortified Sandesite",
   "item.rigoranthusemortisreborn.fragmented_cobblestone": "Fragmented Cobblestone",
@@ -211,6 +222,7 @@
   "item.rigoranthusemortisreborn.jessic_stairs": "Jessic Stairs",
   "item.rigoranthusemortisreborn.jessic_trapdoor": "Jessic Trapdoor",
   "item.rigoranthusemortisreborn.jessic_wood": "Jessic Wood",
+  "item.rigoranthusemortisreborn.jessic_boat": "Jessic Boat",
   "item.rigoranthusemortisreborn.stripped_jessic_log": "Stripped Jessic Log",
   "item.rigoranthusemortisreborn.stripped_jessic_wood": "Stripped Jessic Wood",
 
@@ -232,6 +244,7 @@
   "item.rigoranthusemortisreborn.azuloreal_stairs": "Azuloreal Stairs",
   "item.rigoranthusemortisreborn.azuloreal_trapdoor": "Azuloreal Trapdoor",
   "item.rigoranthusemortisreborn.azuloreal_wood": "Azuloreal Wood",
+  "item.rigoranthusemortisreborn.azuloreal_boat": "Azuloreal Boat",
   "item.rigoranthusemortisreborn.stripped_azuloreal_log": "Stripped Azuloreal Log",
   "item.rigoranthusemortisreborn.stripped_azuloreal_wood": "Stripped Azuloreal Wood",
 

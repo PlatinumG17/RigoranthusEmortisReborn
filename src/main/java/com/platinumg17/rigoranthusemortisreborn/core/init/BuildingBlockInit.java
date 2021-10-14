@@ -161,8 +161,8 @@ public class BuildingBlockInit {
     public static final RegistryObject<Block> AZULOREAL_ORCHID = registerBlock("azuloreal_orchid",
             () -> new FlowerBlock(Effects.HEAL, 20, AbstractBlock.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak().noOcclusion()));
 
-    public static final RegistryObject<Block> LISIANTHUS = registerBlock("lisianthus",
-            () -> new TallFlowerBlock(AbstractBlock.Properties.of(Material.REPLACEABLE_PLANT).noCollission().instabreak().dynamicShape().sound(SoundType.GRASS)));
+    public static final RegistryObject<TallFlowerBlock> LISIANTHUS = registerBlock("lisianthus",
+            () -> new TallFlowerBlock(AbstractBlock.Properties.of(Material.REPLACEABLE_PLANT).noCollission().instabreak().sound(SoundType.GRASS)));
 
 
     public static final RegistryObject<Block> APOGEAN_NETHERITE_BLOCK = registerBlock("apogean_netherite_block",

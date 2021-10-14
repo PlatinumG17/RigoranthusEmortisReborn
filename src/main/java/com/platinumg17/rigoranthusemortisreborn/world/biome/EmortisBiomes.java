@@ -26,15 +26,17 @@ public class EmortisBiomes {
 
     public static final RegistryObject<Biome> VERDUROUS_WOODLANDS = BiomeRegistration.BIOMES.register("verdurous_woodlands",
             () -> makeVerdurousWoodlandsBiome(() -> WorldGenRegistries.CONFIGURED_SURFACE_BUILDER.getOrThrow(
-                    EmortisConfiguredSB.VERDUROUS_SURFACE), 0.4F, 0.4F));
+                    EmortisConfiguredSB.VERDUROUS_SURFACE), 0.8F, 0.4F)); // was 0.4, 0.4
 
 
     private static Biome makeVerdurousWoodlandsBiome(final Supplier<ConfiguredSurfaceBuilder<?>> surfaceBuilder, float depth, float scale) {
         BiomeGenerationSettings.Builder builder = (new BiomeGenerationSettings.Builder()).surfaceBuilder(surfaceBuilder);
         DefaultBiomeFeatures.addDefaultOverworldLandStructures(builder);
+
         builder.addStructureStart(StructureFeatures.MINESHAFT);
         builder.addStructureStart(StructureFeatures.RUINED_PORTAL_SWAMP);
         builder.addStructureStart(StructureFeatures.BURIED_TREASURE);
+
         DefaultBiomeFeatures.addDefaultCarvers(builder);
         DefaultBiomeFeatures.addDefaultLakes(builder);
         DefaultBiomeFeatures.addDefaultMonsterRoom(builder);
@@ -43,21 +45,20 @@ public class EmortisBiomes {
         DefaultBiomeFeatures.addDefaultOres(builder);
         DefaultBiomeFeatures.addSwampClayDisk(builder);
 
-        MobSpawnInfo.Builder mobSpawnInfo = new MobSpawnInfo.Builder().setPlayerCanSpawn();
+        //MobSpawnInfo.Builder mobSpawnInfo = new MobSpawnInfo.Builder().setPlayerCanSpawn();
 
-        builder.addFeature(GenerationStage.Decoration.LAKES, Features.LAKE_WATER.chance(Config.lakeSpawnWeight.get()));
-        builder.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION.ordinal(), () -> RigoranthusConfiguredFeatures.TREES_VERDUROUS);
-        builder.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION.ordinal(), () -> RigoranthusConfiguredFeatures.FLOWERS_VERDUROUS);
-
-        builder.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION.ordinal(), () -> RigoranthusConfiguredFeatures.JESSIC.chance(Config.jessicSpawnWeight.get()));
-        builder.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION.ordinal(), () -> RigoranthusConfiguredFeatures.LOOMING_JESSIC.chance(Config.loomingJessicSpawnWeight.get()));
-        builder.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION.ordinal(), () -> RigoranthusConfiguredFeatures.MEGA_JESSIC.chance(Config.megaJessicSpawnWeight.get()));
-        builder.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION.ordinal(), () -> RigoranthusConfiguredFeatures.AZULOREAL.chance(Config.azulorealSpawnWeight.get()));
-        builder.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION.ordinal(), () -> RigoranthusConfiguredFeatures.LOOMING_AZULOREAL.chance(Config.loomingAzulorealSpawnWeight.get()));
-        builder.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION.ordinal(), () -> RigoranthusConfiguredFeatures.MEGA_AZULOREAL.chance(Config.megaAzulorealSpawnWeight.get()));
+//        builder.addFeature(GenerationStage.Decoration.LAKES, Features.LAKE_WATER.chance(Config.lakeSpawnWeight.get()));
+//        builder.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION.ordinal(), () -> RigoranthusConfiguredFeatures.TREES_VERDUROUS);
+//        builder.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION.ordinal(), () -> RigoranthusConfiguredFeatures.FLOWERS_VERDUROUS);
+//
+//        builder.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION.ordinal(), () -> RigoranthusConfiguredFeatures.JESSIC.chance(Config.jessicSpawnWeight.get()));
+//        builder.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION.ordinal(), () -> RigoranthusConfiguredFeatures.LOOMING_JESSIC.chance(Config.loomingJessicSpawnWeight.get()));
+//        builder.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION.ordinal(), () -> RigoranthusConfiguredFeatures.MEGA_JESSIC.chance(Config.megaJessicSpawnWeight.get()));
+//        builder.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION.ordinal(), () -> RigoranthusConfiguredFeatures.AZULOREAL.chance(Config.azulorealSpawnWeight.get()));
+//        builder.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION.ordinal(), () -> RigoranthusConfiguredFeatures.LOOMING_AZULOREAL.chance(Config.loomingAzulorealSpawnWeight.get()));
+//        builder.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION.ordinal(), () -> RigoranthusConfiguredFeatures.MEGA_AZULOREAL.chance(Config.megaAzulorealSpawnWeight.get()));
 
         DefaultBiomeFeatures.addDefaultMushrooms(builder);
-        DefaultBiomeFeatures.addForestFlowers(builder);
         DefaultBiomeFeatures.addForestGrass(builder);
         DefaultBiomeFeatures.addSurfaceFreezing(builder);
 
@@ -65,26 +66,28 @@ public class EmortisBiomes {
         DefaultBiomeFeatures.addDefaultExtraVegetation(builder);
         DefaultBiomeFeatures.addLightBambooVegetation(builder);
 
-        MobSpawnInfo.Builder mobbuilder = new MobSpawnInfo.Builder();
+        MobSpawnInfo.Builder mobbuilder = new MobSpawnInfo.Builder().setPlayerCanSpawn();
         DefaultBiomeFeatures.farmAnimals(mobbuilder);
         DefaultBiomeFeatures.commonSpawns(mobbuilder);
-        mobbuilder.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(RigoranthusEntityTypes.SUNDERED_CADAVER.get(), 100, 1, 5));
-        mobbuilder.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(RigoranthusEntityTypes.CANIS_CHORDATA.get(), 80, 1, 2));
-        mobbuilder.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(RigoranthusEntityTypes.NECRAW_FASCII.get(), 80, 1, 1));
-        mobbuilder.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.RAVAGER, 3, 1, 1));
-        mobbuilder.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.ZOMBIFIED_PIGLIN, 3, 2, 4));
+        mobbuilder.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(RigoranthusEntityTypes.SUNDERED_CADAVER.get(), 100, 1, 5)); // Config.sunderedCadaverSpawnWeight.get()
+        mobbuilder.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(RigoranthusEntityTypes.CANIS_CHORDATA.get(), 80, 1, 2)); // Config.canisChordataSpawnWeight.get()
+        mobbuilder.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(RigoranthusEntityTypes.NECRAW_FASCII.get(), 80, 1, 1)); // Config.necrawFasciiSpawnWeight.get()
         mobbuilder.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.SHEEP, 12, 4, 4));
         mobbuilder.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.PIG, 10, 4, 4));
         mobbuilder.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.CHICKEN, 10, 4, 4));
         mobbuilder.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.COW, 8, 4, 4));
         mobbuilder.addSpawn(EntityClassification.AMBIENT, new MobSpawnInfo.Spawners(EntityType.BAT, 10, 8, 8));
-        mobbuilder.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.SPIDER, 100, 4, 4));
-        mobbuilder.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.ZOMBIE, 95, 4, 4));
-        mobbuilder.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.ZOMBIE_VILLAGER, 5, 1, 1));
-        mobbuilder.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.SKELETON, 100, 4, 4));
+        mobbuilder.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.HORSE, 5, 2, 4));
+        mobbuilder.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.ZOMBIFIED_PIGLIN, 3, 2, 4));
         mobbuilder.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.SLIME, 100, 4, 4));
+        mobbuilder.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.HORSE, 8, 4, 4));
+        mobbuilder.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.SPIDER, 95, 1, 4));
+        mobbuilder.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.ZOMBIE, 95, 1, 4));
+        mobbuilder.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.ZOMBIE_VILLAGER, 5, 1, 1));
+        mobbuilder.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.SKELETON, 100, 1, 4));
         mobbuilder.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.ENDERMAN, 10, 1, 4));
         mobbuilder.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.WITCH, 5, 1, 1));
+        mobbuilder.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.RAVAGER, 3, 1, 1));
 
         return (new Biome.Builder())
                 .precipitation(Biome.RainType.RAIN).biomeCategory(Biome.Category.FOREST).depth(depth).scale(scale)

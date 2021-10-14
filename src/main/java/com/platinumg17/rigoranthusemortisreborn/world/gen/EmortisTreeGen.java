@@ -29,6 +29,7 @@ public class EmortisTreeGen {
 
                 base.add(() -> RigoranthusConfiguredFeatures.FLOWERS_VERDUROUS);
                 base.add(() -> RigoranthusConfiguredFeatures.TREES_VERDUROUS);
+                base.add(() -> RigoranthusConfiguredFeatures.TALL_FLOWERS_VERDUROUS);
                 base.add(() -> RigoranthusConfiguredFeatures.JESSIC
                         .decorated(Features.Placements.HEIGHTMAP_SQUARE)
                         .decorated(Placement.COUNT_EXTRA.configured(

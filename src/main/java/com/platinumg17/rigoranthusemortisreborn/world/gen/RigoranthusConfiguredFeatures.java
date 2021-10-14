@@ -7,6 +7,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.gen.Heightmap;
+import net.minecraft.world.gen.blockplacer.DoublePlantBlockPlacer;
 import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.blockstateprovider.WeightedBlockStateProvider;
@@ -86,17 +87,26 @@ public class RigoranthusConfiguredFeatures {
 
     public static final ConfiguredFeature<?, ?> FLOWERS_VERDUROUS = register("flowers_verdurous", Feature.RANDOM_PATCH
             .configured((new BlockClusterFeatureConfig.Builder((new WeightedBlockStateProvider())
-                    .add(BuildingBlockInit.AZULOREAL_ORCHID.get().defaultBlockState(), 200)
-                    .add(BuildingBlockInit.LISIANTHUS.get().defaultBlockState(), 180)
-                    .add(Blocks.BLUE_ORCHID.defaultBlockState(), 100)
-                    .add(Blocks.OXEYE_DAISY.defaultBlockState(), 60)
-                    .add(Blocks.WHITE_TULIP.defaultBlockState(), 60)
+                    .add(BuildingBlockInit.AZULOREAL_ORCHID.get().defaultBlockState(), 100)
+                    .add(BuildingBlockInit.LISIANTHUS.get().defaultBlockState(), 60)
+                    .add(Blocks.BLUE_ORCHID.defaultBlockState(), 50)
+                    .add(Blocks.OXEYE_DAISY.defaultBlockState(), 30)
+                    .add(Blocks.WHITE_TULIP.defaultBlockState(), 30)
                     .add(Blocks.GRASS.defaultBlockState(), 1200)
-                    .add(Blocks.LILY_OF_THE_VALLEY.defaultBlockState(), 50), SimpleBlockPlacer.INSTANCE))
+                    .add(Blocks.LILY_OF_THE_VALLEY.defaultBlockState(), 25), SimpleBlockPlacer.INSTANCE))
                     .tries(44).build())
             .decorated(Features.Placements.ADD_32)
             .decorated(Features.Placements.HEIGHTMAP_SQUARE)
             .count(8));
+
+    public static final ConfiguredFeature<?, ?> TALL_FLOWERS_VERDUROUS = register("tall_flowers_verdurous", Feature.RANDOM_PATCH
+            .configured((new BlockClusterFeatureConfig.Builder((new WeightedBlockStateProvider())
+                    .add(BuildingBlockInit.LISIANTHUS.get().defaultBlockState(), 20), DoublePlantBlockPlacer.INSTANCE))
+                    .tries(44).build())
+            .decorated(Features.Placements.ADD_32)
+            .decorated(Features.Placements.HEIGHTMAP_SQUARE)
+            .count(3));
+
     public static final ConfiguredFeature<?, ?> TREES_VERDUROUS = register("trees_verdurous", Feature.RANDOM_SELECTOR
             .configured(new MultipleRandomFeatureConfig(ImmutableList.of(Features.FANCY_OAK_BEES_0002.weighted(0.1F)), Features.OAK_BEES_0002))
             .decorated(Features.Placements.HEIGHTMAP_SQUARE)

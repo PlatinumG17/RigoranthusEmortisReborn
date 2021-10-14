@@ -31,7 +31,6 @@ import static net.minecraftforge.common.BiomeDictionary.Type.*;
 @Mod.EventBusSubscriber(modid = RigoranthusEmortisReborn.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class EmortisBiomeGen {
 
-
     @SubscribeEvent(priority = EventPriority.LOW)
     public static void register(final RegistryEvent.Register<SurfaceBuilder<?>> event) {
         registerBiome(EmortisConfiguredSB.VERDUROUS_SURFACE.location(),
@@ -42,9 +41,9 @@ public class EmortisBiomeGen {
     public static void setupBiome(final FMLCommonSetupEvent event) {
         event.enqueueWork(() ->
         {
-            //    if (Config.verdurousWoodlandsSpawnWeight.get() > 0) {
-            addBiome(EmortisBiomes.VERDUROUS_WOODLANDS.get(), BiomeManager.BiomeType.WARM, Config.verdurousWoodlandsSpawnWeight.get(), MAGICAL, DENSE, RARE, FOREST, LUSH);
-            //    }
+            if (Config.verdurousWoodlandsSpawnWeight.get() > 0) {
+                addBiome(EmortisBiomes.VERDUROUS_WOODLANDS.get(), BiomeManager.BiomeType.WARM, Config.verdurousWoodlandsSpawnWeight.get(), MAGICAL, DENSE, RARE, FOREST, LUSH);
+            }
         });
     }
 

@@ -2,22 +2,17 @@ package com.platinumg17.rigoranthusemortisreborn.entity.mobs;
 
 import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusSoundRegistry;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.HurtByTargetGoal;
-import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
-import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
-import net.minecraft.entity.ai.goal.ZombieAttackGoal;
+import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
 import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.entity.monster.ZombifiedPiglinEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.passive.TurtleEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.network.IPacket;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -29,8 +24,10 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.network.NetworkHooks;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -44,21 +41,40 @@ import java.util.Optional;
 public class SunderedCadaverEntity extends ZombieEntity implements IAnimatable {
     public SunderedCadaverEntity(EntityType<? extends ZombieEntity> type, World worldIn) {
         super(type, worldIn);
+        this.noCulling = true;
     }
     public static final DataParameter<Integer> STATE = EntityDataManager.defineId(SunderedCadaverEntity.class, DataSerializers.INT);
     private final AnimationFactory animationFactory = new AnimationFactory(this);
 
+//    private <E extends IAnimatable> PlayState animationPredicate(AnimationEvent<E> event) {
+//        if (!this.dead && !this.isDeadOrDying()) {
+//            if (this.getState() == State.ATTACKING) {
+//                event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.sundered_cadaver.attacking", false));
+//                return PlayState.CONTINUE;
+//            }
+////            else if (this.getState() == State.WORKING) {
+////                event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.dwarf_blacksmith.craft", true));
+////                return PlayState.CONTINUE;
+////            }
+//        }
+//        if (event.isMoving()) {
+//            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.sundered_cadaver.walking", true));
+//        } else {
+//            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.sundered_cadaver.idle", true));
+//        }
+//        return PlayState.CONTINUE;
+//    }
     private <E extends IAnimatable> PlayState animationPredicate(AnimationEvent<E> event) {
         if (!this.dead && !this.isDeadOrDying()) {
             if (this.getState() == SunderedCadaverEntity.State.ATTACKING) {
-                event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.sundered_cadaver_attacking.new", false));
+                event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.sundered_cadaver.attacking", false));
                 return PlayState.CONTINUE;
             }
         }
         if (event.isMoving()) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.sundered_cadaver_walking.new", true));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.sundered_cadaver.walking", true));
         } else {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.sundered_cadaver_idle_breathing.new", true));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.sundered_cadaver.idle", true));
         }
         return PlayState.CONTINUE;
     }
@@ -73,7 +89,7 @@ public class SunderedCadaverEntity extends ZombieEntity implements IAnimatable {
     }
 
     public enum State {
-        IDLE, ATTACKING
+        ATTACKING, IDLE//, WALKING//, MOVING
     }
 
     public SunderedCadaverEntity.State getState() {
@@ -92,31 +108,50 @@ public class SunderedCadaverEntity extends ZombieEntity implements IAnimatable {
 
     public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
         return MobEntity.createMobAttributes()
-                .add(Attributes.MAX_HEALTH, 20.0D)
-                .add(Attributes.MOVEMENT_SPEED, 0.25D)
-                .add(Attributes.ATTACK_DAMAGE, 4.0D)
+                .add(Attributes.MAX_HEALTH, 40.0D)
+                .add(Attributes.MOVEMENT_SPEED, 0.3D)
+                .add(Attributes.ATTACK_DAMAGE, 3.0D)
+                .add(Attributes.ARMOR, 3.5D)
+                .add(Attributes.ATTACK_KNOCKBACK, 0.5D)
                 .add(Attributes.FOLLOW_RANGE, 50.0D)
                 .add(Attributes.SPAWN_REINFORCEMENTS_CHANCE);
     }
-
+    @Override
+    public CreatureAttribute getMobType() {
+        return CreatureAttribute.UNDEAD;
+    }
+    @Override
+    public IPacket<?> getAddEntityPacket() {
+        return NetworkHooks.getEntitySpawningPacket(this);
+    }
+    @Override
+    public boolean hurt(DamageSource source, float amount) {
+        if (source == DamageSource.FALL)
+            return false;
+        return super.hurt(source, amount);
+    }
     @Override
     protected void registerGoals() {
         super.registerGoals();
-        this.goalSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
+        this.goalSelector.addGoal( 1, new NearestAttackableTargetGoal<>( this, PlayerEntity.class, true));
         this.goalSelector.addGoal(2, new ZombieAttackGoal(this, 1.0D, false));
+        this.goalSelector.addGoal(3, new LeapAtTargetGoal(this, (float) 1.1));
+        this.goalSelector.addGoal(5, new FollowMobGoal(this, (float) 1, 10, 5));
+        this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
         this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-        this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers(ZombifiedPiglinEntity.class));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
+        this.goalSelector.addGoal(8, new SwimGoal(this));
+        this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers(this.getClass()));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true, false));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillagerEntity.class, false));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
-        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, TurtleEntity.class, 10, true, false, TurtleEntity.BABY_ON_LAND_SELECTOR));
     }
+
+
 
     @Override
     protected int getExperienceReward(PlayerEntity player) {
-        return 3 + this.level.random.nextInt(20);
+        return 10 + this.level.random.nextInt(5);
     }
-
     @Override
     protected SoundEvent getAmbientSound() {
         return RigoranthusSoundRegistry.CADAVER_AMBIENT.get();
@@ -361,5 +396,8 @@ public class SunderedCadaverEntity extends ZombieEntity implements IAnimatable {
             biomeCriteria = true;
         if (!biomeCriteria)
             return;
+
+        event.getSpawns().getSpawner(EntityClassification.MONSTER).add(new MobSpawnInfo.Spawners(getType(), 45, 1, 5));
+
     }
 }

@@ -54,7 +54,6 @@ public class RigoranthusEventBusEvents {
         }
     }
 
-
     @SubscribeEvent
     public void onUseItem(PlayerInteractEvent.RightClickItem event) {
         if (event.getItemStack().getItem() == Items.GLASS_BOTTLE) { // && Config.ichorBottleEnabled) {
@@ -65,7 +64,6 @@ public class RigoranthusEventBusEvents {
                     if (event.getWorld().getFluidState(blockpos).getType().equals(CadaverousIchorFluid.CADAVEROUS_ICHOR_BLOCK.get())) {
                         event.getWorld().playSound(event.getPlayer(), event.getPlayer().getX(), event.getPlayer().getY(), event.getPlayer().getZ(), SoundEvents.BOTTLE_FILL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
                         event.getPlayer().awardStat(Stats.ITEM_USED.get(Items.GLASS_BOTTLE));
-                        //event.getPlayer().setSecondsOnFire(6);
                         if (!event.getPlayer().addItem(new ItemStack(ItemInit.BOTTLE_OF_ICHOR.get()))) {
                             event.getPlayer().spawnAtLocation(new ItemStack(ItemInit.BOTTLE_OF_ICHOR.get()));
                         }

@@ -21,30 +21,30 @@ public class RigoranthusEntityTypes {
     public static final EntityType<BoatEntityRigoranthus> BOAT =
             EntityType.Builder.<BoatEntityRigoranthus>of(BoatEntityRigoranthus::new,
                     EntityClassification.MISC).sized(1.375f, 0.5625f).setCustomClientFactory(BoatEntityRigoranthus::new).clientTrackingRange(10)
-                    .build(RigoranthusEmortisReborn.MOD_ID + ":boat");
+                    .build(RigoranthusEmortisReborn.MOD_ID + "_boat");
 
     public static final RegistryObject<EntityType<CanisChordataEntity>> CANIS_CHORDATA =
             ENTITY_TYPES.register("canis_chordata",
                     () -> EntityType.Builder.of(CanisChordataEntity::new,
-                                    EntityClassification.MONSTER).sized(1.5f, 2.3f).clientTrackingRange(64)
+                                    EntityClassification.MONSTER).sized(1.4f, 2f).clientTrackingRange(64)
                             .build(new ResourceLocation(RigoranthusEmortisReborn.MOD_ID, "canis_chordata").toString()));
 
     public static final RegistryObject<EntityType<SunderedCadaverEntity>> SUNDERED_CADAVER =
             ENTITY_TYPES.register("sundered_cadaver",
                     () -> EntityType.Builder.of(SunderedCadaverEntity::new,
-                                    EntityClassification.MONSTER).sized(1f, 3f)
+                                    EntityClassification.MONSTER).sized(1f, 0.9f)
                             .build(new ResourceLocation(RigoranthusEmortisReborn.MOD_ID, "sundered_cadaver").toString()));
 
     public static final RegistryObject<EntityType<NecrawFasciiEntity>> NECRAW_FASCII =
             ENTITY_TYPES.register("necraw_fascii",
                     () -> EntityType.Builder.of(NecrawFasciiEntity::new,
-                                    EntityClassification.MONSTER).sized(1f, 3f)
+                                    EntityClassification.MONSTER).sized(1f, 1.3f)
                                 .build(new ResourceLocation(RigoranthusEmortisReborn.MOD_ID, "necraw_fascii").toString()));
 
     public static final RegistryObject<EntityType<LanguidDwellerEntity>> LANGUID_DWELLER =
             ENTITY_TYPES.register("languid_dweller",
                     () -> EntityType.Builder.of(LanguidDwellerEntity::new,
-                                    EntityClassification.CREATURE).sized(0.4f, 0.3f)
+                                    EntityClassification.CREATURE).sized(1.6f, 1.8f)
                             .build(new ResourceLocation(RigoranthusEmortisReborn.MOD_ID, "languid_dweller").toString()));
 
     public static void register(IEventBus bus) {

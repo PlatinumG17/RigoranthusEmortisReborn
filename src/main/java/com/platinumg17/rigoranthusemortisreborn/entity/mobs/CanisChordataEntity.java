@@ -15,10 +15,7 @@ import net.minecraft.entity.ai.controller.MovementController;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
-import net.minecraft.entity.monster.AbstractSkeletonEntity;
-import net.minecraft.entity.monster.CreeperEntity;
-import net.minecraft.entity.monster.GhastEntity;
-import net.minecraft.entity.monster.ZombifiedPiglinEntity;
+import net.minecraft.entity.monster.*;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.passive.horse.AbstractChestedHorseEntity;
 import net.minecraft.entity.passive.horse.AbstractHorseEntity;
@@ -77,7 +74,6 @@ public class CanisChordataEntity extends AbstractChestedHorseEntity implements I
     public static final DataParameter<Integer> STATE = EntityDataManager.defineId(CanisChordataEntity.class, DataSerializers.INT);
     private final AnimationFactory animationFactory = new AnimationFactory(this);
 
-    private static final DataParameter<Boolean> DATA_INTERESTED_ID = EntityDataManager.defineId(CanisChordataEntity.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Integer> DATA_REMAINING_ANGER_TIME = EntityDataManager.defineId(CanisChordataEntity.class, DataSerializers.INT);
     public static final Predicate<LivingEntity> PREY_SELECTOR = (p_213440_0_) -> {
         EntityType<?> entitytype = p_213440_0_.getType();
@@ -85,8 +81,8 @@ public class CanisChordataEntity extends AbstractChestedHorseEntity implements I
     };
     private static final RangedInteger PERSISTENT_ANGER_TIME = TickRangeConverter.rangeOfSeconds(20, 39);
     private UUID persistentAngerTarget;
-    //private boolean isTamed;
-    //private UUID owner;
+    private boolean isTamed;
+    private UUID owner;
 
     public CanisChordataEntity(EntityType<? extends AbstractChestedHorseEntity> p_i48564_1_, World p_i48564_2_) {
         super(p_i48564_1_, p_i48564_2_);
@@ -160,24 +156,24 @@ public class CanisChordataEntity extends AbstractChestedHorseEntity implements I
         }
     }
 
-    public boolean wantsToAttack(LivingEntity p_142018_1_, LivingEntity p_142018_2_) {
-        if (!(p_142018_1_ instanceof CreeperEntity) && !(p_142018_1_ instanceof GhastEntity)) {
-            if (p_142018_1_ instanceof CanisChordataEntity) {
-                CanisChordataEntity canisChordataEntity = (CanisChordataEntity)p_142018_1_;
-                return !canisChordataEntity.isTame() || canisChordataEntity.getOwner() != p_142018_2_;
-            } else if (p_142018_1_ instanceof PlayerEntity && p_142018_2_ instanceof PlayerEntity && !((PlayerEntity)p_142018_2_).canHarmPlayer((PlayerEntity)p_142018_1_)) {
+    public boolean wantsToAttack(LivingEntity entity, LivingEntity player) {
+        if (!(entity instanceof CreeperEntity) && !(entity instanceof GhastEntity)) {
+            if (entity instanceof CanisChordataEntity) {
+                CanisChordataEntity canisChordataEntity = (CanisChordataEntity)entity;
+                return !canisChordataEntity.isTame() || canisChordataEntity.getOwner() != player;
+            } else if (entity instanceof PlayerEntity && player instanceof PlayerEntity && !((PlayerEntity)player).canHarmPlayer((PlayerEntity)entity)) {
                 return false;
-            } else if (p_142018_1_ instanceof AbstractHorseEntity && ((AbstractHorseEntity)p_142018_1_).isTamed()) {
+            } else if (entity instanceof AbstractHorseEntity && ((AbstractHorseEntity)entity).isTamed()) {
                 return false;
             } else {
-                return !(p_142018_1_ instanceof TameableEntity) || !((TameableEntity)p_142018_1_).isTame();
+                return !(entity instanceof TameableEntity) || !((TameableEntity)entity).isTame();
             }
         } else {
             return false;
         }
     }
     @Override
-    public boolean canBeLeashed(PlayerEntity p_184652_1_) {
+    public boolean canBeLeashed(PlayerEntity player) {
         return this.isTamed() && !this.isLeashed() && !this.isAngry();
     }
 
@@ -194,8 +190,8 @@ public class CanisChordataEntity extends AbstractChestedHorseEntity implements I
         }
     }*/
     @Override
-    public CanisChordataEntity getBreedOffspring(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
-        CanisChordataEntity canisChordataEntity = RigoranthusEntityTypes.CANIS_CHORDATA.get().create(p_241840_1_);
+    public CanisChordataEntity getBreedOffspring(ServerWorld world, AgeableEntity ageableEntity) {
+        CanisChordataEntity canisChordataEntity = RigoranthusEntityTypes.CANIS_CHORDATA.get().create(world);
         UUID uuid = this.getOwnerUUID();
         if (uuid != null) {
             canisChordataEntity.setOwnerUUID(uuid);
@@ -208,8 +204,8 @@ public class CanisChordataEntity extends AbstractChestedHorseEntity implements I
         return this.entityData.get(DATA_REMAINING_ANGER_TIME);
     }
     @Override
-    public void setRemainingPersistentAngerTime(int p_230260_1_) {
-        this.entityData.set(DATA_REMAINING_ANGER_TIME, p_230260_1_);
+    public void setRemainingPersistentAngerTime(int angerTime) {
+        this.entityData.set(DATA_REMAINING_ANGER_TIME, angerTime);
     }
     @Override
     public void startPersistentAngerTimer() {
@@ -221,8 +217,8 @@ public class CanisChordataEntity extends AbstractChestedHorseEntity implements I
         return this.persistentAngerTarget;
     }
     @Override
-    public void setPersistentAngerTarget(@Nullable UUID p_230259_1_) {
-        this.persistentAngerTarget = p_230259_1_;
+    public void setPersistentAngerTarget(@Nullable UUID anger) {
+        this.persistentAngerTarget = anger;
     }
     @Override
     public void aiStep() {
@@ -248,16 +244,16 @@ public class CanisChordataEntity extends AbstractChestedHorseEntity implements I
         return 8;
     }
     @Override
-    public boolean isFood(ItemStack p_70877_1_) {
-        Item item = p_70877_1_.getItem();
+    public boolean isFood(ItemStack stack) {
+        Item item = stack.getItem();
         return item.isEdible() && item.getFoodProperties().isMeat();
     }
     @Override
-    public boolean tameWithName(PlayerEntity p_110263_1_) {
-        this.setOwnerUUID(p_110263_1_.getUUID());
+    public boolean tameWithName(PlayerEntity player) {
+        this.setOwnerUUID(player.getUUID());
         this.setTamed(true);
-        if (p_110263_1_ instanceof ServerPlayerEntity) {
-            CriteriaTriggers.TAME_ANIMAL.trigger((ServerPlayerEntity)p_110263_1_, this);
+        if (player instanceof ServerPlayerEntity) {
+            CriteriaTriggers.TAME_ANIMAL.trigger((ServerPlayerEntity)player, this);
         }
 
         this.level.broadcastEntityEvent(this, (byte)7);
@@ -738,15 +734,14 @@ public class CanisChordataEntity extends AbstractChestedHorseEntity implements I
         super.defineSynchedData();
         this.entityData.define(DATA_FLAGS_ID, (byte)0);
         this.entityData.define(DATA_OWNERUUID_ID, Optional.empty());
-        this.entityData.define(DATA_INTERESTED_ID, false);
         this.entityData.define(DATA_REMAINING_ANGER_TIME, 0);
         this.entityData.define(STATE, 0);
     }
     @Override
-    public void addAdditionalSaveData(CompoundNBT p_213281_1_) {
-        super.addAdditionalSaveData(p_213281_1_);
-        this.setChest(p_213281_1_.getBoolean("ChestedCanis"));
-        p_213281_1_.putBoolean("ChestedCanis", this.hasChest());
+    public void addAdditionalSaveData(CompoundNBT addNBT) {
+        super.addAdditionalSaveData(addNBT);
+        this.setChest(addNBT.getBoolean("ChestedCanis"));
+        addNBT.putBoolean("ChestedCanis", this.hasChest());
         if (this.hasChest()) {
             ListNBT listnbt = new ListNBT();
 
@@ -760,19 +755,19 @@ public class CanisChordataEntity extends AbstractChestedHorseEntity implements I
                 }
             }
             if (this.getOwnerUUID() != null) {
-                p_213281_1_.putUUID("Owner", this.getOwnerUUID());
-                this.addPersistentAngerSaveData(p_213281_1_);
+                addNBT.putUUID("Owner", this.getOwnerUUID());
+                this.addPersistentAngerSaveData(addNBT);
             }
-            p_213281_1_.put("Items", listnbt);
-            p_213281_1_.putBoolean("Sitting", this.orderedToSit);
+            addNBT.put("Items", listnbt);
+            addNBT.putBoolean("Sitting", this.orderedToSit);
         }
     }
     @Override
-    public void readAdditionalSaveData(CompoundNBT p_70037_1_) {
-        super.readAdditionalSaveData(p_70037_1_);
-        this.setChest(p_70037_1_.getBoolean("ChestedCanis"));
+    public void readAdditionalSaveData(CompoundNBT readNBT) {
+        super.readAdditionalSaveData(readNBT);
+        this.setChest(readNBT.getBoolean("ChestedCanis"));
         if (this.hasChest()) {
-            ListNBT listnbt = p_70037_1_.getList("Items", 10);
+            ListNBT listnbt = readNBT.getList("Items", 10);
             this.createInventory();
 
             for(int i = 0; i < listnbt.size(); ++i) {
@@ -783,10 +778,10 @@ public class CanisChordataEntity extends AbstractChestedHorseEntity implements I
                 }
             }
             UUID uuid;
-            if (p_70037_1_.hasUUID("Owner")) {
-                uuid = p_70037_1_.getUUID("Owner");
+            if (readNBT.hasUUID("Owner")) {
+                uuid = readNBT.getUUID("Owner");
             } else {
-                String s = p_70037_1_.getString("Owner");
+                String s = readNBT.getString("Owner");
                 uuid = PreYggdrasilConverter.convertMobOwnerIfNecessary(this.getServer(), s);
             }
             if (uuid != null) {
@@ -800,17 +795,17 @@ public class CanisChordataEntity extends AbstractChestedHorseEntity implements I
         }
 
         this.updateContainerEquipment();
-        //this.orderedToSit = p_70037_1_.getBoolean("Sitting");
+        //this.orderedToSit = readNBT.getBoolean("Sitting");
        /// this.setInSittingPose(this.orderedToSit);
         if(!level.isClientSide)
-            this.readPersistentAngerSaveData((ServerWorld)this.level, p_70037_1_);
+            this.readPersistentAngerSaveData((ServerWorld)this.level, readNBT);
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    protected void spawnTamingParticles(boolean p_70908_1_) {
+    protected void spawnTamingParticles(boolean particles) {
         IParticleData iparticledata = ParticleTypes.HEART;
-        if (!p_70908_1_) {
+        if (!particles) {
             iparticledata = ParticleTypes.SMOKE;
         }
         for(int i = 0; i < 7; ++i) {
@@ -853,49 +848,67 @@ public class CanisChordataEntity extends AbstractChestedHorseEntity implements I
         this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(4.0D);
     }
 
-/*    public boolean isInSittingPose() {
+    public boolean isInSittingPose() {
         return (this.entityData.get(DATA_FLAGS_ID) & 1) != 0;
     }
 
-    public void setInSittingPose(boolean p_233686_1_) {
+    public void setInSittingPose(boolean sit) {
         byte b0 = this.entityData.get(DATA_FLAGS_ID);
-        if (p_233686_1_) {
+        if (sit) {
             this.entityData.set(DATA_FLAGS_ID, (byte)(b0 | 1));
         } else {
             this.entityData.set(DATA_FLAGS_ID, (byte)(b0 & -2));
         }
     }
     @Override
-    public boolean hurt(DamageSource p_70097_1_, float p_70097_2_) {
-        if (this.isInvulnerableTo(p_70097_1_)) {
+    public boolean hurt(DamageSource source, float amount) {
+        if (this.isInvulnerableTo(source)) {
             return false;
-        } else {
-            Entity entity = p_70097_1_.getEntity();
+        }
+        else {
+            Entity entity = source.getEntity();
             this.setOrderedToSit(false);
             if (entity != null && !(entity instanceof PlayerEntity) && !(entity instanceof AbstractArrowEntity)) {
-                p_70097_2_ = (p_70097_2_ + 1.0F) / 2.0F;
+                amount = (amount + 1.0F) / 2.0F;
             }
-
-            return super.hurt(p_70097_1_, p_70097_2_);
         }
+        if(!this.isTame()) {
+            if ((Math.random() < 0.1)) {
+                if (level instanceof ServerWorld) {
+                    MobEntity entityToSpawn = new SunderedCadaverEntity(RigoranthusEntityTypes.SUNDERED_CADAVER.get(), level);
+                    entityToSpawn.moveTo(this.getX(), this.getY(), this.getZ(), level.getRandom().nextFloat() * 360F, 0);
+                    entityToSpawn.finalizeSpawn((ServerWorld) level, level.getCurrentDifficultyAt(this.blockPosition()),
+                            SpawnReason.MOB_SUMMONED, null, null);
+                    level.addFreshEntity(entityToSpawn);
+                }
+            }
+        }
+        if (source == DamageSource.FALL)
+            return false;
+        if (source == DamageSource.DROWN)
+            return false;
+        if (source == DamageSource.LIGHTNING_BOLT)
+            return false;
+        return super.hurt(source, amount);
     }
+
     /*
     @Override
-    public boolean doHurtTarget(Entity p_70652_1_) {
+    public boolean doHurtTarget(Entity entity) {
         boolean flag = p_70652_1_.hurt(DamageSource.mobAttack(this), (float)((int)this.getAttributeValue(Attributes.ATTACK_DAMAGE)));
         if (flag) {
-            this.doEnchantDamageEffects(this, p_70652_1_);
+            this.doEnchantDamageEffects(this, entity);
         }
         return flag;
     }*/
     @Override
     @Nullable
     public UUID getOwnerUUID() {
-        return this.entityData.get(DATA_OWNERUUID_ID).orElse((UUID)null);
+        return this.entityData.get(DATA_OWNERUUID_ID).orElse(null);
     }
     @Override
-    public void setOwnerUUID(@Nullable UUID p_184754_1_) {
-        this.entityData.set(DATA_OWNERUUID_ID, Optional.ofNullable(p_184754_1_));
+    public void setOwnerUUID(@Nullable UUID uuid) {
+        this.entityData.set(DATA_OWNERUUID_ID, Optional.ofNullable(uuid));
     }
 
     @Nullable
@@ -925,29 +938,29 @@ public class CanisChordataEntity extends AbstractChestedHorseEntity implements I
         }
         return super.getTeam();
     }
-    /*
+
     @Override
-    public boolean isAlliedTo(Entity p_184191_1_) {
+    public boolean isAlliedTo(Entity entity) {
         if (this.isTame()) {
             LivingEntity livingentity = this.getOwner();
-            if (p_184191_1_ == livingentity) {
+            if (entity == livingentity) {
                 return true;
             }
             if (livingentity != null) {
-                return livingentity.isAlliedTo(p_184191_1_);
+                return livingentity.isAlliedTo(entity);
             }
         }
-        return super.isAlliedTo(p_184191_1_);
+        return super.isAlliedTo(entity);
     }
     @Override
-    public void die(DamageSource p_70645_1_) {
+    public void die(DamageSource source) {
         if (!this.level.isClientSide && this.level.getGameRules().getBoolean(GameRules.RULE_SHOWDEATHMESSAGES) && this.getOwner() instanceof ServerPlayerEntity) {
             this.getOwner().sendMessage(this.getCombatTracker().getDeathMessage(), Util.NIL_UUID);
         }
-        super.die(p_70645_1_);
-    }*/
+        super.die(source);
+    }
 
-    public void setOrderedToSit(boolean p_233687_1_) {
-        this.orderedToSit = p_233687_1_;
+    public void setOrderedToSit(boolean sit) {
+        this.orderedToSit = sit;
     }
 }

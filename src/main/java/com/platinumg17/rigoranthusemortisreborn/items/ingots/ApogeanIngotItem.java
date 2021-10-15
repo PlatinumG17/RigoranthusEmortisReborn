@@ -33,7 +33,7 @@ public class ApogeanIngotItem extends Item {
             tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".apogean_ingot11").setStyle(Style.EMPTY));
             tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".apogean_ingot12").setStyle(Style.EMPTY));
         } else {
-            tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".apogean_ingot_shift").setStyle(Style.EMPTY));
+            tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".hold_shift").setStyle(Style.EMPTY));
         }
     }
 

@@ -34,7 +34,7 @@ public class IncorporealIngotItem extends Item {
             tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".incorporeal_ingot10").setStyle(Style.EMPTY));
             tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".incorporeal_ingot11").setStyle(Style.EMPTY));
         } else {
-            tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".incorporeal_ingot_shift").setStyle(Style.EMPTY));
+            tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".hold_shift").setStyle(Style.EMPTY));
         }
     }
 }

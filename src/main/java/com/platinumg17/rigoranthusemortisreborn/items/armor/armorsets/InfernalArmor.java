@@ -49,7 +49,7 @@ public class InfernalArmor extends ArmorItem {
             tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".infernal_ingot17").setStyle(Style.EMPTY));
             tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".infernal_ingot18").setStyle(Style.EMPTY));
         } else {
-            tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".infernal_ingot_shift").setStyle(Style.EMPTY));
+            tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".hold_shift").setStyle(Style.EMPTY));
         }
     }
 

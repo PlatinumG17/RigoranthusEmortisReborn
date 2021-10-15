@@ -32,7 +32,7 @@ public class ForgottenRecord extends MusicDiscItem {
             tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".forgotten_record2").setStyle(Style.EMPTY));
             tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".forgotten_record3").setStyle(Style.EMPTY));
         } else {
-            tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".forgotten_record_shift").setStyle(Style.EMPTY));
+            tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".hold_shift").setStyle(Style.EMPTY));
         }
     }
 

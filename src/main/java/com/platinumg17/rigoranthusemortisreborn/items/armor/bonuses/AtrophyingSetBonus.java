@@ -15,7 +15,7 @@ public class AtrophyingSetBonus extends Effect {
 
     public AtrophyingSetBonus() {
         super(EffectType.BENEFICIAL, 0X51FFAF);
-        this.setRegistryName(RigoranthusEmortisReborn.MOD_ID, "atrophuing_set_bonus");
+        this.setRegistryName(RigoranthusEmortisReborn.MOD_ID, "atrophying_set_bonus");
 
     }
 
@@ -40,6 +40,6 @@ public class AtrophyingSetBonus extends Effect {
     }
 
     public String getName() {
-        return "rigoranthusemortisreborn.potion.atrophuing_set_bonus";
+        return "rigoranthusemortisreborn.potion.atrophying_set_bonus";
     }
 }

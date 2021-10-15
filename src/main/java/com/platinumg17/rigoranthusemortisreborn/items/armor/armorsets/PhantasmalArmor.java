@@ -50,7 +50,7 @@ public class PhantasmalArmor extends ArmorItem {
             tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".phantasmal_ingot18").setStyle(Style.EMPTY));
             tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".phantasmal_ingot19").setStyle(Style.EMPTY));
         } else {
-            tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".phantasmal_ingot_shift").setStyle(Style.EMPTY));
+            tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".hold_shift").setStyle(Style.EMPTY));
         }
     }
 

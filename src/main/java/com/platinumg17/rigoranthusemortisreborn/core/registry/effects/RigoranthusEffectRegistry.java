@@ -35,8 +35,8 @@ public class RigoranthusEffectRegistry {
     public static final Effect PHANTASMAL_SET_BONUS = new PhantasmalSetBonus();
     public static final Effect REMEX_SET_BONUS = new RemexSetBonus();
     public static final Effect NECROTIZING_FASCIITIS = new EffectNecrotizingFasciitis();
-    public static final Potion NECROTIZING_FASCIITIS_POTION = new Potion(new EffectInstance(NECROTIZING_FASCIITIS, 3600)).setRegistryName("rigoranthusemortis:necrotizing_fasciitis");
-    public static final Potion NECROTIZING_FASCIITIS_II_POTION = new Potion(new EffectInstance(NECROTIZING_FASCIITIS, 9600)).setRegistryName("rigoranthusemortis:necrotizing_fasciitis_ii");
+    public static final Potion NECROTIZING_FASCIITIS_POTION = new Potion(new EffectInstance(NECROTIZING_FASCIITIS, 5000)).setRegistryName("rigoranthusemortis:necrotizing_fasciitis");
+    public static final Potion NECROTIZING_FASCIITIS_II_POTION = new Potion(new EffectInstance(NECROTIZING_FASCIITIS, 10000)).setRegistryName("rigoranthusemortis:necrotizing_fasciitis_ii");
 
     @SubscribeEvent
     public static void registerEffects(RegistryEvent.Register<Effect> event) {

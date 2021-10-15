@@ -3,13 +3,7 @@ package com.platinumg17.rigoranthusemortisreborn.core.registry.effects;
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
 import com.platinumg17.rigoranthusemortisreborn.items.armor.bonuses.*;
-//import com.platinumg17.rigoranthusemortisreborn.util.PotionRecipeUtils;
-//import net.minecraft.item.Item;
-//import net.minecraft.util.ResourceLocation;
-//import net.minecraft.util.registry.Registry;
 import com.platinumg17.rigoranthusemortisreborn.util.PactBrewing;
-import net.minecraftforge.common.brewing.BrewingRecipe;
-import net.minecraftforge.common.brewing.IBrewingRecipe;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -20,8 +14,6 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
 
 @Mod.EventBusSubscriber(modid = RigoranthusEmortisReborn.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class RigoranthusEffectRegistry {

@@ -87,7 +87,7 @@ public class BuildingBlockInit {
 
     public static final RegistryObject<Block> JESSIC_LEAVES = registerBlock("jessic_leaves",
             () -> new LeavesBlock(AbstractBlock.Properties.of(Material.LEAVES).sound(SoundType.GRASS).strength(0.2F).randomTicks().noOcclusion().lightLevel((p_235455_0_) -> {
-                return 15;
+                return 10;
             })));
 
     public static final RegistryObject<Block> JESSIC_SAPLING = registerBlock("jessic_sapling",
@@ -152,20 +152,20 @@ public class BuildingBlockInit {
 
     public static final RegistryObject<Block> AZULOREAL_LEAVES = registerBlock("azuloreal_leaves",
             () -> new LeavesBlock(AbstractBlock.Properties.of(Material.LEAVES).sound(SoundType.GRASS).strength(0.2F).randomTicks().noOcclusion().lightLevel((p_235455_0_) -> {
-                return 15;
+                return 12;
             })));
     //public static final RegistryObject<Block> AZULOREAL_LEAVES = registerBlock("azuloreal_leaves", leaves());
     public static final RegistryObject<Block> AZULOREAL_SAPLING = registerBlock("azuloreal_sapling",
             () -> new SaplingBlock(new AzulorealTree(), AbstractBlock.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
 
     public static final RegistryObject<Block> AZULOREAL_ORCHID = registerBlock("azuloreal_orchid",
-            () -> new FlowerBlock(Effects.HEAL, 9, AbstractBlock.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak().noOcclusion()));
+            () -> new FlowerBlock(Effects.HEAL, 9, AbstractBlock.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().randomTicks().instabreak().noOcclusion()));
 
     public static final RegistryObject<Block> IRIDESCENT_SPROUTS = registerBlock("iridescent_sprouts",
-            () -> new FlowerBlock(Effects.NIGHT_VISION, 10, AbstractBlock.Properties.of(Material.PLANT).sound(SoundType.GRASS).lightLevel((p_235452_0_) -> { return 5; }).noCollission().instabreak().noOcclusion()));
+            () -> new FlowerBlock(Effects.NIGHT_VISION, 10, AbstractBlock.Properties.of(Material.PLANT).sound(SoundType.GRASS).lightLevel((p_235452_0_) -> { return 5; }).noCollission().randomTicks().instabreak().noOcclusion()));
 
-    public static final RegistryObject<TallFlowerBlock> LISIANTHUS = registerBlock("lisianthus",
-            () -> new TallFlowerBlock(AbstractBlock.Properties.of(Material.REPLACEABLE_PLANT).noCollission().instabreak().sound(SoundType.GRASS)));
+    public static final RegistryObject<Block> LISIANTHUS = registerBlock("lisianthus",
+            () -> new TallFlowerBlock(AbstractBlock.Properties.of(Material.REPLACEABLE_PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
 
     public static final RegistryObject<Block> APOGEAN_NETHERITE_BLOCK = registerBlock("apogean_netherite_block",
             () -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.METAL).lightLevel((p_235452_0_) -> { return 5; }).strength(25f, 30f)
@@ -210,8 +210,7 @@ public class BuildingBlockInit {
     //public static final RegistryObject<SkullBlock> SUNDERED_CADAVER_HEAD = registerBlock("sundered_cadaver_head", () -> new SkullBlock(SkullBlock.Types.ZOMBIE, AbstractBlock.Properties.of(Material.DECORATION).strength(1.0F)));
     //public static final RegistryObject<WallSkullBlock> SUNDERED_CADAVER_WALL_HEAD = registerBlock("sundered_cadaver_wall_head", () -> new WallSkullBlock(SkullBlock.Types.ZOMBIE, AbstractBlock.Properties.of(Material.DECORATION).strength(1.0F).dropsLike(SKELETON_SKULL)));
 
-    //public static final RegistryObject<ChestBlock> JESSIC_CHEST = registerBlock("jessic_chest", () -> new ChestBlock(AbstractBlock.Properties.of(Material.WOOD).strength(2.5F).sound(SoundType.WOOD), () -> {return TileEntityType.CHEST;})); // CHANGE TO JESSOC_CHEST
-
+    //public static final RegistryObject<ChestBlock> JESSIC_CHEST = registerBlock("jessic_chest", () -> new ChestBlock(AbstractBlock.Properties.of(Material.WOOD).strength(2.5F).sound(SoundType.WOOD), () -> {return TileEntityType.CHEST;}));
     //public static final RegistryObject<BarrelBlock> JESSIC_BARREL = registerBlock("jessic_barrel", () -> new BarrelBlock(AbstractBlock.Properties.of(Material.WOOD).strength(2.5F).sound(SoundType.WOOD)));
 
 

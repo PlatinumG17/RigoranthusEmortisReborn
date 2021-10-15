@@ -13,6 +13,7 @@
 
   "_comment": "BLOCKS", 
   "block.rigoranthusemortisreborn.azuloreal_orchid": "Azuloreal Orchid",
+  "block.rigoranthusemortisreborn.iridescent_sprouts": "Iridescent Sprouts",
   "block.rigoranthusemortisreborn.lisianthus": "Lisianthus",
 
   "block.rigoranthusemortisreborn.abyssalite": "§5Abyssalite",
@@ -149,11 +150,11 @@
   "_comment": "ITEMS",
   "itemGroup.rigoranthusemortistab": "Rigoranthus Emortis",
   "item.rigoranthusemortisreborn.forgotten_record": "Forgotten Record",
-  "item.rigoranthusemortisreborn.forgotten_record.desc": "Forgotten Record",
+  "item.rigoranthusemortisreborn.forgotten_record.desc": "A crumbling record. Perhaps it contains knowledge of things long since forgotten.",
   "item.rigoranthusemortisreborn.music_disk_kickstart": "Music Disk: Kickstart",
-  "item.rigoranthusemortisreborn.music_disk_kickstart.desc": "Music Disk: Kickstart",
+  "item.rigoranthusemortisreborn.music_disk_kickstart.desc": "Rad music for rad people",
   "item.rigoranthusemortisreborn.music_disk_neon_lights": "Music Disk: Neon Lights",
-  "item.rigoranthusemortisreborn.music_disk_neon_lights.desc": "Music Disk: Neon Lights",
+  "item.rigoranthusemortisreborn.music_disk_neon_lights.desc": "Ever wanted to start a night club?",
   "item.rigoranthusemortisreborn.bone_spear": "Bone Spear",
   "item.rigoranthusemortisreborn.bone_bow": "Bone Bow",
   "item.rigoranthusemortisreborn.bone_bow_pulling_0": "Bone Bow",
@@ -194,6 +195,7 @@
 
   "_comment": "Blocks",
   "item.rigoranthusemortisreborn.azuloreal_orchid": "Azuloreal Orchid",
+  "item.rigoranthusemortisreborn.iridescent_sprouts": "Iridescent Sprouts",
   "item.rigoranthusemortisreborn.lisianthus": "Lisianthus",
 
   "item.rigoranthusemortisreborn.abyssalite": "§5Abyssalite",
@@ -457,11 +459,15 @@
   "tooltip.rigoranthusemortisreborn.crushing_hammer3": "resources into fragments, or process",
   "tooltip.rigoranthusemortisreborn.crushing_hammer4": "ore fragments into nuggets.",
 
+  "tooltip.rigoranthusemortisreborn.dweller_thorax": "Languid Dwellers may leave behind",
+  "tooltip.rigoranthusemortisreborn.dweller_thorax2": "their thoracic cage in good condition.",
+  "tooltip.rigoranthusemortisreborn.dweller_thorax3": "You can also craft one with",
+  "tooltip.rigoranthusemortisreborn.dweller_thorax4": "Dweller Flesh and Bone Fragments.",
   "tooltip.rigoranthusemortisreborn.forgotten_record": "A crumbling record.",
   "tooltip.rigoranthusemortisreborn.forgotten_record2": "Perhaps it contains knowledge",
   "tooltip.rigoranthusemortisreborn.forgotten_record3": "of things long since forgotten",
   "tooltip.rigoranthusemortisreborn.forgotten_record_shift": "Hold \u00A76[SHIFT]\u00A7f for info.",
-
+  "tooltip.rigoranthusemortisreborn.hold_shift": "Hold \u00A76[SHIFT]\u00A7f for info.",
 
 
   "_comment": "Block Tooltips",

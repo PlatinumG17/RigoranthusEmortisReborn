@@ -26,7 +26,7 @@ public class EmortisBiomes {
 
     public static final RegistryObject<Biome> VERDUROUS_WOODLANDS = BiomeRegistration.BIOMES.register("verdurous_woodlands",
             () -> makeVerdurousWoodlandsBiome(() -> WorldGenRegistries.CONFIGURED_SURFACE_BUILDER.getOrThrow(
-                    EmortisConfiguredSB.VERDUROUS_SURFACE), 0.8F, 0.4F)); // was 0.4, 0.4
+                    EmortisConfiguredSB.VERDUROUS_SURFACE), 0.4F, 0.5F)); // was 0.4, 0.4
 
 
     private static Biome makeVerdurousWoodlandsBiome(final Supplier<ConfiguredSurfaceBuilder<?>> surfaceBuilder, float depth, float scale) {

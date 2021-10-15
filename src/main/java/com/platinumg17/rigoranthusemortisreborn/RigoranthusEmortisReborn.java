@@ -1,7 +1,6 @@
 package com.platinumg17.rigoranthusemortisreborn;
 
 import com.google.common.collect.ImmutableMap;
-//import com.minecraftabnormals.abnormals_core.core.util.registry.RegistryHelper;
 import com.platinumg17.rigoranthusemortisreborn.blocks.custom.RigoranthusWoodTypes;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.core.init.*;
@@ -11,6 +10,8 @@ import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusSoundRe
 import com.platinumg17.rigoranthusemortisreborn.entity.RigoranthusEntityTypes;
 import com.platinumg17.rigoranthusemortisreborn.entity.render.*;
 import com.platinumg17.rigoranthusemortisreborn.fluid.CadaverousIchorFluid;
+import com.platinumg17.rigoranthusemortisreborn.items.armor.armorsets.DwellerThoraxArmor;
+import com.platinumg17.rigoranthusemortisreborn.models.DwellerThoraxModel;
 import com.platinumg17.rigoranthusemortisreborn.tileentity.RigoranthusTileEntities;
 import com.platinumg17.rigoranthusemortisreborn.world.biome.EmortisBiomes;
 import com.platinumg17.rigoranthusemortisreborn.world.biome.EmortisSurfaceBuilder;
@@ -19,7 +20,10 @@ import net.minecraft.block.WoodType;
 import net.minecraft.client.renderer.Atlases;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraft.client.renderer.model.ModelResourceLocation;
 import net.minecraft.client.renderer.tileentity.SignTileEntityRenderer;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemModelsProperties;
@@ -44,19 +48,14 @@ import net.minecraftforge.fml.loading.FMLPaths;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-//import com.platinumg17.rigoranthusemortisreborn.world.biome.EmortisSurfaceBuilder;
-//import com.platinumg17.rigoranthusemortisreborn.world.gen.feature.WorldFeatures;
-
 @Mod("rigoranthusemortisreborn")
 @Mod.EventBusSubscriber(modid = RigoranthusEmortisReborn.MOD_ID, bus = Bus.MOD)
 public class RigoranthusEmortisReborn {
 	public static final Logger LOGGER = LogManager.getLogger();
 	public static final String MOD_ID = "rigoranthusemortisreborn";
-//    public static final RegistryHelper REGISTRY_HELPER = new RegistryHelper(MOD_ID);
 
 	public RigoranthusEmortisReborn() {
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
-//        REGISTRY_HELPER.register(bus);
 
 		bus.addListener(this::setup);
 		bus.addListener(this::enqueueIMC);
@@ -112,7 +111,6 @@ public class RigoranthusEmortisReborn {
     }
     private void setup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-//            WorldFeatures.load();
 //            EmortisStructures.setupStructures();
             VanillaCompatRigoranthus.setup();
             AxeItem.STRIPABLES = new ImmutableMap.Builder<Block, Block>().putAll(AxeItem.STRIPABLES)
@@ -136,8 +134,11 @@ public class RigoranthusEmortisReborn {
             RenderTypeLookup.setRenderLayer(BuildingBlockInit.AZULOREAL_LEAVES.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(BuildingBlockInit.AZULOREAL_SAPLING.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(BuildingBlockInit.AZULOREAL_ORCHID.get(), RenderType.cutout());
+            RenderTypeLookup.setRenderLayer(BuildingBlockInit.IRIDESCENT_SPROUTS.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(BuildingBlockInit.LISIANTHUS.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(Registration.MASTERFUL_SMELTERY.get(), RenderType.cutout());
+            //RenderTypeLookup.setRenderLayer(//new DwellerThoraxModel(), RenderType.armorCutoutNoCull(new ResourceLocation("rigoranthusemortisreborn")));
+            //        Block.byItem(ItemInit.DWELLER_THORAX.get()), RenderType.armorCutoutNoCull(new ResourceLocation("rigoranthusemortisreborn:textures/dweller_chestplate.png")));
 
             RenderTypeLookup.setRenderLayer(CadaverousIchorFluid.CADAVEROUS_ICHOR_FLUID.get(), RenderType.translucent());
             RenderTypeLookup.setRenderLayer(CadaverousIchorFluid.CADAVEROUS_ICHOR_BLOCK.get(), RenderType.translucent());

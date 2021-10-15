@@ -11,6 +11,7 @@ import com.platinumg17.rigoranthusemortisreborn.fluid.CadaverousIchorFluid;
 import com.platinumg17.rigoranthusemortisreborn.items.ForgottenRecord;
 import com.platinumg17.rigoranthusemortisreborn.items.armor.RigoranthusArmorMaterial;
 import com.platinumg17.rigoranthusemortisreborn.items.RigoranthusSpawnEgg;
+import com.platinumg17.rigoranthusemortisreborn.items.armor.armorsets.DwellerThoraxArmor;
 import com.platinumg17.rigoranthusemortisreborn.items.boat.BoatItemRigoranthus;
 import com.platinumg17.rigoranthusemortisreborn.items.ingots.*;
 import com.platinumg17.rigoranthusemortisreborn.items.weapons.BoneBow;
@@ -58,7 +59,7 @@ public class ItemInit {
 			() -> new Item(new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)));
 
 	public static final RegistryObject<Item> DWELLER_THORAX = ITEMS.register("dweller_thorax",
-			() -> new ArmorItem(RigoranthusArmorMaterial.DWELLER, EquipmentSlotType.CHEST,
+			() -> new DwellerThoraxArmor(RigoranthusArmorMaterial.DWELLER, EquipmentSlotType.CHEST,
 					new Item.Properties().fireResistant().rarity(Rarity.RARE).tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)));
 
 	public static final RegistryObject<Item> APOGEAN_NETHERITE_INGOT = ITEMS.register("apogean_netherite_ingot",
@@ -119,7 +120,7 @@ public class ItemInit {
 					new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)));
 
 	public static final RegistryObject<RigoranthusSpawnEgg> SUNDERED_CADAVER_SPAWN_EGG = ITEMS.register("sundered_cadaver_spawn_egg",
-			() -> new RigoranthusSpawnEgg(RigoranthusEntityTypes.SUNDERED_CADAVER, 0x7e0000, 0x2986cc,
+			() -> new RigoranthusSpawnEgg(RigoranthusEntityTypes.SUNDERED_CADAVER, -6684673, -39322,
 					new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)));
 
 	public static final RegistryObject<RigoranthusSpawnEgg> NECRAW_FASCII_SPAWN_EGG = ITEMS.register("necraw_fascii_spawn_egg",

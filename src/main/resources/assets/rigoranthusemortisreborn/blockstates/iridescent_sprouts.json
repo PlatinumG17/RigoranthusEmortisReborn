@@ -1,6 +1,7 @@
 {
     "variants": {
-        "": [ { "model": "block/iridescent_sprouts" }
-        ]
+      "": {
+        "model": "rigoranthusemortisreborn:block/iridescent_sprouts"
+      }
     }
-}
+  }

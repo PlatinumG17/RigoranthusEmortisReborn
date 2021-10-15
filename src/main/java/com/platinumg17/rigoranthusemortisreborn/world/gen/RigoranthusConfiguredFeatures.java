@@ -88,10 +88,9 @@ public class RigoranthusConfiguredFeatures {
     public static final ConfiguredFeature<?, ?> FLOWERS_VERDUROUS = register("flowers_verdurous", Feature.RANDOM_PATCH
             .configured((new BlockClusterFeatureConfig.Builder((new WeightedBlockStateProvider())
                     .add(BuildingBlockInit.AZULOREAL_ORCHID.get().defaultBlockState(), 100)
-                    .add(BuildingBlockInit.IRIDESCENT_SPROUTS.get().defaultBlockState(), 100)
-                    .add(BuildingBlockInit.LISIANTHUS.get().defaultBlockState(), 60)
+                    .add(BuildingBlockInit.IRIDESCENT_SPROUTS.get().defaultBlockState(), 30)
                     .add(Blocks.BLUE_ORCHID.defaultBlockState(), 50)
-                    .add(Blocks.OXEYE_DAISY.defaultBlockState(), 30)
+                    .add(Blocks.PINK_TULIP.defaultBlockState(), 30)
                     .add(Blocks.WHITE_TULIP.defaultBlockState(), 30)
                     .add(Blocks.GRASS.defaultBlockState(), 1200)
                     .add(Blocks.BAMBOO.defaultBlockState(), 100)
@@ -103,7 +102,6 @@ public class RigoranthusConfiguredFeatures {
 
     public static final ConfiguredFeature<?, ?> TALL_FLOWERS_VERDUROUS = register("tall_flowers_verdurous", Feature.RANDOM_PATCH
             .configured((new BlockClusterFeatureConfig.Builder((new WeightedBlockStateProvider())
-                    .add(Blocks.BAMBOO.defaultBlockState(), 5)
                     .add(Blocks.TALL_GRASS.defaultBlockState(), 10)
                     .add(BuildingBlockInit.LISIANTHUS.get().defaultBlockState(), 10), DoublePlantBlockPlacer.INSTANCE))
                     .tries(10).build())

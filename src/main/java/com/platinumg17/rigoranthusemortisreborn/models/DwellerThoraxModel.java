@@ -1,17 +1,21 @@
 package com.platinumg17.rigoranthusemortisreborn.models;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.IVertexBuilder;
+import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 
-public class DwellerThoraxModel<T extends LivingEntity> extends ArmorModel<T> {
+public class DwellerThoraxModel <T extends LivingEntity> extends ArmorModel<T> { //extends EntityModel<Entity> {
     // Made with Blockbench 3.9.2
     // Exported for Minecraft version 1.15 - 1.16 with MCP mappings
     // Paste this class into your mod and generate all required imports
     public DwellerThoraxModel(float modelSize, EquipmentSlotType slotType) {
         super(modelSize, slotType);
 
-        final ModelRenderer thorax;
+        final ModelRenderer Body;
         final ModelRenderer ribs;
         final ModelRenderer cube_r1_r1_r1;
         final ModelRenderer cube_r2_r1_r1;
@@ -81,17 +85,17 @@ public class DwellerThoraxModel<T extends LivingEntity> extends ArmorModel<T> {
         final ModelRenderer cube_r13_r1;
         final ModelRenderer cube_r12_r2;
 
-//        public DwellerThoraxModel() {
-            texWidth = 32;
-            texHeight = 32;
+        //public DwellerThoraxModel() {
+            texWidth = 64;
+            texHeight = 64;
 
-            thorax = new ModelRenderer(this);
-            thorax.setPos(-0.2F, 3.1F, 1.0F);
-            setRotationAngle(thorax, 0.0873F, 0.0F, 0.0F);
+            Body = new ModelRenderer(this);
+            Body.setPos(-0.2F, 3.1F, 1.0F);
+            setRotationAngle(Body, 0.0873F, 0.0F, 0.0F);
 
             ribs = new ModelRenderer(this);
             ribs.setPos(0.3551F, 18.5101F, 16.6649F);
-            thorax.addChild(ribs);
+            Body.addChild(ribs);
 
             cube_r1_r1_r1 = new ModelRenderer(this);
             cube_r1_r1_r1.setPos(6.6605F, -5.3532F, 0.8434F);
@@ -251,7 +255,7 @@ public class DwellerThoraxModel<T extends LivingEntity> extends ArmorModel<T> {
 
             bone = new ModelRenderer(this);
             bone.setPos(0.2F, 4.1F, -0.5F);
-            thorax.addChild(bone);
+            Body.addChild(bone);
             setRotationAngle(bone, 0.0524F, 0.0F, 0.0F);
 
             cube_r14_r1_r1 = new ModelRenderer(this);
@@ -490,20 +494,19 @@ public class DwellerThoraxModel<T extends LivingEntity> extends ArmorModel<T> {
         }
 
 //        @Override
-//        public void setRotationAngles(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks,
+//        public void setupAnim(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks,
 //                                      float netHeadYaw, float headPitch) {
 //        }
-//
-//        @Override
-//        public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red,
-//                           float green, float blue, float alpha) {
-//            thorax.render(matrixStack, buffer, packedLight, packedOverlay);
-//        }
+
+        @Override
+        public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red,
+                           float green, float blue, float alpha) {
+            Body.render(matrixStack, buffer, packedLight, packedOverlay);
+        }
 
         public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
             modelRenderer.xRot = x;
             modelRenderer.yRot = y;
             modelRenderer.zRot = z;
         }
-   // }
-}
+    }

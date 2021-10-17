@@ -12,7 +12,6 @@ import net.minecraft.entity.monster.SilverfishEntity;
 import net.minecraft.entity.monster.SpiderEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.network.IPacket;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
@@ -21,12 +20,19 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.fml.network.NetworkHooks;
 
 public class LanguidDwellerEntity extends SpiderEntity {
-    public LanguidDwellerEntity(EntityType<? extends SpiderEntity> p_i48550_1_, World p_i48550_2_) {
-        super(p_i48550_1_, p_i48550_2_);
+    public LanguidDwellerEntity(EntityType<? extends SpiderEntity> type, World worldIn) {
+        super(type, worldIn);
     }
+//    @Override
+//    public CreatureAttribute getMobType() {
+//        return CreatureAttribute.UNDEAD;
+//    }
+//    @Override
+//    public IPacket<?> getAddEntityPacket() {
+//        return NetworkHooks.getEntitySpawningPacket(this);
+//    }
     public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
         return MobEntity.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, Config.languidDwellerMaxHealth.get())
@@ -54,7 +60,7 @@ public class LanguidDwellerEntity extends SpiderEntity {
     @Override
     protected int getExperienceReward(PlayerEntity player)
     {
-        return 40 + this.level.random.nextInt(5);
+        return 30 + this.level.random.nextInt(5);
     }
     @Override
     protected SoundEvent getAmbientSound()
@@ -79,8 +85,8 @@ public class LanguidDwellerEntity extends SpiderEntity {
             return true;
         }
     }
-@Override
-public boolean hurt(DamageSource source, float amount) {
+    @Override
+    public boolean hurt(DamageSource source, float amount) {
     if (source.getEntity() instanceof PlayerEntity) {
         if ((Math.random() < 0.1)) {
             if (level instanceof ServerWorld) {
@@ -99,15 +105,8 @@ public boolean hurt(DamageSource source, float amount) {
     if (source == DamageSource.LIGHTNING_BOLT)
         return false;
     return super.hurt(source, amount);
-}
-    @Override
-    public CreatureAttribute getMobType() {
-        return CreatureAttribute.UNDEAD;
     }
-    @Override
-    public IPacket<?> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
-    }
+
     public void aiStep() {
         super.aiStep();
         for(int i = 0; i < 3; i++){

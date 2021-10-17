@@ -5,15 +5,12 @@ import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.BiomeRegistration;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusSoundRegistry;
 import com.platinumg17.rigoranthusemortisreborn.entity.RigoranthusEntityTypes;
-import com.platinumg17.rigoranthusemortisreborn.world.gen.RigoranthusConfiguredFeatures;
 import net.minecraft.client.audio.BackgroundMusicTracks;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.biome.*;
-import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.feature.Features;
 import net.minecraft.world.gen.feature.structure.StructureFeatures;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
 import net.minecraftforge.fml.RegistryObject;
@@ -44,8 +41,6 @@ public class EmortisBiomes {
         DefaultBiomeFeatures.addDefaultUndergroundVariety(builder);
         DefaultBiomeFeatures.addDefaultOres(builder);
         DefaultBiomeFeatures.addSwampClayDisk(builder);
-
-        //MobSpawnInfo.Builder mobSpawnInfo = new MobSpawnInfo.Builder().setPlayerCanSpawn();
 
 //        builder.addFeature(GenerationStage.Decoration.LAKES, Features.LAKE_WATER.chance(Config.lakeSpawnWeight.get()));
 
@@ -92,9 +87,7 @@ public class EmortisBiomes {
                         .build())
                 .mobSpawnSettings(mobbuilder.build()).generationSettings(builder.build()).build();
     }
-
-    public static void register() {
-    }
+    public static void register() {}
 
     private static int getSkyColorWithTemperatureModifier(float temperature) {
         float lvt_1_1_ = temperature / 0.6F;

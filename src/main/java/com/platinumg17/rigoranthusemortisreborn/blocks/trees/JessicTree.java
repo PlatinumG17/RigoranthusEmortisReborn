@@ -22,10 +22,3 @@ public class JessicTree extends BigTree {
         return random.nextBoolean() ? RigoranthusConfiguredFeatures.LOOMING_JESSIC : RigoranthusConfiguredFeatures.MEGA_JESSIC;
     }
 }
-//public class JessicTree extends Tree {
-//    @Nullable
-//    @Override
-//    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getConfiguredFeature(Random random, boolean b) {
-//        return RigoranthusConfiguredFeatures.JESSIC;
-//    }
-//}

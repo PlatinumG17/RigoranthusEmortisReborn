@@ -21,11 +21,3 @@ public class AzulorealTree extends BigTree {
         return random.nextBoolean() ? RigoranthusConfiguredFeatures.LOOMING_AZULOREAL : RigoranthusConfiguredFeatures.MEGA_AZULOREAL;
     }
 }
-
-//public class AzulorealTree extends Tree {
-//    @Nullable
-//    @Override
-//    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getConfiguredFeature(Random random, boolean b) {
-//        return RigoranthusConfiguredFeatures.AZULOREAL;
-//    }
-//}

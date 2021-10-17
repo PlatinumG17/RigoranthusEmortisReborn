@@ -24,10 +24,6 @@ public class RigoranthusEntityTypes {
             HELPER.createEntity("bone_arrow_entity",
                     BoneArrowEntity::new, BoneArrowEntity::new,
                     EntityClassification.MISC, 0.25F, 0.25F);
-//    public static final EntityType<BoatEntityRigoranthus> BOAT =
-//            EntityType.Builder.<BoatEntityRigoranthus>of(BoatEntityRigoranthus::new,
-//                    EntityClassification.MISC).sized(1.375f, 0.5625f).setCustomClientFactory(BoatEntityRigoranthus::new).clientTrackingRange(10)
-//                    .build(RigoranthusEmortisReborn.MOD_ID + "_boat");
 
     public static final RegistryObject<EntityType<CanisChordataEntity>> CANIS_CHORDATA =
             ENTITY_TYPES.register("canis_chordata",

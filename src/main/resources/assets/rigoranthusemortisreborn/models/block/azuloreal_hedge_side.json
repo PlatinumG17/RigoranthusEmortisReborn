@@ -1,5 +1,5 @@
 {
-  "parent": "abnormals_core:blocks/hedge_side",
+  "parent": "abnormals_core:block/hedge_side",
   "textures": {
     "leaf": "rigoranthusemortisreborn:blocks/azuloreal_leaves"
   }

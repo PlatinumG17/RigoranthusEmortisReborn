@@ -1,0 +1,6 @@
+{
+  "parent": "abnormals_core:block/post",
+  "textures": {
+    "texture": "rigoranthusemortisreborn:blocks/jessic_log"
+  }
+}

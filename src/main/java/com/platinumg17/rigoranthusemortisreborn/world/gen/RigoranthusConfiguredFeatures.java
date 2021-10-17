@@ -1,6 +1,7 @@
 package com.platinumg17.rigoranthusemortisreborn.world.gen;
 
 import com.google.common.collect.ImmutableList;
+import com.platinumg17.rigoranthusemortisreborn.blocks.custom.DecorativeOrStorageBlocks;
 import com.platinumg17.rigoranthusemortisreborn.core.init.BlockInit;
 import com.platinumg17.rigoranthusemortisreborn.core.init.BuildingBlockInit;
 import net.minecraft.block.BlockState;
@@ -28,8 +29,8 @@ public class RigoranthusConfiguredFeatures {
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> AZULOREAL =
             register("azuloreal", Feature.TREE.configured((
                     new BaseTreeFeatureConfig.Builder(
-                            new SimpleBlockStateProvider(BuildingBlockInit.AZULOREAL_LOG.get().defaultBlockState()),
-                            new SimpleBlockStateProvider(BuildingBlockInit.AZULOREAL_LEAVES.get().defaultBlockState()),
+                            new SimpleBlockStateProvider(DecorativeOrStorageBlocks.AZULOREAL_LOG.get().defaultBlockState()),
+                            new SimpleBlockStateProvider(DecorativeOrStorageBlocks.AZULOREAL_LEAVES.get().defaultBlockState()),
                             new FancyFoliagePlacer(FeatureSpread.of(2, 1), FeatureSpread.of(4, 2), 4),
                             new FancyTrunkPlacer(3, 11, 0),
                             new TwoLayerFeature(0, 0, 0,
@@ -38,8 +39,8 @@ public class RigoranthusConfiguredFeatures {
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> LOOMING_AZULOREAL =
             register("looming_azuloreal", Feature.TREE.configured((
                     new BaseTreeFeatureConfig.Builder(
-                            new SimpleBlockStateProvider(BuildingBlockInit.AZULOREAL_LOG.get().defaultBlockState()),
-                            new SimpleBlockStateProvider(BuildingBlockInit.AZULOREAL_LEAVES.get().defaultBlockState()),
+                            new SimpleBlockStateProvider(DecorativeOrStorageBlocks.AZULOREAL_LOG.get().defaultBlockState()),
+                            new SimpleBlockStateProvider(DecorativeOrStorageBlocks.AZULOREAL_LEAVES.get().defaultBlockState()),
                             new AcaciaFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(0)), //was fixed(2)
                             new ForkyTrunkPlacer(5, 2, 2), //new ForkyTrunkPlacer(5, 2, 2),
                             new TwoLayerFeature(1, 0, 2,
@@ -48,8 +49,8 @@ public class RigoranthusConfiguredFeatures {
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> MEGA_AZULOREAL =
             register("mega_azuloreal", Feature.TREE.configured((
                     new BaseTreeFeatureConfig.Builder(
-                            new SimpleBlockStateProvider(BuildingBlockInit.AZULOREAL_LOG.get().defaultBlockState()),
-                            new SimpleBlockStateProvider(BuildingBlockInit.AZULOREAL_LEAVES.get().defaultBlockState()),
+                            new SimpleBlockStateProvider(DecorativeOrStorageBlocks.AZULOREAL_LOG.get().defaultBlockState()),
+                            new SimpleBlockStateProvider(DecorativeOrStorageBlocks.AZULOREAL_LEAVES.get().defaultBlockState()),
                             new MegaPineFoliagePlacer(FeatureSpread.fixed(0), FeatureSpread.fixed(0), FeatureSpread.of(13, 4)),
                             new GiantTrunkPlacer(12, 2, 14),
                             new TwoLayerFeature(1, 1, 2))).decorators(ImmutableList.of(
@@ -58,8 +59,8 @@ public class RigoranthusConfiguredFeatures {
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> JESSIC =
             register("jessic", Feature.TREE.configured((
                     new BaseTreeFeatureConfig.Builder(
-                            new SimpleBlockStateProvider(BuildingBlockInit.JESSIC_LOG.get().defaultBlockState()),
-                            new SimpleBlockStateProvider(BuildingBlockInit.JESSIC_LEAVES.get().defaultBlockState()),
+                            new SimpleBlockStateProvider(DecorativeOrStorageBlocks.JESSIC_LOG.get().defaultBlockState()),
+                            new SimpleBlockStateProvider(DecorativeOrStorageBlocks.JESSIC_LEAVES.get().defaultBlockState()),
                             new FancyFoliagePlacer(FeatureSpread.of(2, 1), FeatureSpread.of(4, 2), 4),
                             new FancyTrunkPlacer(3, 11, 0),
                             new TwoLayerFeature(0, 0, 0,
@@ -68,8 +69,8 @@ public class RigoranthusConfiguredFeatures {
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> LOOMING_JESSIC =
             register("looming_jessic", Feature.TREE.configured((
                     new BaseTreeFeatureConfig.Builder(
-                            new SimpleBlockStateProvider(BuildingBlockInit.JESSIC_LOG.get().defaultBlockState()),
-                            new SimpleBlockStateProvider(BuildingBlockInit.JESSIC_LEAVES.get().defaultBlockState()),
+                            new SimpleBlockStateProvider(DecorativeOrStorageBlocks.JESSIC_LOG.get().defaultBlockState()),
+                            new SimpleBlockStateProvider(DecorativeOrStorageBlocks.JESSIC_LEAVES.get().defaultBlockState()),
                             new AcaciaFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(0)), //was fixed(2)
                             new ForkyTrunkPlacer(5, 2, 2),  //new ForkyTrunkPlacer(5, 2, 2),
                             new TwoLayerFeature(1, 0, 2,
@@ -78,8 +79,8 @@ public class RigoranthusConfiguredFeatures {
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> MEGA_JESSIC =
             register("mega_jessic", Feature.TREE.configured((
                     new BaseTreeFeatureConfig.Builder(
-                            new SimpleBlockStateProvider(BuildingBlockInit.JESSIC_LOG.get().defaultBlockState()),
-                            new SimpleBlockStateProvider(BuildingBlockInit.JESSIC_LEAVES.get().defaultBlockState()),
+                            new SimpleBlockStateProvider(DecorativeOrStorageBlocks.JESSIC_LOG.get().defaultBlockState()),
+                            new SimpleBlockStateProvider(DecorativeOrStorageBlocks.JESSIC_LEAVES.get().defaultBlockState()),
                             new MegaPineFoliagePlacer(FeatureSpread.fixed(0), FeatureSpread.fixed(0), FeatureSpread.of(13, 4)),
                             new GiantTrunkPlacer(12, 2, 14),
                             new TwoLayerFeature(1, 1, 2))).decorators(ImmutableList.of(
@@ -87,8 +88,12 @@ public class RigoranthusConfiguredFeatures {
 
     public static final ConfiguredFeature<?, ?> FLOWERS_VERDUROUS = register("flowers_verdurous", Feature.RANDOM_PATCH
             .configured((new BlockClusterFeatureConfig.Builder((new WeightedBlockStateProvider())
-                    .add(BuildingBlockInit.AZULOREAL_ORCHID.get().defaultBlockState(), 100)
-                    .add(BuildingBlockInit.IRIDESCENT_SPROUTS.get().defaultBlockState(), 30)
+                    .add(DecorativeOrStorageBlocks.AZULOREAL_ORCHID.get().defaultBlockState(), 100)
+                    .add(DecorativeOrStorageBlocks.IRIDESCENT_SPROUTS.get().defaultBlockState(), 30)
+//                    .add(DecorativeOrStorageBlocks.JESSIC_HEDGE.get().defaultBlockState(), 10)
+//                    .add(DecorativeOrStorageBlocks.AZULOREAL_HEDGE.get().defaultBlockState(), 10)
+//                    .add(DecorativeOrStorageBlocks.JESSIC_LEAF_CARPET.get().defaultBlockState(), 10)
+//                    .add(DecorativeOrStorageBlocks.AZULOREAL_LEAF_CARPET.get().defaultBlockState(), 10)
                     .add(Blocks.BLUE_ORCHID.defaultBlockState(), 50)
                     .add(Blocks.PINK_TULIP.defaultBlockState(), 30)
                     .add(Blocks.WHITE_TULIP.defaultBlockState(), 30)

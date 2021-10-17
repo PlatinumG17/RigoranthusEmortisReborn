@@ -4,8 +4,11 @@
 	- Necrotizing Fasciitis Mechanics
 
 + Implement:
-	- Necrotizing Fasciitis
-	- Canis Chordata Evolutions
+	- Ability to equip tamed Canis with 
+		- Saddle
+		- Armor
+		- Nametag
+	- 
 	
 
 ## 1.0.0
@@ -15,19 +18,11 @@
 *	good as I know it could be!
 * 
 + added: Masterful Smeltery is now an actual Furnace!!!!
-  + New Features added to Masterful Smeltery:
-    + Works as a proper furnace now!
-    + 5 Upgrades to choose from, which can be applied to the smeltery 
-    + Config tab
-+ added: A config file, FINALLY!
-+ added: New Wood type "Azuloreal"
-+ added: New decorative blocks & features for both "Jessic" + "Azuloreal" 
-  + [Lamps / Saplings / Signs / Proper "Leaf" & "Axe-stripping" functionality]
-  + You can now grow Jessic/Azuloreal Trees!
-+ added: Bottle of Ichor now functions as a proper bottle with fluid in it!
-  + I have implemented Cadaverous Ichor as a proper fluid now, which can be picked up with buckets
-+ added:  
++ added: 
++ added: 
++ added: 
++ added: 
 * 
-* fixed: Proper Tag Implementation
-* fixed: Improvements to Crushing Hammer Functionality
+* fixed: 
+* fixed: 
 * __Built Using: Forge Version.36.2.0__

@@ -1,0 +1,7 @@
+{
+  "parent": "abnormals_core:block/hedge_post",
+  "textures": {
+    "log": "rigoranthusemortisreborn:blocks/jessic_log",
+    "leaf": "rigoranthusemortisreborn:blocks/jessic_leaves"
+  }
+}

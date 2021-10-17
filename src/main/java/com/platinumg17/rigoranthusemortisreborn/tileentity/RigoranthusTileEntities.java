@@ -18,13 +18,13 @@ public class RigoranthusTileEntities {
 			TILE_ENTITIES.register("masterful_smeltery_tile", () -> TileEntityType.Builder.of(
 					MasterfulSmelteryTile::new, Registration.MASTERFUL_SMELTERY.get()).build(null));
 
-	public static final RegistryObject<TileEntityType<RigoranthusSignTileEntity>> SIGN_TILE_ENTITIES =
-			TILE_ENTITIES.register("sign", () -> TileEntityType.Builder.of(RigoranthusSignTileEntity::new,
-					Registration.JESSIC_SIGN.get(),
-					Registration.JESSIC_WALL_SIGN.get(),
-					Registration.AZULOREAL_SIGN.get(),
-					Registration.AZULOREAL_WALL_SIGN.get()
-			).build(null));
+//	public static final RegistryObject<TileEntityType<RigoranthusSignTileEntity>> SIGN_TILE_ENTITIES =
+//			TILE_ENTITIES.register("sign", () -> TileEntityType.Builder.of(RigoranthusSignTileEntity::new,
+//					Registration.JESSIC_SIGN.get(),
+//					Registration.JESSIC_WALL_SIGN.get(),
+//					Registration.AZULOREAL_SIGN.get(),
+//					Registration.AZULOREAL_WALL_SIGN.get()
+//			).build(null));
 
 	public static void register(IEventBus bus) {
 		TILE_ENTITIES.register(bus);

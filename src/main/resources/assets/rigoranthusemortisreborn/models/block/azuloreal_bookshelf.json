@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "end": "rigoranthusemortisreborn:blocks/azuloreal_planks",
+    "side": "rigoranthusemortisreborn:blocks/azuloreal_bookshelf"
+  }
+}

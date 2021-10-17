@@ -5,10 +5,10 @@
       "item": "rigoranthusemortisreborn:powdered_esotericum"
     },
     "title": {
-      "translate": "rigoranthus.advancements.story.living_lore.title"
+      "translate": "advancements.rigoranthusemortisreborn.story.living_lore.title"
     },
     "description": {
-      "translate": "rigoranthus.advancements.story.living_lore.description"
+      "translate": "advancements.rigoranthusemortisreborn.story.living_lore.description"
     },
     "frame": "task",
     "show_toast": true,
@@ -32,7 +32,7 @@
   },
   "requirements": [
     [
-      "play_record"
+      "listen_to_a_record"
     ]
   ]
 }

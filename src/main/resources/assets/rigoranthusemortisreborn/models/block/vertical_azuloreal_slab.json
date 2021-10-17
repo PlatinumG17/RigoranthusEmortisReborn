@@ -1,0 +1,8 @@
+{
+  "parent": "abnormals_core:block/vertical_slab",
+  "textures": {
+    "side": "rigoranthusemortisreborn:blocks/azuloreal_planks",
+    "top": "rigoranthusemortisreborn:blocks/azuloreal_planks",
+    "bottom": "rigoranthusemortisreborn:blocks/azuloreal_planks"
+  }
+}

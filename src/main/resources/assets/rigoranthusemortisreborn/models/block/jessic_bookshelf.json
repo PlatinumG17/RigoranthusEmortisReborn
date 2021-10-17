@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "end": "rigoranthusemortisreborn:blocks/jessic_planks",
+    "side": "rigoranthusemortisreborn:blocks/jessic_bookshelf"
+  }
+}

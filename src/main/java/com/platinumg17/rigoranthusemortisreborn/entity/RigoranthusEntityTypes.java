@@ -1,7 +1,8 @@
 package com.platinumg17.rigoranthusemortisreborn.entity;
 
+import com.minecraftabnormals.abnormals_core.core.util.registry.EntitySubRegistryHelper;
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
-import com.platinumg17.rigoranthusemortisreborn.entity.item.BoatEntityRigoranthus;
+import com.platinumg17.rigoranthusemortisreborn.entity.item.BoneArrowEntity;
 import com.platinumg17.rigoranthusemortisreborn.entity.mobs.CanisChordataEntity;
 import com.platinumg17.rigoranthusemortisreborn.entity.mobs.LanguidDwellerEntity;
 import com.platinumg17.rigoranthusemortisreborn.entity.mobs.NecrawFasciiEntity;
@@ -17,11 +18,16 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class RigoranthusEntityTypes {
     public static DeferredRegister<EntityType<?>> ENTITY_TYPES
             = DeferredRegister.create(ForgeRegistries.ENTITIES, RigoranthusEmortisReborn.MOD_ID);
+    public static final EntitySubRegistryHelper HELPER = RigoranthusEmortisReborn.REGISTRY_HELPER.getEntitySubHelper();
 
-    public static final EntityType<BoatEntityRigoranthus> BOAT =
-            EntityType.Builder.<BoatEntityRigoranthus>of(BoatEntityRigoranthus::new,
-                    EntityClassification.MISC).sized(1.375f, 0.5625f).setCustomClientFactory(BoatEntityRigoranthus::new).clientTrackingRange(10)
-                    .build(RigoranthusEmortisReborn.MOD_ID + "_boat");
+    public static final RegistryObject<EntityType<BoneArrowEntity>> BONE_ARROW_ENTITY =
+            HELPER.createEntity("bone_arrow_entity",
+                    BoneArrowEntity::new, BoneArrowEntity::new,
+                    EntityClassification.MISC, 0.25F, 0.25F);
+//    public static final EntityType<BoatEntityRigoranthus> BOAT =
+//            EntityType.Builder.<BoatEntityRigoranthus>of(BoatEntityRigoranthus::new,
+//                    EntityClassification.MISC).sized(1.375f, 0.5625f).setCustomClientFactory(BoatEntityRigoranthus::new).clientTrackingRange(10)
+//                    .build(RigoranthusEmortisReborn.MOD_ID + "_boat");
 
     public static final RegistryObject<EntityType<CanisChordataEntity>> CANIS_CHORDATA =
             ENTITY_TYPES.register("canis_chordata",

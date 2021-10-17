@@ -4,10 +4,10 @@
       "item": "rigoranthusemortisreborn:dweller_flesh"
     },
     "title": {
-      "translate": "rigoranthus.advancements.story.power_seeker.title"
+      "translate": "advancements.rigoranthusemortisreborn.story.power_seeker.title"
     },
     "description": {
-      "translate": "rigoranthus.advancements.story.power_seeker.description"
+      "translate": "advancements.rigoranthusemortisreborn.story.power_seeker.description"
     },
     "frame": "task",
     "show_toast": true,

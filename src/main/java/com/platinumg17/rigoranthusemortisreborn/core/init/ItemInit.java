@@ -1,18 +1,18 @@
 package com.platinumg17.rigoranthusemortisreborn.core.init;
 
+import com.minecraftabnormals.abnormals_core.core.util.registry.ItemSubRegistryHelper;
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
+import com.platinumg17.rigoranthusemortisreborn.blocks.custom.DecorativeOrStorageBlocks;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusItemGroup;
 
 import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusSoundRegistry;
 import com.platinumg17.rigoranthusemortisreborn.entity.RigoranthusEntityTypes;
-import com.platinumg17.rigoranthusemortisreborn.entity.item.BoatEntityRigoranthus;
 import com.platinumg17.rigoranthusemortisreborn.fluid.CadaverousIchorFluid;
 import com.platinumg17.rigoranthusemortisreborn.items.ForgottenRecord;
 import com.platinumg17.rigoranthusemortisreborn.items.armor.RigoranthusArmorMaterial;
 import com.platinumg17.rigoranthusemortisreborn.items.RigoranthusSpawnEgg;
 import com.platinumg17.rigoranthusemortisreborn.items.armor.armorsets.DwellerThoraxArmor;
-import com.platinumg17.rigoranthusemortisreborn.items.boat.BoatItemRigoranthus;
 import com.platinumg17.rigoranthusemortisreborn.items.ingots.*;
 import com.platinumg17.rigoranthusemortisreborn.items.weapons.BoneBow;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -29,9 +29,11 @@ import java.util.function.Supplier;
 
 public class ItemInit {
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, RigoranthusEmortisReborn.MOD_ID);
+	public static final ItemSubRegistryHelper HELPER = RigoranthusEmortisReborn.REGISTRY_HELPER.getItemSubHelper();
 
 	public static final RegistryObject<Item> BOTTLE_OF_ICHOR = ITEMS.register("bottle_of_ichor",
-			() -> new GlassBottleItem(new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)));
+			() -> new GlassBottleItem(//() -> CadaverousIchorFluid.CADAVEROUS_ICHOR_FLUID.get(),
+					new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)));
 
 	public static final RegistryObject<Item> BUCKET_OF_CADAVEROUS_ICHOR = ITEMS.register("bucket_of_cadaverous_ichor",
 			() -> new BucketItem(() -> CadaverousIchorFluid.CADAVEROUS_ICHOR_FLUID.get(),
@@ -101,19 +103,22 @@ public class ItemInit {
 			() -> new MusicDiscItem(3, RigoranthusSoundRegistry.NEON_LIGHTS, (new Item.Properties())
 					.stacksTo(1).tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).fireResistant().rarity(Rarity.RARE)));
 
-	public static final RegistryObject<Item> JESSIC_SIGN = ITEMS.register("jessic_sign",
-			() -> new SignItem(new Item.Properties().stacksTo(16).tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP),
-					Registration.JESSIC_SIGN.get(), Registration.JESSIC_WALL_SIGN.get()));
+//	public static final RegistryObject<Item> JESSIC_SIGN = ITEMS.register("jessic_sign",
+//			() -> new SignItem(new Item.Properties().stacksTo(16).tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP),
+//					Registration.JESSIC_SIGN.get(), Registration.JESSIC_WALL_SIGN.get()));
+//
+//	public static final RegistryObject<Item> AZULOREAL_SIGN = ITEMS.register("azuloreal_sign",
+//			() -> new SignItem(new Item.Properties().stacksTo(16).tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP),
+//					Registration.AZULOREAL_SIGN.get(), Registration.AZULOREAL_WALL_SIGN.get()));
 
-	public static final RegistryObject<Item> AZULOREAL_SIGN = ITEMS.register("azuloreal_sign",
-			() -> new SignItem(new Item.Properties().stacksTo(16).tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP),
-					Registration.AZULOREAL_SIGN.get(), Registration.AZULOREAL_WALL_SIGN.get()));
+	public static final RegistryObject<Item> JESSIC_BOAT = HELPER.createBoatItem("jessic", DecorativeOrStorageBlocks.JESSIC_PLANKS);
+	public static final RegistryObject<Item> AZULOREAL_BOAT = HELPER.createBoatItem("azuloreal", DecorativeOrStorageBlocks.AZULOREAL_PLANKS);
 
-	public static final RegistryObject<Item> JESSIC_BOAT = ITEMS.register("jessic_boat",
-			() -> new BoatItemRigoranthus(BoatEntityRigoranthus.BoatModel.JESSIC));
-
-	public static final RegistryObject<Item> AZULOREAL_BOAT = ITEMS.register("azuloreal_boat",
-			() -> new BoatItemRigoranthus(BoatEntityRigoranthus.BoatModel.AZULOREAL));
+//	public static final RegistryObject<Item> JESSIC_BOAT = ITEMS.register("jessic_boat",
+//			() -> new BoatItemRigoranthus(BoatEntityRigoranthus.BoatModel.JESSIC));
+//
+//	public static final RegistryObject<Item> AZULOREAL_BOAT = ITEMS.register("azuloreal_boat",
+//			() -> new BoatItemRigoranthus(BoatEntityRigoranthus.BoatModel.AZULOREAL));
 
 	public static final RegistryObject<RigoranthusSpawnEgg> CANIS_CHORDATA_SPAWN_EGG = ITEMS.register("canis_chordata_spawn_egg",
 			() -> new RigoranthusSpawnEgg(RigoranthusEntityTypes.CANIS_CHORDATA, 0x999999, 0xffffff,

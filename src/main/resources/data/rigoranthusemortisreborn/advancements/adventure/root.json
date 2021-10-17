@@ -4,10 +4,10 @@
       "item": "rigoranthusemortisreborn:bucket_of_cadaverous_ichor"
     },
     "title": {
-      "translate": "rigoranthus.advancements.story.root.title"
+      "translate": "advancements.rigoranthusemortisreborn.story.root.title"
     },
     "description": {
-      "translate": "rigoranthus.advancements.story.root.description"
+      "translate": "advancements.rigoranthusemortisreborn.story.root.description"
     },
     "frame": "task",
     "show_toast": false,

@@ -1,8 +1,6 @@
 package com.platinumg17.rigoranthusemortisreborn.core.init;
 
-import com.platinumg17.rigoranthusemortisreborn.blocks.custom.RigoranthusStandingSignBlock;
-import com.platinumg17.rigoranthusemortisreborn.blocks.custom.RigoranthusWallSignBlock;
-import com.platinumg17.rigoranthusemortisreborn.blocks.custom.RigoranthusWoodTypes;
+import com.platinumg17.rigoranthusemortisreborn.entity.item.BoneArrowEntity;
 import com.platinumg17.rigoranthusemortisreborn.items.*;
 import com.platinumg17.rigoranthusemortisreborn.items.armor.RigoranthusArmorMaterial;
 import com.platinumg17.rigoranthusemortisreborn.items.armor.armorsets.*;
@@ -50,13 +48,10 @@ public class Registration {
         BlockPos pos = data.readBlockPos();
         World world = inv.player.getEntity().level;
         return new MasterfulSmelteryContainer(windowId, world, pos, inv, inv.player);}));
-    public static final RegistryObject<Block> JESSIC_SIGN = BLOCKS.register("jessic_sign", () -> new RigoranthusStandingSignBlock(AbstractBlock.Properties.of(Material.WOOD), RigoranthusWoodTypes.JESSIC));
-    public static final RegistryObject<Block> JESSIC_WALL_SIGN = BLOCKS.register("jessic_wall_sign", () -> new RigoranthusWallSignBlock(AbstractBlock.Properties.of(Material.WOOD), RigoranthusWoodTypes.JESSIC));
-    public static final RegistryObject<Block> AZULOREAL_SIGN = BLOCKS.register("azuloreal_sign", () -> new RigoranthusStandingSignBlock(AbstractBlock.Properties.of(Material.WOOD), RigoranthusWoodTypes.AZULOREAL));
-    public static final RegistryObject<Block> AZULOREAL_WALL_SIGN = BLOCKS.register("azuloreal_wall_sign", () -> new RigoranthusWallSignBlock(AbstractBlock.Properties.of(Material.WOOD), RigoranthusWoodTypes.AZULOREAL));
-    //public static final RegistryObject<Block> POTTED_JESSIC = BLOCKS.register("potted_jessic_sapling", () -> new FlowerPotBlock(JESSIC_SAPLING, AbstractBlock.Properties.of(Blocks.FLOWER_POT)).addPlant(Block.getRegistryName(), () -> RigoranthusWoodTypes.JESSIC);
-    // public static final RegistryObject<Block> POTTED_JESSIC_SAPLING = BLOCKS.register("potted_jessic_sapling", () -> new FlowerPotBlock(JESSIC_SAPLING, AbstractBlock.Properties.of(Material.DECORATION).instabreak().noOcclusion()));
-    // public static final RegistryObject<Block> POTTED_AZULOREAL_SAPLING = BLOCKS.register("potted_azuloreal_sapling", () -> new FlowerPotBlock(AZULOREAL_SAPLING, AbstractBlock.Properties.of(Material.DECORATION).instabreak().noOcclusion()));
+//    public static final RegistryObject<Block> JESSIC_SIGN = BLOCKS.register("jessic_sign", () -> new RigoranthusStandingSignBlock(AbstractBlock.Properties.of(Material.WOOD), RigoranthusWoodTypes.JESSIC));
+//    public static final RegistryObject<Block> JESSIC_WALL_SIGN = BLOCKS.register("jessic_wall_sign", () -> new RigoranthusWallSignBlock(AbstractBlock.Properties.of(Material.WOOD), RigoranthusWoodTypes.JESSIC));
+//    public static final RegistryObject<Block> AZULOREAL_SIGN = BLOCKS.register("azuloreal_sign", () -> new RigoranthusStandingSignBlock(AbstractBlock.Properties.of(Material.WOOD), RigoranthusWoodTypes.AZULOREAL));
+//    public static final RegistryObject<Block> AZULOREAL_WALL_SIGN = BLOCKS.register("azuloreal_wall_sign", () -> new RigoranthusWallSignBlock(AbstractBlock.Properties.of(Material.WOOD), RigoranthusWoodTypes.AZULOREAL));
 
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
     }
@@ -70,7 +65,7 @@ public class Registration {
     public static final RegistryObject<Item> RECONDITE_ORE_ITEM = ITEMS.register("recondite_ore", () -> new BlockItem(RECONDITE_ORE.get(), new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)));
     public static final RegistryObject<Item> POWDERED_ESOTERICUM = ITEMS.register("powdered_esotericum", () -> new Esotericum(new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)));
 
-    //    public static Item APOGEAN_NETHERITE_HELMET = new RigoranthusArmorItem(RigoranthusArmorMaterial.APOGEAN_NETHERITE, EquipmentSlotType.HEAD, new Item.Properties().fireResistant().rarity(Rarity.EPIC).tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)).setRegistryName("apogean_netherite_helmet");
+
     public static final Item APOGEAN_SWORD = new SwordItem(RigoranthusItemTier.APOGEAN, Config.apogean_sword_damage.get(), Config.apogean_sword_speed.get().floatValue(), new Item.Properties().fireResistant().rarity(Rarity.EPIC).tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).stacksTo(1)).setRegistryName("apogean_sword");
     public static final Item APOGEAN_AXE = new AxeItem(RigoranthusItemTier.APOGEAN, Config.apogean_axe_damage.get(), Config.apogean_axe_speed.get().floatValue(), new Item.Properties().fireResistant().rarity(Rarity.EPIC).tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).stacksTo(1)).setRegistryName("apogean_axe");
     public static final Item APOGEAN_NETHERITE_HELMET = new ApogeanArmor(RigoranthusArmorMaterial.APOGEAN_NETHERITE, EquipmentSlotType.HEAD, new Item.Properties().fireResistant().rarity(Rarity.EPIC).tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)).setRegistryName("apogean_netherite_helmet");

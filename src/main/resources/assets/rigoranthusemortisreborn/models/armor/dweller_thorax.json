@@ -2,8 +2,8 @@
 	"credit": "PlatinumG17",
 	"texture_size": [32, 32],
 	"textures": {
-		"0": "armor/dweller_thorax",
-		"particle": "armor/dweller_thorax"
+		"0": "rigoranthusemortisreborn:armor/dweller_thorax",
+		"particle": "rigoranthusemortisreborn:armor/dweller_thorax"
 	},
 	"elements": [
 		{

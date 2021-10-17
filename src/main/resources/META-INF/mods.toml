@@ -3,27 +3,15 @@ loaderVersion="[36,)"
 license="All rights reserved"
 
 [[mods]]
-
-itemIcon="rigoranthusemortisreborn:assets/ftbchunks/textures/faces/rigoranthusemortisreborn/canis_chordata.png"
-
-modId="rigoranthusemortisreborn"
-
-version="2.0.0"
-
-Manifest-Version="1.0"
-Implementation-Title="machiavellian-modness"
-Implementation-Version="1.0.0"
-
-displayName="Rigoranthus Emortis Reborn"
-
-logoFile="rigoranthus_emortis_logo.png"
-
-displayURL="https://www.curseforge.com/members/platinumg17/projects"
-
-credits="Audio sourced from: Zapsplat.com (Little Robot Sound Factory, 344 Audio, Zapsplat), orangefreesounds.com, fesliyanstudios.com, quicksounds.com"
-
-authors="PlatinumG17"
-
+    modId="rigoranthusemortisreborn"
+    version="2.0.0"
+    logoFile="rigoranthus_emortis_logo.png"
+    itemIcon="rigoranthusemortisreborn:assets/ftbchunks/textures/faces/rigoranthusemortisreborn/canis_chordata.png"
+    configBackground = "rigoranthusemortisreborn:textures/gui/advancements/azuloreal.png"
+    authors="PlatinumG17"
+    credits="Audio sourced from: Zapsplat.com (Little Robot Sound Factory, 344 Audio, Zapsplat), orangefreesounds.com, fesliyanstudios.com, quicksounds.com"
+    displayURL="https://www.curseforge.com/members/platinumg17/projects"
+    displayName="Rigoranthus Emortis Reborn"
 description='''
 Adds unique and Nasty Mobs & a Pet with a 3 stage Evolution Line! 
 What more could you want?
@@ -35,16 +23,16 @@ Additionally, this mod adds a number of:
 '''
 
 [[dependencies.rigoranthusemortisreborn]]
-modId="forge"
+modId="minecraft"
 mandatory=true
-versionRange="[36,)"
+versionRange="[1.16.5,)"
 ordering="NONE"
 side="BOTH"
 
 [[dependencies.rigoranthusemortisreborn]]
-modId="minecraft"
+modId="forge"
 mandatory=true
-versionRange="[1.16.5, 1.17.1]"
+versionRange="[36.2.0,)"
 ordering="NONE"
 side="BOTH"
 
@@ -83,12 +71,12 @@ versionRange="[geckolib-forge-1.16.5:3.0.33,)"
 ordering="AFTER"
 side="BOTH"
 
-#[[dependencies.rigoranthusemortisreborn]]
-#modId="abnormals_core"
-#mandatory=true
-#versionRange="[3.1.0,)"
-#ordering="AFTER"
-#side="BOTH"
+[[dependencies.rigoranthusemortisreborn]]
+modId="abnormals_core"
+mandatory=true
+versionRange="[3.2.0,)"
+ordering="AFTER"
+side="BOTH"
 
 [[dependencies.rigoranthusemortisreborn]]
 modId="libx"

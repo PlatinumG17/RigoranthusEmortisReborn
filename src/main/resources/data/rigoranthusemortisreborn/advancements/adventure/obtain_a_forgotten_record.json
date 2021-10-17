@@ -5,10 +5,10 @@
       "item": "rigoranthusemortisreborn:forgotten_record"
     },
     "title": {
-      "translate": "rigoranthus.advancements.story.knowledge_seeker.title"
+      "translate": "advancements.rigoranthusemortisreborn.story.knowledge_seeker.title"
     },
     "description": {
-      "translate": "rigoranthus.advancements.story.knowledge_seeker.description"
+      "translate": "advancements.rigoranthusemortisreborn.story.knowledge_seeker.description"
     },
     "frame": "task",
     "show_toast": true,

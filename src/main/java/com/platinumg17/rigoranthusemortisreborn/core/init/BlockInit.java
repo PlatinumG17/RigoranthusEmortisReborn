@@ -1,9 +1,11 @@
 package com.platinumg17.rigoranthusemortisreborn.core.init;
 
 import java.util.List;
+import java.util.Map;
 import java.util.function.Supplier;
 import java.util.function.ToIntFunction;
 
+import com.google.common.collect.Maps;
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.blocks.*;
 import com.platinumg17.rigoranthusemortisreborn.blocks.trees.AzulorealTree;
@@ -19,6 +21,8 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Util;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -26,6 +30,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -82,7 +87,7 @@ public class BlockInit {
 					.harvestTool(ToolType.SHOVEL).harvestLevel(0).sound(SoundType.GRAVEL)), "tooltip.block.rigoranthusemortisreborn.block_of_esotericum");
 
 
-	private static ToIntFunction<BlockState> litBlockEmission(int var0) {
+    private static ToIntFunction<BlockState> litBlockEmission(int var0) {
 		return (p_lambda$litBlockEmission$34_1_) -> {
 			return (Boolean)p_lambda$litBlockEmission$34_1_.getValue(BlockStateProperties.LIT) ? var0 : 0;
 		};
@@ -104,6 +109,16 @@ public class BlockInit {
 			}
 		});
     }
+	public static final Map<Supplier<Block>, Supplier<Block>> FALLABLES = Util.make(Maps.newHashMap(), (fallables) -> {
+		fallables.put(() -> Blocks.SANDSTONE, () -> Blocks.SAND);
+		fallables.put(() -> Blocks.RED_SANDSTONE, () -> Blocks.RED_SAND);
+		fallables.put(() -> Blocks.COBBLESTONE, () -> Blocks.GRAVEL);
+	});
+
+	public static final Map<Supplier<Block>, Supplier<Block>> ATMOSHPERIC_FALLABLES = ModList.get().isLoaded("atmospheric") ? Util.make(Maps.newHashMap(), (fallables) -> {
+		fallables.put(() -> ForgeRegistries.BLOCKS.getValue(new ResourceLocation("atmospheric:arid_sandstone")), () -> ForgeRegistries.BLOCKS.getValue(new ResourceLocation("atmospheric:arid_sand")));
+		fallables.put(() -> ForgeRegistries.BLOCKS.getValue(new ResourceLocation("atmospheric:red_arid_sandstone")), () -> ForgeRegistries.BLOCKS.getValue(new ResourceLocation("atmospheric:red_arid_sand")));
+	}) : null;
 
     public static void register(IEventBus bus) {
         BLOCKS.register(bus);

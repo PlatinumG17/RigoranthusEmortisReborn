@@ -1,6 +1,7 @@
 package com.platinumg17.rigoranthusemortisreborn.entity.mobs;
 
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
+import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusSoundRegistry;
 import com.platinumg17.rigoranthusemortisreborn.entity.ITameable;
@@ -48,6 +49,7 @@ import net.minecraft.world.GameRules;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -431,17 +433,18 @@ public class CanisChordataEntity extends AbstractChestedHorseEntity implements I
 //    }
     public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
         return MobEntity.createMobAttributes()
-                .add(Attributes.MAX_HEALTH, 100.0D)
-                .add(Attributes.MOVEMENT_SPEED, 0.27D)
-                .add(Attributes.ATTACK_DAMAGE, 4.0D)
                 .add(Attributes.FOLLOW_RANGE, 64.0D)
                 .add(Attributes.SPAWN_REINFORCEMENTS_CHANCE, 4)
                 .add(Attributes.JUMP_STRENGTH, 1.4)
-                .add(Attributes.ARMOR, 6)
-                .add(Attributes.KNOCKBACK_RESISTANCE, 0.4)
-                .add(Attributes.ATTACK_KNOCKBACK, 1.25);
+                .add(Attributes.MAX_HEALTH, Config.canisChordataMaxHealth.get())
+                .add(Attributes.MOVEMENT_SPEED, Config.canisChordataMovementSpeed.get())
+                .add(Attributes.ATTACK_DAMAGE, Config.canisChordataAttackDamage.get())
+                .add(Attributes.ARMOR, Config.canisChordataArmorValue.get())
+                .add(Attributes.ATTACK_KNOCKBACK, Config.canisChordataAttackKnockback.get())
+                .add(Attributes.KNOCKBACK_RESISTANCE, Config.canisChordataKnockbackResistance.get());
     }
-/*   @Override
+/*
+@Override
    public boolean isTamed() {
       return this.getFlag(2);
    }
@@ -509,222 +512,6 @@ public class CanisChordataEntity extends AbstractChestedHorseEntity implements I
     protected void playChestEquipsSound() {
         this.playSound(SoundEvents.MULE_CHEST, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
     }
-
-    @SubscribeEvent
-    public void addFeatureToBiomes(BiomeLoadingEvent event) {
-        boolean biomeCriteria = false;
-        if (new ResourceLocation("plains").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("mountains").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("forest").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("taiga").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("frozen_river").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("snowy_tundra").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("snowy_mountains").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("wooded_hills").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("taiga_hills").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("mountain_edge").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("jungle").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("jungle_hills").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("jungle_edge").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("birch_forest").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("birch_forest_hills").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("dark_forest").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("snowy_taiga").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("snowy_taiga_hills").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("giant_tree_taiga").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("giant_tree_taiga_hills").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("wooded_mountains").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("badlands").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("wooded_badlands_plateau").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("sunflower_plains").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("gravelly_mountains").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("flower_forest").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("taiga_mountains").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("modified_jungle").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("tall_birch_forest").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("tall_birch_hills").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("dark_forest_hills").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("snowy_taiga_mountains").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("giant_spruce_taiga").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("giant_spruce_taiga_hills").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("modified_gravelly_mountains").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("rainforest").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("rainforest_plateau").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("sparse_rainforest_plateau").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("rainforest_basin").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("sparse_rainforest_basin").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("rainforest_mountains").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("rainforest").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("blossom_woods").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("blossom_hills").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("blossom_valleys").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("blossom_highlands").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("marsh").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("mushroom_marsh").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("allium_fields").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("amaranth_fields").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("ancient_forest").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("araucaria_savanna").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("baobab_savanna").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("bayou").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("blue_taiga").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("bluff_steeps").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("boreal_forest").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("cherry_blossom_forest").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("cika_woods").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("cold_swamplands").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("coniferous_forest").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("crag_gardens").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("cypress_swamplands").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("deciduous_forest").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("dover_mountains").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("ebony_woods").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("enchanted_forest").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("evergreen_taiga").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("glowshroom_bayou").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("grassland_plateau").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("jacaranda_forest").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("mangrove_marshes").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("maple_taiga").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("meadow").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("orchard").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("prairie").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("red_oak_forest").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("redwood_tropics").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("rose_fields").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("shrublands").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("sierra_valley").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("skyris_highlands").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("stone_forest").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("the_black_forest").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("tropical_fungal_forest").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("tropical_rainforest").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("twilight_valley").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("vibrant_swamplands").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("weeping_witch_forest").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("woodlands").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("zelkova_forest").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("snowy_evergreen_taiga").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("snowy_deciduous_forest").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("snowy_coniferous_forest").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("snowy_blue_taiga").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("shattered_glacier").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("seasonal_taiga").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("seasonal_forest").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("seasonal_deciduous_forest").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("seasonal_birch_forest").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("lush_tundra").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("autumnal_valley").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("alps").equals(event.getName()))
-            biomeCriteria = true;
-        if (new ResourceLocation("aspen_forest").equals(event.getName()))
-            biomeCriteria = true;
-        if (!biomeCriteria)
-            return;
-    }
-
 
     protected static final DataParameter<Byte> DATA_FLAGS_ID = EntityDataManager.defineId(CanisChordataEntity.class, DataSerializers.BYTE);
     protected static final DataParameter<Optional<UUID>> DATA_OWNERUUID_ID = EntityDataManager.defineId(CanisChordataEntity.class, DataSerializers.OPTIONAL_UUID);

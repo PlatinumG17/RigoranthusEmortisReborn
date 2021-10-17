@@ -12,6 +12,7 @@ import com.platinumg17.rigoranthusemortisreborn.entity.RigoranthusEntityTypes;
 import com.platinumg17.rigoranthusemortisreborn.entity.render.*;
 import com.platinumg17.rigoranthusemortisreborn.fluid.CadaverousIchorFluid;
 import com.platinumg17.rigoranthusemortisreborn.tileentity.RigoranthusTileEntities;
+import com.platinumg17.rigoranthusemortisreborn.world.EmortisMobSpawns;
 import com.platinumg17.rigoranthusemortisreborn.world.biome.EmortisBiomes;
 import com.platinumg17.rigoranthusemortisreborn.world.biome.EmortisSurfaceBuilder;
 import net.minecraft.block.Block;
@@ -105,6 +106,7 @@ public class RigoranthusEmortisReborn {
     private void setup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
 //            EmortisStructures.setupStructures();
+            EmortisMobSpawns.registerSpawns();
             VanillaCompatRigoranthus.registerCompostables();
             VanillaCompatRigoranthus.registerFlammables();
 //            AxeItem.STRIPABLES = new ImmutableMap.Builder<Block, Block>().putAll(AxeItem.STRIPABLES)

@@ -44,6 +44,7 @@ public class Config {
     public static final String CATEGORY_JEI = "jei";
     public static final String CATEGORY_MISC = "misc";
     public static final String CATEGORY_BIOME = "biome";
+    public static final String CATEGORY_MOBS = "mobs";
 
     public static ForgeConfigSpec COMMON_CONFIG;
     public static ForgeConfigSpec CLIENT_CONFIG;
@@ -267,6 +268,47 @@ public class Config {
     public static ForgeConfigSpec.IntValue megaAzulorealSpawnWeight;
     public static ForgeConfigSpec.IntValue lakeSpawnWeight;
 
+    public static ForgeConfigSpec.DoubleValue sunderedCadaverMovementSpeed;
+    public static ForgeConfigSpec.DoubleValue sunderedCadaverAttackDamage;
+    public static ForgeConfigSpec.DoubleValue sunderedCadaverKnockbackResistance;
+    public static ForgeConfigSpec.DoubleValue sunderedCadaverAttackKnockback;
+    public static ForgeConfigSpec.DoubleValue sunderedCadaverArmorValue;
+    public static ForgeConfigSpec.DoubleValue sunderedCadaverMaxHealth;
+    public static ForgeConfigSpec.IntValue sunderedCadaverSpawnWeight;
+    public static ForgeConfigSpec.IntValue sunderedCadaverMinGroupSize;
+    public static ForgeConfigSpec.IntValue sunderedCadaverMaxGroupSize;
+
+    public static ForgeConfigSpec.DoubleValue necrawFasciiMovementSpeed;
+    public static ForgeConfigSpec.DoubleValue necrawFasciiAttackDamage;
+    public static ForgeConfigSpec.DoubleValue necrawFasciiKnockbackResistance;
+    public static ForgeConfigSpec.DoubleValue necrawFasciiAttackKnockback;
+    public static ForgeConfigSpec.DoubleValue necrawFasciiArmorValue;
+    public static ForgeConfigSpec.DoubleValue necrawFasciiMaxHealth;
+    public static ForgeConfigSpec.IntValue necrawFasciiSpawnWeight;
+    public static ForgeConfigSpec.IntValue necrawFasciiMinGroupSize;
+    public static ForgeConfigSpec.IntValue necrawFasciiMaxGroupSize;
+
+    public static ForgeConfigSpec.DoubleValue canisChordataMovementSpeed;
+    public static ForgeConfigSpec.DoubleValue canisChordataAttackDamage;
+    public static ForgeConfigSpec.DoubleValue canisChordataKnockbackResistance;
+    public static ForgeConfigSpec.DoubleValue canisChordataAttackKnockback;
+    public static ForgeConfigSpec.DoubleValue canisChordataArmorValue;
+    public static ForgeConfigSpec.DoubleValue canisChordataMaxHealth;
+    public static ForgeConfigSpec.IntValue canisChordataSpawnWeight;
+    public static ForgeConfigSpec.IntValue canisChordataMinGroupSize;
+    public static ForgeConfigSpec.IntValue canisChordataMaxGroupSize;
+
+    public static ForgeConfigSpec.DoubleValue languidDwellerMovementSpeed;
+    public static ForgeConfigSpec.DoubleValue languidDwellerAttackDamage;
+    public static ForgeConfigSpec.DoubleValue languidDwellerKnockbackResistance;
+    public static ForgeConfigSpec.DoubleValue languidDwellerAttackKnockback;
+    public static ForgeConfigSpec.DoubleValue languidDwellerArmorValue;
+    public static ForgeConfigSpec.DoubleValue languidDwellerMaxHealth;
+    public static ForgeConfigSpec.IntValue languidDwellerSpawnWeight;
+    public static ForgeConfigSpec.IntValue languidDwellerMinGroupSize;
+    public static ForgeConfigSpec.IntValue languidDwellerMaxGroupSize;
+    public static ForgeConfigSpec.IntValue languidDwellerMaxSpawnHeight;
+
 //    public static ForgeConfigSpec.BooleanValue mountains;
 //    public static ForgeConfigSpec.BooleanValue modified;
 //    public static ForgeConfigSpec.BooleanValue forest;
@@ -360,7 +402,7 @@ public class Config {
 
         CLIENT_BUILDER.comment("DWELLER Armor Settings").push(CATEGORY_DWELLER_ARMOR);
 
-        setupDwellerConfig(COMMON_BUILDER, CLIENT_BUILDER);
+        setupDwellerArmorConfig(COMMON_BUILDER, CLIENT_BUILDER);
 
         CLIENT_BUILDER.pop();
 
@@ -385,6 +427,18 @@ public class Config {
         CLIENT_BUILDER.comment("Biome Config").push(CATEGORY_BIOME);
 
         setupBiomeConfig(COMMON_BUILDER, CLIENT_BUILDER);
+
+        CLIENT_BUILDER.pop();
+
+        CLIENT_BUILDER.comment("Mobs [Spawn Weights & Attributes]").push(CATEGORY_MOBS);
+
+        setupCadaverConfig(COMMON_BUILDER, CLIENT_BUILDER);
+
+        setupNecrawConfig(COMMON_BUILDER, CLIENT_BUILDER);
+
+        setupCanisConfig(COMMON_BUILDER, CLIENT_BUILDER);
+
+        setupDwellerConfig(COMMON_BUILDER, CLIENT_BUILDER);
 
         CLIENT_BUILDER.pop();
 
@@ -428,6 +482,51 @@ public class Config {
         COMMON_CONFIG = COMMON_BUILDER.build();
         CLIENT_CONFIG = CLIENT_BUILDER.build();
     }
+    private static void setupCadaverConfig(ForgeConfigSpec.Builder COMMON_BUILDER, ForgeConfigSpec.Builder CLIENT_BUILDER) {
+        sunderedCadaverSpawnWeight = CLIENT_BUILDER.comment(" How often this mob Spawns.\n Higher Number = Spawn More Often\n Set to 0 to disable spawns.\n Default: 45").defineInRange("cadaver.spawn_weight", 45, 0, 10000);
+        sunderedCadaverMinGroupSize = CLIENT_BUILDER.comment(" Minimum Number of mobs that will Spawn Together in a Group.\n Set to 0 to disable spawns.\n Default: 1").defineInRange("cadaver.group_size", 1, 0, 100);
+        sunderedCadaverMinGroupSize = CLIENT_BUILDER.comment(" Maximum Number of mobs that will Spawn Together in a Group.\n Set to 0 to disable spawns.\n Default: 5").defineInRange("cadaver.group_size", 5, 0, 100);
+        sunderedCadaverMaxHealth = CLIENT_BUILDER.comment(" How much Health this mob has.\n Default: 40.0").defineInRange("cadaver.max_health", 40.0, 2.0, 10000);
+        sunderedCadaverArmorValue = CLIENT_BUILDER.comment(" How Resistant to Attacks from Players this mob is.\n Default: 3.5").defineInRange("cadaver.armor", 3.5, 0.0, 10000);
+        sunderedCadaverAttackDamage = CLIENT_BUILDER.comment(" How much Damage does this mobs Attacks do.\n Default: 3.0").defineInRange("cadaver.attack", 3.0, 0.0, 10000);
+        sunderedCadaverMovementSpeed = CLIENT_BUILDER.comment(" How Fast this mob is.\n Default: 0.3").defineInRange("cadaver.movement_speed", 0.3, 0.0, 10);
+        sunderedCadaverAttackKnockback = CLIENT_BUILDER.comment(" How far does each Attack push players back.\n Default: 0.5").defineInRange("cadaver.knockback", 0.5, 0.0, 100);
+        sunderedCadaverKnockbackResistance = CLIENT_BUILDER.comment(" How well does this mob stay in one place while players attack it.\n Default: 0.0").defineInRange("cadaver.knockback_resistance", 0.0, 0.0, 100);
+    }
+    private static void setupNecrawConfig(ForgeConfigSpec.Builder COMMON_BUILDER, ForgeConfigSpec.Builder CLIENT_BUILDER) {
+        necrawFasciiSpawnWeight = CLIENT_BUILDER.comment(" How often this mob Spawns.\n Higher Number = Spawn More Often\n Set to 0 to disable spawns.\n Default: 30").defineInRange("necraw.spawn_weight", 30, 0, 10000);
+        necrawFasciiMinGroupSize = CLIENT_BUILDER.comment(" Minimum Number of mobs that will Spawn Together in a Group.\n Set to 0 to disable spawns.\n Default: 1").defineInRange("necraw.group_size", 1, 0, 100);
+        necrawFasciiMinGroupSize = CLIENT_BUILDER.comment(" Maximum Number of mobs that will Spawn Together in a Group.\n Set to 0 to disable spawns.\n Default: 3").defineInRange("necraw.group_size", 3, 0, 100);
+        necrawFasciiMaxHealth = CLIENT_BUILDER.comment(" How much Health this mob has.\n Default: 45.0").defineInRange("necraw.max_health", 45.0, 2.0, 10000);
+        necrawFasciiArmorValue = CLIENT_BUILDER.comment(" How Resistant to Attacks from Players this mob is.\n Default: 5.0").defineInRange("necraw.armor", 5.0, 0.0, 10000);
+        necrawFasciiAttackDamage = CLIENT_BUILDER.comment(" How much Damage does this mobs Attacks do.\n Default: 5.0").defineInRange("necraw.attack", 5.0, 0.0, 10000);
+        necrawFasciiMovementSpeed = CLIENT_BUILDER.comment(" How Fast this mob is.\n Default: 0.21").defineInRange("necraw.movement_speed", 0.21, 0.0, 10);
+        necrawFasciiAttackKnockback = CLIENT_BUILDER.comment(" How far does each Attack push players back.\n Default: 1.0").defineInRange("necraw.knockback", 1.0, 0.0, 100);
+        necrawFasciiKnockbackResistance = CLIENT_BUILDER.comment(" How well does this mob stay in one place while players attack it.\n Default: 0.2").defineInRange("necraw.knockback_resistance", 0.2, 0.0, 100);
+    }
+    private static void setupDwellerConfig(ForgeConfigSpec.Builder COMMON_BUILDER, ForgeConfigSpec.Builder CLIENT_BUILDER) {
+        languidDwellerSpawnWeight = CLIENT_BUILDER.comment(" How often this mob Spawns.\n Higher Number = Spawn More Often\n Set to 0 to disable spawns.\n Default: 10").defineInRange("dweller.spawn_weight", 10, 0, 10000);
+        languidDwellerMinGroupSize = CLIENT_BUILDER.comment(" Minimum Number of mobs that will Spawn Together in a Group.\n Set to 0 to disable spawns.\n Default: 1").defineInRange("dweller.group_size", 1, 0, 100);
+        languidDwellerMinGroupSize = CLIENT_BUILDER.comment(" Maximum Number of mobs that will Spawn Together in a Group.\n Set to 0 to disable spawns.\n Default: 1").defineInRange("dweller.group_size", 1, 0, 100);
+        languidDwellerMaxSpawnHeight = CLIENT_BUILDER.comment(" How often this mob Spawns.\n Higher Number = Spawn More Often\n Set to 0 to disable spawns.\n Default: 90").defineInRange("dweller.max_spawn_height", 90, 0, 10000);
+        languidDwellerMaxHealth = CLIENT_BUILDER.comment(" How much Health this mob has.\n Default: 100.0").defineInRange("dweller.max_health", 100.0, 2.0, 10000);
+        languidDwellerArmorValue = CLIENT_BUILDER.comment(" How Resistant to Attacks from Players this mob is.\n Default: 12.0").defineInRange("dweller.armor", 12.0, 0.0, 10000);
+        languidDwellerAttackDamage = CLIENT_BUILDER.comment(" How much Damage does this mobs Attacks do.\n Default: 7.0").defineInRange("dweller.attack", 7.0, 0.0, 10000);
+        languidDwellerMovementSpeed = CLIENT_BUILDER.comment(" How Fast this mob is.\n Default: 0.25").defineInRange("dweller.movement_speed", 0.25, 0.0, 10);
+        languidDwellerAttackKnockback = CLIENT_BUILDER.comment(" How far does each Attack push players back.\n Default: 1.2").defineInRange("dweller.knockback", 1.2, 0.0, 100);
+        languidDwellerKnockbackResistance = CLIENT_BUILDER.comment(" How well does this mob stay in one place while players attack it.\n Default: 2.0").defineInRange("dweller.knockback_resistance", 2.0, 0.0, 100);
+    }
+    private static void setupCanisConfig(ForgeConfigSpec.Builder COMMON_BUILDER, ForgeConfigSpec.Builder CLIENT_BUILDER) {
+        canisChordataSpawnWeight = CLIENT_BUILDER.comment(" How often this mob Spawns.\n Higher Number = Spawn More Often\n Set to 0 to disable spawns.\n Default: 50").defineInRange("canis.spawn_weight", 50, 0, 10000);
+        canisChordataMinGroupSize = CLIENT_BUILDER.comment(" Minimum Number of mobs that will Spawn Together in a Group.\n Set to 0 to disable spawns.\n Default: 1").defineInRange("canis.group_size", 1, 0, 100);
+        canisChordataMinGroupSize = CLIENT_BUILDER.comment(" Maximum Number of mobs that will Spawn Together in a Group.\n Set to 0 to disable spawns.\n Default: 5").defineInRange("canis.group_size", 5, 0, 100);
+        canisChordataMaxHealth = CLIENT_BUILDER.comment(" How much Health this mob has.\n Default: 100.0").defineInRange("canis.max_health", 100.0, 2.0, 10000);
+        canisChordataArmorValue = CLIENT_BUILDER.comment(" How Resistant to Attacks from Players this mob is.\n Default: 6.0").defineInRange("canis.armor", 6.0, 0.0, 10000);
+        canisChordataAttackDamage = CLIENT_BUILDER.comment(" How much Damage does this mobs Attacks do.\n Default: 4.0").defineInRange("canis.attack", 4.0, 0.0, 10000);
+        canisChordataMovementSpeed = CLIENT_BUILDER.comment(" How Fast this mob is.\n Default: 0.27").defineInRange("canis.movement_speed", 0.27, 0.0, 10);
+        canisChordataAttackKnockback = CLIENT_BUILDER.comment(" How far does each Attack push players back.\n Default: 1.25").defineInRange("canis.knockback", 1.25, 0.0, 100);
+        canisChordataKnockbackResistance = CLIENT_BUILDER.comment(" How well does this mob stay in one place while players attack it.\n Default: 0.4").defineInRange("canis.knockback_resistance", 0.4, 0.0, 100);
+    }
     private static void setupBiomeConfig(ForgeConfigSpec.Builder COMMON_BUILDER, ForgeConfigSpec.Builder CLIENT_BUILDER) {
         verdurousWoodlandsSpawnWeight = CLIENT_BUILDER.comment(" Spawn Weight of Verdurous Woodlands Biome.\n [Set to 0 to Disable Biome Generation]").defineInRange("biome.spawn_weight", 20, 0, 1000);
         lakeSpawnWeight = CLIENT_BUILDER.comment(" Spawn Weight of Lakes in the Verdurous Woodlands Biome.\n [Set to 0 to Disable Lake Generation]").defineInRange("biome.lake_spawn_weight", 2, 0, 1000);
@@ -443,7 +542,6 @@ public class Config {
         maxVeinSize = CLIENT_BUILDER.comment(" The Maximum Vein Size of Ores from this mod.\n Default: 3").defineInRange("ore.max_vein_size", 3, 0, 50);
         minOreHeight = CLIENT_BUILDER.comment(" The Minimum Height at which Ores from this mod can Generate.\n Default: 1").defineInRange("ore.min_ore_height", 1, 0, 254);
         maxOreHeight = CLIENT_BUILDER.comment(" The Maximum Height at which Ores from this mod can Generate.\n Default: 14").defineInRange("ore.max_ore_height", 14, 0, 255);
-
         enableModdedOreFragments = CLIENT_BUILDER.comment(" Enable or disable Modded Ore Fragments.\n (You still need this mod's datapack if you wish to have Ores drop fragments when mined)\n (Datapack Only works with ores from the mods 'AllTheOres' and 'Mystical World')").define("ores.datapack_stuff.modded_ore_fragments", true);
         enableHammersAndVanillaOreFragments = CLIENT_BUILDER.comment(" Enable or disable Vanilla Ore Fragments and Ore Crushing Hammers.\n (You still need this mod's datapack if you wish to have Ores drop fragments when mined)").define("ores.hammers_and_vanilla_ore_fragments", true);
         stone_hammer_durability = CLIENT_BUILDER.comment(" The Durability of Stone Hammers.\n Default: 25").defineInRange("stone_hammers.durability", 25, 1, 10000);
@@ -469,7 +567,6 @@ public class Config {
 
         bone_bow_projectile_range = CLIENT_BUILDER.comment(" Set Default Projectile Range of the Bone Bow.\n Default: 15").defineInRange("range.bone_bow", 15, 1, 1000);
         bone_bow_durability = CLIENT_BUILDER.comment(" Set Durability of the Bone Bow.\n Vanilla Bow Default: 384\n Bone Bow Default: 500").defineInRange("durability.bone_bow", 500, 1, 100000);
-
     }
     private static void setupApogeanConfig(ForgeConfigSpec.Builder COMMON_BUILDER, ForgeConfigSpec.Builder CLIENT_BUILDER) {
         apogean_sword_speed = CLIENT_BUILDER.comment(" Default:80\n Default Netherite: 9.0").defineInRange("sword.speed", 80.0, 0.0, 1000);
@@ -732,25 +829,18 @@ public class Config {
         remex_knockback_resistance = CLIENT_BUILDER.comment(" Mod Default: 0.0\n Default Netherite: 0.1")
                 .defineInRange("general_values.knockback_resistance", 0.0, 0.0, 1.0);
     }
-    private static void setupDwellerConfig(ForgeConfigSpec.Builder COMMON_BUILDER, ForgeConfigSpec.Builder CLIENT_BUILDER) {
-        dweller_thorax_chestplate_damage_reduction = CLIENT_BUILDER.comment(" Chestplate Damage Reduction Value.\n Default: 7")
-                .defineInRange("damage_reduction_for_each_slot.dweller_thorax_damage_reduction", 7, 0, 1000);
-        dweller_thorax_durability_multiplier = CLIENT_BUILDER.comment(" Default: 25")
-                .defineInRange("general_values.durability_multiplier", 25, 0, 1000);
-        dweller_thorax_enchantability = CLIENT_BUILDER.comment(" Default: 100")
-                .defineInRange("general_values.enchantability", 100, 0, 100);
-        dweller_thorax_toughness = CLIENT_BUILDER.comment(" Default: 2")
-                .defineInRange("general_values.toughness", 2.0, 0.0, 10.0);
-        dweller_thorax_knockback_resistance = CLIENT_BUILDER.comment(" Default: 0.1")
-                .defineInRange("general_values.knockback_resistance", 0.1, 0.0, 10.0);
+    private static void setupDwellerArmorConfig(ForgeConfigSpec.Builder COMMON_BUILDER, ForgeConfigSpec.Builder CLIENT_BUILDER) {
+        dweller_thorax_chestplate_damage_reduction = CLIENT_BUILDER.comment(" Chestplate Damage Reduction Value.\n Default: 7").defineInRange("damage_reduction_for_each_slot.dweller_thorax_damage_reduction", 7, 0, 1000);
+        dweller_thorax_durability_multiplier = CLIENT_BUILDER.comment(" Default: 25").defineInRange("general_values.durability_multiplier", 25, 0, 1000);
+        dweller_thorax_enchantability = CLIENT_BUILDER.comment(" Default: 100").defineInRange("general_values.enchantability", 100, 0, 100);
+        dweller_thorax_toughness = CLIENT_BUILDER.comment(" Default: 2").defineInRange("general_values.toughness", 2.0, 0.0, 10.0);
+        dweller_thorax_knockback_resistance = CLIENT_BUILDER.comment(" Default: 0.1").defineInRange("general_values.knockback_resistance", 0.1, 0.0, 10.0);
     }
-
     private static void setupJEIConfig(ForgeConfigSpec.Builder COMMON_BUILDER, ForgeConfigSpec.Builder CLIENT_BUILDER) {
         enableJeiPlugin = CLIENT_BUILDER.comment(" Enable or disable the JeiPlugin for the mod.").define("jei.enable_jei", true);
         enableJeiCatalysts = CLIENT_BUILDER.comment(" Enable or disable the Catalysts in Jei for the mod.").define("jei.enable_jei_catalysts", true);
         enableJeiClickArea = CLIENT_BUILDER.comment(" Enable or disable the Clickable Area inside the Masterful Smeltery's GUI.").define("jei.enable_jei_click_area", true);
     }
-
     private static void setupBlockConfig(ForgeConfigSpec.Builder COMMON_BUILDER, ForgeConfigSpec.Builder CLIENT_BUILDER) {
         enableNewWoodTypes = CLIENT_BUILDER.comment(" Enable or Disable all blocks added by the two new wood types, such as logs/planks/lamps/doors/fences and more.").define("blocks.building_blocks", true);
     }
@@ -771,13 +861,9 @@ public class Config {
     }
 
     @SubscribeEvent
-    public static void onLoad(final ModConfig.Loading configEvent) {
-    }
-
+    public static void onLoad(final ModConfig.Loading configEvent) {}
     @SubscribeEvent
-    public static void onReload(final ModConfig.Reloading configEvent) {
-    }
-
+    public static void onReload(final ModConfig.Reloading configEvent) {}
     @SubscribeEvent
     public static void onWorldLoad(final WorldEvent.Load event) {
         Config.loadConfig(Config.CLIENT_CONFIG, FMLPaths.CONFIGDIR.get().resolve("rigoranthusemortisreborn-client.toml"));
@@ -786,11 +872,9 @@ public class Config {
     
     @SubscribeEvent
     public static void player(final TickEvent.PlayerTickEvent event) {
-        if (!Config.GIVEN_COAL.get())
-        {
+        if (!Config.GIVEN_COAL.get()) {
             PlayerEntity player = getPlayer(event.player.level);
-            if (player != null)
-            {
+            if (player != null) {
                 Config.GIVEN_COAL.set(true);
                 player.level.addFreshEntity(new ItemEntity(player.level, player.position().x, player.position().y, player.position().z, new ItemStack(Registration.SOUL_COAL)));
             }
@@ -798,18 +882,13 @@ public class Config {
     }
 
     @Nullable
-    public static PlayerEntity getPlayer(IWorld world)
-    {
-        if (world == null)
-        {
+    public static PlayerEntity getPlayer(IWorld world) {
+        if (world == null) {
             return null;
         }
-        if (world.getPlayerByUUID(UUID.fromString("89f4f7f8-8ed5-479d-b04e-f7f843f14963")) != null)
-        {
-            return world.getPlayerByUUID(UUID.fromString("89f4f7f8-8ed5-479d-b04e-f7f843f14963"));
-        }
-        if (world.getPlayerByUUID(UUID.fromString("2b27a3a3-e2d6-468a-92e2-70f6f15b6e41")) != null)
-        {
+        if (world.getPlayerByUUID(UUID.fromString("89f4f7f8-8ed5-479d-b04e-f7f843f14963")) != null) {
+            return world.getPlayerByUUID(UUID.fromString("89f4f7f8-8ed5-479d-b04e-f7f843f14963"));}
+        if (world.getPlayerByUUID(UUID.fromString("2b27a3a3-e2d6-468a-92e2-70f6f15b6e41")) != null) {
             return world.getPlayerByUUID(UUID.fromString("2b27a3a3-e2d6-468a-92e2-70f6f15b6e41"));
         }
         return null;

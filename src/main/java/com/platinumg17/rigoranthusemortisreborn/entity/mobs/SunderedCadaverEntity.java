@@ -1,5 +1,6 @@
 package com.platinumg17.rigoranthusemortisreborn.entity.mobs;
 
+import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusSoundRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
@@ -108,11 +109,12 @@ public class SunderedCadaverEntity extends ZombieEntity implements IAnimatable {
 
     public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
         return MobEntity.createMobAttributes()
-                .add(Attributes.MAX_HEALTH, 40.0D)
-                .add(Attributes.MOVEMENT_SPEED, 0.3D)
-                .add(Attributes.ATTACK_DAMAGE, 3.0D)
-                .add(Attributes.ARMOR, 3.5D)
-                .add(Attributes.ATTACK_KNOCKBACK, 0.5D)
+                .add(Attributes.MAX_HEALTH, Config.sunderedCadaverMaxHealth.get())
+                .add(Attributes.MOVEMENT_SPEED, Config.sunderedCadaverMovementSpeed.get())
+                .add(Attributes.ATTACK_DAMAGE, Config.sunderedCadaverAttackDamage.get())
+                .add(Attributes.ARMOR, Config.sunderedCadaverArmorValue.get())
+                .add(Attributes.ATTACK_KNOCKBACK, Config.sunderedCadaverAttackKnockback.get())
+                .add(Attributes.KNOCKBACK_RESISTANCE, Config.sunderedCadaverKnockbackResistance.get())
                 .add(Attributes.FOLLOW_RANGE, 50.0D)
                 .add(Attributes.SPAWN_REINFORCEMENTS_CHANCE);
     }
@@ -397,7 +399,7 @@ public class SunderedCadaverEntity extends ZombieEntity implements IAnimatable {
         if (!biomeCriteria)
             return;
 
-        event.getSpawns().getSpawner(EntityClassification.MONSTER).add(new MobSpawnInfo.Spawners(getType(), 45, 1, 5));
+        event.getSpawns().getSpawner(EntityClassification.MONSTER).add(new MobSpawnInfo.Spawners(getType(), Config.sunderedCadaverSpawnWeight.get(), Config.sunderedCadaverMinGroupSize.get(), Config.sunderedCadaverMaxGroupSize.get()));
 
     }
 }

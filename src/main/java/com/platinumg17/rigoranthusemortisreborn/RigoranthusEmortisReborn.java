@@ -44,7 +44,6 @@ import org.apache.logging.log4j.Logger;
 public class RigoranthusEmortisReborn {
 	public static final Logger LOGGER = LogManager.getLogger();
 	public static final String MOD_ID = "rigoranthusemortisreborn";
-
     public static final RegistryHelper REGISTRY_HELPER = RegistryHelper.create(MOD_ID, helper -> {
     });
 
@@ -153,12 +152,9 @@ public class RigoranthusEmortisReborn {
             RenderTypeLookup.setRenderLayer(CadaverousIchorFluid.CADAVEROUS_ICHOR_FLOWING.get(), RenderType.translucent());
 
             makeBow(ItemInit.BONE_BOW.get());
-//            ClientRegistry.bindTileEntityRenderer(RigoranthusTileEntities.SIGN_TILE_ENTITIES.get(),
-//                    SignTileEntityRenderer::new);
 //            Atlases.addWoodType(RigoranthusWoodTypes.AZULOREAL);
 //            Atlases.addWoodType(RigoranthusWoodTypes.JESSIC);
         });
-//        RenderingRegistry.registerEntityRenderingHandler(RigoranthusEntityTypes.BOAT, BoatRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(RigoranthusEntityTypes.CANIS_CHORDATA.get(), CanisChordataRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(RigoranthusEntityTypes.NECRAW_FASCII.get(), NecrawFasciiRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(RigoranthusEntityTypes.SUNDERED_CADAVER.get(), SunderedCadaverRenderer::new);

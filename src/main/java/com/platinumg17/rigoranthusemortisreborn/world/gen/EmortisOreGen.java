@@ -20,15 +20,9 @@ public class EmortisOreGen {
             OreFeatureConfig oreFeatureConfig = new OreFeatureConfig( OreFeatureConfig.FillerBlockType.NATURAL_STONE, ore.getBlock().get().defaultBlockState(), ore.getMaxVeinSize());
             ConfiguredPlacement<TopSolidRangeConfig> configuredPlacement = Placement.RANGE.configured( new TopSolidRangeConfig(ore.getMinHeight(), ore.getMinHeight(), ore.getMaxHeight()));
             ConfiguredFeature<?, ?> oreFeature = registerOreFeature(ore, oreFeatureConfig, configuredPlacement);
-//            spawnOreInSpecificBiome("", Registration._ORE.get(), ore, oreFeature, event);
             spawnOreInAllBiomes(Registration.RECONDITE_ORE.get(), ore, oreFeature, event);
         }
     }
-//    private static void spawnOreInSpecificBiome(String biomeName, Block blockToSpawn, OreType currentOreType, ConfiguredFeature<?, ?> oreFeature, final BiomeLoadingEvent event) {
-//        if(event.getName().toString().contains(biomeName) && currentOreType.getBlock().get() == blockToSpawn) {
-//            event.getGeneration().addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, oreFeature);
-//        }
-//    }
     private static void spawnOreInAllBiomes(Block blockToSpawn, OreType currentOreType, ConfiguredFeature<?, ?> oreFeature, final BiomeLoadingEvent event) {
         if(currentOreType.getBlock().get() == blockToSpawn) {
             event.getGeneration().addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, oreFeature);

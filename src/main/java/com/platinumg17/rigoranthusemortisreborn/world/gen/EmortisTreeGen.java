@@ -11,6 +11,7 @@ import net.minecraft.world.gen.feature.Features;
 import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
+import net.minecraftforge.fml.ModList;
 
 import java.util.List;
 import java.util.Random;
@@ -54,6 +55,7 @@ public class EmortisTreeGen {
                         .decorated(Features.Placements.HEIGHTMAP_SQUARE)
                         .decorated(Placement.COUNT_EXTRA.configured(
                                 new AtSurfaceWithExtraConfig(1, 0.1f, 2))));
+                if (ModList.get().isLoaded("quark")) {base.add(() -> RigoranthusConfiguredFeatures.HEDGES_VERDUROUS);}
             }
         }
     }

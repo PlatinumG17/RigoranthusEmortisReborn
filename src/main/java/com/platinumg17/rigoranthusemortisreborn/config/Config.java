@@ -338,7 +338,7 @@ public class Config {
         CLIENT_BUILDER.comment("Misc").push(CATEGORY_OTHER);
 
         GIVEN_COAL = CLIENT_BUILDER
-                .comment(" Hehehe, I'm a janky dev & wont tell you what this one does. lol. (Does it even do anything?)").define("misc.coal", false);
+                .comment(" Hehehe, I'm a janky dev & wont tell you what this one does. lol. (Does it even do anything?)").define("misc.lol_uwot_m8", false);
 
         showErrors = CLIENT_BUILDER
                 .comment(" Debugging Tool that prints Smeltery Settings errors in chat.").define("display.errors", false);
@@ -524,8 +524,9 @@ public class Config {
         canisChordataKnockbackResistance = COMMON_BUILDER.comment(" How well does this mob stay in one place while players attack it.\n Default: 0.4").defineInRange("canis.knockback_resistance", 0.4, 0.0, 100);
     }
     private static void setupBiomeConfig(ForgeConfigSpec.Builder COMMON_BUILDER, ForgeConfigSpec.Builder CLIENT_BUILDER) {
-        verdurousWoodlandsSpawnWeight = COMMON_BUILDER.comment(" Spawn Weight of Verdurous Woodlands Biome.\n [Set to 0 to Disable Biome Generation]").defineInRange("biome.spawn_weight", 20, 0, 1000);
+        verdurousWoodlandsSpawnWeight = COMMON_BUILDER.comment(" How likely Verdurous Woodlands Biome is to Spawn.\n [Set to 0 to Disable Biome Generation]").defineInRange("biome.spawn_weight", 20, 0, 1000);
         lakeSpawnWeight = COMMON_BUILDER.comment(" Spawn Weight of Lakes in the Verdurous Woodlands Biome.\n [Set to 0 to Disable Lake Generation]").defineInRange("biome.lake_spawn_weight", 2, 0, 1000);
+
         jessicSpawnWeight = COMMON_BUILDER.comment(" Spawn Weight of Jessic Trees in Verdurous Woodlands Biome.\n [Set to 0 to Disable Generation]").defineInRange("jessic.jessic_spawn_weight", 10, 0, 1000);
         loomingJessicSpawnWeight = COMMON_BUILDER.comment(" Spawn Weight of Looming Jessic Trees in Verdurous Woodlands Biome.\n [Set to 0 to Disable Generation]").defineInRange("jessic.looming_jessic_spawn_weight", 8, 0, 1000);
         megaJessicSpawnWeight = COMMON_BUILDER.comment(" Spawn Weight of Mega Jessic Trees in Verdurous Woodlands Biome.\n [Set to 0 to Disable Generation]").defineInRange("jessic.mega_jessic_spawn_weight", 5, 0, 1000);
@@ -547,12 +548,6 @@ public class Config {
         abyssalite_hammer_durability = COMMON_BUILDER.comment(" The Durability of Abyssalite Hammers.\n Default: 350").defineInRange("abyssalite_hammers.durability", 350, 1, 10000);
     }
 
-    private static void setupSmelteryConfig(ForgeConfigSpec.Builder COMMON_BUILDER, ForgeConfigSpec.Builder CLIENT_BUILDER) {
-        cache_capacity = CLIENT_BUILDER.comment(" The capacity of the recipe cache, higher values use more memory.\n Default: 10").defineInRange("recipe_cache", 10, 1, 100);
-        masterfulSmelterySpeed = CLIENT_BUILDER.comment(" Number of ticks per 'Smelting Operation.'\n Vanilla Furnace = 200 ticks.\n 1 Second = 20 Ticks\n Default: 160").defineInRange("masterful_smeltery.speed", 160, 2, 72000);
-        smelteryXPDropValue = CLIENT_BUILDER.comment(" Value indicating when the Masterful Smeltery should 'overload' and auto-eject the stored xp. \n Default: 10, Recipes").defineInRange("smeltery_xp_drop.value", 10, 1, 500);
-        smelteryXPDropValue2 = CLIENT_BUILDER.comment(" Value indicating when the smeltery should 'overload' and auto-eject the stored xp. \n Default: 100000, Single recipe uses").defineInRange("smeltery_xp_drop.value_two", 100000, 1, 1000000);
-    }
     private static void setupWeaponConfig(ForgeConfigSpec.Builder COMMON_BUILDER, ForgeConfigSpec.Builder CLIENT_BUILDER) {
         bone_spear_speed = COMMON_BUILDER.comment(" Default: 9.0").defineInRange("spear.speed", 9.0, 0.0, 1000);
         bone_spear_damage = COMMON_BUILDER.comment(" Default: 4.0").defineInRange("spear.damage", 2, 0, 1000);
@@ -831,6 +826,12 @@ public class Config {
         dweller_thorax_enchantability = COMMON_BUILDER.comment(" Default: 100").defineInRange("general_values.enchantability", 100, 0, 100);
         dweller_thorax_toughness = COMMON_BUILDER.comment(" Default: 2").defineInRange("general_values.toughness", 2.0, 0.0, 10.0);
         dweller_thorax_knockback_resistance = COMMON_BUILDER.comment(" Default: 0.1").defineInRange("general_values.knockback_resistance", 0.1, 0.0, 10.0);
+    }
+    private static void setupSmelteryConfig(ForgeConfigSpec.Builder COMMON_BUILDER, ForgeConfigSpec.Builder CLIENT_BUILDER) {
+        cache_capacity = CLIENT_BUILDER.comment(" The capacity of the recipe cache, higher values use more memory.\n Default: 10").defineInRange("recipe_cache", 10, 1, 100);
+        masterfulSmelterySpeed = CLIENT_BUILDER.comment(" Number of ticks per 'Smelting Operation.'\n Vanilla Furnace = 200 ticks.\n 1 Second = 20 Ticks\n Default: 160").defineInRange("masterful_smeltery.speed", 160, 2, 72000);
+        smelteryXPDropValue = CLIENT_BUILDER.comment(" Value indicating when the Masterful Smeltery should 'overload' and auto-eject the stored xp. \n Default: 10, Recipes").defineInRange("smeltery_xp_drop.value", 10, 1, 500);
+        smelteryXPDropValue2 = CLIENT_BUILDER.comment(" Value indicating when the smeltery should 'overload' and auto-eject the stored xp. \n Default: 100000, Single recipe uses").defineInRange("smeltery_xp_drop.value_two", 100000, 1, 1000000);
     }
     private static void setupJEIConfig(ForgeConfigSpec.Builder COMMON_BUILDER, ForgeConfigSpec.Builder CLIENT_BUILDER) {
         enableJeiPlugin = CLIENT_BUILDER.comment(" Enable or disable the JeiPlugin for the mod.").define("jei.enable_jei", true);

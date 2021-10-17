@@ -90,10 +90,8 @@ public class RigoranthusConfiguredFeatures {
             .configured((new BlockClusterFeatureConfig.Builder((new WeightedBlockStateProvider())
                     .add(DecorativeOrStorageBlocks.AZULOREAL_ORCHID.get().defaultBlockState(), 100)
                     .add(DecorativeOrStorageBlocks.IRIDESCENT_SPROUTS.get().defaultBlockState(), 30)
-//                    .add(DecorativeOrStorageBlocks.JESSIC_HEDGE.get().defaultBlockState(), 10)
-//                    .add(DecorativeOrStorageBlocks.AZULOREAL_HEDGE.get().defaultBlockState(), 10)
-//                    .add(DecorativeOrStorageBlocks.JESSIC_LEAF_CARPET.get().defaultBlockState(), 10)
-//                    .add(DecorativeOrStorageBlocks.AZULOREAL_LEAF_CARPET.get().defaultBlockState(), 10)
+                    .add(DecorativeOrStorageBlocks.JESSIC_LEAF_CARPET.get().defaultBlockState(), 10)
+                    .add(DecorativeOrStorageBlocks.AZULOREAL_LEAF_CARPET.get().defaultBlockState(), 10)
                     .add(Blocks.BLUE_ORCHID.defaultBlockState(), 50)
                     .add(Blocks.PINK_TULIP.defaultBlockState(), 30)
                     .add(Blocks.WHITE_TULIP.defaultBlockState(), 30)
@@ -120,6 +118,14 @@ public class RigoranthusConfiguredFeatures {
             .decorated(Placement.COUNT_EXTRA
                     .configured(new AtSurfaceWithExtraConfig(1, 0.1F, 1))));
 
+    public static final ConfiguredFeature<?, ?> HEDGES_VERDUROUS = register("hedges_verdurous", Feature.RANDOM_PATCH
+            .configured((new BlockClusterFeatureConfig.Builder((new WeightedBlockStateProvider())
+                    .add(DecorativeOrStorageBlocks.JESSIC_HEDGE.get().defaultBlockState(), 10)
+                    .add(DecorativeOrStorageBlocks.AZULOREAL_HEDGE.get().defaultBlockState(), 10),
+                    SimpleBlockPlacer.INSTANCE)).tries(44).build())
+            .decorated(Features.Placements.ADD_32)
+            .decorated(Features.Placements.HEIGHTMAP_SQUARE)
+            .count(1));
 
     private static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> register(String key, ConfiguredFeature<FC, ?> configuredFeature) {
         return WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE, key, configuredFeature);

@@ -42,7 +42,7 @@ public class EmortisBiomeGen {
         event.enqueueWork(() ->
         {
             if (Config.verdurousWoodlandsSpawnWeight.get() > 0) {
-                addBiome(EmortisBiomes.VERDUROUS_WOODLANDS.get(), BiomeManager.BiomeType.WARM, Config.verdurousWoodlandsSpawnWeight.get(), MAGICAL, DENSE, RARE, FOREST, LUSH);
+                addBiome(EmortisBiomes.VERDUROUS_WOODLANDS.get(), BiomeManager.BiomeType.WARM, Config.verdurousWoodlandsSpawnWeight.get(), MAGICAL, OVERWORLD, DENSE, RARE, FOREST, LUSH);
             }
         });
     }

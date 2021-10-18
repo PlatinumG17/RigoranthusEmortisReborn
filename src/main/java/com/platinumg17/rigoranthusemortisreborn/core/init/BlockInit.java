@@ -1,18 +1,8 @@
 package com.platinumg17.rigoranthusemortisreborn.core.init;
 
-import java.util.List;
-import java.util.Map;
-import java.util.function.Supplier;
-import java.util.function.ToIntFunction;
-
 import com.google.common.collect.Maps;
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
-import com.platinumg17.rigoranthusemortisreborn.blocks.*;
-import com.platinumg17.rigoranthusemortisreborn.blocks.trees.AzulorealTree;
-import com.platinumg17.rigoranthusemortisreborn.blocks.trees.JessicTree;
-import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusItemGroup;
-
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -24,11 +14,9 @@ import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Util;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.RegistryObject;
@@ -36,6 +24,10 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Supplier;
+import java.util.function.ToIntFunction;
 
 public class BlockInit {
 

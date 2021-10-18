@@ -1,10 +1,12 @@
 package com.platinumg17.rigoranthusemortisreborn.core.init;
 
+import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.entity.item.BoneArrowEntity;
 import com.platinumg17.rigoranthusemortisreborn.items.*;
 import com.platinumg17.rigoranthusemortisreborn.items.armor.RigoranthusArmorMaterial;
 import com.platinumg17.rigoranthusemortisreborn.items.armor.armorsets.*;
 import com.platinumg17.rigoranthusemortisreborn.items.smeltery.*;
+import com.platinumg17.rigoranthusemortisreborn.items.weapons.BoneArrowItem;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -12,6 +14,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.*;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
@@ -151,9 +154,15 @@ public class Registration {
     public static final Item UNFIRED_BRICK = new Item(new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)).setRegistryName("unfired_brick");
     public static final Item UNFIRED_NETHER_BRICK = new Item(new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)).setRegistryName("unfired_nether_brick");
 
-    public static final Item BONE_ARROW = new ArrowItem(new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)).setRegistryName("bone_arrow");
     //public static final Item BONE_BOW = new BoneBow(new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).stacksTo(1).durability(Config.bone_bow_durability.get())).setRegistryName("bone_bow");
+    public static final Item BONE_ARROW = new BoneArrowItem(new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)).setRegistryName("bone_arrow");
     public static final Item BONE_SPEAR = new SwordItem(RigoranthusItemTier.BONE, Config.bone_spear_damage.get(), Config.bone_spear_speed.get().floatValue(), new Item.Properties().rarity(Rarity.UNCOMMON).tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).stacksTo(1)).setRegistryName("bone_spear");
+
+    public static void registerItemProperties() {
+        ItemModelsProperties.register(Items.CROSSBOW, new ResourceLocation(RigoranthusEmortisReborn.MOD_ID, "bone_arrow"), (stack, world, entity) -> {
+            return entity != null && CrossbowItem.isCharged(stack) && CrossbowItem.containsChargedProjectile(stack, Registration.BONE_ARROW.getItem()) ? 1.0F : 0.0F;
+        });
+    }
 
     public static void registerItems(RegistryEvent.Register<Item> event)
     {

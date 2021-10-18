@@ -22,6 +22,8 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -44,22 +46,23 @@ public class DwellerThoraxArmor extends ArmorItem {
             tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".hold_shift").setStyle(Style.EMPTY));
         }
     }
-
     @Override
-    public BipedModel getArmorModel(LivingEntity living, ItemStack stack, EquipmentSlotType slot, BipedModel defaultModel) {
-        BipedModel armorModel = new BipedModel(2);
-        armorModel.body = new DwellerThoraxModel(1, EquipmentSlotType.CHEST).body;
-        armorModel.crouching = living.isCrouching();
-        armorModel.riding = defaultModel.riding;
-        armorModel.young = living.isBaby();
-        return armorModel;
+    @OnlyIn(Dist.CLIENT)
+    public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack stack, EquipmentSlotType armorSlot, A _default) {
+        return DwellerThoraxModel.getModel(armorSlot, entityLiving);
     }
-
-
+//    @Override
+//    public BipedModel getArmorModel(LivingEntity living, ItemStack stack, EquipmentSlotType slot, BipedModel defaultModel) {
+//        BipedModel armorModel = new BipedModel(2);
+//        armorModel.body = new DwellerThoraxModel(1, EquipmentSlotType.CHEST).body;
+//        armorModel.crouching = living.isCrouching();
+//        armorModel.riding = defaultModel.riding;
+//        armorModel.young = living.isBaby();
+//        return armorModel;
+//    }
     @Override
     public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
-        return "rigoranthusemortisreborn:textures/models/armor/dweller_layer_" + (slot == EquipmentSlotType.CHEST ? "2" : "1")
-                + ".png";
+        return RigoranthusEmortisReborn.MOD_ID + ":textures/models/armor/dweller_layer_1.png";
     }
 
 //    public void onArmorTick(ItemStack itemStack, World world, PlayerEntity player) {

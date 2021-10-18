@@ -12,11 +12,11 @@ public class ArmorModel <T extends LivingEntity> extends BipedModel<T> {
     protected final EquipmentSlotType slotType;
 
     protected ModelRenderer Body;
-    protected ModelRenderer RightArm;
-    protected ModelRenderer LeftArm;
+//    protected ModelRenderer RightArm;
+//    protected ModelRenderer LeftArm;
 
     public ArmorModel(float modelSize, EquipmentSlotType slotType) {
-        super(modelSize, 0, 64, 64);
+        super(modelSize, 0, 32, 32);
         this.slotType = slotType;
     }
 
@@ -27,10 +27,10 @@ public class ArmorModel <T extends LivingEntity> extends BipedModel<T> {
         if (this.slotType == EquipmentSlotType.CHEST) {
             Body.copyFrom(this.Body);
             Body.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
-            RightArm.copyFrom(this.RightArm);
-            RightArm.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
-            LeftArm.copyFrom(this.LeftArm);
-            LeftArm.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
+//            RightArm.copyFrom(this.RightArm);
+//            RightArm.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
+//            LeftArm.copyFrom(this.LeftArm);
+//            LeftArm.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
             matrixStack.popPose();
         }
     }

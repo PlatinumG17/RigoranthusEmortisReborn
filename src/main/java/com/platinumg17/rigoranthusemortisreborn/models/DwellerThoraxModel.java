@@ -2,95 +2,106 @@ package com.platinumg17.rigoranthusemortisreborn.models;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import net.minecraft.client.renderer.entity.model.EntityModel;
+import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
+import net.minecraft.entity.monster.AbstractIllagerEntity;
+import net.minecraft.entity.monster.ZombieVillagerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.registries.ForgeRegistries;
 
-public class DwellerThoraxModel <T extends LivingEntity> extends ArmorModel<T> { //extends EntityModel<Entity> {
-    // Made with Blockbench 3.9.2
-    // Exported for Minecraft version 1.15 - 1.16 with MCP mappings
-    // Paste this class into your mod and generate all required imports
-    public DwellerThoraxModel(float modelSize, EquipmentSlotType slotType) {
-        super(modelSize, slotType);
+import java.util.HashMap;
+import java.util.Map;
 
-        final ModelRenderer Body;
-        final ModelRenderer ribs;
-        final ModelRenderer cube_r1_r1_r1;
-        final ModelRenderer cube_r2_r1_r1;
-        final ModelRenderer cube_r2_r2_r1;
-        final ModelRenderer cube_r3_r1_r1;
-        final ModelRenderer cube_r3_r2_r1;
-        final ModelRenderer cube_r4_r1_r1;
-        final ModelRenderer cube_r3_r3_r1;
-        final ModelRenderer cube_r4_r2_r1;
-        final ModelRenderer cube_r5_r1_r1;
-        final ModelRenderer cube_r4_r3_r1;
-        final ModelRenderer cube_r4_r4_r1;
-        final ModelRenderer cube_r5_r2_r1;
-        final ModelRenderer cube_r5_r3_r1;
-        final ModelRenderer cube_r6_r1_r1;
-        final ModelRenderer cube_r4_r5_r1;
-        final ModelRenderer cube_r5_r4_r1;
-        final ModelRenderer cube_r5_r5_r1;
-        final ModelRenderer cube_r2_r3_r1;
-        final ModelRenderer cube_r6_r2_r1;
-        final ModelRenderer cube_r6_r3_r1;
-        final ModelRenderer cube_r5_r6_r1;
-        final ModelRenderer cube_r7_r1_r1;
-        final ModelRenderer cube_r6_r4_r1;
-        final ModelRenderer cube_r6_r5_r1;
-        final ModelRenderer cube_r5_r7_r1;
-        final ModelRenderer cube_r3_r4_r1;
-        final ModelRenderer bone;
-        final ModelRenderer cube_r14_r1_r1;
-        final ModelRenderer cube_r7_r1_r2;
-        final ModelRenderer cube_r4_r2_r2;
-        final ModelRenderer cube_r1_r1_r2;
-        final ModelRenderer right_back;
-        final ModelRenderer cube_r19_r1;
-        final ModelRenderer cube_r22_r1;
-        final ModelRenderer cube_r18_r1;
-        final ModelRenderer cube_r17_r1;
-        final ModelRenderer cube_r3_r1;
-        final ModelRenderer cube_r31_r1;
-        final ModelRenderer cube_r23_r1;
-        final ModelRenderer cube_r21_r1;
-        final ModelRenderer cube_r20_r1;
-        final ModelRenderer cube_r33_r1;
-        final ModelRenderer cube_r5_r1;
-        final ModelRenderer cube_r8_r1;
-        final ModelRenderer cube_r24_r1;
-        final ModelRenderer cube_r12_r1;
-        final ModelRenderer cube_r11_r1;
-        final ModelRenderer cube_r32_r3;
-        final ModelRenderer cube_r33_r3_r1;
-        final ModelRenderer left_back;
-        final ModelRenderer cube_r20_r2;
-        final ModelRenderer cube_r23_r2;
-        final ModelRenderer cube_r19_r2;
-        final ModelRenderer cube_r18_r2;
-        final ModelRenderer cube_r4_r1;
-        final ModelRenderer cube_r32_r1;
-        final ModelRenderer cube_r32_r2;
-        final ModelRenderer cube_r32_r2_r1;
-        final ModelRenderer cube_r24_r2;
-        final ModelRenderer cube_r22_r2;
-        final ModelRenderer cube_r21_r2;
-        final ModelRenderer cube_r34_r1;
-        final ModelRenderer cube_r6_r1;
-        final ModelRenderer cube_r9_r1;
-        final ModelRenderer cube_r25_r1;
-        final ModelRenderer cube_r13_r1;
-        final ModelRenderer cube_r12_r2;
+public class DwellerThoraxModel <T extends LivingEntity> extends BipedModel<T> {
+    // Made with Blockbench 3.9.2 // Exported for Minecraft version 1.15 - 1.16 with MCP mappings
+    // Made by PlatinumG17
+    private static final Map<Integer, DwellerThoraxModel<? extends LivingEntity>> CACHE = new HashMap<>();
+    private static final ResourceLocation GUARD_VILLAGER_NAME = new ResourceLocation("guardvillagers:guard");
+    final ModelRenderer Body;
+    final ModelRenderer ribs;
+    final ModelRenderer cube_r1_r1_r1;
+    final ModelRenderer cube_r2_r1_r1;
+    final ModelRenderer cube_r2_r2_r1;
+    final ModelRenderer cube_r3_r1_r1;
+    final ModelRenderer cube_r3_r2_r1;
+    final ModelRenderer cube_r4_r1_r1;
+    final ModelRenderer cube_r3_r3_r1;
+    final ModelRenderer cube_r4_r2_r1;
+    final ModelRenderer cube_r5_r1_r1;
+    final ModelRenderer cube_r4_r3_r1;
+    final ModelRenderer cube_r4_r4_r1;
+    final ModelRenderer cube_r5_r2_r1;
+    final ModelRenderer cube_r5_r3_r1;
+    final ModelRenderer cube_r6_r1_r1;
+    final ModelRenderer cube_r4_r5_r1;
+    final ModelRenderer cube_r5_r4_r1;
+    final ModelRenderer cube_r5_r5_r1;
+    final ModelRenderer cube_r2_r3_r1;
+    final ModelRenderer cube_r6_r2_r1;
+    final ModelRenderer cube_r6_r3_r1;
+    final ModelRenderer cube_r5_r6_r1;
+    final ModelRenderer cube_r7_r1_r1;
+    final ModelRenderer cube_r6_r4_r1;
+    final ModelRenderer cube_r6_r5_r1;
+    final ModelRenderer cube_r5_r7_r1;
+    final ModelRenderer cube_r3_r4_r1;
+    final ModelRenderer bone;
+    final ModelRenderer cube_r14_r1_r1;
+    final ModelRenderer cube_r7_r1_r2;
+    final ModelRenderer cube_r4_r2_r2;
+    final ModelRenderer cube_r1_r1_r2;
+    final ModelRenderer right_back;
+    final ModelRenderer cube_r19_r1;
+    final ModelRenderer cube_r22_r1;
+    final ModelRenderer cube_r18_r1;
+    final ModelRenderer cube_r17_r1;
+    final ModelRenderer cube_r3_r1;
+    final ModelRenderer cube_r31_r1;
+    final ModelRenderer cube_r23_r1;
+    final ModelRenderer cube_r21_r1;
+    final ModelRenderer cube_r20_r1;
+    final ModelRenderer cube_r33_r1;
+    final ModelRenderer cube_r5_r1;
+    final ModelRenderer cube_r8_r1;
+    final ModelRenderer cube_r24_r1;
+    final ModelRenderer cube_r12_r1;
+    final ModelRenderer cube_r11_r1;
+    final ModelRenderer cube_r32_r3;
+    final ModelRenderer cube_r33_r3_r1;
+    final ModelRenderer left_back;
+    final ModelRenderer cube_r20_r2;
+    final ModelRenderer cube_r23_r2;
+    final ModelRenderer cube_r19_r2;
+    final ModelRenderer cube_r18_r2;
+    final ModelRenderer cube_r4_r1;
+    final ModelRenderer cube_r32_r1;
+    final ModelRenderer cube_r32_r2;
+    final ModelRenderer cube_r32_r2_r1;
+    final ModelRenderer cube_r24_r2;
+    final ModelRenderer cube_r22_r2;
+    final ModelRenderer cube_r21_r2;
+    final ModelRenderer cube_r34_r1;
+    final ModelRenderer cube_r6_r1;
+    final ModelRenderer cube_r9_r1;
+    final ModelRenderer cube_r25_r1;
+    final ModelRenderer cube_r13_r1;
+    final ModelRenderer cube_r12_r2;
+    private final EquipmentSlotType slot;
+    private final byte entityFlag;
 
-        //public DwellerThoraxModel() {
-            texWidth = 64;
-            texHeight = 64;
+        private DwellerThoraxModel(int entityFlag) {
+            super(1.0F, 0.0F, 64, 64);
+            this.slot = EquipmentSlotType.values()[entityFlag & 15];
+            this.entityFlag = (byte) (entityFlag >> 4);
 
-            Body = new ModelRenderer(this);
-            Body.setPos(-0.2F, 3.1F, 1.0F);
+            this.texWidth = 32;
+            this.texHeight = 32;
+
+            Body = new ModelRenderer(this, 0, 17);
+            Body.setPos(-0.2F, 3.0F, 1.0F);
             setRotationAngle(Body, 0.0873F, 0.0F, 0.0F);
 
             ribs = new ModelRenderer(this);
@@ -254,9 +265,9 @@ public class DwellerThoraxModel <T extends LivingEntity> extends ArmorModel<T> {
             cube_r3_r4_r1.texOffs(15, 10).addBox(-6.4762F, -18.9553F, 7.2207F, 1.0F, 1.0F, 1.0F, 0.0F, true);
 
             bone = new ModelRenderer(this);
-            bone.setPos(0.2F, 4.1F, -0.5F);
+            bone.setPos(0.2F, 6.0F, -0.5F);
             Body.addChild(bone);
-            setRotationAngle(bone, 0.0524F, 0.0F, 0.0F);
+            setRotationAngle(bone, 0.1F, 0.0F, 0.0F);
 
             cube_r14_r1_r1 = new ModelRenderer(this);
             cube_r14_r1_r1.setPos(0.0883F, 32.13F, 23.7824F);
@@ -493,15 +504,28 @@ public class DwellerThoraxModel <T extends LivingEntity> extends ArmorModel<T> {
             cube_r12_r2.texOffs(13, 0).addBox(-1.0F, -0.6F, -0.5F, 2.0F, 1.0F, 1.0F, 0.0F, true);
         }
 
-//        @Override
-//        public void setupAnim(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks,
-//                                      float netHeadYaw, float headPitch) {
-//        }
-
         @Override
-        public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red,
-                           float green, float blue, float alpha) {
+        public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+            boolean illager = (this.entityFlag & 1) > 0;
+            boolean child = (this.entityFlag & 4) > 0;
             Body.render(matrixStack, buffer, packedLight, packedOverlay);
+            if (this.slot == EquipmentSlotType.CHEST) {
+                matrixStack.pushPose();
+                this.Body.copyFrom(this.body);
+                if (child) {
+                    matrixStack.scale(0.5F, 0.5F, 0.5F);
+                    this.Body.setPos(0.0F, 24.0F, 0.0F);
+                    this.Body.setPos(5.0F, 24.0F, 0.0F);
+                    this.Body.setPos(-5.0F, 24.0F, 0.0F);
+                }
+                this.Body.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
+                this.Body.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
+                if (illager) {
+                    matrixStack.scale(1.0F, 1.0F, 1.3F);
+                }
+                this.Body.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
+                matrixStack.popPose();
+            }
         }
 
         public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
@@ -509,4 +533,14 @@ public class DwellerThoraxModel <T extends LivingEntity> extends ArmorModel<T> {
             modelRenderer.yRot = y;
             modelRenderer.zRot = z;
         }
+
+    @SuppressWarnings("unchecked")
+    public static <A extends BipedModel<?>> A getModel(EquipmentSlotType slot, LivingEntity entity) {
+        boolean illager = entity instanceof AbstractIllagerEntity ||
+                entity instanceof ZombieVillagerEntity ||
+                entity instanceof AbstractVillagerEntity ||
+                entity.getType() == ForgeRegistries.ENTITIES.getValue(GUARD_VILLAGER_NAME);
+        int entityFlag = (slot.ordinal() & 15) | (illager ? 1 : 0) << 4 | (entity.isBaby() ? 1 : 0) << 6;
+        return (A) CACHE.computeIfAbsent(entityFlag, DwellerThoraxModel::new);
     }
+}

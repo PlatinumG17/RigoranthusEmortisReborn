@@ -51,20 +51,11 @@ public class DwellerThoraxArmor extends ArmorItem {
     public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack stack, EquipmentSlotType armorSlot, A _default) {
         return DwellerThoraxModel.getModel(armorSlot, entityLiving);
     }
-//    @Override
-//    public BipedModel getArmorModel(LivingEntity living, ItemStack stack, EquipmentSlotType slot, BipedModel defaultModel) {
-//        BipedModel armorModel = new BipedModel(2);
-//        armorModel.body = new DwellerThoraxModel(1, EquipmentSlotType.CHEST).body;
-//        armorModel.crouching = living.isCrouching();
-//        armorModel.riding = defaultModel.riding;
-//        armorModel.young = living.isBaby();
-//        return armorModel;
-//    }
+
     @Override
     public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
         return RigoranthusEmortisReborn.MOD_ID + ":textures/models/armor/dweller_layer_1.png";
     }
-
 //    public void onArmorTick(ItemStack itemStack, World world, PlayerEntity player) {
 //        if (Config.enableArmorSetBonuses.get()) {
 //            ItemStack chest = player.getItemBySlot(EquipmentSlotType.CHEST);

@@ -1,6 +1,7 @@
 package com.platinumg17.rigoranthusemortisreborn.core.registry.effects;
 
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
+import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusDamageSources;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.AttributeModifierManager;
@@ -28,7 +29,7 @@ public class EffectNecrotizingFasciitis extends Effect {
         }
         damageTimer--;
         if (damageTimer < 0) {
-            player.hurt(DamageSource.GENERIC,  0.1f);
+            player.hurt(RigoranthusDamageSources.NECROTIZING_FASCIITIS,  0.1f);
             damageTimer = 100;
         }
 //        if(player.getDeltaMovement().y > 0 && !player.isInWaterOrBubble()){

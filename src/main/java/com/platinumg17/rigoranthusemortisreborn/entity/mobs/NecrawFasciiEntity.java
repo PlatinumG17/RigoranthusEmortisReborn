@@ -15,6 +15,7 @@ import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
 import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.network.IPacket;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.DamageSource;
@@ -22,6 +23,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.network.NetworkHooks;
 
 public class NecrawFasciiEntity extends ZombieEntity {
     public NecrawFasciiEntity(EntityType<? extends ZombieEntity> type, World worldIn) {
@@ -31,10 +33,10 @@ public class NecrawFasciiEntity extends ZombieEntity {
 //    public CreatureAttribute getMobType() {
 //        return CreatureAttribute.UNDEAD;
 //    }
-//    @Override
-//    public IPacket<?> getAddEntityPacket() {
-//        return NetworkHooks.getEntitySpawningPacket(this);
-//    }
+    @Override
+    public IPacket<?> getAddEntityPacket() {
+        return NetworkHooks.getEntitySpawningPacket(this);
+    }
     public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
         return MobEntity.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, Config.necrawFasciiMaxHealth.get())

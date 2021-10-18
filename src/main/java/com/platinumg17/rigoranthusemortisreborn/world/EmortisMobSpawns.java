@@ -5,6 +5,7 @@ import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.entity.RigoranthusEntityTypes;
 import net.minecraft.entity.*;
 import net.minecraft.entity.monster.MonsterEntity;
+import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -25,10 +26,10 @@ import java.util.Random;
 @Mod.EventBusSubscriber(modid = RigoranthusEmortisReborn.MOD_ID)
 public class EmortisMobSpawns {
     public static void registerSpawns() {
-        EntitySpawnPlacementRegistry.register(RigoranthusEntityTypes.SUNDERED_CADAVER.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, EmortisMobSpawns::sunderedCadaverCondition);
-        EntitySpawnPlacementRegistry.register(RigoranthusEntityTypes.NECRAW_FASCII.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, EmortisMobSpawns::necrawFasciiCondition);
+        EntitySpawnPlacementRegistry.register(RigoranthusEntityTypes.SUNDERED_CADAVER.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
+        EntitySpawnPlacementRegistry.register(RigoranthusEntityTypes.NECRAW_FASCII.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
         EntitySpawnPlacementRegistry.register(RigoranthusEntityTypes.LANGUID_DWELLER.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, EmortisMobSpawns::languidDwellerCondition);
-        EntitySpawnPlacementRegistry.register(RigoranthusEntityTypes.CANIS_CHORDATA.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, EmortisMobSpawns::canisChordataCondition);
+        EntitySpawnPlacementRegistry.register(RigoranthusEntityTypes.CANIS_CHORDATA.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::checkAnimalSpawnRules);
     }
 
     @SubscribeEvent
@@ -47,31 +48,33 @@ public class EmortisMobSpawns {
             event.getCategory() == Biome.Category.SWAMP ||
             event.getCategory() == Biome.Category.TAIGA ||
             event.getCategory() == Biome.Category.RIVER ||
-            event.getCategory() == Biome.Category.OCEAN &&
-            Config.languidDwellerSpawnWeight.get() > 0)
+            event.getCategory() == Biome.Category.OCEAN)
         {
-            spawns.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(RigoranthusEntityTypes.LANGUID_DWELLER.get(), Config.languidDwellerSpawnWeight.get(), Config.languidDwellerMinGroupSize.get(), Config.languidDwellerMaxGroupSize.get()));
+            spawns.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(RigoranthusEntityTypes.LANGUID_DWELLER.get(), Config.languidDwellerSpawnWeight.get(), 1, 5));
         }
         if (BiomeDictionary.hasType(key, BiomeDictionary.Type.OVERWORLD)) {
-            if (Config.sunderedCadaverSpawnWeight.get() > 0) {spawns.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(RigoranthusEntityTypes.SUNDERED_CADAVER.get(), Config.sunderedCadaverSpawnWeight.get(), Config.sunderedCadaverMinGroupSize.get(), Config.sunderedCadaverMaxGroupSize.get()));}
-            if (Config.necrawFasciiSpawnWeight.get() > 0) {spawns.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(RigoranthusEntityTypes.NECRAW_FASCII.get(), Config.necrawFasciiSpawnWeight.get(), Config.necrawFasciiMinGroupSize.get(), Config.necrawFasciiMaxGroupSize.get()));}
-            if (Config.canisChordataSpawnWeight.get() > 0) {spawns.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(RigoranthusEntityTypes.CANIS_CHORDATA.get(), Config.canisChordataSpawnWeight.get(), Config.canisChordataMinGroupSize.get(), Config.canisChordataMaxGroupSize.get()));}
+            spawns.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(RigoranthusEntityTypes.SUNDERED_CADAVER.get(), Config.sunderedCadaverSpawnWeight.get(), 1, 6));
+            spawns.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(RigoranthusEntityTypes.NECRAW_FASCII.get(), Config.necrawFasciiSpawnWeight.get(), 1, 2));
+            spawns.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(RigoranthusEntityTypes.CANIS_CHORDATA.get(), Config.canisChordataSpawnWeight.get(), 1, 1));
         }
     }
-    public static boolean sunderedCadaverCondition(EntityType<? extends MonsterEntity> entityType, IWorld world, SpawnReason spawnReason, BlockPos pos, Random random) {
-        if (((World) world).dimension() != World.OVERWORLD) return false;
-        return Config.sunderedCadaverSpawnWeight.get() >= 1;
-    }
-    public static boolean necrawFasciiCondition(EntityType<? extends MonsterEntity> entityType, IWorld world, SpawnReason spawnReason, BlockPos pos, Random random) {
-        if (((World) world).dimension() != World.OVERWORLD) return false;
-        return Config.sunderedCadaverSpawnWeight.get() >= 1;
-    }
-    public static boolean canisChordataCondition(EntityType<? extends CreatureEntity> entityType, IWorld world, SpawnReason spawnReason, BlockPos pos, Random random) {
-        if (((World) world).dimension() != World.OVERWORLD) return false;
-        return Config.canisChordataSpawnWeight.get() >= 1;
-    }
+//    public static boolean sunderedCadaverCondition(EntityType<? extends MonsterEntity> entityType, IWorld world, SpawnReason spawnReason, BlockPos pos, Random random) {
+//        if (((World) world).dimension() != World.OVERWORLD) return false;
+//        return Config.sunderedCadaverSpawnWeight.get() > 0;
+//    }
+//    public static boolean necrawFasciiCondition(EntityType<? extends MonsterEntity> entityType, IWorld world, SpawnReason spawnReason, BlockPos pos, Random random) {
+//        if (((World) world).dimension() != World.OVERWORLD) return false;
+//        return Config.sunderedCadaverSpawnWeight.get() > 0;
+//    }
+//    public static boolean canisChordataCondition(EntityType<? extends CreatureEntity> entityType, IWorld world, SpawnReason spawnReason, BlockPos pos, Random random) {
+//        if (((World) world).dimension() != World.OVERWORLD) return false;
+//        return Config.canisChordataSpawnWeight.get() > 0;
+//    }
     public static boolean languidDwellerCondition(EntityType<? extends MonsterEntity> entityType, IWorld world, SpawnReason spawnReason, BlockPos pos, Random random) {
         if (((World) world).dimension() != World.OVERWORLD) return false;
         return pos.getY() <= Config.languidDwellerMaxSpawnHeight.get();
     }
 }
+//    if (Config.sunderedCadaverSpawnWeight.get() > 0) {spawns.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(RigoranthusEntityTypes.SUNDERED_CADAVER.get(), Config.sunderedCadaverSpawnWeight.get(), Config.sunderedCadaverMinGroupSize.get(), Config.sunderedCadaverMaxGroupSize.get()));}
+//    if (Config.necrawFasciiSpawnWeight.get() > 0) {spawns.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(RigoranthusEntityTypes.NECRAW_FASCII.get(), Config.necrawFasciiSpawnWeight.get(), Config.necrawFasciiMinGroupSize.get(), Config.necrawFasciiMaxGroupSize.get()));}
+//    if (Config.canisChordataSpawnWeight.get() > 0) {spawns.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(RigoranthusEntityTypes.CANIS_CHORDATA.get(), Config.canisChordataSpawnWeight.get(), Config.canisChordataMinGroupSize.get(), Config.canisChordataMaxGroupSize.get()));}

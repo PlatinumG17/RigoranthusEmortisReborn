@@ -55,9 +55,9 @@ public class EmortisBiomes {
         MobSpawnInfo.Builder mobbuilder = new MobSpawnInfo.Builder().setPlayerCanSpawn();
         DefaultBiomeFeatures.farmAnimals(mobbuilder);
         DefaultBiomeFeatures.commonSpawns(mobbuilder);
-        mobbuilder.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(RigoranthusEntityTypes.SUNDERED_CADAVER.get(), Config.sunderedCadaverSpawnWeight.get(), Config.sunderedCadaverMaxGroupSize.get(), Config.sunderedCadaverMinGroupSize.get()));
-        mobbuilder.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(RigoranthusEntityTypes.CANIS_CHORDATA.get(), Config.canisChordataSpawnWeight.get(), Config.canisChordataMinGroupSize.get(), Config.canisChordataMaxGroupSize.get()));
-        mobbuilder.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(RigoranthusEntityTypes.NECRAW_FASCII.get(), Config.necrawFasciiSpawnWeight.get(), Config.necrawFasciiMinGroupSize.get(), Config.necrawFasciiMaxGroupSize.get()));
+        mobbuilder.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(RigoranthusEntityTypes.SUNDERED_CADAVER.get(), 100, 1, 6));
+        mobbuilder.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(RigoranthusEntityTypes.CANIS_CHORDATA.get(), 100, 1, 4));
+        mobbuilder.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(RigoranthusEntityTypes.NECRAW_FASCII.get(), 80, 1, 2));
         mobbuilder.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.SHEEP, 12, 4, 4));
         mobbuilder.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.PIG, 10, 4, 4));
         mobbuilder.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.CHICKEN, 10, 4, 4));

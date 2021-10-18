@@ -107,6 +107,7 @@ public class RigoranthusEmortisReborn {
         event.enqueueWork(() -> {
 //            EmortisStructures.setupStructures();
             EmortisMobSpawns.registerSpawns();
+            VanillaCompatRigoranthus.registerDispenserBehaviors();
             VanillaCompatRigoranthus.registerCompostables();
             VanillaCompatRigoranthus.registerFlammables();
 //            AxeItem.STRIPABLES = new ImmutableMap.Builder<Block, Block>().putAll(AxeItem.STRIPABLES)
@@ -161,7 +162,7 @@ public class RigoranthusEmortisReborn {
         RenderingRegistry.registerEntityRenderingHandler(RigoranthusEntityTypes.NECRAW_FASCII.get(), NecrawFasciiRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(RigoranthusEntityTypes.SUNDERED_CADAVER.get(), SunderedCadaverRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(RigoranthusEntityTypes.LANGUID_DWELLER.get(), LanguidDwellerRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(RigoranthusEntityTypes.BONE_ARROW_ENTITY.get(), BoneArrowRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(RigoranthusEntityTypes.BONE_ARROW.get(), BoneArrowRenderer::new);
     }
     private void makeBow(Item item) {
         ItemModelsProperties.register(item, new ResourceLocation("pull"),

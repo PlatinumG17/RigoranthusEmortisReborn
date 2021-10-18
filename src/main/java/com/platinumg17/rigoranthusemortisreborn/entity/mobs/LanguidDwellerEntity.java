@@ -12,6 +12,7 @@ import net.minecraft.entity.monster.SilverfishEntity;
 import net.minecraft.entity.monster.SpiderEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.network.IPacket;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
@@ -20,6 +21,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.fml.network.NetworkHooks;
 
 public class LanguidDwellerEntity extends SpiderEntity {
     public LanguidDwellerEntity(EntityType<? extends SpiderEntity> type, World worldIn) {
@@ -29,10 +31,10 @@ public class LanguidDwellerEntity extends SpiderEntity {
 //    public CreatureAttribute getMobType() {
 //        return CreatureAttribute.UNDEAD;
 //    }
-//    @Override
-//    public IPacket<?> getAddEntityPacket() {
-//        return NetworkHooks.getEntitySpawningPacket(this);
-//    }
+    @Override
+    public IPacket<?> getAddEntityPacket() {
+        return NetworkHooks.getEntitySpawningPacket(this);
+    }
     public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
         return MobEntity.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, Config.languidDwellerMaxHealth.get())

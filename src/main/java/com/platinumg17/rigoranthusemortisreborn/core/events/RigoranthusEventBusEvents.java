@@ -91,6 +91,34 @@ public class RigoranthusEventBusEvents {
         Vector3d vector3d1 = vector3d.add((double) f6 * d0, (double) f5 * d0, (double) f7 * d0);
         return worldIn.clip(new RayTraceContext(vector3d, vector3d1, RayTraceContext.BlockMode.OUTLINE, fluidMode, player));
     }
+
+//    public ItemEntity drop(ItemStack p_146097_1_, boolean p_146097_2_, boolean p_146097_3_) {
+//        ItemEntity itementity = super.drop(p_146097_1_, p_146097_2_, p_146097_3_);
+//        if (itementity == null) {
+//            return null;
+//        } else {
+//            if (captureDrops() != null) captureDrops().add(itementity);
+//            else
+//                this.level.addFreshEntity(itementity);
+//            ItemStack itemstack = itementity.getItem();
+//            if (p_146097_3_) {
+//                if (!itemstack.isEmpty()) {
+//                    this.awardStat(Stats.ITEM_DROPPED.get(itemstack.getItem()), p_146097_1_.getCount());
+//                }
+//
+//                this.awardStat(Stats.DROP);
+//            }
+//
+//            return itementity;
+//        }
+//    }
+//    @SubscribeEvent
+//    public void onPlayerTossEvent(ItemTossEvent event) {
+//        if (event.getPlayer().drop(new ItemStack(ItemInit.BOTTLE_OF_ICHOR.get()), true)) {
+//
+//
+//        }
+//    }
 //    private BlockPos getDownPos(BlockPos entered, IWorld world) {
 //        int i = 0;
 //        while (world.isEmptyBlock(entered) && i < 3) {
@@ -106,32 +134,3 @@ public class RigoranthusEventBusEvents {
         }
     }
 }
-//    @SubscribeEvent
-//    public void onArmorTickEvent(LivingEvent.LivingUpdateEvent event) {
-//    }
-        /*
-    @SubscribeEvent
-    public void onLivingAttack(LivingAttackEvent event) {
-        if(!event.getEntityLiving().getUseItem().isEmpty() && event.getSource() != null && event.getSource().getEntity() != null){
-            if(event.getEntityLiving().getUseItem().getItem() == Registration.PHANTASMAL_NETHERITE_BOOTS){
-                Entity attacker = event.getSource().getEntity();
-                if(attacker instanceof LivingEntity){
-                    boolean flag = false;
-                    if(attacker.distanceTo(event.getEntityLiving()) <= 4 && !((LivingEntity)attacker).hasEffect(RigoranthusEffectRegistry.)){
-                        ((LivingEntity) attacker).addEffect(new EffectInstance(RigoranthusEffectRegistry., 60, 2));
-                        flag = true;
-                    }
-                    if(event.getEntityLiving().isInWaterOrBubble()){
-                        event.getEntityLiving().setAirSupply(Math.min(event.getEntityLiving().getMaxAirSupply(), event.getEntityLiving().getAirSupply() + 150));
-                        flag = true;
-                    }
-                    if(flag){
-                        event.getEntityLiving().getUseItem().hurtAndBreak(1, event.getEntityLiving(), (playerIn) -> {
-                            playerIn.broadcastBreakEvent(event.getEntityLiving().getUsedItemHand());
-                        });
-                    }
-                }
-            }
-        }
-    }
-}*/

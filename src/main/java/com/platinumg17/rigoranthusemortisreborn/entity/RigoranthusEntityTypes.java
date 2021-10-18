@@ -20,7 +20,7 @@ public class RigoranthusEntityTypes {
             = DeferredRegister.create(ForgeRegistries.ENTITIES, RigoranthusEmortisReborn.MOD_ID);
     public static final EntitySubRegistryHelper HELPER = RigoranthusEmortisReborn.REGISTRY_HELPER.getEntitySubHelper();
 
-    public static final RegistryObject<EntityType<BoneArrowEntity>> BONE_ARROW_ENTITY =
+    public static final RegistryObject<EntityType<BoneArrowEntity>> BONE_ARROW =
             HELPER.createEntity("bone_arrow_entity",
                     BoneArrowEntity::new, BoneArrowEntity::new,
                     EntityClassification.MISC, 0.25F, 0.25F);

@@ -164,6 +164,7 @@ public class Config {
     public static ForgeConfigSpec.IntValue apogean_armor_enchantability;
     public static ForgeConfigSpec.DoubleValue apogean_toughness;
     public static ForgeConfigSpec.DoubleValue apogean_knockback_resistance;
+    public static ForgeConfigSpec.BooleanValue enableApogeanArmorClimmbingEffect;
 
     public static ForgeConfigSpec.IntValue aqueous_boots_damage_reduction;
     public static ForgeConfigSpec.IntValue aqueous_leggings_damage_reduction;
@@ -560,6 +561,7 @@ public class Config {
         bone_bow_durability = COMMON_BUILDER.comment(" Set Durability of the Bone Bow.\n Vanilla Bow Default: 384\n Bone Bow Default: 500").defineInRange("durability.bone_bow", 500, 1, 100000);
     }
     private static void setupApogeanConfig(ForgeConfigSpec.Builder COMMON_BUILDER, ForgeConfigSpec.Builder CLIENT_BUILDER) {
+        enableApogeanArmorClimmbingEffect = COMMON_BUILDER.comment(" Enable or Disable the ability to Climb on Walls\n when a full set of Apogean Armor is Equipped.\n Default: True").define("apogean_set_bonus.climbing", true);
         apogean_sword_speed = COMMON_BUILDER.comment(" Default:80\n Default Netherite: 9.0").defineInRange("sword.speed", 80.0, 0.0, 1000);
         apogean_sword_damage = COMMON_BUILDER.comment(" Default:50\n Default Netherite: 4.0").defineInRange("sword.damage", 50, 0, 1000);
 

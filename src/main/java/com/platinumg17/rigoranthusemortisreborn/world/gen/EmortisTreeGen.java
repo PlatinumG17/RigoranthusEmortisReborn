@@ -55,7 +55,9 @@ public class EmortisTreeGen {
                         .decorated(Features.Placements.HEIGHTMAP_SQUARE)
                         .decorated(Placement.COUNT_EXTRA.configured(
                                 new AtSurfaceWithExtraConfig(1, 0.1f, 2))));
-                if (ModList.get().isLoaded("quark")) {base.add(() -> RigoranthusConfiguredFeatures.HEDGES_VERDUROUS);}
+                if (ModList.get().isLoaded("quark")) {
+                    event.getGeneration().getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION).add(() -> RigoranthusConfiguredFeatures.HEDGES_VERDUROUS);
+                }
             }
         }
     }

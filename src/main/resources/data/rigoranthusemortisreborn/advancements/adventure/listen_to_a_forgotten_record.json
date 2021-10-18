@@ -1,5 +1,5 @@
 {
-  "parent": "rigoranthusemortisreborn:story/obtain_a_forgotten_record",
+  "parent": "rigoranthusemortisreborn:adventure/obtain_a_forgotten_record",
   "display": {
     "icon": {
       "item": "rigoranthusemortisreborn:powdered_esotericum"
@@ -16,7 +16,7 @@
     "hidden": false
   },
   "criteria": {
-    "play_record": {
+    "listen_to_a_record": {
       "trigger": "minecraft:item_used_on_block",
       "conditions": {
         "location": {

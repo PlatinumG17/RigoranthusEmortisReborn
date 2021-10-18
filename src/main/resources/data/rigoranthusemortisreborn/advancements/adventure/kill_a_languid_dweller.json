@@ -1,4 +1,5 @@
 {
+  "parent": "rigoranthusemortisreborn:adventure/root",
   "display": {
     "icon": {
       "item": "rigoranthusemortisreborn:dweller_flesh"

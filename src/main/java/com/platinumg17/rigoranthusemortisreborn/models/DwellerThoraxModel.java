@@ -265,7 +265,7 @@ public class DwellerThoraxModel <T extends LivingEntity> extends BipedModel<T> {
             cube_r3_r4_r1.texOffs(15, 10).addBox(-6.4762F, -18.9553F, 7.2207F, 1.0F, 1.0F, 1.0F, 0.0F, true);
 
             bone = new ModelRenderer(this);
-            bone.setPos(0.2F, 6.0F, -0.5F);
+            bone.setPos(0.2F, 4.1F, -0.5F);
             Body.addChild(bone);
             setRotationAngle(bone, 0.1F, 0.0F, 0.0F);
 

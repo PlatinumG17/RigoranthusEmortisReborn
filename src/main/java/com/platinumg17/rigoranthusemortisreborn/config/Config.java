@@ -449,25 +449,25 @@ public class Config {
         COMMON_BUILDER.comment("Misc & Resources").push(CATEGORY_MISC);
 
         enableArmorSetBonuses = COMMON_BUILDER
-                .comment(" Enable or Disable the Full Armor Set Bonuses.").define("armor.enable_or_disable_armor_bonuses", true);
+                .comment(" Enable or Disable the Full Armor Set Bonuses.").define("armor.enable_armor_bonuses", true);
 
         enableBoneWeapons = COMMON_BUILDER
-                .comment(" Enable or Disable Bone Weapons. [Bone Spear/Bow/Arrows]").define("bone.enable_or_disable_bone_weapons", true);
+                .comment(" Enable or Disable Bone Weapons. [Bone Spear/Bow/Arrows]").define("bone.enable_bone_weapons", true);
 
         enableNetheriteAdditions = COMMON_BUILDER
-                .comment(" Enable or Disable the custom Netherite Armors/Weapons.").define("armor.enable_or_disable_netherite_additions", true);
+                .comment(" Enable or Disable the custom Netherite Armors/Weapons.").define("armor.enable_netherite_additions", true);
 
         enableTreeGeneration = COMMON_BUILDER
-                .comment(" Enable or Disable Natural Tree Generation.").define("tree.world_gen", true);
+                .comment(" Enable or Disable Natural Tree & Flower Generation in Verdurous Woodlands.").define("tree.enable_generation", true);
 
         enableSoulCoal = COMMON_BUILDER
-                .comment(" Enable or disable Soul Coal").define("enable.soul_coal", true);
+                .comment(" Enable or disable Soul Coal").define("soul_coal.enable_soul_coal", true);
 
         soulCoalBurnTime = COMMON_BUILDER
-                .comment(" Set the Burn Time of Soul Coal in Ticks.\n [20 ticks = 1 second]\n Default: 3000").defineInRange("burn_time.soul_coal", 3000, 10, 100000);
+                .comment(" Set the Burn Time of Soul Coal in Ticks.\n [20 ticks = 1 second]\n Default: 3000").defineInRange("soul_coal.burn_time", 3000, 10, 100000);
 
         enableUnfiredBricks = COMMON_BUILDER
-                .comment(" Enable or disable Unfired Bricks and Mud Globs.\n (Unfired Bricks add an extra step to crafting bricks that makes it more realistic, mud is useless without this Mod's Datapack)").define("datapack_stuff.bricks", true);
+                .comment(" Enable or disable Unfired Bricks and Mud Globs.\n (Unfired Bricks add an extra step to crafting bricks that makes it more realistic, mud is useless without this Mod's Datapack)").define("datapack_stuff.enable_bricks", true);
 
         COMMON_BUILDER.pop();
 

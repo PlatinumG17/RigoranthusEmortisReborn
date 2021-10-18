@@ -1,0 +1,6 @@
+{
+  "name": "EMORTIC ORIGINS",
+  "landing_text": "$(playername)'s $(#F00)BEASTIARY$()",
+  "version": 1,
+  "model": "patchouli:book_red"
+}

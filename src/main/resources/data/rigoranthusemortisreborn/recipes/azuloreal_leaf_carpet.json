@@ -1,0 +1,22 @@
+{
+  "group": "rigoranthusemortisreborn",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "LL"
+  ],
+  "key": {
+    "P": {
+      "item": "rigoranthusemortisreborn:azuloreal_leaves"
+    }
+  },
+  "result": {
+    "item": "rigoranthusemortisreborn:azuloreal_leaf_carpet",
+    "count": 3
+  },
+  "conditions": [
+    {
+      "type": "abnormals_core:quark_flag",
+      "flag": "leaf_carpet"
+    }
+  ]
+}

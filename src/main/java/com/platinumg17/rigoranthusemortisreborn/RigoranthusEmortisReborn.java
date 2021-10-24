@@ -4,6 +4,7 @@ import com.minecraftabnormals.abnormals_core.core.util.registry.RegistryHelper;
 import com.platinumg17.rigoranthusemortisreborn.blocks.BlockInit;
 import com.platinumg17.rigoranthusemortisreborn.blocks.BuildingBlockInit;
 import com.platinumg17.rigoranthusemortisreborn.blocks.custom.DecorativeOrStorageBlocks;
+import com.platinumg17.rigoranthusemortisreborn.blocks.custom.RigoranthusWoodTypes;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.core.init.*;
 import com.platinumg17.rigoranthusemortisreborn.core.init.fluid.CadaverousIchorFluid;
@@ -17,6 +18,8 @@ import com.platinumg17.rigoranthusemortisreborn.world.EmortisMobSpawns;
 import com.platinumg17.rigoranthusemortisreborn.world.biome.EmortisBiomes;
 import com.platinumg17.rigoranthusemortisreborn.world.biome.EmortisSurfaceBuilder;
 import net.minecraft.block.Block;
+import net.minecraft.block.WoodType;
+import net.minecraft.client.renderer.Atlases;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.Item;
@@ -111,8 +114,8 @@ public class RigoranthusEmortisReborn {
             VanillaCompatRigoranthus.registerDispenserBehaviors();
             VanillaCompatRigoranthus.registerCompostables();
             VanillaCompatRigoranthus.registerFlammables();
-//            WoodType.register(RigoranthusWoodTypes.AZULOREAL);
-//            WoodType.register(RigoranthusWoodTypes.JESSIC);
+            WoodType.register(RigoranthusWoodTypes.AZULOREAL);
+            WoodType.register(RigoranthusWoodTypes.JESSIC);
         });
     }
 
@@ -147,8 +150,8 @@ public class RigoranthusEmortisReborn {
             RenderTypeLookup.setRenderLayer(CadaverousIchorFluid.CADAVEROUS_ICHOR_FLOWING.get(), RenderType.translucent());
 
             makeBow(ItemInit.BONE_BOW.get());
-//            Atlases.addWoodType(RigoranthusWoodTypes.AZULOREAL);
-//            Atlases.addWoodType(RigoranthusWoodTypes.JESSIC);
+            Atlases.addWoodType(RigoranthusWoodTypes.AZULOREAL);
+            Atlases.addWoodType(RigoranthusWoodTypes.JESSIC);
         });
         RenderingRegistry.registerEntityRenderingHandler(RigoranthusEntityTypes.CANIS_CHORDATA.get(), CanisChordataRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(RigoranthusEntityTypes.NECRAW_FASCII.get(), NecrawFasciiRenderer::new);

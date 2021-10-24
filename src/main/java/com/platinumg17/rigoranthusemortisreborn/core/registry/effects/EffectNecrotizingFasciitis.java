@@ -4,12 +4,10 @@ import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusDamageSources;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.AttributeModifierManager;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectType;
-import net.minecraft.util.DamageSource;
 
 public class EffectNecrotizingFasciitis extends Effect {
 
@@ -24,17 +22,14 @@ public class EffectNecrotizingFasciitis extends Effect {
         for(int i = 0; i < 3; i++){
             player.level.addParticle(ParticleTypes.FALLING_NECTAR, player.getRandomX(1.0), player.getRandomY(), player.getRandomZ(1.0), 0, 0, 0);
         }
-        if(player.getDeltaMovement().y > 0 && !player.isInWaterOrBubble()){
-            player.setDeltaMovement(player.getDeltaMovement().multiply(1, 0, 1));
+        if(player.getDeltaMovement().y > 0 && !player.isInWaterOrBubble()) {
+            player.setDeltaMovement(player.getDeltaMovement().multiply(0.25, 0, 0.25));
         }
         damageTimer--;
         if (damageTimer < 0) {
             player.hurt(RigoranthusDamageSources.NECROTIZING_FASCIITIS,  0.1f);
             damageTimer = 100;
         }
-//        if(player.getDeltaMovement().y > 0 && !player.isInWaterOrBubble()){
-//            player.setDeltaMovement(player.getDeltaMovement().multiply(1, 0, 1));
-//        }
     }
 
     public boolean isDurationEffectTick(int duration, int amplifier) {

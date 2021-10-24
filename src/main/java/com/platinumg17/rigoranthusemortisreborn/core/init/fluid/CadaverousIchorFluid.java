@@ -31,12 +31,12 @@ public class CadaverousIchorFluid {
             = FLUIDS.register("cadaverous_ichor_flowing", () -> new ForgeFlowingFluid.Flowing(CadaverousIchorFluid.CADAVEROUS_ICHOR_PROPERTIES));
 
     public static final ForgeFlowingFluid.Properties CADAVEROUS_ICHOR_PROPERTIES = new ForgeFlowingFluid.Properties(
-            () -> CADAVEROUS_ICHOR_FLUID.get(), () -> CADAVEROUS_ICHOR_FLOWING.get(), FluidAttributes.builder(WATER_STILL_RL, WATER_FLOWING_RL)
+            CADAVEROUS_ICHOR_FLUID, CADAVEROUS_ICHOR_FLOWING, FluidAttributes.builder(WATER_STILL_RL, WATER_FLOWING_RL)
             .density(20).luminosity(4).viscosity(20).sound(SoundEvents.HONEY_DRINK).overlay(WATER_OVERLAY_RL).color(0xffa52a2a)).slopeFindDistance(1).levelDecreasePerBlock(2)
-            .block(() -> CadaverousIchorFluid.CADAVEROUS_ICHOR_BLOCK.get()).bucket(() -> ItemInit.BUCKET_OF_CADAVEROUS_ICHOR.get());
+            .block(CadaverousIchorFluid.CADAVEROUS_ICHOR_BLOCK).bucket(ItemInit.BUCKET_OF_CADAVEROUS_ICHOR);
 
     public static final RegistryObject<FlowingFluidBlock> CADAVEROUS_ICHOR_BLOCK = BlockInit.BLOCKS.register("cadaverous_ichor",
-            () -> new FlowingFluidBlock(() -> CadaverousIchorFluid.CADAVEROUS_ICHOR_FLUID.get(), AbstractBlock.Properties.of(Material.WATER)
+            () -> new FlowingFluidBlock(CadaverousIchorFluid.CADAVEROUS_ICHOR_FLUID, AbstractBlock.Properties.of(Material.WATER)
                     .noOcclusion().strength(100f).noDrops()));
 
     public static void register(IEventBus bus) {

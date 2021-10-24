@@ -2,12 +2,9 @@ package com.platinumg17.rigoranthusemortisreborn.entity.mobs.canis;
 
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.Dynamic;
-import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.core.init.network.datasync.DataSerializersRigoranthus;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusSoundRegistry;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.passive.horse.AbstractChestedHorseEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -29,6 +26,7 @@ public class CanisEntity extends AbstractChestedHorseEntity {
     protected CanisEntity(EntityType<? extends AbstractChestedHorseEntity> entity, World worldIn) {
         super(entity, worldIn);
     }
+
     public CanisEvolutionData getCanisEvolutionData() {
         return this.entityData.get(CANIS_EVOLUTION_DATA);
     }
@@ -38,7 +36,9 @@ public class CanisEntity extends AbstractChestedHorseEntity {
     }
 
     protected void levelUp() {
-        this.setCanisEvolutionData(this.getCanisEvolutionData().withLevel(this.getCanisEvolutionData().getLevel() + 1));
+        int setNewLevel = this.getCanisEvolutionData().getLevel() + 1;
+        this.setCanisEvolutionData(this.getCanisEvolutionData().withLevel(setNewLevel));
+        this.setNewStatsByLevel(CanisEvolutionLevels.fromId(setNewLevel));
     }
 
     @Override
@@ -58,7 +58,7 @@ public class CanisEntity extends AbstractChestedHorseEntity {
         }
     }
 
-    public void setNewStatsByLevel(CanisEvolutionLevels levels) {
+    private void setNewStatsByLevel(CanisEvolutionLevels levels) {
         int currentLevel = this.getCanisEvolutionData().getLevel();
         if (currentLevel == 1) {
             this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(CanisStatsByEvolutionLevel.CHORDATA.getMaxHealthForLevel(levels));

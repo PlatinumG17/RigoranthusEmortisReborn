@@ -2,12 +2,7 @@ package com.platinumg17.rigoranthusemortisreborn.entity.goals;
 
 import com.platinumg17.rigoranthusemortisreborn.entity.mobs.SunderedCadaverEntity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
-import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.DamageSource;
 
 public class SunderedCadaverAttackGoal extends MeleeAttackGoal {
 

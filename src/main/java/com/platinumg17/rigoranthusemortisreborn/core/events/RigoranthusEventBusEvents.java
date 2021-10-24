@@ -148,8 +148,6 @@ public class RigoranthusEventBusEvents {
 //    @SubscribeEvent
 //    public void onPlayerTossEvent(ItemTossEvent event) {
 //        if (event.getPlayer().drop(new ItemStack(ItemInit.BOTTLE_OF_ICHOR.get()), true)) {
-//
-//
 //        }
 //    }
 //    private BlockPos getDownPos(BlockPos entered, IWorld world) {

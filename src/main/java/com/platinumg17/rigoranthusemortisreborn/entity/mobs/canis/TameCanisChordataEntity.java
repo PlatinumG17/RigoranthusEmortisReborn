@@ -1,43 +1,43 @@
-package com.platinumg17.rigoranthusemortisreborn.entity.mobs;
-
-import com.platinumg17.rigoranthusemortisreborn.config.Config;
-import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
-import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusSoundRegistry;
-import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusTagRegistry;
-import com.platinumg17.rigoranthusemortisreborn.entity.RigoranthusEntityTypes;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.controller.BodyController;
-import net.minecraft.entity.ai.controller.LookController;
-import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.item.BoatEntity;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.passive.horse.AbstractChestedHorseEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.particles.IParticleData;
-import net.minecraft.particles.ItemParticleData;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.*;
-import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-
-import javax.annotation.Nullable;
-import java.util.Random;
-import java.util.UUID;
+package com.platinumg17.rigoranthusemortisreborn.entity.mobs.canis;
+//
+//import com.platinumg17.rigoranthusemortisreborn.config.Config;
+//import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
+//import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusSoundRegistry;
+//import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusTagRegistry;
+//import com.platinumg17.rigoranthusemortisreborn.entity.RigoranthusEntityTypes;
+//import net.minecraft.entity.*;
+//import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+//import net.minecraft.entity.ai.attributes.Attributes;
+//import net.minecraft.entity.ai.controller.BodyController;
+//import net.minecraft.entity.ai.controller.LookController;
+//import net.minecraft.entity.ai.goal.*;
+//import net.minecraft.entity.item.BoatEntity;
+//import net.minecraft.entity.item.ItemEntity;
+//import net.minecraft.entity.passive.horse.AbstractChestedHorseEntity;
+//import net.minecraft.entity.player.PlayerEntity;
+//import net.minecraft.inventory.EquipmentSlotType;
+//import net.minecraft.item.Item;
+//import net.minecraft.item.ItemStack;
+//import net.minecraft.item.crafting.Ingredient;
+//import net.minecraft.nbt.CompoundNBT;
+//import net.minecraft.network.datasync.DataParameter;
+//import net.minecraft.network.datasync.DataSerializers;
+//import net.minecraft.network.datasync.EntityDataManager;
+//import net.minecraft.particles.IParticleData;
+//import net.minecraft.particles.ItemParticleData;
+//import net.minecraft.particles.ParticleTypes;
+//import net.minecraft.util.*;
+//import net.minecraft.util.math.BlockPos;
+//import net.minecraft.util.math.MathHelper;
+//import net.minecraft.util.math.vector.Vector3d;
+//import net.minecraft.world.*;
+//import net.minecraft.world.server.ServerWorld;
+//import net.minecraftforge.api.distmarker.Dist;
+//import net.minecraftforge.api.distmarker.OnlyIn;
+//
+//import javax.annotation.Nullable;
+//import java.util.Random;
+//import java.util.UUID;
 //
 //public class TameCanisChordataEntity extends AbstractChestedHorseEntity implements IAngerable {
 //    private static final DataParameter<Integer> EVOLUTION_LEVEL = EntityDataManager.defineId(CanisChordataEntity.class, DataSerializers.INT);
@@ -53,6 +53,7 @@ import java.util.UUID;
 //    public static final EntitySize SITTING_DIMENSIONS = EntitySize.scalable(0.6F, 1.0F);
 //
 //    private static final RangedInteger ANGER_RANGE = TickRangeConverter.rangeOfSeconds(20, 39);
+//    public static boolean isHomini;
 //    private UUID lastHurtBy;
 //    private int attackTimer;
 //    private int runningStamina = 20 + this.random.nextInt(40);
@@ -154,15 +155,15 @@ import java.util.UUID;
 //        this.setSitting(compound.getBoolean("Sitting"));
 //    }
 //
-//    @Override
-//    protected BodyController createBodyControl() {
-//        return new CanisChordataEntity.BodyHelperController();
-//    }
-//
-//    @Override
-//    protected PathNavigator createNavigation(World worldIn) {
-//        return new RunnerPathNavigator(this, worldIn);
-//    }
+////    @Override
+////    protected BodyController createBodyControl() {
+////        return new CanisChordataEntity.BodyHelperController();
+////    }
+////
+////    @Override
+////    protected PathNavigator createNavigation(World worldIn) {
+////        return new RunnerPathNavigator(this, worldIn);
+////    }
 //
 //    protected SoundEvent getAngrySound() {
 //        super.getAngrySound();
@@ -555,42 +556,17 @@ import java.util.UUID;
 //
 //    // SPAWNING //
 //
-//    public static boolean canChimpanzeeSpawn(EntityType<CanisChordataEntity> entity, IWorld world, SpawnReason reason, BlockPos pos, Random random) {
+//    public static boolean canCanisSpawn(EntityType<CanisChordataEntity> entity, IWorld world, SpawnReason reason, BlockPos pos, Random random) {
 //        return world.getRawBrightness(pos, 0) > 8;
 //    }
 //
 //    @Override
 //    public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
 //        spawnDataIn = super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
-//        this.setTypeForPosition(this, worldIn);
 //        this.setHunger(this.random.nextInt(4800));
 //        this.setWetness(this.random.nextInt(4800));
 //        this.populateDefaultEquipmentSlots(difficultyIn);
 //        return spawnDataIn;
-//    }
-//
-//    public void setTypeForPosition(CanisChordataEntity entity, IWorld worldIn) {
-//        if (worldIn.getBiome(this.blockPosition()).getRegistryName().getPath().contains("rainforest")) {
-//            entity.setCanisEvolutionLevel(CanisEvolutionLevels.RAINFOREST.getId());
-//        } else if (worldIn.getBiome(this.blockPosition()).getRegistryName().getPath().contains("bamboo")) {
-//            entity.setCanisEvolutionLevel(CanisEvolutionLevels.BAMBOO.getId());
-//        } else {
-//            entity.setCanisEvolutionLevel(CanisEvolutionLevels.JUNGLE.getId());
-//        }
-//    }
-//
-//    protected void populateDefaultEquipmentSlots(DifficultyInstance difficultyIn) {
-//        if (this.random.nextFloat() < 0.1F) {
-//            float f = this.random.nextFloat();
-//            ItemStack itemstack;
-//            if (f < 0.6F) {
-//                if (this.level.getBiome(this.blockPosition()).getRegistryName().getPath().contains("bamboo")) {
-//                    itemstack = new ItemStack(ItemInit.BONE_BOW.get());
-//                }
-//            }
-//            this.setItemSlot(EquipmentSlotType.MAINHAND, itemstack);
-//        }
-//
 //    }
 //
 //    @Override
@@ -599,8 +575,6 @@ import java.util.UUID;
 //        baby.setCanisEvolutionLevel(this.random.nextBoolean() ? this.getCanisEvolutionLevel() : ((CanisChordataEntity)ageableEntity).getCanisEvolutionLevel());
 //        return baby;
 //    }
-//
-//    // DATA //
 //
 //    public int getCanisEvolutionLevel() {
 //        return this.entityData.get(EVOLUTION_LEVEL);
@@ -723,10 +697,6 @@ import java.util.UUID;
 //        this.setDirtiness(0);
 //    }
 //
-//    public boolean isInSunlight() {
-//        BlockPos blockpos = this.getVehicle() instanceof BoatEntity ? (new BlockPos(this.getX(), (double)Math.round(this.getY()), this.getZ())).above() : new BlockPos(this.getX(), (double)Math.round(this.getY()), this.getZ());
-//        return this.level.getBrightness(LightType.SKY, blockpos) > 8;
-//    }
 //
 //    // ACTION STUFF //
 //
@@ -825,77 +795,6 @@ import java.util.UUID;
 //            this.shakeHead(ParticleTypes.CANIS_NEEDS_FOOD.get());
 //        } else {
 //            super.handleEntityEvent(id);
-//        }
-//    }
-//
-//    // CONTROLLERS //
-//
-//    class LookHelperController extends LookController {
-//
-//        public LookHelperController() {
-//            super(CanisChordataEntity.this);
-//        }
-//
-//        public void tick() {
-//            if (this.resetXRotOnTick()) {
-//                CanisChordataEntity.this.xRot = 0.0F;
-//            }
-//
-//            if (this.hasWanted) {
-//                this.hasWanted = false;
-//                CanisChordataEntity.this.yHeadRot = this.rotateTowards(CanisChordataEntity.this.yHeadRot, this.getYRotD(), this.yMaxRotSpeed);
-//                CanisChordataEntity.this.xRot = this.rotateTowards(CanisChordataEntity.this.xRot, this.getXRotD(), this.xMaxRotAngle);
-//            } else {
-//                CanisChordataEntity.this.yHeadRot = this.rotateTowards(CanisChordataEntity.this.yHeadRot, CanisChordataEntity.this.yBodyRot, 10.0F);
-//            }
-//
-//            Direction facing = CanisChordataEntity.this.getFacing();
-//            if (CanisChordataEntity.this.isDoingAction(CanisAction.RUNNING) && facing != Direction.DOWN) {
-//                CanisChordataEntity.this.yHeadRot = MathHelper.rotateIfNecessary(CanisChordataEntity.this.yHeadRot, facing.toYRot(), (float)CanisChordataEntity.this.getMaxHeadYRot());
-//            } else if (!CanisChordataEntity.this.getNavigation().isDone()) {
-//                CanisChordataEntity.this.yHeadRot = MathHelper.rotateIfNecessary(CanisChordataEntity.this.yHeadRot, CanisChordataEntity.this.yBodyRot, (float)CanisChordataEntity.this.getMaxHeadYRot());
-//            }
-//        }
-//    }
-//
-//    class BodyHelperController extends BodyController {
-//        private int bodyRotationTickCounter;
-//        private Direction prevFacing;
-//
-//        public BodyHelperController() {
-//            super(CanisChordataEntity.this);
-//        }
-//
-//        public void clientTick() {
-//            super.clientTick();
-//
-//            Direction facing = CanisChordataEntity.this.getFacing();
-//
-//            if (facing != this.prevFacing || !CanisChordataEntity.this.isDoingAction(CanisAction.RUNNING)) {
-//                this.bodyRotationTickCounter = 10;
-//            }
-//
-//            this.prevFacing = facing;
-//
-//            if (facing != Direction.DOWN && CanisChordataEntity.this.isDoingAction(CanisAction.RUNNING)) {
-//                int i = this.bodyRotationTickCounter;
-//                float f = MathHelper.clamp((float)i / 10.0F, 0.0F, 1.0F);
-//                float f1 = 90.0F * f;
-//                CanisChordataEntity.this.yBodyRot = MathHelper.rotateIfNecessary(CanisChordataEntity.this.yBodyRot, facing.toYRot(), f1);
-//
-//                if (this.bodyRotationTickCounter > 0) {
-//                    --this.bodyRotationTickCounter;
-//                }
-//            } else if (facing != Direction.DOWN && CanisChordataEntity.this.isDoingAction(CanisAction.RUNNING)) {
-//                int i = this.bodyRotationTickCounter;
-//                float f = MathHelper.clamp((float)i / 10.0F, 0.0F, 1.0F);
-//                float f1 = 90.0F * f;
-//                CanisChordataEntity.this.yBodyRot = MathHelper.rotateIfNecessary(CanisChordataEntity.this.yBodyRot, facing.toYRot(), f1);
-//
-//                if (this.bodyRotationTickCounter > 0) {
-//                    --this.bodyRotationTickCounter;
-//                }
-//            }
 //        }
 //    }
 //}

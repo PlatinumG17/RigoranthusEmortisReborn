@@ -260,13 +260,14 @@ public class Config {
 
     public static ForgeConfigSpec.BooleanValue enableTreeGeneration;
     public static ForgeConfigSpec.IntValue verdurousWoodlandsSpawnWeight;
+    public static ForgeConfigSpec.IntValue verdurousFieldsSpawnWeight;
     public static ForgeConfigSpec.IntValue jessicSpawnWeight;
     public static ForgeConfigSpec.IntValue loomingJessicSpawnWeight;
     public static ForgeConfigSpec.IntValue megaJessicSpawnWeight;
     public static ForgeConfigSpec.IntValue azulorealSpawnWeight;
     public static ForgeConfigSpec.IntValue loomingAzulorealSpawnWeight;
     public static ForgeConfigSpec.IntValue megaAzulorealSpawnWeight;
-    public static ForgeConfigSpec.IntValue lakeSpawnWeight;
+    public static ForgeConfigSpec.IntValue bambooSpawnWeight;
 
     public static ForgeConfigSpec.DoubleValue sunderedCadaverMovementSpeed;
     public static ForgeConfigSpec.DoubleValue sunderedCadaverAttackDamage;
@@ -525,8 +526,9 @@ public class Config {
         canisChordataKnockbackResistance = COMMON_BUILDER.comment(" How well does this mob stay in one place while players attack it.\n Default: 0.4").defineInRange("canis.knockback_resistance", 0.4, 0.0, 100);
     }
     private static void setupBiomeConfig(ForgeConfigSpec.Builder COMMON_BUILDER, ForgeConfigSpec.Builder CLIENT_BUILDER) {
-        verdurousWoodlandsSpawnWeight = COMMON_BUILDER.comment(" How likely Verdurous Woodlands Biome is to Spawn.\n [Set to 0 to Disable Biome Generation]").defineInRange("biome.spawn_weight", 20, 0, 1000);
-        lakeSpawnWeight = COMMON_BUILDER.comment(" Spawn Weight of Lakes in the Verdurous Woodlands Biome.\n [Set to 0 to Disable Lake Generation]").defineInRange("biome.lake_spawn_weight", 2, 0, 1000);
+        verdurousWoodlandsSpawnWeight = COMMON_BUILDER.comment(" How likely Verdurous Woodlands Biome is to Spawn.\n [Set to 0 to Disable Biome Generation]").defineInRange("biome.spawn_weight", 15, 0, 1000);
+        verdurousFieldsSpawnWeight = COMMON_BUILDER.comment(" How likely Verdurous Fields Biome is to Spawn.\n [Set to 0 to Disable Biome Generation]").defineInRange("biome.spawn_weight", 10, 0, 1000);
+        bambooSpawnWeight = COMMON_BUILDER.comment(" Spawn Weight of Bamboo in the Verdurous Woodlands Biome.\n [Set to 0 to Disable Bamboo Generation]").defineInRange("biome.bamboo_spawn_weight", 80, 0, 1000);
 
         jessicSpawnWeight = COMMON_BUILDER.comment(" Spawn Weight of Jessic Trees in Verdurous Woodlands Biome.\n [Set to 0 to Disable Generation]").defineInRange("jessic.jessic_spawn_weight", 10, 0, 1000);
         loomingJessicSpawnWeight = COMMON_BUILDER.comment(" Spawn Weight of Looming Jessic Trees in Verdurous Woodlands Biome.\n [Set to 0 to Disable Generation]").defineInRange("jessic.looming_jessic_spawn_weight", 8, 0, 1000);

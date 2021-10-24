@@ -1,4 +1,4 @@
-package com.platinumg17.rigoranthusemortisreborn.models;
+package com.platinumg17.rigoranthusemortisreborn.items.armor.models;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;

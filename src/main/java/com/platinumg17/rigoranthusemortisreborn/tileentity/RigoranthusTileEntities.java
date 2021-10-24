@@ -1,7 +1,6 @@
 package com.platinumg17.rigoranthusemortisreborn.tileentity;
 
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
-import com.platinumg17.rigoranthusemortisreborn.core.init.BlockInit;
 
 import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
 import net.minecraft.tileentity.TileEntityType;

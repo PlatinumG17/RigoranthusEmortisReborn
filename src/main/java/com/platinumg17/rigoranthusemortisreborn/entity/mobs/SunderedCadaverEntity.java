@@ -2,11 +2,17 @@ package com.platinumg17.rigoranthusemortisreborn.entity.mobs;
 
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusSoundRegistry;
+import com.platinumg17.rigoranthusemortisreborn.core.registry.effects.RigoranthusEffectRegistry;
+import com.platinumg17.rigoranthusemortisreborn.entity.goals.SunderedCadaverAttackGoal;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.brain.task.WalkRandomlyTask;
+import net.minecraft.entity.ai.controller.MovementController;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
 import net.minecraft.entity.monster.ZombieEntity;
@@ -16,6 +22,7 @@ import net.minecraft.network.IPacket;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
@@ -31,40 +38,33 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 public class SunderedCadaverEntity extends ZombieEntity implements IAnimatable {
-    public SunderedCadaverEntity(EntityType<? extends ZombieEntity> type, World worldIn) {
-        super(type, worldIn);
-        this.noCulling = true;
-    }
-    @Override
-    public IPacket<?> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
-    }
-//    @Override
-//    public CreatureAttribute getMobType() {
-//        return CreatureAttribute.UNDEAD;
-//    }
-
     public static final DataParameter<Integer> STATE = EntityDataManager.defineId(SunderedCadaverEntity.class, DataSerializers.INT);
     private final AnimationFactory animationFactory = new AnimationFactory(this);
 
+    public SunderedCadaverEntity(EntityType<? extends ZombieEntity> type, World worldIn) {
+        super(type, worldIn);
+        this.noCulling = true;
+        //this.moveControl = new MovementController(this);
+    }
+
     private <E extends IAnimatable> PlayState animationPredicate(AnimationEvent<E> event) {
         if (!this.dead && !this.isDeadOrDying()) {
-            if (this.getState() == SunderedCadaverEntity.State.ATTACKING) {
+            if (this.getState() == State.ATTACKING) {
                 event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.sundered_cadaver.attacking", false));
                 return PlayState.CONTINUE;
             }
+            else if (this.getState() == State.WALKING) {
+                event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.sundered_cadaver.walking", true));
+                return PlayState.CONTINUE;
+            }
         }
-        if (event.isMoving()) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.sundered_cadaver.walking", true));
-        } else {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.sundered_cadaver.idle", true));
-        }
+        event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.sundered_cadaver.idle", true));
         return PlayState.CONTINUE;
     }
 
     @Override
     public void registerControllers(AnimationData animationData) {
-        animationData.addAnimationController(new AnimationController<>(this, "controller", 0, this::animationPredicate));
+        animationData.addAnimationController(new AnimationController<SunderedCadaverEntity>(this, "controller", 0, this::animationPredicate));
     }
     @Override
     public AnimationFactory getFactory() {
@@ -72,15 +72,15 @@ public class SunderedCadaverEntity extends ZombieEntity implements IAnimatable {
     }
 
     public enum State {
-        ATTACKING, IDLE//, WALKING//, MOVING
+        IDLE, ATTACKING, WALKING
     }
 
-    public SunderedCadaverEntity.State getState() {
-        SunderedCadaverEntity.State[] states = SunderedCadaverEntity.State.values();
+    public State getState() {
+        State[] states = State.values();
         return states[MathHelper.clamp(this.entityData.get(STATE), 0, states.length - 1)];
     }
 
-    public void setState(SunderedCadaverEntity.State state) {
+    public void setState(State state) {
         this.entityData.set(STATE, state.ordinal());
     }
 
@@ -92,7 +92,7 @@ public class SunderedCadaverEntity extends ZombieEntity implements IAnimatable {
 
     @Override
     public int getMaxSpawnClusterSize() {
-        return 8;//Config.sunderedCadaverMaxGroupSize.get();
+        return 8;
     }
 
     public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
@@ -105,7 +105,17 @@ public class SunderedCadaverEntity extends ZombieEntity implements IAnimatable {
                 .add(Attributes.KNOCKBACK_RESISTANCE, Config.sunderedCadaverKnockbackResistance.get())
                 .add(Attributes.FOLLOW_RANGE, 50.0D).add(Attributes.SPAWN_REINFORCEMENTS_CHANCE);
     }
-
+    @Override
+    public boolean doHurtTarget(Entity entityIn) {
+        if (!super.doHurtTarget(entityIn)) {
+            return false;
+        } else {
+            if (entityIn instanceof LivingEntity) {
+                this.setState(State.ATTACKING);
+            }
+            return true;
+        }
+    }
     @Override
     public boolean hurt(DamageSource source, float amount) {
         if (source == DamageSource.FALL)
@@ -116,18 +126,23 @@ public class SunderedCadaverEntity extends ZombieEntity implements IAnimatable {
     @Override
     protected void registerGoals() {
         super.registerGoals();
-        this.goalSelector.addGoal( 1, new NearestAttackableTargetGoal<>( this, PlayerEntity.class, true));
-        this.goalSelector.addGoal(2, new ZombieAttackGoal(this, 1.0D, false));
-        this.goalSelector.addGoal(3, new LeapAtTargetGoal(this, (float) 1.1));
-        this.goalSelector.addGoal(5, new FollowMobGoal(this, (float) 1, 10, 5));
-        this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
-        this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-        this.goalSelector.addGoal(8, new SwimGoal(this));
-        this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers(this.getClass()));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true, false));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillagerEntity.class, false));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
+        this.goalSelector.addGoal(0, new SwimGoal(this));
+        //this.goalSelector.addGoal(2, new RandomWalkingGoal(this, 1.0f));
+        this.goalSelector.addGoal(5, new MoveTowardsTargetGoal(this, 1.0f, 8));
+        this.goalSelector.addGoal(4, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+        this.goalSelector.addGoal(3, new LookRandomlyGoal(this));
+        this.targetSelector.addGoal(1, new SunderedCadaverAttackGoal(this, 1, false));
+//        this.goalSelector.addGoal(5, new FollowMobGoal(this, (float) 1, 10, 5));
+//        this.targetSelector.addGoal(2, (new HurtByTargetGoal(this)).setAlertOthers(this.getClass()));
     }
+
+//    @Override
+//    protected void updateControlFlags() {
+//        super.updateControlFlags();
+//        this.goalSelector.setControlFlag(Goal.Flag.MOVE, true);
+//        this.goalSelector.setControlFlag(Goal.Flag.JUMP, true);
+//        this.goalSelector.setControlFlag(Goal.Flag.LOOK, true);
+//    }
 
     @Override
     protected int getExperienceReward(PlayerEntity player) {
@@ -144,5 +159,8 @@ public class SunderedCadaverEntity extends ZombieEntity implements IAnimatable {
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) { return RigoranthusSoundRegistry.CADAVER_HURT.get();}
     @Override
-    protected void playStepSound(BlockPos pos, BlockState blockIn) { this.playSound(RigoranthusSoundRegistry.UNDEAD_STEP.get(), 0.20F, 0.5F);}
+    protected void playStepSound(BlockPos pos, BlockState blockIn) {
+        this.playSound(RigoranthusSoundRegistry.UNDEAD_STEP.get(), 0.20F, 0.5F);
+        this.setState(State.WALKING);
+    }
 }

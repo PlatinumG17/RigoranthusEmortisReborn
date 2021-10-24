@@ -1,7 +1,8 @@
-package com.platinumg17.rigoranthusemortisreborn.core.init;
+package com.platinumg17.rigoranthusemortisreborn.blocks;
 
 import com.google.common.collect.Maps;
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
+import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusItemGroup;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;

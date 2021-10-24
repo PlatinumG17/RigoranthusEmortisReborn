@@ -1,4 +1,4 @@
-package com.platinumg17.rigoranthusemortisreborn.world.gen;
+package com.platinumg17.rigoranthusemortisreborn.world.gen.feature;
 
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;

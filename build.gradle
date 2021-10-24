@@ -88,7 +88,7 @@ dependencies {
 //    implementation fg.deobf("vazkii.patchouli:Patchouli:1.16.4-53.2")
     runtimeOnly fg.deobf("curse.maven:autoreglib-250363:3128555")
     runtimeOnly fg.deobf("curse.maven:quark-243121:3221260")
-//    compileOnly fg.deobf("info.u-team:u_team_core-1.16.5:3.2.1.196")
+    compileOnly fg.deobf("info.u-team:u_team_core-1.16.5:3.2.1.196")
     compileOnly fg.deobf("curse.maven:obfuscate-289380:3000205")
     compileOnly fg.deobf("mezz.jei:jei-1.16.5:${project.jei_version}:api")
     runtimeOnly fg.deobf("mezz.jei:jei-1.16.5:${project.jei_version}")
@@ -108,7 +108,7 @@ repositories {
     }
     maven { url = "https://maven.jaackson.me" }
     maven { url = "https://dvs1.progwml6.com/files/maven/" }
-//    maven { url = "https://repo.u-team.info" }
+    maven { url = "https://repo.u-team.info" }
     maven { name = "ModMaven"
         url = "https://modmaven.k-4u.nl" }
     maven { url = 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }

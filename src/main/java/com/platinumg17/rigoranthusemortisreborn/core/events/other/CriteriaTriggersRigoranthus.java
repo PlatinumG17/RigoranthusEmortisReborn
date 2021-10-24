@@ -1,4 +1,4 @@
-package com.platinumg17.rigoranthusemortisreborn.core.other;
+package com.platinumg17.rigoranthusemortisreborn.core.events.other;
 
 import com.minecraftabnormals.abnormals_core.common.advancement.EmptyTrigger;
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;

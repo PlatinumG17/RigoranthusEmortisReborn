@@ -1,16 +1,17 @@
 package com.platinumg17.rigoranthusemortisreborn;
 
 import com.minecraftabnormals.abnormals_core.core.util.registry.RegistryHelper;
+import com.platinumg17.rigoranthusemortisreborn.blocks.BlockInit;
+import com.platinumg17.rigoranthusemortisreborn.blocks.BuildingBlockInit;
 import com.platinumg17.rigoranthusemortisreborn.blocks.custom.DecorativeOrStorageBlocks;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.core.init.*;
+import com.platinumg17.rigoranthusemortisreborn.core.init.fluid.CadaverousIchorFluid;
 import com.platinumg17.rigoranthusemortisreborn.core.init.network.messages.Messages;
-import com.platinumg17.rigoranthusemortisreborn.core.other.VanillaCompatRigoranthus;
-import com.platinumg17.rigoranthusemortisreborn.core.registry.BiomeRegistration;
+import com.platinumg17.rigoranthusemortisreborn.core.events.other.VanillaCompatRigoranthus;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusSoundRegistry;
 import com.platinumg17.rigoranthusemortisreborn.entity.RigoranthusEntityTypes;
 import com.platinumg17.rigoranthusemortisreborn.entity.render.*;
-import com.platinumg17.rigoranthusemortisreborn.fluid.CadaverousIchorFluid;
 import com.platinumg17.rigoranthusemortisreborn.tileentity.RigoranthusTileEntities;
 import com.platinumg17.rigoranthusemortisreborn.world.EmortisMobSpawns;
 import com.platinumg17.rigoranthusemortisreborn.world.biome.EmortisBiomes;
@@ -39,6 +40,8 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import software.bernie.geckolib3.GeckoLib;
+import software.bernie.geckolib3.network.GeckoLibNetwork;
 
 @Mod("rigoranthusemortisreborn")
 @Mod.EventBusSubscriber(modid = RigoranthusEmortisReborn.MOD_ID, bus = Bus.MOD)
@@ -77,15 +80,9 @@ public class RigoranthusEmortisReborn {
 
         Config.loadConfig(Config.CLIENT_CONFIG, FMLPaths.CONFIGDIR.get().resolve("rigoranthusemortisreborn-client.toml"));
         Config.loadConfig(Config.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve("rigoranthusemortisreborn.toml"));
-
         FMLJavaModLoadingContext.get().getModEventBus().addListener(ScreenInit::init);
-        registerBiomeBuilders();
-    }
-
-    private void registerBiomeBuilders() {
-        BiomeRegistration.init();
-        EmortisBiomes.register();
-        EmortisSurfaceBuilder.register();
+        GeckoLib.initialize();
+        GeckoLibNetwork.initialize();
     }
 	
     @SubscribeEvent
@@ -105,16 +102,15 @@ public class RigoranthusEmortisReborn {
     }
     private void setup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
+            EmortisBiomes.registerBiomesToDictionary();
+            EmortisBiomes.addBiomeTypes();
+            EmortisBiomes.addBiomeVariants();
+            EmortisSurfaceBuilder.Configured.registerConfiguredSurfaceBuilders();;
 //            EmortisStructures.setupStructures();
             EmortisMobSpawns.registerSpawns();
             VanillaCompatRigoranthus.registerDispenserBehaviors();
             VanillaCompatRigoranthus.registerCompostables();
             VanillaCompatRigoranthus.registerFlammables();
-//            AxeItem.STRIPABLES = new ImmutableMap.Builder<Block, Block>().putAll(AxeItem.STRIPABLES)
-//                    .put(DecorativeOrStorageBlocks.JESSIC_LOG.get(), DecorativeOrStorageBlocks.STRIPPED_JESSIC_LOG.get())
-//                    .put(DecorativeOrStorageBlocks.JESSIC_WOOD.get(), DecorativeOrStorageBlocks.STRIPPED_JESSIC_WOOD.get())
-//                    .put(DecorativeOrStorageBlocks.AZULOREAL_LOG.get(), DecorativeOrStorageBlocks.STRIPPED_AZULOREAL_LOG.get())
-//                    .put(DecorativeOrStorageBlocks.AZULOREAL_WOOD.get(), DecorativeOrStorageBlocks.STRIPPED_AZULOREAL_WOOD.get()).build();
 //            WoodType.register(RigoranthusWoodTypes.AZULOREAL);
 //            WoodType.register(RigoranthusWoodTypes.JESSIC);
         });
@@ -131,7 +127,6 @@ public class RigoranthusEmortisReborn {
             RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.JESSIC_POST.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.STRIPPED_JESSIC_POST.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.JESSIC_HEDGE.get(), RenderType.cutoutMipped());
-
             RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.AZULOREAL_DOOR.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.AZULOREAL_TRAPDOOR.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.AZULOREAL_LEAVES.get(), RenderType.cutoutMipped());
@@ -141,14 +136,11 @@ public class RigoranthusEmortisReborn {
             RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.AZULOREAL_POST.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.STRIPPED_AZULOREAL_POST.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.AZULOREAL_HEDGE.get(), RenderType.cutoutMipped());
-
             RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.AZULOREAL_ORCHID.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.IRIDESCENT_SPROUTS.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(BuildingBlockInit.LISIANTHUS.get(), RenderType.cutout());
 
             RenderTypeLookup.setRenderLayer(Registration.MASTERFUL_SMELTERY.get(), RenderType.cutout());
-            //RenderTypeLookup.setRenderLayer(//new DwellerThoraxModel(), RenderType.armorCutoutNoCull(new ResourceLocation("rigoranthusemortisreborn")));
-            //        Block.byItem(ItemInit.DWELLER_THORAX.get()), RenderType.armorCutoutNoCull(new ResourceLocation("rigoranthusemortisreborn:textures/dweller_chestplate.png")));
 
             RenderTypeLookup.setRenderLayer(CadaverousIchorFluid.CADAVEROUS_ICHOR_FLUID.get(), RenderType.translucent());
             RenderTypeLookup.setRenderLayer(CadaverousIchorFluid.CADAVEROUS_ICHOR_BLOCK.get(), RenderType.translucent());
@@ -165,16 +157,11 @@ public class RigoranthusEmortisReborn {
         RenderingRegistry.registerEntityRenderingHandler(RigoranthusEntityTypes.BONE_ARROW.get(), BoneArrowRenderer::new);
     }
     private void makeBow(Item item) {
-        ItemModelsProperties.register(item, new ResourceLocation("pull"),
-                (p_239429_0_, p_239429_1_, p_239429_2_) -> {
-            if (p_239429_2_ == null) {
-                return 0.0F;
-            } else {
-                return p_239429_2_.getUseItem() != p_239429_0_ ? 0.0F : (float) (p_239429_0_.getUseDuration() - p_239429_2_.getUseItemRemainingTicks()) / 20.0F;
-            }
+        ItemModelsProperties.register(item, new ResourceLocation("pull"), (p_239429_0_, p_239429_1_, p_239429_2_) -> {
+            if (p_239429_2_ == null) {return 0.0F;}
+            else {return p_239429_2_.getUseItem() != p_239429_0_ ? 0.0F : (float) (p_239429_0_.getUseDuration() - p_239429_2_.getUseItemRemainingTicks()) / 20.0F;}
         });
-        ItemModelsProperties.register(item, new ResourceLocation("pulling"),
-                (p_239428_0_, p_239428_1_, p_239428_2_) -> {
+        ItemModelsProperties.register(item, new ResourceLocation("pulling"), (p_239428_0_, p_239428_1_, p_239428_2_) -> {
             return p_239428_2_ != null && p_239428_2_.isUsingItem() && p_239428_2_.getUseItem() == p_239428_0_ ? 1.0F : 0.0F;
         });
     }

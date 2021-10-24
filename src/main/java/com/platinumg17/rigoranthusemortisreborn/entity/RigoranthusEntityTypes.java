@@ -3,7 +3,7 @@ package com.platinumg17.rigoranthusemortisreborn.entity;
 import com.minecraftabnormals.abnormals_core.core.util.registry.EntitySubRegistryHelper;
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.entity.item.BoneArrowEntity;
-import com.platinumg17.rigoranthusemortisreborn.entity.mobs.CanisChordataEntity;
+import com.platinumg17.rigoranthusemortisreborn.entity.mobs.canis.CanisChordataEntity;
 import com.platinumg17.rigoranthusemortisreborn.entity.mobs.LanguidDwellerEntity;
 import com.platinumg17.rigoranthusemortisreborn.entity.mobs.NecrawFasciiEntity;
 import com.platinumg17.rigoranthusemortisreborn.entity.mobs.SunderedCadaverEntity;

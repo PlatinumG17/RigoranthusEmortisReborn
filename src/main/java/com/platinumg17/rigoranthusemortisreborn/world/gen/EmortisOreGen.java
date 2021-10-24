@@ -1,6 +1,7 @@
 package com.platinumg17.rigoranthusemortisreborn.world.gen;
 
 import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
+import com.platinumg17.rigoranthusemortisreborn.world.gen.feature.OreType;
 import net.minecraft.block.Block;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;

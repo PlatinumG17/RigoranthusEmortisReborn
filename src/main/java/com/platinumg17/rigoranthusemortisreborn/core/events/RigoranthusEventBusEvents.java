@@ -5,15 +5,18 @@ import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
 import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.effects.RigoranthusEffectRegistry;
 import com.platinumg17.rigoranthusemortisreborn.entity.RigoranthusEntityTypes;
-import com.platinumg17.rigoranthusemortisreborn.entity.mobs.CanisChordataEntity;
+import com.platinumg17.rigoranthusemortisreborn.entity.mobs.canis.CanisChordataEntity;
 import com.platinumg17.rigoranthusemortisreborn.entity.mobs.LanguidDwellerEntity;
 import com.platinumg17.rigoranthusemortisreborn.entity.mobs.NecrawFasciiEntity;
 import com.platinumg17.rigoranthusemortisreborn.entity.mobs.SunderedCadaverEntity;
-import com.platinumg17.rigoranthusemortisreborn.fluid.CadaverousIchorFluid;
+import com.platinumg17.rigoranthusemortisreborn.core.init.fluid.CadaverousIchorFluid;
 import com.platinumg17.rigoranthusemortisreborn.items.RigoranthusSpawnEgg;
+import net.minecraft.client.renderer.ActiveRenderInfo;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.Fluid;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -23,6 +26,7 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
+import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
@@ -57,12 +61,13 @@ public class RigoranthusEventBusEvents {
     @SubscribeEvent
     public void onUseItem(PlayerInteractEvent.RightClickItem event) {
         if (event.getItemStack().getItem() == Items.GLASS_BOTTLE) { // && Config.ichorBottleEnabled) {
-            RayTraceResult raytraceresult = rayTrace(event.getWorld(), event.getPlayer(), RayTraceContext.FluidMode.SOURCE_ONLY);
+            BlockRayTraceResult raytraceresult = rayTrace(event.getWorld(), event.getPlayer(), RayTraceContext.FluidMode.SOURCE_ONLY);
             if (raytraceresult.getType() == RayTraceResult.Type.ENTITY) {
-                BlockPos blockpos = ((BlockRayTraceResult) raytraceresult).getBlockPos();
+                BlockPos blockpos = raytraceresult.getBlockPos();
                 if (event.getWorld().mayInteract(event.getPlayer(), blockpos)) {
-                    if (event.getWorld().getFluidState(blockpos).getType().equals(CadaverousIchorFluid.CADAVEROUS_ICHOR_BLOCK.get())) {
-                        event.getWorld().playSound(event.getPlayer(), event.getPlayer().getX(), event.getPlayer().getY(), event.getPlayer().getZ(), SoundEvents.BOTTLE_FILL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+                    if (event.getWorld().getFluidState(blockpos).getType().equals(CadaverousIchorFluid.CADAVEROUS_ICHOR_FLUID.get())) {
+                        event.getWorld().playSound(event.getPlayer(),
+                        event.getPlayer().getX(), event.getPlayer().getY(), event.getPlayer().getZ(), SoundEvents.BOTTLE_FILL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
                         event.getPlayer().awardStat(Stats.ITEM_USED.get(Items.GLASS_BOTTLE));
                         if (!event.getPlayer().addItem(new ItemStack(ItemInit.BOTTLE_OF_ICHOR.get()))) {
                             event.getPlayer().spawnAtLocation(new ItemStack(ItemInit.BOTTLE_OF_ICHOR.get()));
@@ -92,6 +97,34 @@ public class RigoranthusEventBusEvents {
         return worldIn.clip(new RayTraceContext(vector3d, vector3d1, RayTraceContext.BlockMode.OUTLINE, fluidMode, player));
     }
 
+    @SubscribeEvent
+    public static void getFogDensity(EntityViewRenderEvent.FogDensity event) {
+        ActiveRenderInfo info = event.getInfo();
+        FluidState fluidState = info.getFluidInCamera();
+        if (fluidState.isEmpty())
+            return;
+        Fluid fluid = fluidState.getType();
+
+        if (fluid.isSame(CadaverousIchorFluid.CADAVEROUS_ICHOR_FLUID.get())) {//.isEquivalentTo(ModFluids.BLOOD_FLUID.get())) {
+            event.setDensity(1.5f);
+            event.setCanceled(true);
+        }
+    }
+
+    @SubscribeEvent
+    public static void getFogColor(EntityViewRenderEvent.FogColors event) {
+        ActiveRenderInfo info = event.getInfo();
+        FluidState fluidState = info.getFluidInCamera();
+        if (fluidState.isEmpty())
+            return;
+        Fluid fluid = fluidState.getType();
+
+        if (fluid.isSame(CadaverousIchorFluid.CADAVEROUS_ICHOR_FLUID.get())) {
+            event.setRed(88 / 256f);
+            event.setGreen(12 / 256f);
+            event.setBlue(12 / 256f);
+        }
+    }
 //    public ItemEntity drop(ItemStack p_146097_1_, boolean p_146097_2_, boolean p_146097_3_) {
 //        ItemEntity itementity = super.drop(p_146097_1_, p_146097_2_, p_146097_3_);
 //        if (itementity == null) {

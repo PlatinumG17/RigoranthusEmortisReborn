@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = RigoranthusEmortisReborn.MOD_ID)
 public class WorldEvents {
     @SubscribeEvent
-    public static void biomeLoadinGevent(final BiomeLoadingEvent event) {
+    public static void biomeLoadingEvent(final BiomeLoadingEvent event) {
         EmortisOreGen.generateOres(event);
         EmortisTreeGen.generateTrees(event);
     }

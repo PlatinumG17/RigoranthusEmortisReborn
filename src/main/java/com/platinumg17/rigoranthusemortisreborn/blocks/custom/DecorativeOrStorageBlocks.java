@@ -10,12 +10,10 @@ import com.minecraftabnormals.abnormals_core.core.util.registry.BlockSubRegistry
 import com.mojang.datafixers.util.Pair;
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.blocks.trees.JessicTree;
-import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusItemGroup;
+import com.platinumg17.rigoranthusemortisreborn.blocks.trees.AzulorealTree;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
-import net.minecraft.block.trees.AcaciaTree;
-import net.minecraft.block.trees.OakTree;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.potion.Effects;
@@ -50,7 +48,7 @@ public class DecorativeOrStorageBlocks {
     public static final RegistryObject<Block> AZULOREAL_LOG = HELPER.createBlock("azuloreal_log", ()->new AbnormalsLogBlock(STRIPPED_AZULOREAL_LOG, Properties.LOG), ItemGroup.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> AZULOREAL_WOOD = HELPER.createBlock("azuloreal_wood", ()->new WoodBlock(STRIPPED_AZULOREAL_WOOD, Properties.LOG), ItemGroup.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> AZULOREAL_LEAVES = HELPER.createBlock("azuloreal_leaves", ()->new AbnormalsLeavesBlock(Properties.AZULOREAL_LEAVES), ItemGroup.TAB_DECORATIONS);
-    public static final RegistryObject<Block> AZULOREAL_SAPLING = HELPER.createBlock("azuloreal_sapling", ()->new AbnormalsSaplingBlock(new AcaciaTree(), Properties.SAPLING), ItemGroup.TAB_DECORATIONS);
+    public static final RegistryObject<Block> AZULOREAL_SAPLING = HELPER.createBlock("azuloreal_sapling", ()->new AbnormalsSaplingBlock(new AzulorealTree(), Properties.SAPLING), ItemGroup.TAB_DECORATIONS);
     public static final RegistryObject<Block> POTTED_AZULOREAL_SAPLING = HELPER.createBlockNoItem("potted_azuloreal_sapling", ()->new FlowerPotBlock(AZULOREAL_SAPLING.get(), Properties.FLOWER_POT));
     public static final RegistryObject<Block> AZULOREAL_PLANKS = HELPER.createBlock("azuloreal_planks", ()->new PlanksBlock(Properties.PLANKS), ItemGroup.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> AZULOREAL_SLAB = HELPER.createBlock("azuloreal_slab", ()->new WoodSlabBlock(Properties.PLANKS), ItemGroup.TAB_BUILDING_BLOCKS);
@@ -112,7 +110,7 @@ public class DecorativeOrStorageBlocks {
 //    public static final RegistryObject<Block> BUDDING_JESSIC_LEAF_CARPET = HELPER.createCompatBlock("quark", "budding_jessic_leaf_carpet", ()->new LeafCarpetBlock(Properties.JESSIC_CARPET), ItemGroup.TAB_DECORATIONS);
 //    public static final RegistryObject<Block> BUDDING_JESSIC_HEDGE = HELPER.createCompatFuelBlock("quark", "budding_jessic_hedge", () -> new HedgeBlock(Properties.HEDGE), 300, ItemGroup.TAB_DECORATIONS);
 //    public static final RegistryObject<Block> FLOWERING_JESSIC_HEDGE = HELPER.createCompatFuelBlock("quark", "flowering_jessic_hedge", () -> new HedgeBlock(Properties.HEDGE), 300, ItemGroup.TAB_DECORATIONS);
-//    public static final RegistryObject<Block> FLOWERING_JESSIC_SAPLING = HELPER.createBlock("flowering_jessic_sapling", ()->new AbnormalsSaplingBlock(new FloweringRedbudTree(), Properties.SAPLING), ItemGroup.TAB_DECORATIONS);
+//    public static final RegistryObject<Block> FLOWERING_JESSIC_SAPLING = HELPER.createBlock("flowering_jessic_sapling", ()->new AbnormalsSaplingBlock(new FloweringJessicTree(), Properties.SAPLING), ItemGroup.TAB_DECORATIONS);
 //    public static final RegistryObject<Block> POTTED_FLOWERING_JESSIC_SAPLING = HELPER.createBlockNoItem("potted_flowering_jessic_sapling", ()->new FlowerPotBlock(FLOWERING_JESSIC_SAPLING.get(), Properties.FLOWER_POT));
 //    public static final RegistryObject<Block> JESSIC_BLOSSOM_CARPET = HELPER.createBlock("jessic_blossom_carpet", ()->new BlossomCarpetBlock(AbstractBlock.Properties.of(Material.CARPET, MaterialColor.COLOR_PURPLE).notSolid().hardnessAndResistance(0.0f).tickRandomly().sound(SoundType.GRASS).harvestTool(ToolType.HOE)), ItemGroup.TAB_DECORATIONS);
 

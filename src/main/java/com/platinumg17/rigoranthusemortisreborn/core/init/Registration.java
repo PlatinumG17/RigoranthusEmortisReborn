@@ -1,12 +1,12 @@
 package com.platinumg17.rigoranthusemortisreborn.core.init;
 
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
-import com.platinumg17.rigoranthusemortisreborn.entity.item.BoneArrowEntity;
 import com.platinumg17.rigoranthusemortisreborn.items.*;
 import com.platinumg17.rigoranthusemortisreborn.items.armor.RigoranthusArmorMaterial;
 import com.platinumg17.rigoranthusemortisreborn.items.armor.armorsets.*;
 import com.platinumg17.rigoranthusemortisreborn.items.smeltery.*;
 import com.platinumg17.rigoranthusemortisreborn.items.weapons.BoneArrowItem;
+import info.u_team.u_team_core.item.tool.UAxeItem;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -24,7 +24,6 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-
 import com.platinumg17.rigoranthusemortisreborn.blocks.BlockMasterfulSmeltery;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.container.MasterfulSmelteryContainer;
@@ -51,10 +50,6 @@ public class Registration {
         BlockPos pos = data.readBlockPos();
         World world = inv.player.getEntity().level;
         return new MasterfulSmelteryContainer(windowId, world, pos, inv, inv.player);}));
-//    public static final RegistryObject<Block> JESSIC_SIGN = BLOCKS.register("jessic_sign", () -> new RigoranthusStandingSignBlock(AbstractBlock.Properties.of(Material.WOOD), RigoranthusWoodTypes.JESSIC));
-//    public static final RegistryObject<Block> JESSIC_WALL_SIGN = BLOCKS.register("jessic_wall_sign", () -> new RigoranthusWallSignBlock(AbstractBlock.Properties.of(Material.WOOD), RigoranthusWoodTypes.JESSIC));
-//    public static final RegistryObject<Block> AZULOREAL_SIGN = BLOCKS.register("azuloreal_sign", () -> new RigoranthusStandingSignBlock(AbstractBlock.Properties.of(Material.WOOD), RigoranthusWoodTypes.AZULOREAL));
-//    public static final RegistryObject<Block> AZULOREAL_WALL_SIGN = BLOCKS.register("azuloreal_wall_sign", () -> new RigoranthusWallSignBlock(AbstractBlock.Properties.of(Material.WOOD), RigoranthusWoodTypes.AZULOREAL));
 
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
     }
@@ -67,7 +62,9 @@ public class Registration {
     public static final RegistryObject<Block> RECONDITE_ORE = BLOCKS.register("recondite_ore", () -> new OreBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.STONE).strength(10f, 12f).harvestTool(ToolType.PICKAXE).harvestLevel(3).requiresCorrectToolForDrops().sound(SoundType.STONE)));
     public static final RegistryObject<Item> RECONDITE_ORE_ITEM = ITEMS.register("recondite_ore", () -> new BlockItem(RECONDITE_ORE.get(), new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)));
     public static final RegistryObject<Item> POWDERED_ESOTERICUM = ITEMS.register("powdered_esotericum", () -> new Esotericum(new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)));
+    //public static final RegistryObject<Item> AXE_LOL = new PickaxeItem()
 
+   // public static final RegistryObject<Item> APOGEAN_AXE = ITEMS.register("axe", () -> new UAxeItem(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP, Config.apogean_axe_damage.get(), Config.apogean_axe_speed.get().floatValue(), RigoranthusItemTier.APOGEAN, new Item.Properties().addToolType(ToolType.AXE, 4).fireResistant().rarity(Rarity.EPIC).stacksTo(1)).setRegistryName("apogean_axe");
 
     public static final Item APOGEAN_SWORD = new SwordItem(RigoranthusItemTier.APOGEAN, Config.apogean_sword_damage.get(), Config.apogean_sword_speed.get().floatValue(), new Item.Properties().fireResistant().rarity(Rarity.EPIC).tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).stacksTo(1)).setRegistryName("apogean_sword");
     public static final Item APOGEAN_AXE = new AxeItem(RigoranthusItemTier.APOGEAN, Config.apogean_axe_damage.get(), Config.apogean_axe_speed.get().floatValue(), new Item.Properties().fireResistant().rarity(Rarity.EPIC).tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).stacksTo(1)).setRegistryName("apogean_axe");
@@ -164,24 +161,20 @@ public class Registration {
         });
     }
 
-    public static void registerItems(RegistryEvent.Register<Item> event)
-    {
-        if (Config.enableBoneWeapons.get())
-        {
+    public static void registerItems(RegistryEvent.Register<Item> event) {
+        if (Config.enableBoneWeapons.get()) {
             event.getRegistry().register(BONE_SPEAR);
             //event.getRegistry().register(BONE_BOW);
             event.getRegistry().register(BONE_ARROW);
         }
-        if (Config.enableUnfiredBricks.get())
-        {
+        if (Config.enableUnfiredBricks.get()) {
             event.getRegistry().register(MUD_GLOB);
             event.getRegistry().register(UNFIRED_MUD_BRICK);
             event.getRegistry().register(MUD_BRICK);
             event.getRegistry().register(UNFIRED_BRICK);
             event.getRegistry().register(UNFIRED_NETHER_BRICK);
         }
-        if (Config.enableNetheriteAdditions.get())
-        {
+        if (Config.enableNetheriteAdditions.get()) {
             event.getRegistry().register(APOGEAN_SWORD);
             event.getRegistry().register(APOGEAN_AXE);
             event.getRegistry().register(APOGEAN_NETHERITE_HELMET);
@@ -238,8 +231,7 @@ public class Registration {
             event.getRegistry().register(REMEX_NETHERITE_BOOTS);
         }
         if (Config.enableSoulCoal.get()) { event.getRegistry().register(SOUL_COAL); }
-        if (Config.enableHammersAndVanillaOreFragments.get())
-        {
+        if (Config.enableHammersAndVanillaOreFragments.get()) {
             event.getRegistry().register(STONE_CRUSHING_HAMMER);
             event.getRegistry().register(IRON_CRUSHING_HAMMER);
             event.getRegistry().register(GOLD_CRUSHING_HAMMER);
@@ -248,8 +240,7 @@ public class Registration {
             event.getRegistry().register(IRON_ORE_FRAGMENT);
             event.getRegistry().register(GOLD_ORE_FRAGMENT);
         }
-        if (Config.enableModdedOreFragments.get())
-        {
+        if (Config.enableModdedOreFragments.get()) {
             event.getRegistry().register(DEEPSLATE_IRON_ORE_FRAGMENT);
             event.getRegistry().register(DEEPSLATE_GOLD_ORE_FRAGMENT);
             event.getRegistry().register(DEEPSLATE_COPPER_ORE_FRAGMENT);

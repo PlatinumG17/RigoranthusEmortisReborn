@@ -1,8 +1,8 @@
-package com.platinumg17.rigoranthusemortisreborn.core.other;
+package com.platinumg17.rigoranthusemortisreborn.core.events.other;
 
 import com.minecraftabnormals.abnormals_core.core.util.DataUtil;
 import com.platinumg17.rigoranthusemortisreborn.blocks.custom.DecorativeOrStorageBlocks;
-import com.platinumg17.rigoranthusemortisreborn.core.init.BuildingBlockInit;
+import com.platinumg17.rigoranthusemortisreborn.blocks.BuildingBlockInit;
 import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
 import com.platinumg17.rigoranthusemortisreborn.entity.item.BoneArrowEntity;
 import net.minecraft.block.DispenserBlock;

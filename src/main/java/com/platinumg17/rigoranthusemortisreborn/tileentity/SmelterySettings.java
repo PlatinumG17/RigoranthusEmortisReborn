@@ -1,8 +1,7 @@
 package com.platinumg17.rigoranthusemortisreborn.tileentity;
 
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
-import com.platinumg17.rigoranthusemortisreborn.config.Config;
-
+import com.platinumg17.rigoranthusemortisreborn.config.ConfigValues;
 import net.minecraft.nbt.CompoundNBT;
 
 public class SmelterySettings {
@@ -44,7 +43,7 @@ public class SmelterySettings {
                     return 0;
             }
         } catch (ArrayIndexOutOfBoundsException e) {
-            if (Config.showErrors.get()) {
+            if (ConfigValues.SHOW_SMELTERY_ERRORS) {
                 RigoranthusEmortisReborn.LOGGER.error("Something went wrong.");
                 for (int i = 0; i < e.getStackTrace().length; i++) {
                     RigoranthusEmortisReborn.LOGGER.error(e.getStackTrace()[i].toString());
@@ -92,7 +91,7 @@ public class SmelterySettings {
             }
             onChanged();
         } catch (ArrayIndexOutOfBoundsException e) {
-            if (Config.showErrors.get()) {
+            if (ConfigValues.SHOW_SMELTERY_ERRORS) {
                 RigoranthusEmortisReborn.LOGGER.error("Something went wrong.");
                 for (int i = 0; i < e.getStackTrace().length; i++) {
                     RigoranthusEmortisReborn.LOGGER.error(e.getStackTrace()[i].toString());

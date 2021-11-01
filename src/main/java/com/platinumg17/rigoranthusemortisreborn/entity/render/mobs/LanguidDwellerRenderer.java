@@ -1,8 +1,8 @@
-package com.platinumg17.rigoranthusemortisreborn.entity.render;
+package com.platinumg17.rigoranthusemortisreborn.entity.render.mobs;
 
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.entity.mobs.LanguidDwellerEntity;
-import com.platinumg17.rigoranthusemortisreborn.entity.model.LanguidDwellerModel;
+import com.platinumg17.rigoranthusemortisreborn.entity.model.mobs.LanguidDwellerModel;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;

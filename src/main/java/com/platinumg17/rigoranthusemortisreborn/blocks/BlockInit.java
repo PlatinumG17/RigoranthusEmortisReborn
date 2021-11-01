@@ -1,7 +1,7 @@
 package com.platinumg17.rigoranthusemortisreborn.blocks;
 
 import com.google.common.collect.Maps;
-import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusItemGroup;
 import net.minecraft.block.*;
@@ -33,7 +33,7 @@ import java.util.function.ToIntFunction;
 public class BlockInit {
 
 	public static final DeferredRegister<Block> BLOCKS =
-			DeferredRegister.create(ForgeRegistries.BLOCKS,	RigoranthusEmortisReborn.MOD_ID);
+			DeferredRegister.create(ForgeRegistries.BLOCKS,	EmortisConstants.MOD_ID);
 
 	public static final RegistryObject<Block> ABYSSALITE = registerBlock("abyssalite",
 			() -> new Block(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK)
@@ -113,7 +113,7 @@ public class BlockInit {
 		fallables.put(() -> ForgeRegistries.BLOCKS.getValue(new ResourceLocation("atmospheric:red_arid_sandstone")), () -> ForgeRegistries.BLOCKS.getValue(new ResourceLocation("atmospheric:red_arid_sand")));
 	}) : null;
 
-    public static void register(IEventBus bus) {
-        BLOCKS.register(bus);
+    public static void register(IEventBus modEventBus) {
+        BLOCKS.register(modEventBus);
     }
 }

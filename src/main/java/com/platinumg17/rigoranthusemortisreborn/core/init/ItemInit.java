@@ -3,7 +3,9 @@ package com.platinumg17.rigoranthusemortisreborn.core.init;
 import com.minecraftabnormals.abnormals_core.core.util.registry.ItemSubRegistryHelper;
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.blocks.custom.DecorativeOrStorageBlocks;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
+import com.platinumg17.rigoranthusemortisreborn.config.ConfigValues;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusItemGroup;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusSoundRegistry;
 import com.platinumg17.rigoranthusemortisreborn.entity.RigoranthusEntityTypes;
@@ -21,7 +23,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class ItemInit {
-	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, RigoranthusEmortisReborn.MOD_ID);
+	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, EmortisConstants.MOD_ID);
 	public static final ItemSubRegistryHelper HELPER = RigoranthusEmortisReborn.REGISTRY_HELPER.getItemSubHelper();
 
 	public static final RegistryObject<Item> BOTTLE_OF_ICHOR = ITEMS.register("bottle_of_ichor",
@@ -100,7 +102,7 @@ public class ItemInit {
 	public static final RegistryObject<Item> AZULOREAL_BOAT = HELPER.createBoatItem("azuloreal", DecorativeOrStorageBlocks.AZULOREAL_PLANKS);
 
 	public static final RegistryObject<RigoranthusSpawnEgg> CANIS_CHORDATA_SPAWN_EGG = ITEMS.register("canis_chordata_spawn_egg",
-			() -> new RigoranthusSpawnEgg(RigoranthusEntityTypes.CANIS_CHORDATA, 0x999999, 0xffffff,
+			() -> new RigoranthusSpawnEgg(RigoranthusEntityTypes.FERAL_CANIS, 0x999999, 0xffffff,
 					new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)));
 
 	public static final RegistryObject<RigoranthusSpawnEgg> SUNDERED_CADAVER_SPAWN_EGG = ITEMS.register("sundered_cadaver_spawn_egg",
@@ -115,7 +117,7 @@ public class ItemInit {
 			() -> new RigoranthusSpawnEgg(RigoranthusEntityTypes.LANGUID_DWELLER, 0x968d81, 0x491919,
 					new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)));
 
-	public static void register(IEventBus bus) {
-		ITEMS.register(bus);
+	public static void register(IEventBus modEventBus) {
+		ITEMS.register(modEventBus);
 	}
 }

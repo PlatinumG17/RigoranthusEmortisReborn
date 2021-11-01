@@ -2,7 +2,7 @@ package com.platinumg17.rigoranthusemortisreborn.tileentity;
 
 import com.google.common.collect.Lists;
 import com.platinumg17.rigoranthusemortisreborn.blocks.BlockMasterfulSmelteryBase;
-import com.platinumg17.rigoranthusemortisreborn.config.Config;
+import com.platinumg17.rigoranthusemortisreborn.config.ConfigValues;
 import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
 import com.platinumg17.rigoranthusemortisreborn.items.smeltery.ItemAugment;
 import com.platinumg17.rigoranthusemortisreborn.items.smeltery.ItemAugmentBlasting;
@@ -14,7 +14,6 @@ import com.platinumg17.rigoranthusemortisreborn.util.DirectionUtil;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.ForgeEventFactory;
@@ -83,9 +82,9 @@ public abstract class SmelteryTileEntityBase extends TileEntityInventory impleme
     public IRecipeType<? extends AbstractCookingRecipe> recipeType;
     public SmelterySettings smelterySettings;
 
-    private LRUCache<Item, Optional<AbstractCookingRecipe>> cache = LRUCache.newInstance(Config.cache_capacity.get());
-    private LRUCache<Item, Optional<AbstractCookingRecipe>> blasting_cache = LRUCache.newInstance(Config.cache_capacity.get());
-    private LRUCache<Item, Optional<AbstractCookingRecipe>> smoking_cache = LRUCache.newInstance(Config.cache_capacity.get());
+    private LRUCache<Item, Optional<AbstractCookingRecipe>> cache = LRUCache.newInstance(ConfigValues.cache_capacity);
+    private LRUCache<Item, Optional<AbstractCookingRecipe>> blasting_cache = LRUCache.newInstance(ConfigValues.cache_capacity);
+    private LRUCache<Item, Optional<AbstractCookingRecipe>> smoking_cache = LRUCache.newInstance(ConfigValues.cache_capacity);
 
     public SmelteryTileEntityBase(TileEntityType<?> tileentitytypeIn) {
         super(tileentitytypeIn, 4);
@@ -184,7 +183,7 @@ public abstract class SmelteryTileEntityBase extends TileEntityInventory impleme
     }
 
     protected int getSpeed() {
-        int i = getCookTimeConfig().get();
+        int i = getCookTimeConfig();
         int j = getCache().computeIfAbsent(getItem(INPUT).getItem(), this::getRecipe).map(AbstractCookingRecipe::getCookingTime).orElse(0);
         if (j == 0) {
             Optional<AbstractCookingRecipe> recipe = grabRecipe();
@@ -203,8 +202,8 @@ public abstract class SmelteryTileEntityBase extends TileEntityInventory impleme
         }
     }
 
-    public ForgeConfigSpec.IntValue getCookTimeConfig() {
-        return null;
+    public int getCookTimeConfig() {
+        return ConfigValues.masterfulSmelterySpeed;
     }
 
     public final IIntArray fields = new IIntArray() {
@@ -869,20 +868,16 @@ public abstract class SmelteryTileEntityBase extends TileEntityInventory impleme
         return false;
     }
 
-    //public void setJovial(int value) {
-        //this.jovial = value;
-    //}
-
     public void checkXP(@Nullable IRecipe<?> recipe) {
         if (!level.isClientSide) {
             boolean flag2 = false;
-            if (this.recipes.size() > Config.smelteryXPDropValue.get()) {
+            if (this.recipes.size() > ConfigValues.smelteryXPDropValue) {
                 this.grantStoredRecipeExperience(level, new Vector3d(worldPosition.getX() + rand.nextInt(2) - 1, worldPosition.getY(), worldPosition.getZ() + rand.nextInt(2) - 1));
                 this.recipes.clear();
             } else {
                 for (Object2IntMap.Entry<ResourceLocation> entry : this.recipes.object2IntEntrySet()) {
                     if (level.getRecipeManager().byKey(entry.getKey()).isPresent()) {
-                        if (entry.getIntValue() > Config.smelteryXPDropValue2.get()) {
+                        if (entry.getIntValue() > ConfigValues.smelteryXPDropValue2) {
                             if (!flag2) {
                                 this.grantStoredRecipeExperience(level, new Vector3d(worldPosition.getX() + rand.nextInt(2) - 1, worldPosition.getY(), worldPosition.getZ() + rand.nextInt(2) - 1));
                             }

@@ -3,9 +3,7 @@ package com.platinumg17.rigoranthusemortisreborn.items;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
 import net.minecraft.item.IItemTier;
-import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.IItemProvider;
 import net.minecraft.util.LazyValue;
 
 import java.util.function.Supplier;
@@ -32,10 +30,6 @@ public enum RigoranthusItemTier implements IItemTier {
     BONE(2, Config.bone_tier_durability.get(), Config.bone_tier_speed.get().floatValue(), Config.bone_tier_damage.get().floatValue(), Config.bone_tier_enchantability.get(),
             () -> Ingredient.of(ItemInit.BONE_FRAGMENT.get()));
 
-   // IRON(2, 250, 6.0F, 2.0F, 14, () -> {
-   //     return Ingredient.of(Items.IRON_INGOT);
-  //  }),
-
     private final int level;
     private final int uses;
     private final float speed;
@@ -51,34 +45,22 @@ public enum RigoranthusItemTier implements IItemTier {
         this.enchantmentValue = enchantmentValue;
         this.repairIngredient = new LazyValue<>(repairIngredient);
     }
-
-    @Override
-    public int getUses() {
+    @Override public int getUses() {
         return 0;
     }
-
-    @Override
-    public float getSpeed() {
+    @Override public float getSpeed() {
         return 0;
     }
-
-    @Override
-    public float getAttackDamageBonus() {
+    @Override public float getAttackDamageBonus() {
         return 0;
     }
-
-    @Override
-    public int getLevel() {
+    @Override public int getLevel() {
         return 0;
     }
-
-    @Override
-    public int getEnchantmentValue() {
+    @Override public int getEnchantmentValue() {
         return 0;
     }
-
-    @Override
-    public Ingredient getRepairIngredient() {
+    @Override public Ingredient getRepairIngredient() {
         return repairIngredient.get();
     }
 }

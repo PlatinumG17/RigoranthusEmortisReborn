@@ -1,13 +1,12 @@
 package com.platinumg17.rigoranthusemortisreborn.tileentity;
 
-import com.platinumg17.rigoranthusemortisreborn.config.Config;
-import com.platinumg17.rigoranthusemortisreborn.container.MasterfulSmelteryContainer;
+import com.platinumg17.rigoranthusemortisreborn.config.ConfigValues;
+import com.platinumg17.rigoranthusemortisreborn.tileentity.container.MasterfulSmelteryContainer;
 import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
-import net.minecraftforge.common.ForgeConfigSpec;
 
 public class MasterfulSmelteryTile extends SmelteryTileEntityBase {
     public MasterfulSmelteryTile() {
@@ -15,8 +14,8 @@ public class MasterfulSmelteryTile extends SmelteryTileEntityBase {
     }
 
     @Override
-    public ForgeConfigSpec.IntValue getCookTimeConfig() {
-        return Config.masterfulSmelterySpeed;
+    public int getCookTimeConfig() {
+        return ConfigValues.masterfulSmelterySpeed;
     }
 
     @Override

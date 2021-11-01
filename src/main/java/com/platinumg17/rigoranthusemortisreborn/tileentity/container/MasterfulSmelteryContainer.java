@@ -1,4 +1,4 @@
-package com.platinumg17.rigoranthusemortisreborn.container;
+package com.platinumg17.rigoranthusemortisreborn.tileentity.container;
 
 import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
 import net.minecraft.entity.player.PlayerEntity;

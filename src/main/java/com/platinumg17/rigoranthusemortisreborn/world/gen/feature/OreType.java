@@ -1,6 +1,7 @@
 package com.platinumg17.rigoranthusemortisreborn.world.gen.feature;
 
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
+import com.platinumg17.rigoranthusemortisreborn.config.ConfigValues;
 import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
 import net.minecraft.block.Block;
 import net.minecraftforge.common.util.Lazy;

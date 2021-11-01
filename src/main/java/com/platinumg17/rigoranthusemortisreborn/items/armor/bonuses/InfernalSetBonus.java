@@ -1,10 +1,9 @@
 package com.platinumg17.rigoranthusemortisreborn.items.armor.bonuses;
 
-import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
@@ -16,7 +15,7 @@ public class InfernalSetBonus extends Effect {
 
     public InfernalSetBonus() {
         super(EffectType.BENEFICIAL, 0X51FFAF);
-        this.setRegistryName(RigoranthusEmortisReborn.MOD_ID, "infernal_set_bonus");
+        this.setRegistryName(EmortisConstants.MOD_ID, "infernal_set_bonus");
 
     }
     private static int healTimer = 80;

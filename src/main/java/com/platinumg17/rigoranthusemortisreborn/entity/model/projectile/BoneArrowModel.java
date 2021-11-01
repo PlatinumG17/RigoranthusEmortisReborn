@@ -1,4 +1,4 @@
-package com.platinumg17.rigoranthusemortisreborn.entity.model;
+package com.platinumg17.rigoranthusemortisreborn.entity.model.projectile;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;

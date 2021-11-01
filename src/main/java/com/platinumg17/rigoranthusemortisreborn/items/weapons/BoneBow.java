@@ -2,16 +2,16 @@ package com.platinumg17.rigoranthusemortisreborn.items.weapons;
 
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
-import net.minecraft.item.BowItem;
-import net.minecraft.stats.Stats;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.item.ArrowItem;
+import net.minecraft.item.BowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.stats.Stats;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
@@ -85,7 +85,6 @@ public class BoneBow extends BowItem {
                             playerentity.inventory.removeItem(itemstack);
                         }
                     }
-
                     playerentity.awardStat(Stats.ITEM_USED.get(this));
                 }
             }

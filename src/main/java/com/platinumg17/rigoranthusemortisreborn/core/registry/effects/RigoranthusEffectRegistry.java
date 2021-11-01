@@ -1,10 +1,8 @@
 package com.platinumg17.rigoranthusemortisreborn.core.registry.effects;
 
-import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
 import com.platinumg17.rigoranthusemortisreborn.items.armor.bonuses.*;
-import com.platinumg17.rigoranthusemortisreborn.util.PactBrewing;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
@@ -12,10 +10,11 @@ import net.minecraft.potion.*;
 import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 import java.lang.reflect.Field;
 
-@Mod.EventBusSubscriber(modid = RigoranthusEmortisReborn.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = EmortisConstants.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class RigoranthusEffectRegistry {
     public static final Effect APOGEAN_SET_BONUS = new ApogeanSetBonus();
     public static final Effect AQUEOUS_SET_BONUS = new AqueousSetBonus();

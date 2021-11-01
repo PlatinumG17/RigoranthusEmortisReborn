@@ -1,6 +1,6 @@
 package com.platinumg17.rigoranthusemortisreborn.items.armor.bonuses;
 
-import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -18,7 +18,7 @@ public class ApogeanSetBonus extends Effect {
         this.addAttributeModifier(Attributes.ATTACK_SPEED, "AF8B6E3F-3328-4C0A-AA36-5BA2BB9DBEF3", 2.0F, AttributeModifier.Operation.MULTIPLY_BASE);
         this.addAttributeModifier(Attributes.MAX_HEALTH, "5D6F0BA2-1186-46AC-B896-C61C5CEE99CC", 1.0F, AttributeModifier.Operation.MULTIPLY_BASE);
         // These act like constant potion effects, and are essentially just recreations of existing vanilla potion effects
-        this.setRegistryName(RigoranthusEmortisReborn.MOD_ID, "apogean_set_bonus");
+        this.setRegistryName(EmortisConstants.MOD_ID, "apogean_set_bonus");
     }
     private static int healTimer = 80;
     private static int effectTimer = 400;

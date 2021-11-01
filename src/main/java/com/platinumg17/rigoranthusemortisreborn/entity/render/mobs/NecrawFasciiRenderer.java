@@ -1,8 +1,8 @@
-package com.platinumg17.rigoranthusemortisreborn.entity.render;
+package com.platinumg17.rigoranthusemortisreborn.entity.render.mobs;
 
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.entity.mobs.NecrawFasciiEntity;
-import com.platinumg17.rigoranthusemortisreborn.entity.model.NecrawFasciiModel;
+import com.platinumg17.rigoranthusemortisreborn.entity.model.mobs.NecrawFasciiModel;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;

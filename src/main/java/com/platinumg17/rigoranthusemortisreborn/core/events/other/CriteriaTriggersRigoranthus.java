@@ -1,12 +1,12 @@
 package com.platinumg17.rigoranthusemortisreborn.core.events.other;
 
 import com.minecraftabnormals.abnormals_core.common.advancement.EmptyTrigger;
-import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-@EventBusSubscriber(modid = RigoranthusEmortisReborn.MOD_ID)
+@EventBusSubscriber(modid = EmortisConstants.MOD_ID)
 public class CriteriaTriggersRigoranthus {
 
     public static final EmptyTrigger KILL_A_LANGUID_DWELLER = CriteriaTriggers.register(new EmptyTrigger(prefix("kill_a_languid_dweller")));
@@ -14,6 +14,6 @@ public class CriteriaTriggersRigoranthus {
     public static final EmptyTrigger LISTEN_TO_RECORD = CriteriaTriggers.register(new EmptyTrigger(prefix("listen_to_a_record")));
 
     private static ResourceLocation prefix(String name) {
-        return new ResourceLocation(RigoranthusEmortisReborn.MOD_ID, name);
+        return new ResourceLocation(EmortisConstants.MOD_ID, name);
     }
 }

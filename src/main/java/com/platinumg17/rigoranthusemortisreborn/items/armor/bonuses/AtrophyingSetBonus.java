@@ -1,12 +1,10 @@
 package com.platinumg17.rigoranthusemortisreborn.items.armor.bonuses;
 
-import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.potion.Effect;
-import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.potion.Effects;
 import net.minecraft.world.World;
@@ -15,8 +13,7 @@ public class AtrophyingSetBonus extends Effect {
 
     public AtrophyingSetBonus() {
         super(EffectType.BENEFICIAL, 0X51FFAF);
-        this.setRegistryName(RigoranthusEmortisReborn.MOD_ID, "atrophying_set_bonus");
-
+        this.setRegistryName(EmortisConstants.MOD_ID, "atrophying_set_bonus");
     }
 
     public void applyEffectTick(LivingEntity player, int amplifier) {

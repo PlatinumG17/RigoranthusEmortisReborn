@@ -1,4 +1,4 @@
-package com.platinumg17.rigoranthusemortisreborn.container;
+package com.platinumg17.rigoranthusemortisreborn.tileentity.container;
 
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.tileentity.SmelteryTileEntityBase;

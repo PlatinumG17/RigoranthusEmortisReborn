@@ -1,13 +1,13 @@
-package com.platinumg17.rigoranthusemortisreborn.entity.model;
+package com.platinumg17.rigoranthusemortisreborn.entity.model.mobs.canis;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import com.platinumg17.rigoranthusemortisreborn.entity.mobs.canis.CanisChordataEntity;
+import com.platinumg17.rigoranthusemortisreborn.entity.mobs.FeralCanisEntity;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;
 
-public class CanisChordataModel extends EntityModel<CanisChordataEntity> {
+public class CanisChordataModel extends EntityModel<FeralCanisEntity> {
     // Made by PlatinumG17  // Made with Blockbench 4.0.1
     // Exported for Minecraft version 1.15 - 1.16 with MCP mappings
     private final ModelRenderer head;
@@ -236,7 +236,7 @@ public class CanisChordataModel extends EntityModel<CanisChordataEntity> {
     }
 
     @Override
-    public void setupAnim(CanisChordataEntity entityIn, float limbSwing, float limbSwingAmount,
+    public void setupAnim(FeralCanisEntity entityIn, float limbSwing, float limbSwingAmount,
                           float ageInTicks, float netHeadYaw, float headPitch) {
         this.left_hind_leg.xRot = MathHelper.cos(limbSwing * 0.6662F) * limbSwingAmount;
         this.head.yRot = netHeadYaw / (180F / (float) Math.PI);

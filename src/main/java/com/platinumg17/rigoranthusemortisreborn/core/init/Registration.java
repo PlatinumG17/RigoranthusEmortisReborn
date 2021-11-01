@@ -1,12 +1,12 @@
 package com.platinumg17.rigoranthusemortisreborn.core.init;
 
-import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
+import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.items.*;
 import com.platinumg17.rigoranthusemortisreborn.items.armor.RigoranthusArmorMaterial;
 import com.platinumg17.rigoranthusemortisreborn.items.armor.armorsets.*;
 import com.platinumg17.rigoranthusemortisreborn.items.smeltery.*;
 import com.platinumg17.rigoranthusemortisreborn.items.weapons.BoneArrowItem;
-import info.u_team.u_team_core.item.tool.UAxeItem;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -25,8 +25,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import com.platinumg17.rigoranthusemortisreborn.blocks.BlockMasterfulSmeltery;
-import com.platinumg17.rigoranthusemortisreborn.config.Config;
-import com.platinumg17.rigoranthusemortisreborn.container.MasterfulSmelteryContainer;
+import com.platinumg17.rigoranthusemortisreborn.tileentity.container.MasterfulSmelteryContainer;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusItemGroup;
 import com.platinumg17.rigoranthusemortisreborn.tileentity.MasterfulSmelteryTile;
 
@@ -50,9 +49,7 @@ public class Registration {
         BlockPos pos = data.readBlockPos();
         World world = inv.player.getEntity().level;
         return new MasterfulSmelteryContainer(windowId, world, pos, inv, inv.player);}));
-
-    public static void registerBlocks(RegistryEvent.Register<Block> event) {
-    }
+//    public static void registerBlocks(RegistryEvent.Register<Block> event) {}
 
     public static final RegistryObject<ItemAugmentBlasting> BLASTING_AUGMENT = ITEMS.register("augment_blasting", () -> new ItemAugmentBlasting(new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)));
     public static final RegistryObject<ItemAugmentSmoking> SMOKING_AUGMENT = ITEMS.register("augment_smoking", () -> new ItemAugmentSmoking(new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)));
@@ -148,109 +145,66 @@ public class Registration {
     public static final Item UNFIRED_BRICK = new Item(new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)).setRegistryName("unfired_brick");
     public static final Item UNFIRED_NETHER_BRICK = new Item(new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)).setRegistryName("unfired_nether_brick");
 
-    //public static final Item BONE_BOW = new BoneBow(new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).stacksTo(1).durability(Config.bone_bow_durability.get())).setRegistryName("bone_bow");
     public static final Item BONE_ARROW = new BoneArrowItem(new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)).setRegistryName("bone_arrow");
     public static final Item BONE_SPEAR = new SwordItem(RigoranthusItemTier.BONE, Config.bone_spear_damage.get(), Config.bone_spear_speed.get().floatValue(), new Item.Properties().rarity(Rarity.UNCOMMON).tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).stacksTo(1)).setRegistryName("bone_spear");
 
     public static void registerItemProperties() {
-        ItemModelsProperties.register(Items.CROSSBOW, new ResourceLocation(RigoranthusEmortisReborn.MOD_ID, "bone_arrow"), (stack, world, entity) -> {
+        ItemModelsProperties.register(Items.CROSSBOW, new ResourceLocation(EmortisConstants.MOD_ID, "bone_arrow"), (stack, world, entity) -> {
             return entity != null && CrossbowItem.isCharged(stack) && CrossbowItem.containsChargedProjectile(stack, Registration.BONE_ARROW.getItem()) ? 1.0F : 0.0F;
         });
     }
 
     public static void registerItems(RegistryEvent.Register<Item> event) {
-        if (Config.enableBoneWeapons.get()) {
-            event.getRegistry().register(BONE_SPEAR);
-            event.getRegistry().register(BONE_ARROW);
-        }
+        if (Config.enableBoneWeapons.get()) {event.getRegistry().register(BONE_SPEAR); event.getRegistry().register(BONE_ARROW);}
+        if (Config.enableSoulCoal.get()) { event.getRegistry().register(SOUL_COAL); }
         if (Config.enableUnfiredBricks.get()) {
             event.getRegistry().register(MUD_GLOB);
-            event.getRegistry().register(UNFIRED_MUD_BRICK);
-            event.getRegistry().register(MUD_BRICK);
-            event.getRegistry().register(UNFIRED_BRICK);
-            event.getRegistry().register(UNFIRED_NETHER_BRICK);
+            event.getRegistry().register(UNFIRED_MUD_BRICK);              event.getRegistry().register(MUD_BRICK);
+            event.getRegistry().register(UNFIRED_BRICK);                  event.getRegistry().register(UNFIRED_NETHER_BRICK);
         }
         if (Config.enableNetheriteAdditions.get()) {
-            event.getRegistry().register(APOGEAN_SWORD);
-            event.getRegistry().register(APOGEAN_AXE);
-            event.getRegistry().register(APOGEAN_NETHERITE_HELMET);
-            event.getRegistry().register(APOGEAN_NETHERITE_CHESTPLATE);
-            event.getRegistry().register(APOGEAN_NETHERITE_LEGGINGS);
-            event.getRegistry().register(APOGEAN_NETHERITE_BOOTS);
-            event.getRegistry().register(AQUEOUS_SWORD);
-            event.getRegistry().register(AQUEOUS_AXE);
-            event.getRegistry().register(AQUEOUS_NETHERITE_HELMET);
-            event.getRegistry().register(AQUEOUS_NETHERITE_CHESTPLATE);
-            event.getRegistry().register(AQUEOUS_NETHERITE_LEGGINGS);
-            event.getRegistry().register(AQUEOUS_NETHERITE_BOOTS);
-            event.getRegistry().register(ATROPHYING_SWORD);
-            event.getRegistry().register(ATROPHYING_AXE);
-            event.getRegistry().register(ATROPHYING_NETHERITE_HELMET);
-            event.getRegistry().register(ATROPHYING_NETHERITE_CHESTPLATE);
-            event.getRegistry().register(ATROPHYING_NETHERITE_LEGGINGS);
-            event.getRegistry().register(ATROPHYING_NETHERITE_BOOTS);
-            event.getRegistry().register(INCORPOREAL_SWORD);
-            event.getRegistry().register(INCORPOREAL_AXE);
-            event.getRegistry().register(INCORPOREAL_NETHERITE_HELMET);
-            event.getRegistry().register(INCORPOREAL_NETHERITE_CHESTPLATE);
-            event.getRegistry().register(INCORPOREAL_NETHERITE_LEGGINGS);
-            event.getRegistry().register(INCORPOREAL_NETHERITE_BOOTS);
-            event.getRegistry().register(INFERNAL_SWORD);
-            event.getRegistry().register(INFERNAL_AXE);
-            event.getRegistry().register(INFERNAL_NETHERITE_HELMET);
-            event.getRegistry().register(INFERNAL_NETHERITE_CHESTPLATE);
-            event.getRegistry().register(INFERNAL_NETHERITE_LEGGINGS);
-            event.getRegistry().register(INFERNAL_NETHERITE_BOOTS);
-            event.getRegistry().register(OPULENT_SWORD);
-            event.getRegistry().register(OPULENT_AXE);
-            event.getRegistry().register(OPULENT_NETHERITE_HELMET);
-            event.getRegistry().register(OPULENT_NETHERITE_CHESTPLATE);
-            event.getRegistry().register(OPULENT_NETHERITE_LEGGINGS);
-            event.getRegistry().register(OPULENT_NETHERITE_BOOTS);
-            event.getRegistry().register(PERNICIOUS_SWORD);
-            event.getRegistry().register(PERNICIOUS_AXE);
-            event.getRegistry().register(PERNICIOUS_NETHERITE_HELMET);
-            event.getRegistry().register(PERNICIOUS_NETHERITE_CHESTPLATE);
-            event.getRegistry().register(PERNICIOUS_NETHERITE_LEGGINGS);
-            event.getRegistry().register(PERNICIOUS_NETHERITE_BOOTS);
-            event.getRegistry().register(PHANTASMAL_SWORD);
-            event.getRegistry().register(PHANTASMAL_AXE);
-            event.getRegistry().register(PHANTASMAL_NETHERITE_HELMET);
-            event.getRegistry().register(PHANTASMAL_NETHERITE_CHESTPLATE);
-            event.getRegistry().register(PHANTASMAL_NETHERITE_LEGGINGS);
-            event.getRegistry().register(PHANTASMAL_NETHERITE_BOOTS);
-            event.getRegistry().register(REMEX_SWORD);
-            event.getRegistry().register(REMEX_AXE);
-            event.getRegistry().register(REMEX_NETHERITE_HELMET);
-            event.getRegistry().register(REMEX_NETHERITE_CHESTPLATE);
-            event.getRegistry().register(REMEX_NETHERITE_LEGGINGS);
-            event.getRegistry().register(REMEX_NETHERITE_BOOTS);
+            event.getRegistry().register(APOGEAN_SWORD);                  event.getRegistry().register(APOGEAN_AXE);
+            event.getRegistry().register(APOGEAN_NETHERITE_HELMET);       event.getRegistry().register(APOGEAN_NETHERITE_CHESTPLATE);
+            event.getRegistry().register(APOGEAN_NETHERITE_LEGGINGS);     event.getRegistry().register(APOGEAN_NETHERITE_BOOTS);
+            event.getRegistry().register(AQUEOUS_SWORD);                  event.getRegistry().register(AQUEOUS_AXE);
+            event.getRegistry().register(AQUEOUS_NETHERITE_HELMET);       event.getRegistry().register(AQUEOUS_NETHERITE_CHESTPLATE);
+            event.getRegistry().register(AQUEOUS_NETHERITE_LEGGINGS);     event.getRegistry().register(AQUEOUS_NETHERITE_BOOTS);
+            event.getRegistry().register(ATROPHYING_SWORD);               event.getRegistry().register(ATROPHYING_AXE);
+            event.getRegistry().register(ATROPHYING_NETHERITE_HELMET);    event.getRegistry().register(ATROPHYING_NETHERITE_CHESTPLATE);
+            event.getRegistry().register(ATROPHYING_NETHERITE_LEGGINGS);  event.getRegistry().register(ATROPHYING_NETHERITE_BOOTS);
+            event.getRegistry().register(INCORPOREAL_SWORD);              event.getRegistry().register(INCORPOREAL_AXE);
+            event.getRegistry().register(INCORPOREAL_NETHERITE_HELMET);   event.getRegistry().register(INCORPOREAL_NETHERITE_CHESTPLATE);
+            event.getRegistry().register(INCORPOREAL_NETHERITE_LEGGINGS); event.getRegistry().register(INCORPOREAL_NETHERITE_BOOTS);
+            event.getRegistry().register(INFERNAL_SWORD);                 event.getRegistry().register(INFERNAL_AXE);
+            event.getRegistry().register(INFERNAL_NETHERITE_HELMET);      event.getRegistry().register(INFERNAL_NETHERITE_CHESTPLATE);
+            event.getRegistry().register(INFERNAL_NETHERITE_LEGGINGS);    event.getRegistry().register(INFERNAL_NETHERITE_BOOTS);
+            event.getRegistry().register(OPULENT_SWORD);                  event.getRegistry().register(OPULENT_AXE);
+            event.getRegistry().register(OPULENT_NETHERITE_HELMET);       event.getRegistry().register(OPULENT_NETHERITE_CHESTPLATE);
+            event.getRegistry().register(OPULENT_NETHERITE_LEGGINGS);     event.getRegistry().register(OPULENT_NETHERITE_BOOTS);
+            event.getRegistry().register(PERNICIOUS_SWORD);               event.getRegistry().register(PERNICIOUS_AXE);
+            event.getRegistry().register(PERNICIOUS_NETHERITE_HELMET);    event.getRegistry().register(PERNICIOUS_NETHERITE_CHESTPLATE);
+            event.getRegistry().register(PERNICIOUS_NETHERITE_LEGGINGS);  event.getRegistry().register(PERNICIOUS_NETHERITE_BOOTS);
+            event.getRegistry().register(PHANTASMAL_SWORD);               event.getRegistry().register(PHANTASMAL_AXE);
+            event.getRegistry().register(PHANTASMAL_NETHERITE_HELMET);    event.getRegistry().register(PHANTASMAL_NETHERITE_CHESTPLATE);
+            event.getRegistry().register(PHANTASMAL_NETHERITE_LEGGINGS);  event.getRegistry().register(PHANTASMAL_NETHERITE_BOOTS);
+            event.getRegistry().register(REMEX_SWORD);                    event.getRegistry().register(REMEX_AXE);
+            event.getRegistry().register(REMEX_NETHERITE_HELMET);         event.getRegistry().register(REMEX_NETHERITE_CHESTPLATE);
+            event.getRegistry().register(REMEX_NETHERITE_LEGGINGS);       event.getRegistry().register(REMEX_NETHERITE_BOOTS);
         }
-        if (Config.enableSoulCoal.get()) { event.getRegistry().register(SOUL_COAL); }
         if (Config.enableHammersAndVanillaOreFragments.get()) {
-            event.getRegistry().register(STONE_CRUSHING_HAMMER);
-            event.getRegistry().register(IRON_CRUSHING_HAMMER);
-            event.getRegistry().register(GOLD_CRUSHING_HAMMER);
-            event.getRegistry().register(DIAMOND_CRUSHING_HAMMER);
+            event.getRegistry().register(GOLD_ORE_FRAGMENT);              event.getRegistry().register(IRON_ORE_FRAGMENT);
+            event.getRegistry().register(STONE_CRUSHING_HAMMER);          event.getRegistry().register(IRON_CRUSHING_HAMMER);
+            event.getRegistry().register(GOLD_CRUSHING_HAMMER);           event.getRegistry().register(DIAMOND_CRUSHING_HAMMER);
             event.getRegistry().register(ABYSSALITE_CRUSHING_HAMMER);
-            event.getRegistry().register(IRON_ORE_FRAGMENT);
-            event.getRegistry().register(GOLD_ORE_FRAGMENT);
         }
         if (Config.enableModdedOreFragments.get()) {
-            event.getRegistry().register(DEEPSLATE_IRON_ORE_FRAGMENT);
-            event.getRegistry().register(DEEPSLATE_GOLD_ORE_FRAGMENT);
-            event.getRegistry().register(DEEPSLATE_COPPER_ORE_FRAGMENT);
-            event.getRegistry().register(TIN_ORE_FRAGMENT);
-            event.getRegistry().register(ZINC_ORE_FRAGMENT);
-            event.getRegistry().register(COPPER_ORE_FRAGMENT);
-            event.getRegistry().register(SILVER_ORE_FRAGMENT);
-            event.getRegistry().register(OSMIUM_ORE_FRAGMENT);
-            event.getRegistry().register(NICKEL_ORE_FRAGMENT);
-            event.getRegistry().register(LEAD_ORE_FRAGMENT);
-            event.getRegistry().register(PLATINUM_ORE_FRAGMENT);
-            event.getRegistry().register(QUICKSILVER_ORE_FRAGMENT);
-            event.getRegistry().register(URANIUM_ORE_FRAGMENT);
-            event.getRegistry().register(ALUMINUM_ORE_FRAGMENT);
+            event.getRegistry().register(DEEPSLATE_IRON_ORE_FRAGMENT);    event.getRegistry().register(DEEPSLATE_GOLD_ORE_FRAGMENT);
+            event.getRegistry().register(DEEPSLATE_COPPER_ORE_FRAGMENT);  event.getRegistry().register(TIN_ORE_FRAGMENT);
+            event.getRegistry().register(COPPER_ORE_FRAGMENT);            event.getRegistry().register(ZINC_ORE_FRAGMENT);
+            event.getRegistry().register(SILVER_ORE_FRAGMENT);            event.getRegistry().register(OSMIUM_ORE_FRAGMENT);
+            event.getRegistry().register(NICKEL_ORE_FRAGMENT);            event.getRegistry().register(LEAD_ORE_FRAGMENT);
+            event.getRegistry().register(PLATINUM_ORE_FRAGMENT);          event.getRegistry().register(QUICKSILVER_ORE_FRAGMENT);
+            event.getRegistry().register(URANIUM_ORE_FRAGMENT);           event.getRegistry().register(ALUMINUM_ORE_FRAGMENT);
         }
     }
 }

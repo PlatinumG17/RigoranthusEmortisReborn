@@ -1,7 +1,6 @@
 package com.platinumg17.rigoranthusemortisreborn.blocks;
 
-import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
-import com.platinumg17.rigoranthusemortisreborn.config.Config;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusItemGroup;
 import net.minecraft.block.*;
@@ -22,7 +21,7 @@ import java.util.function.ToIntFunction;
 public class BuildingBlockInit {
 
     public static final DeferredRegister<Block> BLOCKS =
-            DeferredRegister.create(ForgeRegistries.BLOCKS, RigoranthusEmortisReborn.MOD_ID);
+            DeferredRegister.create(ForgeRegistries.BLOCKS, EmortisConstants.MOD_ID);
 
     public static final RegistryObject<Block> JESSIC_LAMP = registerBlock("jessic_lamp",
             () -> new RedstoneLampBlock(AbstractBlock.Properties.of(Material.BUILDABLE_GLASS).lightLevel(litBlockEmission(15)).strength(0.3F).sound(SoundType.SHROOMLIGHT)));
@@ -92,9 +91,5 @@ public class BuildingBlockInit {
         });
     }
 
-    public static void register(IEventBus bus) {
-        if (Config.enableNewWoodTypes.get()) {
-            BLOCKS.register(bus);
-        }
-    }
+    public static void register(IEventBus modEventBus) {BLOCKS.register(modEventBus);}
 }

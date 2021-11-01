@@ -2,8 +2,7 @@ package com.platinumg17.rigoranthusemortisreborn.items.smeltery;
 
 import java.util.List;
 import javax.annotation.Nullable;
-import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
-
+import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
@@ -18,13 +17,13 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class ItemSoulCoal extends Item {
     public ItemSoulCoal(Properties properties) {
         super(properties);
-        setRegistryName(RigoranthusEmortisReborn.MOD_ID, "soul_coal");
+        setRegistryName(EmortisConstants.MOD_ID, "soul_coal");
     }
     @OnlyIn(Dist.CLIENT)
     @Override
     public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".soul_coal").setStyle(Style.EMPTY));
-        tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".soul_coal2").setStyle(Style.EMPTY));
+        tooltip.add(new TranslationTextComponent("tooltip." + EmortisConstants.MOD_ID + ".soul_coal").setStyle(Style.EMPTY));
+        tooltip.add(new TranslationTextComponent("tooltip." + EmortisConstants.MOD_ID + ".soul_coal2").setStyle(Style.EMPTY));
     }
     @Override
     public int getBurnTime(ItemStack itemStack) {

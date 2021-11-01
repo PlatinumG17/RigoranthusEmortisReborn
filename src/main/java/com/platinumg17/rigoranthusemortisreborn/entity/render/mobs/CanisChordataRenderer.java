@@ -1,9 +1,9 @@
-package com.platinumg17.rigoranthusemortisreborn.entity.render;
+package com.platinumg17.rigoranthusemortisreborn.entity.render.mobs;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import com.platinumg17.rigoranthusemortisreborn.entity.mobs.canis.CanisChordataEntity;
-import com.platinumg17.rigoranthusemortisreborn.entity.model.CanisChordataGeoModel;
+import com.platinumg17.rigoranthusemortisreborn.entity.mobs.FeralCanisEntity;
+import com.platinumg17.rigoranthusemortisreborn.entity.model.mobs.canis.CanisChordataGeoModel;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
@@ -12,7 +12,7 @@ import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
 
 import javax.annotation.Nullable;
 
-public class CanisChordataRenderer extends GeoEntityRenderer<CanisChordataEntity> { //implements IGeoRenderer<T> {
+public class CanisChordataRenderer extends GeoEntityRenderer<FeralCanisEntity> { //implements IGeoRenderer<T> {
 //    private static final RenderType[] GLOW = new RenderType[2];
 //
 //    protected final List<GeoLayerRenderer<T>> layerRenderers = Lists.newArrayList();
@@ -36,11 +36,11 @@ public class CanisChordataRenderer extends GeoEntityRenderer<CanisChordataEntity
 //        GLOW[0] = RenderType.eyes(new ResourceLocation(RigoranthusEmortisReborn.MOD_ID, ("textures/entity/canis/canis_chordata_e.png")));
 //    }
     @Override
-    public RenderType getRenderType(CanisChordataEntity animatable, float partialTicks, MatrixStack stack, @Nullable IRenderTypeBuffer renderTypeBuffer, @Nullable IVertexBuilder vertexBuilder, int packedLightIn, ResourceLocation textureLocation) {
+    public RenderType getRenderType(FeralCanisEntity animatable, float partialTicks, MatrixStack stack, @Nullable IRenderTypeBuffer renderTypeBuffer, @Nullable IVertexBuilder vertexBuilder, int packedLightIn, ResourceLocation textureLocation) {
         return RenderType.entityTranslucent(this.getTextureLocation(animatable));
     }
 //    @Override
-//    public void render(CanisChordataEntity entity, float entityYaw, float partialTicks, MatrixStack stack, IRenderTypeBuffer bufferIn,
+//    public void render(FeralCanisEntity entity, float entityYaw, float partialTicks, MatrixStack stack, IRenderTypeBuffer bufferIn,
 //                       int packedLightIn) {
 //        stack.pushPose();
 //    EntityModelData entityModelData = new EntityModelData();

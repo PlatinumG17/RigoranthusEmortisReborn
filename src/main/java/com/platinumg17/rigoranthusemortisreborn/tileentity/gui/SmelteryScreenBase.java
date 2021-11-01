@@ -1,9 +1,9 @@
-package com.platinumg17.rigoranthusemortisreborn.gui;
+package com.platinumg17.rigoranthusemortisreborn.tileentity.gui;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
-import com.platinumg17.rigoranthusemortisreborn.container.MasterfulSmelteryContainerBase;
+import com.platinumg17.rigoranthusemortisreborn.tileentity.container.MasterfulSmelteryContainerBase;
 import com.platinumg17.rigoranthusemortisreborn.core.init.network.messages.Messages;
 import com.platinumg17.rigoranthusemortisreborn.core.init.network.messages.PacketSettingsButton;
 import com.platinumg17.rigoranthusemortisreborn.core.init.network.messages.PacketShowSettingsButton;

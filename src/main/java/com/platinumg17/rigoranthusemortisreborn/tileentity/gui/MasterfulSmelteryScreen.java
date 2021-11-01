@@ -1,6 +1,6 @@
-package com.platinumg17.rigoranthusemortisreborn.gui;
+package com.platinumg17.rigoranthusemortisreborn.tileentity.gui;
 
-import com.platinumg17.rigoranthusemortisreborn.container.MasterfulSmelteryContainer;
+import com.platinumg17.rigoranthusemortisreborn.tileentity.container.MasterfulSmelteryContainer;
 
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.text.ITextComponent;

@@ -47,7 +47,6 @@ import com.platinumg17.rigoranthusemortisreborn.tileentity.SmelteryTileEntityBas
 public abstract class BlockMasterfulSmelteryBase extends Block {
     public static final IntegerProperty TYPE = IntegerProperty.create("type", 0, 2);
 
-
     public BlockMasterfulSmelteryBase(Properties properties) {
         super(properties);
         this.registerDefaultState(this.defaultBlockState().setValue(BlockStateProperties.LIT, false).setValue(TYPE, 0));
@@ -71,7 +70,7 @@ public abstract class BlockMasterfulSmelteryBase extends Block {
 
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext ctx) {
-        return (BlockState) this.defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, ctx.getHorizontalDirection().getOpposite());
+        return this.defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, ctx.getHorizontalDirection().getOpposite());
     }
 
     @Override
@@ -81,7 +80,7 @@ public abstract class BlockMasterfulSmelteryBase extends Block {
             if (stack.hasCustomHoverName()) {
                 te.setCustomName(stack.getDisplayName());
             }
-            te.totalCookTime = te.getCookTimeConfig().get();
+            te.totalCookTime = te.getCookTimeConfig();
             te.placeConfig();
         }
     }
@@ -160,17 +159,14 @@ public abstract class BlockMasterfulSmelteryBase extends Block {
     @OnlyIn(Dist.CLIENT)
     public void animateTick(BlockState state, World world, BlockPos pos, Random rand) {
         if (state.getValue(BlockStateProperties.LIT)) {
-            if (world.getBlockEntity(pos) == null)
-            {
+            if (world.getBlockEntity(pos) == null) {
                 return;
             }
-            if (!(world.getBlockEntity(pos) instanceof SmelteryTileEntityBase))
-            {
+            if (!(world.getBlockEntity(pos) instanceof SmelteryTileEntityBase)) {
                 return;
             }
             SmelteryTileEntityBase tile = ((SmelteryTileEntityBase) world.getBlockEntity(pos));
-            if (tile.getItem(3).getItem() == Registration.SMOKING_AUGMENT.get())
-            {
+            if (tile.getItem(3).getItem() == Registration.SMOKING_AUGMENT.get()) {
                 double lvt_5_1_ = (double)pos.getX() + 0.5D;
                 double lvt_7_1_ = (double)pos.getY();
                 double lvt_9_1_ = (double)pos.getZ() + 0.5D;
@@ -179,8 +175,7 @@ public abstract class BlockMasterfulSmelteryBase extends Block {
                 }
                 world.addParticle(ParticleTypes.SMOKE, lvt_5_1_, lvt_7_1_ + 1.1D, lvt_9_1_, 0.0D, 0.0D, 0.0D);
             }
-            else if (tile.getItem(3).getItem() == Registration.BLASTING_AUGMENT.get())
-            {
+            else if (tile.getItem(3).getItem() == Registration.BLASTING_AUGMENT.get()) {
                 double lvt_5_1_ = (double)pos.getX() + 0.5D;
                 double lvt_7_1_ = (double)pos.getY();
                 double lvt_9_1_ = (double)pos.getZ() + 0.5D;
@@ -239,7 +234,6 @@ public abstract class BlockMasterfulSmelteryBase extends Block {
 
     public int getComparatorInputOverride(BlockState state, World world, BlockPos pos) {
         return Container.getRedstoneSignalFromContainer((IInventory) world.getBlockEntity(pos));
-
     }
 
     public BlockRenderType getRenderType(BlockState p_149645_1_) {
@@ -257,8 +251,7 @@ public abstract class BlockMasterfulSmelteryBase extends Block {
     private int calculateOutput(World worldIn, BlockPos pos, BlockState state) {
         SmelteryTileEntityBase tile = ((SmelteryTileEntityBase)worldIn.getBlockEntity(pos));
         int i = this.getComparatorInputOverride(state, worldIn, pos);
-        if (tile != null)
-        {
+        if (tile != null) {
             int j = tile.smelterySettings.get(9);
             return tile.smelterySettings.get(8) == 4 ? Math.max(i - j, 0) : i;
         }
@@ -278,23 +271,18 @@ public abstract class BlockMasterfulSmelteryBase extends Block {
     @Override
     public int getDirectSignal(BlockState blockState, IBlockReader world, BlockPos pos, Direction direction) {
         SmelteryTileEntityBase furnace = ((SmelteryTileEntityBase) world.getBlockEntity(pos));
-        if (furnace != null)
-        {
+        if (furnace != null) {
             int mode = furnace.smelterySettings.get(8);
-            if (mode == 0)
-            {
+            if (mode == 0) {
                 return 0;
             }
-            else if (mode == 1)
-            {
+            else if (mode == 1) {
                 return 0;
             }
-            else if (mode == 2)
-            {
+            else if (mode == 2) {
                 return 0;
             }
-            else
-            {
+            else {
                 return calculateOutput(furnace.getLevel(), pos, blockState);
             }
         }

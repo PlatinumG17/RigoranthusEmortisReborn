@@ -1,4 +1,4 @@
-package com.platinumg17.rigoranthusemortisreborn.entity.model;
+package com.platinumg17.rigoranthusemortisreborn.entity.model.mobs;
 
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.entity.mobs.SunderedCadaverEntity;

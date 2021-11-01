@@ -1,7 +1,7 @@
 package com.platinumg17.rigoranthusemortisreborn.core.init.fluid;
 
-import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.blocks.BlockInit;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.FlowingFluidBlock;
@@ -22,7 +22,7 @@ public class CadaverousIchorFluid {
     public static final ResourceLocation WATER_FLOWING_RL = new ResourceLocation("block/water_flow");
     public static final ResourceLocation WATER_OVERLAY_RL = new ResourceLocation("block/water_overlay");
 
-    public static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(ForgeRegistries.FLUIDS, RigoranthusEmortisReborn.MOD_ID);
+    public static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(ForgeRegistries.FLUIDS, EmortisConstants.MOD_ID);
 
     public static final RegistryObject<FlowingFluid> CADAVEROUS_ICHOR_FLUID
             = FLUIDS.register("cadaverous_ichor_fluid", () -> new ForgeFlowingFluid.Source(CadaverousIchorFluid.CADAVEROUS_ICHOR_PROPERTIES));
@@ -39,7 +39,7 @@ public class CadaverousIchorFluid {
             () -> new FlowingFluidBlock(CadaverousIchorFluid.CADAVEROUS_ICHOR_FLUID, AbstractBlock.Properties.of(Material.WATER)
                     .noOcclusion().strength(100f).noDrops()));
 
-    public static void register(IEventBus bus) {
-        FLUIDS.register(bus);
+    public static void register(IEventBus modEventBus) {
+        FLUIDS.register(modEventBus);
     }
 }

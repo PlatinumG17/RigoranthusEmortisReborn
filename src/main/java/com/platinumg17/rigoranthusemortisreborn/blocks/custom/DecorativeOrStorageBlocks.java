@@ -9,8 +9,9 @@ import com.minecraftabnormals.abnormals_core.common.blocks.wood.*;
 import com.minecraftabnormals.abnormals_core.core.util.registry.BlockSubRegistryHelper;
 import com.mojang.datafixers.util.Pair;
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
-import com.platinumg17.rigoranthusemortisreborn.blocks.trees.JessicTree;
-import com.platinumg17.rigoranthusemortisreborn.blocks.trees.AzulorealTree;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
+import com.platinumg17.rigoranthusemortisreborn.world.trees.JessicTree;
+import com.platinumg17.rigoranthusemortisreborn.world.trees.AzulorealTree;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -23,7 +24,7 @@ import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = RigoranthusEmortisReborn.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = EmortisConstants.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DecorativeOrStorageBlocks {
     public static final BlockSubRegistryHelper HELPER = RigoranthusEmortisReborn.REGISTRY_HELPER.getBlockSubHelper();
 
@@ -71,7 +72,6 @@ public class DecorativeOrStorageBlocks {
     public static final RegistryObject<Block> AZULOREAL_HEDGE = HELPER.createCompatFuelBlock("quark", "azuloreal_hedge", () -> new HedgeBlock(Properties.HEDGE), 300, ItemGroup.TAB_DECORATIONS);
     public static final Pair<RegistryObject<AbnormalsChestBlock>, RegistryObject<AbnormalsTrappedChestBlock>> AZULOREAL_CHESTS = HELPER.createCompatChestBlocks("quark", "azuloreal", MaterialColor.COLOR_CYAN);
 
-
     /////    JESSIC    /////
 
     public static final RegistryObject<Block> STRIPPED_JESSIC_LOG = HELPER.createBlock("stripped_jessic_log", ()->new StrippedLogBlock(Properties.LOG), ItemGroup.TAB_BUILDING_BLOCKS);
@@ -102,28 +102,11 @@ public class DecorativeOrStorageBlocks {
     public static final RegistryObject<Block> JESSIC_HEDGE = HELPER.createCompatFuelBlock("quark", "jessic_hedge", () -> new HedgeBlock(Properties.HEDGE), 300, ItemGroup.TAB_DECORATIONS);
     public static final Pair<RegistryObject<AbnormalsChestBlock>, RegistryObject<AbnormalsTrappedChestBlock>> JESSIC_CHESTS = HELPER.createCompatChestBlocks("quark", "jessic", MaterialColor.TERRACOTTA_MAGENTA);
 
-//    public static final RegistryObject<Block> FLOWERING_JESSIC_LOG= HELPER.createBlock("flowering_jessic_log", ()->new FloweringLogBlock(JESSIC_LOG, STRIPPED_JESSIC_LOG, Properties.LOG), ItemGroup.TAB_BUILDING_BLOCKS);
-//    public static final RegistryObject<Block> FLOWERING_JESSIC_WOOD= HELPER.createBlock("flowering_jessic_wood", ()->new FloweringWoodBlock(JESSIC_WOOD, STRIPPED_JESSIC_WOOD, Properties.LOG), ItemGroup.TAB_BUILDING_BLOCKS);
-//    public static final RegistryObject<Block> FLOWERING_JESSIC_LEAVES = HELPER.createBlock("flowering_jessic_leaves", ()->new AbnormalsLeavesBlock(Properties.JESSIC_LEAVES), ItemGroup.TAB_DECORATIONS);
-//    public static final RegistryObject<Block> FLOWERING_JESSIC_LEAF_CARPET = HELPER.createCompatBlock("quark", "flowering_jessic_leaf_carpet", ()->new LeafCarpetBlock(Properties.JESSIC_CARPET), ItemGroup.TAB_DECORATIONS);
-//    public static final RegistryObject<Block> BUDDING_JESSIC_LEAVES = HELPER.createBlock("budding_jessic_leaves", ()->new AbnormalsLeavesBlock(Properties.JESSIC_LEAVES), ItemGroup.TAB_DECORATIONS);
-//    public static final RegistryObject<Block> BUDDING_JESSIC_LEAF_CARPET = HELPER.createCompatBlock("quark", "budding_jessic_leaf_carpet", ()->new LeafCarpetBlock(Properties.JESSIC_CARPET), ItemGroup.TAB_DECORATIONS);
-//    public static final RegistryObject<Block> BUDDING_JESSIC_HEDGE = HELPER.createCompatFuelBlock("quark", "budding_jessic_hedge", () -> new HedgeBlock(Properties.HEDGE), 300, ItemGroup.TAB_DECORATIONS);
-//    public static final RegistryObject<Block> FLOWERING_JESSIC_HEDGE = HELPER.createCompatFuelBlock("quark", "flowering_jessic_hedge", () -> new HedgeBlock(Properties.HEDGE), 300, ItemGroup.TAB_DECORATIONS);
-//    public static final RegistryObject<Block> FLOWERING_JESSIC_SAPLING = HELPER.createBlock("flowering_jessic_sapling", ()->new AbnormalsSaplingBlock(new FloweringJessicTree(), Properties.SAPLING), ItemGroup.TAB_DECORATIONS);
-//    public static final RegistryObject<Block> POTTED_FLOWERING_JESSIC_SAPLING = HELPER.createBlockNoItem("potted_flowering_jessic_sapling", ()->new FlowerPotBlock(FLOWERING_JESSIC_SAPLING.get(), Properties.FLOWER_POT));
-//    public static final RegistryObject<Block> JESSIC_BLOSSOM_CARPET = HELPER.createBlock("jessic_blossom_carpet", ()->new BlossomCarpetBlock(AbstractBlock.Properties.of(Material.CARPET, MaterialColor.COLOR_PURPLE).notSolid().hardnessAndResistance(0.0f).tickRandomly().sound(SoundType.GRASS).harvestTool(ToolType.HOE)), ItemGroup.TAB_DECORATIONS);
-
-
     /////    FLOWERS    /////
-
     public static final RegistryObject<Block> AZULOREAL_ORCHID = HELPER.createBlock("azuloreal_orchid", ()->new AbnormalsFlowerBlock(()->Effects.HEAL, 8, AbstractBlock.Properties.copy(Blocks.AZURE_BLUET)), ItemGroup.TAB_DECORATIONS);
     public static final RegistryObject<Block> IRIDESCENT_SPROUTS = HELPER.createBlock("iridescent_sprouts", ()->new AbnormalsFlowerBlock(()->Effects.NIGHT_VISION, 10, AbstractBlock.Properties.copy(Blocks.NETHER_SPROUTS)), ItemGroup.TAB_DECORATIONS);
-    //public static final RegistryObject<Block> LISIANTHUS = HELPER.createBlock("lisianthus", () -> new YuccaFlowerDoubleBlock(Block.Properties.copy(Blocks.ROSE_BUSH)), ItemGroup.TAB_DECORATIONS);
-
 
     /////   POTTED  FLOWERS    /////
-
     public static final RegistryObject<Block> POTTED_AZULOREAL_ORCHID = HELPER.createBlockNoItem("potted_azuloreal_orchid", ()->new FlowerPotBlock(AZULOREAL_ORCHID.get(), Properties.FLOWER_POT));
     public static final RegistryObject<Block> POTTED_IRIDESCENT_SPROUTS = HELPER.createBlockNoItem("potted_iridescent_sprouts", ()->new FlowerPotBlock(IRIDESCENT_SPROUTS.get(), Properties.FLOWER_POT));
     //public static final RegistryObject<Block> POTTED_LISIANTHUS = HELPER.createBlockNoItem("potted_lisianthus", () -> new FlowerPotBlock(LISIANTHUS.get(), Block.Properties.copy(Blocks.POTTED_ALLIUM)));
@@ -144,20 +127,28 @@ public class DecorativeOrStorageBlocks {
         public static final AbstractBlock.Properties SAPLING = AbstractBlock.Properties.of(Material.PLANT).noCollission().randomTicks().strength(0.0F).sound(SoundType.GRASS);
         public static final AbstractBlock.Properties FLOWER_POT = AbstractBlock.Properties.of(Material.DECORATION).strength(0.0F).noOcclusion();
 
-        public static boolean ocelotOrParrot(BlockState state, IBlockReader access, BlockPos pos, EntityType<?> entity) {
-            return entity == EntityType.OCELOT || entity == EntityType.PARROT;
-        }
-
-        public static boolean always(BlockState state, IBlockReader reader, BlockPos pos, EntityType<?> entity) {
-            return true;
-        }
-
+        public static boolean ocelotOrParrot(BlockState state, IBlockReader access, BlockPos pos, EntityType<?> entity) {return entity == EntityType.OCELOT || entity == EntityType.PARROT;}
+        public static boolean always(BlockState state, IBlockReader reader, BlockPos pos, EntityType<?> entity) {return true;}
         public static boolean hasPostProcess(BlockState state, IBlockReader reader, BlockPos pos) {
             return true;
         }
-
         public static boolean never(BlockState state, IBlockReader reader, BlockPos pos) {
             return false;
         }
     }
 }
+
+
+
+
+//    public static final RegistryObject<Block> FLOWERING_JESSIC_LOG= HELPER.createBlock("flowering_jessic_log", ()->new FloweringLogBlock(JESSIC_LOG, STRIPPED_JESSIC_LOG, Properties.LOG), ItemGroup.TAB_BUILDING_BLOCKS);
+//    public static final RegistryObject<Block> FLOWERING_JESSIC_WOOD= HELPER.createBlock("flowering_jessic_wood", ()->new FloweringWoodBlock(JESSIC_WOOD, STRIPPED_JESSIC_WOOD, Properties.LOG), ItemGroup.TAB_BUILDING_BLOCKS);
+//    public static final RegistryObject<Block> FLOWERING_JESSIC_LEAVES = HELPER.createBlock("flowering_jessic_leaves", ()->new AbnormalsLeavesBlock(Properties.JESSIC_LEAVES), ItemGroup.TAB_DECORATIONS);
+//    public static final RegistryObject<Block> FLOWERING_JESSIC_LEAF_CARPET = HELPER.createCompatBlock("quark", "flowering_jessic_leaf_carpet", ()->new LeafCarpetBlock(Properties.JESSIC_CARPET), ItemGroup.TAB_DECORATIONS);
+//    public static final RegistryObject<Block> BUDDING_JESSIC_LEAVES = HELPER.createBlock("budding_jessic_leaves", ()->new AbnormalsLeavesBlock(Properties.JESSIC_LEAVES), ItemGroup.TAB_DECORATIONS);
+//    public static final RegistryObject<Block> BUDDING_JESSIC_LEAF_CARPET = HELPER.createCompatBlock("quark", "budding_jessic_leaf_carpet", ()->new LeafCarpetBlock(Properties.JESSIC_CARPET), ItemGroup.TAB_DECORATIONS);
+//    public static final RegistryObject<Block> BUDDING_JESSIC_HEDGE = HELPER.createCompatFuelBlock("quark", "budding_jessic_hedge", () -> new HedgeBlock(Properties.HEDGE), 300, ItemGroup.TAB_DECORATIONS);
+//    public static final RegistryObject<Block> FLOWERING_JESSIC_HEDGE = HELPER.createCompatFuelBlock("quark", "flowering_jessic_hedge", () -> new HedgeBlock(Properties.HEDGE), 300, ItemGroup.TAB_DECORATIONS);
+//    public static final RegistryObject<Block> FLOWERING_JESSIC_SAPLING = HELPER.createBlock("flowering_jessic_sapling", ()->new AbnormalsSaplingBlock(new FloweringJessicTree(), Properties.SAPLING), ItemGroup.TAB_DECORATIONS);
+//    public static final RegistryObject<Block> POTTED_FLOWERING_JESSIC_SAPLING = HELPER.createBlockNoItem("potted_flowering_jessic_sapling", ()->new FlowerPotBlock(FLOWERING_JESSIC_SAPLING.get(), Properties.FLOWER_POT));
+//    public static final RegistryObject<Block> JESSIC_BLOSSOM_CARPET = HELPER.createBlock("jessic_blossom_carpet", ()->new BlossomCarpetBlock(AbstractBlock.Properties.of(Material.CARPET, MaterialColor.COLOR_PURPLE).notSolid().hardnessAndResistance(0.0f).tickRandomly().sound(SoundType.GRASS).harvestTool(ToolType.HOE)), ItemGroup.TAB_DECORATIONS);

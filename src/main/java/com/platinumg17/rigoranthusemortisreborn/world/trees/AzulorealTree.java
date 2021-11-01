@@ -1,4 +1,4 @@
-package com.platinumg17.rigoranthusemortisreborn.blocks.trees;
+package com.platinumg17.rigoranthusemortisreborn.world.trees;
 
 import com.platinumg17.rigoranthusemortisreborn.world.gen.feature.RigoranthusConfiguredFeatures;
 import net.minecraft.block.trees.BigTree;

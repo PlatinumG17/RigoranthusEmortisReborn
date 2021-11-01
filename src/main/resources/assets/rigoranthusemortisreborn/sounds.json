@@ -1,4 +1,12 @@
 {
+  "whistle_short": {
+    "subtitle": "rigoranthusemortisreborn.whistle.short",
+    "sounds": [ "rigoranthusemortisreborn:whistle/short" ]
+  },
+  "whistle_long": {
+    "subtitle": "rigoranthusemortisreborn.whistle.long",
+    "sounds": [ "rigoranthusemortisreborn:whistle/long" ]
+  },
   "canis_death": {
     "category": "hostile",
     "sounds": [
@@ -126,7 +134,7 @@
       "category": "record",
       "sounds": [
       {
-        "name": "rigoranthusemortisreborn:music_disk_kickstart",
+        "name": "rigoranthusemortisreborn:level_up",
         "stream": false
       }
     ]
@@ -135,7 +143,7 @@
    "category": "record",
    "sounds": [
       {
-        "name": "rigoranthusemortisreborn:music_disk_neon_lights",
+        "name": "rigoranthusemortisreborn:neon_lights",
         "stream": false
       }
     ]

@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/pressure_plate_down",
   "textures": {
-    "particle": "rigoranthusemortisreborn:blocks/jessic_planks",
-    "texture": "rigoranthusemortisreborn:blocks/jessic_planks"
+    "particle": "rigoranthusemortisreborn:blocks/jessic_pressure_plate",
+    "texture": "rigoranthusemortisreborn:blocks/jessic_pressure_plate"
   }
 }

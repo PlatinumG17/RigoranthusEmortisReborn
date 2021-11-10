@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rigoranthusemortisreborn:master_treat"
+    },
+    {
+      "item": "rigoranthusemortisreborn:master_treat"
+    },
+    {
+      "item": "rigoranthusemortisreborn:master_treat"
+    },
+    {
+      "item": "rigoranthusemortisreborn:master_treat"
+    },
+    {
+      "item": "rigoranthusemortisreborn:master_treat"
+    },
+    {
+      "item": "minecraft:end_stone"
+    }
+  ],
+  "result": {
+    "item": "rigoranthusemortisreborn:homini_treat"
+  }
+}

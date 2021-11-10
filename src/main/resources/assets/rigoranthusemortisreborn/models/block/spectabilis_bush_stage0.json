@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "rigoranthusemortisreborn:blocks/spectabilis_bush_stage0"
+  }
+}

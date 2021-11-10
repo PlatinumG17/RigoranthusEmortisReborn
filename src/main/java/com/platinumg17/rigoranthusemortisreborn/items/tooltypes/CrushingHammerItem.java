@@ -1,4 +1,4 @@
-package com.platinumg17.rigoranthusemortisreborn.items;
+package com.platinumg17.rigoranthusemortisreborn.items.tooltypes;
 
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import net.minecraft.client.gui.screen.Screen;

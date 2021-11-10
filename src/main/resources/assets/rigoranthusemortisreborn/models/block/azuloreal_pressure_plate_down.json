@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/pressure_plate_down",
   "textures": {
-    "particle": "rigoranthusemortisreborn:blocks/azuloreal_planks",
-    "texture": "rigoranthusemortisreborn:blocks/azuloreal_planks"
+    "particle": "rigoranthusemortisreborn:blocks/azuloreal_pressure_plate",
+    "texture": "rigoranthusemortisreborn:blocks/azuloreal_pressure_plate"
   }
 }

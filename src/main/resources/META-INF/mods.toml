@@ -4,14 +4,14 @@ license="All rights reserved"
 
 [[mods]]
     modId="rigoranthusemortisreborn"
-    version="2.0.0"
+    version="${version}"
     logoFile="rigoranthus_emortis_logo.png"
     itemIcon="rigoranthusemortisreborn:assets/ftbchunks/textures/faces/rigoranthusemortisreborn/canis_chordata.png"
     configBackground = "rigoranthusemortisreborn:textures/gui/advancements/azuloreal.png"
-    authors="PlatinumG17"
-    credits="Audio sourced from: Zapsplat.com (Little Robot Sound Factory, 344 Audio, Zapsplat), orangefreesounds.com, fesliyanstudios.com, quicksounds.com"
+    authors=" PlatinumG17"
+    credits=" Some code inspired by or sourced from: Percivalalb & XenoMustache.\n Audio sourced from: Zapsplat (LittleRobotSoundFactory, 344Audio), orangefreesounds, fesliyanstudios, and quicksounds"
     displayURL="https://www.curseforge.com/members/platinumg17/projects"
-    displayName="Rigoranthus Emortis Reborn"
+    displayName=" Rigoranthus Emortis Reborn"
 description='''
 Adds unique and Nasty Mobs & a Pet with a 3 stage Evolution Line! 
 What more could you want?

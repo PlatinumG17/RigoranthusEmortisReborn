@@ -1,5 +1,6 @@
 package com.platinumg17.rigoranthusemortisreborn.canis.common.skill;
 
+import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -17,7 +18,7 @@ public class ChungusPupperSkill extends SkillInstance implements ICanisFoodHandl
 
     public static final ICanisFoodPredicate INNER_DYN_PRED = (stackIn) -> {
         Item item = stackIn.getItem();
-        return item == Items.ROTTEN_FLESH || (item.isEdible() && item.is(ItemTags.FISHES));
+        return item == Items.ROTTEN_FLESH || (item.isEdible() && item.is(ItemTags.FISHES) || item == ItemInit.BONE_FRAGMENT.get() || item == Items.BONE);
     };
 
     public ChungusPupperSkill(Skill SkillIn, int levelIn) {
@@ -58,8 +59,13 @@ public class ChungusPupperSkill extends SkillInstance implements ICanisFoodHandl
                 canisIn.consumeItemFromStack(entityIn, stackIn);
                 return ActionResultType.SUCCESS;
             }
-            if (this.level() >= 5 && item.isEdible() && item.is(ItemTags.FISHES)) {
+            if (this.level() >= 4 && item.isEdible() && item.is(ItemTags.FISHES)) {
                 canisIn.addHunger(item.getFoodProperties().getNutrition() * 5);
+                canisIn.consumeItemFromStack(entityIn, stackIn);
+                return ActionResultType.SUCCESS;
+            }
+            if (this.level() >= 5 && ((item == ItemInit.BONE_FRAGMENT.get()) || (item == Items.BONE))) {
+                canisIn.addHunger(20);
                 canisIn.consumeItemFromStack(entityIn, stackIn);
                 return ActionResultType.SUCCESS;
             }

@@ -15,6 +15,9 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
+/**
+ * @author ProPercivalalb
+ */
 public class FoodBowlContainer extends Container {
 
     private TileEntity tileEntity;
@@ -30,11 +33,13 @@ public class FoodBowlContainer extends Container {
                 this.addSlot(new SlotItemHandler(inventory, l + i * 9, 44 + l * 18, 22 + i * 18));
             }
         }
+
         for (int j = 0; j < 3; j++) {
             for (int i1 = 0; i1 < 9; i1++) {
                 this.addSlot(new Slot(playerInventory, i1 + j * 9 + 9, 8 + i1 * 18, 45 + j * 18));
             }
         }
+
         for (int k = 0; k < 9; k++) {
             this.addSlot(new Slot(playerInventory, k, 8 + k * 18, 103));
         }
@@ -49,6 +54,7 @@ public class FoodBowlContainer extends Container {
     public ItemStack quickMoveStack(PlayerEntity player, int i) {
         ItemStack itemstack = ItemStack.EMPTY;
         Slot slot = this.slots.get(i);
+
         if (slot != null && slot.hasItem()) {
             ItemStack itemstack1 = slot.getItem();
             itemstack = itemstack1.copy();
@@ -61,11 +67,13 @@ public class FoodBowlContainer extends Container {
             else if (!moveItemStackTo(itemstack1, 0, 5, false)) {
                 return ItemStack.EMPTY;
             }
+
             if (itemstack1.isEmpty()) {
                 slot.set(ItemStack.EMPTY);
             } else {
                 slot.setChanged();
             }
+
             if (itemstack1.getCount() == itemstack.getCount()) {
                 return ItemStack.EMPTY;
             }

@@ -9,8 +9,10 @@ import net.minecraftforge.items.IItemHandler;
 public class ItemUtil {
     public static List<ItemStack> getContentOverview(IItemHandler inventory) {
         List<ItemStack> items = new ArrayList<>(inventory.getSlots());
+
         SLOT: for (int i = 0; i < inventory.getSlots(); i++) {
             ItemStack itemstack = inventory.getStackInSlot(i).copy();
+
             if (!itemstack.isEmpty()) {
                 for (int j = 0; j < items.size(); j++) {
                     ItemStack stack = items.get(j);
@@ -21,6 +23,7 @@ public class ItemUtil {
                 }
             }
         }
+
         return items;
     }
 }

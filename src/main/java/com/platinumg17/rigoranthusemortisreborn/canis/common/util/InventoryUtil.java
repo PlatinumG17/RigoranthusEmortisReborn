@@ -31,11 +31,13 @@ public class InventoryUtil {
 
     public static Pair<ItemStack, Integer> findStack(IItemHandler source, Predicate<ItemStack> searchCriteria) {
         for (int i = 0; i < source.getSlots(); i++) {
+
             ItemStack stack = source.getStackInSlot(i);
             if (searchCriteria.test(stack)) {
                 return Pair.of(stack.copy(), i);
             }
         }
+
         return null;
     }
 
@@ -52,6 +54,7 @@ public class InventoryUtil {
             if (target.isItemValid(i, remaining)) {
                 remaining = target.insertItem(i, remaining, false);
             }
+
             if (remaining.isEmpty()) {
                 break;
             }
@@ -66,6 +69,7 @@ public class InventoryUtil {
         } else {
             int i = 0;
             float f = 0.0F;
+
             for (int j = 0; j < inv.getSlots(); ++j) {
                 ItemStack itemstack = inv.getStackInSlot(j);
                 if (!itemstack.isEmpty()) {
@@ -73,6 +77,7 @@ public class InventoryUtil {
                     ++i;
                 }
             }
+
             f = f / inv.getSlots();
             return MathHelper.floor(f * 14.0F) + (i > 0 ? 1 : 0);
         }

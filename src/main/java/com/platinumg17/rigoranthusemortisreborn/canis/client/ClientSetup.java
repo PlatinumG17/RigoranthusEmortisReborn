@@ -16,6 +16,7 @@ import com.platinumg17.rigoranthusemortisreborn.canis.client.screen.TreatBagScre
 import com.platinumg17.rigoranthusemortisreborn.canis.client.screen.WaywardTravellerScreen;
 import com.platinumg17.rigoranthusemortisreborn.canis.client.tileentity.renderer.CanisBedRenderer;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.accouterments.CanisAccouterments;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.Resources;
 import com.platinumg17.rigoranthusemortisreborn.canis.CanisSkills;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.SpecializedEntityTypes;
@@ -24,8 +25,10 @@ import com.platinumg17.rigoranthusemortisreborn.tileentity.gui.MasterfulSmeltery
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
+@Mod.EventBusSubscriber(modid = EmortisConstants.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ClientSetup {
 
     public static void setupScreenManagers(final FMLClientSetupEvent event) {
@@ -39,10 +42,10 @@ public class ClientSetup {
 //    }
     }
 
-    public static void setupEntityRenderers(final FMLClientSetupEvent event) {
-        RenderingRegistry.registerEntityRenderingHandler(SpecializedEntityTypes.CANIS.get(), CanisRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(SpecializedEntityTypes.CANIS_BEAM.get(), manager -> new CanisBeamRenderer<>(manager, event.getMinecraftSupplier().get().getItemRenderer()));
-    }
+//    public static void setupEntityRenderers(final FMLClientSetupEvent event) {
+//        RenderingRegistry.registerEntityRenderingHandler(SpecializedEntityTypes.CANIS.get(), CanisRenderer::new);
+//        RenderingRegistry.registerEntityRenderingHandler(SpecializedEntityTypes.CANIS_BEAM.get(), manager -> new CanisBeamRenderer<>(manager, event.getMinecraftSupplier().get().getItemRenderer()));
+//    }
 
     public static void setupTileEntityRenderers(final FMLClientSetupEvent event) {
         ClientRegistry.bindTileEntityRenderer(CanisTileEntityTypes.CANIS_BED.get(), CanisBedRenderer::new);

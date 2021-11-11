@@ -2,7 +2,10 @@ package com.platinumg17.rigoranthusemortisreborn.items;
 
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
+import com.platinumg17.rigoranthusemortisreborn.items.tooltypes.ToolRegistry;
+import net.minecraft.block.Blocks;
 import net.minecraft.item.IItemTier;
+import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.LazyValue;
 
@@ -28,7 +31,40 @@ public enum RigoranthusItemTier implements IItemTier {
     REMEX(4, Config.remex_tier_durability.get(), Config.remex_tier_speed.get().floatValue(), Config.remex_tier_damage.get().floatValue(), Config.remex_tier_enchantability.get(),
             () -> Ingredient.of(ItemInit.REMEX_NETHERITE_INGOT.get())),
     BONE(2, Config.bone_tier_durability.get(), Config.bone_tier_speed.get().floatValue(), Config.bone_tier_damage.get().floatValue(), Config.bone_tier_enchantability.get(),
-            () -> Ingredient.of(ItemInit.BONE_FRAGMENT.get()));
+            () -> Ingredient.of(ItemInit.BONE_FRAGMENT.get())),
+
+    SPLINTERED(0, 59, 0.0F, -1.0F, 0,
+            () -> Ingredient.EMPTY),
+
+    FROSTBITTEN(0, 60, 11.0F, 1.0F, 25,
+            () -> Ingredient.of(ItemInit.ICE_SHARD.get())),
+
+    BOOK_TIER(0, 250, 5.0F, 0.0F, 15,
+            () -> Ingredient.of(Items.BOOK)),
+
+    PRISMARIC(2, 300, 4.0F, 3.0F, 10,
+            () -> Ingredient.of(Items.PRISMARINE_SHARD)),
+
+    PROSAIC(0, 450, 2.5F, 0.0F, 10,
+            () -> Ingredient.EMPTY),
+
+    RESILE_TIER(1, 450, 2.0F, 2.0F, 8,
+            () -> Ingredient.of(ItemInit.IRON_SLIME_BALL.get())),
+
+    GHAST_IRON(3, 1024, 6.0F, 3.0F, 16, //
+            () -> Ingredient.of(ItemInit.GHAST_IRON_INGOT.get())),
+
+    BLIGHT_TIER(3, 1440, 4.0F, 4.0F, 15, //
+            () -> Ingredient.of(ItemInit.BLIGHT_ICHOR.get())),
+
+    LUSTERIC(4, 1640, 13.0F, 3.0F, 10, // 1640
+            () -> Ingredient.EMPTY),
+
+    ESOTERIC_TIER(4, 1820, 14.0F, 4.0F, 25,
+            () -> Ingredient.EMPTY),
+
+    CIRCEAN(5, 2024, 12.0F, 5.0F, 30,
+            () -> Ingredient.EMPTY);
 
     private final int level;
     private final int uses;

@@ -1,7 +1,7 @@
 package com.platinumg17.rigoranthusemortisreborn.tileentity;
 
 import com.google.common.collect.Lists;
-import com.platinumg17.rigoranthusemortisreborn.blocks.BlockMasterfulSmelteryBase;
+import com.platinumg17.rigoranthusemortisreborn.blocks.custom.BlockMasterfulSmelteryBase;
 import com.platinumg17.rigoranthusemortisreborn.config.ConfigValues;
 import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
 import com.platinumg17.rigoranthusemortisreborn.items.smeltery.ItemAugment;

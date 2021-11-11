@@ -71,5 +71,4 @@ public class RigoranthusEffectRegistry {
         BrewingRecipeRegistry.addRecipe(new EmortisBrewing(Ingredient.of(createPotion(NECROTIZING_FASCIITIS_POTION)), Ingredient.of(Items.REDSTONE), createPotion(NECROTIZING_FASCIITIS_II_POTION)));
 //        BrewingRecipeRegistry.addRecipe(new PactBrewing(Ingredient.of(Items.PAPER), Ingredient.of(ItemInit.BOTTLE_OF_ICHOR.get()), ItemStack.of(ItemInit.PACT_OF_SERVITUDE.get())));
     }
-
 }

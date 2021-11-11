@@ -1,6 +1,6 @@
 package com.platinumg17.rigoranthusemortisreborn.core.registry;
 
-import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -10,7 +10,17 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class RigoranthusSoundRegistry {
 	public static final DeferredRegister<SoundEvent> SOUND_EVENTS =
-			DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, RigoranthusEmortisReborn.MOD_ID);
+			DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, EmortisConstants.MOD_ID);
+
+	public static final RegistryObject<SoundEvent> WHISTLE_LONG =
+			registerSoundEvent("whistle_long");
+	public static final RegistryObject<SoundEvent> WHISTLE_SHORT =
+			registerSoundEvent("whistle_short");
+
+	public static final RegistryObject<SoundEvent> ITEM_GRIMOIRE_USE =
+			registerSoundEvent("grimoire_use");
+	public static final RegistryObject<SoundEvent> DESPERATE_CRIES =
+			registerSoundEvent("desperate_cries");
 
 	public static final RegistryObject<SoundEvent> UN_DIA_DE_ABRIL =
 			registerSoundEvent("un_dia_de_abril");
@@ -60,10 +70,10 @@ public class RigoranthusSoundRegistry {
 
 
 	private static RegistryObject<SoundEvent> registerSoundEvent(String name) {
-		return SOUND_EVENTS.register(name, () -> new SoundEvent(new ResourceLocation(RigoranthusEmortisReborn.MOD_ID, name)));
+		return SOUND_EVENTS.register(name, () -> new SoundEvent(new ResourceLocation(EmortisConstants.MOD_ID, name)));
 	}
 
-	public static void register(IEventBus bus) {
-		SOUND_EVENTS.register(bus);
+	public static void register(IEventBus modEventBus) {
+		SOUND_EVENTS.register(modEventBus);
 	}
 }

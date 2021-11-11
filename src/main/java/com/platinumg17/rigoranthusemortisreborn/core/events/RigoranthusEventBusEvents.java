@@ -1,22 +1,19 @@
 package com.platinumg17.rigoranthusemortisreborn.core.events;
 
-import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
 import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
+import com.platinumg17.rigoranthusemortisreborn.core.init.fluid.FluidRegistry;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.effects.RigoranthusEffectRegistry;
 import com.platinumg17.rigoranthusemortisreborn.entity.RigoranthusEntityTypes;
-import com.platinumg17.rigoranthusemortisreborn.entity.mobs.canis.CanisChordataEntity;
+import com.platinumg17.rigoranthusemortisreborn.entity.mobs.FeralCanisEntity;
 import com.platinumg17.rigoranthusemortisreborn.entity.mobs.LanguidDwellerEntity;
 import com.platinumg17.rigoranthusemortisreborn.entity.mobs.NecrawFasciiEntity;
 import com.platinumg17.rigoranthusemortisreborn.entity.mobs.SunderedCadaverEntity;
-import com.platinumg17.rigoranthusemortisreborn.core.init.fluid.CadaverousIchorFluid;
-import com.platinumg17.rigoranthusemortisreborn.items.RigoranthusSpawnEgg;
-import net.minecraft.client.renderer.ActiveRenderInfo;
+import com.platinumg17.rigoranthusemortisreborn.items.specialized.RigoranthusSpawnEgg;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.FluidState;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -26,7 +23,6 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
-import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
@@ -35,14 +31,25 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = RigoranthusEmortisReborn.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = EmortisConstants.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class RigoranthusEventBusEvents {
     @SubscribeEvent
     public static void addEntityAttributes(EntityAttributeCreationEvent event) {
-        event.put(RigoranthusEntityTypes.CANIS_CHORDATA.get(), CanisChordataEntity.setCustomAttributes().build());
+        event.put(RigoranthusEntityTypes.FERAL_CANIS.get(), FeralCanisEntity.setCustomAttributes().build());
         event.put(RigoranthusEntityTypes.SUNDERED_CADAVER.get(), SunderedCadaverEntity.setCustomAttributes().build());
         event.put(RigoranthusEntityTypes.NECRAW_FASCII.get(), NecrawFasciiEntity.setCustomAttributes().build());
         event.put(RigoranthusEntityTypes.LANGUID_DWELLER.get(), LanguidDwellerEntity.setCustomAttributes().build());
+//        event.put(SpecializedEntityTypes.CANIS.get(), CanisEntity.createMobAttributes()
+//                .add(Attributes.MAX_HEALTH, 80.0D)
+//                .add(Attributes.MOVEMENT_SPEED, 0.3D)
+//                .add(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
+//                .add(Attributes.ATTACK_DAMAGE, 4.0D)
+//                .add(Attributes.ATTACK_KNOCKBACK, 1.25D) // added
+//                .add(CanisAttributes.JUMP_POWER.get(), 1.0D) // was 0.42D
+//                .add(CanisAttributes.CRIT_CHANCE.get(), 0.01D)
+//                .add(CanisAttributes.CRIT_BONUS.get(), 1D)
+//                .build()
+//        );
     }
 
     @SubscribeEvent
@@ -65,7 +72,7 @@ public class RigoranthusEventBusEvents {
             if (raytraceresult.getType() == RayTraceResult.Type.ENTITY) {
                 BlockPos blockpos = raytraceresult.getBlockPos();
                 if (event.getWorld().mayInteract(event.getPlayer(), blockpos)) {
-                    if (event.getWorld().getFluidState(blockpos).getType().equals(CadaverousIchorFluid.CADAVEROUS_ICHOR_FLUID.get())) {
+                    if (event.getWorld().getFluidState(blockpos).getType().equals(FluidRegistry.CADAVEROUS_ICHOR_FLUID.get().getSource())) {
                         event.getWorld().playSound(event.getPlayer(),
                         event.getPlayer().getX(), event.getPlayer().getY(), event.getPlayer().getZ(), SoundEvents.BOTTLE_FILL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
                         event.getPlayer().awardStat(Stats.ITEM_USED.get(Items.GLASS_BOTTLE));
@@ -97,34 +104,48 @@ public class RigoranthusEventBusEvents {
         return worldIn.clip(new RayTraceContext(vector3d, vector3d1, RayTraceContext.BlockMode.OUTLINE, fluidMode, player));
     }
 
+/*
     @SubscribeEvent
-    public static void getFogDensity(EntityViewRenderEvent.FogDensity event) {
+    public static void getFogDensity(EntityViewRenderEvent.RenderFogEvent.FogDensity event) {
         ActiveRenderInfo info = event.getInfo();
-        FluidState fluidState = info.getFluidInCamera();
-        if (fluidState.isEmpty())
-            return;
-        Fluid fluid = fluidState.getType();
-
-        if (fluid.isSame(CadaverousIchorFluid.CADAVEROUS_ICHOR_FLUID.get())) {//.isEquivalentTo(ModFluids.BLOOD_FLUID.get())) {
-            event.setDensity(1.5f);
+        if (info.getFluidInCamera().getType() == FluidRegistry.CADAVEROUS_ICHOR_FLUID.get()) {
+            event.setDensity(3f);
             event.setCanceled(true);
+//        ActiveRenderInfo info = event.getInfo();
+//        FluidState fluidState = info.getFluidInCamera();
+//        if (fluidState.isEmpty())
+//            return;
+//        Fluid fluid = fluidState.getType();
+
+//        if (fluid.isSame(FluidRegistry.CADAVEROUS_ICHOR_FLUID.get())) {  //TODO --> is it better to use isSame() or equals() ?
+//            event.setDensity(3f);
+//            event.setCanceled(true);
+//            return;
         }
     }
 
     @SubscribeEvent
     public static void getFogColor(EntityViewRenderEvent.FogColors event) {
         ActiveRenderInfo info = event.getInfo();
-        FluidState fluidState = info.getFluidInCamera();
-        if (fluidState.isEmpty())
-            return;
-        Fluid fluid = fluidState.getType();
+        if (info.getFluidInCamera().getType() == FluidRegistry.CADAVEROUS_ICHOR_FLUID.get()) {
+            event.setRed(48 / 256f);
+            event.setGreen(4 / 256f);
+            event.setBlue(4 / 256f);
+            event.setCanceled(true);
+//        ActiveRenderInfo info = event.getInfo();
+//        FluidState fluidState = info.getFluidInCamera();
+//        if (fluidState.isEmpty())
+//            return;
+//        Fluid fluid = fluidState.getType();
 
-        if (fluid.isSame(CadaverousIchorFluid.CADAVEROUS_ICHOR_FLUID.get())) {
-            event.setRed(88 / 256f);
-            event.setGreen(12 / 256f);
-            event.setBlue(12 / 256f);
+//        if (fluid.isSame(FluidRegistry.CADAVEROUS_ICHOR_FLUID.get())) {
+//            event.setRed(48 / 256f);
+//            event.setGreen(4 / 256f);
+//            event.setBlue(4 / 256f);
         }
     }
+*/
+
 //    public ItemEntity drop(ItemStack p_146097_1_, boolean p_146097_2_, boolean p_146097_3_) {
 //        ItemEntity itementity = super.drop(p_146097_1_, p_146097_2_, p_146097_3_);
 //        if (itementity == null) {
@@ -138,10 +159,8 @@ public class RigoranthusEventBusEvents {
 //                if (!itemstack.isEmpty()) {
 //                    this.awardStat(Stats.ITEM_DROPPED.get(itemstack.getItem()), p_146097_1_.getCount());
 //                }
-//
 //                this.awardStat(Stats.DROP);
 //            }
-//
 //            return itementity;
 //        }
 //    }

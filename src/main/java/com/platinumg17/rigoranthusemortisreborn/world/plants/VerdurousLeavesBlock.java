@@ -1,4 +1,4 @@
-package com.platinumg17.rigoranthusemortisreborn.world.gen.plants;
+package com.platinumg17.rigoranthusemortisreborn.world.plants;
 
 import com.platinumg17.rigoranthusemortisreborn.blocks.DecorativeOrStorageBlocks;
 import net.minecraft.block.BlockState;

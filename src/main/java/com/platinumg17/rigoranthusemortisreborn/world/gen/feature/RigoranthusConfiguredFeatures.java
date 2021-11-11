@@ -2,10 +2,11 @@ package com.platinumg17.rigoranthusemortisreborn.world.gen.feature;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
-import com.platinumg17.rigoranthusemortisreborn.blocks.custom.DecorativeOrStorageBlocks;
+import com.platinumg17.rigoranthusemortisreborn.blocks.DecorativeOrStorageBlocks;
 import com.platinumg17.rigoranthusemortisreborn.blocks.BlockInit;
 import com.platinumg17.rigoranthusemortisreborn.blocks.BuildingBlockInit;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
+import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.registry.WorldGenRegistries;
@@ -88,6 +89,7 @@ public class RigoranthusConfiguredFeatures {
             .configured((new BlockClusterFeatureConfig.Builder((new WeightedBlockStateProvider())
                     .add(States.AZULOREAL_ORCHID, 80)
                     .add(States.IRIDESCENT_SPROUTS, 50)
+                    .add(States.SPECTABILIS_BUSH, 40)
                     .add(States.BLUE_ORCHID, 50)
                     .add(States.PINK_TULIP, 30)
                     .add(States.WHITE_TULIP, 30)
@@ -138,6 +140,7 @@ public class RigoranthusConfiguredFeatures {
         public static final BlockState IRIDESCENT_SPROUTS = DecorativeOrStorageBlocks.IRIDESCENT_SPROUTS.get().defaultBlockState();
         public static final BlockState AZULOREAL_ORCHID = DecorativeOrStorageBlocks.AZULOREAL_ORCHID.get().defaultBlockState();
         public static final BlockState LISIANTHUS = BuildingBlockInit.LISIANTHUS.get().defaultBlockState();
+        public static final BlockState SPECTABILIS_BUSH = Registration.SPECTABILIS_BUSH.get().defaultBlockState();
         public static final BlockState FRAGMENTED_COBBLESTONE = BlockInit.FRAGMENTED_COBBLESTONE.get().defaultBlockState();
         public static final BlockState TALL_GRASS = Blocks.TALL_GRASS.defaultBlockState();
         public static final BlockState BLUE_ORCHID = Blocks.BLUE_ORCHID.defaultBlockState();

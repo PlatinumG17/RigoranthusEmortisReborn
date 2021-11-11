@@ -1,4 +1,4 @@
-package com.platinumg17.rigoranthusemortisreborn.items;
+package com.platinumg17.rigoranthusemortisreborn.items.specialized;
 
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.dispenser.DefaultDispenseItemBehavior;
@@ -21,8 +21,7 @@ public class RigoranthusSpawnEgg extends SpawnEggItem {
     protected static final List<RigoranthusSpawnEgg> UNADDED_EGGS = new ArrayList<>();
     private final Lazy<? extends EntityType<?>> entityTypeSupplier;
 
-    public RigoranthusSpawnEgg(final RegistryObject<? extends EntityType<?>> entityTypeSupplier,
-                           int primaryColorIn, int secondaryColorIn, Properties builder) {
+    public RigoranthusSpawnEgg(final RegistryObject<? extends EntityType<?>> entityTypeSupplier, int primaryColorIn, int secondaryColorIn, Properties builder) {
         super(null, primaryColorIn, secondaryColorIn, builder);
         this.entityTypeSupplier = Lazy.of(entityTypeSupplier::get);
         UNADDED_EGGS.add(this);

@@ -32,11 +32,10 @@ public class RigoranthusEntityTypes {
                                     EntityClassification.MONSTER).sized(1.4f, 2f)//.clientTrackingRange(25)
                             .build(new ResourceLocation(EmortisConstants.MOD_ID, "feral_canis").toString()));
 
-//    public static final RegistryObject<EntityType<CanisChordataEntity>> CANIS_CHORDATA =
-//            ENTITY_TYPES.register("canis_chordata",
-//                    () -> EntityType.Builder.of(CanisChordataEntity::new,
-//                                    EntityClassification.MONSTER).sized(1.4f, 2f).clientTrackingRange(64)
-//                            .build(new ResourceLocation(RigoranthusEmortisReborn.MOD_ID, "canis_chordata").toString()));
+//    public static final RegistryObject<EntityType<EminentialEntity>> EMINENTIAL_PROJECTION =
+//            ENTITY_TYPES.register("eminential_entity",
+//                    () -> EntityType.Builder.createNothing(
+//                            EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) -> new EminentialEntity(world)).noSave().noSummon(), "eminential_entity");
 
     public static final RegistryObject<EntityType<SunderedCadaverEntity>> SUNDERED_CADAVER =
             ENTITY_TYPES.register("sundered_cadaver",

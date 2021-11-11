@@ -13,4 +13,7 @@ public class ScreenInit {
     public static void init(final FMLClientSetupEvent event) {
     ScreenManager.register(Registration.MASTERFUL_SMELTERY_CONTAINER.get(), MasterfulSmelteryScreen::new);
     }
+//    public static void displayTitleSelectScreen(Title title) {
+//        Minecraft.getInstance().setScreen(new TitleSelectorScreen(title));
+//    }
 }

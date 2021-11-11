@@ -1,7 +1,6 @@
-package com.platinumg17.rigoranthusemortisreborn.world.gen.plants;
+package com.platinumg17.rigoranthusemortisreborn.world.plants;
 
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
-import com.platinumg17.rigoranthusemortisreborn.items.food.EmortisEdibles;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -41,10 +40,12 @@ public class SpectabilisBushBlock extends SweetBerryBushBlock implements IGrowab
     }
 
     public VoxelShape getShape(BlockState blockState, IBlockReader reader, BlockPos blockPos, ISelectionContext ctx) {
-        if (blockState.getValue(AGE) == 0) {
+        if (blockState.getValue(AGE) <= 1) {
             return SAPLING_SHAPE;
+        } else if (blockState.getValue(AGE) == 2) {
+            return MID_GROWTH_SHAPE;
         } else {
-            return blockState.getValue(AGE) < 3 ? MID_GROWTH_SHAPE : super.getShape(blockState, reader, blockPos, ctx);
+            return blockState.getValue(AGE) == 3 ? END_GROWTH_SHAPE : super.getShape(blockState, reader, blockPos, ctx);
         }
     }
     @Override

@@ -1,17 +1,20 @@
-package com.platinumg17.rigoranthusemortisreborn.jei;
+package com.platinumg17.rigoranthusemortisreborn.addon.jei;
 
+import com.platinumg17.rigoranthusemortisreborn.canis.CanisBlocks;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.util.CanisBedUtil;
 import com.platinumg17.rigoranthusemortisreborn.config.ConfigValues;
 import com.platinumg17.rigoranthusemortisreborn.tileentity.gui.MasterfulSmelteryScreen;
 import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.VanillaRecipeCategoryUid;
-import mezz.jei.api.registration.IAdvancedRegistration;
-import mezz.jei.api.registration.IGuiHandlerRegistration;
-import mezz.jei.api.registration.IRecipeCatalystRegistration;
+import mezz.jei.api.registration.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import org.apache.commons.lang3.tuple.Pair;
+import com.platinumg17.rigoranthusemortisreborn.api.registry.IBeddingMaterial;
+import com.platinumg17.rigoranthusemortisreborn.api.registry.ICasingMaterial;
 
 @JeiPlugin
 public class RigoranthusJEIPlugin implements IModPlugin {
@@ -38,5 +41,27 @@ public class RigoranthusJEIPlugin implements IModPlugin {
 		if (ConfigValues.enableJeiPlugin && ConfigValues.enableJeiClickArea) {
 			registry.addRecipeClickArea(MasterfulSmelteryScreen.class, 79, 35, 24, 17, VanillaRecipeCategoryUid.FUEL, VanillaRecipeCategoryUid.FURNACE);
 		}
+	}
+
+	@Override
+	public void registerItemSubtypes(ISubtypeRegistration registration) {
+		registration.registerSubtypeInterpreter(CanisBlocks.CANIS_BED.get().asItem(), stack -> {
+			Pair<ICasingMaterial, IBeddingMaterial> materials = CanisBedUtil.getMaterials(stack);
+
+			String casingKey = materials.getLeft() != null
+					? materials.getLeft().getRegistryName().toString()
+					: "rigoranthusemortisreborn:casing_missing";
+
+			String beddingKey = materials.getRight() != null
+					? materials.getRight().getRegistryName().toString()
+					: "rigoranthusemortisreborn:bedding_missing";
+
+			return casingKey + "+" + beddingKey;
+		});
+	}
+
+	@Override
+	public void registerRecipes(IRecipeRegistration registration) {
+		registration.addRecipes(CanisBedRecipeMaker.createCanisBedRecipes(), VanillaRecipeCategoryUid.CRAFTING);
 	}
 }

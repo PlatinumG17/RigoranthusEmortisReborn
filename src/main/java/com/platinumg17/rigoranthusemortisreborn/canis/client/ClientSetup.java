@@ -19,6 +19,8 @@ import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.accouterment
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.Resources;
 import com.platinumg17.rigoranthusemortisreborn.canis.CanisSkills;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.SpecializedEntityTypes;
+import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
+import com.platinumg17.rigoranthusemortisreborn.tileentity.gui.MasterfulSmelteryScreen;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -31,6 +33,10 @@ public class ClientSetup {
         ScreenManager.register(CanisContainerTypes.WAYWARD_TRAVELLER.get(), WaywardTravellerScreen::new);
         ScreenManager.register(CanisContainerTypes.TREAT_BAG.get(), TreatBagScreen::new);
         ScreenManager.register(CanisContainerTypes.CANIS_INVENTORIES.get(), CanisInventoriesScreen::new);
+        ScreenManager.register(Registration.MASTERFUL_SMELTERY_CONTAINER.get(), MasterfulSmelteryScreen::new);
+//    public static void displayTitleSelectScreen(Title title) {
+//        Minecraft.getInstance().setScreen(new TitleSelectorScreen(title));
+//    }
     }
 
     public static void setupEntityRenderers(final FMLClientSetupEvent event) {
@@ -45,10 +51,7 @@ public class ClientSetup {
     public static void setupCollarRenderers(final FMLClientSetupEvent event) {
         CollarRenderManager.registerRenderer(CanisAccouterments.DYEABLE_COLLAR, new DyeableAccoutrementRenderer(Resources.COLLAR_DEFAULT));
         CollarRenderManager.registerRenderer(CanisAccouterments.GOLDEN_COLLAR, new DefaultAccoutrementRenderer(Resources.COLLAR_GOLDEN));
-
-//        CollarRenderManager.registerRenderer(CanisAccouterments.CAPE, new DefaultAccoutrementRenderer(Resources.CAPE));
         CollarRenderManager.registerRenderer(CanisAccouterments.SUNGLASSES, new DefaultAccoutrementRenderer(Resources.GLASSES_SUNGLASSES));
-//        CollarRenderManager.registerRenderer(CanisAccouterments.RADIO_BAND, new DefaultAccoutrementRenderer(Resources.RADIO_BAND));
 
         CollarRenderManager.registerRenderer(CanisAccouterments.DIAMOND_HELMET, new ArmorAccoutrementRenderer(Resources.DIAMOND_HELMET));
         CollarRenderManager.registerRenderer(CanisAccouterments.IRON_HELMET, new ArmorAccoutrementRenderer(Resources.IRON_HELMET));
@@ -77,3 +80,9 @@ public class ClientSetup {
         CollarRenderManager.registerRenderer(CanisSkills.SAVIOR, new SaviorCanisRenderer());
     }
 }
+
+
+
+
+//        CollarRenderManager.registerRenderer(CanisAccouterments.RADIO_BAND, new DefaultAccoutrementRenderer(Resources.RADIO_BAND));
+//        CollarRenderManager.registerRenderer(CanisAccouterments.CAPE, new DefaultAccoutrementRenderer(Resources.CAPE));

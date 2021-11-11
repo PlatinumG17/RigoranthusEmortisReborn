@@ -36,7 +36,6 @@ import com.platinumg17.rigoranthusemortisreborn.core.events.advancements.REAdvan
 import com.platinumg17.rigoranthusemortisreborn.core.events.other.VanillaCompatRigoranthus;
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
 import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
-import com.platinumg17.rigoranthusemortisreborn.core.init.ScreenInit;
 import com.platinumg17.rigoranthusemortisreborn.core.init.fluid.FluidRegistry;
 import com.platinumg17.rigoranthusemortisreborn.core.init.fluid.particles.EmortisParticleTypes;
 import com.platinumg17.rigoranthusemortisreborn.core.init.network.REPacketHandler;
@@ -134,7 +133,6 @@ public class RigoranthusEmortisReborn {
         CanisBedMaterials.BEDDINGS.register(modEventBus);
         CanisBedMaterials.CASINGS.register(modEventBus);
 
-        modEventBus.addListener(ScreenInit::init);
         modEventBus.addListener(CanisRegistries::newRegistry);
 
         IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
@@ -255,7 +253,7 @@ public class RigoranthusEmortisReborn {
 //        RenderingRegistry.registerEntityRenderingHandler(SpecializedEntityTypes.EMINENTIAL_PROJECTION, EminentialRenderer::new);
 //        RenderingRegistry.registerEntityRenderingHandler(SpecializedEntityTypes.PAINTING, manager -> new RenderHangingArt<>(manager, new ResourceLocation("rigoranthusemortisreborn:painting")));
         RenderingRegistry.registerEntityRenderingHandler(SpecializedEntityTypes.DELPHIC_BLOOM.get(), DelphicBloomRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(SpecializedEntityTypes.CANIS.get(), CanisRenderer::new);
+//        RenderingRegistry.registerEntityRenderingHandler(SpecializedEntityTypes.CANIS.get(), CanisRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(RigoranthusEntityTypes.FERAL_CANIS.get(), CanisChordataRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(RigoranthusEntityTypes.NECRAW_FASCII.get(), NecrawFasciiRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(RigoranthusEntityTypes.SUNDERED_CADAVER.get(), SunderedCadaverRenderer::new);

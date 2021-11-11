@@ -9,6 +9,7 @@ import com.platinumg17.rigoranthusemortisreborn.canis.*;
 import com.platinumg17.rigoranthusemortisreborn.canis.client.ClientSetup;
 import com.platinumg17.rigoranthusemortisreborn.canis.client.data.REBlockstateProvider;
 import com.platinumg17.rigoranthusemortisreborn.canis.client.data.REItemModelProvider;
+import com.platinumg17.rigoranthusemortisreborn.canis.client.entity.render.CanisBeamRenderer;
 import com.platinumg17.rigoranthusemortisreborn.canis.client.entity.render.CanisRenderer;
 import com.platinumg17.rigoranthusemortisreborn.canis.client.entity.render.world.HomeboundRenderer;
 import com.platinumg17.rigoranthusemortisreborn.canis.client.event.ClientEventHandler;
@@ -212,7 +213,7 @@ public class RigoranthusEmortisReborn {
         event.enqueueWork(() -> {
             ClientSetup.setupScreenManagers(event);
             ClientSetup.setupCollarRenderers(event);
-            ClientSetup.setupEntityRenderers(event);
+//        ClientSetup.setupEntityRenderers(event);
             ClientSetup.setupTileEntityRenderers(event);
             makeBow(ItemInit.BONE_BOW.get());
             Atlases.addWoodType(RigoranthusWoodTypes.AZULOREAL);
@@ -252,8 +253,8 @@ public class RigoranthusEmortisReborn {
         RenderingRegistry.registerEntityRenderingHandler(SpecializedEntityTypes.BILI_BOMB.get(), manager -> new SpriteRenderer<>(manager, Minecraft.getInstance().getItemRenderer()));
 //        RenderingRegistry.registerEntityRenderingHandler(SpecializedEntityTypes.EMINENTIAL_PROJECTION, EminentialRenderer::new);
 //        RenderingRegistry.registerEntityRenderingHandler(SpecializedEntityTypes.PAINTING, manager -> new RenderHangingArt<>(manager, new ResourceLocation("rigoranthusemortisreborn:painting")));
-        RenderingRegistry.registerEntityRenderingHandler(SpecializedEntityTypes.DELPHIC_BLOOM.get(), DelphicBloomRenderer::new);
-//        RenderingRegistry.registerEntityRenderingHandler(SpecializedEntityTypes.CANIS.get(), CanisRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(SpecializedEntityTypes.CANIS.get(), CanisRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(SpecializedEntityTypes.CANIS_BEAM.get(), manager -> new CanisBeamRenderer<>(manager, event.getMinecraftSupplier().get().getItemRenderer()));
         RenderingRegistry.registerEntityRenderingHandler(RigoranthusEntityTypes.FERAL_CANIS.get(), CanisChordataRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(RigoranthusEntityTypes.NECRAW_FASCII.get(), NecrawFasciiRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(RigoranthusEntityTypes.SUNDERED_CADAVER.get(), SunderedCadaverRenderer::new);

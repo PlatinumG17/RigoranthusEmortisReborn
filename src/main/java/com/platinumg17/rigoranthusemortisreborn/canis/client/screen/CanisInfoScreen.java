@@ -172,7 +172,6 @@ public class CanisInfoScreen extends Screen {
                     CanisInfoScreen.this.renderTooltip(stack, new TranslationTextComponent("canisgui.nextpage").withStyle(TextFormatting.ITALIC), mouseX, mouseY);
                 }
             };
-
             this.addButton(this.leftBtn);
             this.addButton(this.rightBtn);
         }
@@ -257,7 +256,7 @@ public class CanisInfoScreen extends Screen {
         } else {
             this.font.draw(stack, I18n.get("canisgui.pointsleft") + " " + this.canis.getSpendablePoints(), topX - 38, topY + 89, 0xFFFFFF);
         }
-        this.font.draw(stack, I18n.get("canisgui.textureindex"), this.width - 80, topY + 20, 0xFFFFFF);
+//        this.font.draw(stack, I18n.get("canisgui.textureindex"), this.width - 80, topY + 20, 0xFFFFFF);
 //        this.font.draw(stack, this.canis.getSkinHash().substring(0, Math.min(this.canis.getSkinHash().length(), 10)), this.width - 73, topY + 54, 0xFFFFFF);
         if (this.canis.isOwnedBy(this.player)) {
             this.font.draw(stack, I18n.get("canisgui.obeyothers"), this.width - 76, topY + 67, 0xFFFFFF);

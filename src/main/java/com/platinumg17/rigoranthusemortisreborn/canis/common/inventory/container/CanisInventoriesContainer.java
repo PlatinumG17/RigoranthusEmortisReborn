@@ -20,6 +20,9 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author ProPercivalalb
+ */
 public class CanisInventoriesContainer extends Container {
 
     private World world;

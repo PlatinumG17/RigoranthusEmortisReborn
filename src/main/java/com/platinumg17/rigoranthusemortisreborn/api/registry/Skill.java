@@ -6,6 +6,9 @@ import com.platinumg17.rigoranthusemortisreborn.api.RigoranthusEmortisRebornAPI;
 import javax.annotation.Nullable;
 import java.util.function.BiFunction;
 
+/**
+ * @author ProPercivalalb
+ */
 public class Skill extends ForgeRegistryEntry<Skill> {
 
     @Nullable private String translationKey, translationInfoKey;

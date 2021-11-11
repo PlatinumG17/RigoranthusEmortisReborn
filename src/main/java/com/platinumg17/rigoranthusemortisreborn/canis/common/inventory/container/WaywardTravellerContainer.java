@@ -13,6 +13,9 @@ import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import com.platinumg17.rigoranthusemortisreborn.api.interfaces.AbstractCanisEntity;
 
+/**
+ * @author ProPercivalalb
+ */
 public class WaywardTravellerContainer extends Container {
 
     private AbstractCanisEntity canis;

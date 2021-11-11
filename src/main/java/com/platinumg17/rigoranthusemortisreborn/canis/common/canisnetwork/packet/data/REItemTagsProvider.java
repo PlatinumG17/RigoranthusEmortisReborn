@@ -2,7 +2,7 @@ package com.platinumg17.rigoranthusemortisreborn.canis.common.canisnetwork.packe
 
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.canis.CanisItems;
-import com.platinumg17.rigoranthusemortisreborn.canis.specialized.tags.CanisTags;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.CanisTags;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.ItemTagsProvider;

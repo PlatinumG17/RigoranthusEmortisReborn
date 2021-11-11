@@ -1,7 +1,7 @@
 package com.platinumg17.rigoranthusemortisreborn.canis.common.entity.ai;
 
 import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.CanisEntity;
-import com.platinumg17.rigoranthusemortisreborn.canis.specialized.tags.CanisTags;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.CanisTags;
 import net.minecraft.entity.EntityPredicate;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.player.PlayerEntity;

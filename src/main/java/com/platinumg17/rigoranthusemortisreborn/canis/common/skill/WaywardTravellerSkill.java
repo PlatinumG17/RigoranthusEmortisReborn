@@ -2,7 +2,7 @@ package com.platinumg17.rigoranthusemortisreborn.canis.common.skill;
 
 import com.platinumg17.rigoranthusemortisreborn.canis.CanisSkills;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.inventory.WaywardTravellerItemHandler;
-import com.platinumg17.rigoranthusemortisreborn.canis.specialized.tags.CanisTags;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.CanisTags;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.util.InventoryUtil;
 import com.platinumg17.rigoranthusemortisreborn.config.ConfigValues;
 import net.minecraft.entity.item.ItemEntity;

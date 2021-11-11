@@ -27,3 +27,6 @@ logs
 # Files from Forge MDK
 forge*changelog.txt
 /models/
+/src/test/
+/src/main/resources/.cache/
+/src/main/resources/assets/rigoranthusemortisreborn/models/

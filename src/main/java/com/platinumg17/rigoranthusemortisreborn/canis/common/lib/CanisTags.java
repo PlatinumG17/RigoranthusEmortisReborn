@@ -1,4 +1,4 @@
-package com.platinumg17.rigoranthusemortisreborn.canis.specialized.tags;
+package com.platinumg17.rigoranthusemortisreborn.canis.common.lib;
 
 import com.platinumg17.rigoranthusemortisreborn.canis.common.util.REUtil;
 import net.minecraft.item.Item;

@@ -142,7 +142,7 @@ public class RigoranthusEmortisReborn {
         forgeEventBus.addListener(this::onServerStarting);
         forgeEventBus.addListener(this::registerCommands);
         forgeEventBus.register(new CanisEventHandler());
-        forgeEventBus.register(new BackwardsCompat());
+//        forgeEventBus.register(new BackwardsCompat());
 
         Messages.registerMessages("rigoranthusemortisreborn_network");
 
@@ -213,7 +213,6 @@ public class RigoranthusEmortisReborn {
         event.enqueueWork(() -> {
             ClientSetup.setupScreenManagers(event);
             ClientSetup.setupCollarRenderers(event);
-//        ClientSetup.setupEntityRenderers(event);
             ClientSetup.setupTileEntityRenderers(event);
             makeBow(ItemInit.BONE_BOW.get());
             Atlases.addWoodType(RigoranthusWoodTypes.AZULOREAL);
@@ -272,7 +271,6 @@ public class RigoranthusEmortisReborn {
     }
 
     protected void processIMC(final InterModProcessEvent event) {
-//        BackwardsCompat.init();
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         AddonManager.init();
     }
@@ -288,7 +286,6 @@ public class RigoranthusEmortisReborn {
 
         if (event.includeServer()) {
             gen.addProvider(new REAdvancementProvider(gen));
-//            gen.addProvider(new RELootTableProvider(gen));
             REBlockTagsProvider blockTagProvider = new REBlockTagsProvider(gen, event.getExistingFileHelper());
             gen.addProvider(blockTagProvider);
             gen.addProvider(new REItemTagsProvider(gen, blockTagProvider, event.getExistingFileHelper()));
@@ -298,12 +295,9 @@ public class RigoranthusEmortisReborn {
 //            gen.addProvider(new RECombinationsProvider(gen));
 //            gen.addProvider(new GeneratedCostConfigProvider(gen, EmortisConstants.MOD_ID));
 //            gen.addProvider(new PrimevalCoinPricingProvider(gen, EmortisConstants.MOD_ID));
-//
 //            gen.addProvider(new REEnUsLanguageProvider(gen));
 //            gen.addProvider(new REBiomeProvider(gen));
 //            gen.addProvider(new REFluidTagsProvider(gen, event.getExistingFileHelper()));
-//            gen.addProvider(new REEntityTypeTagsProvider(gen, event.getExistingFileHelper()));
-
         }
     }
 }

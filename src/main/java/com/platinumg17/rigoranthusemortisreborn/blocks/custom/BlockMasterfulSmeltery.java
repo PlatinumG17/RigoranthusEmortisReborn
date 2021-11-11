@@ -1,4 +1,4 @@
-package com.platinumg17.rigoranthusemortisreborn.blocks;
+package com.platinumg17.rigoranthusemortisreborn.blocks.custom;
 
 import com.platinumg17.rigoranthusemortisreborn.tileentity.MasterfulSmelteryTile;
 import net.minecraft.block.Block;

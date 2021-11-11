@@ -79,6 +79,10 @@ public class BlockInit {
 			() -> new GravelBlock(AbstractBlock.Properties.of(Material.SAND, MaterialColor.STONE).strength(1f, 1f)
 					.harvestTool(ToolType.SHOVEL).harvestLevel(0).sound(SoundType.GRAVEL)), "tooltip.block.rigoranthusemortisreborn.block_of_esotericum");
 
+//		public static final RegistryObject<Block> SPECTABILIS = registerBlock("spectabilis",
+//				() -> new SpectabilisBush(AbstractBlock.Properties.of(Material.VEGETABLE, MaterialColor.COLOR_RED).strength(1.0F).sound(SoundType.CROP)), "tooltip.block.rigoranthusemortisreborn.spectabilis");
+
+
 
     private static ToIntFunction<BlockState> litBlockEmission(int var0) {
 		return (p_lambda$litBlockEmission$34_1_) -> {

@@ -85,10 +85,10 @@ public class SunderedCadaverEntity extends ZombieEntity implements IAnimatable {
         this.entityData.define(STATE, 0);
     }
 
-    @Override
-    public int getMaxSpawnClusterSize() {
-        return 8;
-    }
+//    @Override
+//    public int getMaxSpawnClusterSize() {
+//        return 8;
+//    }
 
     public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
         return MobEntity.createMobAttributes()
@@ -98,7 +98,7 @@ public class SunderedCadaverEntity extends ZombieEntity implements IAnimatable {
                 .add(Attributes.ARMOR, Config.sunderedCadaverArmorValue.get())
                 .add(Attributes.ATTACK_KNOCKBACK, Config.sunderedCadaverAttackKnockback.get())
                 .add(Attributes.KNOCKBACK_RESISTANCE, Config.sunderedCadaverKnockbackResistance.get())
-                .add(Attributes.FOLLOW_RANGE, 50.0D).add(Attributes.SPAWN_REINFORCEMENTS_CHANCE);
+                .add(Attributes.FOLLOW_RANGE, 30.0D).add(Attributes.SPAWN_REINFORCEMENTS_CHANCE);
     }
     @Override
     public boolean doHurtTarget(Entity entityIn) {
@@ -122,7 +122,7 @@ public class SunderedCadaverEntity extends ZombieEntity implements IAnimatable {
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        //this.goalSelector.addGoal(2, new RandomWalkingGoal(this, 1.0f));
+//        this.goalSelector.addGoal(2, new RandomWalkingGoal(this, 1.0f));
         this.goalSelector.addGoal(5, new MoveTowardsTargetGoal(this, 1.0f, 8));
         this.goalSelector.addGoal(4, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
         this.goalSelector.addGoal(3, new LookRandomlyGoal(this));

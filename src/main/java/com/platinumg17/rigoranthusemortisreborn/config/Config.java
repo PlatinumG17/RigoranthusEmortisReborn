@@ -23,875 +23,766 @@ import java.util.UUID;
 @Mod.EventBusSubscriber
 public class Config {
 
-    public static final String CATEGORY_GENERAL = "general";
-    public static final String CATEGORY_SERVER_GENERAL = "server_general";
-    public static final String CATEGORY_SMELTERY = "smeltery";
-    public static final String CATEGORY_ORES = "ores";
-    public static final String CATEGORY_WEAPONS = "weapons";
-    public static final String CATEGORY_DWELLER_ARMOR = "dweller_armor";
-    public static final String CATEGORY_APOGEAN_ARMOR = "apogean_armor";
-    public static final String CATEGORY_AQUEOUS_ARMOR = "aqueous_armor";
-    public static final String CATEGORY_ATROPHYING_ARMOR = "atrophying_armor";
-    public static final String CATEGORY_INCORPOREAL_ARMOR = "incorporeal_armor";
-    public static final String CATEGORY_INFERNAL_ARMOR = "infernal_armor";
-    public static final String CATEGORY_OPULENT_ARMOR = "opulent_armor";
-    public static final String CATEGORY_PERNICIOUS_ARMOR = "pernicious_armor";
-    public static final String CATEGORY_PHANTASMAL_ARMOR = "phantasmal_armor";
-    public static final String CATEGORY_REMEX_ARMOR = "remex_armor";
-    public static final String CATEGORY_BLOCKS = "blocks";
-    public static final String CATEGORY_JEI = "jei";
-    public static final String CATEGORY_MISC = "misc";
-    public static final String CATEGORY_BIOME = "biome";
-    public static final String CATEGORY_MOBS = "mobs";
-    public static final String CATEGORY_OTHER = "other";
+//    public static ForgeConfigSpec.IntValue smelteryXPDropValue;                     public static ForgeConfigSpec.IntValue smelteryXPDropValue2;
+//    public static ForgeConfigSpec.IntValue masterfulSmelterySpeed;                  public static ForgeConfigSpec.IntValue cache_capacity;
 
     public static ForgeConfigSpec COMMON_CONFIG;
-    public static ForgeConfigSpec CLIENT_CONFIG;
 
-    public static ForgeConfigSpec.IntValue smelteryXPDropValue;
-    public static ForgeConfigSpec.IntValue smelteryXPDropValue2;
-    public static ForgeConfigSpec.IntValue masterfulSmelterySpeed;
+//    public static ForgeConfigSpec.BooleanValue GIVEN_COAL;
+    public static ForgeConfigSpec.BooleanValue DISABLE_HUNGER;                      public static ForgeConfigSpec.BooleanValue STARTING_ITEMS;
+    public static ForgeConfigSpec.BooleanValue CANIS_GENDER;                        public static ForgeConfigSpec.BooleanValue CANIS_PUPS_GET_PARENT_LEVELS;
 
-    public static ForgeConfigSpec.BooleanValue enableJeiPlugin;
-    public static ForgeConfigSpec.BooleanValue enableJeiCatalysts;
-    public static ForgeConfigSpec.BooleanValue enableJeiClickArea;
+    public static ForgeConfigSpec.BooleanValue enableBoneWeapons;                   public static ForgeConfigSpec.BooleanValue enableUnfiredBricks;
+    public static ForgeConfigSpec.BooleanValue enableSoulCoal;                      public static ForgeConfigSpec.IntValue soulCoalBurnTime;
+    public static ForgeConfigSpec.BooleanValue enableNetheriteAdditions;            public static ForgeConfigSpec.BooleanValue enableArmorSetBonuses;
 
-    public static ForgeConfigSpec.BooleanValue enableNetheriteAdditions;
-    public static ForgeConfigSpec.BooleanValue enableArmorSetBonuses;
+    public static ForgeConfigSpec.DoubleValue bone_spear_speed;                     public static ForgeConfigSpec.DoubleValue apogean_axe_speed;
+    public static ForgeConfigSpec.IntValue bone_spear_damage;                       public static ForgeConfigSpec.IntValue apogean_axe_damage;
+    public static ForgeConfigSpec.IntValue bone_tier_durability;                    public static ForgeConfigSpec.DoubleValue apogean_sword_speed;
+    public static ForgeConfigSpec.DoubleValue bone_tier_speed;                      public static ForgeConfigSpec.IntValue apogean_sword_damage;
+    public static ForgeConfigSpec.DoubleValue bone_tier_damage;                     public static ForgeConfigSpec.IntValue apogean_tier_durability;
+    public static ForgeConfigSpec.IntValue bone_tier_enchantability;                public static ForgeConfigSpec.DoubleValue apogean_tier_speed;
+    public static ForgeConfigSpec.IntValue bone_bow_projectile_range;               public static ForgeConfigSpec.DoubleValue apogean_tier_damage;
+    public static ForgeConfigSpec.IntValue bone_bow_durability;                     public static ForgeConfigSpec.IntValue apogean_tier_enchantability;
 
-    public static ForgeConfigSpec.IntValue bone_bow_projectile_range;
-    public static ForgeConfigSpec.IntValue bone_bow_durability;
+    public static ForgeConfigSpec.DoubleValue aqueous_axe_speed;                    public static ForgeConfigSpec.DoubleValue atrophying_axe_speed;
+    public static ForgeConfigSpec.IntValue aqueous_axe_damage;                      public static ForgeConfigSpec.IntValue atrophying_axe_damage;
+    public static ForgeConfigSpec.DoubleValue aqueous_sword_speed;                  public static ForgeConfigSpec.DoubleValue atrophying_sword_speed;
+    public static ForgeConfigSpec.IntValue aqueous_sword_damage;                    public static ForgeConfigSpec.IntValue atrophying_sword_damage;
+    public static ForgeConfigSpec.IntValue aqueous_tier_durability;                 public static ForgeConfigSpec.IntValue atrophying_tier_durability;
+    public static ForgeConfigSpec.DoubleValue aqueous_tier_speed;                   public static ForgeConfigSpec.DoubleValue atrophying_tier_speed;
+    public static ForgeConfigSpec.DoubleValue aqueous_tier_damage;                  public static ForgeConfigSpec.DoubleValue atrophying_tier_damage;
+    public static ForgeConfigSpec.IntValue aqueous_tier_enchantability;             public static ForgeConfigSpec.IntValue atrophying_tier_enchantability;
 
-    public static ForgeConfigSpec.DoubleValue bone_spear_speed;
-    public static ForgeConfigSpec.IntValue bone_spear_damage;
-    public static ForgeConfigSpec.IntValue bone_tier_durability;
-    public static ForgeConfigSpec.DoubleValue bone_tier_speed;
-    public static ForgeConfigSpec.DoubleValue bone_tier_damage;
-    public static ForgeConfigSpec.IntValue bone_tier_enchantability;
+    public static ForgeConfigSpec.DoubleValue incorporeal_axe_speed;                public static ForgeConfigSpec.DoubleValue infernal_axe_speed;
+    public static ForgeConfigSpec.IntValue incorporeal_axe_damage;                  public static ForgeConfigSpec.IntValue infernal_axe_damage;
+    public static ForgeConfigSpec.DoubleValue incorporeal_sword_speed;              public static ForgeConfigSpec.IntValue infernal_sword_damage;
+    public static ForgeConfigSpec.IntValue incorporeal_sword_damage;                public static ForgeConfigSpec.DoubleValue infernal_sword_speed;
+    public static ForgeConfigSpec.IntValue incorporeal_tier_durability;             public static ForgeConfigSpec.IntValue infernal_tier_durability;
+    public static ForgeConfigSpec.DoubleValue incorporeal_tier_speed;               public static ForgeConfigSpec.DoubleValue infernal_tier_speed;
+    public static ForgeConfigSpec.DoubleValue incorporeal_tier_damage;              public static ForgeConfigSpec.DoubleValue infernal_tier_damage;
+    public static ForgeConfigSpec.IntValue incorporeal_tier_enchantability;         public static ForgeConfigSpec.IntValue infernal_tier_enchantability;
 
-    public static ForgeConfigSpec.DoubleValue apogean_axe_speed;
-    public static ForgeConfigSpec.IntValue apogean_axe_damage;
-    public static ForgeConfigSpec.DoubleValue apogean_sword_speed;
-    public static ForgeConfigSpec.IntValue apogean_sword_damage;
-    public static ForgeConfigSpec.IntValue apogean_tier_durability;
-    public static ForgeConfigSpec.DoubleValue apogean_tier_speed;
-    public static ForgeConfigSpec.DoubleValue apogean_tier_damage;
-    public static ForgeConfigSpec.IntValue apogean_tier_enchantability;
+    public static ForgeConfigSpec.DoubleValue opulent_axe_speed;                    public static ForgeConfigSpec.DoubleValue pernicious_axe_speed;
+    public static ForgeConfigSpec.IntValue opulent_axe_damage;                      public static ForgeConfigSpec.IntValue pernicious_axe_damage;
+    public static ForgeConfigSpec.DoubleValue opulent_sword_speed;                  public static ForgeConfigSpec.DoubleValue pernicious_sword_speed;
+    public static ForgeConfigSpec.IntValue opulent_sword_damage;                    public static ForgeConfigSpec.IntValue pernicious_sword_damage;
+    public static ForgeConfigSpec.IntValue opulent_tier_durability;                 public static ForgeConfigSpec.IntValue pernicious_tier_durability;
+    public static ForgeConfigSpec.DoubleValue opulent_tier_speed;                   public static ForgeConfigSpec.DoubleValue pernicious_tier_speed;
+    public static ForgeConfigSpec.DoubleValue opulent_tier_damage;                  public static ForgeConfigSpec.DoubleValue pernicious_tier_damage;
+    public static ForgeConfigSpec.IntValue opulent_tier_enchantability;             public static ForgeConfigSpec.IntValue pernicious_tier_enchantability;
 
-    public static ForgeConfigSpec.DoubleValue aqueous_axe_speed;
-    public static ForgeConfigSpec.IntValue aqueous_axe_damage;
-    public static ForgeConfigSpec.DoubleValue aqueous_sword_speed;
-    public static ForgeConfigSpec.IntValue aqueous_sword_damage;
-    public static ForgeConfigSpec.IntValue aqueous_tier_durability;
-    public static ForgeConfigSpec.DoubleValue aqueous_tier_speed;
-    public static ForgeConfigSpec.DoubleValue aqueous_tier_damage;
-    public static ForgeConfigSpec.IntValue aqueous_tier_enchantability;
+    public static ForgeConfigSpec.DoubleValue phantasmal_sword_speed;               public static ForgeConfigSpec.DoubleValue remex_sword_speed;
+    public static ForgeConfigSpec.IntValue phantasmal_sword_damage;                 public static ForgeConfigSpec.IntValue remex_sword_damage;
+    public static ForgeConfigSpec.DoubleValue phantasmal_axe_speed;                 public static ForgeConfigSpec.DoubleValue remex_axe_speed;
+    public static ForgeConfigSpec.IntValue phantasmal_axe_damage;                   public static ForgeConfigSpec.IntValue remex_axe_damage;
+    public static ForgeConfigSpec.IntValue phantasmal_tier_durability;              public static ForgeConfigSpec.IntValue remex_tier_durability;
+    public static ForgeConfigSpec.DoubleValue phantasmal_tier_speed;                public static ForgeConfigSpec.DoubleValue remex_tier_speed;
+    public static ForgeConfigSpec.DoubleValue phantasmal_tier_damage;               public static ForgeConfigSpec.DoubleValue remex_tier_damage;
+    public static ForgeConfigSpec.IntValue phantasmal_tier_enchantability;          public static ForgeConfigSpec.IntValue remex_tier_enchantability;
 
-    public static ForgeConfigSpec.DoubleValue atrophying_axe_speed;
-    public static ForgeConfigSpec.IntValue atrophying_axe_damage;
-    public static ForgeConfigSpec.DoubleValue atrophying_sword_speed;
-    public static ForgeConfigSpec.IntValue atrophying_sword_damage;
-    public static ForgeConfigSpec.IntValue atrophying_tier_durability;
-    public static ForgeConfigSpec.DoubleValue atrophying_tier_speed;
-    public static ForgeConfigSpec.DoubleValue atrophying_tier_damage;
-    public static ForgeConfigSpec.IntValue atrophying_tier_enchantability;
-
-    public static ForgeConfigSpec.DoubleValue incorporeal_axe_speed;
-    public static ForgeConfigSpec.IntValue incorporeal_axe_damage;
-    public static ForgeConfigSpec.DoubleValue incorporeal_sword_speed;
-    public static ForgeConfigSpec.IntValue incorporeal_sword_damage;
-    public static ForgeConfigSpec.IntValue incorporeal_tier_durability;
-    public static ForgeConfigSpec.DoubleValue incorporeal_tier_speed;
-    public static ForgeConfigSpec.DoubleValue incorporeal_tier_damage;
-    public static ForgeConfigSpec.IntValue incorporeal_tier_enchantability;
-
-    public static ForgeConfigSpec.DoubleValue infernal_axe_speed;
-    public static ForgeConfigSpec.IntValue infernal_axe_damage;
-    public static ForgeConfigSpec.IntValue infernal_sword_damage;
-    public static ForgeConfigSpec.DoubleValue infernal_sword_speed;
-    public static ForgeConfigSpec.IntValue infernal_tier_durability;
-    public static ForgeConfigSpec.DoubleValue infernal_tier_speed;
-    public static ForgeConfigSpec.DoubleValue infernal_tier_damage;
-    public static ForgeConfigSpec.IntValue infernal_tier_enchantability;
-
-    public static ForgeConfigSpec.DoubleValue opulent_axe_speed;
-    public static ForgeConfigSpec.IntValue opulent_axe_damage;
-    public static ForgeConfigSpec.DoubleValue opulent_sword_speed;
-    public static ForgeConfigSpec.IntValue opulent_sword_damage;
-    public static ForgeConfigSpec.IntValue opulent_tier_durability;
-    public static ForgeConfigSpec.DoubleValue opulent_tier_speed;
-    public static ForgeConfigSpec.DoubleValue opulent_tier_damage;
-    public static ForgeConfigSpec.IntValue opulent_tier_enchantability;
-
-    public static ForgeConfigSpec.DoubleValue pernicious_axe_speed;
-    public static ForgeConfigSpec.IntValue pernicious_axe_damage;
-    public static ForgeConfigSpec.DoubleValue pernicious_sword_speed;
-    public static ForgeConfigSpec.IntValue pernicious_sword_damage;
-    public static ForgeConfigSpec.IntValue pernicious_tier_durability;
-    public static ForgeConfigSpec.DoubleValue pernicious_tier_speed;
-    public static ForgeConfigSpec.DoubleValue pernicious_tier_damage;
-    public static ForgeConfigSpec.IntValue pernicious_tier_enchantability;
-
-    public static ForgeConfigSpec.DoubleValue phantasmal_sword_speed;
-    public static ForgeConfigSpec.IntValue phantasmal_sword_damage;
-    public static ForgeConfigSpec.DoubleValue phantasmal_axe_speed;
-    public static ForgeConfigSpec.IntValue phantasmal_axe_damage;
-    public static ForgeConfigSpec.IntValue phantasmal_tier_durability;
-    public static ForgeConfigSpec.DoubleValue phantasmal_tier_speed;
-    public static ForgeConfigSpec.DoubleValue phantasmal_tier_damage;
-    public static ForgeConfigSpec.IntValue phantasmal_tier_enchantability;
-
-    public static ForgeConfigSpec.DoubleValue remex_sword_speed;
-    public static ForgeConfigSpec.IntValue remex_sword_damage;
-    public static ForgeConfigSpec.DoubleValue remex_axe_speed;
-    public static ForgeConfigSpec.IntValue remex_axe_damage;
-    public static ForgeConfigSpec.IntValue remex_tier_durability;
-    public static ForgeConfigSpec.DoubleValue remex_tier_speed;
-    public static ForgeConfigSpec.DoubleValue remex_tier_damage;
-    public static ForgeConfigSpec.IntValue remex_tier_enchantability;
-
-    public static ForgeConfigSpec.IntValue dweller_thorax_durability_multiplier;
-    public static ForgeConfigSpec.IntValue dweller_thorax_chestplate_damage_reduction;
-    public static ForgeConfigSpec.IntValue dweller_thorax_enchantability;
-    public static ForgeConfigSpec.DoubleValue dweller_thorax_toughness;
-    public static ForgeConfigSpec.DoubleValue dweller_thorax_knockback_resistance;
-
-    public static ForgeConfigSpec.IntValue apogean_boots_damage_reduction;
-    public static ForgeConfigSpec.IntValue apogean_leggings_damage_reduction;
-    public static ForgeConfigSpec.IntValue apogean_chestplate_damage_reduction;
-    public static ForgeConfigSpec.IntValue apogean_helmet_damage_reduction;
-    public static ForgeConfigSpec.IntValue apogean_durability_multiplier;
-    public static ForgeConfigSpec.IntValue apogean_armor_enchantability;
-    public static ForgeConfigSpec.DoubleValue apogean_toughness;
-    public static ForgeConfigSpec.DoubleValue apogean_knockback_resistance;
+    public static ForgeConfigSpec.IntValue apogean_boots_damage_reduction;          public static ForgeConfigSpec.IntValue aqueous_boots_damage_reduction;
+    public static ForgeConfigSpec.IntValue apogean_leggings_damage_reduction;       public static ForgeConfigSpec.IntValue aqueous_leggings_damage_reduction;
+    public static ForgeConfigSpec.IntValue apogean_chestplate_damage_reduction;     public static ForgeConfigSpec.IntValue aqueous_chestplate_damage_reduction;
+    public static ForgeConfigSpec.IntValue apogean_helmet_damage_reduction;         public static ForgeConfigSpec.IntValue aqueous_helmet_damage_reduction;
+    public static ForgeConfigSpec.IntValue apogean_durability_multiplier;           public static ForgeConfigSpec.IntValue aqueous_durability_multiplier;
+    public static ForgeConfigSpec.IntValue apogean_armor_enchantability;            public static ForgeConfigSpec.IntValue aqueous_armor_enchantability;
+    public static ForgeConfigSpec.DoubleValue apogean_toughness;                    public static ForgeConfigSpec.DoubleValue aqueous_toughness;
+    public static ForgeConfigSpec.DoubleValue apogean_knockback_resistance;         public static ForgeConfigSpec.DoubleValue aqueous_knockback_resistance;
     public static ForgeConfigSpec.BooleanValue enableApogeanArmorClimmbingEffect;
 
-    public static ForgeConfigSpec.IntValue aqueous_boots_damage_reduction;
-    public static ForgeConfigSpec.IntValue aqueous_leggings_damage_reduction;
-    public static ForgeConfigSpec.IntValue aqueous_chestplate_damage_reduction;
-    public static ForgeConfigSpec.IntValue aqueous_helmet_damage_reduction;
-    public static ForgeConfigSpec.IntValue aqueous_durability_multiplier;
-    public static ForgeConfigSpec.IntValue aqueous_armor_enchantability;
-    public static ForgeConfigSpec.DoubleValue aqueous_toughness;
-    public static ForgeConfigSpec.DoubleValue aqueous_knockback_resistance;
+    public static ForgeConfigSpec.IntValue atrophying_boots_damage_reduction;       public static ForgeConfigSpec.IntValue incorporeal_boots_damage_reduction;
+    public static ForgeConfigSpec.IntValue atrophying_leggings_damage_reduction;    public static ForgeConfigSpec.IntValue incorporeal_leggings_damage_reduction;
+    public static ForgeConfigSpec.IntValue atrophying_chestplate_damage_reduction;  public static ForgeConfigSpec.IntValue incorporeal_chestplate_damage_reduction;
+    public static ForgeConfigSpec.IntValue atrophying_helmet_damage_reduction;      public static ForgeConfigSpec.IntValue incorporeal_helmet_damage_reduction;
+    public static ForgeConfigSpec.IntValue atrophying_durability_multiplier;        public static ForgeConfigSpec.IntValue incorporeal_durability_multiplier;
+    public static ForgeConfigSpec.IntValue atrophying_armor_enchantability;         public static ForgeConfigSpec.IntValue incorporeal_armor_enchantability;
+    public static ForgeConfigSpec.DoubleValue atrophying_toughness;                 public static ForgeConfigSpec.DoubleValue incorporeal_toughness;
+    public static ForgeConfigSpec.DoubleValue atrophying_knockback_resistance;      public static ForgeConfigSpec.DoubleValue incorporeal_knockback_resistance;
 
-    public static ForgeConfigSpec.IntValue atrophying_boots_damage_reduction;
-    public static ForgeConfigSpec.IntValue atrophying_leggings_damage_reduction;
-    public static ForgeConfigSpec.IntValue atrophying_chestplate_damage_reduction;
-    public static ForgeConfigSpec.IntValue atrophying_helmet_damage_reduction;
-    public static ForgeConfigSpec.IntValue atrophying_durability_multiplier;
-    public static ForgeConfigSpec.IntValue atrophying_armor_enchantability;
-    public static ForgeConfigSpec.DoubleValue atrophying_toughness;
-    public static ForgeConfigSpec.DoubleValue atrophying_knockback_resistance;
+    public static ForgeConfigSpec.IntValue infernal_boots_damage_reduction;         public static ForgeConfigSpec.IntValue opulent_boots_damage_reduction;
+    public static ForgeConfigSpec.IntValue infernal_leggings_damage_reduction;      public static ForgeConfigSpec.IntValue opulent_leggings_damage_reduction;
+    public static ForgeConfigSpec.IntValue infernal_chestplate_damage_reduction;    public static ForgeConfigSpec.IntValue opulent_chestplate_damage_reduction;
+    public static ForgeConfigSpec.IntValue infernal_helmet_damage_reduction;        public static ForgeConfigSpec.IntValue opulent_helmet_damage_reduction;
+    public static ForgeConfigSpec.IntValue infernal_durability_multiplier;          public static ForgeConfigSpec.IntValue opulent_durability_multiplier;
+    public static ForgeConfigSpec.IntValue infernal_armor_enchantability;           public static ForgeConfigSpec.IntValue opulent_armor_enchantability;
+    public static ForgeConfigSpec.DoubleValue infernal_toughness;                   public static ForgeConfigSpec.DoubleValue opulent_toughness;
+    public static ForgeConfigSpec.DoubleValue infernal_knockback_resistance;        public static ForgeConfigSpec.DoubleValue opulent_knockback_resistance;
 
-    public static ForgeConfigSpec.IntValue incorporeal_boots_damage_reduction;
-    public static ForgeConfigSpec.IntValue incorporeal_leggings_damage_reduction;
-    public static ForgeConfigSpec.IntValue incorporeal_chestplate_damage_reduction;
-    public static ForgeConfigSpec.IntValue incorporeal_helmet_damage_reduction;
-    public static ForgeConfigSpec.IntValue incorporeal_durability_multiplier;
-    public static ForgeConfigSpec.IntValue incorporeal_armor_enchantability;
-    public static ForgeConfigSpec.DoubleValue incorporeal_toughness;
-    public static ForgeConfigSpec.DoubleValue incorporeal_knockback_resistance;
-
-    public static ForgeConfigSpec.IntValue infernal_boots_damage_reduction;
-    public static ForgeConfigSpec.IntValue infernal_leggings_damage_reduction;
-    public static ForgeConfigSpec.IntValue infernal_chestplate_damage_reduction;
-    public static ForgeConfigSpec.IntValue infernal_helmet_damage_reduction;
-    public static ForgeConfigSpec.IntValue infernal_durability_multiplier;
-    public static ForgeConfigSpec.IntValue infernal_armor_enchantability;
-    public static ForgeConfigSpec.DoubleValue infernal_toughness;
-    public static ForgeConfigSpec.DoubleValue infernal_knockback_resistance;
-
-    public static ForgeConfigSpec.IntValue opulent_boots_damage_reduction;
-    public static ForgeConfigSpec.IntValue opulent_leggings_damage_reduction;
-    public static ForgeConfigSpec.IntValue opulent_chestplate_damage_reduction;
-    public static ForgeConfigSpec.IntValue opulent_helmet_damage_reduction;
-    public static ForgeConfigSpec.IntValue opulent_durability_multiplier;
-    public static ForgeConfigSpec.IntValue opulent_armor_enchantability;
-    public static ForgeConfigSpec.DoubleValue opulent_toughness;
-    public static ForgeConfigSpec.DoubleValue opulent_knockback_resistance;
-
-    public static ForgeConfigSpec.IntValue pernicious_boots_damage_reduction;
-    public static ForgeConfigSpec.IntValue pernicious_leggings_damage_reduction;
-    public static ForgeConfigSpec.IntValue pernicious_chestplate_damage_reduction;
-    public static ForgeConfigSpec.IntValue pernicious_helmet_damage_reduction;
-    public static ForgeConfigSpec.IntValue pernicious_durability_multiplier;
-    public static ForgeConfigSpec.IntValue pernicious_armor_enchantability;
-    public static ForgeConfigSpec.DoubleValue pernicious_toughness;
-    public static ForgeConfigSpec.DoubleValue pernicious_knockback_resistance;
-
-    public static ForgeConfigSpec.IntValue phantasmal_boots_damage_reduction;
-    public static ForgeConfigSpec.IntValue phantasmal_leggings_damage_reduction;
-    public static ForgeConfigSpec.IntValue phantasmal_chestplate_damage_reduction;
-    public static ForgeConfigSpec.IntValue phantasmal_helmet_damage_reduction;
-    public static ForgeConfigSpec.IntValue phantasmal_durability_multiplier;
-    public static ForgeConfigSpec.IntValue phantasmal_armor_enchantability;
-    public static ForgeConfigSpec.DoubleValue phantasmal_toughness;
-    public static ForgeConfigSpec.DoubleValue phantasmal_knockback_resistance;
+    public static ForgeConfigSpec.IntValue pernicious_boots_damage_reduction;       public static ForgeConfigSpec.IntValue phantasmal_boots_damage_reduction;
+    public static ForgeConfigSpec.IntValue pernicious_leggings_damage_reduction;    public static ForgeConfigSpec.IntValue phantasmal_leggings_damage_reduction;
+    public static ForgeConfigSpec.IntValue pernicious_chestplate_damage_reduction;  public static ForgeConfigSpec.IntValue phantasmal_chestplate_damage_reduction;
+    public static ForgeConfigSpec.IntValue pernicious_helmet_damage_reduction;      public static ForgeConfigSpec.IntValue phantasmal_helmet_damage_reduction;
+    public static ForgeConfigSpec.IntValue pernicious_durability_multiplier;        public static ForgeConfigSpec.IntValue phantasmal_durability_multiplier;
+    public static ForgeConfigSpec.IntValue pernicious_armor_enchantability;         public static ForgeConfigSpec.IntValue phantasmal_armor_enchantability;
+    public static ForgeConfigSpec.DoubleValue pernicious_toughness;                 public static ForgeConfigSpec.DoubleValue phantasmal_toughness;
+    public static ForgeConfigSpec.DoubleValue pernicious_knockback_resistance;      public static ForgeConfigSpec.DoubleValue phantasmal_knockback_resistance;
 
     public static ForgeConfigSpec.IntValue remex_boots_damage_reduction;
-    public static ForgeConfigSpec.IntValue remex_leggings_damage_reduction;
-    public static ForgeConfigSpec.IntValue remex_chestplate_damage_reduction;
-    public static ForgeConfigSpec.IntValue remex_helmet_damage_reduction;
-    public static ForgeConfigSpec.IntValue remex_durability_multiplier;
-    public static ForgeConfigSpec.IntValue remex_armor_enchantability;
-    public static ForgeConfigSpec.DoubleValue remex_toughness;
-    public static ForgeConfigSpec.DoubleValue remex_knockback_resistance;
+    public static ForgeConfigSpec.IntValue remex_leggings_damage_reduction;         public static ForgeConfigSpec.IntValue remex_chestplate_damage_reduction;
+    public static ForgeConfigSpec.IntValue remex_helmet_damage_reduction;           public static ForgeConfigSpec.IntValue dweller_thorax_damage_reduction;
+    public static ForgeConfigSpec.IntValue remex_durability_multiplier;             public static ForgeConfigSpec.IntValue dweller_thorax_durability_multiplier;
+    public static ForgeConfigSpec.IntValue remex_armor_enchantability;              public static ForgeConfigSpec.IntValue dweller_thorax_enchantability;
+    public static ForgeConfigSpec.DoubleValue remex_toughness;                      public static ForgeConfigSpec.DoubleValue dweller_thorax_toughness;
+    public static ForgeConfigSpec.DoubleValue remex_knockback_resistance;           public static ForgeConfigSpec.DoubleValue dweller_thorax_knockback_resistance;
 
-    public static ForgeConfigSpec.IntValue minOreHeight;
-    public static ForgeConfigSpec.IntValue maxOreHeight;
-    public static ForgeConfigSpec.IntValue maxVeinSize;
+    public static ForgeConfigSpec.BooleanValue enableHammersAndVanillaOreFragments; public static ForgeConfigSpec.BooleanValue enableModdedOreFragments;
+    public static ForgeConfigSpec.IntValue stone_hammer_durability;                 public static ForgeConfigSpec.IntValue iron_hammer_durability;
+    public static ForgeConfigSpec.IntValue gold_hammer_durability;                  public static ForgeConfigSpec.IntValue diamond_hammer_durability;
+    public static ForgeConfigSpec.IntValue abyssalite_hammer_durability;            public static ForgeConfigSpec.IntValue maxVeinSize;
+    public static ForgeConfigSpec.IntValue minOreHeight;                            public static ForgeConfigSpec.IntValue maxOreHeight;
+    public static ForgeConfigSpec.IntValue veinsPerChunk;
 
-    public static ForgeConfigSpec.BooleanValue enableHammersAndVanillaOreFragments;
-    public static ForgeConfigSpec.BooleanValue enableModdedOreFragments;
-    public static ForgeConfigSpec.IntValue stone_hammer_durability;
-    public static ForgeConfigSpec.IntValue iron_hammer_durability;
-    public static ForgeConfigSpec.IntValue gold_hammer_durability;
-    public static ForgeConfigSpec.IntValue diamond_hammer_durability;
-    public static ForgeConfigSpec.IntValue abyssalite_hammer_durability;
+    public static ForgeConfigSpec.BooleanValue enableTreeGeneration;                public static ForgeConfigSpec.IntValue bambooSpawnWeight;
+    public static ForgeConfigSpec.IntValue verdurousWoodlandsSpawnWeight;           public static ForgeConfigSpec.IntValue verdurousFieldsSpawnWeight;
+//    public static ForgeConfigSpec.IntValue jessicSpawnWeight;                       public static ForgeConfigSpec.IntValue azulorealSpawnWeight;
+//    public static ForgeConfigSpec.IntValue loomingJessicSpawnWeight;                public static ForgeConfigSpec.IntValue loomingAzulorealSpawnWeight;
+//    public static ForgeConfigSpec.IntValue megaJessicSpawnWeight;                   public static ForgeConfigSpec.IntValue megaAzulorealSpawnWeight;
 
-    public static ForgeConfigSpec.BooleanValue enableBoneWeapons;
-    public static ForgeConfigSpec.BooleanValue enableSoulCoal;
-    public static ForgeConfigSpec.IntValue soulCoalBurnTime;
-    public static ForgeConfigSpec.BooleanValue enableNewWoodTypes;
-    public static ForgeConfigSpec.BooleanValue enableUnfiredBricks;
-    public static ForgeConfigSpec.BooleanValue GIVEN_COAL;
-    public static ForgeConfigSpec.BooleanValue showErrors;
+    public static ForgeConfigSpec.DoubleValue sunderedCadaverMovementSpeed;         public static ForgeConfigSpec.DoubleValue necrawFasciiMovementSpeed;
+    public static ForgeConfigSpec.DoubleValue sunderedCadaverAttackDamage;          public static ForgeConfigSpec.DoubleValue necrawFasciiAttackDamage;
+    public static ForgeConfigSpec.DoubleValue sunderedCadaverKnockbackResistance;   public static ForgeConfigSpec.DoubleValue necrawFasciiKnockbackResistance;
+    public static ForgeConfigSpec.DoubleValue sunderedCadaverAttackKnockback;       public static ForgeConfigSpec.DoubleValue necrawFasciiAttackKnockback;
+    public static ForgeConfigSpec.DoubleValue sunderedCadaverArmorValue;            public static ForgeConfigSpec.DoubleValue necrawFasciiArmorValue;
+    public static ForgeConfigSpec.DoubleValue sunderedCadaverMaxHealth;             public static ForgeConfigSpec.DoubleValue necrawFasciiMaxHealth;
+    public static ForgeConfigSpec.IntValue sunderedCadaverSpawnWeight;              public static ForgeConfigSpec.IntValue necrawFasciiSpawnWeight;
+    public static ForgeConfigSpec.IntValue sunderedCadaverMinGroupSize;             public static ForgeConfigSpec.IntValue necrawFasciiMinGroupSize;
+    public static ForgeConfigSpec.IntValue sunderedCadaverMaxGroupSize;             public static ForgeConfigSpec.IntValue necrawFasciiMaxGroupSize;
 
-    public static ForgeConfigSpec.BooleanValue enableTreeGeneration;
-    public static ForgeConfigSpec.IntValue verdurousWoodlandsSpawnWeight;
-    public static ForgeConfigSpec.IntValue verdurousFieldsSpawnWeight;
-    public static ForgeConfigSpec.IntValue jessicSpawnWeight;
-    public static ForgeConfigSpec.IntValue loomingJessicSpawnWeight;
-    public static ForgeConfigSpec.IntValue megaJessicSpawnWeight;
-    public static ForgeConfigSpec.IntValue azulorealSpawnWeight;
-    public static ForgeConfigSpec.IntValue loomingAzulorealSpawnWeight;
-    public static ForgeConfigSpec.IntValue megaAzulorealSpawnWeight;
-    public static ForgeConfigSpec.IntValue bambooSpawnWeight;
-
-    public static ForgeConfigSpec.DoubleValue sunderedCadaverMovementSpeed;
-    public static ForgeConfigSpec.DoubleValue sunderedCadaverAttackDamage;
-    public static ForgeConfigSpec.DoubleValue sunderedCadaverKnockbackResistance;
-    public static ForgeConfigSpec.DoubleValue sunderedCadaverAttackKnockback;
-    public static ForgeConfigSpec.DoubleValue sunderedCadaverArmorValue;
-    public static ForgeConfigSpec.DoubleValue sunderedCadaverMaxHealth;
-    public static ForgeConfigSpec.IntValue sunderedCadaverSpawnWeight;
-    public static ForgeConfigSpec.IntValue sunderedCadaverMinGroupSize;
-    public static ForgeConfigSpec.IntValue sunderedCadaverMaxGroupSize;
-
-    public static ForgeConfigSpec.DoubleValue necrawFasciiMovementSpeed;
-    public static ForgeConfigSpec.DoubleValue necrawFasciiAttackDamage;
-    public static ForgeConfigSpec.DoubleValue necrawFasciiKnockbackResistance;
-    public static ForgeConfigSpec.DoubleValue necrawFasciiAttackKnockback;
-    public static ForgeConfigSpec.DoubleValue necrawFasciiArmorValue;
-    public static ForgeConfigSpec.DoubleValue necrawFasciiMaxHealth;
-    public static ForgeConfigSpec.IntValue necrawFasciiSpawnWeight;
-    public static ForgeConfigSpec.IntValue necrawFasciiMinGroupSize;
-    public static ForgeConfigSpec.IntValue necrawFasciiMaxGroupSize;
-
-    public static ForgeConfigSpec.DoubleValue canisChordataMovementSpeed;
-    public static ForgeConfigSpec.DoubleValue canisChordataAttackDamage;
-    public static ForgeConfigSpec.DoubleValue canisChordataKnockbackResistance;
-    public static ForgeConfigSpec.DoubleValue canisChordataAttackKnockback;
-    public static ForgeConfigSpec.DoubleValue canisChordataArmorValue;
-    public static ForgeConfigSpec.DoubleValue canisChordataMaxHealth;
-    public static ForgeConfigSpec.IntValue canisChordataSpawnWeight;
-    public static ForgeConfigSpec.IntValue canisChordataMinGroupSize;
-    public static ForgeConfigSpec.IntValue canisChordataMaxGroupSize;
-
-    public static ForgeConfigSpec.DoubleValue languidDwellerMovementSpeed;
-    public static ForgeConfigSpec.DoubleValue languidDwellerAttackDamage;
-    public static ForgeConfigSpec.DoubleValue languidDwellerKnockbackResistance;
-    public static ForgeConfigSpec.DoubleValue languidDwellerAttackKnockback;
-    public static ForgeConfigSpec.DoubleValue languidDwellerArmorValue;
-    public static ForgeConfigSpec.DoubleValue languidDwellerMaxHealth;
-    public static ForgeConfigSpec.IntValue languidDwellerSpawnWeight;
-    public static ForgeConfigSpec.IntValue languidDwellerMinGroupSize;
-    public static ForgeConfigSpec.IntValue languidDwellerMaxGroupSize;
+    public static ForgeConfigSpec.DoubleValue languidDwellerMovementSpeed;          public static ForgeConfigSpec.DoubleValue feralCanisChordataMovementSpeed;
+    public static ForgeConfigSpec.DoubleValue languidDwellerAttackDamage;           public static ForgeConfigSpec.DoubleValue feralCanisChordataAttackDamage;
+    public static ForgeConfigSpec.DoubleValue languidDwellerKnockbackResistance;    public static ForgeConfigSpec.DoubleValue feralCanisChordataKnockbackResistance;
+    public static ForgeConfigSpec.DoubleValue languidDwellerAttackKnockback;        public static ForgeConfigSpec.DoubleValue feralCanisChordataAttackKnockback;
+    public static ForgeConfigSpec.DoubleValue languidDwellerArmorValue;             public static ForgeConfigSpec.DoubleValue feralCanisChordataArmorValue;
+    public static ForgeConfigSpec.DoubleValue languidDwellerMaxHealth;              public static ForgeConfigSpec.DoubleValue feralCanisChordataMaxHealth;
+    public static ForgeConfigSpec.IntValue languidDwellerSpawnWeight;               public static ForgeConfigSpec.IntValue feralCanisChordataSpawnWeight;
+    public static ForgeConfigSpec.IntValue languidDwellerMinGroupSize;              public static ForgeConfigSpec.IntValue feralCanisChordataMinGroupSize;
+    public static ForgeConfigSpec.IntValue languidDwellerMaxGroupSize;              public static ForgeConfigSpec.IntValue feralCanisChordataMaxGroupSize;
     public static ForgeConfigSpec.IntValue languidDwellerMaxSpawnHeight;
 
-    //CACHE
-    public static ForgeConfigSpec.IntValue cache_capacity;
-
     static {
-        ForgeConfigSpec.Builder COMMON_BUILDER = new ForgeConfigSpec.Builder();
-        ForgeConfigSpec.Builder CLIENT_BUILDER = new ForgeConfigSpec.Builder();
-
-
-
-        ////    CLIENT CONFIG    ////
-
-        CLIENT_BUILDER.comment("Settings").push(CATEGORY_GENERAL);
-
-        CLIENT_BUILDER.pop();
-
-        CLIENT_BUILDER.comment("JEI Settings").push(CATEGORY_JEI);
-
-        setupJEIConfig(COMMON_BUILDER, CLIENT_BUILDER);
-
-        CLIENT_BUILDER.pop();
-
-        CLIENT_BUILDER.comment("Masterful Smeltery Settings").push(CATEGORY_SMELTERY);
-
-        setupSmelteryConfig(COMMON_BUILDER, CLIENT_BUILDER);
-
-        CLIENT_BUILDER.pop();
-
-        CLIENT_BUILDER.comment("Misc").push(CATEGORY_OTHER);
-
-        GIVEN_COAL = CLIENT_BUILDER
-                .comment(" Hehehe, I'm a janky dev & wont tell you what this one does. lol. (Does it even do anything?)").define("misc.lol_uwot_m8", false);
-
-        showErrors = CLIENT_BUILDER
-                .comment(" Debugging Tool that prints Smeltery Settings errors in chat.").define("display.errors", false);
-
-        CLIENT_BUILDER.pop();
-
-        CLIENT_CONFIG = CLIENT_BUILDER.build();
-
-
-
-        ////    SERVER CONFIG    ////
-
-        COMMON_BUILDER.comment("Settings").push(CATEGORY_SERVER_GENERAL);
-
-        COMMON_BUILDER.pop();
-
-        COMMON_BUILDER.comment("APOGEAN Armor Settings").push(CATEGORY_APOGEAN_ARMOR);
-
-        setupApogeanConfig(COMMON_BUILDER, CLIENT_BUILDER);
-
-        COMMON_BUILDER.pop();
-
-        COMMON_BUILDER.comment("AQUEOUS Armor Settings").push(CATEGORY_AQUEOUS_ARMOR);
-
-        setupAqueousConfig(COMMON_BUILDER, CLIENT_BUILDER);
-
-        COMMON_BUILDER.pop();
-
-        COMMON_BUILDER.comment("ATROPHYING Armor Settings").push(CATEGORY_ATROPHYING_ARMOR);
-
-        setupAtrophyingConfig(COMMON_BUILDER, CLIENT_BUILDER);
-
-        COMMON_BUILDER.pop();
-
-        COMMON_BUILDER.comment("INCORPOREAL Armor Settings").push(CATEGORY_INCORPOREAL_ARMOR);
-
-        setupIncorporealConfig(COMMON_BUILDER, CLIENT_BUILDER);
-
-        COMMON_BUILDER.pop();
-
-        COMMON_BUILDER.comment("INFERNAL Armor Settings").push(CATEGORY_INFERNAL_ARMOR);
-
-        setupInfernalConfig(COMMON_BUILDER, CLIENT_BUILDER);
-
-        COMMON_BUILDER.pop();
-
-        COMMON_BUILDER.comment("OPULENT Armor Settings").push(CATEGORY_OPULENT_ARMOR);
-
-        setupOpulentConfig(COMMON_BUILDER, CLIENT_BUILDER);
-
-        COMMON_BUILDER.pop();
-
-        COMMON_BUILDER.comment("PERNICIOUS Armor Settings").push(CATEGORY_PERNICIOUS_ARMOR);
-
-        setupPerniciousConfig(COMMON_BUILDER, CLIENT_BUILDER);
-
-        COMMON_BUILDER.pop();
-
-        COMMON_BUILDER.comment("PHANTASMAL Armor Settings").push(CATEGORY_PHANTASMAL_ARMOR);
-
-        setupPhantasmalConfig(COMMON_BUILDER, CLIENT_BUILDER);
-
-        COMMON_BUILDER.pop();
-
-        COMMON_BUILDER.comment("REMEX Armor Settings").push(CATEGORY_REMEX_ARMOR);
-
-        setupRemexConfig(COMMON_BUILDER, CLIENT_BUILDER);
-
-        COMMON_BUILDER.pop();
-
-        COMMON_BUILDER.comment("DWELLER Armor Settings").push(CATEGORY_DWELLER_ARMOR);
-
-        setupDwellerArmorConfig(COMMON_BUILDER, CLIENT_BUILDER);
-
-        COMMON_BUILDER.pop();
-
-        COMMON_BUILDER.comment("Blocks [This config is Broken]").push(CATEGORY_BLOCKS);
-
-        setupBlockConfig(COMMON_BUILDER, CLIENT_BUILDER);
-
-        COMMON_BUILDER.pop();
-
-        COMMON_BUILDER.comment("Ore Generation, Ore Fragments, and Crushing Hammers").push(CATEGORY_ORES);
-
-        setupOreConfig(COMMON_BUILDER, CLIENT_BUILDER);
-
-        COMMON_BUILDER.pop();
-
-        COMMON_BUILDER.comment("Biome Config").push(CATEGORY_BIOME);
-
-        setupBiomeConfig(COMMON_BUILDER, CLIENT_BUILDER);
-
-        COMMON_BUILDER.pop();
-
-        COMMON_BUILDER.comment("Mobs [Spawn Weights & Attributes]").push(CATEGORY_MOBS);
-
-        setupCadaverConfig(COMMON_BUILDER, CLIENT_BUILDER);
-
-        setupNecrawConfig(COMMON_BUILDER, CLIENT_BUILDER);
-
-        setupCanisConfig(COMMON_BUILDER, CLIENT_BUILDER);
-
-        setupDwellerConfig(COMMON_BUILDER, CLIENT_BUILDER);
-
-        COMMON_BUILDER.pop();
-
-        COMMON_BUILDER.comment("Misc & Resources").push(CATEGORY_MISC);
-
-        enableArmorSetBonuses = COMMON_BUILDER
-                .comment(" Enable or Disable the Full Armor Set Bonuses.").define("armor.enable_armor_bonuses", true);
-
-        enableBoneWeapons = COMMON_BUILDER
-                .comment(" Enable or Disable Bone Weapons. [Bone Spear/Bow/Arrows]").define("bone.enable_bone_weapons", true);
-
-        enableNetheriteAdditions = COMMON_BUILDER
-                .comment(" Enable or Disable the custom Netherite Armors/Weapons.").define("armor.enable_netherite_additions", true);
-
-        enableTreeGeneration = COMMON_BUILDER
-                .comment(" Enable or Disable Natural Tree & Flower Generation in Verdurous Woodlands.").define("tree.enable_generation", true);
-
-        enableSoulCoal = COMMON_BUILDER
-                .comment(" Enable or disable Soul Coal").define("soul_coal.enable_soul_coal", true);
-
-        soulCoalBurnTime = COMMON_BUILDER
-                .comment(" Set the Burn Time of Soul Coal in Ticks.\n [20 ticks = 1 second]\n Default: 3000").defineInRange("soul_coal.burn_time", 3000, 10, 100000);
-
-        enableUnfiredBricks = COMMON_BUILDER
-                .comment(" Enable or disable Unfired Bricks and Mud Globs.\n (Unfired Bricks add an extra step to crafting bricks that makes it more realistic, mud is useless without this Mod's Datapack)").define("datapack_stuff.enable_bricks", true);
-
-        COMMON_BUILDER.pop();
-
-        COMMON_BUILDER.comment("Weapons [other than netherite]").push(CATEGORY_WEAPONS);
-
-        setupWeaponConfig(COMMON_BUILDER, CLIENT_BUILDER);
-
-        COMMON_BUILDER.pop();
-
-        COMMON_CONFIG = COMMON_BUILDER.build();
+        ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
+
+        //_____________  S E R V E R     C O N F I G   _____________//
+
+        builder.push("Settings");
+        builder.pop();
+
+        builder.push("->   WORLD-GEN / BIOMES  +  ORES / RESOURCES   <-");
+        builder.pop();
+
+        builder.push("Ore Generation, Ore Fragments, and Crushing Hammers");
+                setupOreConfig(builder);
+        builder.pop();
+
+        builder.push("Biome Config");
+                setupBiomeConfig(builder);
+        builder.pop();
+
+        builder.push("->   MOBS   <-");
+        builder.pop();
+
+        builder.push("Mobs [Spawn Weights & Attributes]");
+                setupCadaverConfig(builder);
+                setupNecrawConfig(builder);
+                setupFeralCanisConfig(builder);
+                setupDwellerConfig(builder);
+        builder.pop();
+
+        builder.push("Tame Canis Settings");
+                DISABLE_HUNGER = builder
+                        .comment("Disable hunger mode for the canis")
+                        .translation("rigoranthusemortisreborn.config.canis.disable_hunger")
+                        .define("disable_hunger", false);
+                STARTING_ITEMS = builder
+                        .comment("When enabled you will spawn with a guide, Canis Summoning Charm and Command Emblem.")
+                        .translation("rigoranthusemortisreborn.config.enable_starting_items")
+                        .define("enable_starting_items", false);
+                CANIS_GENDER = builder
+                        .comment("When enabled, cani will be randomly assigned genders and will only mate and produce children with the opposite gender.")
+                        .translation("rigoranthusemortisreborn.config.enable_gender")
+                        .define("enable_gender", true);
+                CANIS_PUPS_GET_PARENT_LEVELS = builder
+                        .comment("When enabled, cani pups get some levels from their parents. When disabled, Cani pups start at 0 points.")
+                        .translation("rigoranthusemortisreborn.config.enable_canis_pups_get_parent_levels")
+                        .define("canis_pups_get_parent_levels", false);
+        builder.pop();
+
+        builder.push("->   ARMOR  +  WEAPONS   <-");
+        builder.pop();
+
+        builder.push("General Armor Settings");
+                enableArmorSetBonuses = builder
+                        .comment(" Enable or Disable the Full Armor Set Bonuses.")
+                        .translation("rigoranthusemortisreborn.config.server.armor_bonuses_enabled")
+                        .define("armor_bonuses_enabled", true);
+                enableBoneWeapons = builder
+                        .comment(" Enable or Disable Bone Weapons. [ Spear / Arrows ]")
+                        .translation("rigoranthusemortisreborn.config.server.bone_weapons_enabled")
+                        .define("bone_weapons_enabled", true);
+                enableNetheriteAdditions = builder
+                        .comment(" Enable or Disable the custom Netherite Armors / Weapons.")
+                        .translation("rigoranthusemortisreborn.config.server.netherite_additions_enabled")
+                        .define("netherite_additions_enabled", true);
+        builder.pop();
+
+        builder.push("APOGEAN Armor Settings");
+                setupApogeanConfig(builder);
+        builder.pop();
+        builder.push("AQUEOUS Armor Settings");
+                setupAqueousConfig(builder);
+        builder.pop();
+        builder.push("ATROPHYING Armor Settings");
+                setupAtrophyingConfig(builder);
+        builder.pop();
+        builder.push("INCORPOREAL Armor Settings");
+                setupIncorporealConfig(builder);
+        builder.pop();
+        builder.push("INFERNAL Armor Settings");
+                setupInfernalConfig(builder);
+        builder.pop();
+        builder.push("OPULENT Armor Settings");
+                setupOpulentConfig(builder);
+        builder.pop();
+        builder.push("PERNICIOUS Armor Settings");
+                setupPerniciousConfig(builder);
+        builder.pop();
+        builder.push("PHANTASMAL Armor Settings");
+                setupPhantasmalConfig(builder);
+        builder.pop();
+        builder.push("REMEX Armor Settings");
+                setupRemexConfig(builder);
+        builder.pop();
+        builder.push("DWELLER Armor Settings");
+                setupDwellerArmorConfig(builder);
+        builder.pop();
+
+        builder.push("Weapons [other than netherite]");
+                setupWeaponConfig(builder);
+        builder.pop();
+
+        builder.push("->   MISCELLANEOUS SETTINGS   <-");
+        builder.pop();
+
+        builder.push("Misc & Resources");
+                enableTreeGeneration = builder
+                        .comment(" Enable or Disable Natural Tree & Flower Generation in Verdurous Woodlands.")
+                        .translation("rigoranthusemortisreborn.config.server.tree_generation_enabled")
+                        .define("tree_generation_enabled", true);
+                enableSoulCoal = builder
+                        .comment(" Enable or disable Soul Coal")
+                        .translation("rigoranthusemortisreborn.config.server.soul_coal_enabled")
+                        .define("soul_coal_enabled", true);
+                soulCoalBurnTime = builder
+                        .comment(" Set the Burn Time of Soul Coal in Ticks.\n [20 ticks = 1 second]\n Default: 3000")
+                        .translation("rigoranthusemortisreborn.config.server.soul_coal_burn_time")
+                        .defineInRange("soul_coal_burn_time", 3000, 10, 100000);
+                enableUnfiredBricks = builder
+                        .comment(" Enable or disable Unfired Bricks and Mud Globs.\n (Unfired Bricks add an extra step to crafting bricks that makes it more realistic, mud is useless without this Mod's Datapack)")
+                        .translation("rigoranthusemortisreborn.config.server.bricks_enabled")
+                        .define("datapack_stuff.bricks_enabled", true);
+//                GIVEN_COAL = builder
+//                        .comment(" Hehehe, I'm a janky dev & wont tell you what this one does. lol. (Does it even do anything?)")
+//                        .translation("rigoranthusemortisreborn.config.server.lol_uwot_m8")
+//                        .define("lol_uwot_m8", false);
+        builder.pop();
+
+        COMMON_CONFIG = builder.build();
     }
-    private static void setupCadaverConfig(ForgeConfigSpec.Builder COMMON_BUILDER, ForgeConfigSpec.Builder CLIENT_BUILDER) {
-        sunderedCadaverSpawnWeight = COMMON_BUILDER.comment(" How often this mob Spawns.\n Higher Number = Spawn More Often\n Set to 0 to disable spawns.\n Default: 45").defineInRange("cadaver.spawn_weight", 45, 0, 10000);
-        sunderedCadaverMinGroupSize = COMMON_BUILDER.comment(" Minimum Number of mobs that will Spawn Together in a Group.\n Set to 0 to disable spawns.\n Default: 1").defineInRange("cadaver.group_size", 1, 0, 100);
-        sunderedCadaverMinGroupSize = COMMON_BUILDER.comment(" Maximum Number of mobs that will Spawn Together in a Group.\n Set to 0 to disable spawns.\n Default: 5").defineInRange("cadaver.group_size", 5, 0, 100);
-        sunderedCadaverMaxHealth = COMMON_BUILDER.comment(" How much Health this mob has.\n Default: 40.0").defineInRange("cadaver.max_health", 40.0, 2.0, 10000);
-        sunderedCadaverArmorValue = COMMON_BUILDER.comment(" How Resistant to Attacks from Players this mob is.\n Default: 3.5").defineInRange("cadaver.armor", 3.5, 0.0, 10000);
-        sunderedCadaverAttackDamage = COMMON_BUILDER.comment(" How much Damage does this mobs Attacks do.\n Default: 3.0").defineInRange("cadaver.attack", 3.0, 0.0, 10000);
-        sunderedCadaverMovementSpeed = COMMON_BUILDER.comment(" How Fast this mob is.\n Default: 0.3").defineInRange("cadaver.movement_speed", 0.3, 0.0, 10);
-        sunderedCadaverAttackKnockback = COMMON_BUILDER.comment(" How far does each Attack push players back.\n Default: 0.5").defineInRange("cadaver.knockback", 0.5, 0.0, 100);
-        sunderedCadaverKnockbackResistance = COMMON_BUILDER.comment(" How well does this mob stay in one place while players attack it.\n Default: 0.0").defineInRange("cadaver.knockback_resistance", 0.0, 0.0, 100);
+    private static void setupCadaverConfig(ForgeConfigSpec.Builder builder) {
+        sunderedCadaverSpawnWeight = builder.comment(" How often this mob Spawns.\n Higher Number = Spawn More Often\n Set to 0 to disable spawns.\n Default: 45").translation("rigoranthusemortisreborn.config.server.cadaver.spawn_weight").defineInRange("cadaver.spawn_weight", 45, 0, 10000);
+        sunderedCadaverMinGroupSize = builder.comment(" Minimum Number of mobs that will Spawn Together in a Group.\n Set to 0 to disable spawns.\n Default: 1").translation("rigoranthusemortisreborn.config.server.cadaver.min_group_size").defineInRange("cadaver.min_group_size", 1, 0, 100);
+        sunderedCadaverMaxGroupSize = builder.comment(" Maximum Number of mobs that will Spawn Together in a Group.\n Set to 0 to disable spawns.\n Default: 5").translation("rigoranthusemortisreborn.config.server.cadaver.max_group_size").defineInRange("cadaver.max_group_size", 5, 0, 100);
+        sunderedCadaverMaxHealth = builder.comment(" How much Health this mob has.\n Default: 40.0").translation("rigoranthusemortisreborn.config.server.cadaver.max_health").defineInRange("cadaver.max_health", 40.0, 2.0, 10000);
+        sunderedCadaverArmorValue = builder.comment(" How Resistant to Attacks from Players this mob is.\n Default: 3.5").translation("rigoranthusemortisreborn.config.server.cadaver.armor").defineInRange("cadaver.armor", 3.5, 0.0, 10000);
+        sunderedCadaverAttackDamage = builder.comment(" How much Damage does this mobs Attacks do.\n Default: 3.0").translation("rigoranthusemortisreborn.config.server.cadaver.attack").defineInRange("cadaver.attack", 3.0, 0.0, 10000);
+        sunderedCadaverMovementSpeed = builder.comment(" How Fast this mob is.\n Default: 0.3").translation("rigoranthusemortisreborn.config.server.cadaver.movement_speed").defineInRange("cadaver.movement_speed", 0.3, 0.0, 10);
+        sunderedCadaverAttackKnockback = builder.comment(" How far does each Attack push players back.\n Default: 0.5").translation("rigoranthusemortisreborn.config.server.cadaver.knockback").defineInRange("cadaver.knockback", 0.5, 0.0, 100);
+        sunderedCadaverKnockbackResistance = builder.comment(" How well does this mob stay in one place while players attack it.\n Default: 0.0").translation("rigoranthusemortisreborn.config.server.cadaver.knockback_resistance").defineInRange("cadaver.knockback_resistance", 0.0, 0.0, 100);
     }
-    private static void setupNecrawConfig(ForgeConfigSpec.Builder COMMON_BUILDER, ForgeConfigSpec.Builder CLIENT_BUILDER) {
-        necrawFasciiSpawnWeight = COMMON_BUILDER.comment(" How often this mob Spawns.\n Higher Number = Spawn More Often\n Set to 0 to disable spawns.\n Default: 30").defineInRange("necraw.spawn_weight", 30, 0, 10000);
-        necrawFasciiMinGroupSize = COMMON_BUILDER.comment(" Minimum Number of mobs that will Spawn Together in a Group.\n Set to 0 to disable spawns.\n Default: 1").defineInRange("necraw.group_size", 1, 0, 100);
-        necrawFasciiMinGroupSize = COMMON_BUILDER.comment(" Maximum Number of mobs that will Spawn Together in a Group.\n Set to 0 to disable spawns.\n Default: 3").defineInRange("necraw.group_size", 3, 0, 100);
-        necrawFasciiMaxHealth = COMMON_BUILDER.comment(" How much Health this mob has.\n Default: 45.0").defineInRange("necraw.max_health", 45.0, 2.0, 10000);
-        necrawFasciiArmorValue = COMMON_BUILDER.comment(" How Resistant to Attacks from Players this mob is.\n Default: 5.0").defineInRange("necraw.armor", 5.0, 0.0, 10000);
-        necrawFasciiAttackDamage = COMMON_BUILDER.comment(" How much Damage does this mobs Attacks do.\n Default: 5.0").defineInRange("necraw.attack", 5.0, 0.0, 10000);
-        necrawFasciiMovementSpeed = COMMON_BUILDER.comment(" How Fast this mob is.\n Default: 0.21").defineInRange("necraw.movement_speed", 0.21, 0.0, 10);
-        necrawFasciiAttackKnockback = COMMON_BUILDER.comment(" How far does each Attack push players back.\n Default: 1.0").defineInRange("necraw.knockback", 1.0, 0.0, 100);
-        necrawFasciiKnockbackResistance = COMMON_BUILDER.comment(" How well does this mob stay in one place while players attack it.\n Default: 0.2").defineInRange("necraw.knockback_resistance", 0.2, 0.0, 100);
+    private static void setupNecrawConfig(ForgeConfigSpec.Builder builder) {
+        necrawFasciiSpawnWeight = builder.comment(" How often this mob Spawns.\n Higher Number = Spawn More Often\n Set to 0 to disable spawns.\n Default: 30").translation("rigoranthusemortisreborn.config.server.necraw.spawn_weight").defineInRange("necraw.spawn_weight", 30, 0, 10000);
+        necrawFasciiMinGroupSize = builder.comment(" Minimum Number of mobs that will Spawn Together in a Group.\n Set to 0 to disable spawns.\n Default: 1").translation("rigoranthusemortisreborn.config.server.necraw.min_group_size").defineInRange("necraw.min_group_size", 1, 0, 100);
+        necrawFasciiMaxGroupSize = builder.comment(" Maximum Number of mobs that will Spawn Together in a Group.\n Set to 0 to disable spawns.\n Default: 3").translation("rigoranthusemortisreborn.config.server.necraw.max_group_size").defineInRange("necraw.max_group_size", 3, 0, 100);
+        necrawFasciiMaxHealth = builder.comment(" How much Health this mob has.\n Default: 45.0").translation("rigoranthusemortisreborn.config.server.necraw.max_health").defineInRange("necraw.max_health", 45.0, 2.0, 10000);
+        necrawFasciiArmorValue = builder.comment(" How Resistant to Attacks from Players this mob is.\n Default: 5.0").translation("rigoranthusemortisreborn.config.server.necraw.armor").defineInRange("necraw.armor", 5.0, 0.0, 10000);
+        necrawFasciiAttackDamage = builder.comment(" How much Damage does this mobs Attacks do.\n Default: 5.0").translation("rigoranthusemortisreborn.config.server.necraw.attack").defineInRange("necraw.attack", 5.0, 0.0, 10000);
+        necrawFasciiMovementSpeed = builder.comment(" How Fast this mob is.\n Default: 0.21").translation("rigoranthusemortisreborn.config.server.necraw.movement_speed").defineInRange("necraw.movement_speed", 0.21, 0.0, 10);
+        necrawFasciiAttackKnockback = builder.comment(" How far does each Attack push players back.\n Default: 1.0").translation("rigoranthusemortisreborn.config.server.necraw.knockback").defineInRange("necraw.knockback", 1.0, 0.0, 100);
+        necrawFasciiKnockbackResistance = builder.comment(" How well does this mob stay in one place while players attack it.\n Default: 0.2").translation("rigoranthusemortisreborn.config.server.necraw.knockback_resistance").defineInRange("necraw.knockback_resistance", 0.2, 0.0, 100);
     }
-    private static void setupDwellerConfig(ForgeConfigSpec.Builder COMMON_BUILDER, ForgeConfigSpec.Builder CLIENT_BUILDER) {
-        languidDwellerSpawnWeight = COMMON_BUILDER.comment(" How often this mob Spawns.\n Higher Number = Spawn More Often\n Set to 0 to disable spawns.\n Default: 10").defineInRange("dweller.spawn_weight", 10, 0, 10000);
-        languidDwellerMinGroupSize = COMMON_BUILDER.comment(" Minimum Number of mobs that will Spawn Together in a Group.\n Set to 0 to disable spawns.\n Default: 1").defineInRange("dweller.group_size", 1, 0, 100);
-        languidDwellerMinGroupSize = COMMON_BUILDER.comment(" Maximum Number of mobs that will Spawn Together in a Group.\n Set to 0 to disable spawns.\n Default: 1").defineInRange("dweller.group_size", 1, 0, 100);
-        languidDwellerMaxSpawnHeight = COMMON_BUILDER.comment(" How often this mob Spawns.\n Higher Number = Spawn More Often\n Set to 0 to disable spawns.\n Default: 90").defineInRange("dweller.max_spawn_height", 90, 0, 10000);
-        languidDwellerMaxHealth = COMMON_BUILDER.comment(" How much Health this mob has.\n Default: 100.0").defineInRange("dweller.max_health", 100.0, 2.0, 10000);
-        languidDwellerArmorValue = COMMON_BUILDER.comment(" How Resistant to Attacks from Players this mob is.\n Default: 12.0").defineInRange("dweller.armor", 12.0, 0.0, 10000);
-        languidDwellerAttackDamage = COMMON_BUILDER.comment(" How much Damage does this mobs Attacks do.\n Default: 7.0").defineInRange("dweller.attack", 7.0, 0.0, 10000);
-        languidDwellerMovementSpeed = COMMON_BUILDER.comment(" How Fast this mob is.\n Default: 0.25").defineInRange("dweller.movement_speed", 0.25, 0.0, 10);
-        languidDwellerAttackKnockback = COMMON_BUILDER.comment(" How far does each Attack push players back.\n Default: 1.2").defineInRange("dweller.knockback", 1.2, 0.0, 100);
-        languidDwellerKnockbackResistance = COMMON_BUILDER.comment(" How well does this mob stay in one place while players attack it.\n Default: 2.0").defineInRange("dweller.knockback_resistance", 2.0, 0.0, 100);
+    private static void setupDwellerConfig(ForgeConfigSpec.Builder builder) {
+        languidDwellerSpawnWeight = builder.comment(" How often this mob Spawns.\n Higher Number = Spawn More Often\n Set to 0 to disable spawns.\n Default: 10").translation("rigoranthusemortisreborn.config.server.dweller.spawn_weight").defineInRange("dweller.spawn_weight", 10, 0, 10000);
+        languidDwellerMinGroupSize = builder.comment(" Minimum Number of mobs that will Spawn Together in a Group.\n Set to 0 to disable spawns.\n Default: 1").translation("rigoranthusemortisreborn.config.server.dweller.min_group_size").defineInRange("dweller.min_group_size", 1, 0, 100);
+        languidDwellerMaxGroupSize = builder.comment(" Maximum Number of mobs that will Spawn Together in a Group.\n Set to 0 to disable spawns.\n Default: 1").translation("rigoranthusemortisreborn.config.server.dweller.max_group_size").defineInRange("dweller.max_group_size", 1, 0, 100);
+        languidDwellerMaxSpawnHeight = builder.comment(" How often this mob Spawns.\n Higher Number = Spawn More Often\n Set to 0 to disable spawns.\n Default: 90").translation("rigoranthusemortisreborn.config.server.dweller.max_spawn_height").defineInRange("dweller.max_spawn_height", 90, 0, 10000);
+        languidDwellerMaxHealth = builder.comment(" How much Health this mob has.\n Default: 100.0").translation("rigoranthusemortisreborn.config.server.dweller.max_health").defineInRange("dweller.max_health", 100.0, 2.0, 10000);
+        languidDwellerArmorValue = builder.comment(" How Resistant to Attacks from Players this mob is.\n Default: 12.0").translation("rigoranthusemortisreborn.config.server.dweller.armor").defineInRange("dweller.armor", 12.0, 0.0, 10000);
+        languidDwellerAttackDamage = builder.comment(" How much Damage does this mobs Attacks do.\n Default: 7.0").translation("rigoranthusemortisreborn.config.server.dweller.attack").defineInRange("dweller.attack", 7.0, 0.0, 10000);
+        languidDwellerMovementSpeed = builder.comment(" How Fast this mob is.\n Default: 0.25").translation("rigoranthusemortisreborn.config.server.dweller.movement_speed").defineInRange("dweller.movement_speed", 0.25, 0.0, 10);
+        languidDwellerAttackKnockback = builder.comment(" How far does each Attack push players back.\n Default: 1.2").translation("rigoranthusemortisreborn.config.server.dweller.knockback").defineInRange("dweller.knockback", 1.2, 0.0, 100);
+        languidDwellerKnockbackResistance = builder.comment(" How well does this mob stay in one place while players attack it.\n Default: 2.0").translation("rigoranthusemortisreborn.config.server.dweller.knockback_resistance").defineInRange("dweller.knockback_resistance", 2.0, 0.0, 100);
     }
-    private static void setupCanisConfig(ForgeConfigSpec.Builder COMMON_BUILDER, ForgeConfigSpec.Builder CLIENT_BUILDER) {
-        canisChordataSpawnWeight = COMMON_BUILDER.comment(" How often this mob Spawns.\n Higher Number = Spawn More Often\n Set to 0 to disable spawns.\n Default: 50").defineInRange("canis.spawn_weight", 50, 0, 10000);
-        canisChordataMinGroupSize = COMMON_BUILDER.comment(" Minimum Number of mobs that will Spawn Together in a Group.\n Set to 0 to disable spawns.\n Default: 1").defineInRange("canis.group_size", 1, 0, 100);
-        canisChordataMinGroupSize = COMMON_BUILDER.comment(" Maximum Number of mobs that will Spawn Together in a Group.\n Set to 0 to disable spawns.\n Default: 5").defineInRange("canis.group_size", 5, 0, 100);
-        canisChordataMaxHealth = COMMON_BUILDER.comment(" How much Health this mob has.\n Default: 100.0").defineInRange("canis.max_health", 100.0, 2.0, 10000);
-        canisChordataArmorValue = COMMON_BUILDER.comment(" How Resistant to Attacks from Players this mob is.\n Default: 6.0").defineInRange("canis.armor", 6.0, 0.0, 10000);
-        canisChordataAttackDamage = COMMON_BUILDER.comment(" How much Damage does this mobs Attacks do.\n Default: 4.0").defineInRange("canis.attack", 4.0, 0.0, 10000);
-        canisChordataMovementSpeed = COMMON_BUILDER.comment(" How Fast this mob is.\n Default: 0.27").defineInRange("canis.movement_speed", 0.27, 0.0, 10);
-        canisChordataAttackKnockback = COMMON_BUILDER.comment(" How far does each Attack push players back.\n Default: 1.25").defineInRange("canis.knockback", 1.25, 0.0, 100);
-        canisChordataKnockbackResistance = COMMON_BUILDER.comment(" How well does this mob stay in one place while players attack it.\n Default: 0.4").defineInRange("canis.knockback_resistance", 0.4, 0.0, 100);
+    private static void setupFeralCanisConfig(ForgeConfigSpec.Builder builder) {
+        feralCanisChordataSpawnWeight = builder.comment(" How often this mob Spawns.\n Higher Number = Spawn More Often\n Set to 0 to disable spawns.\n Default: 50").translation("rigoranthusemortisreborn.config.server.canis.spawn_weight").defineInRange("canis.spawn_weight", 50, 0, 10000);
+        feralCanisChordataMinGroupSize = builder.comment(" Minimum Number of mobs that will Spawn Together in a Group.\n Set to 0 to disable spawns.\n Default: 1").translation("rigoranthusemortisreborn.config.server.canis.min_group_size").defineInRange("canis.min_group_size", 1, 0, 100);
+        feralCanisChordataMaxGroupSize = builder.comment(" Maximum Number of mobs that will Spawn Together in a Group.\n Set to 0 to disable spawns.\n Default: 5").translation("rigoranthusemortisreborn.config.server.canis.max_group_size").defineInRange("canis.max_group_size", 5, 0, 100);
+        feralCanisChordataMaxHealth = builder.comment(" How much Health this mob has.\n Default: 100.0").translation("rigoranthusemortisreborn.config.server.canis.max_health").defineInRange("canis.max_health", 100.0, 2.0, 10000);
+        feralCanisChordataArmorValue = builder.comment(" How Resistant to Attacks from Players this mob is.\n Default: 6.0").translation("rigoranthusemortisreborn.config.server.canis.armor").defineInRange("canis.armor", 6.0, 0.0, 10000);
+        feralCanisChordataAttackDamage = builder.comment(" How much Damage does this mobs Attacks do.\n Default: 4.0").translation("rigoranthusemortisreborn.config.server.canis.attack").defineInRange("canis.attack", 4.0, 0.0, 10000);
+        feralCanisChordataMovementSpeed = builder.comment(" How Fast this mob is.\n Default: 0.27").translation("rigoranthusemortisreborn.config.server.canis.movement_speed").defineInRange("canis.movement_speed", 0.27, 0.0, 10);
+        feralCanisChordataAttackKnockback = builder.comment(" How far does each Attack push players back.\n Default: 1.25").translation("rigoranthusemortisreborn.config.server.canis.knockback").defineInRange("canis.knockback", 1.25, 0.0, 100);
+        feralCanisChordataKnockbackResistance = builder.comment(" How well does this mob stay in one place while players attack it.\n Default: 0.4").translation("rigoranthusemortisreborn.config.server.canis.knockback_resistance").defineInRange("canis.knockback_resistance", 0.4, 0.0, 100);
     }
-    private static void setupBiomeConfig(ForgeConfigSpec.Builder COMMON_BUILDER, ForgeConfigSpec.Builder CLIENT_BUILDER) {
-        verdurousWoodlandsSpawnWeight = COMMON_BUILDER.comment(" How likely Verdurous Woodlands Biome is to Spawn.\n [Set to 0 to Disable Biome Generation]").defineInRange("biome.spawn_weight", 15, 0, 1000);
-        verdurousFieldsSpawnWeight = COMMON_BUILDER.comment(" How likely Verdurous Fields Biome is to Spawn.\n [Set to 0 to Disable Biome Generation]").defineInRange("biome.spawn_weight", 10, 0, 1000);
-        bambooSpawnWeight = COMMON_BUILDER.comment(" Spawn Weight of Bamboo in the Verdurous Woodlands Biome.\n [Set to 0 to Disable Bamboo Generation]").defineInRange("biome.bamboo_spawn_weight", 80, 0, 1000);
-
-        jessicSpawnWeight = COMMON_BUILDER.comment(" Spawn Weight of Jessic Trees in Verdurous Woodlands Biome.\n [Set to 0 to Disable Generation]").defineInRange("jessic.jessic_spawn_weight", 10, 0, 1000);
-        loomingJessicSpawnWeight = COMMON_BUILDER.comment(" Spawn Weight of Looming Jessic Trees in Verdurous Woodlands Biome.\n [Set to 0 to Disable Generation]").defineInRange("jessic.looming_jessic_spawn_weight", 8, 0, 1000);
-        megaJessicSpawnWeight = COMMON_BUILDER.comment(" Spawn Weight of Mega Jessic Trees in Verdurous Woodlands Biome.\n [Set to 0 to Disable Generation]").defineInRange("jessic.mega_jessic_spawn_weight", 5, 0, 1000);
-
-        azulorealSpawnWeight = COMMON_BUILDER.comment(" Spawn Weight of Azuloreal Trees in Verdurous Woodlands Biome.\n [Set to 0 to Disable Generation]").defineInRange("azuloreal.azuloreal_spawn_weight", 10, 0, 1000);
-        loomingAzulorealSpawnWeight = COMMON_BUILDER.comment(" Spawn Weight of Looming Azuloreal Trees in Verdurous Woodlands Biome.\n [Set to 0 to Disable Generation]").defineInRange("azuloreal.looming_azuloreal_spawn_weight", 8, 0, 1000);
-        megaAzulorealSpawnWeight = COMMON_BUILDER.comment(" Spawn Weight of Mega Azuloreal Trees in Verdurous Woodlands Biome.\n [Set to 0 to Disable Generation]").defineInRange("azuloreal.mega_azuloreal_spawn_weight", 5, 0, 1000);
+    private static void setupBiomeConfig(ForgeConfigSpec.Builder builder) {
+        verdurousWoodlandsSpawnWeight = builder.comment(" How likely Verdurous Woodlands Biome is to Spawn.\n [Set to 0 to Disable Biome Generation]").translation("rigoranthusemortisreborn.config.server.biome.verdurous_woodlands_spawn_weight").defineInRange("biome.verdurous_woodlands_spawn_weight", 10, 0, 1000);
+        verdurousFieldsSpawnWeight = builder.comment(" How likely Verdurous Fields Biome is to Spawn.\n [Set to 0 to Disable Biome Generation]").translation("rigoranthusemortisreborn.config.server.biome.verdurous_fields_spawn_weight").defineInRange("biome.verdurous_fields_spawn_weight", 8, 0, 1000);
+        bambooSpawnWeight = builder.comment(" Spawn Weight of Bamboo in the Verdurous Woodlands Biome.\n [Set to 0 to Disable Bamboo Generation]").translation("rigoranthusemortisreborn.config.server.biome.bamboo_spawn_weight").defineInRange("biome.bamboo_spawn_weight", 70, 0, 1000);
+//        jessicSpawnWeight = builder.comment(" Spawn Weight of Jessic Trees in Verdurous Woodlands Biome.\n [Set to 0 to Disable Generation]").translation("rigoranthusemortisreborn.config.server.jessic.jessic_spawn_weight").defineInRange("jessic.jessic_spawn_weight", 10, 0, 1000);
+//        loomingJessicSpawnWeight = builder.comment(" Spawn Weight of Looming Jessic Trees in Verdurous Woodlands Biome.\n [Set to 0 to Disable Generation]").translation("rigoranthusemortisreborn.config.server.jessic.looming_jessic_spawn_weight").defineInRange("jessic.looming_jessic_spawn_weight", 8, 0, 1000);
+//        megaJessicSpawnWeight = builder.comment(" Spawn Weight of Mega Jessic Trees in Verdurous Woodlands Biome.\n [Set to 0 to Disable Generation]").translation("rigoranthusemortisreborn.config.server.jessic.mega_jessic_spawn_weight").defineInRange("jessic.mega_jessic_spawn_weight", 5, 0, 1000);
+//        azulorealSpawnWeight = builder.comment(" Spawn Weight of Azuloreal Trees in Verdurous Woodlands Biome.\n [Set to 0 to Disable Generation]").translation("rigoranthusemortisreborn.config.server.azuloreal.azuloreal_spawn_weight").defineInRange("azuloreal.azuloreal_spawn_weight", 10, 0, 1000);
+//        loomingAzulorealSpawnWeight = builder.comment(" Spawn Weight of Looming Azuloreal Trees in Verdurous Woodlands Biome.\n [Set to 0 to Disable Generation]").translation("rigoranthusemortisreborn.config.server.azuloreal.looming_azuloreal_spawn_weight").defineInRange("azuloreal.looming_azuloreal_spawn_weight", 8, 0, 1000);
+//        megaAzulorealSpawnWeight = builder.comment(" Spawn Weight of Mega Azuloreal Trees in Verdurous Woodlands Biome.\n [Set to 0 to Disable Generation]").translation("rigoranthusemortisreborn.config.server.azuloreal.mega_azuloreal_spawn_weight").defineInRange("azuloreal.mega_azuloreal_spawn_weight", 5, 0, 1000);
     }
-    private static void setupOreConfig(ForgeConfigSpec.Builder COMMON_BUILDER, ForgeConfigSpec.Builder CLIENT_BUILDER) {
-        maxVeinSize = COMMON_BUILDER.comment(" The Maximum Vein Size of Ores from this mod.\n Default: 3").defineInRange("ore.max_vein_size", 3, 0, 50);
-        minOreHeight = COMMON_BUILDER.comment(" The Minimum Height at which Ores from this mod can Generate.\n Default: 1").defineInRange("ore.min_ore_height", 1, 0, 254);
-        maxOreHeight = COMMON_BUILDER.comment(" The Maximum Height at which Ores from this mod can Generate.\n Default: 14").defineInRange("ore.max_ore_height", 14, 0, 255);
-        enableModdedOreFragments = COMMON_BUILDER.comment(" Enable or disable Modded Ore Fragments.\n (You still need this mod's datapack if you wish to have Ores drop fragments when mined)\n (Datapack Only works with ores from the mods 'AllTheOres' and 'Mystical World')").define("ores.datapack_stuff.modded_ore_fragments", true);
-        enableHammersAndVanillaOreFragments = COMMON_BUILDER.comment(" Enable or disable Vanilla Ore Fragments and Ore Crushing Hammers.\n (You still need this mod's datapack if you wish to have Ores drop fragments when mined)").define("ores.hammers_and_vanilla_ore_fragments", true);
-        stone_hammer_durability = COMMON_BUILDER.comment(" The Durability of Stone Hammers.\n Default: 25").defineInRange("stone_hammers.durability", 25, 1, 10000);
-        iron_hammer_durability = COMMON_BUILDER.comment(" The Durability of Iron Hammers.\n Default: 100").defineInRange("iron_hammers.durability", 100, 1, 10000);
-        gold_hammer_durability = COMMON_BUILDER.comment(" The Durability of Gold Hammers.\n Default: 80").defineInRange("gold_hammers.durability", 80, 1, 10000);
-        diamond_hammer_durability = COMMON_BUILDER.comment(" The Durability of Diamond Hammers.\n Default: 250").defineInRange("diamond_hammers.durability", 250, 1, 10000);
-        abyssalite_hammer_durability = COMMON_BUILDER.comment(" The Durability of Abyssalite Hammers.\n Default: 350").defineInRange("abyssalite_hammers.durability", 350, 1, 10000);
+    private static void setupOreConfig(ForgeConfigSpec.Builder builder) {
+        veinsPerChunk = builder.comment(" The Number of Ore Veins that can spawn per chunk.\n Default: 3").translation("rigoranthusemortisreborn.config.server.ore.veins_per_chunk").defineInRange("ore.veins_per_chunk", 3, 0, 100);
+        maxVeinSize = builder.comment(" The Maximum Vein Size of Ores from this mod.\n Default: 3").translation("rigoranthusemortisreborn.config.server.ore.max_vein_size").defineInRange("ore.max_vein_size", 3, 0, 50);
+        minOreHeight = builder.comment(" The Minimum Height at which Ores from this mod can Generate.\n Default: 1").translation("rigoranthusemortisreborn.config.server.ore.min_ore_height").defineInRange("ore.min_ore_height", 1, 0, 254);
+        maxOreHeight = builder.comment(" The Maximum Height at which Ores from this mod can Generate.\n Default: 14").translation("rigoranthusemortisreborn.config.server.ore.max_ore_height").defineInRange("ore.max_ore_height", 14, 0, 255);
+        enableModdedOreFragments = builder.comment(" Enable or disable Modded Ore Fragments.\n (You still need this mod's datapack if you wish to have Ores drop fragments when mined)\n (Datapack Only works with ores from the mods 'AllTheOres' and 'Mystical World')").translation("rigoranthusemortisreborn.config.server.ores.datapack_stuff.modded_ore_fragments").define("ores.datapack_stuff.modded_ore_fragments", true);
+        enableHammersAndVanillaOreFragments = builder.comment(" Enable or disable Vanilla Ore Fragments and Ore Crushing Hammers.\n (You still need this mod's datapack if you wish to have Ores drop fragments when mined)").translation("rigoranthusemortisreborn.config.server.ores.hammers_and_vanilla_ore_fragments").define("ores.hammers_and_vanilla_ore_fragments", true);
+        stone_hammer_durability = builder.comment(" The Durability of Stone Hammers.\n Default: 25").translation("rigoranthusemortisreborn.config.server.stone_hammers.durability").defineInRange("stone_hammers.durability", 25, 1, 10000);
+        iron_hammer_durability = builder.comment(" The Durability of Iron Hammers.\n Default: 100").translation("rigoranthusemortisreborn.config.server.iron_hammers.durability").defineInRange("iron_hammers.durability", 100, 1, 10000);
+        gold_hammer_durability = builder.comment(" The Durability of Gold Hammers.\n Default: 80").translation("rigoranthusemortisreborn.config.server.gold_hammers.durability").defineInRange("gold_hammers.durability", 80, 1, 10000);
+        diamond_hammer_durability = builder.comment(" The Durability of Diamond Hammers.\n Default: 250").translation("rigoranthusemortisreborn.config.server.diamond_hammers.durability").defineInRange("diamond_hammers.durability", 250, 1, 10000);
+        abyssalite_hammer_durability = builder.comment(" The Durability of Abyssalite Hammers.\n Default: 350").translation("rigoranthusemortisreborn.config.server.abyssalite_hammers.durability").defineInRange("abyssalite_hammers.durability", 350, 1, 10000);
     }
 
-    private static void setupWeaponConfig(ForgeConfigSpec.Builder COMMON_BUILDER, ForgeConfigSpec.Builder CLIENT_BUILDER) {
-        bone_spear_speed = COMMON_BUILDER.comment(" Default: 9.0").defineInRange("spear.speed", 9.0, 0.0, 1000);
-        bone_spear_damage = COMMON_BUILDER.comment(" Default: 4.0").defineInRange("spear.damage", 2, 0, 1000);
-        bone_tier_durability = COMMON_BUILDER.comment(" Default: 230").defineInRange("tier.durability", 230, 0, 100000);
-        bone_tier_speed = COMMON_BUILDER.comment(" Default: 9.0").defineInRange("tier.speed", 9.0, 0.0, 1000);
-        bone_tier_damage = COMMON_BUILDER.comment(" Default: 2.0").defineInRange("tier.damage", 2.0, 0.0, 1000);
-        bone_tier_enchantability = COMMON_BUILDER.comment(" Default: 20").defineInRange("tier.enchantability", 20, 0, 100);
-
-        bone_bow_projectile_range = COMMON_BUILDER.comment(" Set Default Projectile Range of the Bone Bow.\n Default: 15").defineInRange("range.bone_bow", 15, 1, 1000);
-        bone_bow_durability = COMMON_BUILDER.comment(" Set Durability of the Bone Bow.\n Vanilla Bow Default: 384\n Bone Bow Default: 500").defineInRange("durability.bone_bow", 500, 1, 100000);
+    private static void setupWeaponConfig(ForgeConfigSpec.Builder builder) {
+        bone_spear_speed = builder.comment(" Default: 9.0").translation("rigoranthusemortisreborn.config.server.spear.speed").defineInRange("spear.speed", 9.0, 0.0, 1000);
+        bone_spear_damage = builder.comment(" Default: 4.0").translation("rigoranthusemortisreborn.config.server.spear.damage").defineInRange("spear.damage", 2, 0, 1000);
+        bone_tier_durability = builder.comment(" Default: 230").translation("rigoranthusemortisreborn.config.server.bone_tier.durability").defineInRange("bone_tier.durability", 230, 0, 100000);
+        bone_tier_speed = builder.comment(" Default: 9.0").translation("rigoranthusemortisreborn.config.server.bone_tier.speed").defineInRange("bone_tier.speed", 9.0, 0.0, 1000);
+        bone_tier_damage = builder.comment(" Default: 2.0").translation("rigoranthusemortisreborn.config.server.bone_tier.damage").defineInRange("bone_tier.damage", 2.0, 0.0, 1000);
+        bone_tier_enchantability = builder.comment(" Default: 20").translation("rigoranthusemortisreborn.config.server.bone_tier.enchantability").defineInRange("bone_tier.enchantability", 20, 0, 100);
+        bone_bow_projectile_range = builder.comment(" Set Default Projectile Range of the Bone Bow.\n Default: 15").translation("rigoranthusemortisreborn.config.server.range.bone_bow").defineInRange("range.bone_bow", 15, 1, 1000);
+        bone_bow_durability = builder.comment(" Set Durability of the Bone Bow.\n Vanilla Bow Default: 384\n Bone Bow Default: 500").translation("rigoranthusemortisreborn.config.server.durability.bone_bow").defineInRange("durability.bone_bow", 500, 1, 100000);
     }
-    private static void setupApogeanConfig(ForgeConfigSpec.Builder COMMON_BUILDER, ForgeConfigSpec.Builder CLIENT_BUILDER) {
-        enableApogeanArmorClimmbingEffect = COMMON_BUILDER.comment(" Enable or Disable the ability to Climb on Walls\n when a full set of Apogean Armor is Equipped.\n Default: True").define("apogean_set_bonus.climbing", true);
-        apogean_sword_speed = COMMON_BUILDER.comment(" Default:80\n Default Netherite: 9.0").defineInRange("sword.speed", 80.0, 0.0, 1000);
-        apogean_sword_damage = COMMON_BUILDER.comment(" Default:50\n Default Netherite: 4.0").defineInRange("sword.damage", 50, 0, 1000);
+    private static void setupApogeanConfig(ForgeConfigSpec.Builder builder) {
+        enableApogeanArmorClimmbingEffect = builder.comment(" Enable or Disable the ability to Climb on Walls\n when a full set of Apogean Armor is Equipped.\n Default: True").translation("rigoranthusemortisreborn.config.server.apogean_set_bonus.climbing").define("apogean_set_bonus.climbing", true);
+        apogean_sword_speed = builder.comment(" Default:80\n Default Netherite: 9.0").translation("rigoranthusemortisreborn.config.server.apogean_sword.speed").defineInRange("apogean_sword.speed", 80.0, 0.0, 1000);
+        apogean_sword_damage = builder.comment(" Default:50\n Default Netherite: 4.0").translation("rigoranthusemortisreborn.config.server.apogean_sword.damage").defineInRange("apogean_sword.damage", 50, 0, 1000);
+        apogean_axe_speed = builder.comment(" Default:80\n Default Netherite: 9.0").translation("rigoranthusemortisreborn.config.server.apogean_axe.speed").defineInRange("apogean_axe.speed", 80.0, 0.0, 1000);
+        apogean_axe_damage = builder.comment(" Default:50\n Default Netherite: 4.0").translation("rigoranthusemortisreborn.config.server.apogean_axe.damage").defineInRange("apogean_axe.damage", 50, 0, 1000);
+        apogean_tier_durability = builder.comment(" Default:8000\n Default Netherite: 2031").translation("rigoranthusemortisreborn.config.server.apogean_tier.durability").defineInRange("apogean_tier.durability", 8000, 0, 100000);
+        apogean_tier_speed = builder.comment(" Default:80\n Default Netherite: 9.0").translation("rigoranthusemortisreborn.config.server.apogean_tier.speed").defineInRange("apogean_tier.speed", 80.0, 0.0, 1000);
+        apogean_tier_damage = builder.comment(" Default:50\n Default Netherite: 4.0").translation("rigoranthusemortisreborn.config.server.apogean_tier.damage").defineInRange("apogean_tier.damage", 50.0, 0.0, 1000);
+        apogean_tier_enchantability = builder.comment(" Default:75\n Default Netherite: 15").translation("rigoranthusemortisreborn.config.server.apogean_tier.enchantability").defineInRange("apogean_tier.enchantability", 75, 0, 100);
 
-        apogean_axe_speed = COMMON_BUILDER.comment(" Default:80\n Default Netherite: 9.0").defineInRange("axe.speed", 80.0, 0.0, 1000);
-        apogean_axe_damage = COMMON_BUILDER.comment(" Default:50\n Default Netherite: 4.0").defineInRange("axe.damage", 50, 0, 1000);
-
-        apogean_tier_durability = COMMON_BUILDER.comment(" Default:8000\n Default Netherite: 2031").defineInRange("tier.durability", 8000, 0, 100000);
-        apogean_tier_speed = COMMON_BUILDER.comment(" Default:80\n Default Netherite: 9.0").defineInRange("tier.speed", 80.0, 0.0, 1000);
-        apogean_tier_damage = COMMON_BUILDER.comment(" Default:50\n Default Netherite: 4.0").defineInRange("tier.damage", 50.0, 0.0, 1000);
-        apogean_tier_enchantability = COMMON_BUILDER.comment(" Default:75\n Default Netherite: 15").defineInRange("tier.enchantability", 75, 0, 100);
-
-       apogean_boots_damage_reduction = COMMON_BUILDER.comment(" \nBoots Damage Reduction Value.\n Mod Default: 12\n Default Netherite: 3")
-                .defineInRange("damage_reduction_for_each_slot.apogean_boots_damage_reduction", 12, 0, 1000);
-        apogean_leggings_damage_reduction = COMMON_BUILDER.comment(" Leggings Damage Reduction Value.\n Mod Default: 24\n Default Netherite: 6")
-                .defineInRange("damage_reduction_for_each_slot.apogean_leggings_damage_reduction", 24, 0, 1000);
-        apogean_chestplate_damage_reduction = COMMON_BUILDER.comment(" Chestplate Damage Reduction Value.\n Mod Default: 32\n Default Netherite: 8")
-                .defineInRange("damage_reduction_for_each_slot.apogean_chestplate_damage_reduction", 32, 0, 1000);
-        apogean_helmet_damage_reduction = COMMON_BUILDER.comment(" Helmet Damage Reduction Value.\n Mod Default: 12\n Default Netherite: 3")
-                .defineInRange("damage_reduction_for_each_slot.apogean_helmet_damage_reduction", 12, 0, 1000);
-        apogean_durability_multiplier = COMMON_BUILDER.comment(" Mod Default: 120\n Default Netherite: 37")
-                .defineInRange("general_values.durability_multiplier", 120, 0, 1000);
-        apogean_armor_enchantability = COMMON_BUILDER.comment(" Mod Default: 75\n Default Netherite: 15")
-                .defineInRange("general_values.enchantability", 75, 0, 100);
-        apogean_toughness = COMMON_BUILDER.comment(" Mod Default: 3\n Default Netherite: 3")
-                .defineInRange("general_values.toughness", 3.0, 0.0, 10.0);
-        apogean_knockback_resistance = COMMON_BUILDER.comment(" Mod Default: 0.1\n Default Netherite: 0.1")
-                .defineInRange("general_values.knockback_resistance", 0.1, 0.0, 1.0);
+        apogean_boots_damage_reduction = builder.comment(" Boots Damage Reduction Value.\n Mod Default: 12\n Default Netherite: 3")
+                .translation("rigoranthusemortisreborn.config.server.per_slot_apogean.apogean_boots_damage_reduction").defineInRange("per_slot_apogean.apogean_boots_damage_reduction", 12, 0, 1000);
+        apogean_leggings_damage_reduction = builder.comment(" Leggings Damage Reduction Value.\n Mod Default: 24\n Default Netherite: 6")
+                .translation("rigoranthusemortisreborn.config.server.per_slot_apogean.apogean_leggings_damage_reduction").defineInRange("per_slot_apogean.apogean_leggings_damage_reduction", 24, 0, 1000);
+        apogean_chestplate_damage_reduction = builder.comment(" Chestplate Damage Reduction Value.\n Mod Default: 32\n Default Netherite: 8")
+                .translation("rigoranthusemortisreborn.config.server.per_slot_apogean.apogean_chestplate_damage_reduction").defineInRange("per_slot_apogean.apogean_chestplate_damage_reduction", 32, 0, 1000);
+        apogean_helmet_damage_reduction = builder.comment(" Helmet Damage Reduction Value.\n Mod Default: 12\n Default Netherite: 3")
+                .translation("rigoranthusemortisreborn.config.server.per_slot_apogean.apogean_helmet_damage_reduction").defineInRange("per_slot_apogean.apogean_helmet_damage_reduction", 12, 0, 1000);
+        apogean_durability_multiplier = builder.comment(" Mod Default: 120\n Default Netherite: 37")
+                .translation("rigoranthusemortisreborn.config.server.general_values_apogean.durability_multiplier").defineInRange("general_values_apogean.durability_multiplier", 120, 0, 1000);
+        apogean_armor_enchantability = builder.comment(" Mod Default: 75\n Default Netherite: 15")
+                .translation("rigoranthusemortisreborn.config.server.general_values_apogean.enchantability").defineInRange("general_values_apogean.enchantability", 75, 0, 100);
+        apogean_toughness = builder.comment(" Mod Default: 3\n Default Netherite: 3")
+                .translation("rigoranthusemortisreborn.config.server.general_values_apogean.toughness").defineInRange("general_values_apogean.toughness", 3.0, 0.0, 10.0);
+        apogean_knockback_resistance = builder.comment(" Mod Default: 0.1\n Default Netherite: 0.1")
+                .translation("rigoranthusemortisreborn.config.server.general_values_apogean.knockback_resistance").defineInRange("general_values_apogean.knockback_resistance", 0.1, 0.0, 1.0);
     }
-    private static void setupAqueousConfig(ForgeConfigSpec.Builder COMMON_BUILDER, ForgeConfigSpec.Builder CLIENT_BUILDER) {
-        aqueous_sword_speed = COMMON_BUILDER.comment(" Default: 16\n Default Netherite: 9.0").defineInRange("sword.speed", 16.0, 0.0, 1000);
-        aqueous_sword_damage = COMMON_BUILDER.comment(" Default: 40\n Default Netherite: 4.0").defineInRange("sword.damage", 40, 0, 1000);
+    private static void setupAqueousConfig(ForgeConfigSpec.Builder builder) {
+        aqueous_sword_speed = builder.comment(" Default: 16\n Default Netherite: 9.0").translation("rigoranthusemortisreborn.config.server.aqueous_sword.speed").defineInRange("aqueous_sword.speed", 16.0, 0.0, 1000);
+        aqueous_sword_damage = builder.comment(" Default: 40\n Default Netherite: 4.0").translation("rigoranthusemortisreborn.config.server.aqueous_sword.damage").defineInRange("aqueous_sword.damage", 40, 0, 1000);
+        aqueous_axe_speed = builder.comment(" Default: 16\n Default Netherite: 9.0").translation("rigoranthusemortisreborn.config.server.aqueous_axe.speed").defineInRange("aqueous_axe.speed", 16.0, 0.0, 1000);
+        aqueous_axe_damage = builder.comment(" Default: 40\n Default Netherite: 4.0").translation("rigoranthusemortisreborn.config.server.aqueous_axe.damage").defineInRange("aqueous_axe.damage", 40, 0, 1000);
+        aqueous_tier_durability = builder.comment(" Default: 4000\n Default Netherite: 2031").translation("rigoranthusemortisreborn.config.server.aqueous_tier.durability").defineInRange("aqueous_tier.durability", 4000, 0, 100000);
+        aqueous_tier_speed = builder.comment(" Default: 16\n Default Netherite: 9.0").translation("rigoranthusemortisreborn.config.server.aqueous_tier.speed").defineInRange("aqueous_tier.speed", 16.0, 0.0, 1000);
+        aqueous_tier_damage = builder.comment(" Default: 40\n Default Netherite: 4.0").translation("rigoranthusemortisreborn.config.server.aqueous_tier.damage").defineInRange("aqueous_tier.damage", 40.0, 0.0, 1000);
+        aqueous_tier_enchantability = builder.comment(" Default: 25\n Default Netherite: 15").translation("rigoranthusemortisreborn.config.server.aqueous_tier.enchantability").defineInRange("aqueous_tier.enchantability", 25, 0, 100);
 
-        aqueous_axe_speed = COMMON_BUILDER.comment(" Default: 16\n Default Netherite: 9.0").defineInRange("axe.speed", 16.0, 0.0, 1000);
-        aqueous_axe_damage = COMMON_BUILDER.comment(" Default: 40\n Default Netherite: 4.0").defineInRange("axe.damage", 40, 0, 1000);
-
-        aqueous_tier_durability = COMMON_BUILDER.comment(" Default: 4000\n Default Netherite: 2031").defineInRange("tier.durability", 4000, 0, 100000);
-        aqueous_tier_speed = COMMON_BUILDER.comment(" Default: 16\n Default Netherite: 9.0").defineInRange("tier.speed", 16.0, 0.0, 1000);
-        aqueous_tier_damage = COMMON_BUILDER.comment(" Default: 40\n Default Netherite: 4.0").defineInRange("tier.damage", 40.0, 0.0, 1000);
-        aqueous_tier_enchantability = COMMON_BUILDER.comment(" Default: 25\n Default Netherite: 15").defineInRange("tier.enchantability", 25, 0, 100);
-
-        aqueous_boots_damage_reduction = COMMON_BUILDER.comment(" \nBoots Damage Reduction Value.\n Mod Default: 12\n Default Netherite: 3")
-                .defineInRange("damage_reduction_for_each_slot.aqueous_boots_damage_reduction", 12, 0, 1000);
-        aqueous_leggings_damage_reduction = COMMON_BUILDER.comment(" Leggings Damage Reduction Value.\n Mod Default: 24\n Default Netherite: 6")
-                .defineInRange("damage_reduction_for_each_slot.aqueous_leggings_damage_reduction", 24, 0, 1000);
-        aqueous_chestplate_damage_reduction = COMMON_BUILDER.comment(" Chestplate Damage Reduction Value.\n Mod Default: 32\n Default Netherite: 8")
-                .defineInRange("damage_reduction_for_each_slot.aqueous_chestplate_damage_reduction", 32, 0, 1000);
-        aqueous_helmet_damage_reduction = COMMON_BUILDER.comment(" Helmet Damage Reduction Value.\n Mod Default: 12\n Default Netherite: 3")
-                .defineInRange("damage_reduction_for_each_slot.aqueous_helmet_damage_reduction", 12, 0, 1000);
-        aqueous_durability_multiplier = COMMON_BUILDER.comment(" Mod Default: 90\n Default Netherite: 37")
-                .defineInRange("general_values.durability_multiplier", 90, 0, 1000);
-        aqueous_armor_enchantability = COMMON_BUILDER.comment(" Mod Default: 25\n Default Netherite: 15")
-                .defineInRange("general_values.enchantability", 25, 0, 100);
-        aqueous_toughness = COMMON_BUILDER.comment(" Mod Default: 3\n Default Netherite: 3")
-                .defineInRange("general_values.toughness", 3.0, 0.0, 10.0);
-        aqueous_knockback_resistance = COMMON_BUILDER.comment(" Mod Default: 0.1\n Default Netherite: 0.1")
-                .defineInRange("general_values.knockback_resistance", 0.1, 0.0, 1.0);
+        aqueous_boots_damage_reduction = builder.comment(" Boots Damage Reduction Value.\n Mod Default: 12\n Default Netherite: 3")
+                .translation("rigoranthusemortisreborn.config.server.per_slot_aqueous.aqueous_boots_damage_reduction").defineInRange("per_slot_aqueous.aqueous_boots_damage_reduction", 12, 0, 1000);
+        aqueous_leggings_damage_reduction = builder.comment(" Leggings Damage Reduction Value.\n Mod Default: 24\n Default Netherite: 6")
+                .translation("rigoranthusemortisreborn.config.server.per_slot_aqueous.aqueous_leggings_damage_reduction").defineInRange("per_slot_aqueous.aqueous_leggings_damage_reduction", 24, 0, 1000);
+        aqueous_chestplate_damage_reduction = builder.comment(" Chestplate Damage Reduction Value.\n Mod Default: 32\n Default Netherite: 8")
+                .translation("rigoranthusemortisreborn.config.server.per_slot_aqueous.aqueous_chestplate_damage_reduction").defineInRange("per_slot_aqueous.aqueous_chestplate_damage_reduction", 32, 0, 1000);
+        aqueous_helmet_damage_reduction = builder.comment(" Helmet Damage Reduction Value.\n Mod Default: 12\n Default Netherite: 3")
+                .translation("rigoranthusemortisreborn.config.server.per_slot_aqueous.aqueous_helmet_damage_reduction").defineInRange("per_slot_aqueous.aqueous_helmet_damage_reduction", 12, 0, 1000);
+        aqueous_durability_multiplier = builder.comment(" Mod Default: 90\n Default Netherite: 37")
+                .translation("rigoranthusemortisreborn.config.server.general_values_aqueous.durability_multiplier").defineInRange("general_values_aqueous.durability_multiplier", 90, 0, 1000);
+        aqueous_armor_enchantability = builder.comment(" Mod Default: 25\n Default Netherite: 15")
+                .translation("rigoranthusemortisreborn.config.server.general_values_aqueous.enchantability").defineInRange("general_values_aqueous.enchantability", 25, 0, 100);
+        aqueous_toughness = builder.comment(" Mod Default: 3\n Default Netherite: 3")
+                .translation("rigoranthusemortisreborn.config.server.general_values_aqueous.toughness").defineInRange("general_values_aqueous.toughness", 3.0, 0.0, 10.0);
+        aqueous_knockback_resistance = builder.comment(" Mod Default: 0.1\n Default Netherite: 0.1")
+                .translation("rigoranthusemortisreborn.config.server.general_values_aqueous.knockback_resistance").defineInRange("general_values_aqueous.knockback_resistance", 0.1, 0.0, 1.0);
     }
-    private static void setupAtrophyingConfig(ForgeConfigSpec.Builder COMMON_BUILDER, ForgeConfigSpec.Builder CLIENT_BUILDER) {
-        atrophying_sword_speed = COMMON_BUILDER.comment(" Default: 14\n Default Netherite: 9.0").defineInRange("sword.speed", 14.0, 0.0, 1000);
-        atrophying_sword_damage = COMMON_BUILDER.comment(" Default: 35\n Default Netherite: 4.0").defineInRange("sword.damage", 35, 0, 1000);
+    private static void setupAtrophyingConfig(ForgeConfigSpec.Builder builder) {
+        atrophying_sword_speed = builder.comment(" Default: 14\n Default Netherite: 9.0").translation("rigoranthusemortisreborn.config.server.atrophying_sword.speed").defineInRange("atrophying_sword.speed", 14.0, 0.0, 1000);
+        atrophying_sword_damage = builder.comment(" Default: 35\n Default Netherite: 4.0").translation("rigoranthusemortisreborn.config.server.atrophying_sword.damage").defineInRange("atrophying_sword.damage", 35, 0, 1000);
+        atrophying_axe_speed = builder.comment(" Default: 14\n Default Netherite: 9.0").translation("rigoranthusemortisreborn.config.server.atrophying_axe.speed").defineInRange("atrophying_axe.speed", 14.0, 0.0, 1000);
+        atrophying_axe_damage = builder.comment(" Default: 35\n Default Netherite: 4.0").translation("rigoranthusemortisreborn.config.server.atrophying_axe.damage").defineInRange("atrophying_axe.damage", 35, 0, 1000);
+        atrophying_tier_durability = builder.comment(" Default: 3000\n Default Netherite: 2031").translation("rigoranthusemortisreborn.config.server.atrophying_tier.durability").defineInRange("atrophying_tier.durability", 3000, 0, 100000);
+        atrophying_tier_speed = builder.comment(" Default: 14\n Default Netherite: 9.0").translation("rigoranthusemortisreborn.config.server.atrophying_tier.speed").defineInRange("atrophying_tier.speed", 14.0, 0.0, 1000);
+        atrophying_tier_damage = builder.comment(" Default: 35\n Default Netherite: 4.0").translation("rigoranthusemortisreborn.config.server.atrophying_tier.damage").defineInRange("atrophying_tier.damage", 35.0, 0.0, 1000);
+        atrophying_tier_enchantability = builder.comment(" Default: 20\n Default Netherite: 15").translation("rigoranthusemortisreborn.config.server.atrophying_tier.enchantability").defineInRange("atrophying_tier.enchantability", 20, 0, 100);
 
-        atrophying_axe_speed = COMMON_BUILDER.comment(" Default: 14\n Default Netherite: 9.0").defineInRange("axe.speed", 14.0, 0.0, 1000);
-        atrophying_axe_damage = COMMON_BUILDER.comment(" Default: 35\n Default Netherite: 4.0").defineInRange("axe.damage", 35, 0, 1000);
-
-        atrophying_tier_durability = COMMON_BUILDER.comment(" Default: 3000\n Default Netherite: 2031").defineInRange("tier.durability", 3000, 0, 100000);
-        atrophying_tier_speed = COMMON_BUILDER.comment(" Default: 14\n Default Netherite: 9.0").defineInRange("tier.speed", 14.0, 0.0, 1000);
-        atrophying_tier_damage = COMMON_BUILDER.comment(" Default: 35\n Default Netherite: 4.0").defineInRange("tier.damage", 35.0, 0.0, 1000);
-        atrophying_tier_enchantability = COMMON_BUILDER.comment(" Default: 20\n Default Netherite: 15").defineInRange("tier.enchantability", 20, 0, 100);
-
-        atrophying_boots_damage_reduction = COMMON_BUILDER.comment(" \nBoots Damage Reduction Value.\n Mod Default: 12\n Default Netherite: 3")
-                .defineInRange("damage_reduction_for_each_slot.atrophying_boots_damage_reduction", 12, 0, 1000);
-        atrophying_leggings_damage_reduction = COMMON_BUILDER.comment(" Leggings Damage Reduction Value.\n Mod Default: 24\n Default Netherite: 6")
-                .defineInRange("damage_reduction_for_each_slot.atrophying_leggings_damage_reduction", 24, 0, 1000);
-        atrophying_chestplate_damage_reduction = COMMON_BUILDER.comment(" Chestplate Damage Reduction Value.\n Mod Default: 32\n Default Netherite: 8")
-                .defineInRange("damage_reduction_for_each_slot.atrophying_chestplate_damage_reduction", 32, 0, 1000);
-        atrophying_helmet_damage_reduction = COMMON_BUILDER.comment(" Helmet Damage Reduction Value.\n Mod Default: 12\n Default Netherite: 3")
-                .defineInRange("damage_reduction_for_each_slot.atrophying_helmet_damage_reduction", 12, 0, 1000);
-        atrophying_durability_multiplier = COMMON_BUILDER.comment(" Mod Default: 50\n Default Netherite: 37")
-                .defineInRange("general_values.durability_multiplier", 50, 0, 1000);
-        atrophying_armor_enchantability = COMMON_BUILDER.comment(" Mod Default: 20\n Default Netherite: 15")
-                .defineInRange("general_values.enchantability", 20, 0, 100);
-        atrophying_toughness = COMMON_BUILDER.comment(" Mod Default: 3\n Default Netherite: 3")
-                .defineInRange("general_values.toughness", 3.0, 0.0, 10.0);
-        atrophying_knockback_resistance = COMMON_BUILDER.comment(" Mod Default: 0.1\n Default Netherite: 0.1")
-                .defineInRange("general_values.knockback_resistance", 0.1, 0.0, 1.0);
+        atrophying_boots_damage_reduction = builder.comment(" Boots Damage Reduction Value.\n Mod Default: 12\n Default Netherite: 3")
+                .translation("rigoranthusemortisreborn.config.server.per_slot_atrophying.atrophying_boots_damage_reduction").defineInRange("per_slot_atrophying.atrophying_boots_damage_reduction", 12, 0, 1000);
+        atrophying_leggings_damage_reduction = builder.comment(" Leggings Damage Reduction Value.\n Mod Default: 24\n Default Netherite: 6")
+                .translation("rigoranthusemortisreborn.config.server.per_slot_atrophying.atrophying_leggings_damage_reduction").defineInRange("per_slot_atrophying.atrophying_leggings_damage_reduction", 24, 0, 1000);
+        atrophying_chestplate_damage_reduction = builder.comment(" Chestplate Damage Reduction Value.\n Mod Default: 32\n Default Netherite: 8")
+                .translation("rigoranthusemortisreborn.config.server.per_slot_atrophying.atrophying_chestplate_damage_reduction").defineInRange("per_slot_atrophying.atrophying_chestplate_damage_reduction", 32, 0, 1000);
+        atrophying_helmet_damage_reduction = builder.comment(" Helmet Damage Reduction Value.\n Mod Default: 12\n Default Netherite: 3")
+                .translation("rigoranthusemortisreborn.config.server.per_slot_atrophying.atrophying_helmet_damage_reduction").defineInRange("per_slot_atrophying.atrophying_helmet_damage_reduction", 12, 0, 1000);
+        atrophying_durability_multiplier = builder.comment(" Mod Default: 50\n Default Netherite: 37")
+                .translation("rigoranthusemortisreborn.config.server.general_values_atrophying.durability_multiplier").defineInRange("general_values_atrophying.durability_multiplier", 50, 0, 1000);
+        atrophying_armor_enchantability = builder.comment(" Mod Default: 20\n Default Netherite: 15")
+                .translation("rigoranthusemortisreborn.config.server.general_values_atrophying.enchantability").defineInRange("general_values_atrophying.enchantability", 20, 0, 100);
+        atrophying_toughness = builder.comment(" Mod Default: 3\n Default Netherite: 3")
+                .translation("rigoranthusemortisreborn.config.server.general_values_atrophying.toughness").defineInRange("general_values_atrophying.toughness", 3.0, 0.0, 10.0);
+        atrophying_knockback_resistance = builder.comment(" Mod Default: 0.1\n Default Netherite: 0.1")
+                .translation("rigoranthusemortisreborn.config.server.general_values_atrophying.knockback_resistance").defineInRange("general_values_atrophying.knockback_resistance", 0.1, 0.0, 1.0);
     }
-    private static void setupIncorporealConfig(ForgeConfigSpec.Builder COMMON_BUILDER, ForgeConfigSpec.Builder CLIENT_BUILDER) {
-        incorporeal_sword_speed = COMMON_BUILDER.comment(" Default: 12\n Default Netherite: 9.0").defineInRange("sword.speed", 12.0, 0.0, 1000);
-        incorporeal_sword_damage = COMMON_BUILDER.comment(" Default: 25\n Default Netherite: 4.0").defineInRange("sword.damage", 25, 0, 1000);
+    private static void setupIncorporealConfig(ForgeConfigSpec.Builder builder) {
+        incorporeal_sword_speed = builder.comment(" Default: 12\n Default Netherite: 9.0").translation("rigoranthusemortisreborn.config.server.incorporeal_sword.speed").defineInRange("incorporeal_sword.speed", 12.0, 0.0, 1000);
+        incorporeal_sword_damage = builder.comment(" Default: 25\n Default Netherite: 4.0").translation("rigoranthusemortisreborn.config.server.incorporeal_sword.damage").defineInRange("incorporeal_sword.damage", 25, 0, 1000);
+        incorporeal_axe_speed = builder.comment(" Default: 12\n Default Netherite: 9.0").translation("rigoranthusemortisreborn.config.server.incorporeal_axe.speed").defineInRange("incorporeal_axe.speed", 12.0, 0.0, 1000);
+        incorporeal_axe_damage = builder.comment(" Default: 25\n Default Netherite: 4.0").translation("rigoranthusemortisreborn.config.server.incorporeal_axe.damage").defineInRange("incorporeal_axe.damage", 25, 0, 1000);
+        incorporeal_tier_durability = builder.comment(" Default: 2000\n Default Netherite: 2031").translation("rigoranthusemortisreborn.config.server.incorporeal_tier.durability").defineInRange("incorporeal_tier.durability", 2000, 0, 100000);
+        incorporeal_tier_speed = builder.comment(" Default: 12\n Default Netherite: 9.0").translation("rigoranthusemortisreborn.config.server.incorporeal_tier.speed").defineInRange("incorporeal_tier.speed", 12.0, 0.0, 1000);
+        incorporeal_tier_damage = builder.comment(" Default: 25\n Default Netherite: 4.0").translation("rigoranthusemortisreborn.config.server.incorporeal_tier.damage").defineInRange("incorporeal_tier.damage", 25.0, 0.0, 1000);
+        incorporeal_tier_enchantability = builder.comment(" Default: 40\n Default Netherite: 15").translation("rigoranthusemortisreborn.config.server.incorporeal_tier.enchantability").defineInRange("incorporeal_tier.enchantability", 40, 0, 100);
 
-        incorporeal_axe_speed = COMMON_BUILDER.comment(" Default: 12\n Default Netherite: 9.0").defineInRange("axe.speed", 12.0, 0.0, 1000);
-        incorporeal_axe_damage = COMMON_BUILDER.comment(" Default: 25\n Default Netherite: 4.0").defineInRange("axe.damage", 25, 0, 1000);
-
-        incorporeal_tier_durability = COMMON_BUILDER.comment(" Default: 2000\n Default Netherite: 2031").defineInRange("tier.durability", 2000, 0, 100000);
-        incorporeal_tier_speed = COMMON_BUILDER.comment(" Default: 12\n Default Netherite: 9.0").defineInRange("tier.speed", 12.0, 0.0, 1000);
-        incorporeal_tier_damage = COMMON_BUILDER.comment(" Default: 25\n Default Netherite: 4.0").defineInRange("tier.damage", 25.0, 0.0, 1000);
-        incorporeal_tier_enchantability = COMMON_BUILDER.comment(" Default: 40\n Default Netherite: 15").defineInRange("tier.enchantability", 40, 0, 100);
-
-        incorporeal_boots_damage_reduction = COMMON_BUILDER.comment(" \nBoots Damage Reduction Value.\n Mod Default: 9\n Default Netherite: 3")
-                .defineInRange("damage_reduction_for_each_slot.incorporeal_boots_damage_reduction", 9, 0, 1000);
-        incorporeal_leggings_damage_reduction = COMMON_BUILDER.comment(" Leggings Damage Reduction Value.\n Mod Default: 18\n Default Netherite: 6")
-                .defineInRange("damage_reduction_for_each_slot.incorporeal_leggings_damage_reduction", 18, 0, 1000);
-        incorporeal_chestplate_damage_reduction = COMMON_BUILDER.comment(" Chestplate Damage Reduction Value.\n Mod Default: 24\n Default Netherite: 8")
-                .defineInRange("damage_reduction_for_each_slot.incorporeal_chestplate_damage_reduction", 24, 0, 1000);
-        incorporeal_helmet_damage_reduction = COMMON_BUILDER.comment(" Helmet Damage Reduction Value.\n Mod Default: 9\n Default Netherite: 3")
-                .defineInRange("damage_reduction_for_each_slot.incorporeal_helmet_damage_reduction", 9, 0, 1000);
-        incorporeal_durability_multiplier = COMMON_BUILDER.comment(" Mod Default: 50\n Default Netherite: 37")
-                .defineInRange("general_values.durability_multiplier", 50, 0, 1000);
-        incorporeal_armor_enchantability = COMMON_BUILDER.comment(" Mod Default: 40\n Default Netherite: 15")
-                .defineInRange("general_values.enchantability", 40, 0, 100);
-        incorporeal_toughness = COMMON_BUILDER.comment(" Mod Default: 3\n Default Netherite: 3")
-                .defineInRange("general_values.toughness", 3.0, 0.0, 10.0);
-        incorporeal_knockback_resistance = COMMON_BUILDER.comment(" Mod Default: 0.1\n Default Netherite: 0.1")
-                .defineInRange("general_values.knockback_resistance", 0.1, 0.0, 1.0);
+        incorporeal_boots_damage_reduction = builder.comment(" Boots Damage Reduction Value.\n Mod Default: 9\n Default Netherite: 3")
+                .translation("rigoranthusemortisreborn.config.server.per_slot_incorporeal.incorporeal_boots_damage_reduction").defineInRange("per_slot_incorporeal.incorporeal_boots_damage_reduction", 9, 0, 1000);
+        incorporeal_leggings_damage_reduction = builder.comment(" Leggings Damage Reduction Value.\n Mod Default: 18\n Default Netherite: 6")
+                .translation("rigoranthusemortisreborn.config.server.per_slot_incorporeal.incorporeal_leggings_damage_reduction").defineInRange("per_slot_incorporeal.incorporeal_leggings_damage_reduction", 18, 0, 1000);
+        incorporeal_chestplate_damage_reduction = builder.comment(" Chestplate Damage Reduction Value.\n Mod Default: 24\n Default Netherite: 8")
+                .translation("rigoranthusemortisreborn.config.server.per_slot_incorporeal.incorporeal_chestplate_damage_reduction").defineInRange("per_slot_incorporeal.incorporeal_chestplate_damage_reduction", 24, 0, 1000);
+        incorporeal_helmet_damage_reduction = builder.comment(" Helmet Damage Reduction Value.\n Mod Default: 9\n Default Netherite: 3")
+                .translation("rigoranthusemortisreborn.config.server.per_slot_incorporeal.incorporeal_helmet_damage_reduction").defineInRange("per_slot_incorporeal.incorporeal_helmet_damage_reduction", 9, 0, 1000);
+        incorporeal_durability_multiplier = builder.comment(" Mod Default: 50\n Default Netherite: 37")
+                .translation("rigoranthusemortisreborn.config.server.general_values_incorporeal.durability_multiplier").defineInRange("general_values_incorporeal.durability_multiplier", 50, 0, 1000);
+        incorporeal_armor_enchantability = builder.comment(" Mod Default: 40\n Default Netherite: 15")
+                .translation("rigoranthusemortisreborn.config.server.general_values_incorporeal.enchantability").defineInRange("general_values_incorporeal.enchantability", 40, 0, 100);
+        incorporeal_toughness = builder.comment(" Mod Default: 3\n Default Netherite: 3")
+                .translation("rigoranthusemortisreborn.config.server.general_values_incorporeal.toughness").defineInRange("general_values_incorporeal.toughness", 3.0, 0.0, 10.0);
+        incorporeal_knockback_resistance = builder.comment(" Mod Default: 0.1\n Default Netherite: 0.1")
+                .translation("rigoranthusemortisreborn.config.server.general_values_incorporeal.knockback_resistance").defineInRange("general_values_incorporeal.knockback_resistance", 0.1, 0.0, 1.0);
     }
-    private static void setupInfernalConfig(ForgeConfigSpec.Builder COMMON_BUILDER, ForgeConfigSpec.Builder CLIENT_BUILDER) {
-        infernal_sword_speed = COMMON_BUILDER.comment(" Default: 6\n Default Netherite: 9.0").defineInRange("sword.speed", 6.0, 0.0, 1000);
-        infernal_sword_damage = COMMON_BUILDER.comment(" Default: 40\n Default Netherite: 4.0").defineInRange("sword.damage", 40, 0, 1000);
+    private static void setupInfernalConfig(ForgeConfigSpec.Builder builder) {
+        infernal_sword_speed = builder.comment(" Default: 6\n Default Netherite: 9.0").translation("rigoranthusemortisreborn.config.server.infernal_sword.speed").defineInRange("infernal_sword.speed", 6.0, 0.0, 1000);
+        infernal_sword_damage = builder.comment(" Default: 40\n Default Netherite: 4.0").translation("rigoranthusemortisreborn.config.server.infernal_sword.damage").defineInRange("infernal_sword.damage", 40, 0, 1000);
+        infernal_axe_speed = builder.comment(" Default: 6\n Default Netherite: 9.0").translation("rigoranthusemortisreborn.config.server.infernal_axe.speed").defineInRange("infernal_axe.speed", 6.0, 0.0, 1000);
+        infernal_axe_damage = builder.comment(" Default: 40\n Default Netherite: 4.0").translation("rigoranthusemortisreborn.config.server.infernal_axe.damage").defineInRange("infernal_axe.damage", 40, 0, 1000);
+        infernal_tier_durability = builder.comment(" Default: 4000\n Default Netherite: 2031").translation("rigoranthusemortisreborn.config.server.infernal_tier.durability").defineInRange("infernal_tier.durability", 4000, 0, 100000);
+        infernal_tier_speed = builder.comment(" Default: 6\n Default Netherite: 9.0").translation("rigoranthusemortisreborn.config.server.infernal_tier.speed").defineInRange("infernal_tier.speed", 6.0, 0.0, 1000);
+        infernal_tier_damage = builder.comment(" Default: 40\n Default Netherite: 4.0").translation("rigoranthusemortisreborn.config.server.infernal_tier.damage").defineInRange("infernal_tier.damage", 40.0, 0.0, 1000);
+        infernal_tier_enchantability = builder.comment(" Default: 25\n Default Netherite: 15").translation("rigoranthusemortisreborn.config.server.infernal_tier.enchantability").defineInRange("infernal_tier.enchantability", 25, 0, 100);
 
-        infernal_axe_speed = COMMON_BUILDER.comment(" Default: 6\n Default Netherite: 9.0").defineInRange("axe.speed", 6.0, 0.0, 1000);
-        infernal_axe_damage = COMMON_BUILDER.comment(" Default: 40\n Default Netherite: 4.0").defineInRange("axe.damage", 40, 0, 1000);
-
-        infernal_tier_durability = COMMON_BUILDER.comment(" Default: 4000\n Default Netherite: 2031").defineInRange("tier.durability", 4000, 0, 100000);
-        infernal_tier_speed = COMMON_BUILDER.comment(" Default: 6\n Default Netherite: 9.0").defineInRange("tier.speed", 6.0, 0.0, 1000);
-        infernal_tier_damage = COMMON_BUILDER.comment(" Default: 40\n Default Netherite: 4.0").defineInRange("tier.damage", 40.0, 0.0, 1000);
-        infernal_tier_enchantability = COMMON_BUILDER.comment(" Default: 25\n Default Netherite: 15").defineInRange("tier.enchantability", 25, 0, 100);
-
-        infernal_boots_damage_reduction = COMMON_BUILDER.comment(" \nBoots Damage Reduction Value.\n Mod Default: 12\n Default Netherite: 3")
-                .defineInRange("damage_reduction_for_each_slot.infernal_boots_damage_reduction", 12, 0, 1000);
-        infernal_leggings_damage_reduction = COMMON_BUILDER.comment(" Leggings Damage Reduction Value.\n Mod Default: 24\n Default Netherite: 6")
-                .defineInRange("damage_reduction_for_each_slot.infernal_leggings_damage_reduction", 24, 0, 1000);
-        infernal_chestplate_damage_reduction = COMMON_BUILDER.comment(" Chestplate Damage Reduction Value.\n Mod Default: 32\n Default Netherite: 8")
-                .defineInRange("damage_reduction_for_each_slot.infernal_chestplate_damage_reduction", 32, 0, 1000);
-        infernal_helmet_damage_reduction = COMMON_BUILDER.comment(" Helmet Damage Reduction Value.\n Mod Default: 12\n Default Netherite: 3")
-                .defineInRange("damage_reduction_for_each_slot.infernal_helmet_damage_reduction", 12, 0, 1000);
-        infernal_durability_multiplier = COMMON_BUILDER.comment(" Mod Default: 90\n Default Netherite: 37")
-                .defineInRange("general_values.durability_multiplier", 90, 0, 1000);
-        infernal_armor_enchantability = COMMON_BUILDER.comment(" Mod Default: 25\n Default Netherite: 15")
-                .defineInRange("general_values.enchantability", 25, 0, 100);
-        infernal_toughness = COMMON_BUILDER.comment(" Mod Default: 3\n Default Netherite: 3")
-                .defineInRange("general_values.toughness", 3.0, 0.0, 10.0);
-        infernal_knockback_resistance = COMMON_BUILDER.comment(" Mod Default: 0.1\n Default Netherite: 0.1")
-                .defineInRange("general_values.knockback_resistance", 0.1, 0.0, 1.0);
+        infernal_boots_damage_reduction = builder.comment(" Boots Damage Reduction Value.\n Mod Default: 12\n Default Netherite: 3")
+                .translation("rigoranthusemortisreborn.config.server.per_slot_infernal.infernal_boots_damage_reduction").defineInRange("per_slot_infernal.infernal_boots_damage_reduction", 12, 0, 1000);
+        infernal_leggings_damage_reduction = builder.comment(" Leggings Damage Reduction Value.\n Mod Default: 24\n Default Netherite: 6")
+                .translation("rigoranthusemortisreborn.config.server.per_slot_infernal.infernal_leggings_damage_reduction").defineInRange("per_slot_infernal.infernal_leggings_damage_reduction", 24, 0, 1000);
+        infernal_chestplate_damage_reduction = builder.comment(" Chestplate Damage Reduction Value.\n Mod Default: 32\n Default Netherite: 8")
+                .translation("rigoranthusemortisreborn.config.server.per_slot_infernal.infernal_chestplate_damage_reduction").defineInRange("per_slot_infernal.infernal_chestplate_damage_reduction", 32, 0, 1000);
+        infernal_helmet_damage_reduction = builder.comment(" Helmet Damage Reduction Value.\n Mod Default: 12\n Default Netherite: 3")
+                .translation("rigoranthusemortisreborn.config.server.per_slot_infernal.infernal_helmet_damage_reduction").defineInRange("per_slot_infernal.infernal_helmet_damage_reduction", 12, 0, 1000);
+        infernal_durability_multiplier = builder.comment(" Mod Default: 90\n Default Netherite: 37")
+                .translation("rigoranthusemortisreborn.config.server.general_values_infernal.durability_multiplier").defineInRange("general_values_infernal.durability_multiplier", 90, 0, 1000);
+        infernal_armor_enchantability = builder.comment(" Mod Default: 25\n Default Netherite: 15")
+                .translation("rigoranthusemortisreborn.config.server.general_values_infernal.enchantability").defineInRange("general_values_infernal.enchantability", 25, 0, 100);
+        infernal_toughness = builder.comment(" Mod Default: 3\n Default Netherite: 3")
+                .translation("rigoranthusemortisreborn.config.server.general_values_infernal.toughness").defineInRange("general_values_infernal.toughness", 3.0, 0.0, 10.0);
+        infernal_knockback_resistance = builder.comment(" Mod Default: 0.1\n Default Netherite: 0.1")
+                .translation("rigoranthusemortisreborn.config.server.general_values_infernal.knockback_resistance").defineInRange("general_values_infernal.knockback_resistance", 0.1, 0.0, 1.0);
     }
-    private static void setupOpulentConfig(ForgeConfigSpec.Builder COMMON_BUILDER, ForgeConfigSpec.Builder CLIENT_BUILDER) {
-        opulent_sword_speed = COMMON_BUILDER.comment(" Default: 14\n Default Netherite: 9.0").defineInRange("sword.speed", 14.0, 0.0, 1000);
-        opulent_sword_damage = COMMON_BUILDER.comment(" Default: 20\n Default Netherite: 4.0").defineInRange("sword.damage", 20, 0, 1000);
+    private static void setupOpulentConfig(ForgeConfigSpec.Builder builder) {
+        opulent_sword_speed = builder.comment(" Default: 14\n Default Netherite: 9.0").translation("rigoranthusemortisreborn.config.server.opulent_sword.speed").defineInRange("opulent_sword.speed", 14.0, 0.0, 1000);
+        opulent_sword_damage = builder.comment(" Default: 20\n Default Netherite: 4.0").translation("rigoranthusemortisreborn.config.server.opulent_sword.damage").defineInRange("opulent_sword.damage", 20, 0, 1000);
+        opulent_axe_speed = builder.comment(" Default: 14\n Default Netherite: 9.0").translation("rigoranthusemortisreborn.config.server.opulent_axe.speed").defineInRange("opulent_axe.speed", 14.0, 0.0, 1000);
+        opulent_axe_damage = builder.comment(" Default: 20\n Default Netherite: 4.0").translation("rigoranthusemortisreborn.config.server.opulent_axe.damage").defineInRange("opulent_axe.damage", 20, 0, 1000);
+        opulent_tier_durability = builder.comment(" Default: 2500\n Default Netherite: 2031").translation("rigoranthusemortisreborn.config.server.opulent_tier.durability").defineInRange("opulent_tier.durability", 2500, 0, 100000);
+        opulent_tier_speed = builder.comment(" Default: 14\n Default Netherite: 9.0").translation("rigoranthusemortisreborn.config.server.opulent_tier.speed").defineInRange("opulent_tier.speed", 14.0, 0.0, 1000);
+        opulent_tier_damage = builder.comment(" Default: 20\n Default Netherite: 4.0").translation("rigoranthusemortisreborn.config.server.opulent_tier.damage").defineInRange("opulent_tier.damage", 20.0, 0.0, 1000);
+        opulent_tier_enchantability = builder.comment(" Default: 70\n Default Netherite: 15").translation("rigoranthusemortisreborn.config.server.opulent_tier.enchantability").defineInRange("opulent_tier.enchantability", 70, 0, 100);
 
-        opulent_axe_speed = COMMON_BUILDER.comment(" Default: 14\n Default Netherite: 9.0").defineInRange("axe.speed", 14.0, 0.0, 1000);
-        opulent_axe_damage = COMMON_BUILDER.comment(" Default: 20\n Default Netherite: 4.0").defineInRange("axe.damage", 20, 0, 1000);
-
-        opulent_tier_durability = COMMON_BUILDER.comment(" Default: 2500\n Default Netherite: 2031").defineInRange("tier.durability", 2500, 0, 100000);
-        opulent_tier_speed = COMMON_BUILDER.comment(" Default: 14\n Default Netherite: 9.0").defineInRange("tier.speed", 14.0, 0.0, 1000);
-        opulent_tier_damage = COMMON_BUILDER.comment(" Default: 20\n Default Netherite: 4.0").defineInRange("tier.damage", 20.0, 0.0, 1000);
-        opulent_tier_enchantability = COMMON_BUILDER.comment(" Default: 70\n Default Netherite: 15").defineInRange("tier.enchantability", 70, 0, 100);
-
-        opulent_boots_damage_reduction = COMMON_BUILDER.comment(" \nBoots Damage Reduction Value.\n Mod Default: 10\n Default Netherite: 3")
-                .defineInRange("damage_reduction_for_each_slot.opulent_boots_damage_reduction", 10, 0, 1000);
-        opulent_leggings_damage_reduction = COMMON_BUILDER.comment(" Leggings Damage Reduction Value.\n Mod Default: 20\n Default Netherite: 6")
-                .defineInRange("damage_reduction_for_each_slot.opulent_leggings_damage_reduction", 20, 0, 1000);
-        opulent_chestplate_damage_reduction = COMMON_BUILDER.comment(" Chestplate Damage Reduction Value.\n Mod Default: 28\n Default Netherite: 8")
-                .defineInRange("damage_reduction_for_each_slot.opulent_chestplate_damage_reduction", 28, 0, 1000);
-        opulent_helmet_damage_reduction = COMMON_BUILDER.comment(" Helmet Damage Reduction Value.\n Mod Default: 10\n Default Netherite: 3")
-                .defineInRange("damage_reduction_for_each_slot.opulent_helmet_damage_reduction", 10, 0, 1000);
-        opulent_durability_multiplier = COMMON_BUILDER.comment(" Mod Default: 45\n Default Netherite: 37")
-                .defineInRange("general_values.durability_multiplier", 45, 0, 1000);
-        opulent_armor_enchantability = COMMON_BUILDER.comment(" Mod Default: 70\n Default Netherite: 15")
-                .defineInRange("general_values.enchantability", 70, 0, 100);
-        opulent_toughness = COMMON_BUILDER.comment(" Mod Default: 3\n Default Netherite: 3")
-                .defineInRange("general_values.toughness", 3.0, 0.0, 10.0);
-        opulent_knockback_resistance = COMMON_BUILDER.comment(" Mod Default: 0.1\n Default Netherite: 0.1")
-                .defineInRange("general_values.knockback_resistance", 0.1, 0.0, 1.0);
+        opulent_boots_damage_reduction = builder.comment(" Boots Damage Reduction Value.\n Mod Default: 10\n Default Netherite: 3")
+                .translation("rigoranthusemortisreborn.config.server.per_slot_opulent.opulent_boots_damage_reduction").defineInRange("per_slot_opulent.opulent_boots_damage_reduction", 10, 0, 1000);
+        opulent_leggings_damage_reduction = builder.comment(" Leggings Damage Reduction Value.\n Mod Default: 20\n Default Netherite: 6")
+                .translation("rigoranthusemortisreborn.config.server.per_slot_opulent.opulent_leggings_damage_reduction").defineInRange("per_slot_opulent.opulent_leggings_damage_reduction", 20, 0, 1000);
+        opulent_chestplate_damage_reduction = builder.comment(" Chestplate Damage Reduction Value.\n Mod Default: 28\n Default Netherite: 8")
+                .translation("rigoranthusemortisreborn.config.server.per_slot_opulent.opulent_chestplate_damage_reduction").defineInRange("per_slot_opulent.opulent_chestplate_damage_reduction", 28, 0, 1000);
+        opulent_helmet_damage_reduction = builder.comment(" Helmet Damage Reduction Value.\n Mod Default: 10\n Default Netherite: 3")
+                .translation("rigoranthusemortisreborn.config.server.per_slot_opulent.opulent_helmet_damage_reduction").defineInRange("per_slot_opulent.opulent_helmet_damage_reduction", 10, 0, 1000);
+        opulent_durability_multiplier = builder.comment(" Mod Default: 45\n Default Netherite: 37")
+                .translation("rigoranthusemortisreborn.config.server.general_values_opulent.durability_multiplier").defineInRange("general_values_opulent.durability_multiplier", 45, 0, 1000);
+        opulent_armor_enchantability = builder.comment(" Mod Default: 70\n Default Netherite: 15")
+                .translation("rigoranthusemortisreborn.config.server.general_values_opulent.enchantability").defineInRange("general_values_opulent.enchantability", 70, 0, 100);
+        opulent_toughness = builder.comment(" Mod Default: 3\n Default Netherite: 3")
+                .translation("rigoranthusemortisreborn.config.server.general_values_opulent.toughness").defineInRange("general_values_opulent.toughness", 3.0, 0.0, 10.0);
+        opulent_knockback_resistance = builder.comment(" Mod Default: 0.1\n Default Netherite: 0.1")
+                .translation("rigoranthusemortisreborn.config.server.general_values_opulent.knockback_resistance").defineInRange("general_values_opulent.knockback_resistance", 0.1, 0.0, 1.0);
     }
-    private static void setupPerniciousConfig(ForgeConfigSpec.Builder COMMON_BUILDER, ForgeConfigSpec.Builder CLIENT_BUILDER) {
-        pernicious_sword_speed = COMMON_BUILDER.comment(" Default: 6\n Default Netherite: 9.0").defineInRange("sword.speed", 6.0, 0.0, 1000);
-        pernicious_sword_damage = COMMON_BUILDER.comment(" Default: 40\n Default Netherite: 4.0").defineInRange("sword.damage", 40, 0, 1000);
+    private static void setupPerniciousConfig(ForgeConfigSpec.Builder builder) {
+        pernicious_sword_speed = builder.comment(" Default: 6\n Default Netherite: 9.0").translation("rigoranthusemortisreborn.config.server.pernicious_sword.speed").defineInRange("pernicious_sword.speed", 6.0, 0.0, 1000);
+        pernicious_sword_damage = builder.comment(" Default: 40\n Default Netherite: 4.0").translation("rigoranthusemortisreborn.config.server.pernicious_sword.damage").defineInRange("pernicious_sword.damage", 40, 0, 1000);
+        pernicious_axe_speed = builder.comment(" Default: 6\n Default Netherite: 9.0").translation("rigoranthusemortisreborn.config.server.pernicious_axe.speed").defineInRange("pernicious_axe.speed", 6.0, 0.0, 1000);
+        pernicious_axe_damage = builder.comment(" Default: 40\n Default Netherite: 4.0").translation("rigoranthusemortisreborn.config.server.pernicious_axe.damage").defineInRange("pernicious_axe.damage", 40, 0, 1000);
+        pernicious_tier_durability = builder.comment(" Default: 4000\n Default Netherite: 2031").translation("rigoranthusemortisreborn.config.server.pernicious_tier.durability").defineInRange("pernicious_tier.durability", 4000, 0, 100000);
+        pernicious_tier_speed = builder.comment(" Default: 6\n Default Netherite: 9.0").translation("rigoranthusemortisreborn.config.server.pernicious_tier.speed").defineInRange("pernicious_tier.speed", 6.0, 0.0, 1000);
+        pernicious_tier_damage = builder.comment(" Default: 40\n Default Netherite: 4.0").translation("rigoranthusemortisreborn.config.server.pernicious_tier.damage").defineInRange("pernicious_tier.damage", 40.0, 0.0, 1000);
+        pernicious_tier_enchantability = builder.comment(" Default: 25\n Default Netherite: 15").translation("rigoranthusemortisreborn.config.server.pernicious_tier.enchantability").defineInRange("pernicious_tier.enchantability", 25, 0, 100);
 
-        pernicious_axe_speed = COMMON_BUILDER.comment(" Default: 6\n Default Netherite: 9.0").defineInRange("axe.speed", 6.0, 0.0, 1000);
-        pernicious_axe_damage = COMMON_BUILDER.comment(" Default: 40\n Default Netherite: 4.0").defineInRange("axe.damage", 40, 0, 1000);
-
-        pernicious_tier_durability = COMMON_BUILDER.comment(" Default: 4000\n Default Netherite: 2031").defineInRange("tier.durability", 4000, 0, 100000);
-        pernicious_tier_speed = COMMON_BUILDER.comment(" Default: 6\n Default Netherite: 9.0").defineInRange("tier.speed", 6.0, 0.0, 1000);
-        pernicious_tier_damage = COMMON_BUILDER.comment(" Default: 40\n Default Netherite: 4.0").defineInRange("tier.damage", 40.0, 0.0, 1000);
-        pernicious_tier_enchantability = COMMON_BUILDER.comment(" Default: 25\n Default Netherite: 15").defineInRange("tier.enchantability", 25, 0, 100);
-
-        pernicious_boots_damage_reduction = COMMON_BUILDER.comment(" \nBoots Damage Reduction Value.\n Mod Default: 12\n Default Netherite: 3")
-                .defineInRange("damage_reduction_for_each_slot.pernicious_boots_damage_reduction", 12, 0, 1000);
-        pernicious_leggings_damage_reduction = COMMON_BUILDER.comment(" Leggings Damage Reduction Value.\n Mod Default: 24\n Default Netherite: 6")
-                .defineInRange("damage_reduction_for_each_slot.pernicious_leggings_damage_reduction", 24, 0, 1000);
-        pernicious_chestplate_damage_reduction = COMMON_BUILDER.comment(" Chestplate Damage Reduction Value.\n Mod Default: 32\n Default Netherite: 8")
-                .defineInRange("damage_reduction_for_each_slot.pernicious_chestplate_damage_reduction", 32, 0, 1000);
-        pernicious_helmet_damage_reduction = COMMON_BUILDER.comment(" Helmet Damage Reduction Value.\n Mod Default: 12\n Default Netherite: 3")
-                .defineInRange("damage_reduction_for_each_slot.pernicious_helmet_damage_reduction", 12, 0, 1000);
-        pernicious_durability_multiplier = COMMON_BUILDER.comment(" Mod Default: 90\n Default Netherite: 37")
-                .defineInRange("general_values.durability_multiplier", 90, 0, 1000);
-        pernicious_armor_enchantability = COMMON_BUILDER.comment(" Mod Default: 25\n Default Netherite: 15")
-                .defineInRange("general_values.enchantability", 25, 0, 100);
-        pernicious_toughness = COMMON_BUILDER.comment(" Mod Default: 3\n Default Netherite: 3")
-                .defineInRange("general_values.toughness", 3.0, 0.0, 10.0);
-        pernicious_knockback_resistance = COMMON_BUILDER.comment(" Mod Default: 0.1\n Default Netherite: 0.1")
-                .defineInRange("general_values.knockback_resistance", 0.1, 0.0, 1.0);
+        pernicious_boots_damage_reduction = builder.comment(" Boots Damage Reduction Value.\n Mod Default: 12\n Default Netherite: 3")
+                .translation("rigoranthusemortisreborn.config.server.per_slot_pernicious.pernicious_boots_damage_reduction").defineInRange("per_slot_pernicious.pernicious_boots_damage_reduction", 12, 0, 1000);
+        pernicious_leggings_damage_reduction = builder.comment(" Leggings Damage Reduction Value.\n Mod Default: 24\n Default Netherite: 6")
+                .translation("rigoranthusemortisreborn.config.server.per_slot_pernicious.pernicious_leggings_damage_reduction").defineInRange("per_slot_pernicious.pernicious_leggings_damage_reduction", 24, 0, 1000);
+        pernicious_chestplate_damage_reduction = builder.comment(" Chestplate Damage Reduction Value.\n Mod Default: 32\n Default Netherite: 8")
+                .translation("rigoranthusemortisreborn.config.server.per_slot_pernicious.pernicious_chestplate_damage_reduction").defineInRange("per_slot_pernicious.pernicious_chestplate_damage_reduction", 32, 0, 1000);
+        pernicious_helmet_damage_reduction = builder.comment(" Helmet Damage Reduction Value.\n Mod Default: 12\n Default Netherite: 3")
+                .translation("rigoranthusemortisreborn.config.server.per_slot_pernicious.pernicious_helmet_damage_reduction").defineInRange("per_slot_pernicious.pernicious_helmet_damage_reduction", 12, 0, 1000);
+        pernicious_durability_multiplier = builder.comment(" Mod Default: 90\n Default Netherite: 37")
+                .translation("rigoranthusemortisreborn.config.server.general_values_pernicious.durability_multiplier").defineInRange("general_values_pernicious.durability_multiplier", 90, 0, 1000);
+        pernicious_armor_enchantability = builder.comment(" Mod Default: 25\n Default Netherite: 15")
+                .translation("rigoranthusemortisreborn.config.server.general_values_pernicious.enchantability").defineInRange("general_values_pernicious.enchantability", 25, 0, 100);
+        pernicious_toughness = builder.comment(" Mod Default: 3\n Default Netherite: 3")
+                .translation("rigoranthusemortisreborn.config.server.general_values_pernicious.toughness").defineInRange("general_values_pernicious.toughness", 3.0, 0.0, 10.0);
+        pernicious_knockback_resistance = builder.comment(" Mod Default: 0.1\n Default Netherite: 0.1")
+                .translation("rigoranthusemortisreborn.config.server.general_values_pernicious.knockback_resistance").defineInRange("general_values_pernicious.knockback_resistance", 0.1, 0.0, 1.0);
     }
-    private static void setupPhantasmalConfig(ForgeConfigSpec.Builder COMMON_BUILDER, ForgeConfigSpec.Builder CLIENT_BUILDER) {
-        phantasmal_sword_speed = COMMON_BUILDER.comment(" Default: 10\n Default Netherite: 9.0").defineInRange("sword.speed", 10.0, 0.0, 1000);
-        phantasmal_sword_damage = COMMON_BUILDER.comment(" Default: 18\n Default Netherite: 4.0").defineInRange("sword.damage", 18, 0, 1000);
+    private static void setupPhantasmalConfig(ForgeConfigSpec.Builder builder) {
+        phantasmal_sword_speed = builder.comment(" Default: 10\n Default Netherite: 9.0").translation("rigoranthusemortisreborn.config.server.phantasmal_sword.speed").defineInRange("phantasmal_sword.speed", 10.0, 0.0, 1000);
+        phantasmal_sword_damage = builder.comment(" Default: 18\n Default Netherite: 4.0").translation("rigoranthusemortisreborn.config.server.phantasmal_sword.damage").defineInRange("phantasmal_sword.damage", 18, 0, 1000);
+        phantasmal_axe_speed = builder.comment(" Default: 10\n Default Netherite: 9.0").translation("rigoranthusemortisreborn.config.server.phantasmal_axe.speed").defineInRange("phantasmal_axe.speed", 10.0, 0.0, 1000);
+        phantasmal_axe_damage = builder.comment(" Default: 18\n Default Netherite: 4.0").translation("rigoranthusemortisreborn.config.server.phantasmal_axe.damage").defineInRange("phantasmal_axe.damage", 18, 0, 1000);
+        phantasmal_tier_durability = builder.comment(" Default: 2000\n Default Netherite: 2031").translation("rigoranthusemortisreborn.config.server.phantasmal_tier.durability").defineInRange("phantasmal_tier.durability", 2000, 0, 100000);
+        phantasmal_tier_speed = builder.comment(" Default: 10\n Default Netherite: 9.0").translation("rigoranthusemortisreborn.config.server.phantasmal_tier.speed").defineInRange("phantasmal_tier.speed", 10.0, 0.0, 1000);
+        phantasmal_tier_damage = builder.comment(" Default: 18\n Default Netherite: 4.0").translation("rigoranthusemortisreborn.config.server.phantasmal_tier.damage").defineInRange("phantasmal_tier.damage", 18.0, 0.0, 1000);
+        phantasmal_tier_enchantability = builder.comment(" Default: 60\n Default Netherite: 15").translation("rigoranthusemortisreborn.config.server.phantasmal_tier.enchantability").defineInRange("phantasmal_tier.enchantability", 60, 0, 100);
 
-        phantasmal_axe_speed = COMMON_BUILDER.comment(" Default: 10\n Default Netherite: 9.0").defineInRange("axe.speed", 10.0, 0.0, 1000);
-        phantasmal_axe_damage = COMMON_BUILDER.comment(" Default: 18\n Default Netherite: 4.0").defineInRange("axe.damage", 18, 0, 1000);
-
-        phantasmal_tier_durability = COMMON_BUILDER.comment(" Default: 2000\n Default Netherite: 2031").defineInRange("tier.durability", 2000, 0, 100000);
-        phantasmal_tier_speed = COMMON_BUILDER.comment(" Default: 10\n Default Netherite: 9.0").defineInRange("tier.speed", 10.0, 0.0, 1000);
-        phantasmal_tier_damage = COMMON_BUILDER.comment(" Default: 18\n Default Netherite: 4.0").defineInRange("tier.damage", 18.0, 0.0, 1000);
-        phantasmal_tier_enchantability = COMMON_BUILDER.comment(" Default: 60\n Default Netherite: 15").defineInRange("tier.enchantability", 60, 0, 100);
-
-        phantasmal_boots_damage_reduction = COMMON_BUILDER.comment(" \nBoots Damage Reduction Value.\n Mod Default: 3\n Default Netherite: 3")
-                .defineInRange("damage_reduction_for_each_slot.phantasmal_boots_damage_reduction", 3, 0, 1000);
-        phantasmal_leggings_damage_reduction = COMMON_BUILDER.comment(" Leggings Damage Reduction Value.\n Mod Default: 6\n Default Netherite: 6")
-                .defineInRange("damage_reduction_for_each_slot.phantasmal_leggings_damage_reduction", 6, 0, 1000);
-        phantasmal_chestplate_damage_reduction = COMMON_BUILDER.comment(" Chestplate Damage Reduction Value.\n Mod Default: 8\n Default Netherite: 8")
-                .defineInRange("damage_reduction_for_each_slot.phantasmal_chestplate_damage_reduction", 8, 0, 1000);
-        phantasmal_helmet_damage_reduction = COMMON_BUILDER.comment(" Helmet Damage Reduction Value.\n Mod Default: 3\n Default Netherite: 3")
-                .defineInRange("damage_reduction_for_each_slot.phantasmal_helmet_damage_reduction", 3, 0, 1000);
-        phantasmal_durability_multiplier = COMMON_BUILDER.comment(" Mod Default: 37\n Default Netherite: 37")
-                .defineInRange("general_values.durability_multiplier", 37, 0, 1000);
-        phantasmal_armor_enchantability = COMMON_BUILDER.comment(" Mod Default: 60\n Default Netherite: 15")
-                .defineInRange("general_values.enchantability", 60, 0, 100);
-        phantasmal_toughness = COMMON_BUILDER.comment(" Mod Default: 3\n Default Netherite: 3")
-                .defineInRange("general_values.toughness", 3.0, 0.0, 10.0);
-        phantasmal_knockback_resistance = COMMON_BUILDER.comment(" Mod Default: 0.1\n Default Netherite: 0.1")
-                .defineInRange("general_values.knockback_resistance", 0.1, 0.0, 1.0);
+        phantasmal_boots_damage_reduction = builder.comment(" Boots Damage Reduction Value.\n Mod Default: 3\n Default Netherite: 3")
+                .translation("rigoranthusemortisreborn.config.server.per_slot_phantasmal.phantasmal_boots_damage_reduction").defineInRange("per_slot_phantasmal.phantasmal_boots_damage_reduction", 3, 0, 1000);
+        phantasmal_leggings_damage_reduction = builder.comment(" Leggings Damage Reduction Value.\n Mod Default: 6\n Default Netherite: 6")
+                .translation("rigoranthusemortisreborn.config.server.per_slot_phantasmal.phantasmal_leggings_damage_reduction").defineInRange("per_slot_phantasmal.phantasmal_leggings_damage_reduction", 6, 0, 1000);
+        phantasmal_chestplate_damage_reduction = builder.comment(" Chestplate Damage Reduction Value.\n Mod Default: 8\n Default Netherite: 8")
+                .translation("rigoranthusemortisreborn.config.server.per_slot_phantasmal.phantasmal_chestplate_damage_reduction").defineInRange("per_slot_phantasmal.phantasmal_chestplate_damage_reduction", 8, 0, 1000);
+        phantasmal_helmet_damage_reduction = builder.comment(" Helmet Damage Reduction Value.\n Mod Default: 3\n Default Netherite: 3")
+                .translation("rigoranthusemortisreborn.config.server.per_slot_phantasmal.phantasmal_helmet_damage_reduction").defineInRange("per_slot_phantasmal.phantasmal_helmet_damage_reduction", 3, 0, 1000);
+        phantasmal_durability_multiplier = builder.comment(" Mod Default: 37\n Default Netherite: 37")
+                .translation("rigoranthusemortisreborn.config.server.general_values_phantasmal.durability_multiplier").defineInRange("general_values_phantasmal.durability_multiplier", 37, 0, 1000);
+        phantasmal_armor_enchantability = builder.comment(" Mod Default: 60\n Default Netherite: 15")
+                .translation("rigoranthusemortisreborn.config.server.general_values_phantasmal.enchantability").defineInRange("general_values_phantasmal.enchantability", 60, 0, 100);
+        phantasmal_toughness = builder.comment(" Mod Default: 3\n Default Netherite: 3")
+                .translation("rigoranthusemortisreborn.config.server.general_values_phantasmal.toughness").defineInRange("general_values_phantasmal.toughness", 3.0, 0.0, 10.0);
+        phantasmal_knockback_resistance = builder.comment(" Mod Default: 0.1\n Default Netherite: 0.1")
+                .translation("rigoranthusemortisreborn.config.server.general_values_phantasmal.knockback_resistance").defineInRange("general_values_phantasmal.knockback_resistance", 0.1, 0.0, 1.0);
     }
-    private static void setupRemexConfig(ForgeConfigSpec.Builder COMMON_BUILDER, ForgeConfigSpec.Builder CLIENT_BUILDER) {
-        remex_sword_speed = COMMON_BUILDER.comment(" Default: 120\n Default Netherite: 9.0").defineInRange("sword.speed", 120.0, 0.0, 1000);
-        remex_sword_damage = COMMON_BUILDER.comment(" Default: 25\n Default Netherite: 4.0").defineInRange("sword.damage", 25, 0, 1000);
+    private static void setupRemexConfig(ForgeConfigSpec.Builder builder) {
+        remex_sword_speed = builder.comment(" Default: 120\n Default Netherite: 9.0").translation("rigoranthusemortisreborn.config.server.remex_sword.speed").defineInRange("remex_sword.speed", 120.0, 0.0, 1000);
+        remex_sword_damage = builder.comment(" Default: 25\n Default Netherite: 4.0").translation("rigoranthusemortisreborn.config.server.remex_sword.damage").defineInRange("remex_sword.damage", 25, 0, 1000);
+        remex_axe_speed = builder.comment(" Default: 120\n Default Netherite: 9.0").translation("rigoranthusemortisreborn.config.server.remex_axe.speed").defineInRange("remex_axe.speed", 120.0, 0.0, 1000);
+        remex_axe_damage = builder.comment(" Default: 25\n Default Netherite: 4.0").translation("rigoranthusemortisreborn.config.server.remex_axe.damage").defineInRange("remex_axe.damage", 25, 0, 1000);
+        remex_tier_durability = builder.comment(" Default: 3500\n Default Netherite: 2031").translation("rigoranthusemortisreborn.config.server.remex_tier.durability").defineInRange("remex_tier.durability", 3500, 0, 100000);
+        remex_tier_speed = builder.comment(" Default: 120\n Default Netherite: 9.0").translation("rigoranthusemortisreborn.config.server.remex_tier.speed").defineInRange("remex_tier.speed", 120.0, 0.0, 1000);
+        remex_tier_damage = builder.comment(" Default: 25\n Default Netherite: 4.0").translation("rigoranthusemortisreborn.config.server.remex_tier.damage").defineInRange("remex_tier.damage", 25.0, 0.0, 1000);
+        remex_tier_enchantability = builder.comment(" Default: 40\n Default Netherite: 15").translation("rigoranthusemortisreborn.config.server.remex_tier.enchantability").defineInRange("remex_tier.enchantability", 40, 0, 100);
 
-        remex_axe_speed = COMMON_BUILDER.comment(" Default: 120\n Default Netherite: 9.0").defineInRange("axe.speed", 120.0, 0.0, 1000);
-        remex_axe_damage = COMMON_BUILDER.comment(" Default: 25\n Default Netherite: 4.0").defineInRange("axe.damage", 25, 0, 1000);
-
-        remex_tier_durability = COMMON_BUILDER.comment(" Default: 3500\n Default Netherite: 2031").defineInRange("tier.durability", 3500, 0, 100000);
-        remex_tier_speed = COMMON_BUILDER.comment(" Default: 120\n Default Netherite: 9.0").defineInRange("tier.speed", 120.0, 0.0, 1000);
-        remex_tier_damage = COMMON_BUILDER.comment(" Default: 25\n Default Netherite: 4.0").defineInRange("tier.damage", 25.0, 0.0, 1000);
-        remex_tier_enchantability = COMMON_BUILDER.comment(" Default: 40\n Default Netherite: 15").defineInRange("tier.enchantability", 40, 0, 100);
-
-        remex_boots_damage_reduction = COMMON_BUILDER.comment(" \nBoots Damage Reduction Value.\n Mod Default: 6\n Default Netherite: 3")
-                .defineInRange("damage_reduction_for_each_slot.remex_boots_damage_reduction", 6, 0, 1000);
-        remex_leggings_damage_reduction = COMMON_BUILDER.comment(" Leggings Damage Reduction Value.\n Mod Default: 12\n Default Netherite: 6")
-                .defineInRange("damage_reduction_for_each_slot.remex_leggings_damage_reduction", 12, 0, 1000);
-        remex_chestplate_damage_reduction = COMMON_BUILDER.comment(" Chestplate Damage Reduction Value.\n Mod Default: 16\n Default Netherite: 8")
-                .defineInRange("damage_reduction_for_each_slot.remex_chestplate_damage_reduction", 16, 0, 1000);
-        remex_helmet_damage_reduction = COMMON_BUILDER.comment(" Helmet Damage Reduction Value.\n Mod Default: 6\n Default Netherite: 3")
-                .defineInRange("damage_reduction_for_each_slot.remex_helmet_damage_reduction", 6, 0, 1000);
-        remex_durability_multiplier = COMMON_BUILDER.comment(" Mod Default: 40\n Default Netherite: 37")
-                .defineInRange("general_values.durability_multiplier", 40, 0, 1000);
-        remex_armor_enchantability = COMMON_BUILDER.comment(" Mod Default: 40\n Default Netherite: 15")
-                .defineInRange("general_values.enchantability", 40, 0, 100);
-        remex_toughness = COMMON_BUILDER.comment(" Mod Default: 3\n Default Netherite: 3")
-                .defineInRange("general_values.toughness", 0.0, 0.0, 10.0);
-        remex_knockback_resistance = COMMON_BUILDER.comment(" Mod Default: 0.0\n Default Netherite: 0.1")
-                .defineInRange("general_values.knockback_resistance", 0.0, 0.0, 1.0);
+        remex_boots_damage_reduction = builder.comment(" Boots Damage Reduction Value.\n Mod Default: 6\n Default Netherite: 3")
+                .translation("rigoranthusemortisreborn.config.server.per_slot_remex.remex_boots_damage_reduction").defineInRange("per_slot_remex.remex_boots_damage_reduction", 6, 0, 1000);
+        remex_leggings_damage_reduction = builder.comment(" Leggings Damage Reduction Value.\n Mod Default: 12\n Default Netherite: 6")
+                .translation("rigoranthusemortisreborn.config.server.per_slot_remex.remex_leggings_damage_reduction").defineInRange("per_slot_remex.remex_leggings_damage_reduction", 12, 0, 1000);
+        remex_chestplate_damage_reduction = builder.comment(" Chestplate Damage Reduction Value.\n Mod Default: 16\n Default Netherite: 8")
+                .translation("rigoranthusemortisreborn.config.server.per_slot_remex.remex_chestplate_damage_reduction").defineInRange("per_slot_remex.remex_chestplate_damage_reduction", 16, 0, 1000);
+        remex_helmet_damage_reduction = builder.comment(" Helmet Damage Reduction Value.\n Mod Default: 6\n Default Netherite: 3")
+                .translation("rigoranthusemortisreborn.config.server.per_slot_remex.remex_helmet_damage_reduction").defineInRange("per_slot_remex.remex_helmet_damage_reduction", 6, 0, 1000);
+        remex_durability_multiplier = builder.comment(" Mod Default: 40\n Default Netherite: 37")
+                .translation("rigoranthusemortisreborn.config.server.general_values_remex.durability_multiplier").defineInRange("general_values_remex.durability_multiplier", 40, 0, 1000);
+        remex_armor_enchantability = builder.comment(" Mod Default: 40\n Default Netherite: 15")
+                .translation("rigoranthusemortisreborn.config.server.general_values_remex.enchantability").defineInRange("general_values_remex.enchantability", 40, 0, 100);
+        remex_toughness = builder.comment(" Mod Default: 3\n Default Netherite: 3")
+                .translation("rigoranthusemortisreborn.config.server.general_values_remex.toughness").defineInRange("general_values_remex.toughness", 0.0, 0.0, 10.0);
+        remex_knockback_resistance = builder.comment(" Mod Default: 0.0\n Default Netherite: 0.1")
+                .translation("rigoranthusemortisreborn.config.server.general_values_remex.knockback_resistance").defineInRange("general_values_remex.knockback_resistance", 0.0, 0.0, 1.0);
     }
-    private static void setupDwellerArmorConfig(ForgeConfigSpec.Builder COMMON_BUILDER, ForgeConfigSpec.Builder CLIENT_BUILDER) {
-        dweller_thorax_chestplate_damage_reduction = COMMON_BUILDER.comment(" Chestplate Damage Reduction Value.\n Default: 7").defineInRange("damage_reduction_for_each_slot.dweller_thorax_damage_reduction", 7, 0, 1000);
-        dweller_thorax_durability_multiplier = COMMON_BUILDER.comment(" Default: 25").defineInRange("general_values.durability_multiplier", 25, 0, 1000);
-        dweller_thorax_enchantability = COMMON_BUILDER.comment(" Default: 100").defineInRange("general_values.enchantability", 100, 0, 100);
-        dweller_thorax_toughness = COMMON_BUILDER.comment(" Default: 2").defineInRange("general_values.toughness", 2.0, 0.0, 10.0);
-        dweller_thorax_knockback_resistance = COMMON_BUILDER.comment(" Default: 0.1").defineInRange("general_values.knockback_resistance", 0.1, 0.0, 10.0);
-    }
-    private static void setupSmelteryConfig(ForgeConfigSpec.Builder COMMON_BUILDER, ForgeConfigSpec.Builder CLIENT_BUILDER) {
-        cache_capacity = CLIENT_BUILDER.comment(" The capacity of the recipe cache, higher values use more memory.\n Default: 10").defineInRange("recipe_cache", 10, 1, 100);
-        masterfulSmelterySpeed = CLIENT_BUILDER.comment(" Number of ticks per 'Smelting Operation.'\n Vanilla Furnace = 200 ticks.\n 1 Second = 20 Ticks\n Default: 160").defineInRange("masterful_smeltery.speed", 160, 2, 72000);
-        smelteryXPDropValue = CLIENT_BUILDER.comment(" Value indicating when the Masterful Smeltery should 'overload' and auto-eject the stored xp. \n Default: 10, Recipes").defineInRange("smeltery_xp_drop.value", 10, 1, 500);
-        smelteryXPDropValue2 = CLIENT_BUILDER.comment(" Value indicating when the smeltery should 'overload' and auto-eject the stored xp. \n Default: 100000, Single recipe uses").defineInRange("smeltery_xp_drop.value_two", 100000, 1, 1000000);
-    }
-    private static void setupJEIConfig(ForgeConfigSpec.Builder COMMON_BUILDER, ForgeConfigSpec.Builder CLIENT_BUILDER) {
-        enableJeiPlugin = CLIENT_BUILDER.comment(" Enable or disable the JeiPlugin for the mod.").define("jei.enable_jei", true);
-        enableJeiCatalysts = CLIENT_BUILDER.comment(" Enable or disable the Catalysts in Jei for the mod.").define("jei.enable_jei_catalysts", true);
-        enableJeiClickArea = CLIENT_BUILDER.comment(" Enable or disable the Clickable Area inside the Masterful Smeltery's GUI.").define("jei.enable_jei_click_area", true);
-    }
-    private static void setupBlockConfig(ForgeConfigSpec.Builder COMMON_BUILDER, ForgeConfigSpec.Builder CLIENT_BUILDER) {
-        enableNewWoodTypes = COMMON_BUILDER.comment(" Enable or Disable all blocks added by the two new wood types, such as logs/planks/lamps/doors/fences and more.").define("blocks.building_blocks", true);
+    private static void setupDwellerArmorConfig(ForgeConfigSpec.Builder builder) {
+        dweller_thorax_damage_reduction = builder.comment(" Chestplate Damage Reduction Value.\n Default: 7").translation("rigoranthusemortisreborn.config.server.per_slot_thorax.dweller_thorax_damage_reduction").defineInRange("per_slot_thorax.dweller_thorax_damage_reduction", 7, 0, 1000);
+        dweller_thorax_durability_multiplier = builder.comment(" Default: 25").translation("rigoranthusemortisreborn.config.server.general_values_thorax.durability_multiplier").defineInRange("general_values_thorax.durability_multiplier", 25, 0, 1000);
+        dweller_thorax_enchantability = builder.comment(" Default: 100").translation("rigoranthusemortisreborn.config.server.general_values_thorax.enchantability").defineInRange("general_values_thorax.enchantability", 100, 0, 100);
+        dweller_thorax_toughness = builder.comment(" Default: 2").translation("rigoranthusemortisreborn.config.server.general_values_thorax.toughness").defineInRange("general_values_thorax.toughness", 2.0, 0.0, 10.0);
+        dweller_thorax_knockback_resistance = builder.comment(" Default: 0.1").translation("rigoranthusemortisreborn.config.server.general_values_thorax.knockback_resistance").defineInRange("general_values_thorax.knockback_resistance", 0.1, 0.0, 10.0);
     }
 
     public static void loadConfig(ForgeConfigSpec spec, Path path) {
         RigoranthusEmortisReborn.LOGGER.debug("Loading config file {}", path);
-
         final CommentedFileConfig configData = CommentedFileConfig.builder(path)
                 .sync()
                 .autosave()
                 .writingMode(WritingMode.REPLACE)
                 .build();
-
         RigoranthusEmortisReborn.LOGGER.debug("Built TOML config for {}", path.toString());
         configData.load();
         RigoranthusEmortisReborn.LOGGER.debug("Loaded TOML config file {}", path.toString());
         spec.setConfig(configData);
     }
 
-    @SubscribeEvent
-    public static void onLoad(final ModConfig.Loading configEvent) {}
-    @SubscribeEvent
-    public static void onReload(final ModConfig.Reloading configEvent) {}
-    @SubscribeEvent
-    public static void onWorldLoad(final WorldEvent.Load event) {
-        Config.loadConfig(Config.CLIENT_CONFIG, FMLPaths.CONFIGDIR.get().resolve("rigoranthusemortisreborn-client.toml"));
-        Config.loadConfig(Config.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve("rigoranthusemortisreborn.toml"));
-    }
-    
-    @SubscribeEvent
-    public static void player(final TickEvent.PlayerTickEvent event) {
-        if (!Config.GIVEN_COAL.get()) {
-            PlayerEntity player = getPlayer(event.player.level);
-            if (player != null) {
-                Config.GIVEN_COAL.set(true);
-                player.level.addFreshEntity(new ItemEntity(player.level, player.position().x, player.position().y, player.position().z, new ItemStack(Registration.SOUL_COAL)));
-            }
-        }
+    @SubscribeEvent public static void onLoad(final ModConfig.Loading configEvent) {}
+    @SubscribeEvent public static void onReload(final ModConfig.Reloading configEvent) {Config.refreshServer();}
+
+    public static void refreshServer() {
+        RigoranthusEmortisReborn.LOGGER.debug("Refreshing Server Config");
+        Config.DISABLE_HUNGER.get();                          Config.CANIS_PUPS_GET_PARENT_LEVELS.get();
+        Config.STARTING_ITEMS.get();                          Config.CANIS_GENDER.get();
+        Config.enableUnfiredBricks.get();                     Config.enableNetheriteAdditions.get();
+        Config.enableApogeanArmorClimmbingEffect.get();       Config.enableArmorSetBonuses.get();
+        Config.enableTreeGeneration.get();                    Config.enableBoneWeapons.get();
+        Config.enableModdedOreFragments.get();                Config.enableHammersAndVanillaOreFragments.get();
+        Config.soulCoalBurnTime.get();                        Config.enableSoulCoal.get();
+        Config.bone_spear_speed.get();                        Config.apogean_axe_speed.get();
+        Config.bone_spear_damage.get();                       Config.apogean_axe_damage.get();
+        Config.bone_tier_durability.get();                    Config.apogean_sword_speed.get();
+        Config.bone_tier_speed.get();                         Config.apogean_sword_damage.get();
+        Config.bone_tier_damage.get();                        Config.apogean_tier_durability.get();
+        Config.bone_tier_enchantability.get();                Config.apogean_tier_speed.get();
+        Config.bone_bow_projectile_range.get();               Config.apogean_tier_damage.get();
+        Config.bone_bow_durability.get();                     Config.apogean_tier_enchantability.get();
+        Config.aqueous_axe_speed.get();                       Config.atrophying_axe_speed.get();
+        Config.aqueous_axe_damage.get();                      Config.atrophying_axe_damage.get();
+        Config.aqueous_sword_speed.get();                     Config.atrophying_sword_speed.get();
+        Config.aqueous_sword_damage.get();                    Config.atrophying_sword_damage.get();
+        Config.aqueous_tier_durability.get();                 Config.atrophying_tier_durability.get();
+        Config.aqueous_tier_speed.get();                      Config.atrophying_tier_speed.get();
+        Config.aqueous_tier_damage.get();                     Config.atrophying_tier_damage.get();
+        Config.aqueous_tier_enchantability.get();             Config.atrophying_tier_enchantability.get();
+        Config.incorporeal_axe_speed.get();                   Config.infernal_axe_speed.get();
+        Config.incorporeal_axe_damage.get();                  Config.infernal_axe_damage.get();
+        Config.incorporeal_sword_speed.get();                 Config.infernal_sword_damage.get();
+        Config.incorporeal_sword_damage.get();                Config.infernal_sword_speed.get();
+        Config.incorporeal_tier_durability.get();             Config.infernal_tier_durability.get();
+        Config.incorporeal_tier_speed.get();                  Config.infernal_tier_speed.get();
+        Config.incorporeal_tier_damage.get();                 Config.infernal_tier_damage.get();
+        Config.incorporeal_tier_enchantability.get();         Config.infernal_tier_enchantability.get();
+        Config.opulent_axe_speed.get();                       Config.pernicious_axe_speed.get();
+        Config.opulent_axe_damage.get();                      Config.pernicious_axe_damage.get();
+        Config.opulent_sword_speed.get();                     Config.pernicious_sword_speed.get();
+        Config.opulent_sword_damage.get();                    Config.pernicious_sword_damage.get();
+        Config.opulent_tier_durability.get();                 Config.pernicious_tier_durability.get();
+        Config.opulent_tier_speed.get();                      Config.pernicious_tier_speed.get();
+        Config.opulent_tier_damage.get();                     Config.pernicious_tier_damage.get();
+        Config.opulent_tier_enchantability.get();             Config.pernicious_tier_enchantability.get();
+        Config.phantasmal_sword_speed.get();                  Config.remex_sword_speed.get();
+        Config.phantasmal_sword_damage.get();                 Config.remex_sword_damage.get();
+        Config.phantasmal_axe_speed.get();                    Config.remex_axe_speed.get();
+        Config.phantasmal_axe_damage.get();                   Config.remex_axe_damage.get();
+        Config.phantasmal_tier_durability.get();              Config.remex_tier_durability.get();
+        Config.phantasmal_tier_speed.get();                   Config.remex_tier_speed.get();
+        Config.phantasmal_tier_damage.get();                  Config.remex_tier_damage.get();
+        Config.phantasmal_tier_enchantability.get();          Config.remex_tier_enchantability.get();
+        Config.apogean_boots_damage_reduction.get();          Config.aqueous_boots_damage_reduction.get();
+        Config.apogean_leggings_damage_reduction.get();       Config.aqueous_leggings_damage_reduction.get();
+        Config.apogean_chestplate_damage_reduction.get();     Config.aqueous_chestplate_damage_reduction.get();
+        Config.apogean_helmet_damage_reduction.get();         Config.aqueous_helmet_damage_reduction.get();
+        Config.apogean_durability_multiplier.get();           Config.aqueous_durability_multiplier.get();
+        Config.apogean_armor_enchantability.get();            Config.aqueous_armor_enchantability.get();
+        Config.apogean_toughness.get();                       Config.aqueous_toughness.get();
+        Config.apogean_knockback_resistance.get();            Config.aqueous_knockback_resistance.get();
+        Config.atrophying_boots_damage_reduction.get();       Config.incorporeal_boots_damage_reduction.get();
+        Config.atrophying_leggings_damage_reduction.get();    Config.incorporeal_leggings_damage_reduction.get();
+        Config.atrophying_chestplate_damage_reduction.get();  Config.incorporeal_chestplate_damage_reduction.get();
+        Config.atrophying_helmet_damage_reduction.get();      Config.incorporeal_helmet_damage_reduction.get();
+        Config.atrophying_durability_multiplier.get();        Config.incorporeal_durability_multiplier.get();
+        Config.atrophying_armor_enchantability.get();         Config.incorporeal_armor_enchantability.get();
+        Config.atrophying_toughness.get();                    Config.incorporeal_toughness.get();
+        Config.atrophying_knockback_resistance.get();         Config.incorporeal_knockback_resistance.get();
+        Config.infernal_boots_damage_reduction.get();         Config.opulent_boots_damage_reduction.get();
+        Config.infernal_leggings_damage_reduction.get();      Config.opulent_leggings_damage_reduction.get();
+        Config.infernal_chestplate_damage_reduction.get();    Config.opulent_chestplate_damage_reduction.get();
+        Config.infernal_helmet_damage_reduction.get();        Config.opulent_helmet_damage_reduction.get();
+        Config.infernal_durability_multiplier.get();          Config.opulent_durability_multiplier.get();
+        Config.infernal_armor_enchantability.get();           Config.opulent_armor_enchantability.get();
+        Config.infernal_toughness.get();                      Config.opulent_toughness.get();
+        Config.infernal_knockback_resistance.get();           Config.opulent_knockback_resistance.get();
+        Config.pernicious_boots_damage_reduction.get();       Config.phantasmal_boots_damage_reduction.get();
+        Config.pernicious_leggings_damage_reduction.get();    Config.phantasmal_leggings_damage_reduction.get();
+        Config.pernicious_chestplate_damage_reduction.get();  Config.phantasmal_chestplate_damage_reduction.get();
+        Config.pernicious_helmet_damage_reduction.get();      Config.phantasmal_helmet_damage_reduction.get();
+        Config.pernicious_durability_multiplier.get();        Config.phantasmal_durability_multiplier.get();
+        Config.pernicious_armor_enchantability.get();         Config.phantasmal_armor_enchantability.get();
+        Config.pernicious_toughness.get();                    Config.phantasmal_toughness.get();
+        Config.pernicious_knockback_resistance.get();         Config.phantasmal_knockback_resistance.get();
+        Config.remex_boots_damage_reduction.get();            Config.remex_knockback_resistance.get();
+        Config.remex_leggings_damage_reduction.get();         Config.remex_chestplate_damage_reduction.get();
+        Config.remex_helmet_damage_reduction.get();           Config.dweller_thorax_damage_reduction.get();
+        Config.remex_durability_multiplier.get();             Config.dweller_thorax_durability_multiplier.get();
+        Config.remex_armor_enchantability.get();              Config.dweller_thorax_enchantability.get();
+        Config.remex_toughness.get();                         Config.dweller_thorax_toughness.get();
+        Config.stone_hammer_durability.get();                 Config.iron_hammer_durability.get();
+        Config.gold_hammer_durability.get();                  Config.diamond_hammer_durability.get();
+        Config.abyssalite_hammer_durability.get();            Config.maxVeinSize.get();
+        Config.minOreHeight.get();                            Config.maxOreHeight.get();
+        Config.verdurousWoodlandsSpawnWeight.get();           Config.verdurousFieldsSpawnWeight.get();
+//        Config.jessicSpawnWeight.get();                       Config.azulorealSpawnWeight.get();
+//        Config.loomingJessicSpawnWeight.get();                Config.loomingAzulorealSpawnWeight.get();
+//        Config.megaJessicSpawnWeight.get();                   Config.megaAzulorealSpawnWeight.get();
+        Config.languidDwellerMaxSpawnHeight.get();            Config.bambooSpawnWeight.get();
+        Config.languidDwellerMovementSpeed.get();             Config.feralCanisChordataMovementSpeed.get();
+        Config.languidDwellerAttackDamage.get();              Config.feralCanisChordataAttackDamage.get();
+        Config.languidDwellerKnockbackResistance.get();       Config.feralCanisChordataKnockbackResistance.get();
+        Config.languidDwellerAttackKnockback.get();           Config.feralCanisChordataAttackKnockback.get();
+        Config.languidDwellerArmorValue.get();                Config.feralCanisChordataArmorValue.get();
+        Config.languidDwellerMaxHealth.get();                 Config.feralCanisChordataMaxHealth.get();
+        Config.languidDwellerSpawnWeight.get();               Config.feralCanisChordataSpawnWeight.get();
+        Config.languidDwellerMinGroupSize.get();              Config.feralCanisChordataMinGroupSize.get();
+        Config.languidDwellerMaxGroupSize.get();              Config.feralCanisChordataMaxGroupSize.get();
+        Config.sunderedCadaverMovementSpeed.get();            Config.necrawFasciiMovementSpeed.get();
+        Config.sunderedCadaverAttackDamage.get();             Config.necrawFasciiAttackDamage.get();
+        Config.sunderedCadaverKnockbackResistance.get();      Config.necrawFasciiKnockbackResistance.get();
+        Config.sunderedCadaverAttackKnockback.get();          Config.necrawFasciiAttackKnockback.get();
+        Config.sunderedCadaverArmorValue.get();               Config.necrawFasciiArmorValue.get();
+        Config.sunderedCadaverMaxHealth.get();                Config.necrawFasciiMaxHealth.get();
+        Config.sunderedCadaverSpawnWeight.get();              Config.necrawFasciiSpawnWeight.get();
+        Config.sunderedCadaverMinGroupSize.get();             Config.necrawFasciiMinGroupSize.get();
+        Config.sunderedCadaverMaxGroupSize.get();             Config.necrawFasciiMaxGroupSize.get();
+        Config.dweller_thorax_knockback_resistance.get();
     }
 
-    @Nullable
-    public static PlayerEntity getPlayer(IWorld world) {
-        if (world == null) {
-            return null;
-        }
-        if (world.getPlayerByUUID(UUID.fromString("89f4f7f8-8ed5-479d-b04e-f7f843f14963")) != null) {
-            return world.getPlayerByUUID(UUID.fromString("89f4f7f8-8ed5-479d-b04e-f7f843f14963"));}
-        if (world.getPlayerByUUID(UUID.fromString("2b27a3a3-e2d6-468a-92e2-70f6f15b6e41")) != null) {
-            return world.getPlayerByUUID(UUID.fromString("2b27a3a3-e2d6-468a-92e2-70f6f15b6e41"));
-        }
-        return null;
+    @SubscribeEvent
+    public static void onWorldLoad(final WorldEvent.Load event) {
+        Config.loadConfig(Config.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve("RigoranthusEmortisReborn-common.toml"));
     }
+
+//    @SubscribeEvent
+//    public static void player(final TickEvent.PlayerTickEvent event) {
+//        if (!Config.GIVEN_COAL.get()) {
+//            PlayerEntity player = getPlayer(event.player.level);
+//            if (player != null) {
+//                Config.GIVEN_COAL.set(true);
+//                player.level.addFreshEntity(new ItemEntity(player.level, player.position().x, player.position().y, player.position().z, new ItemStack(Registration.SOUL_COAL)));
+//            }
+//        }
+//    }
+//
+//    @Nullable
+//    public static PlayerEntity getPlayer(IWorld world) {
+//        if (world == null) {return null;}
+//        if (world.getPlayerByUUID(UUID.fromString("89f4f7f8-8ed5-479d-b04e-f7f843f14963")) != null) {
+//            return world.getPlayerByUUID(UUID.fromString("89f4f7f8-8ed5-479d-b04e-f7f843f14963"));}
+//        if (world.getPlayerByUUID(UUID.fromString("2b27a3a3-e2d6-468a-92e2-70f6f15b6e41")) != null) {
+//            return world.getPlayerByUUID(UUID.fromString("2b27a3a3-e2d6-468a-92e2-70f6f15b6e41"));
+//        }
+//        return null;
+//    }
 }
+
+//_____________  C L I E N T     C O N F I G  _____________//
+        /*CLIENT_BUILDER.push("Masterful Smeltery Settings");
+        setupSmelteryConfig(CLIENT_BUILDER);
+        CLIENT_BUILDER.pop();*/

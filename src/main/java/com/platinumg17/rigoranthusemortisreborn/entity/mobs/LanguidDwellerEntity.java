@@ -27,30 +27,27 @@ public class LanguidDwellerEntity extends SpiderEntity {
     public LanguidDwellerEntity(EntityType<? extends SpiderEntity> type, World worldIn) {
         super(type, worldIn);
     }
-//    @Override
-//    public CreatureAttribute getMobType() {
-//        return CreatureAttribute.UNDEAD;
-//    }
+
     @Override
     public IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
     public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
         return MobEntity.createMobAttributes()
-                .add(Attributes.MAX_HEALTH, Config.languidDwellerMaxHealth.get())
-                .add(Attributes.MOVEMENT_SPEED, Config.languidDwellerMovementSpeed.get())
-                .add(Attributes.ATTACK_DAMAGE, Config.languidDwellerAttackDamage.get())
-                .add(Attributes.ARMOR, Config.languidDwellerArmorValue.get())
-                .add(Attributes.ATTACK_KNOCKBACK, Config.languidDwellerAttackKnockback.get())
-                .add(Attributes.KNOCKBACK_RESISTANCE, Config.languidDwellerKnockbackResistance.get())
-                .add(Attributes.FOLLOW_RANGE, 50.0D);
+            .add(Attributes.MAX_HEALTH, Config.languidDwellerMaxHealth.get())
+            .add(Attributes.MOVEMENT_SPEED, Config.languidDwellerMovementSpeed.get())
+            .add(Attributes.ATTACK_DAMAGE, Config.languidDwellerAttackDamage.get())
+            .add(Attributes.ARMOR, Config.languidDwellerArmorValue.get())
+            .add(Attributes.ATTACK_KNOCKBACK, Config.languidDwellerAttackKnockback.get())
+            .add(Attributes.KNOCKBACK_RESISTANCE, Config.languidDwellerKnockbackResistance.get())
+            .add(Attributes.FOLLOW_RANGE, 16.0D);
     }
 
     @Override
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal( 1, new NearestAttackableTargetGoal<>( this, PlayerEntity.class, true));
-        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.4D, false));
+        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.3D, false));
         this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
         this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 0.5D));
         this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers(this.getClass()));

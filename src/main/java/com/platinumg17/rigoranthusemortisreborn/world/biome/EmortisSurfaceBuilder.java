@@ -17,26 +17,32 @@ import net.minecraftforge.fml.common.Mod;
 public class EmortisSurfaceBuilder {
 
     public static final SurfaceBuilder<SurfaceBuilderConfig> VERDURE = new VerdurousSurfaceBuilder(SurfaceBuilderConfig.CODEC);
+    public static final SurfaceBuilder<SurfaceBuilderConfig> VERDURE_FIELD = new VerdurousSurfaceBuilder(SurfaceBuilderConfig.CODEC);
+
 
     @SubscribeEvent
     public static void registerSurfaceBuilders(RegistryEvent.Register<SurfaceBuilder<?>> event) {
         event.getRegistry().registerAll(
-                VERDURE.setRegistryName(EmortisConstants.MOD_ID, "verdure")
+                VERDURE.setRegistryName(EmortisConstants.MOD_ID, "verdure"),
+                VERDURE_FIELD.setRegistryName(EmortisConstants.MOD_ID, "verdure_field")
         );
     }
 
     public static final class Configs {
         public static final SurfaceBuilderConfig VERDURE = new SurfaceBuilderConfig(Blocks.GRASS_BLOCK.defaultBlockState(), Blocks.DIRT.defaultBlockState(), BlockInit.FRAGMENTED_COBBLESTONE.get().defaultBlockState());
+        public static final SurfaceBuilderConfig VERDURE_FIELD = new SurfaceBuilderConfig(Blocks.GRASS_BLOCK.defaultBlockState(), Blocks.DIRT.defaultBlockState(), BlockInit.FRAGMENTED_COBBLESTONE.get().defaultBlockState());
     }
 
     public static final class Configured {
         public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> VERDURE = EmortisSurfaceBuilder.VERDURE.configured(Configs.VERDURE);
+        public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> VERDURE_FIELD = EmortisSurfaceBuilder.VERDURE_FIELD.configured(Configs.VERDURE_FIELD);
 
         private static <SC extends ISurfaceBuilderConfig> void register(String key, ConfiguredSurfaceBuilder<SC> builder) {
             WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_SURFACE_BUILDER, new ResourceLocation(EmortisConstants.MOD_ID, key), builder);
         }
         public static void registerConfiguredSurfaceBuilders() {
             register("verdure", VERDURE);
+            register("verdure_field", VERDURE_FIELD);
         }
     }
 }

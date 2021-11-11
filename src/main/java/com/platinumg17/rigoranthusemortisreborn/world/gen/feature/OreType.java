@@ -7,23 +7,26 @@ import net.minecraft.block.Block;
 import net.minecraftforge.common.util.Lazy;
 
 public enum OreType {
-    RECONDITE(Lazy.of(Registration.RECONDITE_ORE), Config.maxVeinSize.get(), Config.minOreHeight.get(), Config.maxOreHeight.get());
+    RECONDITE(Lazy.of(Registration.RECONDITE_ORE), Config.maxVeinSize.get(), Config.minOreHeight.get(), Config.maxOreHeight.get(), Config.veinsPerChunk.get());
 
     private final Lazy<Block> block;
     private final int maxVeinSize;
     private final int minHeight;
     private final int maxHeight;
+    private final int veinsPerChunk;
 
-    OreType(Lazy<Block> block, int maxVeinSize, int minHeight, int maxHeight) {
+    OreType(Lazy<Block> block, int maxVeinSize, int minHeight, int maxHeight, int veinsPerChunk) {
         this.block = block;
         this.maxVeinSize = maxVeinSize;
         this.minHeight = minHeight;
         this.maxHeight = maxHeight;
+        this.veinsPerChunk = veinsPerChunk;
     }
 
     public Lazy<Block> getBlock() {
         return block;
     }
+    public int getVeinsPerChunk() {return veinsPerChunk;}
     public int getMaxVeinSize() {
         return maxVeinSize;
     }

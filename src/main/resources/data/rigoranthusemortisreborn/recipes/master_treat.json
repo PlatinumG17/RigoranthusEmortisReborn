@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rigoranthusemortisreborn:super_treat"
+    },
+    {
+      "item": "rigoranthusemortisreborn:super_treat"
+    },
+    {
+      "item": "rigoranthusemortisreborn:super_treat"
+    },
+    {
+      "item": "rigoranthusemortisreborn:super_treat"
+    },
+    {
+      "item": "rigoranthusemortisreborn:super_treat"
+    },
+    {
+      "item": "minecraft:diamond"
+    }
+  ],
+  "result": {
+    "item": "rigoranthusemortisreborn:master_treat",
+    "count": 5
+  }
+}

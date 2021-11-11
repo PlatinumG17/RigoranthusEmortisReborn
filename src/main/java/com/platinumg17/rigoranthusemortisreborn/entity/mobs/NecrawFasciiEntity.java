@@ -6,7 +6,6 @@ import com.platinumg17.rigoranthusemortisreborn.core.registry.effects.Rigoranthu
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -29,10 +28,7 @@ public class NecrawFasciiEntity extends ZombieEntity {
     public NecrawFasciiEntity(EntityType<? extends ZombieEntity> type, World worldIn) {
         super(type, worldIn);
     }
-//    @Override
-//    public CreatureAttribute getMobType() {
-//        return CreatureAttribute.UNDEAD;
-//    }
+
     @Override
     public IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
@@ -45,8 +41,7 @@ public class NecrawFasciiEntity extends ZombieEntity {
                 .add(Attributes.ARMOR, Config.necrawFasciiArmorValue.get())
                 .add(Attributes.ATTACK_KNOCKBACK, Config.necrawFasciiAttackKnockback.get())
                 .add(Attributes.KNOCKBACK_RESISTANCE, Config.necrawFasciiKnockbackResistance.get())
-                .add(Attributes.FOLLOW_RANGE, 50.0D)
-                .add(Attributes.SPAWN_REINFORCEMENTS_CHANCE);
+                .add(Attributes.FOLLOW_RANGE, 20.0D).add((Attributes.SPAWN_REINFORCEMENTS_CHANCE));
     }
 
     @Override
@@ -54,7 +49,6 @@ public class NecrawFasciiEntity extends ZombieEntity {
         super.registerGoals();
         this.goalSelector.addGoal( 1, new NearestAttackableTargetGoal<>( this, PlayerEntity.class, true));
         this.goalSelector.addGoal(2, new ZombieAttackGoal(this, 1.0D, false));
-        this.goalSelector.addGoal(3, new LeapAtTargetGoal(this, (float) 0.3));
         this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
         this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 0.8D));
         this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers(this.getClass()));
@@ -88,8 +82,8 @@ public class NecrawFasciiEntity extends ZombieEntity {
         if (!super.doHurtTarget(entityIn)) {
             return false;
         } else {
-            if (entityIn instanceof LivingEntity) {
-                ((LivingEntity)entityIn).addEffect(new EffectInstance(RigoranthusEffectRegistry.NECROTIZING_FASCIITIS, 5000));
+            if (entityIn instanceof PlayerEntity) {
+                ((PlayerEntity)entityIn).addEffect(new EffectInstance(RigoranthusEffectRegistry.NECROTIZING_FASCIITIS, 5000));
             }
             return true;
         }

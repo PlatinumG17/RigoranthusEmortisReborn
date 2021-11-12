@@ -73,7 +73,7 @@ public class ItemInit {
 			() -> new GlassBottleItem(new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)));
 
 	public static final RegistryObject<Item> BUCKET_OF_CADAVEROUS_ICHOR = ITEMS.register("bucket_of_cadaverous_ichor",
-			() -> new BucketItem(() -> FluidRegistry.CADAVEROUS_ICHOR_FLUID.get(),
+			() -> new BucketItem(() -> FluidRegistry.CADAVEROUS_ICHOR_FLUID.get().getSource(),
 					new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).craftRemainder(Items.BUCKET).stacksTo(1)));
 
 	public static final RegistryObject<Item> BONE_FRAGMENT = ITEMS.register("bone_fragment",
@@ -119,9 +119,9 @@ public class ItemInit {
 
 			  ///_______________________  S W O R D S  _______________________///
 
-	public static final RegistryObject<Item> RISSAI = ITEMS.register("rissai",
-			() -> new REWeaponItem(new REWeaponItem.Builder(RigoranthusItemTier.PRISMARIC, 3, -2.4F).efficiency(1.0F).set(ToolRegistry.SWORD_TOOL).add(
-					OnHitEffect.SWEEP), new Item.Properties().defaultDurability(100).tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)));
+//	public static final RegistryObject<Item> RISSAI = ITEMS.register("rissai",
+//			() -> new REWeaponItem(new REWeaponItem.Builder(RigoranthusItemTier.PRISMARIC, 3, -2.4F).efficiency(1.0F).set(ToolRegistry.SWORD_TOOL).add(
+//					OnHitEffect.SWEEP), new Item.Properties().defaultDurability(100).tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)));
 
 	public static final RegistryObject<Item> MORRAI = ITEMS.register("morrai",
 			() -> new REWeaponItem(new REWeaponItem.Builder(RigoranthusItemTier.FROSTBITTEN, 6, -2.4F).efficiency(1.0F).set(ToolRegistry.SWORD_TOOL).add(
@@ -139,9 +139,9 @@ public class ItemInit {
 
 					///_______________________  S C Y T H E S  _______________________///
 
-	public static final RegistryObject<Item> SICKLE = ITEMS.register("sickle",
-			() -> new REWeaponItem(new REWeaponItem.Builder(ItemTier.IRON, 2, -2.2F).efficiency(1.5F).
-					disableShield().set(ToolRegistry.SICKLE_TOOL), new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)));
+//	public static final RegistryObject<Item> SICKLE = ITEMS.register("sickle",
+//			() -> new REWeaponItem(new REWeaponItem.Builder(ItemTier.IRON, 2, -2.2F).efficiency(1.5F).
+//					disableShield().set(ToolRegistry.SICKLE_TOOL), new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)));
 
 	public static final RegistryObject<Item> SICKLYTH = ITEMS.register("sicklyth",
 			() -> new REWeaponItem(new REWeaponItem.Builder(RigoranthusItemTier.BLIGHT_TIER, 6, -2.2F).efficiency(4.0F).disableShield().set(ToolRegistry.SICKLE_TOOL).add(
@@ -173,20 +173,20 @@ public class ItemInit {
 
 	public static final RegistryObject<Item> CLAWS_DRAWN = ITEMS.register("claws_drawn",
 			() -> new REWeaponItem(new REWeaponItem.Builder(ItemTier.DIAMOND, 5, -1.5F).efficiency(10.0F).set(ToolRegistry.CLAWS_TOOL).set(
-					ItemRightClickEffect.switchTo(() -> ItemInit.CLAWS_SHEATHED.get())), new Item.Properties().defaultDurability(4096).tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).rarity(Rarity.RARE)));
+					ItemRightClickEffect.switchTo(() -> ItemInit.CLAWS_SHEATHED.get())), new Item.Properties().defaultDurability(200).tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).rarity(Rarity.RARE)));
 
 	public static final RegistryObject<Item> CLAWS_SHEATHED = ITEMS.register("claws_sheathed",
 			() -> new REWeaponItem(new REWeaponItem.Builder(ItemTier.DIAMOND, -1, -1.0F).efficiency(10.0F).set(
-					ItemRightClickEffect.switchTo(() -> ItemInit.CLAWS_DRAWN.get())), new Item.Properties().defaultDurability(4096).rarity(Rarity.RARE)));
+					ItemRightClickEffect.switchTo(() -> ItemInit.CLAWS_DRAWN.get())), new Item.Properties().defaultDurability(200).rarity(Rarity.RARE)));
 
 	public static final RegistryObject<Item> STEOCLASTS_DRAWN = ITEMS.register("steoclasts_drawn",
 			() -> new REWeaponItem(new REWeaponItem.Builder(RigoranthusItemTier.PROSAIC, 6, -1.5F).efficiency(10.0F).set(ToolRegistry.CLAWS_TOOL).set(
 					ItemRightClickEffect.switchTo(() -> ItemInit.STEOCLASTS_SHEATHED.get())).add(OnHitEffect.targetSpecificAdditionalDamage(4, () ->
-					EntityType.SKELETON)), new Item.Properties().defaultDurability(1250).tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)));
+					EntityType.SKELETON)), new Item.Properties().defaultDurability(250).tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)));
 
 	public static final RegistryObject<Item> STEOCLASTS_SHEATHED = ITEMS.register("steoclasts_sheathed",
 			() -> new REWeaponItem(new REWeaponItem.Builder(RigoranthusItemTier.PROSAIC, -1, -1.0F).efficiency(10.0F).set(
-					ItemRightClickEffect.switchTo(() -> ItemInit.STEOCLASTS_DRAWN.get())), new Item.Properties().defaultDurability(1250)));
+					ItemRightClickEffect.switchTo(() -> ItemInit.STEOCLASTS_DRAWN.get())), new Item.Properties().defaultDurability(250)));
 
 
 
@@ -205,12 +205,6 @@ public class ItemInit {
 			() -> new REWeaponItem(new REWeaponItem.Builder(RigoranthusItemTier.SPLINTERED, 1, -1.0F).efficiency(1.0F).set(ToolRegistry.MISC_TOOL).set(
 					MagicAttackRightClickEffect.NOVICE_MAGIC), new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)));
 
-	public static final RegistryObject<Item> TYRO_STICK = ITEMS.register("tyro_stick",
-			() -> new REWeaponItem(new REWeaponItem.Builder(ItemTier.WOOD, 0, -1.0F).efficiency(1.0F).set(ToolRegistry.MISC_TOOL), new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)));
-
-	public static final RegistryObject<Item> PROHIBATE_STICK = ITEMS.register("prohibate_stick",
-			() -> new REWeaponItem(new REWeaponItem.Builder(RigoranthusItemTier.PRISMARIC, -1, -1.0F).efficiency(1.0F).set(ToolRegistry.MISC_TOOL), new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)));
-
 	public static final RegistryObject<Item> TYRO_WAND = ITEMS.register("tyro_wand",
 			() -> new REWeaponItem(new REWeaponItem.Builder(ItemTier.IRON, -1, -1.0F).efficiency(1.0F).set(ToolRegistry.MISC_TOOL).set(
 					MagicAttackRightClickEffect.TYRO_MAGIC), new Item.Properties().defaultDurability(512).tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)));
@@ -227,7 +221,7 @@ public class ItemInit {
 			() -> new REWeaponItem(new REWeaponItem.Builder(RigoranthusItemTier.ESOTERIC_TIER, 0, -1.0F).efficiency(1.0F).set(ToolRegistry.MISC_TOOL).set(
 					MagicAttackRightClickEffect.CIRCEAN_MAGIC), new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).rarity(Rarity.EPIC)));
 
-	public static final RegistryObject<Item> BLACKTHORN_WAND = ITEMS.register("blackthorn_wand",
+	public static final RegistryObject<Item> BLACKTHORN_STAFF = ITEMS.register("blackthorn_staff",
 			() -> new REWeaponItem(new REWeaponItem.Builder(RigoranthusItemTier.CIRCEAN, -1, -1.0F).efficiency(1.0F).set(ToolRegistry.MISC_TOOL).set(
 					MagicAttackRightClickEffect.APOGEAN_MAGIC), new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).rarity(Rarity.EPIC)));
 

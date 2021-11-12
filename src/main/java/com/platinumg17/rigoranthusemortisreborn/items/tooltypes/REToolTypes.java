@@ -49,7 +49,7 @@ public class REToolTypes {
         return this;
     }
 
-    //TODO Tool types WILL be created before mod enchantments are created and registered. We should use suppliers instead
+    //TODO Tool types WILL be created before Custom Mod enchantments are created + registered. Consider using suppliers instead
     public REToolTypes addEnchantments(Enchantment... enchantments) {
         this.enchantments.addAll(Arrays.asList(enchantments));
         return this;

@@ -39,10 +39,10 @@ public class SpecializedEntityTypes {
             .sized(0.25F, 0.25F).setUpdateInterval(10).setTrackingRange(4));
 
     public static final RegistryObject<EntityType<ReturningProjectileEntity>> RETURNING_PROJECTILE = register("returning_projectile", ReturningProjectileEntity::new, EntityClassification.MISC, (b) -> b
-            .sized(0.25F, 0.25F).setUpdateInterval(2).setTrackingRange(6));
+            .sized(0.25F, 0.25F).setUpdateInterval(2).setTrackingRange(64));
 
     public static final RegistryObject<EntityType<BouncingProjectileEntity>> BOUNCING_PROJECTILE = register("bouncing_projectile", BouncingProjectileEntity::new, EntityClassification.MISC, (b) -> b
-            .sized(0.25F, 0.25F).setUpdateInterval(2).setTrackingRange(6));
+            .sized(0.25F, 0.25F).setUpdateInterval(2).setTrackingRange(10));
 
     public static final RegistryObject<EntityType<BiliBombEntitiy>> BILI_BOMB = register("bili_bomb", BiliBombEntitiy::new, EntityClassification.MISC, (b) -> b
             .sized(0.25F, 0.25F).setUpdateInterval(10).setTrackingRange(4));

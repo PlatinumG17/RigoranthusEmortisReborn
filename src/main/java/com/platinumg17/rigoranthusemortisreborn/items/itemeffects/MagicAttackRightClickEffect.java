@@ -35,8 +35,8 @@ public class MagicAttackRightClickEffect implements ItemRightClickEffect {
 
     private static final EntityPredicate visiblePredicate = (new EntityPredicate());//.setLineOfSiteRequired(); TODO should something else be done with the predicate?
 
-    public static final MagicAttackRightClickEffect NOVICE_MAGIC = new SbahjMagicEffect(10, 1, null, null, 1.0F, MagicHitTargetUtil.Type.GREEN);
-    public static final MagicAttackRightClickEffect TYRO_MAGIC = new AimbotMagicEffect(14, 2, null, null, 1.0F, MagicHitTargetUtil.Type.CRIT);
+    public static final MagicAttackRightClickEffect NOVICE_MAGIC = new NoviceMagicEffect(10, 1, null, null, 1.0F, MagicHitTargetUtil.Type.GREEN);
+    public static final MagicAttackRightClickEffect TYRO_MAGIC = new TyroMagicEffect(14, 2, null, null, 1.0F, MagicHitTargetUtil.Type.CRIT);
     public static final MagicAttackRightClickEffect PROHIBATE_MAGIC = new MagicAttackRightClickEffect(15, 3, null, null, 1.0F, MagicHitTargetUtil.Type.ENCHANT);
     public static final MagicAttackRightClickEffect SPECTIVE_MAGIC = new MagicAttackRightClickEffect(18, 4, null, null, 1.0F, MagicHitTargetUtil.Type.RED);
     public static final MagicAttackRightClickEffect CIRCEAN_MAGIC = new MagicAttackRightClickEffect(30, 8, null, null, 1.0F, MagicHitTargetUtil.Type.CIRCEAN);
@@ -127,8 +127,8 @@ public class MagicAttackRightClickEffect implements ItemRightClickEffect {
         } else return false;
     }
 
-    private static class SbahjMagicEffect extends MagicAttackRightClickEffect {
-        SbahjMagicEffect(int distance, int damage, Supplier<EffectInstance> effect, Supplier<SoundEvent> sound, float pitch, @Nullable MagicHitTargetUtil.Type type) {
+    private static class NoviceMagicEffect extends MagicAttackRightClickEffect {
+        NoviceMagicEffect(int distance, int damage, Supplier<EffectInstance> effect, Supplier<SoundEvent> sound, float pitch, @Nullable MagicHitTargetUtil.Type type) {
             super(distance, damage, effect, sound, pitch, type);
         }
 
@@ -139,9 +139,9 @@ public class MagicAttackRightClickEffect implements ItemRightClickEffect {
         }
     }
 
-    private static class AimbotMagicEffect extends MagicAttackRightClickEffect
+    private static class TyroMagicEffect extends MagicAttackRightClickEffect
     {
-        AimbotMagicEffect(int distance, int damage, Supplier<EffectInstance> effect, Supplier<SoundEvent> sound, float pitch, @Nullable MagicHitTargetUtil.Type type) {
+        TyroMagicEffect(int distance, int damage, Supplier<EffectInstance> effect, Supplier<SoundEvent> sound, float pitch, @Nullable MagicHitTargetUtil.Type type) {
             super(distance, damage, effect, sound, pitch, type);
         }
 

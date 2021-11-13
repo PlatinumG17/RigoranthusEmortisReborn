@@ -48,7 +48,7 @@ public class CryOfDesperationItem extends Item {
 
     @Override
     public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
-        worldIn.playSound(playerIn, playerIn.getX(), playerIn.getY(), playerIn.getZ(), RigoranthusSoundRegistry.DESPERATE_CRIES.get(), SoundCategory.AMBIENT, 1.5F, 1.0F);
+        worldIn.playSound(playerIn, playerIn.getX(), playerIn.getY(), playerIn.getZ(), RigoranthusSoundRegistry.DESPERATE_CRIES.get(), SoundCategory.AMBIENT, 1.0F, 1.0F);
 
         ItemStack item = playerIn.getItemInHand(handIn);
         if(!worldIn.isClientSide) {

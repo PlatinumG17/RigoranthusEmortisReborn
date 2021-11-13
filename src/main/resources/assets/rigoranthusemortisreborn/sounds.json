@@ -9,6 +9,16 @@
       }
     ]
   },
+  "razortooth_frisbee_hit": {
+    "subtitle": "rigoranthusemortisreborn.razortooth_frisbee_hit",
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "rigoranthusemortisreborn:razortooth_frisbee_hit",
+        "stream": false
+      }
+    ]
+  },
   "desperate_cries": {
     "subtitle": "rigoranthusemortisreborn.desperate_cries",
     "category": "player",

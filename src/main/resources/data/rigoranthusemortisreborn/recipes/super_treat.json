@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rigoranthusemortisreborn:training_treat"
+    },
+    {
+      "item": "rigoranthusemortisreborn:training_treat"
+    },
+    {
+      "item": "rigoranthusemortisreborn:training_treat"
+    },
+    {
+      "item": "rigoranthusemortisreborn:training_treat"
+    },
+    {
+      "item": "rigoranthusemortisreborn:training_treat"
+    },
+    {
+      "item": "minecraft:golden_apple"
+    }
+  ],
+  "result": {
+    "item": "rigoranthusemortisreborn:super_treat",
+    "count": 5
+  }
+}

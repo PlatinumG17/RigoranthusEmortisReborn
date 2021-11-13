@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " X ",
+    "XYX",
+    " X "
+  ],
+  "key": {
+    "X": {
+      "item": "rigoranthusemortisreborn:bone_fragment"
+    },
+    "Y": {
+      "item": "minecraft:slime_ball"
+    }
+  },
+  "result": {
+    "item": "rigoranthusemortisreborn:throw_bone"
+  }
+}

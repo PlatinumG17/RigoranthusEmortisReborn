@@ -4,11 +4,11 @@ import com.google.common.collect.Lists;
 import com.platinumg17.rigoranthusemortisreborn.blocks.custom.BlockMasterfulSmelteryBase;
 import com.platinumg17.rigoranthusemortisreborn.config.ConfigValues;
 import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
-import com.platinumg17.rigoranthusemortisreborn.items.smeltery.ItemAugment;
-import com.platinumg17.rigoranthusemortisreborn.items.smeltery.ItemAugmentBlasting;
-import com.platinumg17.rigoranthusemortisreborn.items.smeltery.ItemAugmentFuel;
-import com.platinumg17.rigoranthusemortisreborn.items.smeltery.ItemAugmentSmoking;
-import com.platinumg17.rigoranthusemortisreborn.items.smeltery.ItemAugmentSpeed;
+import com.platinumg17.rigoranthusemortisreborn.items.specialized.smeltery.ItemAugment;
+import com.platinumg17.rigoranthusemortisreborn.items.specialized.smeltery.ItemAugmentBlasting;
+import com.platinumg17.rigoranthusemortisreborn.items.specialized.smeltery.ItemAugmentFuel;
+import com.platinumg17.rigoranthusemortisreborn.items.specialized.smeltery.ItemAugmentSmoking;
+import com.platinumg17.rigoranthusemortisreborn.items.specialized.smeltery.ItemAugmentSpeed;
 import com.platinumg17.rigoranthusemortisreborn.util.DirectionUtil;
 
 import it.unimi.dsi.fastutil.objects.Object2IntMap;

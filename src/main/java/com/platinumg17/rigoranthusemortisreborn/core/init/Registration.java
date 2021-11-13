@@ -5,7 +5,7 @@ import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.items.*;
 import com.platinumg17.rigoranthusemortisreborn.items.armor.RigoranthusArmorMaterial;
 import com.platinumg17.rigoranthusemortisreborn.items.armor.armorsets.*;
-import com.platinumg17.rigoranthusemortisreborn.items.smeltery.*;
+import com.platinumg17.rigoranthusemortisreborn.items.specialized.smeltery.*;
 import com.platinumg17.rigoranthusemortisreborn.items.specialized.Esotericum;
 import com.platinumg17.rigoranthusemortisreborn.items.tooltypes.CrushingHammerItem;
 import com.platinumg17.rigoranthusemortisreborn.items.weapons.type.projectiles.BoneArrowItem;

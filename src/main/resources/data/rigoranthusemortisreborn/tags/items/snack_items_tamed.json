@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "rigoranthusemortisreborn:breeding_bone",
+    "rigoranthusemortisreborn:throw_stick",
+    "rigoranthusemortisreborn:throw_bone",
+    "minecraft:bone"
+  ]
+}

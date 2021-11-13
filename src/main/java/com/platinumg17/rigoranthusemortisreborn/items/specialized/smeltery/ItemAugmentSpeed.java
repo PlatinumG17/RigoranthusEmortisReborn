@@ -1,4 +1,4 @@
-package com.platinumg17.rigoranthusemortisreborn.items.smeltery;
+package com.platinumg17.rigoranthusemortisreborn.items.specialized.smeltery;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;

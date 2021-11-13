@@ -1,4 +1,4 @@
-package com.platinumg17.rigoranthusemortisreborn.items.smeltery;
+package com.platinumg17.rigoranthusemortisreborn.items.specialized.smeltery;
 
 import java.util.List;
 import javax.annotation.Nullable;

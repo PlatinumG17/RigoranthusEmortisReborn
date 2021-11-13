@@ -33,7 +33,8 @@ public class ItemPhysicsAddon implements Addon {
                 CanisItems.SUPER_TREAT, CanisItems.TRAINING_TREAT, CanisItems.COLLAR_SHEARS,
                 CanisItems.THROW_BONE, CanisItems.WOOL_COLLAR, CanisItems.TREAT_BAG,
                 CanisItems.CHEW_STICK,
-                ItemInit.RAZORTOOTH_KUNAI, ItemInit.THROWING_KNIFE, ItemInit.RAZORTOOTH_FRISBEE
+                ItemInit.RAZORTOOTH_KUNAI, ItemInit.THROWING_KNIFE, ItemInit.RAZORTOOTH_FRISBEE,
+                ItemInit.BONE_FRAGMENT, ItemInit.BILI_BOMB
         );
 
         ReflectionUtil.invokeStaticMethod(addMethod, burningItems,

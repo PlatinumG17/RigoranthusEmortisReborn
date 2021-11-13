@@ -3,16 +3,7 @@ package com.platinumg17.rigoranthusemortisreborn.canis.common.canisnetwork;
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.canisnetwork.packet.*;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.canisnetwork.packet.data.*;
-import com.platinumg17.rigoranthusemortisreborn.core.registry.effects.weapons.ISimplePacket;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.network.PacketBuffer;
-import net.minecraftforge.fml.network.NetworkEvent;
 import net.minecraftforge.fml.network.PacketDistributor;
-
-import java.util.function.BiConsumer;
-import java.util.function.Function;
-import java.util.function.Supplier;
 
 public class CanisPacketHandler {
 
@@ -24,10 +15,10 @@ public class CanisPacketHandler {
         registerPacket(new CanisObeyPacket(), CanisObeyData.class);
         registerPacket(new CanisSkillPacket(), CanisSkillData.class);
         registerPacket(new FriendlyFirePacket(), FriendlyFireData.class);
-//        registerPacket(new SendSkinPacket(), SendSkinData.class);
-//        registerPacket(new RequestSkinPacket(), RequestSkinData.class);
         registerPacket(new OpenCanisScreenPacket(), OpenCanisScreenData.class);
         registerPacket(new CanisInventoryPagePacket(), CanisInventoryPageData.class);
+//        registerPacket(new SendSkinPacket(), SendSkinData.class);
+//        registerPacket(new RequestSkinPacket(), RequestSkinData.class);
 //        registerPacket(new CanisTexturePacket(), CanisTextureData.class);
     }
 

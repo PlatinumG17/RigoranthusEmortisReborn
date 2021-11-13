@@ -501,7 +501,8 @@
   "subtitles.cadaver_death": "Sundered Cadaver Death",
   "subtitles.cadaver_hurt": "Sundered Cadaver Hurt",
   "subtitles.undead_step": "Undead Footsteps",
-  
+  "subtitles.desperate_cries": "Desperate Cries Ring Out",
+  "subtitles.grimoire_use": "Page Flip",
   
   "_comment": "TOOLTIPS",
   "tooltip.rigoranthusemortisreborn.upgrade_right_click": "Sneak & right-click to upgrade",

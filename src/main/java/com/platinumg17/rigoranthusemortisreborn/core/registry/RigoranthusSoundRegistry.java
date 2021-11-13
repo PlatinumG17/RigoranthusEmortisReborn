@@ -21,6 +21,8 @@ public class RigoranthusSoundRegistry {
 			registerSoundEvent("grimoire_use");
 	public static final RegistryObject<SoundEvent> DESPERATE_CRIES =
 			registerSoundEvent("desperate_cries");
+	public static final RegistryObject<SoundEvent> RAZORTOOTH_FRISBEE_HIT =
+			registerSoundEvent("razortooth_frisbee_hit");
 
 	public static final RegistryObject<SoundEvent> UN_DIA_DE_ABRIL =
 			registerSoundEvent("un_dia_de_abril");

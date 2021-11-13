@@ -1,6 +1,7 @@
 package com.platinumg17.rigoranthusemortisreborn.entity.item;
 
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
+import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusSoundRegistry;
 import com.platinumg17.rigoranthusemortisreborn.items.weapons.type.projectiles.basetype.IProjectileDamaging;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -64,7 +65,7 @@ public class ReturningProjectileEntity extends ProjectileItemEntity {
                 this.setDeltaMovement(getDeltaMovement().scale(-1.05));
                 if(!level.isClientSide) {
                     ++bounce;
-                    this.level.playSound(null, this.getX(), this.getY(), this.getZ(), SoundEvents.SHIELD_BLOCK, SoundCategory.NEUTRAL, 0.6F, 4.0F);
+                    this.level.playSound(null, this.getX(), this.getY(), this.getZ(), RigoranthusSoundRegistry.RAZORTOOTH_FRISBEE_HIT.get(), SoundCategory.NEUTRAL, 0.6F, 4.0F);
                 }
             }
             if(Block.canSupportCenter(level, blockPos, blockFace) && blockResult.isInside()) {

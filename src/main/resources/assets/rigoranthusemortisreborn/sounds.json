@@ -1,4 +1,24 @@
 {
+  "grimoire_use": {
+    "subtitle": "rigoranthusemortisreborn.grimore_use",
+    "category": "player",
+    "sounds": [
+      {
+        "name": "rigoranthusemortisreborn:grimore_use",
+        "stream": false
+      }
+    ]
+  },
+  "desperate_cries": {
+    "subtitle": "rigoranthusemortisreborn.desperate_cries",
+    "category": "player",
+    "sounds": [
+      {
+        "name": "rigoranthusemortisreborn:desperate_cries",
+        "stream": false
+      }
+    ]
+  },
   "whistle_short": {
     "subtitle": "rigoranthusemortisreborn.whistle.short",
     "sounds": [ "rigoranthusemortisreborn:whistle/short" ]

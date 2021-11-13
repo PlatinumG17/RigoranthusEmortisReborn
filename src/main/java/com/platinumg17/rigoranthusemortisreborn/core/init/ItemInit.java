@@ -107,7 +107,7 @@ public class ItemInit {
 			() -> new ConsumableProjectileWeaponItem(new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP), 1.0F, 2.8F, 2));
 
 	public static final RegistryObject<Item> RAZORTOOTH_FRISBEE = ITEMS.register("razortooth_frisbee",
-			() -> new ReturningProjectileWeaponItem(new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).durability(250), 1.3F, 1.0F,5, 30));
+			() -> new ReturningProjectileWeaponItem(new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).durability(250), 1.3F, 1.0F,5, 60));
 
 	public static final RegistryObject<Item> RICOCHET_ROUND = ITEMS.register("ricochet_round",
 			() -> new BouncingProjectileWeaponItem(new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP).durability(250), 1.5F, 1.0F,5, 20));

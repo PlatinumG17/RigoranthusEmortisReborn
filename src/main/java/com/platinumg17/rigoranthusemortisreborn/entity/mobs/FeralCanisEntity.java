@@ -67,7 +67,7 @@ public class FeralCanisEntity extends MonsterEntity implements IAnimatable {
 //        if (event.isMoving()) {
 //            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.chordata.walk", true));
 //        } else {
-        event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.chordata.idle", true));
+        event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", true));
         }
         return PlayState.CONTINUE;
     }

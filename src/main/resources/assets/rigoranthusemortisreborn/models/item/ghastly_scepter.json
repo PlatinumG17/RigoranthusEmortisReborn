@@ -1,6 +1,9 @@
 {
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "rigoranthusemortisreborn:items/ghastly_scepter"
-  }
+	"credit": "Made by PlatinumG17",
+	"parent": "builtin/entity",
+	"texture_size": [
+		32,
+		32
+	],
+	"display": {"thirdperson_righthand": {"translation":[0,-21.5,0],"scale":[1.5,1.5,1.5]},"thirdperson_lefthand":{"translation":[0,-21.5,0],"scale":[1.5,1.5,1.5]},"firstperson_righthand":{"rotation":[7,-4,12],"translation":[14,-37,-7],"scale":[2,2.5,2]},"firstperson_lefthand":{"rotation":[2,-2,6],"translation":[14,-39,-7.25],"scale":[2,2.5,2]},"ground":{"rotation":[0,0,90],"translation":[22,-2.25,-0.25],"scale":[1.5,1.5,1.5]},"gui":{"rotation":[-65,41,70],"translation":[13,-13,0],"scale":[1.27,1.27,1.27]},"fixed":{"rotation":[-79.25,-137,-81.25],"translation":[15.75,-15.25,0],"scale":[1.5,1.5,1.5]}}
 }

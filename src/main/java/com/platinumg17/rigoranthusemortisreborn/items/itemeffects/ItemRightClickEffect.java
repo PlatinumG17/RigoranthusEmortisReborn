@@ -1,20 +1,22 @@
 package com.platinumg17.rigoranthusemortisreborn.items.itemeffects;
 
+import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusSoundRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.FireballEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.text.IFormattableTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeMod;
 
@@ -28,14 +30,14 @@ public interface ItemRightClickEffect {
         return ActionResult.consume(player.getItemInHand(hand));
     };
 
-    ItemRightClickEffect EIGHTBALL = (world, player, hand) -> {
-        if(world.isClientSide) {
-            int key = player.getRandom().nextInt(20);
-            IFormattableTextComponent message = new TranslationTextComponent("message.eightball." + key);
-            player.sendMessage(message.withStyle(TextFormatting.BLUE), Util.NIL_UUID);
-        }
-        return ActionResult.success(player.getItemInHand(hand));
-    };
+//    ItemRightClickEffect EIGHTBALL = (world, player, hand) -> {
+//        if(world.isClientSide) {
+//            int key = player.getRandom().nextInt(20);
+//            IFormattableTextComponent message = new TranslationTextComponent("message.eightball." + key);
+//            player.sendMessage(message.withStyle(TextFormatting.BLUE), Util.NIL_UUID);
+//        }
+//        return ActionResult.success(player.getItemInHand(hand));
+//    };
 
     static ItemRightClickEffect switchTo(Supplier<Item> otherItem) {
         return (world, player, hand) -> {
@@ -50,20 +52,40 @@ public interface ItemRightClickEffect {
         };
     }
 
-    static ItemRightClickEffect summonFireball() {
+    static ItemRightClickEffect shootFireball() {
         return (world, player, hand) -> {
             ItemStack itemStackIn = player.getItemInHand(hand);
             world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BLAZE_SHOOT, SoundCategory.PLAYERS, 1.0F, 0.8F);
 
+            if(!world.isClientSide) {
+                FireballEntity fireballentity = new FireballEntity(world, player, 0, -9, 0);
+                fireballentity.explosionPower = 1;
+                fireballentity.shootFromRotation(player, player.xRot, player.yRot, 0.0F, 2.5F + 3.0F, 1.0F);
+                player.swing(hand, true);
+                player.getCooldowns().addCooldown(itemStackIn.getItem(), 60);
+                itemStackIn.hurtAndBreak(2, player, playerEntity -> playerEntity.broadcastBreakEvent(Hand.MAIN_HAND));
+                world.addFreshEntity(fireballentity);
+            }
+            return ActionResult.pass(itemStackIn);
+        };
+    }
+
+    static ItemRightClickEffect summonFireball() {
+        return (world, player, hand) -> {
+            ItemStack itemStackIn = player.getItemInHand(hand);
+            world.playSound(null, player.getX(), player.getY(), player.getZ(), RigoranthusSoundRegistry.DESPERATE_CRIES.get(), SoundCategory.PLAYERS, 1.0F, 1.0F);
+            world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BLAZE_SHOOT, SoundCategory.PLAYERS, 1.0F, 0.8F);
+
             AxisAlignedBB axisalignedbb = player.getBoundingBox().inflate(32.0D, 32.0D, 32.0D);
-            List<LivingEntity> list = player.level.getEntitiesOfClass(LivingEntity.class, axisalignedbb);
-            list.remove(player);
+            List<MobEntity> list = player.level.getEntitiesOfClass(MobEntity.class, axisalignedbb);
+//            list.remove(player);
             if(!list.isEmpty() && !world.isClientSide) {
-                for(LivingEntity livingentity : list) {
+                for(MobEntity livingentity : list) {
                     FireballEntity fireball = new FireballEntity(world, player, 0, -8.0, 0);
                     fireball.explosionPower = 1;
                     fireball.setPos(livingentity.getX() + (player.getRandom().nextInt(6) - 3), livingentity.getY() + 40, livingentity.getZ() + (player.getRandom().nextInt(6) - 3));
-                    player.getCooldowns().addCooldown(itemStackIn.getItem(), 20);
+                    player.swing(hand, true);//TODO  recently added
+                    player.getCooldowns().addCooldown(itemStackIn.getItem(), 600);
                     itemStackIn.hurtAndBreak(2, player, playerEntity -> playerEntity.broadcastBreakEvent(Hand.MAIN_HAND));
                     world.addFreshEntity(fireball);
                 }
@@ -71,7 +93,8 @@ public interface ItemRightClickEffect {
                 FireballEntity fireball = new FireballEntity(world, player, 0, -8.0, 0);
                 fireball.explosionPower = 1;
                 fireball.setPos(player.getX() + (player.getRandom().nextInt(20) - 10), player.getY() + 40, player.getZ() + (player.getRandom().nextInt(20) - 10));
-                player.getCooldowns().addCooldown(itemStackIn.getItem(), 20);
+                player.swing(hand, true); //TODO   recently added
+                player.getCooldowns().addCooldown(itemStackIn.getItem(), 600);
                 itemStackIn.hurtAndBreak(2, player, playerEntity -> playerEntity.broadcastBreakEvent(Hand.MAIN_HAND));
                 world.addFreshEntity(fireball);
             }
@@ -95,8 +118,8 @@ public interface ItemRightClickEffect {
                 }
 
                 AxisAlignedBB axisalignedbb = player.getBoundingBox().inflate(2 * mod, mod, 2 * mod);
-                List<LivingEntity> list = player.level.getEntitiesOfClass(LivingEntity.class, axisalignedbb);
-                for(LivingEntity livingentity : list) {
+                List<MobEntity> list = player.level.getEntitiesOfClass(MobEntity.class, axisalignedbb);
+                for(MobEntity livingentity : list) {
                     if(livingentity.getRemainingFireTicks() > 0) {
                         livingentity.clearFire();
                         world.playSound(null, livingentity.getX(), livingentity.getY(), livingentity.getZ(), SoundEvents.FIRE_EXTINGUISH, SoundCategory.NEUTRAL, 0.5F, 1.0F);

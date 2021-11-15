@@ -43,12 +43,15 @@ import com.platinumg17.rigoranthusemortisreborn.core.init.network.REPacketHandle
 import com.platinumg17.rigoranthusemortisreborn.core.init.network.messages.Messages;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusSoundRegistry;
 import com.platinumg17.rigoranthusemortisreborn.entity.RigoranthusEntityTypes;
+import com.platinumg17.rigoranthusemortisreborn.entity.item.GhastlyScepterItem;
+import com.platinumg17.rigoranthusemortisreborn.entity.item.GhastlyScepterRenderer;
 import com.platinumg17.rigoranthusemortisreborn.entity.render.DelphicBloomRenderer;
 import com.platinumg17.rigoranthusemortisreborn.entity.render.mobs.CanisChordataRenderer;
 import com.platinumg17.rigoranthusemortisreborn.entity.render.mobs.LanguidDwellerRenderer;
 import com.platinumg17.rigoranthusemortisreborn.entity.render.mobs.NecrawFasciiRenderer;
 import com.platinumg17.rigoranthusemortisreborn.entity.render.mobs.SunderedCadaverRenderer;
 import com.platinumg17.rigoranthusemortisreborn.entity.render.projectile.BoneArrowRenderer;
+import com.platinumg17.rigoranthusemortisreborn.items.weapons.REWeaponItem;
 import com.platinumg17.rigoranthusemortisreborn.tileentity.RigoranthusTileEntities;
 import com.platinumg17.rigoranthusemortisreborn.world.EmortisMobSpawns;
 import com.platinumg17.rigoranthusemortisreborn.world.biome.EmortisBiomes;

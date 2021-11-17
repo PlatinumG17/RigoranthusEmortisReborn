@@ -11,11 +11,14 @@ import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.ObjectHolder;
 
 import java.lang.reflect.Field;
 
+@ObjectHolder(EmortisConstants.MOD_ID)
 @Mod.EventBusSubscriber(modid = EmortisConstants.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class RigoranthusEffectRegistry {
+
     public static final Effect APOGEAN_SET_BONUS = new ApogeanSetBonus();
     public static final Effect AQUEOUS_SET_BONUS = new AqueousSetBonus();
     public static final Effect ATROPHYING_SET_BONUS = new AtrophyingSetBonus();

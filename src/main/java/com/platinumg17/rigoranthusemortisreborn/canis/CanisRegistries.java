@@ -7,8 +7,8 @@ import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import net.minecraftforge.registries.RegistryBuilder;
 import com.platinumg17.rigoranthusemortisreborn.api.RigoranthusEmortisRebornAPI;
-import com.platinumg17.rigoranthusemortisreborn.api.impl.MissingBeddingMaterial;
-import com.platinumg17.rigoranthusemortisreborn.api.impl.MissingCasingMaterial;
+import com.platinumg17.rigoranthusemortisreborn.api.feature.bedding.MissingBeddingMaterial;
+import com.platinumg17.rigoranthusemortisreborn.api.feature.bedding.MissingCasingMaterial;
 import com.platinumg17.rigoranthusemortisreborn.api.registry.*;
 
 public class CanisRegistries {

@@ -1,7 +1,7 @@
-package com.platinumg17.rigoranthusemortisreborn.api.impl;
+package com.platinumg17.rigoranthusemortisreborn.api.feature.bedding;
 
 import com.platinumg17.rigoranthusemortisreborn.api.RigoranthusEmortisRebornAPI;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.ICasingMaterial;
+import com.platinumg17.rigoranthusemortisreborn.api.registry.IBeddingMaterial;
 import javax.annotation.Nullable;
 import java.util.function.Supplier;
 import net.minecraft.block.Block;
@@ -11,7 +11,7 @@ import net.minecraft.util.Util;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
-public class CasingMaterial extends ICasingMaterial {
+public class BeddingMaterial extends IBeddingMaterial {
 
     private final Supplier<Block> block;
     protected ResourceLocation texture;
@@ -19,17 +19,16 @@ public class CasingMaterial extends ICasingMaterial {
     @Nullable
     private String translationKey;
 
-    public CasingMaterial(Supplier<Block> blockIn) {
+    public BeddingMaterial(Supplier<Block> blockIn) {
         this.block = blockIn;
     }
-
-    public CasingMaterial(Supplier<Block> blockIn, ResourceLocation texture) {
+    public BeddingMaterial(Supplier<Block> blockIn, ResourceLocation texture) {
         this.block = blockIn;
         this.texture = texture;
     }
 
     /**
-     * Texture location that for material, eg 'minecraft:block/oak_planks'
+     * Texture location that for material, eg 'minecraft:block/white_wool'
      */
     @Override
     public ResourceLocation getTexture() {
@@ -46,7 +45,7 @@ public class CasingMaterial extends ICasingMaterial {
     @Override
     public ITextComponent getTooltip() {
         if (this.translationKey == null) {
-            this.translationKey = Util.makeDescriptionId("canisbed.casing", RigoranthusEmortisRebornAPI.CASING_MATERIAL.getKey(this));
+            this.translationKey = Util.makeDescriptionId("canisbed.bedding", RigoranthusEmortisRebornAPI.BEDDING_MATERIAL.getKey(this));
         }
         return new TranslationTextComponent(this.translationKey);
     }

@@ -2,7 +2,7 @@ package com.platinumg17.rigoranthusemortisreborn.canis.common.skill;
 
 import com.platinumg17.rigoranthusemortisreborn.canis.CanisSkills;
 import net.minecraft.item.Items;
-import com.platinumg17.rigoranthusemortisreborn.api.enums.WetSource;
+import com.platinumg17.rigoranthusemortisreborn.api.feature.WetSource;
 import com.platinumg17.rigoranthusemortisreborn.api.interfaces.AbstractCanisEntity;
 import com.platinumg17.rigoranthusemortisreborn.api.registry.Skill;
 import com.platinumg17.rigoranthusemortisreborn.api.registry.SkillInstance;

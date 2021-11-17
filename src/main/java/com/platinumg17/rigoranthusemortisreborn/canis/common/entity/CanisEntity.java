@@ -103,7 +103,7 @@ import net.minecraftforge.common.util.ITeleporter;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.registries.ForgeRegistries;
-import com.platinumg17.rigoranthusemortisreborn.api.enums.WetSource;
+import com.platinumg17.rigoranthusemortisreborn.api.feature.WetSource;
 import com.platinumg17.rigoranthusemortisreborn.api.feature.*;
 import com.platinumg17.rigoranthusemortisreborn.api.interfaces.AbstractCanisEntity;
 import com.platinumg17.rigoranthusemortisreborn.api.interfaces.ICanisFoodHandler;

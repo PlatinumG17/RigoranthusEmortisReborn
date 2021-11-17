@@ -16,17 +16,20 @@
     "hidden": false
   },
   "criteria": {
-    "requirement": {
+    "obtain_a_forgotten_record": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "items": [
-              "rigoranthusemortisreborn:forgotten_record"
-            ]
+            "item": "rigoranthusemortisreborn:forgotten_record"
           }
         ]
       }
     }
-  }
+  },
+  "requirements": [
+    [
+      "obtain_a_forgotten_record"
+    ]
+  ]
 }

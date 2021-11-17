@@ -1,4 +1,4 @@
-package com.platinumg17.rigoranthusemortisreborn.api.enums;
+package com.platinumg17.rigoranthusemortisreborn.api.feature;
 
 public enum WetSource {
 

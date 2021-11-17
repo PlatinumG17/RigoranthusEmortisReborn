@@ -3,8 +3,11 @@ package com.platinumg17.rigoranthusemortisreborn.items.armor;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
+import com.platinumg17.rigoranthusemortisreborn.core.magica.common.armor.MagicMaterials;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.IArmorMaterial;
+import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.LazyValue;
 import net.minecraft.util.SoundEvent;
@@ -45,7 +48,22 @@ public enum RigoranthusArmorMaterial implements IArmorMaterial {
 
     REMEX_NETHERITE("remex_netherite", Config.remex_durability_multiplier.get(), new int[]{Config.remex_boots_damage_reduction.get(), Config.remex_leggings_damage_reduction.get(), Config.remex_chestplate_damage_reduction.get(), Config.remex_helmet_damage_reduction.get()}, Config.remex_armor_enchantability.get(), SoundEvents.ARMOR_EQUIP_NETHERITE, Config.remex_toughness.get().floatValue(), Config.remex_knockback_resistance.get().floatValue(), () -> {
         return Ingredient.of(ItemInit.REMEX_NETHERITE_INGOT.get());
-    });
+    }),
+
+
+    //______________  M A G I C   A R M O R  ______________//
+
+    novice(EmortisConstants.MOD_ID + ":novice", 25,new int[]{1, 4, 5, 2},
+            30, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0F, () -> {
+        return Ingredient.of(Items.WHITE_WOOL);}),
+
+    apprentice(EmortisConstants.MOD_ID + ":apprentice", 25, new int[]{2, 5, 6, 2},
+            30, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0F, () -> {
+        return Ingredient.of(Items.SCUTE);}),
+
+    master(EmortisConstants.MOD_ID + ":master", 33, new int[]{3, 6, 8, 3},
+            30, SoundEvents.ARMOR_EQUIP_LEATHER, 2.5f,  0F, () -> {
+        return Ingredient.of(Items.SCUTE);});
 
     private static final int[] HEALTH_PER_SLOT = new int[]{13, 15, 16, 11};
     private final String name;

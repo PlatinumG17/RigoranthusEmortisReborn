@@ -1,6 +1,6 @@
 package com.platinumg17.rigoranthusemortisreborn.api.interfaces;
 
-import com.platinumg17.rigoranthusemortisreborn.api.enums.WetSource;
+import com.platinumg17.rigoranthusemortisreborn.api.feature.WetSource;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;

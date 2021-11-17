@@ -1,6 +1,6 @@
 modLoader="javafml"
 loaderVersion="[36,)"
-license="All rights reserved"
+license="GNU GENERAL PUBLIC LICENSE"
 
 [[mods]]
     modId="rigoranthusemortisreborn"
@@ -8,8 +8,8 @@ license="All rights reserved"
     logoFile="rigoranthus_emortis_logo.png"
     itemIcon="rigoranthusemortisreborn:assets/ftbchunks/textures/faces/rigoranthusemortisreborn/canis_chordata.png"
     configBackground = "rigoranthusemortisreborn:textures/gui/advancements/azuloreal.png"
-    authors=" PlatinumG17"
-    credits=" Some code inspired by or sourced from: Percivalalb & XenoMustache.\n Audio sourced from: Zapsplat (LittleRobotSoundFactory, 344Audio), orangefreesounds, fesliyanstudios, and quicksounds"
+    authors="PlatinumG17 (aka Matt)"
+    credits="Some code inspired by or sourced from: Percivalalb, Baileyholl & XenoMustache.\n Audio sourced from: Zapsplat, Orangefreesounds, Fesliyanstudios, & Quicksounds"
     displayURL="https://www.curseforge.com/members/platinumg17/projects"
     displayName=" Rigoranthus Emortis Reborn"
 description='''
@@ -34,6 +34,34 @@ modId="forge"
 mandatory=true
 versionRange="[36.2.0,)"
 ordering="NONE"
+side="BOTH"
+
+[[dependencies.rigoranthusemortisreborn]]
+modId="geckolib3"
+mandatory=true
+versionRange="[geckolib-forge-1.16.5:3.0.33,)"
+ordering="AFTER"
+side="BOTH"
+
+[[dependencies.rigoranthusemortisreborn]]
+modId="curios"
+mandatory=true
+versionRange="[1.16.3-4.0.1.0,)"
+ordering="AFTER"
+side="BOTH"
+
+[[dependencies.rigoranthusemortisreborn]]
+modId="abnormals_core"
+mandatory=true
+versionRange="[3.2.0,)"
+ordering="AFTER"
+side="BOTH"
+
+[[dependencies.rigoranthusemortisreborn]]
+modId="patchouli"
+mandatory=true
+versionRange="[1.16-42,)"
+ordering="AFTER"
 side="BOTH"
 
 [[dependencies.rigoranthusemortisreborn]]
@@ -62,20 +90,6 @@ modId="pmmo"
 mandatory=false
 versionRange="[1.16.5-3,)"
 ordering="NONE"
-side="BOTH"
-
-[[dependencies.rigoranthusemortisreborn]]
-modId="geckolib3"
-mandatory=true
-versionRange="[geckolib-forge-1.16.5:3.0.33,)"
-ordering="AFTER"
-side="BOTH"
-
-[[dependencies.rigoranthusemortisreborn]]
-modId="abnormals_core"
-mandatory=true
-versionRange="[3.2.0,)"
-ordering="AFTER"
 side="BOTH"
 
 [[dependencies.rigoranthusemortisreborn]]

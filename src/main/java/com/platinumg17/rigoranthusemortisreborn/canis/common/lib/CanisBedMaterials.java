@@ -4,8 +4,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
-import com.platinumg17.rigoranthusemortisreborn.api.impl.BeddingMaterial;
-import com.platinumg17.rigoranthusemortisreborn.api.impl.CasingMaterial;
+import com.platinumg17.rigoranthusemortisreborn.api.feature.bedding.BeddingMaterial;
+import com.platinumg17.rigoranthusemortisreborn.api.feature.bedding.CasingMaterial;
 import com.platinumg17.rigoranthusemortisreborn.api.registry.IBeddingMaterial;
 import com.platinumg17.rigoranthusemortisreborn.api.registry.ICasingMaterial;
 

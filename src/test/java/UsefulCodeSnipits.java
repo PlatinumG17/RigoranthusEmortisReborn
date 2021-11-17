@@ -3,9 +3,9 @@ public class UsefulCodeSnipits {
 
 
 
+https://github.com/bernie-g/geckolib/blob/1.16/src/main/resources/assets/geckolib3/models/item/jackintheboxitem.json
 
-
-
+https://geckolib.com/en/latest/3.0.0/item_animations/#:~:text=Item%20Animations%20Item%20animations%20in%20GeckoLib%20are%20a,unfortunately%20we%20don%27t%20have%20much%20control%20over%20this.
 
 
 

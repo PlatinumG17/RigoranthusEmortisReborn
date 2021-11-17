@@ -2,6 +2,8 @@ package com.platinumg17.rigoranthusemortisreborn;
 
 import com.minecraftabnormals.abnormals_core.core.util.registry.RegistryHelper;
 import com.platinumg17.rigoranthusemortisreborn.addon.AddonManager;
+import com.platinumg17.rigoranthusemortisreborn.api.feature.FoodHandler;
+import com.platinumg17.rigoranthusemortisreborn.api.feature.InteractionHandler;
 import com.platinumg17.rigoranthusemortisreborn.blocks.BlockInit;
 import com.platinumg17.rigoranthusemortisreborn.blocks.BuildingBlockInit;
 import com.platinumg17.rigoranthusemortisreborn.blocks.DecorativeOrStorageBlocks;
@@ -14,6 +16,8 @@ import com.platinumg17.rigoranthusemortisreborn.canis.client.entity.render.Canis
 import com.platinumg17.rigoranthusemortisreborn.canis.client.entity.render.world.HomeboundRenderer;
 import com.platinumg17.rigoranthusemortisreborn.canis.client.event.ClientEventHandler;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.Capabilities;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.SpecializedEntityTypes;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.canisnetwork.CanisEventHandler;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.canisnetwork.CanisPacketHandler;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.canisnetwork.packet.data.REBlockTagsProvider;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.canisnetwork.packet.data.REItemTagsProvider;
@@ -27,9 +31,6 @@ import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.accouterment
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.CanisBedMaterials;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.skill.ChungusPupperSkill;
-import com.platinumg17.rigoranthusemortisreborn.canis.common.util.BackwardsCompat;
-import com.platinumg17.rigoranthusemortisreborn.canis.common.canisnetwork.CanisEventHandler;
-import com.platinumg17.rigoranthusemortisreborn.canis.common.SpecializedEntityTypes;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.util.CanisRecipeSerializers;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.config.ConfigHandler;
@@ -41,17 +42,22 @@ import com.platinumg17.rigoranthusemortisreborn.core.init.fluid.FluidRegistry;
 import com.platinumg17.rigoranthusemortisreborn.core.init.fluid.particles.EmortisParticleTypes;
 import com.platinumg17.rigoranthusemortisreborn.core.init.network.REPacketHandler;
 import com.platinumg17.rigoranthusemortisreborn.core.init.network.messages.Messages;
+//import com.platinumg17.rigoranthusemortisreborn.core.magica.IProxy;
+//import com.platinumg17.rigoranthusemortisreborn.core.magica.client.ClientHandler;
+//import com.platinumg17.rigoranthusemortisreborn.core.magica.common.capability.ManaCapability;
+//import com.platinumg17.rigoranthusemortisreborn.core.magica.common.entity.pathfinding.PathClientEventHandler;
+//import com.platinumg17.rigoranthusemortisreborn.core.magica.common.entity.pathfinding.PathFMLEventHandler;
+//import com.platinumg17.rigoranthusemortisreborn.core.magica.common.entity.pathfinding.Pathfinding;
+//import com.platinumg17.rigoranthusemortisreborn.core.magica.common.network.Networking;
+//import com.platinumg17.rigoranthusemortisreborn.core.magica.common.potions.ModPotions;
+//import com.platinumg17.rigoranthusemortisreborn.core.magica.setup.*;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusSoundRegistry;
 import com.platinumg17.rigoranthusemortisreborn.entity.RigoranthusEntityTypes;
-import com.platinumg17.rigoranthusemortisreborn.entity.item.GhastlyScepterItem;
-import com.platinumg17.rigoranthusemortisreborn.entity.item.GhastlyScepterRenderer;
-import com.platinumg17.rigoranthusemortisreborn.entity.render.DelphicBloomRenderer;
 import com.platinumg17.rigoranthusemortisreborn.entity.render.mobs.CanisChordataRenderer;
 import com.platinumg17.rigoranthusemortisreborn.entity.render.mobs.LanguidDwellerRenderer;
 import com.platinumg17.rigoranthusemortisreborn.entity.render.mobs.NecrawFasciiRenderer;
 import com.platinumg17.rigoranthusemortisreborn.entity.render.mobs.SunderedCadaverRenderer;
 import com.platinumg17.rigoranthusemortisreborn.entity.render.projectile.BoneArrowRenderer;
-import com.platinumg17.rigoranthusemortisreborn.items.weapons.REWeaponItem;
 import com.platinumg17.rigoranthusemortisreborn.tileentity.RigoranthusTileEntities;
 import com.platinumg17.rigoranthusemortisreborn.world.EmortisMobSpawns;
 import com.platinumg17.rigoranthusemortisreborn.world.biome.EmortisBiomes;
@@ -65,8 +71,9 @@ import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.client.renderer.entity.SpriteRenderer;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemModelsProperties;
-import net.minecraft.resources.IReloadableResourceManager;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -75,6 +82,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
@@ -88,14 +96,15 @@ import net.minecraftforge.fml.network.NetworkRegistry;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import com.platinumg17.rigoranthusemortisreborn.api.feature.FoodHandler;
-import com.platinumg17.rigoranthusemortisreborn.api.feature.InteractionHandler;
 import software.bernie.geckolib3.GeckoLib;
 import software.bernie.geckolib3.network.GeckoLibNetwork;
+
+//import static com.platinumg17.rigoranthusemortisreborn.core.magica.common.datagen.DungeonLootGenerator.GLM;
 
 @Mod(EmortisConstants.MOD_ID)
 @Mod.EventBusSubscriber(modid = EmortisConstants.MOD_ID, bus = Bus.MOD)
 public class RigoranthusEmortisReborn {
+//    public static IProxy proxy = DistExecutor.runForDist(()-> () -> new ClientProxy(), () -> ()-> new ServerProxy());
 	public static final Logger LOGGER = LogManager.getLogger(EmortisConstants.MOD_ID);
 	public static final String MOD_ID = "rigoranthusemortisreborn";
     public static final RegistryHelper REGISTRY_HELPER = RegistryHelper.create(MOD_ID, helper -> {});
@@ -104,14 +113,26 @@ public class RigoranthusEmortisReborn {
             .serverAcceptedVersions(EmortisConstants.PROTOCOL_VERSION::equals)
             .networkProtocolVersion(EmortisConstants.PROTOCOL_VERSION::toString)
             .simpleChannel();
+//    public static boolean caelusLoaded = false;
+//    public static ItemGroup itemGroup = new ItemGroup(MOD_ID) {
+//
+//        @Override
+//        public ItemStack makeIcon() {
+//            return MagicItemsRegistry.emorticSpellBook.getDefaultInstance();
+//        }
+//    };
 
 	public RigoranthusEmortisReborn() {
+//        caelusLoaded = ModList.get().isLoaded("caelus");
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         REGISTRY_HELPER.register(modEventBus);
         modEventBus.addListener(this::gatherData);
 		modEventBus.addListener(this::setup);
 		modEventBus.addListener(this::enqueueIMC);
 		modEventBus.addListener(this::processIMC);
+
+//        APIRegistry.registerSpells();
+//        MappingUtil.setup();
 
         BlockInit.register(modEventBus);
 		ItemInit.ITEMS.register(modEventBus);
@@ -157,6 +178,8 @@ public class RigoranthusEmortisReborn {
             GeckoLib.initialize();
             GeckoLibNetwork.initialize();
 
+//        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> Mod.EventBusSubscriber.Bus.FORGE.bus().get().register(PathClientEventHandler.class));
+//        Mod.EventBusSubscriber.Bus.FORGE.bus().get().register(PathFMLEventHandler.class);
         //  Client Events  //
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
             modEventBus.addListener(this::doClientStuff);
@@ -169,8 +192,8 @@ public class RigoranthusEmortisReborn {
 //            if (mc != null) { // If mc is null we are running data gen so no need to add listener
 //                ((IReloadableResourceManager) mc.getResourceManager()).registerReloadListener(CanisTextureManager.INSTANCE);
 //            }
-        }
-        );
+        });
+//        GLM.register(FMLJavaModLoadingContext.get().getModEventBus());
         ConfigHandler.init(modEventBus);
         AddonManager.init();
     }
@@ -179,6 +202,15 @@ public class RigoranthusEmortisReborn {
 
     private void setup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
+//            ManaCapability.register();
+//            FamiliarCap.register();
+////            APIRegistry.registerApparatusRecipes();
+////            if(Config.ARCHWOOD_FOREST_WEIGHT.get() > 0) {
+////                BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(WorldEvent.archwoodKey, Config.ARCHWOOD_FOREST_WEIGHT.get()));
+////            }
+////            event.enqueueWork(WorldEvent::registerFeatures);
+//            Networking.registerMessages();
+//            event.enqueueWork(ModPotions::addRecipes);
 
             REPacketHandler.setupChannel();
 
@@ -214,6 +246,7 @@ public class RigoranthusEmortisReborn {
 
     private void doClientStuff(final FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
+//            FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientHandler::init);
             ClientSetup.setupScreenManagers(event);
             ClientSetup.setupCollarRenderers(event);
             ClientSetup.setupTileEntityRenderers(event);
@@ -271,6 +304,7 @@ public class RigoranthusEmortisReborn {
         ItemModelsProperties.register(item, new ResourceLocation("pulling"), (p_239428_0_, p_239428_1_, p_239428_2_) -> p_239428_2_ != null && p_239428_2_.isUsingItem() && p_239428_2_.getUseItem() == p_239428_0_ ? 1.0F : 0.0F);
     }
     private void enqueueIMC(final InterModEnqueueEvent event) {
+//        ModSetup.sendIntercoms();
     }
 
     protected void processIMC(final InterModProcessEvent event) {
@@ -303,4 +337,8 @@ public class RigoranthusEmortisReborn {
 //            gen.addProvider(new REFluidTagsProvider(gen, event.getExistingFileHelper()));
         }
     }
+//    @SubscribeEvent
+//    public static void onServerStopped(final FMLServerStoppingEvent event) {
+//        Pathfinding.shutdown();
+//    }
 }

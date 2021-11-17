@@ -28,7 +28,7 @@ public class Config {
 
     public static ForgeConfigSpec COMMON_CONFIG;
 
-//    public static ForgeConfigSpec.BooleanValue GIVEN_COAL;
+    //    public static ForgeConfigSpec.BooleanValue GIVEN_COAL;
     public static ForgeConfigSpec.BooleanValue DISABLE_HUNGER;                      public static ForgeConfigSpec.BooleanValue STARTING_ITEMS;
     public static ForgeConfigSpec.BooleanValue CANIS_GENDER;                        public static ForgeConfigSpec.BooleanValue CANIS_PUPS_GET_PARENT_LEVELS;
 
@@ -172,115 +172,115 @@ public class Config {
         builder.pop();
 
         builder.push("Ore Generation, Ore Fragments, and Crushing Hammers");
-                setupOreConfig(builder);
+        setupOreConfig(builder);
         builder.pop();
 
         builder.push("Biome Config");
-                setupBiomeConfig(builder);
+        setupBiomeConfig(builder);
         builder.pop();
 
         builder.push("->   MOBS   <-");
         builder.pop();
 
         builder.push("Mobs [Spawn Weights & Attributes]");
-                setupCadaverConfig(builder);
-                setupNecrawConfig(builder);
-                setupFeralCanisConfig(builder);
-                setupDwellerConfig(builder);
+        setupCadaverConfig(builder);
+        setupNecrawConfig(builder);
+        setupFeralCanisConfig(builder);
+        setupDwellerConfig(builder);
         builder.pop();
 
         builder.push("Tame Canis Settings");
-                DISABLE_HUNGER = builder
-                        .comment("Disable hunger mode for the canis")
-                        .translation("rigoranthusemortisreborn.config.canis.disable_hunger")
-                        .define("disable_hunger", false);
-                STARTING_ITEMS = builder
-                        .comment("When enabled you will spawn with a guide, Canis Summoning Charm and Command Emblem.")
-                        .translation("rigoranthusemortisreborn.config.enable_starting_items")
-                        .define("enable_starting_items", false);
-                CANIS_GENDER = builder
-                        .comment("When enabled, cani will be randomly assigned genders and will only mate and produce children with the opposite gender.")
-                        .translation("rigoranthusemortisreborn.config.enable_gender")
-                        .define("enable_gender", true);
-                CANIS_PUPS_GET_PARENT_LEVELS = builder
-                        .comment("When enabled, cani pups get some levels from their parents. When disabled, Cani pups start at 0 points.")
-                        .translation("rigoranthusemortisreborn.config.enable_canis_pups_get_parent_levels")
-                        .define("canis_pups_get_parent_levels", false);
+        DISABLE_HUNGER = builder
+                .comment("Disable hunger mode for the canis")
+                .translation("rigoranthusemortisreborn.config.canis.disable_hunger")
+                .define("disable_hunger", false);
+        STARTING_ITEMS = builder
+                .comment("When enabled you will spawn with a guide, Canis Summoning Charm and Command Emblem.")
+                .translation("rigoranthusemortisreborn.config.enable_starting_items")
+                .define("enable_starting_items", false);
+        CANIS_GENDER = builder
+                .comment("When enabled, cani will be randomly assigned genders and will only mate and produce children with the opposite gender.")
+                .translation("rigoranthusemortisreborn.config.enable_gender")
+                .define("enable_gender", true);
+        CANIS_PUPS_GET_PARENT_LEVELS = builder
+                .comment("When enabled, cani pups get some levels from their parents. When disabled, Cani pups start at 0 points.")
+                .translation("rigoranthusemortisreborn.config.enable_canis_pups_get_parent_levels")
+                .define("canis_pups_get_parent_levels", false);
         builder.pop();
 
         builder.push("->   ARMOR  +  WEAPONS   <-");
         builder.pop();
 
         builder.push("General Armor Settings");
-                enableArmorSetBonuses = builder
-                        .comment(" Enable or Disable the Full Armor Set Bonuses.")
-                        .translation("rigoranthusemortisreborn.config.server.armor_bonuses_enabled")
-                        .define("armor_bonuses_enabled", true);
-                enableBoneWeapons = builder
-                        .comment(" Enable or Disable Bone Weapons. [ Spear / Arrows ]")
-                        .translation("rigoranthusemortisreborn.config.server.bone_weapons_enabled")
-                        .define("bone_weapons_enabled", true);
-                enableNetheriteAdditions = builder
-                        .comment(" Enable or Disable the custom Netherite Armors / Weapons.")
-                        .translation("rigoranthusemortisreborn.config.server.netherite_additions_enabled")
-                        .define("netherite_additions_enabled", true);
+        enableArmorSetBonuses = builder
+                .comment(" Enable or Disable the Full Armor Set Bonuses.")
+                .translation("rigoranthusemortisreborn.config.server.armor_bonuses_enabled")
+                .define("armor_bonuses_enabled", true);
+        enableBoneWeapons = builder
+                .comment(" Enable or Disable Bone Weapons. [ Spear / Arrows ]")
+                .translation("rigoranthusemortisreborn.config.server.bone_weapons_enabled")
+                .define("bone_weapons_enabled", true);
+        enableNetheriteAdditions = builder
+                .comment(" Enable or Disable the custom Netherite Armors / Weapons.")
+                .translation("rigoranthusemortisreborn.config.server.netherite_additions_enabled")
+                .define("netherite_additions_enabled", true);
         builder.pop();
 
         builder.push("APOGEAN Armor Settings");
-                setupApogeanConfig(builder);
+        setupApogeanConfig(builder);
         builder.pop();
         builder.push("AQUEOUS Armor Settings");
-                setupAqueousConfig(builder);
+        setupAqueousConfig(builder);
         builder.pop();
         builder.push("ATROPHYING Armor Settings");
-                setupAtrophyingConfig(builder);
+        setupAtrophyingConfig(builder);
         builder.pop();
         builder.push("INCORPOREAL Armor Settings");
-                setupIncorporealConfig(builder);
+        setupIncorporealConfig(builder);
         builder.pop();
         builder.push("INFERNAL Armor Settings");
-                setupInfernalConfig(builder);
+        setupInfernalConfig(builder);
         builder.pop();
         builder.push("OPULENT Armor Settings");
-                setupOpulentConfig(builder);
+        setupOpulentConfig(builder);
         builder.pop();
         builder.push("PERNICIOUS Armor Settings");
-                setupPerniciousConfig(builder);
+        setupPerniciousConfig(builder);
         builder.pop();
         builder.push("PHANTASMAL Armor Settings");
-                setupPhantasmalConfig(builder);
+        setupPhantasmalConfig(builder);
         builder.pop();
         builder.push("REMEX Armor Settings");
-                setupRemexConfig(builder);
+        setupRemexConfig(builder);
         builder.pop();
         builder.push("DWELLER Armor Settings");
-                setupDwellerArmorConfig(builder);
+        setupDwellerArmorConfig(builder);
         builder.pop();
 
         builder.push("Weapons [other than netherite]");
-                setupWeaponConfig(builder);
+        setupWeaponConfig(builder);
         builder.pop();
 
         builder.push("->   MISCELLANEOUS SETTINGS   <-");
         builder.pop();
 
         builder.push("Misc & Resources");
-                enableTreeGeneration = builder
-                        .comment(" Enable or Disable Natural Tree & Flower Generation in Verdurous Woodlands.")
-                        .translation("rigoranthusemortisreborn.config.server.tree_generation_enabled")
-                        .define("tree_generation_enabled", true);
-                enableSoulCoal = builder
-                        .comment(" Enable or disable Soul Coal")
-                        .translation("rigoranthusemortisreborn.config.server.soul_coal_enabled")
-                        .define("soul_coal_enabled", true);
-                soulCoalBurnTime = builder
-                        .comment(" Set the Burn Time of Soul Coal in Ticks.\n [20 ticks = 1 second]\n Default: 3000")
-                        .translation("rigoranthusemortisreborn.config.server.soul_coal_burn_time")
-                        .defineInRange("soul_coal_burn_time", 3000, 10, 100000);
-                enableUnfiredBricks = builder
-                        .comment(" Enable or disable Unfired Bricks and Mud Globs.\n (Unfired Bricks add an extra step to crafting bricks that makes it more realistic, mud is useless without this Mod's Datapack)")
-                        .translation("rigoranthusemortisreborn.config.server.bricks_enabled")
-                        .define("datapack_stuff.bricks_enabled", true);
+        enableTreeGeneration = builder
+                .comment(" Enable or Disable Natural Tree & Flower Generation in Verdurous Woodlands.")
+                .translation("rigoranthusemortisreborn.config.server.tree_generation_enabled")
+                .define("tree_generation_enabled", true);
+        enableSoulCoal = builder
+                .comment(" Enable or disable Soul Coal")
+                .translation("rigoranthusemortisreborn.config.server.soul_coal_enabled")
+                .define("soul_coal_enabled", true);
+        soulCoalBurnTime = builder
+                .comment(" Set the Burn Time of Soul Coal in Ticks.\n [20 ticks = 1 second]\n Default: 3000")
+                .translation("rigoranthusemortisreborn.config.server.soul_coal_burn_time")
+                .defineInRange("soul_coal_burn_time", 3000, 10, 100000);
+        enableUnfiredBricks = builder
+                .comment(" Enable or disable Unfired Bricks and Mud Globs.\n (Unfired Bricks add an extra step to crafting bricks that makes it more realistic, mud is useless without this Mod's Datapack)")
+                .translation("rigoranthusemortisreborn.config.server.bricks_enabled")
+                .define("datapack_stuff.bricks_enabled", true);
 //                GIVEN_COAL = builder
 //                        .comment(" Hehehe, I'm a janky dev & wont tell you what this one does. lol. (Does it even do anything?)")
 //                        .translation("rigoranthusemortisreborn.config.server.lol_uwot_m8")

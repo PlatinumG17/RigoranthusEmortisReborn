@@ -287,7 +287,7 @@ public abstract class SmelteryTileEntityBase extends TileEntityInventory impleme
         }
         boolean wasBurning = this.isBurning();
         boolean flag1 = false;
-        boolean flag2 = false;
+//        boolean flag2 = false;
 
         if (this.isBurning()) {
             --this.furnaceBurnTime;
@@ -317,7 +317,6 @@ public abstract class SmelteryTileEntityBase extends TileEntityInventory impleme
                 this.currentAugment = getAugment(this.getItem(3));
                 this.furnaceBurnTime = 0;
             }
-
 
             if (this.totalCookTime != get_cook_time) {
                 this.totalCookTime = get_cook_time;

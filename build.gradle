@@ -2,104 +2,132 @@ buildscript {
     repositories {
         maven { url = 'https://maven.minecraftforge.net' }
         mavenCentral()
+        gradlePluginPortal()
+        maven { url 'https://modmaven.dev/' }
         maven { url = "https://repo.spongepowered.org/repository/maven-public/" }
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
         classpath group: "org.spongepowered", name: "mixingradle", version: "0.7-SNAPSHOT"
+        classpath 'gradle.plugin.se.bjurr.gitchangelog:git-changelog-gradle-plugin:1.71.4'
+        classpath 'gradle.plugin.com.matthewprenger:CurseGradle:1.4.0'
+        classpath 'org.ajoberstar.grgit:grgit-gradle:4.1.0'
     }
 }
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
+apply plugin: 'com.matthewprenger.cursegradle'
+apply plugin: 'se.bjurr.gitchangelog.git-changelog-gradle-plugin'
+apply plugin: 'org.ajoberstar.grgit'
+
+def branch = grgit.branch.current()
+println "On branch: ${branch.fullName}"
+println "Pipeline branch: " + (System.getenv('CI_COMMIT_BRANCH') ?: 'NONE')
 
 version = '1.16.5-2.0.0'
 group = 'com.platinumg17.rigoranthusemortisreborn'
-archivesBaseName = 'rigoranthusemortisreborn'
+archivesBaseName = "RigoranthusEmortisReborn-${project.target_mc_version}"
+//version = (grgit.describe(longDescr: true, tags: true) ?: '0-0-0').split('-').with { it -> "${it[0]}.${it[1]}" }
+
+println "Version: ${version}"
+println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
+
+sourceSets {
+    api
+    main {
+        compileClasspath += sourceSets.api.output
+        runtimeClasspath += sourceSets.api.output
+        resources.srcDirs += 'src/generated/resources'
+    }
+    test {
+        compileClasspath += sourceSets.api.output
+        runtimeClasspath += sourceSets.api.output
+    }
+}
+
+configurations {
+    apiImplementation.extendsFrom(implementation)
+    apiRuntimeOnly.extendsFrom(runtimeOnly)
+}
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(8)
 
-println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 minecraft {
     mappings channel: "official", version: "1.16.5"
     accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
     runs {
         client {
-            workingDirectory project.file('run')
+            //taskName 'rigoranthusemortisreborn_client'
+            workingDirectory file('run')
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
             property 'mixin.env.remapRefMap', 'true'
-            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
-            //arg "-mixin.config=rigoranthusemortisreborn.mixins.json"
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg" // D:/Mod-Projects/Minecraft Modding/RigoranthusReborn1.16/RigoranthusEmortisWorkspace
+            //arg "-mixin.config="+"rigoranthusemortisreborn"+".mixins.json"
             mods {
-                rigoranthusemortisreborn {
-                    source sourceSets.main
-                }
+                rigoranthusemortisreborn.sources((SourceSet[]) [sourceSets.main, sourceSets.api])
             }
         }
         server {
-            workingDirectory project.file('run')
+            //taskName 'rigoranthusemortisreborn_server'
+            workingDirectory file('run')
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
             property 'mixin.env.remapRefMap', 'true'
             property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
-            //arg "-mixin.config=rigoranthusemortisreborn.mixins.json"
+            //arg "-mixin.config="+"rigoranthusemortisreborn"+".mixins.json"
             mods {
-                rigoranthusemortisreborn {
-                    source sourceSets.main
-                }
+                rigoranthusemortisreborn.sources((SourceSet[]) [sourceSets.main, sourceSets.api])
             }
         }
         data {
-            workingDirectory project.file('run')
+            //taskName 'rigoranthusemortisreborn_data'
+            workingDirectory file('run')
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
             property 'mixin.env.remapRefMap', 'true'
             property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
-            args '--mod', 'rigoranthusemortisreborn', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            args '--mod', 'rigoranthusemortisreborn', '--all', '--output', '"' + file('src/generated/resources/') + '"', '--existing', '"' + sourceSets.main.resources.srcDirs[0] + '"'
             mods {
-                rigoranthusemortisreborn {
-                    source sourceSets.main
-                }
+                rigoranthusemortisreborn.sources((SourceSet[]) [sourceSets.main, sourceSets.api])
             }
         }
     }
 }
-//{
-//  "required": true,
-//  "package": "com.platinumg17.rigoranthusemortisreborn.core.mixin",
-//  "compatibilityLevel": "JAVA_8",
-//  "minVersion": "0.8",
-//  "refmap": "rigoranthusemortisreborn.refmap.json",
-//  "mixins": [
-//     "LivingEntityMixin"
-//  ],
-//  "injectors": {
-//  "defaultRequire": 1
-//  }
-//}
+
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 dependencies {
-
     minecraft 'net.minecraftforge:forge:1.16.5-36.2.0'
     implementation fg.deobf("software.bernie.geckolib:geckolib-forge-1.16.5:3.0.45")
     implementation fg.deobf("com.minecraftabnormals:abnormals-core:1.16.5-3.2.0")
-//    implementation fg.deobf("vazkii.patchouli:Patchouli:1.16.4-53.2")
     runtimeOnly fg.deobf("curse.maven:autoreglib-250363:3128555")
     runtimeOnly fg.deobf("curse.maven:quark-243121:3221260")
-    compileOnly fg.deobf("info.u-team:u_team_core-1.16.5:3.2.1.196")
-    compileOnly fg.deobf("curse.maven:obfuscate-289380:3000205")
     compileOnly fg.deobf("mezz.jei:jei-1.16.5:${project.jei_version}:api")
     runtimeOnly fg.deobf("mezz.jei:jei-1.16.5:${project.jei_version}")
-
-    annotationProcessor "org.spongepowered:mixin:0.8.2:processor"
-    //Project MMO
+    compileOnly fg.deobf("top.theillusivec4.caelus:caelus-forge:1.16.5-2.1.3.0:api")
+    runtimeOnly fg.deobf("curse.maven:exp-406201:3419814") // Blame
+    runtimeOnly fg.deobf("curse.maven:exp-248787:3395800") // Appleskin
+    runtimeOnly fg.deobf("curse.maven:exp-407174:3188120") // Shutup experimental settings
+    runtimeOnly fg.deobf("curse.maven:exp-268560:3206392") // Mekanism
+    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.16.3-4.0.1.0:api")
+    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.16.3-4.0.1.0")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.2")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.2")
+    compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.16.4-50")
+    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:1.16.4-50")
     //compileOnly fg.deobf("curse.maven:project-mmo:${version}")
     //runtimeOnly fg.deobf("curse.maven:project-mmo:${version}")
+    //compileOnly fg.deobf("curse.maven:obfuscate-289380:3000205")
+    annotationProcessor "org.spongepowered:mixin:0.8.2:processor"
 }
 
 repositories {
+//    maven {
+//        name 'LDTTeam - Modding'
+//        url 'https://ldtteam.jfrog.io/ldtteam/modding/'
+//    }
     maven {
         url "https://cursemaven.com"
         content {
@@ -111,6 +139,7 @@ repositories {
     maven { url = "https://repo.u-team.info" }
     maven { name = "ModMaven"
         url = "https://modmaven.k-4u.nl" }
+    maven {url = "https://maven.theillusivec4.top/"}
     maven { url = 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
     maven { url "file:///${project.projectDir}/mcmodsrepo" }
     maven { url = 'https://maven.blamejared.com' }
@@ -119,52 +148,132 @@ repositories {
     maven { url = "https://maven.shedaniel.me/" }
 }
 
+task srcJar(type: Jar) {
+    duplicatesStrategy(DuplicatesStrategy.FAIL)
+    archiveClassifier = 'sources' // classifier = 'srcs'
+    from sourceSets.main.allJava
+    from sourceSets.api.allJava
+}
+
+task apiJar(type: Jar) {
+    duplicatesStrategy(DuplicatesStrategy.FAIL)
+    archiveClassifier = 'api'
+    from sourceSets.api.output
+    from sourceSets.api.allJava
+}
+
+artifacts {
+    archives srcJar
+    archives apiJar
+}
+
+def replaceResources = tasks.register('replaceResources', Copy) {
+    it.outputs.upToDateWhen { false }
+    it.from(sourceSets.main.resources) {
+        include 'META-INF/mods.toml'
+        expand([
+            'version': project.version,
+            'minecraft_version_range': project.minecraft_version_range,
+            'forge_version_range': project.forge_version_range,
+            'fml_version_range': project.fml_version_range,
+        ])
+    }
+    it.into "$buildDir/resources/main/"
+}
+
+processResources {
+    duplicatesStrategy(DuplicatesStrategy.FAIL)
+    exclude('META-INF/mods.toml')
+    configure { finalizedBy(replaceResources) }
+}
+
+classes.configure {dependsOn(replaceResources)}
+
 tasks.named('jar') {
+    from sourceSets.main.output
+    from sourceSets.api.output
+
     manifest {
-        attributes(
-            "Specification-Title": "rigoranthusemortisreborn",
-            "Specification-Vendor": "platinumg17",
-            "Specification-Version": "2.0.0",
-            "Implementation-Title": project.name,
-            "Implementation-Version": "${version}",
-            "Implementation-Vendor" : "platinumg17",
-            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-            //"MixinConfigs": "rigoranthusemortisreborn.mixins.json"
-        )
+        attributes([
+            "Specification-Title"     : "Rigoranthus Emortis Reborn",
+            "Specification-Vendor"    : "platinumg17",
+            "Specification-Version"   : "2.0.0",
+            "Implementation-Title"    : project.name,
+            "Implementation-Version"  : "${version}",
+            "Implementation-Vendor"   : "platinumg17",
+            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+//                "TweakClass"          : "org.spongepowered.asm.launch.MixinTweaker",
+//                "TweakerOrder"        : 0,
+//            "MixinConfigs"            : "rigoranthusemortisreborn.mixins.json"
+        ])
+    }
+}
+test {useJUnitPlatform()}
+
+task makeChangelog(type: se.bjurr.gitchangelog.plugin.gradle.GitChangelogTask) {
+    file = new File("build/changelog.html")
+    untaggedName = "Current release ${project.version}"
+    fromCommit = 'c5923e1a931e0dc0c7960daf57845a64fae97b28'
+    toRef = 'HEAD'
+    templateContent = file('changelog.mustache').getText('UTF-8')
+}
+
+curseforge {
+    apiKey = findProperty('curseforge_api_key') ?: 0
+    project {
+        id = project.curseforge_project_id
+        changelog = file("build/changelog.html")
+        changelogType = 'html'
+        releaseType = findProperty("curseforge_release_type") ?: 'beta'
+        for (String v : project.additional_mc_versions.split(',')) {
+            addGameVersion v
+        }
+        addArtifact apiJar
+    }
+}
+
+afterEvaluate {
+    tasks.named("curseforge${project.curseforge_project_id}").get().dependsOn.add(makeChangelog)
+}
+//if (project.hasProperty('UPDATE_MAPPINGS')) {
+//    extractRangeMap {
+//        sources sourceSets.api.java.srcDirs
+//    }
+//    applyRangeMap {
+//        sources sourceSets.api.java.srcDirs
+//    }
+//    sourceSets.api.java.srcDirs.each { extractMappedNew.addTarget it }
+//}
+apply plugin: 'org.spongepowered.mixin'
+mixin {
+    add sourceSets.main, "rigoranthusemortisreborn.refmap.json"
+}
+tasks.withType(JavaCompile) {
+    options.incremental = true
+}
+def reobfFile = file("$buildDir/reobfJar/output.jar")
+def reobfArtifact = artifacts.add('default', reobfFile) {
+    type 'jar'
+    builtBy 'reobfJar'
+}
+jar.finalizedBy('reobfJar')
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifact reobfArtifact
+        }
+    }
+    repositories {
+        maven {
+            url "file:///${project.projectDir}/mcmodsrepo"
+        }
     }
 }
 if (System.getProperty("idea.sync.active") == "true") {
     afterEvaluate {
         tasks.withType(JavaCompile).all {
             it.options.annotationProcessorPath = files()
-        }
-    }
-}
-apply plugin: 'org.spongepowered.mixin'
-mixin {
-    add sourceSets.main, "rigoranthusemortisreborn.refmap.json"
-}
-
-tasks.withType(JavaCompile) {
-    options.incremental = true
-}
-
-jar.finalizedBy('reobfJar')
-
-task srcJar(type: Jar) {
-    from(sourceSets.main.output)
-    classifier = 'srcs'
-}
-
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            artifact jar
-        }
-    }
-    repositories {
-        maven {
-            url "file:///${project.projectDir}/mcmodsrepo"
         }
     }
 }

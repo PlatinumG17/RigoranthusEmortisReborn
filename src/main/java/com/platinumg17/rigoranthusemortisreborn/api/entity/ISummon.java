@@ -16,9 +16,8 @@ import java.util.UUID;
  * For entities summoned by spells.
  */
 public interface ISummon {
-    // How many ticks the summon has left
-    int getTicksLeft();
 
+    int getTicksLeft();
     void setTicksLeft(int ticks);
 
     default @Nullable LivingEntity getLivingEntity(){

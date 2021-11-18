@@ -24,29 +24,17 @@ public class REFakePlayer extends FakePlayer {
 
     private static final NetworkManager NETWORK_MANAGER = new NetworkManager(PacketDirection.CLIENTBOUND);
     public static final GameProfile PROFILE =
-            new GameProfile(UUID.fromString("7400926d-1007-4e53-880f-b43e67f2bf29"), "Rigoranthus_Emortis_Reborn");
-
+        new GameProfile(UUID.fromString("7400926d-1007-4e53-880f-b43e67f2bf29"),
+       "Rigoranthus_Emortis_Reborn"
+    );
 
     private REFakePlayer(ServerWorld world) {
         super(world, PROFILE);
         connection = new FakePlayNetHandler(world.getServer(), this);
     }
     private static WeakReference<REFakePlayer> FAKE_PLAYER = null;
-
-    public static REFakePlayer getPlayer(ServerWorld world)
-    {
-//        REFakePlayer ret = FAKE_PLAYER != null ? FAKE_PLAYER.get() : null;
-//        if (ret == null)
-//        {
-//            ret = new REFakePlayer(world);
-//            FAKE_PLAYER = new WeakReference<>(ret);
-//        }
-        return new REFakePlayer(world);
-    }
-
-
-    @Override
-    public OptionalInt openMenu(INamedContainerProvider container) {
+    public static REFakePlayer getPlayer(ServerWorld world) {return new REFakePlayer(world);}
+    @Override public OptionalInt openMenu(INamedContainerProvider container) {
         return OptionalInt.empty();
     }
 
@@ -58,11 +46,9 @@ public class REFakePlayer extends FakePlayer {
         public FakePlayNetHandler(MinecraftServer server, ServerPlayerEntity playerIn) {
             super(server, NETWORK_MANAGER, playerIn);
         }
-
         @Override
         public void send(IPacket<?> packetIn) {}
-
         @Override
-        public void send(IPacket<?> packetIn, GenericFutureListener<? extends Future<? super Void>> futureListeners) { }
+        public void send(IPacket<?> packetIn, GenericFutureListener<? extends Future<? super Void>> futureListeners) {}
     }
 }

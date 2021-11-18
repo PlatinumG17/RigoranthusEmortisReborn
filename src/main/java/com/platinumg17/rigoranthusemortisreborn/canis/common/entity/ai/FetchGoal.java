@@ -2,8 +2,8 @@ package com.platinumg17.rigoranthusemortisreborn.canis.common.entity.ai;
 
 import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.CanisEntity;
 import net.minecraft.item.ItemStack;
-import com.platinumg17.rigoranthusemortisreborn.api.feature.EnumMode;
-import com.platinumg17.rigoranthusemortisreborn.api.interfaces.IThrowableItem;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.feature.EnumMode;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.interfaces.IThrowableItem;
 
 import java.util.function.Predicate;
 

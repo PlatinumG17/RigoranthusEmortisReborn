@@ -8,8 +8,8 @@ import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import org.apache.commons.lang3.tuple.Pair;
 import com.platinumg17.rigoranthusemortisreborn.api.RigoranthusEmortisRebornAPI;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.IBeddingMaterial;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.ICasingMaterial;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.IBeddingMaterial;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.ICasingMaterial;
 
 import java.util.ArrayList;
 import java.util.Collection;

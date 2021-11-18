@@ -7,8 +7,8 @@ import com.platinumg17.rigoranthusemortisreborn.canis.common.canisnetwork.packet
 import com.platinumg17.rigoranthusemortisreborn.canis.common.util.NBTUtilities;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.util.WorldUtil;
 import com.platinumg17.rigoranthusemortisreborn.api.RigoranthusEmortisRebornAPI;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.IBeddingMaterial;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.ICasingMaterial;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.IBeddingMaterial;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.ICasingMaterial;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.nbt.CompoundNBT;

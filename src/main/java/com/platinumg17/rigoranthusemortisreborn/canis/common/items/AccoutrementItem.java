@@ -6,10 +6,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
-import com.platinumg17.rigoranthusemortisreborn.api.interfaces.AbstractCanisEntity;
-import com.platinumg17.rigoranthusemortisreborn.api.interfaces.ICanisItem;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.Accoutrement;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.AccoutrementInstance;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.entity.AbstractCanisEntity;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.interfaces.ICanisItem;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.Accoutrement;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.AccoutrementInstance;
 
 import java.util.function.Supplier;
 

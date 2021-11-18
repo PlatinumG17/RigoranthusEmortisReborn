@@ -4,8 +4,8 @@ import com.platinumg17.rigoranthusemortisreborn.canis.common.util.REUtil;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.datasync.IDataSerializer;
 import com.platinumg17.rigoranthusemortisreborn.api.RigoranthusEmortisRebornAPI;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.Accoutrement;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.AccoutrementInstance;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.Accoutrement;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.AccoutrementInstance;
 
 import java.util.Optional;
 

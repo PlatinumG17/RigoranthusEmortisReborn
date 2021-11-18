@@ -3,32 +3,29 @@ package com.platinumg17.rigoranthusemortisreborn.config;
 import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import com.electronwill.nightconfig.core.io.WritingMode;
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
-import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.IWorld;
+import com.platinumg17.rigoranthusemortisreborn.api.RigoranthusEmortisRebornAPI;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
+import com.platinumg17.rigoranthusemortisreborn.api.apimagic.RegistryHelper;
+import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.AbstractSpellPart;
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.loading.FMLPaths;
 
-import javax.annotation.Nullable;
 import java.nio.file.Path;
-import java.util.UUID;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Mod.EventBusSubscriber
 public class Config {
 
-//    public static ForgeConfigSpec.IntValue smelteryXPDropValue;                     public static ForgeConfigSpec.IntValue smelteryXPDropValue2;
-//    public static ForgeConfigSpec.IntValue masterfulSmelterySpeed;                  public static ForgeConfigSpec.IntValue cache_capacity;
-
     public static ForgeConfigSpec COMMON_CONFIG;
 
-    //    public static ForgeConfigSpec.BooleanValue GIVEN_COAL;
     public static ForgeConfigSpec.BooleanValue DISABLE_HUNGER;                      public static ForgeConfigSpec.BooleanValue STARTING_ITEMS;
     public static ForgeConfigSpec.BooleanValue CANIS_GENDER;                        public static ForgeConfigSpec.BooleanValue CANIS_PUPS_GET_PARENT_LEVELS;
 
@@ -160,22 +157,58 @@ public class Config {
     public static ForgeConfigSpec.IntValue languidDwellerMaxGroupSize;              public static ForgeConfigSpec.IntValue feralCanisChordataMaxGroupSize;
     public static ForgeConfigSpec.IntValue languidDwellerMaxSpawnHeight;
 
+    public static ForgeConfigSpec.BooleanValue SPAWN_ORE;                           public static ForgeConfigSpec.BooleanValue SPAWN_BERRIES;
+    public static ForgeConfigSpec.BooleanValue SPAWN_BOOK;                          public static ForgeConfigSpec.IntValue INIT_MAX_DOMINION;
+    public static ForgeConfigSpec.IntValue INIT_DOMINION_REGEN;                     public static ForgeConfigSpec.IntValue GLYPH_MAX_BONUS;
+    public static ForgeConfigSpec.DoubleValue GLYPH_REGEN_BONUS;                    public static ForgeConfigSpec.DoubleValue TREE_SPAWN_RATE;
+    public static ForgeConfigSpec.IntValue TIER_MAX_BONUS;                          public static ForgeConfigSpec.IntValue DOMINION_BOOST_BONUS;
+    public static ForgeConfigSpec.IntValue DOMINION_REGEN_ENCHANT_BONUS;            public static ForgeConfigSpec.IntValue DOMINION_REGEN_POTION;
+    public static ForgeConfigSpec.IntValue REGEN_INTERVAL;                          public static ForgeConfigSpec.IntValue SUMMON_FAMILIAR_DOMINION_COST;
+    public static ForgeConfigSpec.IntValue MOB_WEIGHT;                              public static ForgeConfigSpec.BooleanValue MOBS_ATTACK_ANIMALS;
+
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> DIMENSION_BLACKLIST;
+    public static ForgeConfigSpec.IntValue ARCHWOOD_FOREST_WEIGHT;
+    public static ForgeConfigSpec.ConfigValue<? extends String> CRYSTALLIZER_ITEM;
+
+    public static Map<String, Integer> addonSpellCosts = new HashMap<>();
+    public static void putAddonSpellCost(String tag, int cost){
+        addonSpellCosts.put(tag,cost);
+    }
+    public static boolean isSpellEnabled(String tag){
+        AbstractSpellPart spellPart = RigoranthusEmortisRebornAPI.getInstance().getSpell_map().get(tag);
+        return spellPart.ENABLED == null || spellPart.ENABLED.get();
+    }
+    public static int getAddonSpellCost(String tag){
+        return addonSpellCosts.getOrDefault(tag,
+            RigoranthusEmortisRebornAPI.getInstance().getSpell_map().containsKey(tag) ?
+            RigoranthusEmortisRebornAPI.getInstance().getSpell_map().get(tag).getDominionCost() : 0);
+    }
+    private static Map<String, ForgeConfigSpec.IntValue> spellCost = new HashMap<>();
+    /**
+     * Returns the dominion cost specified in the Rigoranthus Emortis config, or falls back to the addon spell cost map. If not there, falls back to the method cost.
+     */
+    @Deprecated
+    public static int getSpellCost(String tag){return spellCost.containsKey(tag + "_cost") ? spellCost.get(tag+"_cost").get() : getAddonSpellCost(tag);}
+
     static {
         ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
 
         //_____________  S E R V E R     C O N F I G   _____________//
 
-        builder.push("Settings");
+        builder.push("General Settings");
         builder.pop();
 
         builder.push("->   WORLD-GEN / BIOMES  +  ORES / RESOURCES   <-");
         builder.pop();
 
         builder.push("Ore Generation, Ore Fragments, and Crushing Hammers");
+        SPAWN_ORE = builder.comment(" Spawn Recondite Ore in the world").define("oreGen", true);
         setupOreConfig(builder);
         builder.pop();
 
         builder.push("Biome Config");
+        TREE_SPAWN_RATE = builder.comment(" Rate of tree spawn per chunk").defineInRange("genTrees", 0.002, 0.0d, 1.0d);
+        SPAWN_BERRIES = builder.comment(" Spawn Dominion Berry Bushes in the world").define("genBerries", true);
         setupBiomeConfig(builder);
         builder.pop();
 
@@ -183,6 +216,7 @@ public class Config {
         builder.pop();
 
         builder.push("Mobs [Spawn Weights & Attributes]");
+        DIMENSION_BLACKLIST = builder.comment(" Dimensions where hostile mobs will not spawn [In addition to the ones they already don't spawn in]. Ex: [\"minecraft:overworld\", \"undergarden:undergarden\"]. . Run /forge dimensions for a list.").translation("rigoranthusemortisreborn.config.dimension_blacklist").defineList("dimensionBlacklist", new ArrayList<>(),(o) -> true);
         setupCadaverConfig(builder);
         setupNecrawConfig(builder);
         setupFeralCanisConfig(builder);
@@ -191,19 +225,19 @@ public class Config {
 
         builder.push("Tame Canis Settings");
         DISABLE_HUNGER = builder
-                .comment("Disable hunger mode for the canis")
+                .comment(" Disable hunger mode for the canis")
                 .translation("rigoranthusemortisreborn.config.canis.disable_hunger")
                 .define("disable_hunger", false);
         STARTING_ITEMS = builder
-                .comment("When enabled you will spawn with a guide, Canis Summoning Charm and Command Emblem.")
+                .comment(" When enabled you will spawn with a guide, Canis Summoning Charm and Command Emblem.")
                 .translation("rigoranthusemortisreborn.config.enable_starting_items")
                 .define("enable_starting_items", false);
         CANIS_GENDER = builder
-                .comment("When enabled, cani will be randomly assigned genders and will only mate and produce children with the opposite gender.")
+                .comment(" When enabled, cani will be randomly assigned genders and will only mate and produce children with the opposite gender.")
                 .translation("rigoranthusemortisreborn.config.enable_gender")
                 .define("enable_gender", true);
         CANIS_PUPS_GET_PARENT_LEVELS = builder
-                .comment("When enabled, cani pups get some levels from their parents. When disabled, Cani pups start at 0 points.")
+                .comment(" When enabled, cani pups get some levels from their parents. When disabled, Cani pups start at 0 points.")
                 .translation("rigoranthusemortisreborn.config.enable_canis_pups_get_parent_levels")
                 .define("canis_pups_get_parent_levels", false);
         builder.pop();
@@ -281,13 +315,37 @@ public class Config {
                 .comment(" Enable or disable Unfired Bricks and Mud Globs.\n (Unfired Bricks add an extra step to crafting bricks that makes it more realistic, mud is useless without this Mod's Datapack)")
                 .translation("rigoranthusemortisreborn.config.server.bricks_enabled")
                 .define("datapack_stuff.bricks_enabled", true);
-//                GIVEN_COAL = builder
-//                        .comment(" Hehehe, I'm a janky dev & wont tell you what this one does. lol. (Does it even do anything?)")
-//                        .translation("rigoranthusemortisreborn.config.server.lol_uwot_m8")
-//                        .define("lol_uwot_m8", false);
+        builder.pop();
+
+        builder.comment("Magic").push("magic");
+
+        SPAWN_BOOK = builder.comment(" Spawn a book in the players inventory on login").define("spawnBook", true);
+        SUMMON_FAMILIAR_DOMINION_COST = builder.comment("How much dominion it costs per generation").defineInRange("summonDominionCost",250,0,10000);
+        MOB_WEIGHT = builder.comment(" How often Mob spawn").defineInRange("mobWeight",5,0,100);
+        MOBS_ATTACK_ANIMALS = builder.comment(" Should Mobs from this mod attack animals?").define("mobsHuntAnimals", true);
+
+        ARCHWOOD_FOREST_WEIGHT = builder.comment(" Archwood forest spawn weight").defineInRange("archwoodForest", 3, 0, Integer.MAX_VALUE);
+        CRYSTALLIZER_ITEM = builder.comment(" Crystallizer output item. Do not use a wrong ID!").define("crystallizer_output", "rigoranthusemortisreborn:mana_gem");
+        builder.pop();
+
+        builder.comment("Dominion").push("dominion");
+        INIT_DOMINION_REGEN = builder.comment(" Base dominion regen in seconds").defineInRange("baseRegen", 5, 0, Integer.MAX_VALUE);
+        INIT_MAX_DOMINION = builder.comment(" Base max dominion").defineInRange("baseMax", 100, 0, Integer.MAX_VALUE);
+        REGEN_INTERVAL = builder.comment(" How often the Max & Regen Rate of Dominion will be calculated, in ticks.\n NOTE: The default base dominion regen is the lowest recommended rate.")
+                .defineInRange("updateInterval", 5, 1, 20);
+        GLYPH_MAX_BONUS = builder.comment(" Max dominion bonus per glyph").defineInRange("glyphmax", 15, 0, Integer.MAX_VALUE);
+        TIER_MAX_BONUS = builder.comment(" Max dominion bonus for tier of book").defineInRange("tierMax", 50, 0, Integer.MAX_VALUE);
+        DOMINION_BOOST_BONUS = builder.comment(" Dominion Boost value per level").defineInRange("dominionBoost", 25, 0, Integer.MAX_VALUE);
+        DOMINION_REGEN_ENCHANT_BONUS = builder.comment(" [Enchantment] Dominion regen per second per level").defineInRange("dominionRegenEnchantment", 2, 0, Integer.MAX_VALUE);
+        GLYPH_REGEN_BONUS = builder.comment(" Regen bonus per glyph").defineInRange("glyphRegen", 0.33, 0.0, Integer.MAX_VALUE);
+        DOMINION_REGEN_POTION = builder.comment(" Regen bonus per potion level").defineInRange("potionRegen", 10, 0, Integer.MAX_VALUE);
         builder.pop();
 
         COMMON_CONFIG = builder.build();
+        RegistryHelper.generateConfig(EmortisConstants.MOD_ID, new ArrayList<>(RigoranthusEmortisRebornAPI.getInstance().getSpell_map().values()));
+    }
+    public static boolean isStarterEnabled(AbstractSpellPart e){
+        return e.STARTER_SPELL != null && e.STARTER_SPELL.get();
     }
     private static void setupCadaverConfig(ForgeConfigSpec.Builder builder) {
         sunderedCadaverSpawnWeight = builder.comment(" How often this mob Spawns.\n Higher Number = Spawn More Often\n Set to 0 to disable spawns.\n Default: 45").translation("rigoranthusemortisreborn.config.server.cadaver.spawn_weight").defineInRange("cadaver.spawn_weight", 45, 0, 10000);
@@ -751,7 +809,14 @@ public class Config {
         Config.sunderedCadaverSpawnWeight.get();              Config.necrawFasciiSpawnWeight.get();
         Config.sunderedCadaverMinGroupSize.get();             Config.necrawFasciiMinGroupSize.get();
         Config.sunderedCadaverMaxGroupSize.get();             Config.necrawFasciiMaxGroupSize.get();
-        Config.dweller_thorax_knockback_resistance.get();
+        Config.dweller_thorax_knockback_resistance.get();     Config.MOB_WEIGHT.get();
+        Config.SPAWN_ORE.get();                               Config.SPAWN_BERRIES.get();
+        Config.TREE_SPAWN_RATE.get();                         Config.TIER_MAX_BONUS.get();
+        Config.INIT_MAX_DOMINION.get();                       Config.GLYPH_MAX_BONUS.get();
+        Config.INIT_DOMINION_REGEN.get();                     Config.GLYPH_REGEN_BONUS.get();
+        Config.DOMINION_BOOST_BONUS.get();                    Config.DOMINION_REGEN_POTION.get();
+        Config.SUMMON_FAMILIAR_DOMINION_COST.get();           Config.MOBS_ATTACK_ANIMALS.get();
+        Config.DOMINION_REGEN_ENCHANT_BONUS.get();            Config.REGEN_INTERVAL.get();
     }
 
     @SubscribeEvent

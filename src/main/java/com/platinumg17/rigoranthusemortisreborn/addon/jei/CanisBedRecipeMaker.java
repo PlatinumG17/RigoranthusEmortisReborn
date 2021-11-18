@@ -10,8 +10,8 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.crafting.IShapedRecipe;
 import com.platinumg17.rigoranthusemortisreborn.api.RigoranthusEmortisRebornAPI;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.IBeddingMaterial;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.ICasingMaterial;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.IBeddingMaterial;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.ICasingMaterial;
 
 import java.util.ArrayList;
 import java.util.Collection;

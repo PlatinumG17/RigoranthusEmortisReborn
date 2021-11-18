@@ -6,8 +6,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.ActionResultType;
-import com.platinumg17.rigoranthusemortisreborn.api.interfaces.AbstractCanisEntity;
-import com.platinumg17.rigoranthusemortisreborn.api.interfaces.ICanisFoodHandler;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.entity.AbstractCanisEntity;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.interfaces.ICanisFoodHandler;
 
 public class ChewStickItem extends Item implements ICanisFoodHandler {
 

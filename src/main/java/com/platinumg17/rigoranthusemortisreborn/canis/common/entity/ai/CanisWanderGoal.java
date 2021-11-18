@@ -5,7 +5,7 @@ import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
-import com.platinumg17.rigoranthusemortisreborn.api.feature.EnumMode;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.feature.EnumMode;
 
 import javax.annotation.Nullable;
 import java.util.EnumSet;

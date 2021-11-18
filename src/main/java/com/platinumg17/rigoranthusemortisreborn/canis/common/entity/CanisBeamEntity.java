@@ -4,7 +4,7 @@ import com.google.common.base.Predicates;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.SpecializedEntityTypes;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.util.EntityUtil;
-import com.platinumg17.rigoranthusemortisreborn.api.feature.EnumMode;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.feature.EnumMode;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;

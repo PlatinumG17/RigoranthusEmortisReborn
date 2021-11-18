@@ -3,7 +3,7 @@ package com.platinumg17.rigoranthusemortisreborn.canis.client.entity.model;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.client.renderer.entity.model.TintedAgeableModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
-import com.platinumg17.rigoranthusemortisreborn.api.interfaces.AbstractCanisEntity;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.entity.AbstractCanisEntity;
 import net.minecraft.util.math.MathHelper;
 
 public class CanisModel<T extends AbstractCanisEntity> extends TintedAgeableModel<T> {

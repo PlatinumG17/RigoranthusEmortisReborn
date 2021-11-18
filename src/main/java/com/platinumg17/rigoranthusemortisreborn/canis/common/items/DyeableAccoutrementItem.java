@@ -5,8 +5,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
-import com.platinumg17.rigoranthusemortisreborn.api.interfaces.AbstractCanisEntity;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.AccoutrementInstance;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.entity.AbstractCanisEntity;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.AccoutrementInstance;
 
 import java.util.function.Supplier;
 

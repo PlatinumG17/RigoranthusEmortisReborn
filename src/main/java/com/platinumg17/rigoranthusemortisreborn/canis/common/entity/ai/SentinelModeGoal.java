@@ -4,7 +4,7 @@ import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.CanisEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.monster.MonsterEntity;
-import com.platinumg17.rigoranthusemortisreborn.api.feature.EnumMode;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.feature.EnumMode;
 
 public class SentinelModeGoal extends NearestAttackableTargetGoal<MonsterEntity> {
 

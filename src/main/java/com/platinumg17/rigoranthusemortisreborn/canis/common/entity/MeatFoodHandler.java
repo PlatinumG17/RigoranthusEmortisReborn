@@ -4,8 +4,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.ActionResultType;
-import com.platinumg17.rigoranthusemortisreborn.api.interfaces.AbstractCanisEntity;
-import com.platinumg17.rigoranthusemortisreborn.api.interfaces.ICanisFoodHandler;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.entity.AbstractCanisEntity;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.interfaces.ICanisFoodHandler;
 
 public class MeatFoodHandler implements ICanisFoodHandler {
 

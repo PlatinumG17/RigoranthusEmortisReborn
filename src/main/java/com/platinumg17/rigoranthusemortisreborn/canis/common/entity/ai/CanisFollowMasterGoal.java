@@ -8,8 +8,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.world.World;
-import com.platinumg17.rigoranthusemortisreborn.api.feature.EnumMode;
-import com.platinumg17.rigoranthusemortisreborn.api.interfaces.IThrowableItem;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.feature.EnumMode;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.interfaces.IThrowableItem;
 
 import java.util.EnumSet;
 

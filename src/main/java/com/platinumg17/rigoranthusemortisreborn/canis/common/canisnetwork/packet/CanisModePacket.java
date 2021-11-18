@@ -4,7 +4,7 @@ import com.platinumg17.rigoranthusemortisreborn.canis.common.canisnetwork.packet
 import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.CanisEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
-import com.platinumg17.rigoranthusemortisreborn.api.feature.EnumMode;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.feature.EnumMode;
 
 import java.util.function.Supplier;
 

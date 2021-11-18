@@ -10,8 +10,8 @@ import com.platinumg17.rigoranthusemortisreborn.canis.common.SpecializedEntityTy
 import com.platinumg17.rigoranthusemortisreborn.canis.common.util.EntityUtil;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.util.WorldUtil;
 import com.platinumg17.rigoranthusemortisreborn.api.RigoranthusEmortisRebornAPI;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.IBeddingMaterial;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.ICasingMaterial;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.IBeddingMaterial;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.ICasingMaterial;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;

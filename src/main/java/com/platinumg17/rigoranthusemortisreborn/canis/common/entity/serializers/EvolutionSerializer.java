@@ -2,7 +2,7 @@ package com.platinumg17.rigoranthusemortisreborn.canis.common.entity.serializers
 
 //import net.minecraft.network.PacketBuffer;
 //import net.minecraft.network.datasync.IDataSerializer;
-//import com.platinumg17.rigoranthusemortisreborn.api.feature.CanisStage;
+//import com.platinumg17.rigoranthusemortisreborn.api.apicanis.feature.CanisStage;
 
 //public class EvolutionSerializer implements IDataSerializer<CanisStage> {
 //    @Override

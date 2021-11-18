@@ -4,10 +4,10 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
-import com.platinumg17.rigoranthusemortisreborn.api.feature.bedding.BeddingMaterial;
-import com.platinumg17.rigoranthusemortisreborn.api.feature.bedding.CasingMaterial;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.IBeddingMaterial;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.ICasingMaterial;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.feature.bedding.BeddingMaterial;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.feature.bedding.CasingMaterial;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.IBeddingMaterial;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.ICasingMaterial;
 
 import java.util.function.Supplier;
 

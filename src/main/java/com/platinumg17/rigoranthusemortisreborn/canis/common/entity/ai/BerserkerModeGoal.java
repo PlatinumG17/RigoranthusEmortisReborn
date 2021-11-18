@@ -3,7 +3,7 @@ package com.platinumg17.rigoranthusemortisreborn.canis.common.entity.ai;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.CanisEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
-import com.platinumg17.rigoranthusemortisreborn.api.feature.EnumMode;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.feature.EnumMode;
 
 public class BerserkerModeGoal<T extends LivingEntity> extends NearestAttackableTargetGoal<T> {
 

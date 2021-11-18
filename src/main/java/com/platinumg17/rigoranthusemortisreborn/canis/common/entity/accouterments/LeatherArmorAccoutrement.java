@@ -1,9 +1,9 @@
 package com.platinumg17.rigoranthusemortisreborn.canis.common.entity.accouterments;
 
 import com.platinumg17.rigoranthusemortisreborn.canis.common.util.ColorCache;
-import com.platinumg17.rigoranthusemortisreborn.api.interfaces.IColoredObject;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.AccoutrementInstance;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.AccoutrementType;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.interfaces.IColoredObject;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.AccoutrementInstance;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.AccoutrementType;
 import net.minecraft.item.IDyeableArmorItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;

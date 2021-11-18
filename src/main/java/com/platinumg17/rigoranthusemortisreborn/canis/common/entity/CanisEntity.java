@@ -103,13 +103,13 @@ import net.minecraftforge.common.util.ITeleporter;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.registries.ForgeRegistries;
-import com.platinumg17.rigoranthusemortisreborn.api.feature.WetSource;
-import com.platinumg17.rigoranthusemortisreborn.api.feature.*;
-import com.platinumg17.rigoranthusemortisreborn.api.interfaces.AbstractCanisEntity;
-import com.platinumg17.rigoranthusemortisreborn.api.interfaces.ICanisFoodHandler;
-import com.platinumg17.rigoranthusemortisreborn.api.interfaces.ICanisTransmogrification;
-import com.platinumg17.rigoranthusemortisreborn.api.interfaces.IThrowableItem;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.*;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.feature.WetSource;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.feature.*;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.entity.AbstractCanisEntity;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.interfaces.ICanisFoodHandler;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.interfaces.ICanisTransmogrification;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.interfaces.IThrowableItem;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.*;
 
 public class CanisEntity extends AbstractCanisEntity {
 

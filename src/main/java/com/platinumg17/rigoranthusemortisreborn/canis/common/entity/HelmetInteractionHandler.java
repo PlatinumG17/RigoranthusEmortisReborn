@@ -11,10 +11,10 @@ import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.IRegistryDelegate;
-import com.platinumg17.rigoranthusemortisreborn.api.interfaces.AbstractCanisEntity;
-import com.platinumg17.rigoranthusemortisreborn.api.interfaces.ICanisItem;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.Accoutrement;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.AccoutrementInstance;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.entity.AbstractCanisEntity;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.interfaces.ICanisItem;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.Accoutrement;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.AccoutrementInstance;
 
 import java.util.Map;
 

@@ -7,7 +7,7 @@ import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.config.ModConfig;
 import org.apache.commons.lang3.tuple.Pair;
 import com.platinumg17.rigoranthusemortisreborn.api.RigoranthusEmortisRebornAPI;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.Skill;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.Skill;
 
 import java.util.HashMap;
 import java.util.Map;

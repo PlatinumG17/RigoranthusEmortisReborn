@@ -7,8 +7,8 @@ import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.CanisEntity;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
-import com.platinumg17.rigoranthusemortisreborn.api.client.renderer.ISkillRenderer;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.SkillInstance;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.client.ISkillRenderer;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.SkillInstance;
 
 public class WaywardTravellerRenderer implements ISkillRenderer<CanisEntity> {
 

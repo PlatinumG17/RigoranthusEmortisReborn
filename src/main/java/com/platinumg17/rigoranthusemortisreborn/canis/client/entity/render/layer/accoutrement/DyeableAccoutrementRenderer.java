@@ -7,8 +7,8 @@ import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.util.ResourceLocation;
-import com.platinumg17.rigoranthusemortisreborn.api.client.renderer.IAccoutrementRenderer;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.AccoutrementInstance;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.client.IAccoutrementRenderer;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.AccoutrementInstance;
 
 public class DyeableAccoutrementRenderer implements IAccoutrementRenderer<CanisEntity> {
 

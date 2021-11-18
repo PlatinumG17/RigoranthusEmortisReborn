@@ -1,6 +1,6 @@
 package com.platinumg17.rigoranthusemortisreborn.config;
 
-import com.platinumg17.rigoranthusemortisreborn.api.registry.Skill;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.Skill;
 
 import java.util.ArrayList;
 import java.util.List;

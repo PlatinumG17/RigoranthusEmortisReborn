@@ -2,9 +2,9 @@ package com.platinumg17.rigoranthusemortisreborn.canis.common.skill;
 
 import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.particles.ParticleTypes;
-import com.platinumg17.rigoranthusemortisreborn.api.interfaces.AbstractCanisEntity;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.Skill;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.SkillInstance;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.entity.AbstractCanisEntity;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.Skill;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.SkillInstance;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityPredicates;
 

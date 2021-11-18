@@ -16,11 +16,11 @@ import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
-import com.platinumg17.rigoranthusemortisreborn.api.feature.DataKey;
-import com.platinumg17.rigoranthusemortisreborn.api.feature.EnumMode;
-import com.platinumg17.rigoranthusemortisreborn.api.interfaces.AbstractCanisEntity;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.Skill;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.SkillInstance;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.feature.DataKey;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.feature.EnumMode;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.entity.AbstractCanisEntity;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.Skill;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.SkillInstance;
 
 import javax.annotation.Nullable;
 import java.util.*;

@@ -2,9 +2,9 @@ package com.platinumg17.rigoranthusemortisreborn.canis.client.screen;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.platinumg17.rigoranthusemortisreborn.api.RigoranthusEmortisRebornAPI;
-import com.platinumg17.rigoranthusemortisreborn.api.feature.CanisLevel;
-import com.platinumg17.rigoranthusemortisreborn.api.feature.EnumMode;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.Skill;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.feature.CanisLevel;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.feature.EnumMode;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.Skill;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.canisnetwork.CanisPacketHandler;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.canisnetwork.packet.data.*;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.CanisEntity;

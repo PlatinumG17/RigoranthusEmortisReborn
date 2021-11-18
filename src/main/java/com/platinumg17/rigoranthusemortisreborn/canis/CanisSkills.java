@@ -4,8 +4,8 @@ import java.util.function.BiFunction;
 import java.util.function.Supplier;
 
 import com.platinumg17.rigoranthusemortisreborn.canis.common.skill.*;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.Skill;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.SkillInstance;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.Skill;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.SkillInstance;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.skill.NeptunesBaneSkill;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.skill.CavalierSkill;

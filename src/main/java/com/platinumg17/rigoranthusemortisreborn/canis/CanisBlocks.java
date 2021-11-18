@@ -1,7 +1,6 @@
 package com.platinumg17.rigoranthusemortisreborn.canis;
 
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
-import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusItemGroup;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.block.CanisBedBlock;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.block.FoodBowlBlock;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
@@ -23,12 +22,12 @@ public class CanisBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, EmortisConstants.MOD_ID);
     public static final DeferredRegister<Item> ITEMS = CanisItems.ITEMS;
 
-    public static final RegistryObject<CanisBedBlock> CANIS_BED = registerWithItem("canis_bed", CanisBedBlock::new, (prop) -> prop.tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP));
+    public static final RegistryObject<CanisBedBlock> CANIS_BED = registerWithItem("canis_bed", CanisBedBlock::new, (prop) -> prop.tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP));
 //    public static final RegistryObject<CanisBathBlock> CANIS_BATH = registerWithItem("canis_bath", CanisBathBlock::new);
     public static final RegistryObject<FoodBowlBlock> FOOD_BOWL = registerWithItem("food_bowl", FoodBowlBlock::new);
 
     private static Item.Properties createInitialProp() {
-        return new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP);
+        return new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP);
     }
 
     private static BlockItem makeItemBlock(Block block) {

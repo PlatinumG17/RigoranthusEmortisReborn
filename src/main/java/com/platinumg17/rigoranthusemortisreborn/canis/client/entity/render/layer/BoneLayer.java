@@ -9,7 +9,7 @@ import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.model.ItemCameraTransforms;
 import net.minecraft.util.math.vector.Vector3f;
-import com.platinumg17.rigoranthusemortisreborn.api.interfaces.IThrowableItem;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.interfaces.IThrowableItem;
 
 public class BoneLayer extends LayerRenderer<CanisEntity, CanisModel<CanisEntity>> {
 

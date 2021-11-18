@@ -2,9 +2,9 @@ package com.platinumg17.rigoranthusemortisreborn.canis.common.skill;
 
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
-import com.platinumg17.rigoranthusemortisreborn.api.interfaces.AbstractCanisEntity;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.Skill;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.SkillInstance;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.entity.AbstractCanisEntity;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.Skill;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.SkillInstance;
 
 import java.util.UUID;
 

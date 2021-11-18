@@ -1,12 +1,12 @@
 package com.platinumg17.rigoranthusemortisreborn.canis;
 
+import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.accouterments.CanisAccouterments;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.accouterments.DyeableAccoutrement;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.items.*;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.util.REUtil;
-import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusItemGroup;
-import com.platinumg17.rigoranthusemortisreborn.api.feature.CanisLevel;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.Accoutrement;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.feature.CanisLevel;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.Accoutrement;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.items.CanisSummoningCharmItem;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.items.CadaverBoneItem;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.items.SizeBoneItem;
@@ -55,7 +55,7 @@ public class CanisItems {
     public static final RegistryObject<Item> MASTER_CHANGE = registerWith("master_change", ChangeMasterItem::new, 1);
 
     private static Item.Properties createInitialProp() {
-        return new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP);
+        return new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP);
     }
 
     private static RegistryObject<Item> registerThrowBone(final String name) {

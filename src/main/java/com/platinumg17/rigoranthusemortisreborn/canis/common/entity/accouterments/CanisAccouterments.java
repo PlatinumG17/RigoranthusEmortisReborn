@@ -6,7 +6,7 @@ import net.minecraft.item.Items;
 import net.minecraft.util.IItemProvider;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.Accoutrement;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.Accoutrement;
 
 import java.util.function.Supplier;
 

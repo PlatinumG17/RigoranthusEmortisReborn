@@ -15,7 +15,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.util.Constants;
-import com.platinumg17.rigoranthusemortisreborn.api.feature.EnumGender;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.feature.EnumGender;
 
 import javax.annotation.Nullable;
 import java.util.Optional;

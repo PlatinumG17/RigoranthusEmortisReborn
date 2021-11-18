@@ -5,10 +5,10 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 import com.google.common.collect.Maps;
 import net.minecraftforge.registries.IRegistryDelegate;
-import com.platinumg17.rigoranthusemortisreborn.api.client.renderer.IAccoutrementRenderer;
-import com.platinumg17.rigoranthusemortisreborn.api.client.renderer.ISkillRenderer;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.Accoutrement;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.Skill;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.client.IAccoutrementRenderer;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.client.ISkillRenderer;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.Accoutrement;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.Skill;
 
 public class CollarRenderManager {
 

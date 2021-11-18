@@ -4,7 +4,7 @@ import com.platinumg17.rigoranthusemortisreborn.canis.CanisBlocks;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.util.CanisBedUtil;
 import com.platinumg17.rigoranthusemortisreborn.config.ConfigValues;
-import com.platinumg17.rigoranthusemortisreborn.tileentity.gui.MasterfulSmelteryScreen;
+import com.platinumg17.rigoranthusemortisreborn.blocks.tileentity.gui.MasterfulSmelteryScreen;
 import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
@@ -13,8 +13,8 @@ import mezz.jei.api.registration.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import org.apache.commons.lang3.tuple.Pair;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.IBeddingMaterial;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.ICasingMaterial;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.IBeddingMaterial;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.ICasingMaterial;
 
 @JeiPlugin
 public class RigoranthusJEIPlugin implements IModPlugin {

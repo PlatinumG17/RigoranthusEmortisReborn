@@ -1,8 +1,8 @@
 package com.platinumg17.rigoranthusemortisreborn.blocks;
 
+import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
-import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusItemGroup;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -87,9 +87,8 @@ public class BuildingBlockInit {
 
     private static <T extends Block> void registerBlockItem(String name, RegistryObject<T> block) {
         ItemInit.ITEMS.register(name, () -> new BlockItem(block.get(),
-                new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)) {
+                new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)) {
         });
     }
-
     public static void register(IEventBus modEventBus) {BLOCKS.register(modEventBus);}
 }

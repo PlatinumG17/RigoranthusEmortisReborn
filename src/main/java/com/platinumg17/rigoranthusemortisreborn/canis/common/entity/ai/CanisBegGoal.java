@@ -8,7 +8,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
-import com.platinumg17.rigoranthusemortisreborn.api.feature.FoodHandler;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.feature.FoodHandler;
 
 import java.util.EnumSet;
 

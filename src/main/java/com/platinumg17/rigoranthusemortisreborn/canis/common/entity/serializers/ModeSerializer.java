@@ -2,7 +2,7 @@ package com.platinumg17.rigoranthusemortisreborn.canis.common.entity.serializers
 
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.datasync.IDataSerializer;
-import com.platinumg17.rigoranthusemortisreborn.api.feature.EnumMode;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.feature.EnumMode;
 
 public class ModeSerializer implements IDataSerializer<EnumMode> {
     @Override

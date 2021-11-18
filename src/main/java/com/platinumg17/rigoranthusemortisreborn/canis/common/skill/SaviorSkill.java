@@ -2,9 +2,9 @@ package com.platinumg17.rigoranthusemortisreborn.canis.common.skill;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.MathHelper;
-import com.platinumg17.rigoranthusemortisreborn.api.interfaces.AbstractCanisEntity;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.Skill;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.SkillInstance;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.entity.AbstractCanisEntity;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.Skill;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.SkillInstance;
 
 public class SaviorSkill extends SkillInstance {
     public SaviorSkill(Skill SkillIn, int levelIn) {

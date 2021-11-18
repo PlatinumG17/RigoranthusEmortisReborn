@@ -1,6 +1,6 @@
 package com.platinumg17.rigoranthusemortisreborn.canis.common.canisnetwork.packet.data;
 
-import com.platinumg17.rigoranthusemortisreborn.api.registry.Skill;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.Skill;
 
 public class CanisSkillData extends CanisData {
     public final Skill skill;

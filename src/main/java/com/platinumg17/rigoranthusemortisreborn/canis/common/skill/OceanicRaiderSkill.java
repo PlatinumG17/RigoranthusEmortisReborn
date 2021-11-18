@@ -2,10 +2,10 @@ package com.platinumg17.rigoranthusemortisreborn.canis.common.skill;
 
 import com.platinumg17.rigoranthusemortisreborn.canis.CanisSkills;
 import net.minecraft.item.Items;
-import com.platinumg17.rigoranthusemortisreborn.api.feature.WetSource;
-import com.platinumg17.rigoranthusemortisreborn.api.interfaces.AbstractCanisEntity;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.Skill;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.SkillInstance;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.feature.WetSource;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.entity.AbstractCanisEntity;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.Skill;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.SkillInstance;
 
 public class OceanicRaiderSkill extends SkillInstance {
     public OceanicRaiderSkill(Skill SkillIn, int levelIn) {

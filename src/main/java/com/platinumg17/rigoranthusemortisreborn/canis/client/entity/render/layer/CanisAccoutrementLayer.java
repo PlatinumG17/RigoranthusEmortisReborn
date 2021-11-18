@@ -7,8 +7,8 @@ import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.IEntityRenderer;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.CanisEntity;
-import com.platinumg17.rigoranthusemortisreborn.api.client.renderer.IAccoutrementRenderer;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.AccoutrementInstance;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.client.IAccoutrementRenderer;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.AccoutrementInstance;
 
 import java.util.List;
 

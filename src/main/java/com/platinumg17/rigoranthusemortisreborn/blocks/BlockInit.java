@@ -1,9 +1,9 @@
 package com.platinumg17.rigoranthusemortisreborn.blocks;
 
 import com.google.common.collect.Maps;
+import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
-import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusItemGroup;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -83,7 +83,6 @@ public class BlockInit {
 //				() -> new SpectabilisBush(AbstractBlock.Properties.of(Material.VEGETABLE, MaterialColor.COLOR_RED).strength(1.0F).sound(SoundType.CROP)), "tooltip.block.rigoranthusemortisreborn.spectabilis");
 
 
-
     private static ToIntFunction<BlockState> litBlockEmission(int var0) {
 		return (p_lambda$litBlockEmission$34_1_) -> {
 			return (Boolean)p_lambda$litBlockEmission$34_1_.getValue(BlockStateProperties.LIT) ? var0 : 0;
@@ -98,7 +97,7 @@ public class BlockInit {
 
 	private static <T extends Block> void registerBlockItem(String name, RegistryObject<T> block, String tooltipKey) {
         ItemInit.ITEMS.register(name, () -> new BlockItem(block.get(),
-            	new Item.Properties().tab(RigoranthusItemGroup.RIGORANTHUS_EMORTIS_GROUP)) {
+            	new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)) {
 			@Override
 			public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 				tooltip.add(new TranslationTextComponent(tooltipKey));

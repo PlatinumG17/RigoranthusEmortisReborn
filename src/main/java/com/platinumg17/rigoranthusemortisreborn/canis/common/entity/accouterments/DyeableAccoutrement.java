@@ -3,11 +3,11 @@ package com.platinumg17.rigoranthusemortisreborn.canis.common.entity.accoutermen
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.util.ColorCache;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.util.REUtil;
-import com.platinumg17.rigoranthusemortisreborn.api.interfaces.AbstractCanisEntity;
-import com.platinumg17.rigoranthusemortisreborn.api.interfaces.ICanisTransmogrification;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.Accoutrement;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.AccoutrementInstance;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.AccoutrementType;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.entity.AbstractCanisEntity;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.interfaces.ICanisTransmogrification;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.Accoutrement;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.AccoutrementInstance;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.AccoutrementType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.DyeColor;
 import net.minecraft.item.IDyeableArmorItem;

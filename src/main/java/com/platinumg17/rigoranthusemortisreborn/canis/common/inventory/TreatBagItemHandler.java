@@ -3,7 +3,7 @@ package com.platinumg17.rigoranthusemortisreborn.canis.common.inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraftforge.items.ItemStackHandler;
-import com.platinumg17.rigoranthusemortisreborn.api.feature.FoodHandler;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.feature.FoodHandler;
 
 import javax.annotation.Nonnull;
 

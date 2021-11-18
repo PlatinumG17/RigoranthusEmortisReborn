@@ -3,7 +3,7 @@ package com.platinumg17.rigoranthusemortisreborn.canis.common.entity.accoutermen
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
-import com.platinumg17.rigoranthusemortisreborn.api.registry.AccoutrementType;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.AccoutrementType;
 
 import java.util.function.Supplier;
 

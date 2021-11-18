@@ -7,9 +7,9 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
-import com.platinumg17.rigoranthusemortisreborn.api.feature.CanisLevel;
-import com.platinumg17.rigoranthusemortisreborn.api.interfaces.AbstractCanisEntity;
-import com.platinumg17.rigoranthusemortisreborn.api.interfaces.ICanisItem;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.feature.CanisLevel;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.entity.AbstractCanisEntity;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.interfaces.ICanisItem;
 
 public class TreatItem extends Item implements ICanisItem {
 

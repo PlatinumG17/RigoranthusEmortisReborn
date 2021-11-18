@@ -14,7 +14,6 @@ public interface ICanisItem {
      * @param handIn The hand used
      * @return The result of the interaction
      */
-
     public ActionResultType processInteract(AbstractCanisEntity canisIn, World worldIn, PlayerEntity playerIn, Hand handIn);
 
     @Deprecated

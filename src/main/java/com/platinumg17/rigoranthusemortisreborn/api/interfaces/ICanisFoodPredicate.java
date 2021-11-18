@@ -3,7 +3,6 @@ import net.minecraft.item.ItemStack;
 
 @FunctionalInterface
 public interface ICanisFoodPredicate {
-
     /**
      * Determines if the stack could ever be food for a canis, i.e
      * the stack could be fed to the canis under certain conditions

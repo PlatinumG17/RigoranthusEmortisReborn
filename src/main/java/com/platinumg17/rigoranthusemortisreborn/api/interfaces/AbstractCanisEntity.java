@@ -27,7 +27,6 @@ public abstract class AbstractCanisEntity extends TameableEntity implements ICan
     public void setAttributeModifier(Attribute attribute, UUID modifierUUID, BiFunction<AbstractCanisEntity, UUID, AttributeModifier> modifierGenerator) {
         ModifiableAttributeInstance attributeInst = this.getAttribute(attribute);
         AttributeModifier currentModifier = attributeInst.getModifier(modifierUUID);
-        // Remove modifier if it exists
         if (currentModifier != null) {
             attributeInst.removeModifier(modifierUUID);
         }
@@ -36,11 +35,7 @@ public abstract class AbstractCanisEntity extends TameableEntity implements ICan
             attributeInst.addTransientModifier(newModifier);
         }
     }
-
-    public void removeAttributeModifier(Attribute attribute, UUID modifierUUID) {
-        this.getAttribute(attribute).removeModifier(modifierUUID);
-    }
-
+    public void removeAttributeModifier(Attribute attribute, UUID modifierUUID) {this.getAttribute(attribute).removeModifier(modifierUUID);}
     @Override public AbstractCanisEntity getCanis() {
         return this;
     }
@@ -58,7 +53,6 @@ public abstract class AbstractCanisEntity extends TameableEntity implements ICan
             stack.shrink(1);
         }
     }
-
     public abstract TranslationTextComponent getTranslationKey(Function<EnumGender, String> function);
     public TranslationTextComponent getGenderPronoun() {return this.getTranslationKey(EnumGender::getUnlocalisedPronoun);}
     public TranslationTextComponent getGenderSubject() {return this.getTranslationKey(EnumGender::getUnlocalisedSubject);}

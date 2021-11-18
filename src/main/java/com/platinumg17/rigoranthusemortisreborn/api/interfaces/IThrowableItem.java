@@ -3,7 +3,6 @@ package com.platinumg17.rigoranthusemortisreborn.api.interfaces;
 import net.minecraft.item.ItemStack;
 
 public interface IThrowableItem {
-
     /**
      * The stack the canis drops upon return
      * @param stack The stack the canis fetched

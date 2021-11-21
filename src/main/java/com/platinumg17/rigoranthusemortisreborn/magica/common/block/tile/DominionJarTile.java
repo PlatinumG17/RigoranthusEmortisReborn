@@ -30,7 +30,6 @@ public class DominionJarTile extends AbstractDominionTile implements ITickableTi
     @Override
     public void tick() {
         if(level.isClientSide) {
-            // world.addParticle(ParticleTypes.DRIPPING_WATER, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 0, 0, 0);
             return;
         }
         BlockState state = level.getBlockState(worldPosition);
@@ -40,10 +39,8 @@ public class DominionJarTile extends AbstractDominionTile implements ITickableTi
         else if(this.getCurrentDominion() != 0){
             fillState = (this.getCurrentDominion() / 1000) + 1;
         }
-
         level.setBlock(worldPosition, state.setValue(DominionJar.fill, fillState),3);
     }
-
 
     @Override
     public int getTransferRate() {
@@ -53,7 +50,7 @@ public class DominionJarTile extends AbstractDominionTile implements ITickableTi
     @Override
     public List<String> getTooltip() {
         List<String> list = new ArrayList<>();
-        list.add(new TranslationTextComponent("rigoranthusemortisreborn.mana_jar.fullness", (getCurrentDominion()*100) / this.getMaxDominion()).getString());
+        list.add(new TranslationTextComponent("rigoranthusemortisreborn.dominion_jar.fullness", (getCurrentDominion()*100) / this.getMaxDominion()).getString());
         return list;
     }
 }

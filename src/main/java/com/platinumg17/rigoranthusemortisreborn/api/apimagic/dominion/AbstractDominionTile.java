@@ -14,7 +14,7 @@ import static com.platinumg17.rigoranthusemortisreborn.api.apimagic.DominionTags
 import static com.platinumg17.rigoranthusemortisreborn.api.apimagic.DominionTags.MAX_DOMINION_TAG;
 
 public abstract class AbstractDominionTile extends TileEntity implements IDominionTile, ITickableTileEntity {
-    private int mana = 0;
+    private int dominion = 0;
     private int maxDominion = 0;
     public AbstractDominionTile(TileEntityType<?> tileEntityTypeIn) {
         super(tileEntityTypeIn);
@@ -22,7 +22,7 @@ public abstract class AbstractDominionTile extends TileEntity implements IDomini
 
     @Override
     public void load(BlockState state, CompoundNBT tag) {
-        mana = tag.getInt(DOMINION_TAG);
+        dominion = tag.getInt(DOMINION_TAG);
         maxDominion = tag.getInt(MAX_DOMINION_TAG);
         super.load(state, tag);
     }
@@ -35,29 +35,29 @@ public abstract class AbstractDominionTile extends TileEntity implements IDomini
     }
 
     @Override
-    public int setDominion(int mana) {
-        this.mana = mana;
-        if(this.mana > this.getMaxDominion())
-            this.mana = this.getMaxDominion();
-        if(this.mana < 0)
-            this.mana = 0;
+    public int setDominion(int dominion) {
+        this.dominion = dominion;
+        if(this.dominion > this.getMaxDominion())
+            this.dominion = this.getMaxDominion();
+        if(this.dominion < 0)
+            this.dominion = 0;
         update();
-        return this.mana;
+        return this.dominion;
     }
 
     @Override
-    public int addDominion(int manaToAdd) {
-        return this.setDominion(this.getCurrentDominion() + manaToAdd);
+    public int addDominion(int dominionToAdd) {
+        return this.setDominion(this.getCurrentDominion() + dominionToAdd);
     }
 
     @Override
     public int getCurrentDominion() {
-        return this.mana;
+        return this.dominion;
     }
 
     @Override
-    public int removeDominion(int manaToRemove) {
-        this.setDominion(this.getCurrentDominion() - manaToRemove);
+    public int removeDominion(int dominionToRemove) {
+        this.setDominion(this.getCurrentDominion() - dominionToRemove);
         update();
         return this.getCurrentDominion();
     }

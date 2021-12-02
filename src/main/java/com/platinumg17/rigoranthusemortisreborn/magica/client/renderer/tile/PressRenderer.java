@@ -28,6 +28,10 @@ public class PressRenderer extends GeoBlockRenderer<GlyphPressTile> {
     public PressRenderer(TileEntityRendererDispatcher rendererDispatcherIn) {
         super(rendererDispatcherIn, new PressModel());
     }
+    @Override
+    public RenderType getRenderType(GlyphPressTile animatable, float partialTicks, MatrixStack stack, IRenderTypeBuffer renderTypeBuffer, IVertexBuilder vertexBuilder, int packedLightIn, ResourceLocation textureLocation) {
+        return RenderType.entityTranslucent(textureLocation);
+    }
 
     public void renderFloatingItem(GlyphPressTile tileEntityIn, ItemEntity entityItem, double x, double y, double z, MatrixStack stack, IRenderTypeBuffer iRenderTypeBuffer){
         stack.pushPose();

@@ -52,7 +52,7 @@ public class EventHandler {
     @SubscribeEvent
     public static void livingHurtEvent(LivingHurtEvent e){
         if(!e.getEntityLiving().level.isClientSide && e.getEntityLiving() instanceof PlayerEntity && e.getEntityLiving().isBlocking()){
-            if(e.getEntityLiving().isHolding(MagicItemsRegistry.ENCHANTERS_SHIELD)){
+            if(e.getEntityLiving().isHolding(MagicItemsRegistry.LUSTERIC_SHIELD)){
                 e.getEntityLiving().addEffect(new EffectInstance(ModPotions.DOMINION_REGEN_EFFECT, 200, 1));
                 e.getEntityLiving().addEffect(new EffectInstance(ModPotions.SPELL_DAMAGE_EFFECT, 200, 1));
             }
@@ -101,10 +101,6 @@ public class EventHandler {
     public static void onGlideTick(TickEvent.PlayerTickEvent event){
         if(RigoranthusEmortisReborn.caelusLoaded && event.player.hasEffect(ModPotions.GLIDER_EFFECT)) {
             CaelusHandler.setFlying(event.player);
-        }
-        if(event.player.hasEffect(ModPotions.FLIGHT_EFFECT) && event.player.level.getGameTime() % 20 == 0 && event.player.getEffect(ModPotions.FLIGHT_EFFECT).getDuration() <= 30 * 20){
-            FlightRefreshEvent flightRefreshEvent = new FlightRefreshEvent(event.player);
-            MinecraftForge.EVENT_BUS.post(flightRefreshEvent);
         }
     }
 

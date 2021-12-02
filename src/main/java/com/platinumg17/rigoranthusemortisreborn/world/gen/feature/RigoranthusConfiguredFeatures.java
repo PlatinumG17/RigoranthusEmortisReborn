@@ -44,8 +44,8 @@ public class RigoranthusConfiguredFeatures {
                     new BaseTreeFeatureConfig.Builder(
                             new SimpleBlockStateProvider(States.AZULOREAL_LOG),
                             new SimpleBlockStateProvider(States.AZULOREAL_LEAVES),
-                            new AcaciaFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(0)), //was fixed(2)
-                            new ForkyTrunkPlacer(5, 2, 2), //new ForkyTrunkPlacer(5, 2, 2),
+                            new AcaciaFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(0)),
+                            new ForkyTrunkPlacer(5, 2, 2),
                             new TwoLayerFeature(1, 0, 2))).ignoreVines().heightmap(Heightmap.Type.MOTION_BLOCKING).build()));
 
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> MEGA_AZULOREAL =
@@ -72,8 +72,8 @@ public class RigoranthusConfiguredFeatures {
                     new BaseTreeFeatureConfig.Builder(
                             new SimpleBlockStateProvider(States.JESSIC_LOG),
                             new SimpleBlockStateProvider(States.JESSIC_LEAVES),
-                            new AcaciaFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(0)), //was fixed(2)
-                            new ForkyTrunkPlacer(5, 2, 2),  //new ForkyTrunkPlacer(5, 2, 2),
+                            new AcaciaFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(0)),
+                            new ForkyTrunkPlacer(5, 2, 2),
                             new TwoLayerFeature(1, 0, 2))).ignoreVines().heightmap(Heightmap.Type.MOTION_BLOCKING).build()));
 
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> MEGA_JESSIC =

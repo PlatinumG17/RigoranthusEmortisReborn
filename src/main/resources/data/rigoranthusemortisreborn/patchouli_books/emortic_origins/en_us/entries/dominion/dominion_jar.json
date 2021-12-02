@@ -1,0 +1,16 @@
+{
+    "name": "block.rigoranthusemortisreborn.dominion_jar",
+    "icon": "rigoranthusemortisreborn:dominion_jar",
+    "category": "dominion",
+    "pages": [
+        {
+            "type": "text",
+            "text": "rigoranthusemortisreborn.page1.dominion_jar"
+        },
+
+		{
+            "type":"crafting",
+			"recipe":"rigoranthusemortisreborn:dominion_jar"
+		}
+    ]
+}

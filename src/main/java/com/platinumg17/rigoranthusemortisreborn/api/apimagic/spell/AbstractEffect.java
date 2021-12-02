@@ -104,10 +104,10 @@ public abstract class AbstractEffect extends AbstractSpellPart {
         applyPotion(entity, potionEffect, spellStats, POTION_TIME == null ? 30 : POTION_TIME.get(), EXTEND_TIME == null ? 8 : EXTEND_TIME.get(), showParticles);
     }
     public boolean canSummon(LivingEntity playerEntity){
-        return isRealPlayer(playerEntity) && playerEntity.getEffect(ModPotions.SUMMONING_SICKNESS) == null;
+        return isRealPlayer(playerEntity) && playerEntity.getEffect(ModPotions.SUMMONING_COOLDOWN) == null;
     }
     public void applySummoningSickness(LivingEntity playerEntity, int time){
-        playerEntity.addEffect(new EffectInstance(ModPotions.SUMMONING_SICKNESS, time));
+        playerEntity.addEffect(new EffectInstance(ModPotions.SUMMONING_COOLDOWN, time));
     }
 
     public void summonLivingEntity(RayTraceResult rayTraceResult, World world, @Nullable LivingEntity shooter, SpellStats augments, SpellContext spellContext, ISummon summon){

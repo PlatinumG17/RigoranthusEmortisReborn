@@ -1,0 +1,16 @@
+{
+    "name": "World Generation",
+    "icon": "rigoranthusemortisreborn:powdered_esotericum",
+	"sortnum":8,
+    "category": "getting_started",
+    "pages": [
+        {
+            "type": "text",
+            "text": "Several resources can spawn in the world, each with their own unique properties and uses. Recondite Ore can be found underground, but is quite rare. Dominion Gems may be created using the Ichoric Crystallizer. Bilis Berries may be found growing on Spectabilis Bushes around the world, and can be used to craft explosives. They may also be used to craft Dominion Berries, which are necessary for crafting Dominion Regeneration potions."
+        },
+		{
+            "type": "relations",
+            "entries":["machines/crystallizer", "resources/dominion_berry"]        
+        }
+    ]
+}

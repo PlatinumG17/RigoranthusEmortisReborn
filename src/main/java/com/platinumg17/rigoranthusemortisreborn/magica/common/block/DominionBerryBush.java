@@ -55,9 +55,6 @@ public class DominionBerryBush extends BushBlock implements IGrowable {
         return state.getValue(AGE) < 3;
     }
 
-    /**
-     * Performs a random tick on a block.
-     */
     public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
         int i = state.getValue(AGE);
         if (i < 3 && worldIn.getRawBrightness(pos.above(), 0) >= 9 && net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state,random.nextInt(5) == 0)) {

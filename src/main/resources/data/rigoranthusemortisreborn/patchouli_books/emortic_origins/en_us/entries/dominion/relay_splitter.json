@@ -1,0 +1,15 @@
+{
+  "name": "block.rigoranthusemortisreborn.relay_splitter",
+  "icon": "rigoranthusemortisreborn:relay_splitter",
+  "category": "dominion",
+  "pages": [
+    {
+      "type": "text",
+      "text": "rigoranthusemortisreborn.page.relay_splitter"
+    },
+    {
+      "type": "amalgamator_recipe",
+      "recipe": "rigoranthusemortisreborn:relay_splitter"
+    }
+  ]
+}

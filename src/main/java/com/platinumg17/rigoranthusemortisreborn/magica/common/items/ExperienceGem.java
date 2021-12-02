@@ -27,7 +27,6 @@ public abstract class ExperienceGem extends ModItem{
                 playerEntity.giveExperiencePoints(getValue());
                 playerEntity.getItemInHand(hand).shrink(1);
             }
-
         }
         return ActionResult.pass(playerEntity.getItemInHand(hand));
     }

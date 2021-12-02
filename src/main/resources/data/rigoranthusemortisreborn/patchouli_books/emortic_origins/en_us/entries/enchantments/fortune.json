@@ -1,0 +1,19 @@
+{
+  "name": "enchantment.minecraft.fortune",
+  "icon": "minecraft:enchanted_book",
+  "category": "enchantments",
+  "pages": [
+    {
+      "type": "enchanting_recipe",
+      "recipe": "rigoranthusemortisreborn:fortune_1"
+    },
+    {
+      "type": "enchanting_recipe",
+      "recipe": "rigoranthusemortisreborn:fortune_2"
+    },
+    {
+      "type": "enchanting_recipe",
+      "recipe": "rigoranthusemortisreborn:fortune_3"
+    }
+  ]
+}

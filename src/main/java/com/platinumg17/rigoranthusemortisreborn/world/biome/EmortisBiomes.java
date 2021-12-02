@@ -5,14 +5,12 @@ import com.minecraftabnormals.abnormals_core.core.util.registry.BiomeSubRegistry
 import com.mojang.datafixers.util.Pair;
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
-import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusSoundRegistry;
 import net.minecraft.client.audio.BackgroundMusicTracks;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilders;
 import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = EmortisConstants.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -21,17 +19,14 @@ public class EmortisBiomes {
     private static final BiomeSubRegistryHelper HELPER = RigoranthusEmortisReborn.REGISTRY_HELPER.getBiomeSubHelper();
     public static final BiomeSubRegistryHelper.KeyedBiome VERDUROUS_FIELDS = HELPER.createBiome("verdurous_fields", () -> makeVerdurousFieldsBiome(0.375F, 0.25F));
     public static final BiomeSubRegistryHelper.KeyedBiome VERDUROUS_WOODLANDS = HELPER.createBiome("verdurous_woodlands", () -> makeVerdurousWoodlandsBiome(0.4F, 0.425F));
-
-    public static void registerBiomesToDictionary() {
-        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(VERDUROUS_FIELDS.getKey(), Config.verdurousFieldsSpawnWeight.get()));
-        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(VERDUROUS_WOODLANDS.getKey(), Config.verdurousWoodlandsSpawnWeight.get()));
-    }
-
+//    public static void registerBiomesToDictionary() {
+//        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(VERDUROUS_FIELDS.getKey(), Config.verdurousFieldsSpawnWeight.get()));
+//        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(VERDUROUS_WOODLANDS.getKey(), Config.verdurousWoodlandsSpawnWeight.get()));
+//    }
     public static void addBiomeTypes() {
         BiomeDictionary.addTypes(VERDUROUS_FIELDS.getKey(), BiomeDictionary.Type.PLAINS, BiomeDictionary.Type.LUSH, BiomeDictionary.Type.OVERWORLD, BiomeDictionary.Type.SPARSE, BiomeDictionary.Type.MAGICAL);
         BiomeDictionary.addTypes(VERDUROUS_WOODLANDS.getKey(), BiomeDictionary.Type.FOREST, BiomeDictionary.Type.LUSH, BiomeDictionary.Type.OVERWORLD, BiomeDictionary.Type.DENSE, BiomeDictionary.Type.MAGICAL);
     }
-
     public static void addBiomeVariants() {
         BiomeUtil.addHillBiome(VERDUROUS_FIELDS.getKey(), Pair.of(VERDUROUS_WOODLANDS.getKey(), 1));
     }
@@ -50,7 +45,8 @@ public class EmortisBiomes {
                         .build())
                 .mobSpawnSettings(new MobSpawnInfo.Builder().build())//.copy())
                 .generationSettings((new BiomeGenerationSettings.Builder())
-                        .surfaceBuilder(EmortisSurfaceBuilder.Configured.VERDURE)
+                        .surfaceBuilder(ConfiguredSurfaceBuilders.GRASS)
+                        //.surfaceBuilder(EmortisSurfaceBuilder.Configured.VERDURE)
                         .build()).build();
     }
     private static Biome makeVerdurousWoodlandsBiome(float depth, float scale) {

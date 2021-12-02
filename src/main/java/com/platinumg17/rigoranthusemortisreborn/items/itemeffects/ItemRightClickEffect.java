@@ -55,12 +55,12 @@ public interface ItemRightClickEffect {
     static ItemRightClickEffect shootFireball() {
         return (world, player, hand) -> {
             ItemStack itemStackIn = player.getItemInHand(hand);
-            world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BLAZE_SHOOT, SoundCategory.PLAYERS, 1.0F, 0.8F);
+            world.playSound(null, player.getX(), player.getY(), player.getZ(), RigoranthusSoundRegistry.FIREBALL.get(), SoundCategory.PLAYERS, 1.2F, 1.0F);
 
             if(!world.isClientSide) {
-                FireballEntity fireballentity = new FireballEntity(world, player, 0, -9, 0);
+                FireballEntity fireballentity = new FireballEntity(world, player, player.getX(), player.getY(), player.getZ());//, 0, -12/*-9*/, 0);
                 fireballentity.explosionPower = 1;
-                fireballentity.shootFromRotation(player, player.xRot, player.yRot, 0.0F, 2.5F + 3.0F, 1.0F);
+                fireballentity.shootFromRotation(player, player.xRot, player.yRot, 0.0F, 2.5F + 3.0F, 0.8F);
                 player.swing(hand, true);
                 player.getCooldowns().addCooldown(itemStackIn.getItem(), 60);
                 itemStackIn.hurtAndBreak(2, player, playerEntity -> playerEntity.broadcastBreakEvent(Hand.MAIN_HAND));

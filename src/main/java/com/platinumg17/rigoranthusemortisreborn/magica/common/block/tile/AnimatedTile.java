@@ -44,7 +44,6 @@ public abstract class AnimatedTile extends TileEntity implements ITickableTileEn
         handleUpdateTag(level.getBlockState(worldPosition),pkt.getTag());
     }
 
-
     public void updateBlock(){
         BlockState state = level.getBlockState(worldPosition);
         level.sendBlockUpdated(worldPosition, state, state, 2);

@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+      "xyx",
+      "x x",
+      "zzz"
+    ],
+    "key": {
+      "x": {
+        "tag": "forge:ingots/iron"
+      },
+      "y": {
+        "tag": "forge:gems/diamond"
+      },
+      "z": {
+        "item": "rigoranthusemortisreborn:dominion_gem"
+      }
+    },
+    "result": {
+      "item": "rigoranthusemortisreborn:psyglyphic_amalgamator"
+    }
+  }

@@ -1,0 +1,8 @@
+{
+  "variants": {
+      "facing=north": { "model": "rigoranthusemortisreborn:block/psyglyphic_cipher" },
+      "facing=south": { "model": "rigoranthusemortisreborn:block/psyglyphic_cipher", "y": 180 },
+      "facing=west":  { "model": "rigoranthusemortisreborn:block/psyglyphic_cipher", "y": 270 },
+      "facing=east":  { "model": "rigoranthusemortisreborn:block/psyglyphic_cipher", "y": 90 }
+  }
+}

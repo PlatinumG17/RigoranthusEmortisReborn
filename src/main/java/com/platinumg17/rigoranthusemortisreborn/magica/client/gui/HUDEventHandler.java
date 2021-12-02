@@ -23,9 +23,9 @@ import net.minecraftforge.fml.common.Mod;
 public class HUDEventHandler {
     private static final Minecraft minecraft = Minecraft.getInstance();
     private static final GuiSpellHUD spellHUD = new GuiSpellHUD();
-    private static final GuiManaHUD manaHUD = new GuiManaHUD();
+    private static final GuiDominionHUD dominionHUD = new GuiDominionHUD();
     private static final GuiEntityInfoHUD entityHUD = new GuiEntityInfoHUD();
-    private static final GuiScrollHUD scrollHUD = new GuiScrollHUD();
+//    private static final GuiScrollHUD scrollHUD = new GuiScrollHUD();
     /**
      * Render the current spell when the SpellBook is held in the players hand
      *
@@ -36,7 +36,7 @@ public class HUDEventHandler {
         if (event.getType() != RenderGameOverlayEvent.ElementType.ALL) return;
         final PlayerEntity player = minecraft.player;
         spellHUD.drawHUD(event.getMatrixStack());
-        manaHUD.drawHUD(event.getMatrixStack(), event.getPartialTicks());
+        dominionHUD.drawHUD(event.getMatrixStack(), event.getPartialTicks());
     }
 
     /**
@@ -50,9 +50,9 @@ public class HUDEventHandler {
             EntityRayTraceResult result = (EntityRayTraceResult) mouseOver;
             if(result.getEntity() instanceof ITooltipProvider)
                 entityHUD.drawHUD(event.getMatrixStack(),((ITooltipProvider) result.getEntity()).getTooltip());
-            if(result.getEntity() instanceof ItemFrameEntity){
-                scrollHUD.drawHUD(event.getMatrixStack(), (ItemFrameEntity) result.getEntity());
-            }
+//            if(result.getEntity() instanceof ItemFrameEntity){
+//                scrollHUD.drawHUD(event.getMatrixStack(), (ItemFrameEntity) result.getEntity());
+//            }
         }
         if (mouseOver != null && mouseOver.getType() == RayTraceResult.Type.BLOCK) {
             BlockRayTraceResult result = (BlockRayTraceResult) mouseOver;

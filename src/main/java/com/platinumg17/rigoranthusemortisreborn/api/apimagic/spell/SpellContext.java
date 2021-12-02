@@ -9,20 +9,15 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
+
 public class SpellContext {
 
     private boolean isCanceled;
-
-    private final Spell spell;
-
-    public final @Nullable LivingEntity caster;
-
+    private Spell spell;
+    public @Nullable LivingEntity caster;
     private int currentIndex;
-
     public @Nullable TileEntity castingTile;
-
     public ParticleColor.IntWrapper colors;
-
     private CasterType type;
 
     @Deprecated
@@ -30,7 +25,7 @@ public class SpellContext {
         this(new Spell(spell), caster);
     }
 
-    public SpellContext(Spell spell, @Nullable LivingEntity caster){
+    public SpellContext(@Nonnull Spell spell, @Nullable LivingEntity caster){
         this.spell = spell;
         this.caster = caster;
         this.isCanceled = false;
@@ -39,18 +34,44 @@ public class SpellContext {
     }
 
     // TODO: Rename to nextPart
-    public AbstractSpellPart nextSpell(){
+    public @Nullable AbstractSpellPart nextSpell(){
         this.currentIndex++;
-        return getSpell().recipe.get(currentIndex - 1);
+        AbstractSpellPart part = null;
+        try {
+            part = getSpell().recipe.get(currentIndex - 1);
+        }catch (Throwable e){ // This can happen if a new spell context is created but does not reset the bounds.
+            System.out.println("=======");
+            System.out.println("Invalid spell cast found! This is a bug and should be reported!");
+            System.out.println(spell.getDisplayString());
+            System.out.println("Casting player: ");
+            System.out.println(caster);
+            System.out.println("Casting tile:");
+            System.out.println(castingTile);
+            System.out.println("=======");
+            e.printStackTrace();
+        }
+        return part;
     }
 
-    public void resetSpells(){
+    public SpellContext resetCastCounter(){
         this.currentIndex = 0;
         this.isCanceled = false;
+        return this;
     }
 
     public SpellContext withCastingTile(TileEntity tile){
         this.castingTile = tile;
+        return this;
+    }
+
+    public SpellContext withSpellResetCounter(Spell spell){
+        this.spell = spell;
+        resetCastCounter();
+        return this;
+    }
+
+    public SpellContext withCaster(@Nullable LivingEntity caster){
+        this.caster = caster;
         return this;
     }
 

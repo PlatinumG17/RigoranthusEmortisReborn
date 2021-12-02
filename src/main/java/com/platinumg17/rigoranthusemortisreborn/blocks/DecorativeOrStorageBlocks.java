@@ -10,6 +10,7 @@ import com.minecraftabnormals.abnormals_core.core.util.registry.BlockSubRegistry
 import com.mojang.datafixers.util.Pair;
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
+import com.platinumg17.rigoranthusemortisreborn.magica.setup.BlockRegistry;
 import com.platinumg17.rigoranthusemortisreborn.world.plants.VerdurousLeavesBlock;
 import com.platinumg17.rigoranthusemortisreborn.world.trees.JessicTree;
 import com.platinumg17.rigoranthusemortisreborn.world.trees.AzulorealTree;
@@ -29,15 +30,6 @@ import net.minecraftforge.fml.common.Mod;
 public class DecorativeOrStorageBlocks {
     public static final BlockSubRegistryHelper HELPER = RigoranthusEmortisReborn.REGISTRY_HELPER.getBlockSubHelper();
 
-//    public static final RegistryObject<Block> JESSIC_LEAVES = registerBlock("jessic_leaves",
-//            () -> new LeavesBlock(AbstractBlock.Properties.of(Material.LEAVES).sound(SoundType.GRASS).strength(0.2F).randomTicks().noOcclusion().lightLevel((p_235455_0_) -> {
-//                return 10;
-//            })));
-//
-//    public static final RegistryObject<Block> AZULOREAL_LEAVES = registerBlock("azuloreal_leaves",
-//            () -> new LeavesBlock(AbstractBlock.Properties.of(Material.LEAVES).sound(SoundType.GRASS).strength(0.2F).randomTicks().noOcclusion().lightLevel((p_235455_0_) -> {
-//                return 12;
-//            })));
     //public static final RegistryObject<Block> JESSIC_CRAFTING_TABLE = registerBlock("jessic_crafting_table", () -> new CraftingTableBlock(AbstractBlock.Properties.of(Material.DECORATION).sound(SoundType.WOOD).strength(2.0F, 3.0F).harvestTool(ToolType.AXE)));
     //public static final RegistryObject<SkullBlock> SUNDERED_CADAVER_HEAD = registerBlock("sundered_cadaver_head", () -> new SkullBlock(SkullBlock.Types.ZOMBIE, AbstractBlock.Properties.of(Material.DECORATION).strength(1.0F)));
     //public static final RegistryObject<WallSkullBlock> SUNDERED_CADAVER_WALL_HEAD = registerBlock("sundered_cadaver_wall_head", () -> new WallSkullBlock(SkullBlock.Types.ZOMBIE, AbstractBlock.Properties.of(Material.DECORATION).strength(1.0F).dropsLike(SKELETON_SKULL)));
@@ -51,6 +43,7 @@ public class DecorativeOrStorageBlocks {
     public static final RegistryObject<Block> AZULOREAL_WOOD = HELPER.createBlock("azuloreal_wood", ()->new WoodBlock(STRIPPED_AZULOREAL_WOOD, Properties.LOG), ItemGroup.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> AZULOREAL_LEAVES = HELPER.createBlock("azuloreal_leaves", ()->new VerdurousLeavesBlock(Properties.AZULOREAL_LEAVES), ItemGroup.TAB_DECORATIONS);
     public static final RegistryObject<Block> AZULOREAL_SAPLING = HELPER.createBlock("azuloreal_sapling", ()->new AbnormalsSaplingBlock(new AzulorealTree(), Properties.SAPLING), ItemGroup.TAB_DECORATIONS);
+
     public static final RegistryObject<Block> POTTED_AZULOREAL_SAPLING = HELPER.createBlockNoItem("potted_azuloreal_sapling", ()->new FlowerPotBlock(AZULOREAL_SAPLING.get(), Properties.FLOWER_POT));
     public static final RegistryObject<Block> AZULOREAL_PLANKS = HELPER.createBlock("azuloreal_planks", ()->new PlanksBlock(Properties.PLANKS), ItemGroup.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> AZULOREAL_SLAB = HELPER.createBlock("azuloreal_slab", ()->new WoodSlabBlock(Properties.PLANKS), ItemGroup.TAB_BUILDING_BLOCKS);
@@ -81,6 +74,7 @@ public class DecorativeOrStorageBlocks {
     public static final RegistryObject<Block> JESSIC_WOOD = HELPER.createBlock("jessic_wood", ()->new WoodBlock(STRIPPED_JESSIC_WOOD, Properties.LOG), ItemGroup.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> JESSIC_LEAVES = HELPER.createBlock("jessic_leaves", ()->new VerdurousLeavesBlock(Properties.JESSIC_LEAVES), ItemGroup.TAB_DECORATIONS);
     public static final RegistryObject<Block> JESSIC_SAPLING = HELPER.createBlock("jessic_sapling", ()->new AbnormalsSaplingBlock(new JessicTree(), Properties.SAPLING), ItemGroup.TAB_DECORATIONS);
+
     public static final RegistryObject<Block> POTTED_JESSIC_SAPLING = HELPER.createBlockNoItem("potted_jessic_sapling", ()->new FlowerPotBlock(JESSIC_SAPLING.get(), Properties.FLOWER_POT));
     public static final RegistryObject<Block> JESSIC_PLANKS = HELPER.createBlock("jessic_planks", ()->new PlanksBlock(Properties.PLANKS), ItemGroup.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> JESSIC_SLAB = HELPER.createBlock("jessic_slab", ()->new WoodSlabBlock(Properties.PLANKS), ItemGroup.TAB_BUILDING_BLOCKS);

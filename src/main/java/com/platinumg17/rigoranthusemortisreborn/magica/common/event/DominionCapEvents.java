@@ -1,6 +1,7 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.common.event;
 
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
+import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.capability.DominionCapability;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.network.Networking;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.network.PacketUpdateDominion;
@@ -21,22 +22,22 @@ public class DominionCapEvents {
 
     @SubscribeEvent
     public static void playerOnTick(TickEvent.PlayerTickEvent e) {
-        if(e.player.getCommandSenderWorld().isClientSide/* || e.player.getCommandSenderWorld().getGameTime() % Config.REGEN_INTERVAL.get() != 0*/)
+        if(e.player.getCommandSenderWorld().isClientSide || e.player.getCommandSenderWorld().getGameTime() % Config.REGEN_INTERVAL.get() != 0)
             return;
 
-        IDominion mana = DominionCapability.getDominion(e.player).orElse(null);
-        if(mana == null)
+        IDominion dominion = DominionCapability.getDominion(e.player).orElse(null);
+        if(dominion == null)
             return;
 
-        if (mana.getCurrentDominion() != mana.getMaxDominion()) {
-            double regenPerSecond = DominionUtil.getDominionRegen(e.player) / Math.max(1, ((int)MEAN_TPS / 3/*Config.REGEN_INTERVAL.get()*/));
-            mana.addDominion(regenPerSecond);
-            Networking.INSTANCE.send(PacketDistributor.PLAYER.with(() -> (ServerPlayerEntity) e.player), new PacketUpdateDominion(mana.getCurrentDominion(), mana.getMaxDominion(), mana.getGlyphBonus(), mana.getBookTier()));
+        if (dominion.getCurrentDominion() != dominion.getMaxDominion()) {
+            double regenPerSecond = DominionUtil.getDominionRegen(e.player) / Math.max(1, ((int)MEAN_TPS / Config.REGEN_INTERVAL.get()));
+            dominion.addDominion(regenPerSecond);
+            Networking.INSTANCE.send(PacketDistributor.PLAYER.with(() -> (ServerPlayerEntity) e.player), new PacketUpdateDominion(dominion.getCurrentDominion(), dominion.getMaxDominion(), dominion.getGlyphBonus(), dominion.getBookTier()));
         }
         int max = DominionUtil.getMaxDominion(e.player);
-        if(mana.getMaxDominion() != max) {
-            mana.setMaxDominion(max);
-            Networking.INSTANCE.send(PacketDistributor.PLAYER.with(() -> (ServerPlayerEntity) e.player), new PacketUpdateDominion(mana.getCurrentDominion(), mana.getMaxDominion(), mana.getGlyphBonus(), mana.getBookTier()));
+        if(dominion.getMaxDominion() != max) {
+            dominion.setMaxDominion(max);
+            Networking.INSTANCE.send(PacketDistributor.PLAYER.with(() -> (ServerPlayerEntity) e.player), new PacketUpdateDominion(dominion.getCurrentDominion(), dominion.getMaxDominion(), dominion.getGlyphBonus(), dominion.getBookTier()));
         }
     }
 
@@ -70,11 +71,11 @@ public class DominionCapEvents {
 
     public static void syncPlayerEvent(PlayerEntity playerEntity){
         if (playerEntity instanceof ServerPlayerEntity) {
-            DominionCapability.getDominion(playerEntity).ifPresent(mana -> {
-                mana.setMaxDominion(DominionUtil.getMaxDominion(playerEntity));
-                mana.setGlyphBonus(mana.getGlyphBonus());
-                mana.setBookTier(mana.getBookTier());
-                Networking.INSTANCE.send(PacketDistributor.PLAYER.with(() -> (ServerPlayerEntity) playerEntity), new PacketUpdateDominion(mana.getCurrentDominion(), mana.getMaxDominion(), mana.getGlyphBonus(), mana.getBookTier()));
+            DominionCapability.getDominion(playerEntity).ifPresent(dominion -> {
+                dominion.setMaxDominion(DominionUtil.getMaxDominion(playerEntity));
+                dominion.setGlyphBonus(dominion.getGlyphBonus());
+                dominion.setBookTier(dominion.getBookTier());
+                Networking.INSTANCE.send(PacketDistributor.PLAYER.with(() -> (ServerPlayerEntity) playerEntity), new PacketUpdateDominion(dominion.getCurrentDominion(), dominion.getMaxDominion(), dominion.getGlyphBonus(), dominion.getBookTier()));
             });
         }
     }

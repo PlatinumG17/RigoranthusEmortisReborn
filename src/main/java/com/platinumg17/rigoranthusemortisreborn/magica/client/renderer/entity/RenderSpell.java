@@ -12,7 +12,6 @@ import net.minecraft.util.ResourceLocation;
 public class RenderSpell extends EntityRenderer<EntityProjectileSpell> {
     private final ResourceLocation entityTexture;
 
-
     public RenderSpell(EntityRendererManager renderManagerIn, ResourceLocation entityTexture) {
         super(renderManagerIn);
         this.entityTexture = entityTexture;

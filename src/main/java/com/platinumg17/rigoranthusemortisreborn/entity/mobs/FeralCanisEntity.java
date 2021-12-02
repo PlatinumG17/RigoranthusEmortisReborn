@@ -5,6 +5,7 @@ import com.platinumg17.rigoranthusemortisreborn.canis.common.SpecializedEntityTy
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
 import com.platinumg17.rigoranthusemortisreborn.entity.RigoranthusEntityTypes;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.potions.ModPotions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -21,11 +22,15 @@ import net.minecraft.network.IPacket;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.network.play.server.SSpawnObjectPacket;
+import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.network.NetworkHooks;
@@ -51,14 +56,13 @@ public class FeralCanisEntity extends MonsterEntity implements IAnimatable {
     public FeralCanisEntity(EntityType<? extends FeralCanisEntity> entity, World worldIn) {
         super(entity, worldIn);
         this.noCulling = true;
-        this.moveControl = new MovementController(this);
     }
-//    @Override
-//    public IPacket<?> getAddEntityPacket() {
-//        return NetworkHooks.getEntitySpawningPacket(this);
-//    }
+    @Override
+    public IPacket<?> getAddEntityPacket() {
+        return NetworkHooks.getEntitySpawningPacket(this);
+    }
     private <E extends IAnimatable> PlayState animationPredicate(AnimationEvent<E> event) {
-        if (!this.dead && !this.isDeadOrDying()) {
+//        if (!this.dead && !this.isDeadOrDying()) {
 //            if (this.getState() == State.ATTACKING) {
 //                event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.chordata.attack", false));
 //                return PlayState.CONTINUE;
@@ -68,7 +72,7 @@ public class FeralCanisEntity extends MonsterEntity implements IAnimatable {
 //            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.chordata.walk", true));
 //        } else {
         event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", true));
-        }
+//        }
         return PlayState.CONTINUE;
     }
 
@@ -78,17 +82,9 @@ public class FeralCanisEntity extends MonsterEntity implements IAnimatable {
     }
 
     @Override
-    protected void updateControlFlags() {
-        super.updateControlFlags();
-        this.goalSelector.setControlFlag(Goal.Flag.MOVE, true);
-        this.goalSelector.setControlFlag(Goal.Flag.JUMP, true);
-        this.goalSelector.setControlFlag(Goal.Flag.LOOK, true);
+    public boolean causeFallDamage(float distance, float damageMultiplier) {
+        return false;
     }
-
-//    @Override
-//    public boolean causeFallDamage(float distance, float damageMultiplier) {
-//        return false;
-//    }
 
     @Override
     public AnimationFactory getFactory() {
@@ -126,24 +122,16 @@ public class FeralCanisEntity extends MonsterEntity implements IAnimatable {
         this.entityData.define(STATE, 0);
     }
 
-
-//    @OnlyIn(Dist.CLIENT)
-//    public Vector3d getLeashOffset() {
-//        return new Vector3d(0.0D, (0.6F * this.getEyeHeight()), (this.getBbWidth() * 0.4F));
-//    }
+    private int ticks = 0;
+    private float waitTicks;
 
     @Override
     public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
 
         BlockPos blockpos = this.getOnPos();
         ItemStack stack = player.getItemInHand(hand);
-
-        LightningBoltEntity entityLightningBolt = EntityType.LIGHTNING_BOLT.create(level);
         SunderedCadaverEntity sunderedCadaver = RigoranthusEntityTypes.SUNDERED_CADAVER.get().create(level);
         CanisEntity canis = SpecializedEntityTypes.CANIS.get().create(level);
-
-//        MobEntity sunderedCadaver = new SunderedCadaverEntity(RigoranthusEntityTypes.SUNDERED_CADAVER.get(), level);
-//            sunderedCadaver.moveTo(this.getX(), this.getY(), this.getZ(), level.getRandom().nextFloat() * 360F, 0);
 
         if (stack.getItem() == ItemInit.PACT_OF_SERVITUDE.get()) {
 
@@ -154,18 +142,20 @@ public class FeralCanisEntity extends MonsterEntity implements IAnimatable {
                 level.playSound(player, blockpos, SoundEvents.BOOK_PAGE_TURN, SoundCategory.NEUTRAL, 1.0F, (level.random.nextFloat() - level.random.nextFloat()) * 0.4F + 1.0F); // was  0.2F + 1.0F
 
                 if ((Math.random() <= 0.15)) {
-                    if (player.level.isClientSide) {
+//                    if (player.level.isClientSide) {
                         this.level.addParticle(ParticleTypes.SOUL, this.getRandomX(1.0D), this.getRandomY() + 0.5D, this.getRandomZ(1.0D), 0.0D, 0.0D, 0.0D); //((ServerWorld) level).sendParticles(player, true, 5, 3, 3, IPacket <?> level) //    (ParticleTypes.SOUL, this.blockPosition(), 5, 3, 3, 3, 1);
                         this.level.addParticle(ParticleTypes.SOUL, this.getRandomX(1.5D), this.getRandomY() + 0.8D, this.getRandomZ(1.5D), 0.0D, 0.0D, 0.0D);
-                    }
+//                    }
 
                     level.playSound(null, blockpos, SoundEvents.WOLF_HOWL, SoundCategory.NEUTRAL, 1f, 0.8f);
                     this.setNoActionTime(60); // Alternatively, use --> this.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 100, 7));
                     this.setSecondsOnFire(3);
-
+                    this.waitTicks = 60;
                     player.displayClientMessage(new StringTextComponent("\u00A76The Pact was Successful. \u00A7cThe Beasts Impurities will now be Expelled."), (true));
 
-                    canis.setTame(true);
+                    this.ticks += 1;
+                    if (this.ticks >= this.waitTicks)
+                        canis.setTame(true);
                     canis.setOwnerUUID(player.getUUID());
                     canis.setHealth(canis.getMaxHealth());
                     canis.setOrderedToSit(false);
@@ -179,31 +169,25 @@ public class FeralCanisEntity extends MonsterEntity implements IAnimatable {
         else {
             if ((Math.random() <= 0.15)) {
                 if (this.level instanceof ServerWorld) {
-                    entityLightningBolt.setVisualOnly(true);
-                    this.thunderHit(((ServerWorld) this.level), entityLightningBolt); // used to contain .getLevel() after the parentheses
+                    LightningBoltEntity lightningBoltEntity = EntityType.LIGHTNING_BOLT.create(level);
+                    lightningBoltEntity.absMoveTo(this.getX(), this.getY(), this.getZ(), this.yRot, this.xRot);
+                    lightningBoltEntity.setVisualOnly(true);
+                    level.addFreshEntity(lightningBoltEntity);
+
                     sunderedCadaver.absMoveTo(this.getX(), this.getY(), this.getZ(), this.yRot, this.xRot);
                     level.addFreshEntity(sunderedCadaver);
                     level.addFreshEntity(sunderedCadaver);
                 }
                 this.level.playSound(null, blockpos, SoundEvents.WOLF_GROWL, SoundCategory.NEUTRAL, 1f, 0.8f);
 
-//                sunderedCadaver.finalizeSpawn((ServerWorld) level, level.getCurrentDifficultyAt(this.blockPosition()),
-//                        SpawnReason.MOB_SUMMONED, null, null);                 // TODO  " level.addFreshEntity() " may be necessary. FinalizeSpawn may break shit
-
-                if (player.level.isClientSide) {
-                    player.displayClientMessage(new StringTextComponent("\u00A7cMake Yourself Scarce Weakling...."), (false));
+                if (!this.level.isClientSide) {
+                    ((PlayerEntity) lastHurtByPlayer).displayClientMessage(new StringTextComponent("\u00A7cMake Yourself Scarce, Weakling...."), (false));
                 }
             }
             return ActionResultType.FAIL;
         }
     }
 /*
-    @Override
-    public ActionResultType mobInteract(PlayerEntity sourceentity, Hand hand) {
-        ItemStack itemstack = sourceentity.getItemInHand(hand);
-        Item item = itemstack.getItem();
-        BlockPos blockpos = sourceentity.blockPosition();
-
         if (this.isTamed() && sourceentity.isSecondaryUseActive()) {
             this.openInventory(sourceentity);
             return ActionResultType.sidedSuccess(this.level.isClientSide);
@@ -241,38 +225,28 @@ public class FeralCanisEntity extends MonsterEntity implements IAnimatable {
                 .add(Attributes.KNOCKBACK_RESISTANCE, Config.feralCanisChordataKnockbackResistance.get())
                 .add(Attributes.FOLLOW_RANGE, 25.0D);
     }
-
     @Override
     public boolean hurt(DamageSource source, float amount) {
 
-        LightningBoltEntity entityLightningBolt = EntityType.LIGHTNING_BOLT.create(level);
         SunderedCadaverEntity sunderedCadaver = RigoranthusEntityTypes.SUNDERED_CADAVER.get().create(level);
-//        MobEntity sunderedCadaver = new SunderedCadaverEntity(RigoranthusEntityTypes.SUNDERED_CADAVER.get(), level);
-//            sunderedCadaver.moveTo(this.getX(), this.getY(), this.getZ(), level.getRandom().nextFloat() * 360F, 0);
 
         if (this.isInvulnerableTo(source)) {
             return false;
         }
-        if (this.getLastHurtByMob() instanceof PlayerEntity) {
+        if (this.getLastHurtByMob() instanceof PlayerEntity && this.lastHurtByPlayer != null) {
             if ((Math.random() < 0.1)) {
-                if (this.level.isClientSide) {
-                    this.lastHurtByPlayer.displayClientMessage(new StringTextComponent("\u00A7cMake Yourself Scarce, Weakling...."), (false));
+                if (!this.level.isClientSide) {
+                    ((PlayerEntity) lastHurtByPlayer).displayClientMessage(new StringTextComponent("\u00A7cMake Yourself Scarce, Weakling...."), (false));
                 }
                 if (level instanceof ServerWorld) {
-                    entityLightningBolt.setVisualOnly(true);
-                    this.thunderHit(((ServerWorld) this.level), entityLightningBolt);
+                    LightningBoltEntity lightningBoltEntity = EntityType.LIGHTNING_BOLT.create(level);
+                    lightningBoltEntity.absMoveTo(this.getX(), this.getY(), this.getZ(), this.yRot, this.xRot);
+                    lightningBoltEntity.setVisualOnly(true);
+                    level.addFreshEntity(lightningBoltEntity);
+
                     sunderedCadaver.absMoveTo(this.getX(), this.getY(), this.getZ(), this.yRot, this.xRot);
                     level.addFreshEntity(sunderedCadaver);
                     level.addFreshEntity(sunderedCadaver);
-
-//                    MobEntity entityToSpawn = new SunderedCadaverEntity(RigoranthusEntityTypes.SUNDERED_CADAVER.get(), level);
-//                    entityToSpawn.moveTo(this.getX(), this.getY(), this.getZ(), level.getRandom().nextFloat() * 360F, 0);
-//                    entityToSpawn.finalizeSpawn((ServerWorld) level, level.getCurrentDifficultyAt(this.blockPosition()),
-//                            SpawnReason.MOB_SUMMONED, null, null);
-
-//                    level.addFreshEntity(entityToSpawn);
-//                    sunderedCadaver.finalizeSpawn((ServerWorld) level, level.getCurrentDifficultyAt(this.blockPosition()), SpawnReason.MOB_SUMMONED, null, null);
-//                    sunderedCadaver.finalizeSpawn((ServerWorld) level, level.getCurrentDifficultyAt(this.blockPosition()), SpawnReason.MOB_SUMMONED, null, null);
                 }
             }
         }

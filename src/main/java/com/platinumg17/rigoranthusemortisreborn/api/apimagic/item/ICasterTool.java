@@ -35,8 +35,12 @@ public interface ICasterTool extends IScribeable, IDisplayDominion {
         if(heldStack.getItem() instanceof SpellBook) {
             spell = SpellBook.getRecipeFromTag(heldStack.getTag(), SpellBook.getMode(heldStack.getTag()));
             caster.setColor(SpellBook.getSpellColor(heldStack.getTag(), SpellBook.getMode(heldStack.getTag())));
-        }else if(heldStack.getItem() instanceof SpellParchment){
-            spell = new Spell(SpellParchment.getSpellRecipe(heldStack));
+            caster.setFlavorText(SpellBook.getSpellName(heldStack.getTag()));
+        }else if(heldStack.getItem() instanceof ICasterTool){
+            SpellCaster heldCaster = SpellCaster.deserialize(heldStack);
+            spell = heldCaster.getSpell();
+            caster.setColor(heldCaster.getColor());
+            caster.setFlavorText(heldCaster.getFlavorText());
         }
         if(isScribedSpellValid(caster, player, handIn, stack, spell)){
             success = setSpell(caster, player, handIn, stack, spell);
@@ -44,7 +48,9 @@ public interface ICasterTool extends IScribeable, IDisplayDominion {
                 sendSetMessage(player);
                 return success;
             }
-        } else{sendInvalidMessage(player);}
+        }else{
+            sendInvalidMessage(player);
+        }
         return success;
     }
 
@@ -65,6 +71,7 @@ public interface ICasterTool extends IScribeable, IDisplayDominion {
         return true;
     }
 
+
     default boolean isScribedSpellValid(ISpellCaster caster, PlayerEntity player, Hand hand, ItemStack stack, Spell spell){
         return spell.isValid();
     }
@@ -74,15 +81,17 @@ public interface ICasterTool extends IScribeable, IDisplayDominion {
         return true;
     }
 
+
     default void getInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip2, ITooltipFlag flagIn) {
         if(worldIn == null)
             return;
         ISpellCaster caster = getSpellCaster(stack);
 
-        if(caster.getSpell() == null || caster.getSpell().isEmpty()){
+        if(caster.getSpell().isEmpty()){
             tooltip2.add(new TranslationTextComponent("rigoranthusemortisreborn.tooltip.can_inscribe"));
             return;
         }
+
         Spell spell = caster.getSpell();
         tooltip2.add(new StringTextComponent(spell.getDisplayString()));
         if(!caster.getFlavorText().isEmpty())

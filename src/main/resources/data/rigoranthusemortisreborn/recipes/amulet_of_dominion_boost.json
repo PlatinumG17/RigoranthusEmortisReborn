@@ -1,0 +1,51 @@
+{
+  "type": "rigoranthusemortisreborn:psyglyphic_amalgamator",
+  "item_1": [
+    {
+      "tag": "forge:gems/diamond"
+    }
+  ],
+  "item_2": [
+    {
+      "tag": "forge:gems/diamond"
+    }
+  ],
+  "item_3": [
+    {
+      "tag": "forge:gems/diamond"
+    }
+  ],
+  "item_4": [
+    {
+      "item": "rigoranthusemortisreborn:dominion_gem"
+    }
+  ],
+  "item_5": [
+    {
+      "item": "rigoranthusemortisreborn:dominion_gem"
+    }
+  ],
+  "item_6": [
+    {
+      "item": "rigoranthusemortisreborn:dominion_gem"
+    }
+  ],
+  "item_7": [
+    {
+      "item": "rigoranthusemortisreborn:dominion_gem"
+    }
+  ],
+  "item_8": [
+    {
+      "item": "rigoranthusemortisreborn:dominion_gem"
+    }
+  ],
+  "reagent": [
+    {
+      "item": "rigoranthusemortisreborn:dull_trinket"
+    }
+  ],
+  "output": {
+    "item": "rigoranthusemortisreborn:amulet_of_dominion_boost"
+  }
+}

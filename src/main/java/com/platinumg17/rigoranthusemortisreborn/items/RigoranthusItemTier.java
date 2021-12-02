@@ -39,9 +39,6 @@ public enum RigoranthusItemTier implements IItemTier {
     FROSTBITTEN(0, 60, 11.0F, 1.0F, 25,
             () -> Ingredient.of(ItemInit.ICE_SHARD.get())),
 
-    BOOK_TIER(0, 250, 5.0F, 0.0F, 15,
-            () -> Ingredient.of(Items.BOOK)),
-
     PRISMARIC(2, 300, 4.0F, 3.0F, 10,
             () -> Ingredient.of(Items.PRISMARINE_SHARD)),
 

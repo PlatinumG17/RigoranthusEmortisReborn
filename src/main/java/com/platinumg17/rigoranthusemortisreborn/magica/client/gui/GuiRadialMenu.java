@@ -51,7 +51,6 @@ public class GuiRadialMenu extends Screen {
         this.selectedItem = -1;
     }
 
-
     public GuiRadialMenu(){
         super(new StringTextComponent(""));
     }
@@ -86,7 +85,6 @@ public class GuiRadialMenu extends Screen {
         }
     }
 
-
     @Override
     public void render(MatrixStack ms,int mouseX, int mouseY, float partialTicks) {
         super.render(ms,mouseX, mouseY, partialTicks);
@@ -94,7 +92,6 @@ public class GuiRadialMenu extends Screen {
         long worldTime = Minecraft.getInstance().level.getGameTime();
         float animationTime = (float) (worldTime + partialTicks - startAnimation);
         float openAnimation = closing ? 1.0f - animationTime / OPEN_ANIMATION_LENGTH : animationTime / OPEN_ANIMATION_LENGTH;
-
 
         float animProgress = MathHelper.clamp(openAnimation, 0, 1);
         float radiusIn = Math.max(0.1f, 45 * animProgress);
@@ -214,7 +211,6 @@ public class GuiRadialMenu extends Screen {
 
     @Override
     public boolean mouseClicked(double p_mouseClicked_1_, double p_mouseClicked_3_, int p_mouseClicked_5_) {
-
         if(this.selectedItem != -1){
             SpellBook.setMode(tag, selectedItem);
             Networking.INSTANCE.sendToServer(new PacketSetBookMode(tag));
@@ -251,7 +247,6 @@ public class GuiRadialMenu extends Screen {
             buffer.vertex(pos2OutX, pos2OutY, z).color(r, g, b, a).endVertex();
         }
     }
-
     @Override
     public boolean isPauseScreen() {
         return false;

@@ -1,6 +1,7 @@
 package com.platinumg17.rigoranthusemortisreborn.world.gen.feature;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
 import com.platinumg17.rigoranthusemortisreborn.blocks.DecorativeOrStorageBlocks;
 import com.platinumg17.rigoranthusemortisreborn.blocks.BlockInit;
@@ -94,7 +95,7 @@ public class RigoranthusConfiguredFeatures {
                     .add(States.PINK_TULIP, 30)
                     .add(States.WHITE_TULIP, 30)
                     .add(States.LILY_OF_THE_VALLEY, 25), SimpleBlockPlacer.INSTANCE))
-                    .tries(30).build())
+                    .tries(30).whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK)).noProjection().build()) // recently added ".whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK)).noProjection()"
             .decorated(Features.Placements.ADD_32)
             .decorated(Features.Placements.HEIGHTMAP_SQUARE)
             .count(8));
@@ -113,13 +114,6 @@ public class RigoranthusConfiguredFeatures {
             .decorated(Features.Placements.HEIGHTMAP_SQUARE)
             .decorated(Placement.COUNT_EXTRA
                     .configured(new AtSurfaceWithExtraConfig(1, 0.1F, 1))));
-
-    public static final ConfiguredFeature<?, ?> BAMBOO_SPREAD = register("bamboo_spread", Feature.BAMBOO
-            .configured(new ProbabilityConfig(0.2F))
-            .decorated(Placement.COUNT_NOISE_BIASED
-                    .configured(new TopSolidWithNoiseConfig(Config.bambooSpawnWeight.get(), 30.0D, 0.3D)))
-            .decorated(Placement.TOP_SOLID_HEIGHTMAP
-                    .configured(IPlacementConfig.NONE)));
 
     public static final ConfiguredFeature<?, ?> VERDUROUS_PATCH = register("verdurous_patch", Feature.DISK
             .configured(new SphereReplaceConfig(Blocks.GRASS_PATH.defaultBlockState(),

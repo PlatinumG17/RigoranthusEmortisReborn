@@ -35,9 +35,7 @@ public class DefaultTableProvider extends LootTableProvider {
         public List<Block> list = new ArrayList<>();
         @Override
         protected void addTables() {
-
-//            registerDrop(BlockRegistry.ARCANE_ORE, MagicItemsRegistry.manaGem);
-
+            registerDrop(BlockRegistry.ARCANE_ORE, MagicItemsRegistry.dominionGem);
             registerDropSelf(BlockRegistry.DOMINION_GEM_BLOCK);
             registerDropSelf(BlockRegistry.SCONCE_BLOCK);
             registerBedCondition(BlockRegistry.SCRIBES_BLOCK, ScribesBlock.PART, BedPart.HEAD);
@@ -51,17 +49,14 @@ public class DefaultTableProvider extends LootTableProvider {
             list.add(leaves);
             this.add(leaves, l_state -> createLeavesDrops(l_state, sapling, DEFAULT_SAPLING_DROP_RATES));
         }
-
         public void registerDropDoor(Block block){
             list.add(block);
             this.add(block, BlockLootTables::createDoorTable);
         }
-
         public void registerDropSelf(Block block){
             list.add(block);
             dropSelf(block);
         }
-
         public void registerDrop(Block input, IItemProvider output){
             list.add(input);
             dropOther(input, output);

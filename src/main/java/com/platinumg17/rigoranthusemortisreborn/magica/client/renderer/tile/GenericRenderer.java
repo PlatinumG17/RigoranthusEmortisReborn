@@ -9,7 +9,7 @@ import java.util.concurrent.Callable;
 
 public class GenericRenderer extends GeoBlockRenderer {
 
-    public static GenericModel model = new GenericModel("source_relay");
+    public static GenericModel model = new GenericModel("emortic_relay");
 
     public GenericRenderer(TileEntityRendererDispatcher rendererDispatcherIn, String loc) {
         super(rendererDispatcherIn, new GenericModel(loc));

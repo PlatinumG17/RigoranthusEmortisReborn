@@ -46,7 +46,9 @@ public class CanisInventoryButton extends Button {
         }
         if (this.visible) {
             Minecraft mc = Minecraft.getInstance();
-            List<CanisEntity> cani = mc.level.getEntitiesOfClass(CanisEntity.class, mc.player.getBoundingBox().inflate(12D, 12D, 12D), WaywardTravellerSkill::hasInventory);
+            List<CanisEntity> cani = mc.level.getEntitiesOfClass(CanisEntity.class, mc.player.getBoundingBox().inflate(12D, 12D, 12D),
+                    (canis) -> canis.canInteract(mc.player) && WaywardTravellerSkill.hasInventory(canis)
+            );
             this.active = !cani.isEmpty();
         }
         super.render(stack, mouseX, mouseY, partialTicks);

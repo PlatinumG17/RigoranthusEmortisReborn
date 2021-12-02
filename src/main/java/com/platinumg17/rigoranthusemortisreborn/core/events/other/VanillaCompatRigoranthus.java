@@ -5,6 +5,7 @@ import com.platinumg17.rigoranthusemortisreborn.blocks.DecorativeOrStorageBlocks
 import com.platinumg17.rigoranthusemortisreborn.blocks.BuildingBlockInit;
 import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
 import com.platinumg17.rigoranthusemortisreborn.entity.item.BoneArrowEntity;
+import com.platinumg17.rigoranthusemortisreborn.magica.setup.BlockRegistry;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.dispenser.IPosition;
 import net.minecraft.dispenser.ProjectileDispenseBehavior;

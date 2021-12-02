@@ -4,7 +4,9 @@ import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstant
 import com.platinumg17.rigoranthusemortisreborn.entity.mobs.FeralCanisEntity;
 import net.minecraft.util.ResourceLocation;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
+import software.bernie.geckolib3.core.processor.IBone;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib3.model.provider.data.EntityModelData;
 
 public class CanisChordataGeoModel extends AnimatedGeoModel<FeralCanisEntity> {
     private static final ResourceLocation TEXTURE_CANIS = new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/chordata.png");
@@ -66,5 +68,9 @@ public class CanisChordataGeoModel extends AnimatedGeoModel<FeralCanisEntity> {
     @Override
     public void setLivingAnimations(FeralCanisEntity entity, Integer uniqueID, AnimationEvent customPredicate) {
         super.setLivingAnimations(entity, uniqueID, customPredicate);
+        IBone head = this.getAnimationProcessor().getBone("head");
+        EntityModelData extraData = (EntityModelData) customPredicate.getExtraDataOfType(EntityModelData.class).get(0);
+        head.setRotationX(extraData.headPitch * 0.017453292F);
+        head.setRotationY(extraData.netHeadYaw * 0.017453292F);
     }
 }

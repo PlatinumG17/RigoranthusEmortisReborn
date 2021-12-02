@@ -24,6 +24,8 @@ import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 @Mod.EventBusSubscriber(modid = EmortisConstants.MOD_ID)
@@ -34,33 +36,29 @@ public class EmortisMobSpawns {
         EntitySpawnPlacementRegistry.register(RigoranthusEntityTypes.LANGUID_DWELLER.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, EmortisMobSpawns::languidDwellerCondition);
         EntitySpawnPlacementRegistry.register(RigoranthusEntityTypes.FERAL_CANIS.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, EmortisMobSpawns::canisChordataCondition);
     }
-
     @SubscribeEvent
     public static void onBiomeLoad(BiomeLoadingEvent event) {
         if (event.getName() == null) return;
         ResourceLocation biome = event.getName();
         MobSpawnInfoBuilder spawns = event.getSpawns();
         RegistryKey<Biome> key = RegistryKey.create(Registry.BIOME_REGISTRY, biome);
-        if (event.getCategory() == Biome.Category.DESERT ||
-                event.getCategory() == Biome.Category.EXTREME_HILLS ||
-                event.getCategory() == Biome.Category.FOREST ||
-                event.getCategory() == Biome.Category.JUNGLE ||
-                event.getCategory() == Biome.Category.MESA ||
-                event.getCategory() == Biome.Category.PLAINS ||
-                event.getCategory() == Biome.Category.SAVANNA ||
-                event.getCategory() == Biome.Category.SWAMP ||
-                event.getCategory() == Biome.Category.TAIGA ||
-                event.getCategory() == Biome.Category.RIVER ||
-                event.getCategory() == Biome.Category.OCEAN) {
-            spawns.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(RigoranthusEntityTypes.LANGUID_DWELLER.get(), Config.languidDwellerSpawnWeight.get(), 1, 5));
+        List<Biome.Category> categories = Arrays.asList(Biome.Category.FOREST, Biome.Category.EXTREME_HILLS, Biome.Category.JUNGLE,
+                Biome.Category.PLAINS, Biome.Category.SWAMP, Biome.Category.SAVANNA, Biome.Category.MESA, Biome.Category.TAIGA);
+
+        if (categories.contains(event.getCategory())) {
+            if (Config.languidDwellerSpawnWeight.get() > 0)
+                spawns.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(RigoranthusEntityTypes.LANGUID_DWELLER.get(), Config.languidDwellerSpawnWeight.get(), 1, 1));
         }
-        if (BiomeDictionary.hasType(key, BiomeDictionary.Type.OVERWORLD)) {
-            spawns.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(RigoranthusEntityTypes.SUNDERED_CADAVER.get(), Config.sunderedCadaverSpawnWeight.get(), 1, 6));
-            spawns.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(RigoranthusEntityTypes.NECRAW_FASCII.get(), Config.necrawFasciiSpawnWeight.get(), 1, 2));
-            spawns.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(RigoranthusEntityTypes.FERAL_CANIS.get(), Config.feralCanisChordataSpawnWeight.get(), 1, 1));
+
+        if (!event.getCategory().equals(Biome.Category.MUSHROOM) && !event.getCategory().equals(Biome.Category.NONE)) {
+            if (Config.sunderedCadaverSpawnWeight.get() > 0)
+                spawns.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(RigoranthusEntityTypes.SUNDERED_CADAVER.get(), Config.sunderedCadaverSpawnWeight.get(), 1, 6));
+            if (Config.necrawFasciiSpawnWeight.get() > 0)
+                spawns.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(RigoranthusEntityTypes.NECRAW_FASCII.get(), Config.necrawFasciiSpawnWeight.get(), 1, 2));
+            if (Config.feralCanisChordataSpawnWeight.get() > 0)
+                spawns.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(RigoranthusEntityTypes.FERAL_CANIS.get(), Config.feralCanisChordataSpawnWeight.get(), 1, 1));
         }
     }
-
     public static boolean canisChordataCondition(EntityType<? extends MonsterEntity> entityType, IWorld world, SpawnReason spawnReason, BlockPos pos, Random random) {
         if (((World) world).dimension() != World.OVERWORLD) return false;
         return world.getDifficulty() != Difficulty.PEACEFUL && (world.getMaxLocalRawBrightness(pos)) <= 10;
@@ -71,16 +69,3 @@ public class EmortisMobSpawns {
         return world.getDifficulty() != Difficulty.PEACEFUL && pos.getY() <= Config.languidDwellerMaxSpawnHeight.get();
     }
 }
-
-//    public static boolean sunderedCadaverCondition(EntityType<? extends MonsterEntity> entityType, IWorld world, SpawnReason spawnReason, BlockPos pos, Random random) {
-//        if (((World) world).dimension() != World.OVERWORLD) return false;
-//        return Config.sunderedCadaverSpawnWeight > 0;
-//    }
-//    public static boolean necrawFasciiCondition(EntityType<? extends MonsterEntity> entityType, IWorld world, SpawnReason spawnReason, BlockPos pos, Random random) {
-//        if (((World) world).dimension() != World.OVERWORLD) return false;
-//        return Config.sunderedCadaverSpawnWeight > 0;
-//    }
-
-//    if (Config.sunderedCadaverSpawnWeight > 0) {spawns.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(RigoranthusEntityTypes.SUNDERED_CADAVER.get(), Config.sunderedCadaverSpawnWeight.get(), Config.sunderedCadaverMinGroupSize.get(), Config.sunderedCadaverMaxGroupSize.get()));}
-//    if (Config.necrawFasciiSpawnWeight > 0) {spawns.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(RigoranthusEntityTypes.NECRAW_FASCII.get(), Config.necrawFasciiSpawnWeight.get(), Config.necrawFasciiMinGroupSize.get(), Config.necrawFasciiMaxGroupSize.get()));}
-//    if (Config.canisChordataSpawnWeight > 0) {spawns.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(RigoranthusEntityTypes.CANIS_CHORDATA.get(), Config.canisChordataSpawnWeight.get(), Config.canisChordataMinGroupSize.get(), ConfigValues.canisChordataMaxGroupSize.get()));}

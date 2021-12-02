@@ -53,7 +53,7 @@ public interface ISpellCaster {
 
     String getFlavorText();
 
-    ParticleColor.IntWrapper getColor();
+    @Nonnull ParticleColor.IntWrapper getColor();
 
     Map<Integer, Spell> getSpells();
 
@@ -99,5 +99,10 @@ public interface ISpellCaster {
     }
     default ActionResult<ItemStack> castSpell(World worldIn, PlayerEntity playerIn, Hand handIn, TranslationTextComponent invalidMessage){
         return castSpell(worldIn, playerIn, handIn, invalidMessage, getSpell(worldIn, playerIn, handIn, this));
+    }
+    default void copySlotFrom(ISpellCaster caster){
+        setColor(caster.getColor());
+        setSpell(caster.getSpell());
+        setFlavorText(caster.getFlavorText());
     }
 }

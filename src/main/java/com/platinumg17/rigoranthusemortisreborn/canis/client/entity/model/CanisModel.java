@@ -20,11 +20,11 @@ public class CanisModel<T extends AbstractCanisEntity> extends TintedAgeableMode
     public ModelRenderer tail;
 
     public CanisModel() {
-        this(0.0F);
+        this(1.0F);
     }
 
     public CanisModel(float scaleFactor) {
-        float f1 = 6.5F;//13.5F;
+        float f1 = 13.5F;
         texWidth = 128;
         texHeight = 128;
 

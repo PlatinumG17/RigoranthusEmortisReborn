@@ -40,7 +40,6 @@ public class BaseBook extends ModdedScreen {
         GlStateManager._pushMatrix();
         if(scaleFactor != 1) {
             GlStateManager._scalef(scaleFactor, scaleFactor, scaleFactor);
-
             mouseX /= scaleFactor;
             mouseY /= scaleFactor;
         }

@@ -70,7 +70,6 @@ public class DummyRenderer extends LivingRenderer<EntityDummy, PlayerModel<Entit
             if (bipedmodel$armpose.isTwoHanded()) {
                 bipedmodel$armpose1 = p_177137_1_.getOffhandItem().isEmpty() ? BipedModel.ArmPose.EMPTY : BipedModel.ArmPose.ITEM;
             }
-
             if (p_177137_1_.getMainArm() == HandSide.RIGHT) {
                 playermodel.rightArmPose = bipedmodel$armpose;
                 playermodel.leftArmPose = bipedmodel$armpose1;
@@ -79,7 +78,6 @@ public class DummyRenderer extends LivingRenderer<EntityDummy, PlayerModel<Entit
                 playermodel.leftArmPose = bipedmodel$armpose;
             }
         }
-
     }
 
     private static BipedModel.ArmPose getArmPose(EntityDummy p_241741_0_, Hand p_241741_1_) {
@@ -92,26 +90,21 @@ public class DummyRenderer extends LivingRenderer<EntityDummy, PlayerModel<Entit
                 if (useaction == UseAction.BLOCK) {
                     return BipedModel.ArmPose.BLOCK;
                 }
-
                 if (useaction == UseAction.BOW) {
                     return BipedModel.ArmPose.BOW_AND_ARROW;
                 }
-
                 if (useaction == UseAction.SPEAR) {
                     return BipedModel.ArmPose.THROW_SPEAR;
                 }
-
                 if (useaction == UseAction.CROSSBOW && p_241741_1_ == p_241741_0_.getUsedItemHand()) {
                     return BipedModel.ArmPose.CROSSBOW_CHARGE;
                 }
             } else if (!p_241741_0_.swinging && itemstack.getItem() == Items.CROSSBOW && CrossbowItem.isCharged(itemstack)) {
                 return BipedModel.ArmPose.CROSSBOW_HOLD;
             }
-
             return BipedModel.ArmPose.ITEM;
         }
     }
-
 
     protected void scale(EntityDummy p_225620_1_, MatrixStack p_225620_2_, float p_225620_3_) {
         float f = 0.9375F;
@@ -156,7 +149,6 @@ public class DummyRenderer extends LivingRenderer<EntityDummy, PlayerModel<Entit
             if (!p_225621_1_.isAutoSpinAttack()) {
                 p_225621_2_.mulPose(Vector3f.XP.rotationDegrees(f2 * (-90.0F - p_225621_1_.xRot)));
             }
-
             Vector3d vector3d = p_225621_1_.getViewVector(p_225621_5_);
             Vector3d vector3d1 = p_225621_1_.getDeltaMovement();
             double d0 = Entity.getHorizontalDistanceSqr(vector3d1);
@@ -177,6 +169,5 @@ public class DummyRenderer extends LivingRenderer<EntityDummy, PlayerModel<Entit
         } else {
             super.setupRotations(p_225621_1_, p_225621_2_, p_225621_3_, p_225621_4_, p_225621_5_);
         }
-
     }
 }

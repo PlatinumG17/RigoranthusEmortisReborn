@@ -38,7 +38,6 @@ public class DungeonLootGenerator extends GlobalLootModifierProvider {
 
     public ILootCondition getList(String[] chests){
         ILootCondition.IBuilder condition = null;
-
         for(String s : chests){
             if(condition == null) {
                 condition = LootTableIdCondition.builder(new ResourceLocation(s));
@@ -50,7 +49,6 @@ public class DungeonLootGenerator extends GlobalLootModifierProvider {
     }
 
     public static class DungeonLootEnhancerModifier extends LootModifier {
-
         public double commonChance;
         public double uncommonChance;
         public double rareChance;
@@ -58,7 +56,6 @@ public class DungeonLootGenerator extends GlobalLootModifierProvider {
         public int commonRolls;
         public int uncommonRolls;
         public int rareRolls;
-
 
         public DungeonLootEnhancerModifier(final ILootCondition[] conditionsIn, double commonChance, double uncommonChance, double rareChance, int commonRolls, int uncommonRolls, int rareRolls) {
             super(conditionsIn);
@@ -98,7 +95,6 @@ public class DungeonLootGenerator extends GlobalLootModifierProvider {
                         object.get("common_rolls").getAsInt(),
                         object.get("uncommon_rolls").getAsInt(),
                         object.get("rare_rolls").getAsInt()
-
                 );
             }
 

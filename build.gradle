@@ -17,13 +17,14 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
+apply plugin: 'org.spongepowered.mixin'
 apply plugin: 'com.matthewprenger.cursegradle'
 apply plugin: 'se.bjurr.gitchangelog.git-changelog-gradle-plugin'
-apply plugin: 'org.ajoberstar.grgit'
+//apply plugin: 'org.ajoberstar.grgit'
 
-def branch = grgit.branch.current()
-println "On branch: ${branch.fullName}"
-println "Pipeline branch: " + (System.getenv('CI_COMMIT_BRANCH') ?: 'NONE')
+//def branch = grgit.branch.current()
+//println "On branch: ${branch.fullName}"
+//println "Pipeline branch: " + (System.getenv('CI_COMMIT_BRANCH') ?: 'NONE')
 
 version = '1.16.5-2.0.0'
 group = 'com.platinumg17.rigoranthusemortisreborn'
@@ -52,7 +53,7 @@ configurations {
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(8)
-
+//sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 minecraft {
     mappings channel: "official", version: "1.16.5"
     accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
@@ -110,7 +111,6 @@ dependencies {
     runtimeOnly fg.deobf("curse.maven:exp-406201:3419814") // Blame
     runtimeOnly fg.deobf("curse.maven:exp-248787:3395800") // Appleskin
     runtimeOnly fg.deobf("curse.maven:exp-407174:3188120") // Shutup experimental settings
-    runtimeOnly fg.deobf("curse.maven:exp-268560:3206392") // Mekanism
     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.16.3-4.0.1.0:api")
     runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.16.3-4.0.1.0")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.2")
@@ -124,10 +124,10 @@ dependencies {
 }
 
 repositories {
-//    maven {
-//        name 'LDTTeam - Modding'
-//        url 'https://ldtteam.jfrog.io/ldtteam/modding/'
-//    }
+    maven {
+        name 'LDTTeam - Modding'
+        url 'https://ldtteam.jfrog.io/ldtteam/modding/'
+    }
     maven {
         url "https://cursemaven.com"
         content {
@@ -201,10 +201,8 @@ tasks.named('jar') {
             "Implementation-Title"    : project.name,
             "Implementation-Version"  : "${version}",
             "Implementation-Vendor"   : "platinumg17",
-            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
-//                "TweakClass"          : "org.spongepowered.asm.launch.MixinTweaker",
-//                "TweakerOrder"        : 0,
-//            "MixinConfigs"            : "rigoranthusemortisreborn.mixins.json"
+            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+            //"MixinConfigs"            : "rigoranthusemortisreborn.mixins.json"
         ])
     }
 }
@@ -244,10 +242,10 @@ afterEvaluate {
 //    }
 //    sourceSets.api.java.srcDirs.each { extractMappedNew.addTarget it }
 //}
-apply plugin: 'org.spongepowered.mixin'
-mixin {
-    add sourceSets.main, "rigoranthusemortisreborn.refmap.json"
-}
+
+//mixin {
+//    add sourceSets.main, "rigoranthusemortisreborn.refmap.json"
+//}
 tasks.withType(JavaCompile) {
     options.incremental = true
 }

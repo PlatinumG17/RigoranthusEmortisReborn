@@ -45,14 +45,11 @@ public class GuiImageButton extends Button {
 
     @Override
     protected void renderBg(MatrixStack p_230441_1_, Minecraft p_230441_2_, int p_230441_3_, int p_230441_4_) {
-
     }
 
     @Override
     public void render(MatrixStack ms, int parX, int parY, float partialTicks) {
-//        super.render(ms, parX, parY, partialTicks);
-        if (visible)
-        {
+        if (visible) {
             if(parent != null && parent.isMouseInRelativeRange(parX, parY, x, y, width, height) && toolTip != null){
                 if(!toolTip.toString().isEmpty()){
                     List<ITextComponent> tip = new ArrayList<>();

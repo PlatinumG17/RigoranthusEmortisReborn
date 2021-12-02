@@ -14,7 +14,6 @@ import net.minecraftforge.common.crafting.CraftingHelper;
  */
 public class RecipeUtil {
 
-
     /**
      * Parse the input of a shapeless recipe.
      *

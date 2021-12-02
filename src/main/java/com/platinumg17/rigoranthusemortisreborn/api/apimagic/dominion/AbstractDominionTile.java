@@ -10,8 +10,8 @@ import net.minecraft.tileentity.TileEntityType;
 
 import javax.annotation.Nullable;
 
-import static com.platinumg17.rigoranthusemortisreborn.api.apimagic.DominionTags.DOMINION_TAG;
-import static com.platinumg17.rigoranthusemortisreborn.api.apimagic.DominionTags.MAX_DOMINION_TAG;
+import static com.platinumg17.rigoranthusemortisreborn.api.apimagic.MagicFluidTags.DOMINION_TAG;
+import static com.platinumg17.rigoranthusemortisreborn.api.apimagic.MagicFluidTags.MAX_DOMINION_TAG;
 
 public abstract class AbstractDominionTile extends TileEntity implements IDominionTile, ITickableTileEntity {
     private int dominion = 0;

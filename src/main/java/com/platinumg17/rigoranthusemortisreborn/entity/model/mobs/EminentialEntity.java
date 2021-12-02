@@ -31,52 +31,15 @@ package com.platinumg17.rigoranthusemortisreborn.entity.model.mobs;
 //import java.util.UUID;
 //
 //public class EminentialEntity extends MobEntity implements IEntityAdditionalSpawnData {
-//    public boolean isFlying;
-////    public GameType gameType;
-//    public String username;
-//    private UUID playerId;
-//    private FoodStats foodStats;
-//    private CompoundNBT foodStatsNBT;
-//    public CompoundNBT capabilities = new CompoundNBT();
-//
-//    public boolean markedForDespawn;
-//    private double originX, originY, originZ;
-//    private DecoyPlayer player;
-//
-//    public PlayerInventory inventory;
-//
-////    public EminentialEntity(World worldIn, LivingEntity livingEntityIn) {super(SpecializedEntityTypes.EMINENTIAL_PROJECTION.get(), livingEntityIn, worldIn);}
-//    public EminentialEntity(FMLPlayMessages.SpawnEntity player, World worldIn) {super(SpecializedEntityTypes.EMINENTIAL_PROJECTION.get(), worldIn);}
-//
-//    public EminentialEntity(EntityType<? extends MobEntity> type, World world) {
-//        super(type, world);
-//        //super(SpecializedEntityTypes.EMINENTIAL_PROJECTION.get(), world);
-//        inventory = new PlayerInventory(null);
-//        if(!world.isClientSide)	//If not spawned the way it should
-//            markedForDespawn = true;
-//    }
-//
+
 //    public EminentialEntity(ServerWorld world, ServerPlayerEntity player) {        //ServerWorld world, ServerPlayerEntity player) {
 //        super(SpecializedEntityTypes.EMINENTIAL_PROJECTION.get(), world);
 //        this.setBoundingBox(player.getBoundingBox());
 //        this.player = new DecoyPlayer(world, this, player);
 //        this.setBoundingBox(player.getBoundingBox());
 //        this.player = new DecoyPlayer(world, this, player);
-//        for(String key : player.getPersistentData().getAllKeys())
-//            this.player.getPersistentData().put(key, player.getPersistentData().get(key).copy());
-//        this.setPos(player.getX(), player.getY(), player.getZ());
-//        originX = this.getX();
-//        this.xChunk = player.xChunk;
-//        originY = this.getY();
-//        this.yChunk = player.yChunk;
-//        originZ = this.getZ();
-//        this.zChunk = player.zChunk;
-//        this.xRot = player.xRot;
-//        this.yRot = player.yRot;
-//        this.yHeadRot = player.yHeadRot;
-//        this.yBodyRot = player.yBodyRot;
-////        this.gameType = player.gameMode.getGameModeForPlayer();
-//        initInventory(player);
+
+
 //        this.getAttribute(Attributes.MAX_HEALTH).replaceFrom(player.getAttribute(Attributes.MAX_HEALTH));
 //        this.player.getAttribute(Attributes.MAX_HEALTH).replaceFrom(player.getAttribute(Attributes.MAX_HEALTH));
 //        this.setHealth(player.getHealth());
@@ -127,65 +90,20 @@ package com.platinumg17.rigoranthusemortisreborn.entity.model.mobs;
 //    @Override
 //    public void writeSpawnData(PacketBuffer buffer) {
 //        buffer.writeUtf(username, 16);
-//        buffer.writeUUID(playerId);
-//        buffer.writeFloat(yHeadRot);
-//        buffer.writeBoolean(isFlying);
 //    }
 //
 //    @Override
 //    public void readSpawnData(PacketBuffer additionalData) {
 //        username = additionalData.readUtf(16);
-//        playerId = additionalData.readUUID();
-//        yHeadRot = additionalData.readFloat();
-//        isFlying = additionalData.readBoolean();
-//        yHeadRotO = yHeadRot;
-//        this.yRot = yHeadRot;	//I don't know how much of this that is necessary
-//        yRotO = yRot;
-//        yBodyRot = yRot;
 //    }
-//
-//    @Override
-//    public IPacket<?> getAddEntityPacket() {return NetworkHooks.getEntitySpawningPacket(this);}
-//
-//    public UUID getPlayerID() {return playerId;}
-//
+
 //    @Override
 //    public void tick() {
-//        if(markedForDespawn) {
-//            this.remove();
-//            return;
-//        }
-//        super.tick();
-//
-//        yHeadRot = yHeadRotO;	//Neutralize the effect of the LookHelper
-//        yRot = yRotO;
-//        xRot = xRotO;
-//
-//        if(isFlying)
-//            this.setPos(this.getX(), yo, this.getZ());
-//
 //        if(!level.isClientSide) {
 //            if(foodStats != null)
 //                foodStats.tick(player);
-////            if(this.locationChanged())
-////                ServerEditHandler.reset(ServerEditHandler.getData(this));
 //        }
 //    }
-//
-//    public boolean locationChanged() {
-//        return originX >= this.getX()+1 || originX <= this.getX()-1 ||
-//                originY >= this.getY()+1 || originY <= this.getY()-1 ||
-//                originZ >= this.getZ()+1 || originZ <= this.getZ()-1;
-//    }
-//
-////    @Override
-////    public boolean hurt(DamageSource damageSource, float par2) {
-////        if (!level.isClientSide && (!gameType.equals(GameType.CREATIVE) || damageSource.isBypassInvul())) {
-////            return super.hurt(damageSource, par2);
-////        }
-//////            ServerEditHandler.reset(damageSource, par2, ServerEditHandler.getData(this));
-////        return super.hurt(damageSource, par2);
-////    }
 //
 //    @Override
 //    public boolean shouldShowName() {return username != null;}
@@ -221,21 +139,5 @@ package com.platinumg17.rigoranthusemortisreborn.entity.model.mobs;
 //    @Override
 //    public Iterable<ItemStack> getArmorSlots() {
 //        return inventory.armor;
-//    }
-//
-//    @Override
-//    public boolean removeWhenFarAway(double distanceToClosestPlayer) {return false;}
-//
-//    private static class DecoyPlayer extends FakePlayer {
-//        EminentialEntity eminentialProjection;
-//        DecoyPlayer(ServerWorld par1World, EminentialEntity eminentialProjection, ServerPlayerEntity player) {
-//            super(par1World, player.getGameProfile());
-//            player.getServer().getPlayerList().getPlayerAdvancements(player);
-//            //Fixes annoying NullPointerException when unlocking advancement, caused by just creating the fake player
-//            this.eminentialProjection = eminentialProjection;
-//            this.setHealth(eminentialProjection.getHealth());
-//        }
-//        @Override
-//        public void heal(float par1) {eminentialProjection.heal(par1);}
 //    }
 //}

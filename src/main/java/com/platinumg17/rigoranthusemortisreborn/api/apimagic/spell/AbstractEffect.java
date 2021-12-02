@@ -6,7 +6,6 @@ import com.platinumg17.rigoranthusemortisreborn.api.apimagic.event.SummonEvent;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.interfaces.IInventoryResponder;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.interfaces.IPickupResponder;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.util.LootUtil;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.items.VoidJar;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.potions.ModPotions;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.spell.augment.*;
 import net.minecraft.block.material.Material;
@@ -87,6 +86,7 @@ public abstract class AbstractEffect extends AbstractSpellPart {
         onResolveBlock(rayTraceResult, world, shooter, spellStats.getAugments(), spellContext);
     }
 
+
     @Deprecated // Use config-sensitive method
     public void applyPotion(LivingEntity entity, Effect potionEffect, List<AbstractAugment> augmentTypes){
         applyPotion(entity, potionEffect, augmentTypes, 30, 8);
@@ -100,15 +100,12 @@ public abstract class AbstractEffect extends AbstractSpellPart {
     public void applyConfigPotion(LivingEntity entity, Effect potionEffect, SpellStats spellStats){
         applyConfigPotion(entity, potionEffect, spellStats, true);
     }
-
     public void applyConfigPotion(LivingEntity entity, Effect potionEffect, SpellStats spellStats, boolean showParticles){
         applyPotion(entity, potionEffect, spellStats, POTION_TIME == null ? 30 : POTION_TIME.get(), EXTEND_TIME == null ? 8 : EXTEND_TIME.get(), showParticles);
     }
-
     public boolean canSummon(LivingEntity playerEntity){
         return isRealPlayer(playerEntity) && playerEntity.getEffect(ModPotions.SUMMONING_SICKNESS) == null;
     }
-
     public void applySummoningSickness(LivingEntity playerEntity, int time){
         playerEntity.addEffect(new EffectInstance(ModPotions.SUMMONING_SICKNESS, time));
     }
@@ -173,6 +170,7 @@ public abstract class AbstractEffect extends AbstractSpellPart {
         return world.getBlockState(pos).getDestroySpeed(world, pos) >= 0 && getBaseHarvestLevel(augments) >= world.getBlockState(pos).getHarvestLevel();
     }
 
+
     public int getBaseHarvestLevel(SpellStats stats){
         return (int) (2 + stats.getAmpMultiplier());
     }
@@ -187,6 +185,7 @@ public abstract class AbstractEffect extends AbstractSpellPart {
 
         if((entity instanceof LivingEntity && ((LivingEntity) entity).getHealth() <= 0) || totalDamage <= 0)
             return;
+
         entity.hurt(source, totalDamage);
         PlayerEntity playerContext = shooter instanceof PlayerEntity ? (PlayerEntity) shooter : REFakePlayer.getPlayer((ServerWorld) world);
         if(!(entity instanceof LivingEntity) )
@@ -202,6 +201,7 @@ public abstract class AbstractEffect extends AbstractSpellPart {
         }
     }
 
+
     @Deprecated // Use stats sensitive dealDamage
     public void dealDamage(World world, LivingEntity shooter, float damage, List<AbstractAugment> augments, Entity entity, DamageSource source){
         shooter = shooter == null ? FakePlayerFactory.getMinecraft((ServerWorld) world) : shooter;
@@ -211,7 +211,6 @@ public abstract class AbstractEffect extends AbstractSpellPart {
         if(!(entity instanceof LivingEntity) )
             return;
         LivingEntity mob = (LivingEntity) entity;
-
         if(mob.getHealth() <= 0 && !mob.removed && hasBuff(augments, AugmentFortune.class)){
             int looting = getBuffCount(augments, AugmentFortune.class);
             LootContext.Builder lootContext = LootUtil.getLootingContext((ServerWorld)world,shooter, mob, looting, DamageSource.playerAttack((PlayerEntity) shooter));
@@ -239,7 +238,6 @@ public abstract class AbstractEffect extends AbstractSpellPart {
         return !(entity instanceof FakePlayer);
     }
 
-    // If the spell would actually do anything. Can be used for logic checks
     public boolean wouldSucceed(RayTraceResult rayTraceResult, World world, LivingEntity shooter, List<AbstractAugment> augments){
         return true;
     }
@@ -372,7 +370,6 @@ public abstract class AbstractEffect extends AbstractSpellPart {
         }
         if(isRealPlayer(shooter)){
             PlayerEntity player = (PlayerEntity) shooter;
-            VoidJar.tryVoiding(player, stack);
             if(!player.addItem(stack)){
                 ItemEntity i = new ItemEntity(shooter.level,player.getX(), player.getY(), player.getZ(), stack);
                 shooter.level.addFreshEntity(i);

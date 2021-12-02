@@ -77,10 +77,10 @@ public class SpellCaster implements ISpellCaster {
     public void setColor(ParticleColor.IntWrapper color) {
         this.color = color;
     }
-
+    @Nonnull
     @Override
     public ParticleColor.IntWrapper getColor() {
-        return color;
+        return color == null ? ParticleUtil.defaultParticleColorWrapper() : color;
     }
 
     @Override

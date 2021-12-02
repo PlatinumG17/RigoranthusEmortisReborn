@@ -1,12 +1,12 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.common.event;
 
-import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.AbstractSpellPart;
+import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.Spell;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.SpellContext;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.SpellResolver;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.util.MathUtil;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
+import com.platinumg17.rigoranthusemortisreborn.magica.client.particle.ParticleColor;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.enchantment.EnchantmentRegistry;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.items.SpellParchment;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.network.Networking;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.network.PacketReactiveSpell;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -24,11 +24,8 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import java.util.List;
-
 @Mod.EventBusSubscriber(modid = EmortisConstants.MOD_ID)
 public class ReactiveEvents {
-
     @SubscribeEvent
     public static void livingHitEvent(LivingHurtEvent e){
         LivingEntity entity = e.getEntityLiving();
@@ -38,18 +35,20 @@ public class ReactiveEvents {
             castSpell((PlayerEntity) entity, s);
         }
     }
-
+    // TODO: Replace ray casting with unified casting on look vector
     public static void castSpell(PlayerEntity playerIn, ItemStack s){
         if(EnchantmentHelper.getItemEnchantmentLevel(EnchantmentRegistry.REACTIVE_ENCHANTMENT, s) * .25 >= Math.random() && s.hasTag() && s.getTag().contains("spell")){
-            List<AbstractSpellPart> list = SpellParchment.getSpellRecipe(s);
-            SpellResolver resolver = new SpellResolver(list, true, new SpellContext(list, playerIn));
+            Spell spell = Spell.deserialize(s.getOrCreateTag().getString("spell"));
+            ParticleColor.IntWrapper color = ParticleColor.IntWrapper.deserialize(s.getOrCreateTag().getString("spell_color"));
+            color.makeVisible();
+            SpellResolver resolver = new SpellResolver(new SpellContext(spell, playerIn).withColors(color)).withSilent(true);
             RayTraceResult result = playerIn.pick(5, 0, false);
 
             EntityRayTraceResult entityRes = MathUtil.getLookedAtEntity(playerIn, 25);
             ItemStack stack = playerIn.getMainHandItem();
             Hand handIn = Hand.MAIN_HAND;
             if(entityRes != null && entityRes.getEntity() instanceof LivingEntity){
-                resolver.onCastOnEntity(stack, playerIn, (LivingEntity) entityRes.getEntity(), handIn);
+                resolver.onCastOnEntity(stack, playerIn, entityRes.getEntity(), handIn);
                 return;
             }
             if(result.getType() == RayTraceResult.Type.BLOCK){
@@ -60,7 +59,6 @@ public class ReactiveEvents {
             resolver.onCast(stack,playerIn,playerIn.getCommandSenderWorld());
         }
     }
-
     @SubscribeEvent
     public static void leftClickBlock(PlayerInteractEvent.LeftClickBlock e){
         LivingEntity entity = e.getEntityLiving();
@@ -69,7 +67,6 @@ public class ReactiveEvents {
         ItemStack s = e.getItemStack();
         castSpell((PlayerEntity) entity, s);
     }
-
     @SubscribeEvent
     public static void playerAttackEntity(AttackEntityEvent e){
         LivingEntity entity = e.getEntityLiving();
@@ -78,7 +75,6 @@ public class ReactiveEvents {
         ItemStack s = e.getEntityLiving().getMainHandItem();
         castSpell((PlayerEntity) entity, s);
     }
-
     @SubscribeEvent
     public static void leftClickAir(PlayerInteractEvent.LeftClickEmpty e){
         LivingEntity entity = e.getEntityLiving();

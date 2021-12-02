@@ -76,5 +76,150 @@ https://geckolib.com/en/latest/3.0.0/item_animations/#:~:text=Item%20Animations%
 			}
 		}
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    ///_______________________  R A N D O M   P O T I O N   E F F E C T S  _______________________///
+
+	public class EraticEnchanter extends RigoranthusEmortisRebornCurio {
+    public EraticEnchanter(String registry){
+        super(registry);
+    }
+    public static ArrayList<Effect> effectTable = new ArrayList<>(Arrays.asList(
+            Effects.SLOW_FALLING, Effects.NIGHT_VISION, Effects.CONDUIT_POWER, Effects.ABSORPTION, Effects.DAMAGE_BOOST,
+            Effects.FIRE_RESISTANCE, Effects.DIG_SPEED, Effects.MOVEMENT_SPEED, Effects.REGENERATION, Effects.DAMAGE_RESISTANCE
+    ));
+
+    @Override
+    public void wearableTick(LivingEntity wearer) {
+        World world = wearer.getCommandSenderWorld();
+        if(world.isClientSide())
+            return;
+        if(world.getGameTime() % (20 * 6)  == 0){
+            wearer.addEffect(new EffectInstance(effectTable.get(new Random().nextInt(effectTable.size())), 6 * 20, new Random().nextInt(3)));
+        }
+    }
+}
+
+    ///_______________________  " M O B S   C A N N O T   W A L K   O N   B L O C K "  _______________________///
+
+public class WardBlock extends ModBlock {
+    public WardBlock() {
+        super(defaultProperties().lightLevel((bs)->7), "warding_stone");
+    }
+    public static final DirectionProperty FACING = HorizontalBlock.FACING;
+    @Override public void entityInside(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {super.entityInside(state, worldIn, pos, entityIn);}
+    @Nullable @Override public PathNodeType getAiPathNodeType(BlockState state, IBlockReader world, BlockPos pos, @Nullable MobEntity entity) {return PathNodeType.LAVA;}
+    @Deprecated
+    public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+        if(context.getEntity() == null)
+            return state.getShape(worldIn, pos);
+        if(context.getEntity().level.isClientSide)
+            return state.getShape(worldIn, pos);
+        if(!(context.getEntity() instanceof PlayerEntity))
+            return VoxelShapes.block().move(0, 1, 0);
+        return VoxelShapes.block();
+    }
+    @Override
+    public void setPlacedBy(World world, BlockPos pos, BlockState state, @Nullable LivingEntity entity, ItemStack stack) {
+        if (entity != null) {world.setBlock(pos, state.setValue(BlockStateProperties.FACING, getFacingFromEntity(pos, entity)), 2);}
+    }
+    @Override public boolean collisionExtendsVertically(BlockState state, IBlockReader world, BlockPos pos, Entity collidingEntity) {return collidingEntity instanceof MobEntity;}
+    public static Direction getFacingFromEntity(BlockPos clickedBlock, LivingEntity entity) {
+        Vector3d vec = entity.position();
+        return Direction.getNearest((float) (vec.x - clickedBlock.getX()), (float) (vec.y - clickedBlock.getY()), (float) (vec.z - clickedBlock.getZ()));
+    }
+    @Override protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {builder.add(BlockStateProperties.FACING);}
+}
+
+
+
+
+
+    ///_______________________  V O I D S   I T E M S  _______________________///
+
+public class VoidJar extends ModItem implements IScribeable {
+    public VoidJar() {super(MagicItemsRegistry.defaultItemProperties().stacksTo(1), LibItemNames.VOID_JAR);}
+    public void toggleStatus(PlayerEntity playerEntity, ItemStack stack){
+        CompoundNBT tag = stack.getTag();
+        if(tag.getBoolean("on")){
+            tag.putBoolean("on", false);
+            PortUtil.sendMessage(playerEntity, new TranslationTextComponent("rigoranthusemortisreborn.off"));
+        }else{
+            tag.putBoolean("on", true);
+            PortUtil.sendMessage(playerEntity, new TranslationTextComponent("rigoranthusemortisreborn.on"));}}
+    public static boolean tryVoiding(PlayerEntity player, ItemStack pickingUp) {
+        NonNullList<ItemStack> list =  player.inventory.items;
+        boolean voided = false;
+        for(int i = 0; i < 9; i++){
+            ItemStack jar = list.get(i);
+            if(jar.getItem() == MagicItemsRegistry.VOID_JAR){
+                if(isActive(jar) && containsItem(pickingUp, jar.getTag())){
+                    DominionCapability.getDominion(player).ifPresent(iMana -> iMana.addDominion(5.0 * pickingUp.getCount()));
+                    pickingUp.setCount(0);
+                    voided = true;
+                    break;}}}return voided;}
+    public static boolean isActive(ItemStack stack){
+        return stack.hasTag() && stack.getTag().getBoolean("on");
+    }
+    @Override
+    public ActionResult<ItemStack> use(World worldIn, PlayerEntity player, Hand handIn) {
+        if(worldIn.isClientSide)
+            return super.use(worldIn, player, handIn);
+        ItemStack stack = player.getItemInHand(handIn);
+        CompoundNBT tag = stack.getOrCreateTag();
+        if(handIn == Hand.MAIN_HAND){
+            ItemStack stackToWrite = player.getOffhandItem();
+            if(player.isShiftKeyDown()){
+                toggleStatus(player, stack);
+                return ActionResult.consume(stack);}
+            if(!stackToWrite.isEmpty()){
+                if(containsItem(stackToWrite, tag)) {
+                    PortUtil.sendMessage(player, new TranslationTextComponent("rigoranthusemortisreborn.scribe.item_removed"));
+                    ItemScroll.removeItem(stackToWrite, tag);
+                    player.startUsingItem(handIn);
+                    return ActionResult.fail(stack);}
+                PortUtil.sendMessage(player, new TranslationTextComponent("rigoranthusemortisreborn.scribe.item_added"));
+                ItemScroll.addItem(stackToWrite, tag);
+                player.startUsingItem(handIn);
+                return ActionResult.fail(stack);}
+        }return ActionResult.success(stack);}
+    @Override
+    public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip2, ITooltipFlag flagIn) {
+        CompoundNBT tag = stack.getTag();
+        if(tag == null)
+            return;
+        if(tag.getBoolean("on")){tooltip2.add(new TranslationTextComponent("rigoranthusemortisreborn.on"));
+        }else{tooltip2.add(new TranslationTextComponent("rigoranthusemortisreborn.off"));}
+        super.appendHoverText(stack, worldIn, tooltip2, flagIn);
+        List<ItemStack> stacks = new ArrayList<>();
+        for(String s : tag.getAllKeys()){
+            if(s.contains(ITEM_PREFIX)){
+                stacks.add(ItemStack.of(tag.getCompound(s)));
+            }}for(ItemStack s : stacks){
+            tooltip2.add(s.getHoverName());}}
+    @Override
+    public boolean onScribe(World world, BlockPos pos, PlayerEntity player, Hand handIn, ItemStack thisStack) {return ItemScroll.scribe(world, pos, player, handIn, thisStack);}
+}
+
      */
 }

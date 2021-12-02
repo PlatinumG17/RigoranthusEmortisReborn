@@ -11,5 +11,5 @@ public class ClientInfo {
 
     public static CompoundNBT persistentData = new CompoundNBT();
     public static int ticksInGame = 0;
-    public static List<BlockPos> scryingPositions = new ArrayList<>();
+    public static List<BlockPos> herb_visionPositions = new ArrayList<>();
 }

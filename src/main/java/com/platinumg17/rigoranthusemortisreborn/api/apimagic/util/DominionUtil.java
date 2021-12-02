@@ -42,8 +42,8 @@ public class DominionUtil {
     }
 
     public static int getMaxDominion(PlayerEntity e){
-        IDominion mana = DominionCapability.getDominion(e).orElse(null);
-        if(mana == null)
+        IDominion dominion = DominionCapability.getDominion(e).orElse(null);
+        if(dominion == null)
             return 0;
         int max = Config.INIT_MAX_DOMINION.get();
         for(ItemStack i : e.getAllSlots()){
@@ -60,8 +60,8 @@ public class DominionUtil {
                     max += (((IDominionEquipment) item).getMaxDominionBoost(items.getStackInSlot(i)));
             }
         }
-        int tier = mana.getBookTier();
-        int numGlyphs = mana.getGlyphBonus() > 5 ? mana.getGlyphBonus() - 5 : 0;
+        int tier = dominion.getBookTier();
+        int numGlyphs = dominion.getGlyphBonus() > 5 ? dominion.getGlyphBonus() - 5 : 0;
         max += numGlyphs * Config.GLYPH_MAX_BONUS.get();
         max += tier * Config.TIER_MAX_BONUS.get();
 
@@ -72,8 +72,8 @@ public class DominionUtil {
     }
 
     public static double getDominionRegen(PlayerEntity e) {
-        IDominion mana = DominionCapability.getDominion(e).orElse(null);
-        if(mana == null)
+        IDominion dominion = DominionCapability.getDominion(e).orElse(null);
+        if(dominion == null)
             return 0;
         double regen = Config.INIT_DOMINION_REGEN.get();
         for(ItemStack i : e.getAllSlots()){
@@ -91,8 +91,8 @@ public class DominionUtil {
                     regen += ((IDominionEquipment) item).getDominionRegenBonus(items.getStackInSlot(i));
             }
         }
-        int tier = mana.getBookTier();
-        double numGlyphs = mana.getGlyphBonus() > 5 ? mana.getGlyphBonus() - 5 : 0;
+        int tier = dominion.getBookTier();
+        double numGlyphs = dominion.getGlyphBonus() > 5 ? dominion.getGlyphBonus() - 5 : 0;
         regen += numGlyphs * Config.GLYPH_REGEN_BONUS.get();
         regen += tier;
         if(e.getEffect(ModPotions.DOMINION_REGEN_EFFECT) != null)
@@ -104,21 +104,21 @@ public class DominionUtil {
     }
 
     /**
-     * Searches for nearby mana jars that have enough mana.
-     * Returns the position where the mana was taken, or null if none were found.
+     * Searches for nearby dominion jars that have enough dominion.
+     * Returns the position where the dominion was taken, or null if none were found.
      */
     @Nullable
-    public static BlockPos takeDominionNearby(BlockPos pos, World world, int range, int mana){
-        Optional<BlockPos> loc = BlockPos.findClosestMatch(pos, range, range, (b) -> world.getBlockEntity(b) instanceof DominionJarTile && ((DominionJarTile) world.getBlockEntity(b)).getCurrentDominion() >= mana);
+    public static BlockPos takeDominionNearby(BlockPos pos, World world, int range, int dominion){
+        Optional<BlockPos> loc = BlockPos.findClosestMatch(pos, range, range, (b) -> world.getBlockEntity(b) instanceof DominionJarTile && ((DominionJarTile) world.getBlockEntity(b)).getCurrentDominion() >= dominion);
         if(!loc.isPresent())
             return null;
         DominionJarTile tile = (DominionJarTile) world.getBlockEntity(loc.get());
-        tile.removeDominion(mana);
+        tile.removeDominion(dominion);
         return loc.get();
     }
 
-    public static @Nullable BlockPos takeDominionNearbyWithParticles(BlockPos pos, World world, int range, int mana){
-        BlockPos result = takeDominionNearby(pos,world,range,mana);
+    public static @Nullable BlockPos takeDominionNearbyWithParticles(BlockPos pos, World world, int range, int dominion){
+        BlockPos result = takeDominionNearby(pos,world,range,dominion);
         if(result != null){
             EntityFollowProjectile aoeProjectile = new EntityFollowProjectile(world, result, pos);
             world.addFreshEntity(aoeProjectile);
@@ -127,11 +127,11 @@ public class DominionUtil {
     }
 
     /**
-     * Searches for nearby mana jars that have enough mana.
-     * Returns the position where the mana was taken, or null if none were found.
+     * Searches for nearby dominion jars that have enough dominion.
+     * Returns the position where the dominion was taken, or null if none were found.
      */
-    public static boolean hasDominionNearby(BlockPos pos, World world, int range, int mana){
-        Optional<BlockPos> loc = BlockPos.findClosestMatch(pos, range, range, (b) -> world.getBlockEntity(b) instanceof DominionJarTile && ((DominionJarTile) world.getBlockEntity(b)).getCurrentDominion() >= mana);
+    public static boolean hasDominionNearby(BlockPos pos, World world, int range, int dominion){
+        Optional<BlockPos> loc = BlockPos.findClosestMatch(pos, range, range, (b) -> world.getBlockEntity(b) instanceof DominionJarTile && ((DominionJarTile) world.getBlockEntity(b)).getCurrentDominion() >= dominion);
         return loc.isPresent();
     }
 

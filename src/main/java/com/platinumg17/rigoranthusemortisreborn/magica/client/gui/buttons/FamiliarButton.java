@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FamiliarButton extends Button {
-
     public boolean isCraftingSlot;
     public String resourceIcon;
     public String tooltip = "tooltip";

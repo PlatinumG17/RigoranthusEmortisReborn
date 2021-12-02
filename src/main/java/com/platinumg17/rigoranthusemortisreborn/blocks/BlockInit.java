@@ -2,6 +2,7 @@ package com.platinumg17.rigoranthusemortisreborn.blocks;
 
 import com.google.common.collect.Maps;
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
+import com.platinumg17.rigoranthusemortisreborn.blocks.custom.BrainBlock;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
 import net.minecraft.block.*;
@@ -78,6 +79,10 @@ public class BlockInit {
 	public static final RegistryObject<Block> BLOCK_OF_ESOTERICUM = registerBlock("block_of_esotericum",
 			() -> new GravelBlock(AbstractBlock.Properties.of(Material.SAND, MaterialColor.STONE).strength(1f, 1f)
 					.harvestTool(ToolType.SHOVEL).harvestLevel(0).sound(SoundType.GRAVEL)), "tooltip.block.rigoranthusemortisreborn.block_of_esotericum");
+
+	public static final RegistryObject<Block> DWELLER_BRAIN = registerBlock("dweller_brain",
+			() -> new BrainBlock(AbstractBlock.Properties.of(Material.SPONGE, MaterialColor.COLOR_PINK).strength(0.2f, 0.2f)
+					.noOcclusion().harvestLevel(0).sound(SoundType.SLIME_BLOCK)), "tooltip.block.rigoranthusemortisreborn.dweller_brain");
 
 //		public static final RegistryObject<Block> SPECTABILIS = registerBlock("spectabilis",
 //				() -> new SpectabilisBush(AbstractBlock.Properties.of(Material.VEGETABLE, MaterialColor.COLOR_RED).strength(1.0F).sound(SoundType.CROP)), "tooltip.block.rigoranthusemortisreborn.spectabilis");

@@ -12,19 +12,16 @@ public class PortUtil {
     public static void sendMessage(Entity playerEntity, ITextComponent component){
         playerEntity.sendMessage(component, Util.NIL_UUID);
     }
-
     public static void sendMessageNoSpam(Entity playerEntity, ITextComponent component){
         if (playerEntity instanceof PlayerEntity) {
             Networking.sendToPlayer(new PacketNoSpamChatMessage(component, 0, false), (PlayerEntity) playerEntity);
         }
     }
-
     public static void sendMessageCenterScreen(Entity playerEntity, ITextComponent component){
         if (playerEntity instanceof PlayerEntity) {
             Networking.sendToPlayer(new PacketNoSpamChatMessage(component, 0, true), (PlayerEntity) playerEntity);
         }
     }
-
     public static void sendMessage(Entity playerEntity, String message){
         sendMessage(playerEntity, new StringTextComponent(message));
     }

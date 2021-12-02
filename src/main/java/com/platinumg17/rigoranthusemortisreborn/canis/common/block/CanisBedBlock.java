@@ -1,28 +1,19 @@
 package com.platinumg17.rigoranthusemortisreborn.canis.common.block;
 
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
-import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.CanisEntity;
-import com.platinumg17.rigoranthusemortisreborn.canis.common.util.CanisBedUtil;
-import com.platinumg17.rigoranthusemortisreborn.canis.common.block.tileentity.CanisBedTileEntity;
-import com.platinumg17.rigoranthusemortisreborn.canis.common.canisnetwork.packet.data.storage.CanisRespawnData;
-import com.platinumg17.rigoranthusemortisreborn.canis.common.canisnetwork.packet.data.storage.CanisRespawnStorage;
-import com.platinumg17.rigoranthusemortisreborn.canis.common.SpecializedEntityTypes;
-import com.platinumg17.rigoranthusemortisreborn.canis.common.util.EntityUtil;
-import com.platinumg17.rigoranthusemortisreborn.canis.common.util.WorldUtil;
 import com.platinumg17.rigoranthusemortisreborn.api.RigoranthusEmortisRebornAPI;
 import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.IBeddingMaterial;
 import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.ICasingMaterial;
-import java.util.Collections;
-import java.util.List;
-import java.util.UUID;
-import javax.annotation.Nullable;
-import org.apache.commons.lang3.tuple.Pair;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.SpecializedEntityTypes;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.block.tileentity.CanisBedTileEntity;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.canisnetwork.packet.data.storage.CanisRespawnData;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.canisnetwork.packet.data.storage.CanisRespawnStorage;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.CanisEntity;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.util.CanisBedUtil;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.util.EntityUtil;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.util.NBTUtilities;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.HorizontalBlock;
-import net.minecraft.block.SoundType;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.util.WorldUtil;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
@@ -39,13 +30,7 @@ import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.Rotation;
-import net.minecraft.util.Util;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -65,6 +50,12 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.util.Constants;
+import org.apache.commons.lang3.tuple.Pair;
+
+import javax.annotation.Nullable;
+import java.util.Collections;
+import java.util.List;
+import java.util.UUID;
 
 public class CanisBedBlock extends Block {
 
@@ -218,3 +209,83 @@ public class CanisBedBlock extends Block {
         return ItemStack.EMPTY;
     }
 }
+
+/*
+
+
+     public static final VoxelShape NORTH_SHAPE = Stream.of(
+        Block.box(0.1, 3.2, -1.847, 15.9, 6.4, 15.8),
+        Block.box(0.1, 3.2, 15.8, 15.9, 6.4, 31.6),
+        Block.box(0, 0, 16, 16, 3.2, 32),
+        Block.box(0, 0, -1.847, 16, 3.2, 16),
+        Block.box(1.3, 8.3, -1, 3.45, 11.6, 0.6),
+        Block.box(1.3, 4.3, -1, 14.7, 6.6, 0.6),
+        Block.box(12.55, 8.3, -1, 14.7, 11.6, 0.6),
+        Block.box(0, 3.2, 30.4, 16, 11.6, 32),
+        Block.box(-0.3, 8.2, -1, 1.3, 11.6, 15),
+        Block.box(14.7, 8.2, -1, 16.3, 11.6, 15),
+        Block.box(-0.3, 3.2, -1, 1.3, 6.6, 15),
+        Block.box(-0.3, 8.2, 15, 1.3, 11.6, 31),
+        Block.box(-0.3, 3.2, 15, 1.3, 6.6, 31),
+        Block.box(14.7, 3.2, -1, 16.3, 6.6, 1502),
+        Block.box(14.7, 8.2, 15, 16.3, 11.6, 31),
+        Block.box(14.7, 3.2, 15, 16.3, 6.6, 31)
+    ).reduce((v1, v2) -> VoxelShapes.join(v1, v2, IBooleanFunction.OR)).get();
+
+    public static final VoxelShape EAST_SHAPE = Stream.of(
+            Block.box(0.2, 3.2, 0.1, 16, 6.4, 15.9),
+            Block.box(-15.6, 3.2, 0.1, 0.2, 6.4, 15.9),
+            Block.box(-16, 0, 0, 1.9, 3.2, 16),
+            Block.box(1.9, 0, 0, 16, 3.2, 16),
+            Block.box(15.4, 8.3, 1.3, 17, 11.6, 3.45),
+            Block.box(15.4, 4.3, 1.3, 17, 6.6, 14.7),
+            Block.box(15.4, 8.3, 12.55, 17, 11.6, 14.7),
+            Block.box(-16, 3.2, 0, -14.4, 11.6, 16),
+            Block.box(1, 8.2, -0.3, 17, 11.6, 1.3),
+            Block.box(1, 8.2, 14.7, 17, 11.6, 16.3),
+            Block.box(1, 3.2, -0.3, 17, 6.6, 1.3),
+            Block.box(-15, 8.2, -0.3, 1, 11.6, 1.3),
+            Block.box(-15, 3.2, -0.3, 1, 6.6, 1.3),
+            Block.box(1, 3.2, 14.7, 17, 6.6, 16.3),
+            Block.box(-15, 8.2, 14.7, 1, 11.6, 16.3),
+            Block.box(-15, 3.2, 14.7, 1, 6.6, 16.3)
+    ).reduce((v1, v2) -> VoxelShapes.join(v1, v2, IBooleanFunction.OR)).get();
+
+    public static final VoxelShape SOUTH_SHAPE = Stream.of(
+            Block.box(0.1, 3.2, 0.2, 15.9, 6.4, 16),
+            Block.box(0.1, 3.2, -15.6, 15.9, 6.4, 0.2),
+            Block.box(0, 0, -16, 16, 3.2, 1.9),
+            Block.box(0, 0, 1.9, 16, 3.2, 16),
+            Block.box(12.55, 8.3, 15.4, 14.7, 11.6, 17),
+            Block.box(1.3, 4.3, 15.4, 14.7, 6.6, 17),
+            Block.box(1.3, 8.3, 15.4, 3.45, 11.6, 17),
+            Block.box(0, 3.2, -16, 16, 11.6, -14.4),
+            Block.box(14.7, 8.2, 1, 16.3, 11.6, 17),
+            Block.box(-0.3, 8.2, 1, 1.3, 11.6, 17),
+            Block.box(14.7, 3.2, 1, 16.3, 6.6, 17),
+            Block.box(14.7, 8.2, -15, 16.3, 11.6, 1),
+            Block.box(14.7, 3.2, -15, 16.3, 6.6, 1),
+            Block.box(-0.3, 3.2, 1, 1.3, 6.6, 17),
+            Block.box(-0.3, 8.2, -15, 1.3, 11.6, 1),
+            Block.box(-0.3, 3.2, -15, 1.3, 6.6, 1)
+            ).reduce((v1, v2) -> VoxelShapes.join(v1, v2, IBooleanFunction.OR)).get();
+
+    public static final VoxelShape WEST_SHAPE = Stream.of(
+            Block.box(4.77, 3.2, 0.1, 15.8, 6.4, 15.9),
+            Block.box(15.8, 3.2, 0.1, 31.6, 6.4, 15.9),
+            Block.box(16, 0, 0, 32, 3.2, 16),
+            Block.box(4.77, 0, 0, 16, 3.2, 16),
+            Block.box(-1, 8.3, 12.55, 0.6, 11.6, 14.7),
+            Block.box(-1, 4.3, 1.3, 0.6, 6.6, 14.7),
+            Block.box(-1, 8.3, 1.3, 0.6, 11.6, 3.45),
+            Block.box(30.4, 3.2, 0, 32, 11.6, 16),
+            Block.box(-1, 8.2, 14.7, 15, 11.6, 16.3),
+            Block.box(-1, 8.2, -0.3, 15, 11.6, 1.3),
+            Block.box(-1, 3.2, 14.7, 15, 6.6, 16.3),
+            Block.box(15, 8.2, 14.7, 31, 11.6, 16.3),
+            Block.box(15, 3.2, 14.7, 31, 6.6, 16.3),
+            Block.box(-1, 3.2, -0.3, 15, 6.6, 1.3),
+            Block.box(15, 8.2, -0.3, 31, 11.6, 1.3),
+            Block.box(15, 3.2, -0.3, 31, 6.6, 1.3)
+    ).reduce((v1, v2) -> VoxelShapes.join(v1, v2, IBooleanFunction.OR)).get();
+    */

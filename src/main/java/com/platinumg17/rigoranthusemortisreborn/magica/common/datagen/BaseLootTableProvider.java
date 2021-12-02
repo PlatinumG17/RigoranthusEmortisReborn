@@ -48,15 +48,29 @@ public abstract class BaseLootTableProvider extends LootTableProvider {
         return LootTable.lootTable().withPool(builder);
     }
 
-    protected LootTable.Builder createManaManchineTable(String name, Block block){
+    protected LootTable.Builder createDominionManchineTable(String name, Block block){
         LootPool.Builder builder = LootPool.lootPool()
                 .name(name)
                 .setRolls(ConstantRange.exactly(1))
                 .add(ItemLootEntry.lootTableItem(block)
                         .apply(CopyName.copyName(CopyName.Source.BLOCK_ENTITY))
                         .apply(CopyNbt.copyData(CopyNbt.Source.BLOCK_ENTITY)
-                                .copy("inv", "BlockEntityTag.inv", CopyNbt.Action.REPLACE) //addOperation
-                                .copy("mana", "BlockEntityTag.mana", CopyNbt.Action.REPLACE))
+                                .copy("inv", "BlockEntityTag.inv", CopyNbt.Action.REPLACE)
+                                .copy("dominion", "BlockEntityTag.dominion", CopyNbt.Action.REPLACE))
+                        .apply(SetContents.setContents()
+                                .withEntry(DynamicLootEntry.dynamicEntry(new ResourceLocation("minecraft", "contents"))))
+                );
+        return LootTable.lootTable().withPool(builder);
+    }
+    protected LootTable.Builder createIchorJarTable(String name, Block block){
+        LootPool.Builder builder = LootPool.lootPool()
+                .name(name)
+                .setRolls(ConstantRange.exactly(1))
+                .add(ItemLootEntry.lootTableItem(block)
+                        .apply(CopyName.copyName(CopyName.Source.BLOCK_ENTITY))
+                        .apply(CopyNbt.copyData(CopyNbt.Source.BLOCK_ENTITY)
+                                .copy("inv", "BlockEntityTag.inv", CopyNbt.Action.REPLACE)
+                                .copy("ichor", "BlockEntityTag.ichor", CopyNbt.Action.REPLACE))
                         .apply(SetContents.setContents()
                                 .withEntry(DynamicLootEntry.dynamicEntry(new ResourceLocation("minecraft", "contents"))))
                 );
@@ -66,7 +80,6 @@ public abstract class BaseLootTableProvider extends LootTableProvider {
     @Override
     public void run(DirectoryCache cache) {
         addTables();
-
         Map<ResourceLocation, LootTable> tables = new HashMap<>();
         for (Map.Entry<Block, LootTable.Builder> entry : blockTables.entrySet()) {
             tables.put(entry.getKey().getLootTable(), entry.getValue().setParamSet(LootParameterSets.BLOCK).build());
@@ -88,7 +101,6 @@ public abstract class BaseLootTableProvider extends LootTableProvider {
             }
         });
     }
-
     @Override
     public String getName() {
         return "Rigoranthus Emortis Reborn LootTables";

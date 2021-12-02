@@ -4,9 +4,12 @@ import com.minecraftabnormals.abnormals_core.core.util.registry.RegistryHelper;
 import com.platinumg17.rigoranthusemortisreborn.addon.AddonManager;
 import com.platinumg17.rigoranthusemortisreborn.api.apicanis.feature.FoodHandler;
 import com.platinumg17.rigoranthusemortisreborn.api.apicanis.feature.InteractionHandler;
+import com.platinumg17.rigoranthusemortisreborn.api.apimagic.entity.familiar.FamiliarCap;
+import com.platinumg17.rigoranthusemortisreborn.api.apimagic.util.MappingUtil;
 import com.platinumg17.rigoranthusemortisreborn.blocks.BlockInit;
 import com.platinumg17.rigoranthusemortisreborn.blocks.BuildingBlockInit;
 import com.platinumg17.rigoranthusemortisreborn.blocks.DecorativeOrStorageBlocks;
+import com.platinumg17.rigoranthusemortisreborn.blocks.tileentity.RigoranthusTileEntities;
 import com.platinumg17.rigoranthusemortisreborn.canis.*;
 import com.platinumg17.rigoranthusemortisreborn.canis.client.ClientSetup;
 import com.platinumg17.rigoranthusemortisreborn.canis.client.data.REBlockstateProvider;
@@ -42,15 +45,6 @@ import com.platinumg17.rigoranthusemortisreborn.core.init.fluid.FluidRegistry;
 import com.platinumg17.rigoranthusemortisreborn.core.init.fluid.particles.EmortisParticleTypes;
 import com.platinumg17.rigoranthusemortisreborn.core.init.network.REPacketHandler;
 import com.platinumg17.rigoranthusemortisreborn.core.init.network.messages.Messages;
-import com.platinumg17.rigoranthusemortisreborn.magica.IProxy;
-import com.platinumg17.rigoranthusemortisreborn.magica.client.ClientHandler;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.capability.DominionCapability;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.pathfinding.PathClientEventHandler;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.pathfinding.PathFMLEventHandler;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.network.Networking;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.potions.ModPotions;
-import com.platinumg17.rigoranthusemortisreborn.api.apimagic.entity.familiar.FamiliarCap;
-import com.platinumg17.rigoranthusemortisreborn.magica.setup.*;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusSoundRegistry;
 import com.platinumg17.rigoranthusemortisreborn.entity.RigoranthusEntityTypes;
 import com.platinumg17.rigoranthusemortisreborn.entity.render.mobs.CanisChordataRenderer;
@@ -58,13 +52,17 @@ import com.platinumg17.rigoranthusemortisreborn.entity.render.mobs.LanguidDwelle
 import com.platinumg17.rigoranthusemortisreborn.entity.render.mobs.NecrawFasciiRenderer;
 import com.platinumg17.rigoranthusemortisreborn.entity.render.mobs.SunderedCadaverRenderer;
 import com.platinumg17.rigoranthusemortisreborn.entity.render.projectile.BoneArrowRenderer;
-import com.platinumg17.rigoranthusemortisreborn.magica.setup.ClientProxy;
-import com.platinumg17.rigoranthusemortisreborn.magica.setup.ServerProxy;
-import com.platinumg17.rigoranthusemortisreborn.api.apimagic.util.MappingUtil;
-import com.platinumg17.rigoranthusemortisreborn.blocks.tileentity.RigoranthusTileEntities;
+import com.platinumg17.rigoranthusemortisreborn.magica.IProxy;
+import com.platinumg17.rigoranthusemortisreborn.magica.client.ClientHandler;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.capability.DominionCapability;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.pathfinding.PathClientEventHandler;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.pathfinding.PathFMLEventHandler;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.network.Networking;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.potions.ModPotions;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.world.WorldEvent;
+import com.platinumg17.rigoranthusemortisreborn.magica.setup.*;
 import com.platinumg17.rigoranthusemortisreborn.world.EmortisMobSpawns;
 import com.platinumg17.rigoranthusemortisreborn.world.biome.EmortisBiomes;
-import com.platinumg17.rigoranthusemortisreborn.world.biome.EmortisSurfaceBuilder;
 import com.platinumg17.rigoranthusemortisreborn.world.trees.RigoranthusWoodTypes;
 import net.minecraft.block.WoodType;
 import net.minecraft.client.Minecraft;
@@ -79,6 +77,7 @@ import net.minecraft.item.ItemModelsProperties;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.RegistryEvent;
@@ -99,8 +98,6 @@ import net.minecraftforge.fml.network.NetworkRegistry;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import software.bernie.geckolib3.GeckoLib;
-import software.bernie.geckolib3.network.GeckoLibNetwork;
 
 import static com.platinumg17.rigoranthusemortisreborn.magica.common.datagen.DungeonLootGenerator.GLM;
 
@@ -117,14 +114,7 @@ public class RigoranthusEmortisReborn {
             .networkProtocolVersion(EmortisConstants.PROTOCOL_VERSION::toString)
             .simpleChannel();
     public static boolean caelusLoaded = false;
-//    public static ItemGroup itemGroup = new ItemGroup(MOD_ID) {
-//
-//        @Override
-//        public ItemStack makeIcon() {
-//            return MagicItemsRegistry.emorticSpellBook.getDefaultInstance();
-//        }
-//    };
-    public static ItemGroup RIGORANTHUS_EMORTIS_GROUP = new ItemGroup(EmortisConstants.MOD_NAME) {
+    public static ItemGroup RIGORANTHUS_EMORTIS_GROUP = new ItemGroup(EmortisConstants.MOD_ID) {
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(ItemInit.PACT_OF_SERVITUDE.get());
@@ -150,7 +140,6 @@ public class RigoranthusEmortisReborn {
         RigoranthusEntityTypes.register(modEventBus);
         BuildingBlockInit.register(modEventBus);
         EmortisBiomes.register();
-
         EmortisParticleTypes.PARTICLES.register(modEventBus);
         CanisBlocks.BLOCKS.register(modEventBus);
         CanisTileEntityTypes.TILE_ENTITIES.register(modEventBus);
@@ -166,28 +155,25 @@ public class RigoranthusEmortisReborn {
         CanisBedMaterials.BEDDINGS.register(modEventBus);
         CanisBedMaterials.CASINGS.register(modEventBus);
 
-        modEventBus.addListener(CanisRegistries::newRegistry);
-
         IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
-
         modEventBus.addListener(this::doClientStuff);
         forgeEventBus.addListener(this::onServerStarting);
         forgeEventBus.addListener(this::registerCommands);
         forgeEventBus.register(new CanisEventHandler());
 //        forgeEventBus.register(new BackwardsCompat());
+        modEventBus.addListener(CanisRegistries::newRegistry);
 
         Messages.registerMessages("rigoranthusemortisreborn_network");
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, Config.COMMON_CONFIG);
         modEventBus.register(Registration.class);
         Registration.init();
-        Config.loadConfig(Config.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve("RigoranthusEmortisReborn-common.toml"));
-
-            GeckoLib.initialize();
-            GeckoLibNetwork.initialize();
+        Config.loadConfig(Config.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve("rigoranthusemortisreborn/RigoranthusEmortisReborn-common.toml"));
 
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> Mod.EventBusSubscriber.Bus.FORGE.bus().get().register(PathClientEventHandler.class));
         Mod.EventBusSubscriber.Bus.FORGE.bus().get().register(PathFMLEventHandler.class);
+        MinecraftForge.EVENT_BUS.register(this);
+        ModSetup.initGeckolib();
         //  Client Events  //
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
             modEventBus.addListener(this::doClientStuff);
@@ -197,9 +183,7 @@ public class RigoranthusEmortisReborn {
                 forgeEventBus.register(new ClientEventHandler());
                 forgeEventBus.addListener(HomeboundRenderer::onWorldRenderLast);
 //            Minecraft mc = Minecraft.getInstance();
-//            if (mc != null) { // If mc is null we are running data gen so no need to add listener
-//                ((IReloadableResourceManager) mc.getResourceManager()).registerReloadListener(CanisTextureManager.INSTANCE);
-//            }
+//            if (mc != null) { // If mc is null we are running data gen so no need to add listener ((IReloadableResourceManager) mc.getResourceManager()).registerReloadListener(CanisTextureManager.INSTANCE);}
         });
         GLM.register(FMLJavaModLoadingContext.get().getModEventBus());
         ConfigHandler.init(modEventBus);
@@ -209,17 +193,14 @@ public class RigoranthusEmortisReborn {
 //    @SubscribeEvent public static void registerBlocks(RegistryEvent.Register<Block> event) {Registration.registerBlocks(event);}
 
     private void setup(final FMLCommonSetupEvent event) {
+
         event.enqueueWork(() -> {
             DominionCapability.register();
             FamiliarCap.register();
-//            APIRegistry.registerApparatusRecipes();
-//            if(Config.ARCHWOOD_FOREST_WEIGHT.get() > 0) {
-//                BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(WorldEvent.archwoodKey, Config.ARCHWOOD_FOREST_WEIGHT.get()));
-//            }
-//            event.enqueueWork(WorldEvent::registerFeatures);
+            APIRegistry.registerAmalgamatorRecipes();
             Networking.registerMessages();
             event.enqueueWork(ModPotions::addRecipes);
-
+            event.enqueueWork(WorldEvent::registerFeatures);
             REPacketHandler.setupChannel();
 
             EmortisMobSpawns.registerSpawns();
@@ -232,12 +213,16 @@ public class RigoranthusEmortisReborn {
             SpecializedEntityTypes.addEntityAttributes();
             CanisEntity.initDataParameters();
             Capabilities.init();
-
-            EmortisBiomes.registerBiomesToDictionary();
             EmortisBiomes.addBiomeTypes();
-            EmortisBiomes.addBiomeVariants();
-            EmortisSurfaceBuilder.Configured.registerConfiguredSurfaceBuilders();
+//            EmortisSurfaceBuilder.Configured.registerConfiguredSurfaceBuilders();
 //            VanillaCompatRigoranthus.registerDispenserBehaviors();
+            EmortisBiomes.addBiomeVariants();
+            if(Config.verdurousWoodlandsSpawnWeight.get() > 0) {
+                BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(EmortisBiomes.VERDUROUS_WOODLANDS.getKey(), Config.verdurousWoodlandsSpawnWeight.get()));
+            }
+            if(Config.verdurousFieldsSpawnWeight.get() > 0) {
+                BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(EmortisBiomes.VERDUROUS_FIELDS.getKey(), Config.verdurousFieldsSpawnWeight.get()));
+            }
             VanillaCompatRigoranthus.registerCompostables();
             VanillaCompatRigoranthus.registerFlammables();
             WoodType.register(RigoranthusWoodTypes.AZULOREAL);
@@ -245,16 +230,11 @@ public class RigoranthusEmortisReborn {
         });
     }
     @SubscribeEvent
-    public void onServerStarting(final FMLServerStartingEvent event) {
-        LOGGER.info("Ah baby! Da mod man make a message thing!");
-    }
-    public void registerCommands(final RegisterCommandsEvent event) {
-        CanisReviveCommand.register(event.getDispatcher());
-    }
+    public void onServerStarting(final FMLServerStartingEvent event) {LOGGER.info("Ah baby! Da mod man make a message thing!");}
+    public void registerCommands(final RegisterCommandsEvent event) {CanisReviveCommand.register(event.getDispatcher());}
 
-    private void doClientStuff(final FMLClientSetupEvent event) {
+    public void doClientStuff(final FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
-            FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientHandler::init);
             ClientSetup.setupScreenManagers(event);
             ClientSetup.setupCollarRenderers(event);
             ClientSetup.setupTileEntityRenderers(event);
@@ -263,29 +243,30 @@ public class RigoranthusEmortisReborn {
             Atlases.addWoodType(RigoranthusWoodTypes.JESSIC);
             RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.JESSIC_DOOR.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.JESSIC_TRAPDOOR.get(), RenderType.cutout());
-            RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.JESSIC_LEAVES.get(), RenderType.cutoutMipped());
             RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.JESSIC_LEAF_CARPET.get(), RenderType.cutoutMipped());
-            RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.JESSIC_SAPLING.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.POTTED_JESSIC_SAPLING.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.JESSIC_POST.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.STRIPPED_JESSIC_POST.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.JESSIC_HEDGE.get(), RenderType.cutoutMipped());
             RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.AZULOREAL_DOOR.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.AZULOREAL_TRAPDOOR.get(), RenderType.cutout());
-            RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.AZULOREAL_LEAVES.get(), RenderType.cutoutMipped());
             RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.AZULOREAL_LEAF_CARPET.get(), RenderType.cutoutMipped());
-            RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.AZULOREAL_SAPLING.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.POTTED_AZULOREAL_SAPLING.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.AZULOREAL_POST.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.STRIPPED_AZULOREAL_POST.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.AZULOREAL_HEDGE.get(), RenderType.cutoutMipped());
+
+            RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.JESSIC_LEAVES.get(), RenderType.cutoutMipped());
+            RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.JESSIC_SAPLING.get(), RenderType.cutout());
+            RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.AZULOREAL_LEAVES.get(), RenderType.cutoutMipped());
+            RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.AZULOREAL_SAPLING.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.AZULOREAL_ORCHID.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.IRIDESCENT_SPROUTS.get(), RenderType.cutout());
+//            RenderTypeLookup.setRenderLayer(Registration.LUMISHROOM.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(BuildingBlockInit.LISIANTHUS.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(Registration.SPECTABILIS_BUSH.get(), RenderType.cutout());
-//            RenderTypeLookup.setRenderLayer(Registration.LUMISHROOM.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(Registration.MASTERFUL_SMELTERY.get(), RenderType.cutout());
-
+            RenderTypeLookup.setRenderLayer(BlockInit.DWELLER_BRAIN.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(FluidRegistry.CADAVEROUS_ICHOR_FLUID.get(), RenderType.translucent());
             RenderTypeLookup.setRenderLayer(FluidRegistry.CADAVEROUS_ICHOR_BLOCK.get(), RenderType.translucent());
             RenderTypeLookup.setRenderLayer(FluidRegistry.CADAVEROUS_ICHOR_FLOWING.get(), RenderType.translucent());
@@ -294,7 +275,6 @@ public class RigoranthusEmortisReborn {
         RenderingRegistry.registerEntityRenderingHandler(SpecializedEntityTypes.RETURNING_PROJECTILE.get(), manager -> new SpriteRenderer<>(manager, Minecraft.getInstance().getItemRenderer()));
         RenderingRegistry.registerEntityRenderingHandler(SpecializedEntityTypes.BOUNCING_PROJECTILE.get(), manager -> new SpriteRenderer<>(manager, Minecraft.getInstance().getItemRenderer()));
         RenderingRegistry.registerEntityRenderingHandler(SpecializedEntityTypes.BILI_BOMB.get(), manager -> new SpriteRenderer<>(manager, Minecraft.getInstance().getItemRenderer()));
-//        RenderingRegistry.registerEntityRenderingHandler(SpecializedEntityTypes.EMINENTIAL_PROJECTION, EminentialRenderer::new);
 //        RenderingRegistry.registerEntityRenderingHandler(SpecializedEntityTypes.PAINTING, manager -> new RenderHangingArt<>(manager, new ResourceLocation("rigoranthusemortisreborn:painting")));
         RenderingRegistry.registerEntityRenderingHandler(SpecializedEntityTypes.CANIS.get(), CanisRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(SpecializedEntityTypes.CANIS_BEAM.get(), manager -> new CanisBeamRenderer<>(manager, event.getMinecraftSupplier().get().getItemRenderer()));
@@ -303,12 +283,10 @@ public class RigoranthusEmortisReborn {
         RenderingRegistry.registerEntityRenderingHandler(RigoranthusEntityTypes.SUNDERED_CADAVER.get(), SunderedCadaverRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(RigoranthusEntityTypes.LANGUID_DWELLER.get(), LanguidDwellerRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(RigoranthusEntityTypes.BONE_ARROW.get(), BoneArrowRenderer::new);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientHandler::init);
     }
     private void makeBow(Item item) {
-        ItemModelsProperties.register(item, new ResourceLocation("pull"), (p_239429_0_, p_239429_1_, p_239429_2_) -> {
-            if (p_239429_2_ == null) {return 0.0F;}
-            else {return p_239429_2_.getUseItem() != p_239429_0_ ? 0.0F : (float) (p_239429_0_.getUseDuration() - p_239429_2_.getUseItemRemainingTicks()) / 20.0F;}
-        });
+        ItemModelsProperties.register(item, new ResourceLocation("pull"), (p_239429_0_, p_239429_1_, p_239429_2_) -> {if (p_239429_2_ == null) {return 0.0F;} else {return p_239429_2_.getUseItem() != p_239429_0_ ? 0.0F : (float) (p_239429_0_.getUseDuration() - p_239429_2_.getUseItemRemainingTicks()) / 20.0F;}});
         ItemModelsProperties.register(item, new ResourceLocation("pulling"), (p_239428_0_, p_239428_1_, p_239428_2_) -> p_239428_2_ != null && p_239428_2_.isUsingItem() && p_239428_2_.getUseItem() == p_239428_0_ ? 1.0F : 0.0F);
     }
     private void enqueueIMC(final InterModEnqueueEvent event) {
@@ -322,27 +300,17 @@ public class RigoranthusEmortisReborn {
 
     private void gatherData(final GatherDataEvent event) {
         DataGenerator gen = event.getGenerator();
-
         if (event.includeClient()) {
             REBlockstateProvider blockstates = new REBlockstateProvider(gen, event.getExistingFileHelper());
             gen.addProvider(blockstates);
             gen.addProvider(new REItemModelProvider(gen, blockstates.getExistingHelper()));
         }
-
         if (event.includeServer()) {
             gen.addProvider(new REAdvancementProvider(gen));
             REBlockTagsProvider blockTagProvider = new REBlockTagsProvider(gen, event.getExistingFileHelper());
             gen.addProvider(blockTagProvider);
             gen.addProvider(new REItemTagsProvider(gen, blockTagProvider, event.getExistingFileHelper()));
             gen.addProvider(new RERecipeProvider(gen));
-
-//            gen.addProvider(new RECostsProvider(gen));
-//            gen.addProvider(new RECombinationsProvider(gen));
-//            gen.addProvider(new GeneratedCostConfigProvider(gen, EmortisConstants.MOD_ID));
-//            gen.addProvider(new PrimevalCoinPricingProvider(gen, EmortisConstants.MOD_ID));
-//            gen.addProvider(new REEnUsLanguageProvider(gen));
-//            gen.addProvider(new REBiomeProvider(gen));
-//            gen.addProvider(new REFluidTagsProvider(gen, event.getExistingFileHelper()));
         }
     }
 //    @SubscribeEvent

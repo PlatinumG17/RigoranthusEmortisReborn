@@ -1,108 +1,108 @@
 package aspects;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
-import WeirdFailedProjects.netnotwork.TitleSelectPacket;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.widget.button.Button;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraftforge.fml.client.gui.widget.ExtendedButton;
+//import com.mojang.blaze3d.matrix.MatrixStack;
+//import WeirdFailedProjects.netnotwork.TitleSelectPacket;
+//import net.minecraft.client.gui.screen.Screen;
+//import net.minecraft.client.gui.widget.button.Button;
+//import net.minecraft.client.resources.I18n;
+//import net.minecraft.util.ResourceLocation;
+//import net.minecraft.util.text.ITextComponent;
+//import net.minecraft.util.text.TranslationTextComponent;
+//import net.minecraftforge.fml.client.gui.widget.ExtendedButton;
 
-public class AspectTitleSelectScreen extends Screen {
-    public static final String TITLE = "rigoranthusemortisreborn.title_selector";
-    public static final String SELECT_TITLE = "rigoranthusemortisreborn.select_title";
-    public static final String USED_TITLE = "rigoranthusemortisreborn.select_title.used";
-    public static final String SELECT = "rigoranthusemortisreborn.select_title.select";
-    public static final String RANDOMIZE = "rigoranthusemortisreborn.select_title.randomize";
-
-    private static final ResourceLocation guiBackground = new ResourceLocation("rigoranthusemortisreborn", "textures/gui/title_selector.png");
-    private static final int guiWidth = 186, guiHeight = 157;
-
-    private EnumClass currentClass;
-    private EnumAspect currentAspect;
-    private final Button[] classButtons = new Button[12], aspectButtons = new Button[12];
-    private Button selectButton;
-
-    private final Title previous;
-
-    AspectTitleSelectScreen(Title title) {
-        super(new TranslationTextComponent(TITLE));
-        previous = title;
-    }
-
-    @Override
-    public void init() {
-        int leftX = (width - guiWidth) / 2, topY = (height - guiHeight) / 2;
-        for(EnumClass c : EnumClass.values()) {
-            int i = EnumClass.getIntFromClass(c);
-            if(i < 12) {
-                ITextComponent className = c.asTextComponent();
-                Button button = new ExtendedButton(leftX + 4 + (i % 2) * 40, topY + 24 + (i / 2) * 16, 40, 16, className, button1 -> pickClass(c));
-                addButton(button);
-                classButtons[i] = button;
-            }
-        }
-        for(EnumAspect a : EnumAspect.values()) {
-            int i = EnumAspect.getIntFromAspect(a);
-            if(i < 12) {
-                ITextComponent aspectName = a.asTextComponent();
-                Button button = new ExtendedButton(leftX + 102 + (i % 2) * 40, topY + 24 + (i / 2) * 16, 40, 16, aspectName, button1 -> pickAspect(a));
-                addButton(button);
-                aspectButtons[i] = button;
-            }
-        }
-        addButton(selectButton = new ExtendedButton(leftX + 24, topY + 128, 60, 20, new TranslationTextComponent(SELECT), button -> select()));
-        addButton(new ExtendedButton(leftX + 102, topY + 128, 60, 20, new TranslationTextComponent(RANDOMIZE), button -> random()));
-    }
-
-    @Override
-    public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
-        selectButton.active = currentClass != null && currentAspect != null;
-        int xOffset = (width - guiWidth)/2;
-        int yOffset = (height - guiHeight)/2;
-        this.renderBackground(matrixStack);
-
-        this.minecraft.getTextureManager().bind(guiBackground);
-        this.blit(matrixStack, xOffset, yOffset, 0, 0, guiWidth, guiHeight);
-
-        String message = previous == null ? I18n.get(SELECT_TITLE) : I18n.get(USED_TITLE, previous.asTextComponent().getString());
-        font.draw(matrixStack, message, (this.width / 2F) - font.width(message) / 2F, yOffset + 10, 0x404040);
-
-        message = I18n.get(Title.FORMAT, "", "");
-        font.draw(matrixStack, message, (this.width / 2F) - font.width(message) / 2F, yOffset + 72 - font.lineHeight/2F, 0x404040);
-
-        super.render(matrixStack, mouseX, mouseY, partialTicks);
-    }
-
-    private void pickClass(EnumClass c) {
-        if(currentClass != null)
-            classButtons[EnumClass.getIntFromClass(currentClass)].active = true;
-        currentClass = c;
-        classButtons[EnumClass.getIntFromClass(currentClass)].active = false;
-    }
-
-    private void pickAspect(EnumAspect a) {
-        if(currentAspect != null)
-            aspectButtons[EnumAspect.getIntFromAspect(currentAspect)].active = true;
-        currentAspect = a;
-        aspectButtons[EnumAspect.getIntFromAspect(currentAspect)].active = false;
-    }
-
-    private void select() {
-        REPacketHandler.sendToServer(new TitleSelectPacket(new Title(currentClass, currentAspect)));
-        onClose();
-    }
-
-    private void random() {
-        REPacketHandler.sendToServer(new TitleSelectPacket());
-        onClose();
-    }
-
-    @Override
-    public boolean shouldCloseOnEsc()
-    {
-        return false;
-    }
-}
+//public class AspectTitleSelectScreen extends Screen {
+//    public static final String TITLE = "rigoranthusemortisreborn.title_selector";
+//    public static final String SELECT_TITLE = "rigoranthusemortisreborn.select_title";
+//    public static final String USED_TITLE = "rigoranthusemortisreborn.select_title.used";
+//    public static final String SELECT = "rigoranthusemortisreborn.select_title.select";
+//    public static final String RANDOMIZE = "rigoranthusemortisreborn.select_title.randomize";
+//
+//    private static final ResourceLocation guiBackground = new ResourceLocation("rigoranthusemortisreborn", "textures/gui/title_selector.png");
+//    private static final int guiWidth = 186, guiHeight = 157;
+//
+//    private EnumClass currentClass;
+//    private EnumAspect currentAspect;
+//    private final Button[] classButtons = new Button[12], aspectButtons = new Button[12];
+//    private Button selectButton;
+//
+//    private final Title previous;
+//
+//    AspectTitleSelectScreen(Title title) {
+//        super(new TranslationTextComponent(TITLE));
+//        previous = title;
+//    }
+//
+//    @Override
+//    public void init() {
+//        int leftX = (width - guiWidth) / 2, topY = (height - guiHeight) / 2;
+//        for(EnumClass c : EnumClass.values()) {
+//            int i = EnumClass.getIntFromClass(c);
+//            if(i < 12) {
+//                ITextComponent className = c.asTextComponent();
+//                Button button = new ExtendedButton(leftX + 4 + (i % 2) * 40, topY + 24 + (i / 2) * 16, 40, 16, className, button1 -> pickClass(c));
+//                addButton(button);
+//                classButtons[i] = button;
+//            }
+//        }
+//        for(EnumAspect a : EnumAspect.values()) {
+//            int i = EnumAspect.getIntFromAspect(a);
+//            if(i < 12) {
+//                ITextComponent aspectName = a.asTextComponent();
+//                Button button = new ExtendedButton(leftX + 102 + (i % 2) * 40, topY + 24 + (i / 2) * 16, 40, 16, aspectName, button1 -> pickAspect(a));
+//                addButton(button);
+//                aspectButtons[i] = button;
+//            }
+//        }
+//        addButton(selectButton = new ExtendedButton(leftX + 24, topY + 128, 60, 20, new TranslationTextComponent(SELECT), button -> select()));
+//        addButton(new ExtendedButton(leftX + 102, topY + 128, 60, 20, new TranslationTextComponent(RANDOMIZE), button -> random()));
+//    }
+//
+//    @Override
+//    public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
+//        selectButton.active = currentClass != null && currentAspect != null;
+//        int xOffset = (width - guiWidth)/2;
+//        int yOffset = (height - guiHeight)/2;
+//        this.renderBackground(matrixStack);
+//
+//        this.minecraft.getTextureManager().bind(guiBackground);
+//        this.blit(matrixStack, xOffset, yOffset, 0, 0, guiWidth, guiHeight);
+//
+//        String message = previous == null ? I18n.get(SELECT_TITLE) : I18n.get(USED_TITLE, previous.asTextComponent().getString());
+//        font.draw(matrixStack, message, (this.width / 2F) - font.width(message) / 2F, yOffset + 10, 0x404040);
+//
+//        message = I18n.get(Title.FORMAT, "", "");
+//        font.draw(matrixStack, message, (this.width / 2F) - font.width(message) / 2F, yOffset + 72 - font.lineHeight/2F, 0x404040);
+//
+//        super.render(matrixStack, mouseX, mouseY, partialTicks);
+//    }
+//
+//    private void pickClass(EnumClass c) {
+//        if(currentClass != null)
+//            classButtons[EnumClass.getIntFromClass(currentClass)].active = true;
+//        currentClass = c;
+//        classButtons[EnumClass.getIntFromClass(currentClass)].active = false;
+//    }
+//
+//    private void pickAspect(EnumAspect a) {
+//        if(currentAspect != null)
+//            aspectButtons[EnumAspect.getIntFromAspect(currentAspect)].active = true;
+//        currentAspect = a;
+//        aspectButtons[EnumAspect.getIntFromAspect(currentAspect)].active = false;
+//    }
+//
+//    private void select() {
+//        REPacketHandler.sendToServer(new TitleSelectPacket(new Title(currentClass, currentAspect)));
+//        onClose();
+//    }
+//
+//    private void random() {
+//        REPacketHandler.sendToServer(new TitleSelectPacket());
+//        onClose();
+//    }
+//
+//    @Override
+//    public boolean shouldCloseOnEsc()
+//    {
+//        return false;
+//    }
+//}

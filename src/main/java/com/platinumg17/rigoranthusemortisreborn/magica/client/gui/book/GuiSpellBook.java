@@ -12,6 +12,8 @@ import com.platinumg17.rigoranthusemortisreborn.magica.common.network.Networking
 import com.platinumg17.rigoranthusemortisreborn.magica.common.network.PacketUpdateSpellbook;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.entity.familiar.FamiliarCap;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.entity.familiar.IFamiliarCap;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.spell.validation.CombinedSpellValidator;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.spell.validation.GlyphMaxTierValidator;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.MagicItemsRegistry;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.*;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.interfaces.ISpellValidator;
@@ -93,10 +95,10 @@ public class GuiSpellBook extends BaseBook {
         this.augmentButtons = new ArrayList<>();
         this.effectButtons = new ArrayList<>();
         this.validationErrors = new LinkedList<>();
-//        this.spellValidator = new CombinedSpellValidator(
-//                api.getSpellCraftingSpellValidator(),
-//                new GlyphMaxTierValidator(tier)
-//        );
+        this.spellValidator = new CombinedSpellValidator(
+                api.getSpellCraftingSpellValidator(),
+                new GlyphMaxTierValidator(tier)
+        );
     }
 
     @Override
@@ -137,7 +139,6 @@ public class GuiSpellBook extends BaseBook {
             return null;
         };
 
-
         int mode = SpellBook.getMode(spell_book_tag);
         mode = mode == 0 ? 1 : mode;
         spell_name.setValue(SpellBook.getSpellName(spell_book_tag, mode));
@@ -160,7 +161,6 @@ public class GuiSpellBook extends BaseBook {
             }
             addButton(slot);
         }
-
         addButton(new GuiImageButton(bookLeft - 15, bookTop + 22, 0, 0, 23, 20, 23,20, "textures/gui/worn_book_bookmark.png",this::onDocumentationClick)
                 .withTooltip(this, new TranslationTextComponent("rigoranthusemortisreborn.gui.notebook")));
         addButton(new GuiImageButton(bookLeft - 15, bookTop + 46, 0, 0, 23, 20, 23,20, "textures/gui/color_wheel_bookmark.png",this::onColorClick)
@@ -169,11 +169,9 @@ public class GuiSpellBook extends BaseBook {
                 .withTooltip(this, new TranslationTextComponent("rigoranthusemortisreborn.gui.familiar")));
         this.nextButton = addButton(new ChangePageButton(bookRight -20, bookBottom -10, true, this::onPageIncrease, true));
         this.previousButton = addButton(new ChangePageButton(bookLeft - 5 , bookBottom -10, false, this::onPageDec, true));
-
         updateNextPageButtons();
         previousButton.active = false;
         previousButton.visible = false;
-
         validate();
     }
 
@@ -223,7 +221,6 @@ public class GuiSpellBook extends BaseBook {
         }
         resetPageState();
     }
-
     public void updateNextPageButtons(){
         if(displayedEffects.size() < 36){
             nextButton.visible = false;
@@ -233,7 +230,6 @@ public class GuiSpellBook extends BaseBook {
             nextButton.active = true;
         }
     }
-
     private void addCastMethodParts() {
         layoutParts(castMethods, castMethodButtons, bookLeft + 20, bookTop + 34, 2);
     }
@@ -288,7 +284,6 @@ public class GuiSpellBook extends BaseBook {
             previousButton.active = false;
             previousButton.visible = false;
         }
-
         if(displayedEffects.size() > 36 * (page + 1)){
             nextButton.visible = true;
             nextButton.active = true;
@@ -298,7 +293,7 @@ public class GuiSpellBook extends BaseBook {
     }
 
     public void onDocumentationClick(Button button){
-        PatchouliAPI.get().openBookGUI(Registry.ITEM.getKey(MagicItemsRegistry.wornNotebook));
+        PatchouliAPI.get().openBookGUI(Registry.ITEM.getKey(MagicItemsRegistry.emorticOrigins));
     }
 
     public void onColorClick(Button button){
@@ -362,14 +357,11 @@ public class GuiSpellBook extends BaseBook {
 
     public void clear(Button button){
         boolean allWereEmpty = true;
-
         for (CraftingButton slot : craftingCells) {
             if(!slot.spellTag.equals("")) allWereEmpty = false;
             slot.clear();
         }
-
         if (allWereEmpty) spell_name.setValue("");
-
         validate();
     }
 
@@ -461,13 +453,16 @@ public class GuiSpellBook extends BaseBook {
     private void validateGlyphButton(List<AbstractSpellPart> recipe, GlyphButton glyphButton) {
         // Start from a clean slate
         glyphButton.validationErrors.clear();
+
         // Simulate adding the glyph to the current spell
         recipe.add(api.getSpell_map().get(glyphButton.spell_id));
+
         // Filter the errors to ones referring to the simulated glyph
         glyphButton.validationErrors.addAll(
                 spellValidator.validate(recipe).stream()
                         .filter(ve -> ve.getPosition() >= recipe.size() - 1).collect(Collectors.toList())
         );
+
         // Remove the simulated glyph to make room for the next one
         recipe.remove(recipe.size() - 1);
     }

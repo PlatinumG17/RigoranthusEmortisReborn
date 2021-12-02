@@ -43,7 +43,6 @@ public class LightningEntity extends LightningBoltEntity {
 
     public float amps;
     public int extendTimes;
-
     public float ampScalar;
     public float wetBonus;
 
@@ -110,7 +109,6 @@ public class LightningEntity extends LightningBoltEntity {
                         }
                         if(!level.isClientSide && !hitEntities.contains(entity.getId()))
                             hitEntities.add(entity.getId());
-
                     }
                 }
                 if (this.caster != null) {
@@ -136,7 +134,6 @@ public class LightningEntity extends LightningBoltEntity {
             }
         }
     }
-
 
     public float getDamage(Entity entity){
         float baseDamage = getDamage() + ampScalar * amps + (entity.isInWaterOrRain() ? wetBonus : 0.0f);

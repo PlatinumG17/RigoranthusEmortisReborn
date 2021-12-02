@@ -13,7 +13,7 @@ import net.minecraftforge.fml.network.PacketDistributor;
 public class PathCommand {
 
     public static void register(CommandDispatcher<CommandSource> dispatcher) {
-        dispatcher.register(Commands.literal("ars-pathing").
+        dispatcher.register(Commands.literal("rigoranthus-pathing").
                 requires(sender -> sender.hasPermission(2))
                 .executes(context -> setPathing(context.getSource(), ImmutableList.of(context.getSource().getEntityOrException()))));
     }

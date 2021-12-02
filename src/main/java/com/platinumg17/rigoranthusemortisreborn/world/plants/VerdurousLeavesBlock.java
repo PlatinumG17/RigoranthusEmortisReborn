@@ -1,6 +1,7 @@
 package com.platinumg17.rigoranthusemortisreborn.world.plants;
 
 import com.platinumg17.rigoranthusemortisreborn.blocks.DecorativeOrStorageBlocks;
+import com.platinumg17.rigoranthusemortisreborn.magica.setup.BlockRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.item.BlockItemUseContext;

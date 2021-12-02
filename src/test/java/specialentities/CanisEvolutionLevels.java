@@ -69,3 +69,21 @@ package specialentities;
 //        return VALUES[level];
 //    }
 //}
+
+
+
+
+
+
+
+//public enum ICanisModelSwapper {
+//    NORMAL("chordata"),
+//    COLLAR("collar"),
+//    CHEST("chest"),
+//    SADDLE("saddle"),
+//    SUNGLASSES("sunglasses"),
+//    SAVIOR("savior"),
+//    CAPE("cape");
+//    private final String type;
+//    private ICanisModelSwapper(String type) {this.type = type;}
+//    public String getModelOverlay() {return this.type;}

@@ -29,8 +29,12 @@ public class OpenCanisScreenPacket implements IPacket<OpenCanisScreenData> {
         ctx.get().enqueueWork(() -> {
             if (ctx.get().getDirection().getReceptionSide() == LogicalSide.SERVER) {
                 ServerPlayerEntity player = ctx.get().getSender();
-                List<CanisEntity> canis = player.level.getEntitiesOfClass(CanisEntity.class, player.getBoundingBox().inflate(12D, 12D, 12D), WaywardTravellerSkill::hasInventory);
-                CanisScreens.openCanisInventoriesScreen(player, canis);
+                List<CanisEntity> cani = player.level.getEntitiesOfClass(CanisEntity.class, player.getBoundingBox().inflate(12D, 12D, 12D),
+                        (canis) -> canis.canInteract(player) && WaywardTravellerSkill.hasInventory(canis)
+                );
+                if (!cani.isEmpty()) {
+                    CanisScreens.openCanisInventoriesScreen(player, cani);
+                }
             }
         });
         ctx.get().setPacketHandled(true);

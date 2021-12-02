@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+      "xxx",
+      " x ",
+      "xxx"
+    ],
+    "key": {
+      "x": {
+        "item": "rigoranthusemortisreborn:opulent_magma"
+      }
+    },
+    "result": {
+      "item": "rigoranthusemortisreborn:splintered_pedestal"
+    }
+  }

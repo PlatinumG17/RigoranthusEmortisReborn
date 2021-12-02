@@ -1,10 +1,19 @@
 package com.platinumg17.rigoranthusemortisreborn.api;
 
 import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.*;
+import com.platinumg17.rigoranthusemortisreborn.api.apimagic.psyglyphic_amalgamator.IPsyglyphicRecipe;
+import com.platinumg17.rigoranthusemortisreborn.api.apimagic.psyglyphic_amalgamator.PsyglyphicAmalgamatorRecipe;
+import com.platinumg17.rigoranthusemortisreborn.api.apimagic.recipe.GlyphPressRecipe;
+import com.platinumg17.rigoranthusemortisreborn.api.apimagic.recipe.IchorCrystallizerRecipe;
+import com.platinumg17.rigoranthusemortisreborn.api.apimagic.ritual.AbstractRitual;
+import com.platinumg17.rigoranthusemortisreborn.api.apimagic.ritual.RitualContext;
+import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.interfaces.ISpellTier;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.RitualTile;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.items.FamiliarScript;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.items.Glyph;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.items.RitualTablet;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.spell.validation.StandardSpellValidator;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.entity.familiar.AbstractFamiliarHolder;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.recipe.PotionIngredient;
@@ -13,14 +22,19 @@ import com.platinumg17.rigoranthusemortisreborn.magica.setup.MagicItemsRegistry;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.AbstractSpellPart;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.interfaces.ISpellValidator;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
 import net.minecraftforge.common.brewing.BrewingRecipe;
 import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -78,7 +92,7 @@ public class RigoranthusEmortisRebornAPI {
      */
     private HashMap<String, AbstractSpellPart> spell_map;
 
-//    private HashMap<String, AbstractRitual> ritualMap;
+    private HashMap<String, AbstractRitual> ritualMap;
 
     private HashMap<String, AbstractFamiliarHolder> familiarHolderMap;
 
@@ -89,17 +103,17 @@ public class RigoranthusEmortisRebornAPI {
 
     private HashMap<String, FamiliarScript> familiarScriptMap;
 
-//    /**
-//     * Contains the list of parchment item instances created during registration
-//     */
-//    private HashMap<String, RitualTablet> ritualParchmentMap;
+    /**
+     * Contains the list of parchment item instances created during registration
+     */
+    private HashMap<String, RitualTablet> ritualParchmentMap;
 
     /** Validator to use when crafting a spell in the spell book. */
     private ISpellValidator craftingSpellValidator;
     /** Validator to use when casting a spell. */
     private ISpellValidator castingSpellValidator;
 
-//    private List<IEnchantingRecipe> enchantingApparatusRecipes;
+    private List<IPsyglyphicRecipe> psyglyphicAmalgamatorRecipes;
     /**
      * Spells that all spellbooks contain
      */
@@ -144,42 +158,44 @@ public class RigoranthusEmortisRebornAPI {
     }
 
     /**
-     * A registration helper for addons. Adds mana costs into the fallback cost map.
+     * A registration helper for addons. Adds dominion costs into the fallback cost map.
      */
-    public AbstractSpellPart registerSpell(String id, AbstractSpellPart part, int manaCost){
-        Config.addonSpellCosts.put(id, manaCost);
+    public AbstractSpellPart registerSpell(String id, AbstractSpellPart part, int dominionCost){
+        Config.addonSpellCosts.put(id, dominionCost);
         return registerSpell(id, part);
     }
 
-//    public AbstractRitual registerRitual(String id, AbstractRitual ritual){
-//        ritualParchmentMap.put(id, new RitualTablet(getRitualRegistryName(id), ritual));
-//        return ritualMap.put(id, ritual);
-//    }
+    public AbstractRitual registerRitual(String id, AbstractRitual ritual){
+        ritualParchmentMap.put(id, new RitualTablet(getRitualRegistryName(id), ritual));
+        return ritualMap.put(id, ritual);
+    }
 
     public AbstractFamiliarHolder registerFamiliar(AbstractFamiliarHolder familiar){
         this.familiarScriptMap.put(familiar.id, new FamiliarScript(familiar));
         return familiarHolderMap.put(familiar.id, familiar);
     }
 
-//    public @Nullable AbstractRitual getRitual(String id){
-//        if(!ritualMap.containsKey(id))
-//            return null;
-//        try{
-//            return ritualMap.get(id).getClass().newInstance();
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
+    public @Nullable
+    AbstractRitual getRitual(String id){
+        if(!ritualMap.containsKey(id))
+            return null;
+        try{
+            return ritualMap.get(id).getClass().newInstance();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 
-//    public @Nullable AbstractRitual getRitual(String id, RitualTile tile, RitualContext context){
-//        AbstractRitual ritual = getRitual(id);
-//        if(ritual != null){
-//            ritual.tile = tile;
-//            ritual.setContext(context);
-//        }
-//        return ritual;
-//    }
+    public @Nullable
+    AbstractRitual getRitual(String id, RitualTile tile, RitualContext context){
+        AbstractRitual ritual = getRitual(id);
+        if(ritual != null){
+            ritual.tile = tile;
+            ritual.setContext(context);
+        }
+        return ritual;
+    }
 
     public String getSpellRegistryName(String id){
         return "glyph_"+ id.toLowerCase();
@@ -197,49 +213,62 @@ public class RigoranthusEmortisRebornAPI {
         return glyphMap;
     }
 
-//    public Map<String, AbstractRitual> getRitualMap(){
-//        return ritualMap;
-//    }
+    public Map<String, AbstractRitual> getRitualMap(){
+        return ritualMap;
+    }
 
-//    public Map<String, RitualTablet> getRitualItemMap(){
-//        return ritualParchmentMap;
-//    }
+    public Map<String, RitualTablet> getRitualItemMap(){
+        return ritualParchmentMap;
+    }
 
-//    public List<IEnchantingRecipe> getEnchantingApparatusRecipes() {
-//        return enchantingApparatusRecipes;
-//    }
+    public List<IPsyglyphicRecipe> getPsyglyphicAmalgamatorRecipes() {
+        return psyglyphicAmalgamatorRecipes;
+    }
 
     public Map<String, AbstractFamiliarHolder> getFamiliarHolderMap(){
         return this.familiarHolderMap;
     }
+
     public Map<String, FamiliarScript> getFamiliarScriptMap(){
         return this.familiarScriptMap;
     }
 
-//    public List<IEnchantingRecipe> getEnchantingApparatusRecipes(World world) {
-//        List<IEnchantingRecipe> recipes = new ArrayList<>(enchantingApparatusRecipes);
-//        RecipeManager manager = world.getRecipeManager();
-//        for(IRecipe i : manager.getRecipes()){
-//            if(i instanceof EnchantingApparatusRecipe){
-//                recipes.add((IEnchantingRecipe) i);
-//            }
-//        }
-//        return recipes;
-//    }
+    public List<IPsyglyphicRecipe> getPsyglyphicAmalgamatorRecipes(World world) {
+        List<IPsyglyphicRecipe> recipes = new ArrayList<>(psyglyphicAmalgamatorRecipes);
+        RecipeManager manager = world.getRecipeManager();
+        for(IRecipe i : manager.getRecipes()){
+            if(i instanceof PsyglyphicAmalgamatorRecipe){
+                recipes.add((IPsyglyphicRecipe) i);
+            }
+        }
+        return recipes;
+    }
 
-//    public GlyphPressRecipe getGlyphPressRecipe(World world, Item reagent, @Nullable ISpellTier.Tier tier){
-//        if(reagent == null || reagent == Items.AIR)
-//            return null;
-//
-//        RecipeManager manager = world.getRecipeManager();
-//        for(IRecipe i : manager.getRecipes()){
-//            if(i instanceof GlyphPressRecipe){
-//                if(((GlyphPressRecipe) i).reagent.getItem() == reagent && ((GlyphPressRecipe) i).tier == tier)
-//                    return (GlyphPressRecipe) i;
-//            }
-//        }
-//        return null;
-//    }
+    public GlyphPressRecipe getGlyphPressRecipe(World world, Item reagent, @Nullable ISpellTier.Tier tier){
+        if(reagent == null || reagent == Items.AIR)
+            return null;
+        RecipeManager manager = world.getRecipeManager();
+        for(IRecipe i : manager.getRecipes()){
+            if(i instanceof GlyphPressRecipe){
+                if(((GlyphPressRecipe) i).reagent.getItem() == reagent && ((GlyphPressRecipe) i).tier == tier)
+                    return (GlyphPressRecipe) i;
+            }
+        }
+        return null;
+    }
+
+    public IchorCrystallizerRecipe getIchorCrystallizerRecipe(World world, Item reagent, Item base){
+        if(reagent == null || reagent == Items.AIR)
+            return null;
+        RecipeManager manager = world.getRecipeManager();
+        for(IRecipe i : manager.getRecipes()){
+            if(i instanceof IchorCrystallizerRecipe){
+                if(((IchorCrystallizerRecipe) i).reagent.getItem() == reagent)
+                    return (IchorCrystallizerRecipe) i;
+            }
+        }
+        return null;
+    }
 
     /**
      * Returns the {@link ISpellValidator} that enforces the standard rules for spell crafting.
@@ -262,9 +291,9 @@ public class RigoranthusEmortisRebornAPI {
         spell_map = new HashMap<>();
         glyphMap = new HashMap<>();
         startingSpells = new ArrayList<>();
-//        enchantingApparatusRecipes = new ArrayList<>();
-//        ritualMap = new HashMap<>();
-//        ritualParchmentMap = new HashMap<>();
+        psyglyphicAmalgamatorRecipes = new ArrayList<>();
+        ritualMap = new HashMap<>();
+        ritualParchmentMap = new HashMap<>();
         craftingSpellValidator = new StandardSpellValidator(false);
         castingSpellValidator = new StandardSpellValidator(true);
         familiarHolderMap = new HashMap<>();

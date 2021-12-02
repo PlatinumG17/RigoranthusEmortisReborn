@@ -30,9 +30,7 @@ public class CreateSpellButton extends GuiImageButton {
             } else {
                 GL11.glColor4f(1.0F, 0.7F, 0.7F, 1.0F);
             }
-
             GuiSpellBook.drawFromTexture(image, x, y, u, v, width, height, image_width, image_height, ms);
-
             if (parent.isMouseInRelativeRange(parX, parY, x, y, width, height)) {
                 if (!parent.validationErrors.isEmpty()) {
                     List<ITextComponent> tooltip = new ArrayList<>();

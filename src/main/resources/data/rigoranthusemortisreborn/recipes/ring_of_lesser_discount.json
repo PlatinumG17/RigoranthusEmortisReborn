@@ -1,0 +1,61 @@
+{
+    "type": "rigoranthusemortisreborn:psyglyphic_amalgamator",
+    "item_1": [
+        {
+          "tag": "forge:gems/diamond"
+        }
+      ],
+      "item_2": [
+        {
+          "tag": "forge:gems/diamond"
+        }
+      ],
+      "item_3": [
+        {
+          "tag": "forge:gems/diamond"
+        }
+      ],
+      "item_4": [
+        {
+          "tag": "forge:gems/diamond"
+        }
+      ],
+      "item_5": [
+        {
+          "tag": "forge:ender_pearls"
+        }
+      ],
+      "item_6": [
+        {
+          "tag": "forge:ender_pearls"
+        }
+      ],
+      "item_7": [
+        {
+            "item": "rigoranthusemortisreborn:dominion_gem"
+        }
+      ],
+      "item_8": [
+        {
+            "item": "rigoranthusemortisreborn:dominion_gem"
+        }
+      ],
+      "item_9": [
+        {
+          "tag": "forge:ender_pearls"
+        }
+      ],
+      "item_10": [
+        {
+          "tag": "forge:ender_pearls"
+        }
+      ],
+      "reagent": [
+        {
+          "item": "rigoranthusemortisreborn:ring_of_potential"
+        }
+      ],
+      "output": {
+        "item": "rigoranthusemortisreborn:ring_of_lesser_discount"
+      }
+    }

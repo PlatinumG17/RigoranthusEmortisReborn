@@ -1,4 +1,24 @@
 {
+  "resolve_spell": {
+    "subtitle": "rigoranthusemortisreborn.resolve_spell",
+    "category": "block",
+    "sounds": [
+      {
+        "name": "rigoranthusemortisreborn:resolve_spell",
+        "stream": false
+      }
+    ]
+  },
+  "cast_spell": {
+    "subtitle": "rigoranthusemortisreborn.cast_spell",
+    "category": "player",
+    "sounds": [
+      {
+        "name": "rigoranthusemortisreborn:cast_spell",
+        "stream": false
+      }
+    ]
+  },
   "grimoire_use": {
     "subtitle": "rigoranthusemortisreborn.grimore_use",
     "category": "player",
@@ -42,6 +62,49 @@
     "sounds": [
       {
         "name": "rigoranthusemortisreborn:canis_ambient",
+        "stream": false
+      }
+    ]
+  },
+  "sword_swing": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "rigoranthusemortisreborn:sword_swing",
+        "stream": false
+      }
+    ]
+  },
+  "shoot_bow": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "rigoranthusemortisreborn:shoot_bow",
+        "stream": false
+      }
+    ]
+  },
+  "fireball": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "rigoranthusemortisreborn:fireball1",
+        "stream": false
+      },
+      {
+        "name": "rigoranthusemortisreborn:fireball2",
+        "stream": false
+      },
+      {
+        "name": "rigoranthusemortisreborn:fireball3",
+        "stream": false
+      },
+      {
+        "name": "rigoranthusemortisreborn:fireball4",
+        "stream": false
+      },
+      {
+        "name": "rigoranthusemortisreborn:fireball5",
         "stream": false
       }
     ]

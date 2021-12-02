@@ -48,7 +48,6 @@ public class CraftingButton extends GuiImageButton {
                 GuiSpellBook.drawFromTexture(new ResourceLocation(EmortisConstants.MOD_ID, "textures/items/" + resourceIcon), x + 3, y + 2, u, v, 16, 16, 16, 16,ms);
             }
             if(parent.isMouseInRelativeRange(parX, parY, x, y, width, height)){
-
                 if(parent.api.getSpell_map().containsKey(this.spellTag)) {
                     List<ITextComponent> tooltip = new LinkedList<>();
                     tooltip.add(new TranslationTextComponent(parent.api.getSpell_map().get(this.spellTag).getLocalizationKey()));

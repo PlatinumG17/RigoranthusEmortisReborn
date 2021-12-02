@@ -9,7 +9,7 @@ public class GuiEntityInfoHUD extends AbstractGui {
 
     private static final Minecraft minecraft = Minecraft.getInstance();
 
-    public void drawHUD(MatrixStack ms, List<String> tooltips){
+    public void drawHUD(MatrixStack ms, List<String> tooltips) {
         int offsetLeft = 5;
         fill(ms, offsetLeft, 50, 100+ offsetLeft, 0, 300);
         int counter = 0;

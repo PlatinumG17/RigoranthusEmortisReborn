@@ -132,9 +132,9 @@ public class Config {
 
     public static ForgeConfigSpec.BooleanValue enableTreeGeneration;                public static ForgeConfigSpec.IntValue bambooSpawnWeight;
     public static ForgeConfigSpec.IntValue verdurousWoodlandsSpawnWeight;           public static ForgeConfigSpec.IntValue verdurousFieldsSpawnWeight;
-//    public static ForgeConfigSpec.IntValue jessicSpawnWeight;                       public static ForgeConfigSpec.IntValue azulorealSpawnWeight;
-//    public static ForgeConfigSpec.IntValue loomingJessicSpawnWeight;                public static ForgeConfigSpec.IntValue loomingAzulorealSpawnWeight;
-//    public static ForgeConfigSpec.IntValue megaJessicSpawnWeight;                   public static ForgeConfigSpec.IntValue megaAzulorealSpawnWeight;
+    public static ForgeConfigSpec.IntValue jessicSpawnWeight;                       public static ForgeConfigSpec.IntValue azulorealSpawnWeight;
+    public static ForgeConfigSpec.IntValue loomingJessicSpawnWeight;                public static ForgeConfigSpec.IntValue loomingAzulorealSpawnWeight;
+    public static ForgeConfigSpec.IntValue megaJessicSpawnWeight;                   public static ForgeConfigSpec.IntValue megaAzulorealSpawnWeight;
 
     public static ForgeConfigSpec.DoubleValue sunderedCadaverMovementSpeed;         public static ForgeConfigSpec.DoubleValue necrawFasciiMovementSpeed;
     public static ForgeConfigSpec.DoubleValue sunderedCadaverAttackDamage;          public static ForgeConfigSpec.DoubleValue necrawFasciiAttackDamage;
@@ -160,11 +160,11 @@ public class Config {
     public static ForgeConfigSpec.BooleanValue SPAWN_ORE;                           public static ForgeConfigSpec.BooleanValue SPAWN_BERRIES;
     public static ForgeConfigSpec.BooleanValue SPAWN_BOOK;                          public static ForgeConfigSpec.IntValue INIT_MAX_DOMINION;
     public static ForgeConfigSpec.IntValue INIT_DOMINION_REGEN;                     public static ForgeConfigSpec.IntValue GLYPH_MAX_BONUS;
-    public static ForgeConfigSpec.DoubleValue GLYPH_REGEN_BONUS;                    public static ForgeConfigSpec.DoubleValue TREE_SPAWN_RATE;
     public static ForgeConfigSpec.IntValue TIER_MAX_BONUS;                          public static ForgeConfigSpec.IntValue DOMINION_BOOST_BONUS;
     public static ForgeConfigSpec.IntValue DOMINION_REGEN_ENCHANT_BONUS;            public static ForgeConfigSpec.IntValue DOMINION_REGEN_POTION;
     public static ForgeConfigSpec.IntValue REGEN_INTERVAL;                          public static ForgeConfigSpec.IntValue SUMMON_FAMILIAR_DOMINION_COST;
     public static ForgeConfigSpec.IntValue MOB_WEIGHT;                              public static ForgeConfigSpec.BooleanValue MOBS_ATTACK_ANIMALS;
+    public static ForgeConfigSpec.DoubleValue GLYPH_REGEN_BONUS;
 
     public static ForgeConfigSpec.ConfigValue<List<? extends String>> DIMENSION_BLACKLIST;
     public static ForgeConfigSpec.IntValue ARCHWOOD_FOREST_WEIGHT;
@@ -207,7 +207,6 @@ public class Config {
         builder.pop();
 
         builder.push("Biome Config");
-        TREE_SPAWN_RATE = builder.comment(" Rate of tree spawn per chunk").defineInRange("genTrees", 0.002, 0.0d, 1.0d);
         SPAWN_BERRIES = builder.comment(" Spawn Dominion Berry Bushes in the world").define("genBerries", true);
         setupBiomeConfig(builder);
         builder.pop();
@@ -325,7 +324,7 @@ public class Config {
         MOBS_ATTACK_ANIMALS = builder.comment(" Should Mobs from this mod attack animals?").define("mobsHuntAnimals", true);
 
         ARCHWOOD_FOREST_WEIGHT = builder.comment(" Archwood forest spawn weight").defineInRange("archwoodForest", 3, 0, Integer.MAX_VALUE);
-        CRYSTALLIZER_ITEM = builder.comment(" Crystallizer output item. Do not use a wrong ID!").define("crystallizer_output", "rigoranthusemortisreborn:mana_gem");
+        CRYSTALLIZER_ITEM = builder.comment(" Crystallizer output item. Do not use a wrong ID!").define("crystallizer_output", "rigoranthusemortisreborn:dominion_gem");
         builder.pop();
 
         builder.comment("Dominion").push("dominion");
@@ -393,15 +392,16 @@ public class Config {
         feralCanisChordataKnockbackResistance = builder.comment(" How well does this mob stay in one place while players attack it.\n Default: 0.4").translation("rigoranthusemortisreborn.config.server.canis.knockback_resistance").defineInRange("canis.knockback_resistance", 0.4, 0.0, 100);
     }
     private static void setupBiomeConfig(ForgeConfigSpec.Builder builder) {
+        //TREE_SPAWN_RATE = builder.comment(" Rate of tree spawn per chunk").defineInRange("genTrees", 0.002, 0.0d, 1.0d);
         verdurousWoodlandsSpawnWeight = builder.comment(" How likely Verdurous Woodlands Biome is to Spawn.\n [Set to 0 to Disable Biome Generation]").translation("rigoranthusemortisreborn.config.server.biome.verdurous_woodlands_spawn_weight").defineInRange("biome.verdurous_woodlands_spawn_weight", 10, 0, 1000);
         verdurousFieldsSpawnWeight = builder.comment(" How likely Verdurous Fields Biome is to Spawn.\n [Set to 0 to Disable Biome Generation]").translation("rigoranthusemortisreborn.config.server.biome.verdurous_fields_spawn_weight").defineInRange("biome.verdurous_fields_spawn_weight", 8, 0, 1000);
-        bambooSpawnWeight = builder.comment(" Spawn Weight of Bamboo in the Verdurous Woodlands Biome.\n [Set to 0 to Disable Bamboo Generation]").translation("rigoranthusemortisreborn.config.server.biome.bamboo_spawn_weight").defineInRange("biome.bamboo_spawn_weight", 70, 0, 1000);
-//        jessicSpawnWeight = builder.comment(" Spawn Weight of Jessic Trees in Verdurous Woodlands Biome.\n [Set to 0 to Disable Generation]").translation("rigoranthusemortisreborn.config.server.jessic.jessic_spawn_weight").defineInRange("jessic.jessic_spawn_weight", 10, 0, 1000);
-//        loomingJessicSpawnWeight = builder.comment(" Spawn Weight of Looming Jessic Trees in Verdurous Woodlands Biome.\n [Set to 0 to Disable Generation]").translation("rigoranthusemortisreborn.config.server.jessic.looming_jessic_spawn_weight").defineInRange("jessic.looming_jessic_spawn_weight", 8, 0, 1000);
-//        megaJessicSpawnWeight = builder.comment(" Spawn Weight of Mega Jessic Trees in Verdurous Woodlands Biome.\n [Set to 0 to Disable Generation]").translation("rigoranthusemortisreborn.config.server.jessic.mega_jessic_spawn_weight").defineInRange("jessic.mega_jessic_spawn_weight", 5, 0, 1000);
-//        azulorealSpawnWeight = builder.comment(" Spawn Weight of Azuloreal Trees in Verdurous Woodlands Biome.\n [Set to 0 to Disable Generation]").translation("rigoranthusemortisreborn.config.server.azuloreal.azuloreal_spawn_weight").defineInRange("azuloreal.azuloreal_spawn_weight", 10, 0, 1000);
-//        loomingAzulorealSpawnWeight = builder.comment(" Spawn Weight of Looming Azuloreal Trees in Verdurous Woodlands Biome.\n [Set to 0 to Disable Generation]").translation("rigoranthusemortisreborn.config.server.azuloreal.looming_azuloreal_spawn_weight").defineInRange("azuloreal.looming_azuloreal_spawn_weight", 8, 0, 1000);
-//        megaAzulorealSpawnWeight = builder.comment(" Spawn Weight of Mega Azuloreal Trees in Verdurous Woodlands Biome.\n [Set to 0 to Disable Generation]").translation("rigoranthusemortisreborn.config.server.azuloreal.mega_azuloreal_spawn_weight").defineInRange("azuloreal.mega_azuloreal_spawn_weight", 5, 0, 1000);
+        bambooSpawnWeight = builder.comment(" Spawn Weight of Bamboo in the Verdurous Woodlands Biome.\n [Set to 0 to Disable Bamboo Generation]").translation("rigoranthusemortisreborn.config.server.biome.bamboo_spawn_weight").defineInRange("biome.bamboo_spawn_weight", 50, 0, 1000);
+        jessicSpawnWeight = builder.comment(" Spawn Weight of Jessic Trees in Verdurous Woodlands Biome.\n [Set to 0 to Disable Generation]").translation("rigoranthusemortisreborn.config.server.jessic.jessic_spawn_weight").defineInRange("jessic.jessic_spawn_weight", 10, 0, 1000);
+        loomingJessicSpawnWeight = builder.comment(" Spawn Weight of Looming Jessic Trees in Verdurous Woodlands Biome.\n [Set to 0 to Disable Generation]").translation("rigoranthusemortisreborn.config.server.jessic.looming_jessic_spawn_weight").defineInRange("jessic.looming_jessic_spawn_weight", 8, 0, 1000);
+        megaJessicSpawnWeight = builder.comment(" Spawn Weight of Mega Jessic Trees in Verdurous Woodlands Biome.\n [Set to 0 to Disable Generation]").translation("rigoranthusemortisreborn.config.server.jessic.mega_jessic_spawn_weight").defineInRange("jessic.mega_jessic_spawn_weight", 5, 0, 1000);
+        azulorealSpawnWeight = builder.comment(" Spawn Weight of Azuloreal Trees in Verdurous Woodlands Biome.\n [Set to 0 to Disable Generation]").translation("rigoranthusemortisreborn.config.server.azuloreal.azuloreal_spawn_weight").defineInRange("azuloreal.azuloreal_spawn_weight", 10, 0, 1000);
+        loomingAzulorealSpawnWeight = builder.comment(" Spawn Weight of Looming Azuloreal Trees in Verdurous Woodlands Biome.\n [Set to 0 to Disable Generation]").translation("rigoranthusemortisreborn.config.server.azuloreal.looming_azuloreal_spawn_weight").defineInRange("azuloreal.looming_azuloreal_spawn_weight", 8, 0, 1000);
+        megaAzulorealSpawnWeight = builder.comment(" Spawn Weight of Mega Azuloreal Trees in Verdurous Woodlands Biome.\n [Set to 0 to Disable Generation]").translation("rigoranthusemortisreborn.config.server.azuloreal.mega_azuloreal_spawn_weight").defineInRange("azuloreal.mega_azuloreal_spawn_weight", 5, 0, 1000);
     }
     private static void setupOreConfig(ForgeConfigSpec.Builder builder) {
         veinsPerChunk = builder.comment(" The Number of Ore Veins that can spawn per chunk.\n Default: 3").translation("rigoranthusemortisreborn.config.server.ore.veins_per_chunk").defineInRange("ore.veins_per_chunk", 3, 0, 100);
@@ -787,9 +787,9 @@ public class Config {
         Config.abyssalite_hammer_durability.get();            Config.maxVeinSize.get();
         Config.minOreHeight.get();                            Config.maxOreHeight.get();
         Config.verdurousWoodlandsSpawnWeight.get();           Config.verdurousFieldsSpawnWeight.get();
-//        Config.jessicSpawnWeight.get();                       Config.azulorealSpawnWeight.get();
-//        Config.loomingJessicSpawnWeight.get();                Config.loomingAzulorealSpawnWeight.get();
-//        Config.megaJessicSpawnWeight.get();                   Config.megaAzulorealSpawnWeight.get();
+        Config.jessicSpawnWeight.get();                       Config.azulorealSpawnWeight.get();
+        Config.loomingJessicSpawnWeight.get();                Config.loomingAzulorealSpawnWeight.get();
+        Config.megaJessicSpawnWeight.get();                   Config.megaAzulorealSpawnWeight.get();
         Config.languidDwellerMaxSpawnHeight.get();            Config.bambooSpawnWeight.get();
         Config.languidDwellerMovementSpeed.get();             Config.feralCanisChordataMovementSpeed.get();
         Config.languidDwellerAttackDamage.get();              Config.feralCanisChordataAttackDamage.get();
@@ -811,17 +811,17 @@ public class Config {
         Config.sunderedCadaverMaxGroupSize.get();             Config.necrawFasciiMaxGroupSize.get();
         Config.dweller_thorax_knockback_resistance.get();     Config.MOB_WEIGHT.get();
         Config.SPAWN_ORE.get();                               Config.SPAWN_BERRIES.get();
-        Config.TREE_SPAWN_RATE.get();                         Config.TIER_MAX_BONUS.get();
         Config.INIT_MAX_DOMINION.get();                       Config.GLYPH_MAX_BONUS.get();
         Config.INIT_DOMINION_REGEN.get();                     Config.GLYPH_REGEN_BONUS.get();
         Config.DOMINION_BOOST_BONUS.get();                    Config.DOMINION_REGEN_POTION.get();
         Config.SUMMON_FAMILIAR_DOMINION_COST.get();           Config.MOBS_ATTACK_ANIMALS.get();
         Config.DOMINION_REGEN_ENCHANT_BONUS.get();            Config.REGEN_INTERVAL.get();
+        Config.TIER_MAX_BONUS.get();
     }
 
     @SubscribeEvent
     public static void onWorldLoad(final WorldEvent.Load event) {
-        Config.loadConfig(Config.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve("RigoranthusEmortisReborn-common.toml"));
+        Config.loadConfig(Config.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve("rigoranthusemortisreborn/RigoranthusEmortisReborn-common.toml"));
     }
 
 //    @SubscribeEvent

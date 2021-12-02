@@ -5,7 +5,7 @@ import com.platinumg17.rigoranthusemortisreborn.magica.setup.BlockRegistry;
 public class CreativeDominionJarTile extends DominionJarTile {
 
     public CreativeDominionJarTile(){
-        super(BlockRegistry.CREATIVE_JAR_TILE);
+        super(BlockRegistry.CREATIVE_DOMINION_JAR_TILE);
     }
     @Override
     public int getCurrentDominion() {

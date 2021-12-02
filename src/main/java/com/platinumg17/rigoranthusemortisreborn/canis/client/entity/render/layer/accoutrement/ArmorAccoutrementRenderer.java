@@ -25,7 +25,7 @@ public class ArmorAccoutrementRenderer implements IAccoutrementRenderer<CanisEnt
     private ResourceLocation texture;
 
     public ArmorAccoutrementRenderer(ResourceLocation textureIn) {
-        this.model = new CanisModel<>(0.4F);
+        this.model = new CanisModel<>(1.0F);
         this.texture = textureIn;
     }
 
@@ -56,7 +56,6 @@ public class ArmorAccoutrementRenderer implements IAccoutrementRenderer<CanisEnt
                 float[] color = ((IColoredObject) armorInstance).getColor();
                 this.renderArmorCutout(this.model, this.getTexture(canis, data), matrixStackIn, bufferIn, packedLightIn, canis, color[0], color[1], color[2], armorInstance.hasEffect());
             } else {
-
                 this.renderArmorCutout(this.model, this.getTexture(canis, data), matrixStackIn, bufferIn, packedLightIn, canis, 1.0F, 1.0F, 1.0F, armorInstance.hasEffect());
             }
         }

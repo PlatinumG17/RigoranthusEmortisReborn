@@ -17,7 +17,7 @@ import java.util.Collection;
 public class ResetCommand {
 
     public static void register(CommandDispatcher<CommandSource> dispatcher) {
-        dispatcher.register(Commands.literal("ars-reset").
+        dispatcher.register(Commands.literal("rigoranthus-reset").
                 requires(sender -> sender.hasPermission(2))
                 .executes(context -> resetPlayers(context.getSource(), ImmutableList.of(context.getSource().getEntityOrException())))
                 .then(Commands.argument("targets", EntityArgument.entities())
@@ -28,9 +28,9 @@ public class ResetCommand {
         for(Entity e : entities){
             if(!(e instanceof LivingEntity))
                 continue;
-            DominionCapability.getDominion((LivingEntity) e).ifPresent(iMana -> {
-                iMana.setBookTier(0);
-                iMana.setGlyphBonus(0);
+            DominionCapability.getDominion((LivingEntity) e).ifPresent(iDominion -> {
+                iDominion.setBookTier(0);
+                iDominion.setGlyphBonus(0);
             });
             FamiliarCap.getFamiliarCap((LivingEntity) e).ifPresent(ifam -> ifam.setUnlockedFamiliars(new ArrayList<>()));
         }

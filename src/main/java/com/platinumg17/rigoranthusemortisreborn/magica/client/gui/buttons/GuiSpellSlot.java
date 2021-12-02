@@ -21,7 +21,7 @@ public class GuiSpellSlot extends GuiImageButton {
     public int slotNum;
     public boolean isSelected;
 
-    public GuiSpellSlot(GuiSpellBook parent, int x, int y, int slotNum) {
+    public GuiSpellSlot(GuiSpellBook parent, int x, int y,  int slotNum) {
         super(x, y, 0, 0, 18, 13, 18, 13,"textures/gui/spell_tab.png", parent::onSlotChange);
         this.parent = parent;
         this.slotNum = slotNum;
@@ -41,7 +41,6 @@ public class GuiSpellSlot extends GuiImageButton {
             }
             ResourceLocation image;
             image = this.isSelected ? new ResourceLocation(EmortisConstants.MOD_ID, "textures/gui/spell_tab_selected.png") : new ResourceLocation(EmortisConstants.MOD_ID,"textures/gui/spell_tab.png");
-            //GuiSpellBook.drawFromTexture(image, x, y, u, v, width, height, width, height);
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
             GuiSpellBook.drawFromTexture(image, x, y, u, v, width, height, image_width, image_height, stack);
             drawCenteredString(stack,Minecraft.getInstance().font, String.valueOf(this.slotNum), x + 8, y + 3,  16777215); // White

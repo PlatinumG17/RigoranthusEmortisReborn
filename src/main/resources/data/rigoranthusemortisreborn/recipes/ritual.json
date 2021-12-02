@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+      {
+        "item": "rigoranthusemortisreborn:splintered_pedestal"
+      },
+      {
+        "item": "rigoranthusemortisreborn:dominion_gem_block"
+      },
+      {
+        "tag": "forge:ingots/gold"
+      },
+      {
+        "tag": "forge:ingots/gold"
+      },
+      {
+        "tag": "forge:ingots/gold"
+      }
+    ],
+    "result": {
+      "item": "rigoranthusemortisreborn:ritual"
+    }
+  }

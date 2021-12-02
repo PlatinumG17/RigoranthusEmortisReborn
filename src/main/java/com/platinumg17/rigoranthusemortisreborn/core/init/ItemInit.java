@@ -21,7 +21,6 @@ import com.platinumg17.rigoranthusemortisreborn.items.specialized.RazorToothItem
 import com.platinumg17.rigoranthusemortisreborn.items.specialized.RigoranthusSpawnEgg;
 import com.platinumg17.rigoranthusemortisreborn.items.tooltypes.ToolRegistry;
 import com.platinumg17.rigoranthusemortisreborn.items.weapons.REWeaponItem;
-import com.platinumg17.rigoranthusemortisreborn.items.weapons.type.magic.EmorticGrimoireItem;
 import com.platinumg17.rigoranthusemortisreborn.items.weapons.type.projectiles.BiliBombItem;
 import com.platinumg17.rigoranthusemortisreborn.items.weapons.type.projectiles.basetype.BouncingProjectileWeaponItem;
 import com.platinumg17.rigoranthusemortisreborn.items.weapons.type.projectiles.basetype.ConsumableProjectileWeaponItem;
@@ -190,9 +189,6 @@ public class ItemInit {
 
 	public static final RegistryObject<Item> PSYGLYPHIC_SCRIPT = ITEMS.register("psyglyphic_script",
 			() -> new Item(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)));
-
-	public static final RegistryObject<Item> EMORTIC_GRIMOIRE = ITEMS.register("emortic_grimoire",
-			() -> new EmorticGrimoireItem(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)));
 
 //	public static final RegistryObject<Item> CRY_OF_DESPERATION = ITEMS.register("cry_of_desperation",
 //			() -> new CryOfDesperationItem(new Item.Properties().defaultDurability(100).tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).rarity(Rarity.UNCOMMON)));

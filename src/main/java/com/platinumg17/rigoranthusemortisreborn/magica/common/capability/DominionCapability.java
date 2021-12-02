@@ -30,7 +30,7 @@ public class DominionCapability {
 
     public static final Direction DEFAULT_FACING = null;
 
-    public static final ResourceLocation ID = new ResourceLocation(EmortisConstants.MOD_ID, "mana");
+    public static final ResourceLocation ID = new ResourceLocation(EmortisConstants.MOD_ID, "dominion");
 
     public static void register(){
 
@@ -70,8 +70,8 @@ public class DominionCapability {
         return entity.getCapability(DOMINION_CAPABILITY, DEFAULT_FACING);
     }
 
-    public static ICapabilityProvider createProvider(final IDominion mana) {
-        return new SerializableCapabilityProvider<>(DOMINION_CAPABILITY, DEFAULT_FACING, mana);
+    public static ICapabilityProvider createProvider(final IDominion dominion) {
+        return new SerializableCapabilityProvider<>(DOMINION_CAPABILITY, DEFAULT_FACING, dominion);
     }
 
     /**
@@ -96,7 +96,7 @@ public class DominionCapability {
         }
 
         /**
-         * Copy the player's mana when they respawn after dying or returning from the end.
+         * Copy the player's dominion when they respawn after dying or returning from the end.
          *
          * @param event The event
          */

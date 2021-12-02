@@ -8,11 +8,11 @@ public interface IDominion {
 
     void setMaxDominion(int max);
 
-    double setDominion(final double mana);
+    double setDominion(final double dominion);
 
-    double addDominion(final double manaToAdd);
+    double addDominion(final double dominionToAdd);
 
-    double removeDominion(final double manaToRemove);
+    double removeDominion(final double dominionToRemove);
 
     default int getGlyphBonus(){
         return 0;

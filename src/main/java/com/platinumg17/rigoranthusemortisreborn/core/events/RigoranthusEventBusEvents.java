@@ -69,7 +69,7 @@ public class RigoranthusEventBusEvents {
     public void onUseItem(PlayerInteractEvent.RightClickItem event) {
         if (event.getItemStack().getItem() == Items.GLASS_BOTTLE) { // && Config.ichorBottleEnabled) {
             BlockRayTraceResult raytraceresult = rayTrace(event.getWorld(), event.getPlayer(), RayTraceContext.FluidMode.SOURCE_ONLY);
-            if (raytraceresult.getType() == RayTraceResult.Type.ENTITY) {
+            if (raytraceresult.getType() == RayTraceResult.Type.BLOCK) {
                 BlockPos blockpos = raytraceresult.getBlockPos();
                 if (event.getWorld().mayInteract(event.getPlayer(), blockpos)) {
                     if (event.getWorld().getFluidState(blockpos).getType().equals(FluidRegistry.CADAVEROUS_ICHOR_FLUID.get().getSource())) {

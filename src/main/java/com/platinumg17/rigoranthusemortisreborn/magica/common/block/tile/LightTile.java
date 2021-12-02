@@ -19,7 +19,6 @@ public class LightTile extends TileEntity {
         super(BlockRegistry.LIGHT_TILE);
     }
 
-
     @Override
     @Nullable
     public SUpdateTileEntityPacket getUpdatePacket() {

@@ -1,6 +1,6 @@
 package com.platinumg17.rigoranthusemortisreborn.items.specialized;
 
-import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
@@ -32,7 +32,7 @@ public class Esotericum extends Item {
                     if (player.getAdvancements().getOrStartProgress(Advancement.Builder.advancement().
                                 build(new ResourceLocation("rigoranthusemortisreborn:adventure/listen_to_a_forgotten_record"))).isDone()) {
                         CompoundNBT tag = new CompoundNBT();
-                        tag.putBoolean(RigoranthusEmortisReborn.MOD_ID + ".hasAdvancement", true);
+                        tag.putBoolean(EmortisConstants.MOD_ID + ".hasAdvancement", true);
                         stack.setTag(tag);
                     }
                 }
@@ -45,12 +45,12 @@ public class Esotericum extends Item {
     public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 
         if (stack.hasTag()) {
-            if (stack.hasTag() && stack.getTag().getBoolean(RigoranthusEmortisReborn.MOD_ID + ".hasAdvancement")) {
-                tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".esotericum").setStyle(Style.EMPTY));
-                tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".esotericum2").setStyle(Style.EMPTY));
+            if (stack.hasTag() && stack.getTag().getBoolean(EmortisConstants.MOD_ID + ".hasAdvancement")) {
+                tooltip.add(new TranslationTextComponent("tooltip." + EmortisConstants.MOD_ID + ".esotericum").setStyle(Style.EMPTY));
+                tooltip.add(new TranslationTextComponent("tooltip." + EmortisConstants.MOD_ID + ".esotericum2").setStyle(Style.EMPTY));
             }
         } else {
-            tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".esotericum_obfuscated").setStyle(Style.EMPTY));
+            tooltip.add(new TranslationTextComponent("tooltip." + EmortisConstants.MOD_ID + ".esotericum_obfuscated").setStyle(Style.EMPTY));
         }
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
     }

@@ -3,6 +3,7 @@ package com.platinumg17.rigoranthusemortisreborn.entity.goals;
 import com.platinumg17.rigoranthusemortisreborn.entity.mobs.SunderedCadaverEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.world.World;
 
 public class SunderedCadaverAttackGoal extends MeleeAttackGoal {
 
@@ -20,13 +21,17 @@ public class SunderedCadaverAttackGoal extends MeleeAttackGoal {
         this.speedModifier = speedIn;
     }
 
-    public void start() {super.start();}
+    public void start() {
+        super.start();
+        World world = entity.getCommandSenderWorld();
+    }
+
     public boolean canUse() {return super.canUse();}
 
     public void stop() {
         super.stop();
         this.entity.setAggressive(false);
-        this.entity.setState(SunderedCadaverEntity.State.IDLE);
+//        this.entity.setState(SunderedCadaverEntity.State.IDLE);
     }
 
     public void tick() {
@@ -63,9 +68,11 @@ public class SunderedCadaverAttackGoal extends MeleeAttackGoal {
     @Override
     protected void checkAndPerformAttack(LivingEntity livingentity, double squaredDistance) {
         double d0 = this.getAttackReachSqr(livingentity);
+        World world = entity.getCommandSenderWorld();
         if (squaredDistance <= d0 && this.getTicksUntilNextAttack() <= 0) {
             this.resetAttackCooldown();
-            this.entity.setState(SunderedCadaverEntity.State.ATTACKING);
+//            Networking.sendToNearby(world, entity, new PacketAnimEntity(entity.getId(), SunderedCadaverEntity.Animations.ATTACKING.ordinal()));
+//            this.entity.setState(SunderedCadaverEntity.State.ATTACKING);
             this.mob.doHurtTarget(livingentity);
         }
     }

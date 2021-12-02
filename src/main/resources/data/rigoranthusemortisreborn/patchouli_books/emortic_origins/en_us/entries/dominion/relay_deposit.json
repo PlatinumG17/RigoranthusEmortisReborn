@@ -1,0 +1,15 @@
+{
+  "name": "block.rigoranthusemortisreborn.relay_deposit",
+  "icon": "rigoranthusemortisreborn:relay_deposit",
+  "category": "dominion",
+  "pages": [
+    {
+      "type": "text",
+      "text": "rigoranthusemortisreborn.page.relay_deposit"
+    },
+    {
+      "type": "amalgamator_recipe",
+      "recipe": "rigoranthusemortisreborn:relay_deposit"
+    }
+  ]
+}

@@ -246,7 +246,7 @@ public class PortalBlock extends ModBlock{
         }
 
         public boolean isPortalFrame(IWorld world, BlockPos pos){
-            return world.getBlockState(pos).getBlock().is(Recipes.DECORATIVE_AN);
+            return world.getBlockState(pos).getBlock().is(Recipes.DECORATIVE_RE);
         }
 
         public int getHeight() {

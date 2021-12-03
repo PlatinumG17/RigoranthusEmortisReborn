@@ -1,6 +1,6 @@
 {
 	"name": "Dominion",
 	"description": "Dominion generation and transfer.",
-	"icon": "rigoranthusemortisreborn:dominion_extractor",
+	"icon": "rigoranthusemortisreborn:relay_splitter",
 	"sortnum":5
 }

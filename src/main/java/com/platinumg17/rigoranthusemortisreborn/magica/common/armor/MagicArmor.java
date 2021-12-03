@@ -20,9 +20,9 @@ public abstract class MagicArmor extends ArmorItem implements IDominionEquipment
         if(world.isClientSide() || world.getGameTime() % 200 !=  0 || stack.getDamageValue() == 0)
             return;
 
-        DominionCapability.getDominion(player).ifPresent(mana -> {
-            if(mana.getCurrentDominion() > 20){
-                mana.removeDominion(20);
+        DominionCapability.getDominion(player).ifPresent(dominion -> {
+            if(dominion.getCurrentDominion() > 20){
+                dominion.removeDominion(20);
                 stack.setDamageValue(stack.getDamageValue() - 1);
             }
         });

@@ -35,7 +35,6 @@ public class DefaultTableProvider extends LootTableProvider {
         public List<Block> list = new ArrayList<>();
         @Override
         protected void addTables() {
-            registerDrop(BlockRegistry.ARCANE_ORE, MagicItemsRegistry.dominionGem);
             registerDropSelf(BlockRegistry.DOMINION_GEM_BLOCK);
             registerDropSelf(BlockRegistry.SCONCE_BLOCK);
             registerBedCondition(BlockRegistry.SCRIBES_BLOCK, ScribesBlock.PART, BedPart.HEAD);

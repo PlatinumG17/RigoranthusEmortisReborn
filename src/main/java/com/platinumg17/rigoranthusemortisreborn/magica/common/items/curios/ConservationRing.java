@@ -4,9 +4,9 @@ import com.platinumg17.rigoranthusemortisreborn.api.apimagic.item.RigoranthusEmo
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.dominion.IDominionEquipment;
 import net.minecraft.entity.LivingEntity;
 
-public abstract class DiscountRing extends RigoranthusEmortisRebornCurio implements IDominionEquipment {
+public abstract class ConservationRing extends RigoranthusEmortisRebornCurio implements IDominionEquipment {
 
-    public DiscountRing(String registry) {
+    public ConservationRing(String registry) {
         super(registry);
     }
 

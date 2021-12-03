@@ -31,7 +31,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.stream.Stream;
 
-public class IchorCrystallizerBlock extends ModBlock{
+public class IchorCrystallizerBlock extends ModBlock {
     public static final Property<Integer> stage = IntegerProperty.create("stage", 1, 31);
 
     public IchorCrystallizerBlock() {
@@ -44,8 +44,7 @@ public class IchorCrystallizerBlock extends ModBlock{
     }
 
     @Override
-    public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand
-    handIn, BlockRayTraceResult p_225533_6_) {
+    public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult p_225533_6_) {
         if(!world.isClientSide) {
             IchorCrystallizerTile tile = (IchorCrystallizerTile) world.getBlockEntity(pos);
             if(tile.isCrafting)
@@ -116,62 +115,48 @@ public class IchorCrystallizerBlock extends ModBlock{
     protected void createBlockStateDefinition(StateContainer.Builder<net.minecraft.block.Block, BlockState> builder) { builder.add(stage); }
 
     public static final VoxelShape SHAPE = Stream.of(
-            Block.box(7, 2, 11, 9, 3, 12),
-            Block.box(7, 2, 4, 9, 3, 5),
-            Block.box(4, 2, 7, 5, 3, 9),
-            Block.box(11, 2, 7, 12, 3, 9),
-            Block.box(5, 1.75, 5, 11, 3, 11),
-            Block.box(2, 15, 2, 14, 16, 14),
-            Block.box(2, 0, 2, 14, 1, 14),
-            Block.box(4, 1, 4, 12, 2, 12),
-            Block.box(3.75, 14, 3.75, 12.25, 15, 12.25),
-            Block.box(15, 15, 11, 16, 16, 14),
-            Block.box(11, 15, 15, 14, 16, 16),
-            Block.box(2, 15, 15, 5, 16, 16),
-            Block.box(2, 15, 0, 5, 16, 1),
-            Block.box(11, 15, 0, 14, 16, 1),
-            Block.box(15, 15, 11, 16, 16, 14),
-            Block.box(15, 15, 2, 16, 16, 5),
-            Block.box(0, 15, 2, 1, 16, 5),
-            Block.box(0, 15, 11, 1, 16, 14),
-            Block.box(1, 15, 11, 2, 16, 12),
-            Block.box(11, 15, 1, 12, 16, 2),
-            Block.box(15, 0, 11, 16, 1, 14),
-            Block.box(11, 0, 15, 14, 1, 16),
-            Block.box(0, 0, 14, 2, 16, 16),
-            Block.box(4, 15, 14, 5, 16, 15),
-            Block.box(11, 15, 14, 12, 16, 15),
-            Block.box(11, 15, 15, 14, 16, 16),
-            Block.box(14, 0, 14, 16, 16, 16),
-            Block.box(15, 15, 11, 16, 16, 14),
-            Block.box(14, 15, 11, 15, 16, 12),
-            Block.box(4, 15, 1, 5, 16, 2),
-            Block.box(1, 15, 4, 2, 16, 5),
-            Block.box(14, 15, 4, 15, 16, 5),
-            Block.box(14, 0, 0, 16, 16, 2),
-            Block.box(0, 0, 0, 2, 16, 2),
-            Block.box(11, 15, 15, 14, 16, 16),
-            Block.box(15, 15, 11, 16, 16, 14),
-            Block.box(11, 15, 15, 14, 16, 16),
-            Block.box(15, 0, 11, 16, 1, 14),
-            Block.box(11, 0, 15, 14, 1, 16),
-            Block.box(15, 0, 11, 16, 1, 14),
-            Block.box(15, 0, 2, 16, 1, 5),
-            Block.box(0, 0, 2, 1, 1, 5),
-            Block.box(0, 0, 11, 1, 1, 14),
-            Block.box(11, 0, 15, 14, 1, 16),
-            Block.box(11, 0, 15, 14, 1, 16),
-            Block.box(2, 0, 15, 5, 1, 16),
-            Block.box(11, 0, 0, 14, 1, 1),
-            Block.box(2, 0, 0, 5, 1, 1),
-            Block.box(14, 0, 11, 15, 2, 12),
-            Block.box(14, 0, 4, 15, 2, 5),
-            Block.box(11, 0, 14, 12, 2, 15),
-            Block.box(4, 0, 14, 5, 2, 15),
-            Block.box(11, 0, 1, 12, 2, 2),
-            Block.box(4, 0, 1, 5, 2, 2),
-            Block.box(1, 0, 11, 2, 2, 12),
-            Block.box(1, 0, 4, 2, 2, 5)
+            Block.box(3, 15.025, 3, 13, 16, 13),
+            Block.box(3, 0, 3, 13, 1, 13),
+            Block.box(13, 0, 11, 14, 2, 12),
+            Block.box(13, 0, 4, 14, 2, 5),
+            Block.box(11, 0, 13, 12, 2, 14),
+            Block.box(4, 0, 13, 5, 2, 14),
+            Block.box(11, 0, 2, 12, 2, 3),
+            Block.box(4, 0, 2, 5, 2, 3),
+            Block.box(2, 0, 11, 3, 2, 12),
+            Block.box(2, 0, 4, 3, 2, 5),
+            Block.box(2, 15, 11, 3, 16, 12),
+            Block.box(4, 15, 13, 5, 16, 14),
+            Block.box(2, 15, 4, 3, 16, 5),
+            Block.box(4, 15, 2, 5, 16, 3),
+            Block.box(13, 15, 4, 14, 16, 5),
+            Block.box(13, 15, 11, 14, 16, 12),
+            Block.box(14, 15, 11, 15, 16, 13),
+            Block.box(14, 15, 3, 15, 16, 5),
+            Block.box(1, 15, 3, 2, 16, 5),
+            Block.box(1, 15, 11, 2, 16, 13),
+            Block.box(11, 15, 2, 12, 16, 3),
+            Block.box(11, 15, 1, 13, 16, 2),
+            Block.box(3, 15, 1, 5, 16, 2),
+            Block.box(11, 15, 14, 13, 16, 15),
+            Block.box(3, 15, 14, 5, 16, 15),
+            Block.box(11, 0, 14, 13, 1, 15),
+            Block.box(3, 0, 14, 5, 1, 15),
+            Block.box(14, 0, 11, 15, 1, 13),
+            Block.box(1, 0, 11, 2, 1, 13),
+            Block.box(1, 0, 3, 2, 1, 5),
+            Block.box(3, 0, 1, 5, 1, 2),
+            Block.box(11, 0, 1, 13, 1, 2),
+            Block.box(14, 0, 3, 15, 1, 5),
+            Block.box(11, 15, 13, 12, 16, 14),
+            Block.box(1, 0, 1, 3, 3, 3),
+            Block.box(1, 0, 13, 3, 3, 15),
+            Block.box(13, 0, 13, 15, 3, 15),
+            Block.box(13, 0, 1, 15, 3, 3),
+            Block.box(13, 13, 1, 15, 16, 3),
+            Block.box(1, 13, 1, 3, 16, 3),
+            Block.box(1, 13, 13, 3, 16, 15),
+            Block.box(13, 13, 13, 15, 16, 15)
     ).reduce((v1, v2) -> VoxelShapes.join(v1, v2, IBooleanFunction.OR)).get();
 
     @Override
@@ -179,7 +164,7 @@ public class IchorCrystallizerBlock extends ModBlock{
         return SHAPE;
     }
 
-    public BlockRenderType getRenderType(BlockState p_149645_1_) {
-        return BlockRenderType.ENTITYBLOCK_ANIMATED;
-    }
+//    public BlockRenderType getRenderType(BlockState p_149645_1_) {
+//        return BlockRenderType.ENTITYBLOCK_ANIMATED;
+//    }
 }

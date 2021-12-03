@@ -1,0 +1,11 @@
+{
+    "name": "block.rigoranthusemortisreborn.recondite_ore",
+    "icon": "rigoranthusemortisreborn:recondite_ore",
+    "category": "resources",
+    "pages": [
+        {
+            "type": "text",
+            "text": "rigoranthusemortisreborn.page1.recondite_ore"
+        }
+    ]
+}

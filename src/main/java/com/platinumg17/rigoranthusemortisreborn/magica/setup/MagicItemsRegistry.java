@@ -39,20 +39,18 @@ public class MagicItemsRegistry {
 
     @ObjectHolder(LibItemNames.BLANK_GLYPH) public static  Item blankGlyph;
     @ObjectHolder(LibItemNames.BUCKET_OF_DOMINION) public static ModItem bucketOfDominion;
-
     @ObjectHolder(LibItemNames.DOMINION_FIBER) public static ModItem DOMINION_FIBER;
 
-    @ObjectHolder(LibItemNames.PROSAIC_BELT) public static ModItem prosaicBelt;
+//    @ObjectHolder(LibItemNames.PROSAIC_BELT) public static ModItem prosaicBelt;
     @ObjectHolder(LibItemNames.EMORTIC_ORIGINS) public static EmorticOrigins emorticOrigins = Null();
-    @ObjectHolder(LibItemNames.RING_OF_POTENTIAL) public  static ModItem ringOfPotential;
-    @ObjectHolder(LibItemNames.RING_OF_LESSER_DISCOUNT) public static DiscountRing ringOfLesserDiscount;
-    @ObjectHolder(LibItemNames.RING_OF_GREATER_DISCOUNT) public static DiscountRing ringOfGreaterDiscount;
+    @ObjectHolder(LibItemNames.UNADORNED_RING) public  static ModItem ringOfPotential;
+    @ObjectHolder(LibItemNames.RING_OF_LESSER_CONSERVATION) public static ConservationRing ringOfLesserConservation;
+    @ObjectHolder(LibItemNames.RING_OF_GREATER_CONSERVATION) public static ConservationRing ringOfGreaterConservation;
     
     @ObjectHolder(LibItemNames.SPELL_PARCHMENT) public static SpellParchment spellParchment;
-    @ObjectHolder(LibItemNames.DOMINION_WAND) public static DominionWand DOMINION_ROD;
     @ObjectHolder(LibItemNames.AMULET_OF_DOMINION_BOOST)public static AbstractDominionCurio amuletOfDominionBoost;
     @ObjectHolder(LibItemNames.AMULET_OF_DOMINION_REGEN)public static AbstractDominionCurio amuletOfDominionRegen;
-    @ObjectHolder(LibItemNames.DULL_TRINKET)public static ModItem dullTrinket;
+    @ObjectHolder(LibItemNames.UNADORNED_AMULET)public static ModItem unadornedAmulet;
     @ObjectHolder(LibItemNames.DOMINION_WAND)public static DominionWand dominionWand;
     @ObjectHolder("debug")public static REItemDebug debug;
     @ObjectHolder(LibItemNames.DOMINION_GEM)public static ModItem dominionGem;
@@ -82,15 +80,14 @@ public class MagicItemsRegistry {
 
         @SubscribeEvent
         public static void registerItems(final RegistryEvent.Register<Item> event) {
-
             Item[] items = {
                     new REItemDebug(),
                     new DominionWand(),
                     new ModItem(LibItemNames.BLANK_GLYPH),
-                    new ModItem(LibItemNames.DULL_TRINKET).withTooltip(new TranslationTextComponent("rigoranthusemortisreborn.tooltip.dull")),
+                    new ModItem(LibItemNames.UNADORNED_AMULET).withTooltip(new TranslationTextComponent("rigoranthusemortisreborn.tooltip.unadorned")),
                     new ModItem(LibItemNames.DOMINION_FIBER),
-                    new ModItem(LibItemNames.PROSAIC_BELT).withTooltip(new TranslationTextComponent("rigoranthusemortisreborn.tooltip.dull")),
-                    new ModItem(LibItemNames.RING_OF_POTENTIAL).withTooltip(new TranslationTextComponent("rigoranthusemortisreborn.tooltip.dull")),
+//                    new ModItem(LibItemNames.PROSAIC_BELT).withTooltip(new TranslationTextComponent("rigoranthusemortisreborn.tooltip.unadorned")),
+                    new ModItem(LibItemNames.UNADORNED_RING).withTooltip(new TranslationTextComponent("rigoranthusemortisreborn.tooltip.unadorned")),
                     new ModItem(defaultItemProperties().stacksTo(1), LibItemNames.BUCKET_OF_DOMINION),
                     new NoviceArmor(EquipmentSlotType.FEET).setRegistryName("novice_boots"),
                     new NoviceArmor(EquipmentSlotType.LEGS).setRegistryName("novice_leggings"),
@@ -109,13 +106,13 @@ public class MagicItemsRegistry {
                     new SpellBook(ISpellTier.Tier.THREE).setRegistryName(LibItemNames.EMORTIC_SPELL_BOOK),
                     new SpellBook(ISpellTier.Tier.THREE).setRegistryName(LibItemNames.CREATIVE_SPELL_BOOK),
                     new EmorticOrigins().withTooltip(new TranslationTextComponent("tooltip.emortic_origins")),
-                    new DiscountRing(LibItemNames.RING_OF_LESSER_DISCOUNT) {
+                    new ConservationRing(LibItemNames.RING_OF_LESSER_CONSERVATION) {
                         @Override
                         public int getDominionDiscount() {
                             return 10;
                         }
                     },
-                    new DiscountRing(LibItemNames.RING_OF_GREATER_DISCOUNT) {
+                    new ConservationRing(LibItemNames.RING_OF_GREATER_CONSERVATION) {
                         @Override
                         public int getDominionDiscount() {
                             return 20;

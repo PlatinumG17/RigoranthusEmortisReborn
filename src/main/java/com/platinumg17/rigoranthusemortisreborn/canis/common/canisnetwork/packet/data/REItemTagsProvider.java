@@ -33,7 +33,7 @@ public class REItemTagsProvider extends ItemTagsProvider {
         createTag(CanisTags.SNACK_ITEMS_UNTAMED, CanisItems.TRAINING_TREAT, Items.BONE.delegate);
         createTag(CanisTags.BREEDING_ITEMS, CanisItems.BREEDING_BONE);
         createTag(CanisTags.WAYWARD_TRAVELLER_BLACKLIST, CanisItems.THROW_BONE, CanisItems.THROW_BONE_WET, CanisItems.THROW_STICK, CanisItems.THROW_STICK_WET);
-        createTag(CanisTags.TREATS, CanisItems.TRAINING_TREAT, CanisItems.SUPER_TREAT, CanisItems.MASTER_TREAT, CanisItems.HOMINI_TREAT);
+        createTag(CanisTags.TREATS, CanisItems.TRAINING_TREAT, CanisItems.REGULAR_TREAT, CanisItems.MASTER_TREAT, CanisItems.HOMINI_TREAT);
     }
 
     @SafeVarargs

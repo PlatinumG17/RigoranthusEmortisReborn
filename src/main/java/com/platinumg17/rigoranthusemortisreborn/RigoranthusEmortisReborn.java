@@ -53,6 +53,7 @@ import com.platinumg17.rigoranthusemortisreborn.entity.render.mobs.NecrawFasciiR
 import com.platinumg17.rigoranthusemortisreborn.entity.render.mobs.SunderedCadaverRenderer;
 import com.platinumg17.rigoranthusemortisreborn.entity.render.projectile.BoneArrowRenderer;
 import com.platinumg17.rigoranthusemortisreborn.magica.IProxy;
+import com.platinumg17.rigoranthusemortisreborn.magica.TextureEvent;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.ClientHandler;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.capability.DominionCapability;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.pathfinding.PathClientEventHandler;
@@ -193,7 +194,6 @@ public class RigoranthusEmortisReborn {
 //    @SubscribeEvent public static void registerBlocks(RegistryEvent.Register<Block> event) {Registration.registerBlocks(event);}
 
     private void setup(final FMLCommonSetupEvent event) {
-
         event.enqueueWork(() -> {
             DominionCapability.register();
             FamiliarCap.register();
@@ -284,6 +284,7 @@ public class RigoranthusEmortisReborn {
         RenderingRegistry.registerEntityRenderingHandler(RigoranthusEntityTypes.LANGUID_DWELLER.get(), LanguidDwellerRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(RigoranthusEntityTypes.BONE_ARROW.get(), BoneArrowRenderer::new);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientHandler::init);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(TextureEvent::textEvent);
     }
     private void makeBow(Item item) {
         ItemModelsProperties.register(item, new ResourceLocation("pull"), (p_239429_0_, p_239429_1_, p_239429_2_) -> {if (p_239429_2_ == null) {return 0.0F;} else {return p_239429_2_.getUseItem() != p_239429_0_ ? 0.0F : (float) (p_239429_0_.getUseDuration() - p_239429_2_.getUseItemRemainingTicks()) / 20.0F;}});

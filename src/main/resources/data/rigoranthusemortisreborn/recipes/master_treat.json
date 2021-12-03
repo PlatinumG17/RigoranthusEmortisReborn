@@ -2,19 +2,19 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "rigoranthusemortisreborn:super_treat"
+      "item": "rigoranthusemortisreborn:regular_treat"
     },
     {
-      "item": "rigoranthusemortisreborn:super_treat"
+      "item": "rigoranthusemortisreborn:regular_treat"
     },
     {
-      "item": "rigoranthusemortisreborn:super_treat"
+      "item": "rigoranthusemortisreborn:regular_treat"
     },
     {
-      "item": "rigoranthusemortisreborn:super_treat"
+      "item": "rigoranthusemortisreborn:regular_treat"
     },
     {
-      "item": "rigoranthusemortisreborn:super_treat"
+      "item": "rigoranthusemortisreborn:regular_treat"
     },
     {
       "item": "minecraft:diamond"

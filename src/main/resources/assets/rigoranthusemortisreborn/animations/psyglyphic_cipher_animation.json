@@ -30,7 +30,7 @@
 				},
 				"frag_small": {
 					"position": {
-						"vector": [0, "math.sin(query.anim_time*30)*2.5", 0]
+						"vector": [0, "math.cos(query.anim_time*30)*2.5", 0]
 					}
 				},
 				"frag_small3": {
@@ -40,7 +40,7 @@
 				},
 				"frag_small2": {
 					"position": {
-						"vector": [0, "math.sin(query.anim_time*30)*2.8", 0]
+						"vector": [0, "math.cos(query.anim_time*30)*2.8", 0]
 					}
 				},
 				"frag_large": {
@@ -50,7 +50,7 @@
 				},
 				"frag_large2": {
 					"position": {
-						"vector": [0, "math.sin(query.anim_time*30)*1.5", 0]
+						"vector": [0, "math.cos(query.anim_time*30)*1.5", 0]
 					}
 				}
 			}

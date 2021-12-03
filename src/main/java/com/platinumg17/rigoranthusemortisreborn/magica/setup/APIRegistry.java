@@ -66,14 +66,12 @@ public class APIRegistry {
         registerSpell(AugmentFortune.INSTANCE);
         registerSpell(EffectPickup.INSTANCE);
         registerSpell(EffectSnare.INSTANCE);
-        registerSpell(EffectSmelt.INSTANCE);
         registerSpell(EffectLeap.INSTANCE);
         registerSpell(EffectDelay.INSTANCE);
         registerSpell(EffectIntangible.INSTANCE);
         registerSpell(EffectInvisibility.INSTANCE);
         registerSpell(AugmentDurationDown.INSTANCE);
         registerSpell(EffectWither.INSTANCE);
-        registerSpell(EffectExchange.INSTANCE);
         registerSpell(EffectCraft.INSTANCE);
         registerSpell(EffectFlare.INSTANCE);
         registerSpell(EffectColdSnap.INSTANCE);
@@ -94,7 +92,6 @@ public class APIRegistry {
 
         registerFamiliar(new CadaverFamiliar());
 
-        registerSpell(EffectToss.INSTANCE);
         registerSpell(EffectBounce.INSTANCE);
         registerSpell(AugmentSensitive.INSTANCE);
         registerSpell(EffectWindshear.INSTANCE);

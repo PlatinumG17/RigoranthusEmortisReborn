@@ -1,22 +1,21 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.common.block;
 
-import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.AbstractSpellPart;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.PsyglyphicCipherTile;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.RuneTile;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.items.SpellParchment;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.lib.LibBlockNames;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.spell.method.MethodTouch;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.util.PortUtil;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+import net.minecraft.block.material.PushReaction;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
+import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
@@ -30,20 +29,21 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ToolType;
 
 import javax.annotation.Nullable;
-import java.util.List;
 import java.util.Random;
 
 public class PsyglyphicBlock extends ModBlock implements IWaterLoggable {
-
+//    public static final DirectionProperty FACING = HorizontalBlock.FACING;
+    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public PsyglyphicBlock() {
         super(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).sound(SoundType.STONE).strength(10f, 15f).harvestLevel(3).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops().noOcclusion().lightLevel(state -> 10), LibBlockNames.PSYGLYPHIC_CIPHER);
-        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, false));
+        this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, Boolean.valueOf(false)));
     }
     public PsyglyphicBlock(AbstractBlock.Properties properties, String registryName){
         super(properties, registryName);
@@ -53,29 +53,48 @@ public class PsyglyphicBlock extends ModBlock implements IWaterLoggable {
         return true;
     }
 
-    public static final DirectionProperty FACING = BlockStateProperties.FACING;
-    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-
-    protected static final VoxelShape SHAPE = Block.box(2, 0, 2, 14, 15, 14);
-
-    @Override
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        return SHAPE;
-    }
-    @Override
-    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-        if (stateIn.getValue(WATERLOGGED)) {
-            worldIn.getLiquidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
-        }
-        return facing == Direction.DOWN && !stateIn.canSurvive(worldIn, currentPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
-    }
     @Override public FluidState getFluidState(BlockState state) {return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);}
-    @Override public BlockState rotate(BlockState state, Rotation rot) {return state.setValue(FACING, rot.rotate(state.getValue(FACING)));}
-    @Override public BlockState mirror(BlockState state, Mirror mirrorIn) {return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));}
+//    @Override public BlockState rotate(BlockState state, Rotation rot) {return state.setValue(FACING, rot.rotate(state.getValue(FACING)));}
+//    @Override public BlockState mirror(BlockState state, Mirror mirrorIn) {return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));}
     public BlockRenderType getRenderType(BlockState p_149645_1_) {
         return BlockRenderType.ENTITYBLOCK_ANIMATED;
     }
-    @Override protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {builder.add(FACING, WATERLOGGED);}
+    @Override protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {builder.add(/*FACING,*/ WATERLOGGED);}
+
+    @Override
+    public BlockState getStateForPlacement(BlockItemUseContext context) {
+//        if (context.getClickedFace().getAxis().isHorizontal()) {
+//            return this.defaultBlockState().setValue(FACING, context.getClickedFace()).setValue(WATERLOGGED, Boolean.valueOf(false));
+//        } else {
+            FluidState fluidstate = context.getLevel().getFluidState(context.getClickedPos());
+            boolean flag = fluidstate.getType() == Fluids.WATER;
+            return super.getStateForPlacement(context).setValue(WATERLOGGED, Boolean.valueOf(flag));
+            // The player tried to place on the floor or ceiling. Ciphers don't have models for those facings.
+            //return null; // Block the placement outright
+//        }
+    }
+    @Override
+    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+        return Block.box(2, 0, 2, 14, 15, 14);
+    }
+    public BlockState updateShape(BlockState blockState, Direction direction, BlockState state, IWorld world, BlockPos blockPos1, BlockPos blockPos2) {
+        if (!blockState.canSurvive(world, blockPos1)) {
+            return /*direction.getOpposite() == blockState.getValue(FACING) && */!blockState.canSurvive(world, blockPos1) ? Blocks.AIR.defaultBlockState() : blockState;
+        }else {
+            if (blockState.getValue(WATERLOGGED)) {
+                world.getLiquidTicks().scheduleTick(blockPos1, Fluids.WATER, Fluids.WATER.getTickDelay(world));
+            }
+            return super.updateShape(blockState, direction, state, world, blockPos1, blockPos2);
+        }
+    }
+    protected boolean mayPlaceOn(BlockState blockState, IBlockReader reader, BlockPos blockPos) {
+        return !blockState.getCollisionShape(reader, blockPos).getFaceShape(Direction.UP).isEmpty() || blockState.isFaceSturdy(reader, blockPos, Direction.UP);
+    }
+
+    public boolean canSurvive(BlockState blockState, IWorldReader reader, BlockPos blockPos) {
+        BlockPos blockpos = blockPos.below();
+        return this.mayPlaceOn(reader.getBlockState(blockpos), reader, blockpos);
+    }
 
     @OnlyIn(Dist.CLIENT)
     public void animateTick(BlockState state, World world, BlockPos pos, Random rand) {
@@ -122,9 +141,19 @@ public class PsyglyphicBlock extends ModBlock implements IWaterLoggable {
     public void setPlacedBy(World worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
         super.setPlacedBy(worldIn, pos, state, placer, stack);
     } //TODO  is this needed? does this do anything?
-
+    @Override
+    public BlockRenderType getRenderShape(BlockState state) {
+        return BlockRenderType.ENTITYBLOCK_ANIMATED;
+    }
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
         return new PsyglyphicCipherTile();
+    }
+    @Override
+    public PushReaction getPistonPushReaction(BlockState blockState) {
+        return PushReaction.IGNORE;
+    }
+    public boolean isPathfindable(BlockState p_196266_1_, IBlockReader p_196266_2_, BlockPos p_196266_3_, PathType p_196266_4_) {
+        return false;
     }
 }

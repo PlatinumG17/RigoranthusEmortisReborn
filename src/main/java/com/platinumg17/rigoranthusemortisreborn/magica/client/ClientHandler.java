@@ -28,7 +28,6 @@ public class ClientHandler {
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.LIGHT_TILE, LightRenderer::new);
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.PORTAL_TILE_TYPE, PortalTileRenderer::new);
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.INTANGIBLE_AIR_TYPE, IntangibleAirRenderer::new);
-        ClientRegistry.bindTileEntityRenderer(BlockRegistry.SUMMONING_CRYSTAL_TILE, SummoningCrystalRenderer::new);
 //        ClientRegistry.bindTileEntityRenderer(BlockRegistry.POTION_MELDER_TYPE, PotionMelderRenderer::new);
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.RITUAL_TILE, RitualBrazierRenderer::new);
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.PHANTOM_TILE, MageBlockRenderer::new);
@@ -68,7 +67,7 @@ public class ClientHandler {
         RenderTypeLookup.setRenderLayer(BlockRegistry.RITUAL_BLOCK, RenderType.cutout());
         RenderTypeLookup.setRenderLayer(BlockRegistry.SCONCE_BLOCK, RenderType.cutout());
         event.enqueueWork(() -> {
-            ItemModelsProperties.register(MagicItemsRegistry.ENCHANTERS_SHIELD, new ResourceLocation(EmortisConstants.MOD_ID,"blocking"), (p_239421_0_, p_239421_1_, p_239421_2_) -> {
+            ItemModelsProperties.register(MagicItemsRegistry.LUSTERIC_SHIELD, new ResourceLocation(EmortisConstants.MOD_ID,"blocking"), (p_239421_0_, p_239421_1_, p_239421_2_) -> {
                 return p_239421_2_ != null && p_239421_2_.isUsingItem() && p_239421_2_.getUseItem() == p_239421_0_ ? 1.0F : 0.0F;
             });
         });

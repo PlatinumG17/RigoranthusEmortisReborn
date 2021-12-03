@@ -22,12 +22,12 @@
       ],
       "item_5": [
         {
-          "tag": "forge:rods/blaze"
+          "tag": "forge:ender_pearls"
         }
       ],
       "item_6": [
         {
-          "tag": "forge:rods/blaze"
+          "tag": "forge:ender_pearls"
         }
       ],
       "item_7": [
@@ -40,12 +40,22 @@
             "item": "rigoranthusemortisreborn:dominion_gem"
         }
       ],
+      "item_9": [
+        {
+          "tag": "forge:ender_pearls"
+        }
+      ],
+      "item_10": [
+        {
+          "tag": "forge:ender_pearls"
+        }
+      ],
       "reagent": [
         {
-          "item": "rigoranthusemortisreborn:ring_of_lesser_discount"
+          "item": "rigoranthusemortisreborn:unadorned_ring"
         }
       ],
       "output": {
-        "item": "rigoranthusemortisreborn:ring_of_greater_discount"
+        "item": "rigoranthusemortisreborn:ring_of_lesser_conservation"
       }
     }

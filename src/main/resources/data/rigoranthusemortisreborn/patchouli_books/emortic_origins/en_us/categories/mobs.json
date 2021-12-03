@@ -1,5 +1,6 @@
 {
-  "name": "Mobs",
-  "description": "Here you can find useful information and lore surrounding the mobs of Rigoranthus Emortis",
-  "image": "rigoranthusemortisreborn:textures/mob_icons/canis_chordata.png"
+	"name": "Emortic Mobs",
+	"description": "Emortic Mobs",
+	"icon": "rigoranthusemortisreborn:canis_summoning_charm",
+	"sortnum":7
 }

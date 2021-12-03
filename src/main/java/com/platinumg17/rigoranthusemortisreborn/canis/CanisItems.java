@@ -36,7 +36,7 @@ public class CanisItems {
     public static final RegistryObject<Item> THROW_STICK = registerThrowStick("throw_stick");
     public static final RegistryObject<Item> THROW_STICK_WET = registerThrowStickWet("throw_stick_wet");
     public static final RegistryObject<Item> TRAINING_TREAT = registerTreat("training_treat", CanisLevel.Type.CHORDATA, 20);
-    public static final RegistryObject<Item> SUPER_TREAT = registerTreat("super_treat", CanisLevel.Type.CHORDATA, 40);
+    public static final RegistryObject<Item> REGULAR_TREAT = registerTreat("regular_treat", CanisLevel.Type.CHORDATA, 40);
     public static final RegistryObject<Item> MASTER_TREAT = registerTreat("master_treat", CanisLevel.Type.CHORDATA, 60);
     public static final RegistryObject<Item> HOMINI_TREAT = registerTreat("homini_treat", CanisLevel.Type.HOMINI, 30);
     public static final RegistryObject<Item> BREEDING_BONE = register("breeding_bone");

@@ -34,7 +34,7 @@ public class REItemModelProvider extends ItemModelProvider {
         handheld(CanisItems.BIG_BONE);
 
         handheld(CanisItems.TRAINING_TREAT);
-        handheld(CanisItems.SUPER_TREAT);
+        handheld(CanisItems.REGULAR_TREAT);
         handheld(CanisItems.MASTER_TREAT);
         handheld(CanisItems.HOMINI_TREAT);
         handheld(CanisItems.BREEDING_BONE);

@@ -17,7 +17,7 @@ import net.minecraftforge.fml.common.Mod;
 public class EmortisBiomes {
 
     private static final BiomeSubRegistryHelper HELPER = RigoranthusEmortisReborn.REGISTRY_HELPER.getBiomeSubHelper();
-    public static final BiomeSubRegistryHelper.KeyedBiome VERDUROUS_FIELDS = HELPER.createBiome("verdurous_fields", () -> makeVerdurousFieldsBiome(0.375F, 0.25F));
+    public static final BiomeSubRegistryHelper.KeyedBiome VERDUROUS_FIELDS = HELPER.createBiome("verdurous_fields", () -> makeVerdurousFieldsBiome(0.125F, 0.05F));
     public static final BiomeSubRegistryHelper.KeyedBiome VERDUROUS_WOODLANDS = HELPER.createBiome("verdurous_woodlands", () -> makeVerdurousWoodlandsBiome(0.4F, 0.425F));
 //    public static void registerBiomesToDictionary() {
 //        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(VERDUROUS_FIELDS.getKey(), Config.verdurousFieldsSpawnWeight.get()));

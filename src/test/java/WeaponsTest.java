@@ -1,21 +1,21 @@
-import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
-import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusItemGroup;
-import com.platinumg17.rigoranthusemortisreborn.core.registry.effects.weapons.BunnyHopEffect;
-import com.platinumg17.rigoranthusemortisreborn.core.registry.effects.weapons.OnHitEffect;
-import com.platinumg17.rigoranthusemortisreborn.core.registry.effects.weapons.RightClickBlockEffect;
-import com.platinumg17.rigoranthusemortisreborn.items.itemeffects.DestroyBlockEffect;
-import com.platinumg17.rigoranthusemortisreborn.items.itemeffects.FinishUseItemEffect;
-import com.platinumg17.rigoranthusemortisreborn.items.itemeffects.ItemRightClickEffect;
-import com.platinumg17.rigoranthusemortisreborn.items.tooltypes.ToolRegistry;
-import net.minecraft.block.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemTier;
-import net.minecraft.item.Items;
-import net.minecraft.item.Rarity;
-import net.minecraft.potion.Effects;
-import net.minecraft.util.SoundEvents;
-
-public class WeaponsTest {
+//import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
+//import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusItemGroup;
+//import com.platinumg17.rigoranthusemortisreborn.core.registry.effects.weapons.BunnyHopEffect;
+//import com.platinumg17.rigoranthusemortisreborn.core.registry.effects.weapons.OnHitEffect;
+//import com.platinumg17.rigoranthusemortisreborn.core.registry.effects.weapons.RightClickBlockEffect;
+//import com.platinumg17.rigoranthusemortisreborn.items.itemeffects.DestroyBlockEffect;
+//import com.platinumg17.rigoranthusemortisreborn.items.itemeffects.FinishUseItemEffect;
+//import com.platinumg17.rigoranthusemortisreborn.items.itemeffects.ItemRightClickEffect;
+//import com.platinumg17.rigoranthusemortisreborn.items.tooltypes.ToolRegistry;
+//import net.minecraft.block.Blocks;
+//import net.minecraft.item.Item;
+//import net.minecraft.item.ItemTier;
+//import net.minecraft.item.Items;
+//import net.minecraft.item.Rarity;
+//import net.minecraft.potion.Effects;
+//import net.minecraft.util.SoundEvents;
+//
+//public class WeaponsTest {
     //hammers
 /*
 
@@ -374,4 +374,4 @@ public class WeaponsTest {
 			ItemRightClickEffect.switchTo(() -> ItemInit.ROCKEFELLERS_WALKING_BLADECANE)), new Item.Properties().defaultDurability(800).rarity(Rarity.UNCOMMON)).setRegistryName("rockefellers_walking_bladecane_sheathed"));
 
 		*/
-}
+//}

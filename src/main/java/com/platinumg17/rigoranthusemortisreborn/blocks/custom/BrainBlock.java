@@ -39,16 +39,15 @@ public class BrainBlock extends Block implements IWaterLoggable {
                     Direction.EAST, box(4.5, 0, 5.75, 11.5, 3.025, 10.25)));
     public static final DirectionProperty FACING = HorizontalBlock.FACING;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        if (context.getClickedFace().getAxis().isHorizontal()) {
-            return this.defaultBlockState().setValue(FACING, context.getClickedFace()).setValue(WATERLOGGED, Boolean.valueOf(false));
+        if (context.getNearestLookingDirection().getAxis().isHorizontal()) {
+            return this.defaultBlockState().setValue(FACING, context.getNearestLookingDirection().getOpposite()).setValue(WATERLOGGED, Boolean.valueOf(false));
         } else {
             FluidState fluidstate = context.getLevel().getFluidState(context.getClickedPos());
             boolean flag = fluidstate.getType() == Fluids.WATER;
             return super.getStateForPlacement(context).setValue(WATERLOGGED, Boolean.valueOf(flag));
-            // The player tried to place on the floor or ceiling. Brains don't have models for those facings.
-            //return null; // Block the placement outright
         }
     }
 
@@ -70,6 +69,7 @@ public class BrainBlock extends Block implements IWaterLoggable {
             return super.updateShape(blockState, direction, state, world, blockPos1, blockPos2);
         }
     }
+
     protected boolean mayPlaceOn(BlockState blockState, IBlockReader reader, BlockPos blockPos) {
         return !blockState.getCollisionShape(reader, blockPos).getFaceShape(Direction.UP).isEmpty() || blockState.isFaceSturdy(reader, blockPos, Direction.UP);
     }
@@ -78,29 +78,17 @@ public class BrainBlock extends Block implements IWaterLoggable {
         BlockPos blockpos = blockPos.below();
         return this.mayPlaceOn(reader.getBlockState(blockpos), reader, blockpos);
     }
+
     public FluidState getFluidState(BlockState p_204507_1_) {
         return p_204507_1_.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(p_204507_1_);
     }
     @Override
-    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(FACING, WATERLOGGED);
-    }
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {builder.add(FACING, WATERLOGGED);}
+    public BlockState rotate(BlockState state, Rotation rot) {return state.setValue(FACING, rot.rotate(state.getValue(FACING)));}
+    public BlockState mirror(BlockState state, Mirror mirrorIn) {return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));}
 
-    public BlockState rotate(BlockState state, Rotation rot) {
-        return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
-    }
-    public BlockState mirror(BlockState state, Mirror mirrorIn) {
-        return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));
-    }
-
-    public BlockRenderType getRenderType(BlockState blockState) {
-        return BlockRenderType.MODEL;
-    }
+    public BlockRenderType getRenderType(BlockState blockState) {return BlockRenderType.MODEL;}
     @Override
-    public PushReaction getPistonPushReaction(BlockState blockState) {
-        return PushReaction.DESTROY;
-    }
-    public boolean isPathfindable(BlockState p_196266_1_, IBlockReader p_196266_2_, BlockPos p_196266_3_, PathType p_196266_4_) {
-        return false;
-    }
+    public PushReaction getPistonPushReaction(BlockState blockState) {return PushReaction.DESTROY;}
+    public boolean isPathfindable(BlockState p_196266_1_, IBlockReader p_196266_2_, BlockPos p_196266_3_, PathType p_196266_4_) {return false;}
 }

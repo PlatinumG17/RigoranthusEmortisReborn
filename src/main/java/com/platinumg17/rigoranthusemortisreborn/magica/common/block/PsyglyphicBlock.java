@@ -39,15 +39,19 @@ import javax.annotation.Nullable;
 import java.util.Random;
 
 public class PsyglyphicBlock extends ModBlock implements IWaterLoggable {
+
 //    public static final DirectionProperty FACING = HorizontalBlock.FACING;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+
     public PsyglyphicBlock() {
         super(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).sound(SoundType.STONE).strength(10f, 15f).harvestLevel(3).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops().noOcclusion().lightLevel(state -> 10), LibBlockNames.PSYGLYPHIC_CIPHER);
         this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, Boolean.valueOf(false)));
     }
+
     public PsyglyphicBlock(AbstractBlock.Properties properties, String registryName){
         super(properties, registryName);
     }
+
     @Override
     public boolean hasTileEntity(BlockState state) {
         return true;
@@ -73,10 +77,7 @@ public class PsyglyphicBlock extends ModBlock implements IWaterLoggable {
             //return null; // Block the placement outright
 //        }
     }
-    @Override
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        return Block.box(2, 0, 2, 14, 15, 14);
-    }
+
     public BlockState updateShape(BlockState blockState, Direction direction, BlockState state, IWorld world, BlockPos blockPos1, BlockPos blockPos2) {
         if (!blockState.canSurvive(world, blockPos1)) {
             return /*direction.getOpposite() == blockState.getValue(FACING) && */!blockState.canSurvive(world, blockPos1) ? Blocks.AIR.defaultBlockState() : blockState;
@@ -145,15 +146,20 @@ public class PsyglyphicBlock extends ModBlock implements IWaterLoggable {
     public BlockRenderType getRenderShape(BlockState state) {
         return BlockRenderType.ENTITYBLOCK_ANIMATED;
     }
-    @Override
-    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new PsyglyphicCipherTile();
-    }
+
     @Override
     public PushReaction getPistonPushReaction(BlockState blockState) {
         return PushReaction.IGNORE;
     }
     public boolean isPathfindable(BlockState p_196266_1_, IBlockReader p_196266_2_, BlockPos p_196266_3_, PathType p_196266_4_) {
         return false;
+    }
+    @Override
+    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+        return Block.box(2, 0, 2, 14, 15, 14);
+    }
+    @Override
+    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
+        return new PsyglyphicCipherTile();
     }
 }

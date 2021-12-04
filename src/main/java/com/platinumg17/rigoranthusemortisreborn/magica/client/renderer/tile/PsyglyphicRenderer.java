@@ -22,12 +22,12 @@ public class PsyglyphicRenderer extends GeoBlockRenderer<PsyglyphicCipherTile> {
         return RenderType.entityTranslucent(textureLocation);
     }
 
-    public static GenericItemRenderer getISTER(){
-        return new GenericItemRenderer(new PsyglyphicCipherModel());
-    }
-
     @Override
     public boolean shouldRenderOffScreen(TileEntity p_188185_1_) {
         return false;
+    }
+
+    public static GenericItemRenderer getISTER(){
+        return new GenericItemRenderer(new PsyglyphicCipherModel());
     }
 }

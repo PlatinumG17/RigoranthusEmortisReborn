@@ -17,6 +17,6 @@ public class RitualRenderer extends TileEntityRenderer<RitualTile> {
     }
 
     public static GenericItemRenderer getISTER(){
-        return new GenericItemRenderer(new RitualBrazierModel());
+        return new GenericItemRenderer(new RitualVesselModel());
     }
 }

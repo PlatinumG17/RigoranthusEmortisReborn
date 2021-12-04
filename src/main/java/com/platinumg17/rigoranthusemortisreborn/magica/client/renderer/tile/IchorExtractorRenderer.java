@@ -10,7 +10,9 @@ import com.platinumg17.rigoranthusemortisreborn.magica.client.renderer.item.Gene
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.IchorExtractorTile;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import software.bernie.geckolib3.renderers.geo.GeoBlockRenderer;
@@ -42,6 +44,10 @@ public class IchorExtractorRenderer extends GeoBlockRenderer<IchorExtractorTile>
                     0,0,0);
         }
         int time = (int) (ClientInfo.ticksInGame + ticks);
+    }
+    @Override
+    public RenderType getRenderType(IchorExtractorTile animatable, float partialTicks, MatrixStack stack, IRenderTypeBuffer renderTypeBuffer, IVertexBuilder vertexBuilder, int packedLightIn, ResourceLocation textureLocation) {
+        return RenderType.entityTranslucent(textureLocation);
     }
     public static GenericItemRenderer getISTER(){
         return new GenericItemRenderer(model);

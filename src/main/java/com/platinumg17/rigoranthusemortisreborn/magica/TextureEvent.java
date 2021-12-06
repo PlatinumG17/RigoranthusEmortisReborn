@@ -15,18 +15,18 @@ public class TextureEvent {
     @SubscribeEvent
     public static void textEvent(TextureStitchEvent.Pre event){
         if(event.getMap().location().toString().equals("minecraft:textures/atlas/chest.png")) {
-            ResourceLocation jessicNormal = new ResourceLocation(EmortisConstants.MOD_ID,"entity/chest/jessic/normal.png");
-            ResourceLocation jessicNormalLeft = new ResourceLocation(EmortisConstants.MOD_ID,"entity/chest/jessic/normal_left.png");
-            ResourceLocation jessicNormalRight = new ResourceLocation(EmortisConstants.MOD_ID,"entity/chest/jessic/normal_right.png");
-            ResourceLocation jessicTrapped = new ResourceLocation(EmortisConstants.MOD_ID,"entity/chest/jessic/trapped.png");
-            ResourceLocation jessicTrappedLeft = new ResourceLocation(EmortisConstants.MOD_ID,"entity/chest/jessic/trapped_left.png");
-            ResourceLocation jessicTrappedRight = new ResourceLocation(EmortisConstants.MOD_ID,"entity/chest/jessic/trapped_right.png");
-            ResourceLocation azulorealNormal = new ResourceLocation(EmortisConstants.MOD_ID,"entity/chest/azuloreal/normal.png");
-            ResourceLocation azulorealNormalLeft = new ResourceLocation(EmortisConstants.MOD_ID,"entity/chest/azuloreal/normal_left.png");
-            ResourceLocation azulorealNormalRight = new ResourceLocation(EmortisConstants.MOD_ID,"entity/chest/azuloreal/normal_right.png");
-            ResourceLocation azulorealTrapped = new ResourceLocation(EmortisConstants.MOD_ID,"entity/chest/azuloreal/trapped.png");
-            ResourceLocation azulorealTrappedLeft = new ResourceLocation(EmortisConstants.MOD_ID,"entity/chest/azuloreal/trapped_left.png");
-            ResourceLocation azulorealTrappedRight = new ResourceLocation(EmortisConstants.MOD_ID,"entity/chest/azuloreal/trapped_right.png");
+            ResourceLocation jessicNormal = new ResourceLocation(EmortisConstants.MOD_ID,"entity/chest/jessic/normal");
+            ResourceLocation jessicNormalLeft = new ResourceLocation(EmortisConstants.MOD_ID,"entity/chest/jessic/normal_left");
+            ResourceLocation jessicNormalRight = new ResourceLocation(EmortisConstants.MOD_ID,"entity/chest/jessic/normal_right");
+            ResourceLocation jessicTrapped = new ResourceLocation(EmortisConstants.MOD_ID,"entity/chest/jessic/trapped");
+            ResourceLocation jessicTrappedLeft = new ResourceLocation(EmortisConstants.MOD_ID,"entity/chest/jessic/trapped_left");
+            ResourceLocation jessicTrappedRight = new ResourceLocation(EmortisConstants.MOD_ID,"entity/chest/jessic/trapped_right");
+            ResourceLocation azulorealNormal = new ResourceLocation(EmortisConstants.MOD_ID,"entity/chest/azuloreal/normal");
+            ResourceLocation azulorealNormalLeft = new ResourceLocation(EmortisConstants.MOD_ID,"entity/chest/azuloreal/normal_left");
+            ResourceLocation azulorealNormalRight = new ResourceLocation(EmortisConstants.MOD_ID,"entity/chest/azuloreal/normal_right");
+            ResourceLocation azulorealTrapped = new ResourceLocation(EmortisConstants.MOD_ID,"entity/chest/azuloreal/trapped");
+            ResourceLocation azulorealTrappedLeft = new ResourceLocation(EmortisConstants.MOD_ID,"entity/chest/azuloreal/trapped_left");
+            ResourceLocation azulorealTrappedRight = new ResourceLocation(EmortisConstants.MOD_ID,"entity/chest/azuloreal/trapped_right");
             event.addSprite(jessicNormal);
             event.addSprite(jessicNormalLeft);
             event.addSprite(jessicNormalRight);
@@ -41,8 +41,8 @@ public class TextureEvent {
             event.addSprite(azulorealTrappedRight);
         }
         if(event.getMap().location().toString().equals("minecraft:textures/atlas/signs.png")) {
-            ResourceLocation jessicSign = new ResourceLocation(EmortisConstants.MOD_ID,"entity/signs/jessic.png");
-            ResourceLocation azulorealSign = new ResourceLocation(EmortisConstants.MOD_ID,"entity/signs/jessic.png");
+            ResourceLocation jessicSign = new ResourceLocation(EmortisConstants.MOD_ID,"entity/signs/jessic");
+            ResourceLocation azulorealSign = new ResourceLocation(EmortisConstants.MOD_ID,"entity/signs/jessic");
             event.addSprite(jessicSign);
             event.addSprite(azulorealSign);
         }

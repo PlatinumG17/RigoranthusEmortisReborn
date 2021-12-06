@@ -2,6 +2,7 @@ package com.platinumg17.rigoranthusemortisreborn.entity.mobs;
 
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusSoundRegistry;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.ModEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -12,7 +13,6 @@ import net.minecraft.entity.monster.SilverfishEntity;
 import net.minecraft.entity.monster.SpiderEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.network.IPacket;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
@@ -21,18 +21,22 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.fml.network.NetworkHooks;
 
 public class LanguidDwellerEntity extends SpiderEntity {
     public LanguidDwellerEntity(EntityType<? extends SpiderEntity> type, World worldIn) {
         super(type, worldIn);
     }
 
-    @Override
-    public IPacket<?> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
+    public LanguidDwellerEntity(World p_i50190_2_) {
+        super(ModEntities.LANGUID_DWELLER, p_i50190_2_);
     }
-    public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
+
+    @Override
+    public EntityType<?> getType() {
+        return ModEntities.LANGUID_DWELLER;
+    }
+
+    public static AttributeModifierMap.MutableAttribute attributes() {
         return MobEntity.createMobAttributes()
             .add(Attributes.MAX_HEALTH, Config.languidDwellerMaxHealth.get())
             .add(Attributes.MOVEMENT_SPEED, Config.languidDwellerMovementSpeed.get())

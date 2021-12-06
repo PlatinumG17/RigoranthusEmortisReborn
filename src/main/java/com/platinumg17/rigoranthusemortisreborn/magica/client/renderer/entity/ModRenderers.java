@@ -1,6 +1,9 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.client.renderer.entity;
 
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
+import com.platinumg17.rigoranthusemortisreborn.entity.render.mobs.CanisChordataRenderer;
+import com.platinumg17.rigoranthusemortisreborn.entity.render.mobs.LanguidDwellerRenderer;
+import com.platinumg17.rigoranthusemortisreborn.entity.render.mobs.NecrawFasciiRenderer;
 import com.platinumg17.rigoranthusemortisreborn.entity.render.mobs.SunderedCadaverRenderer;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.ModEntities;
 import net.minecraft.client.renderer.entity.HorseRenderer;
@@ -18,6 +21,12 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 public class ModRenderers {
     @SubscribeEvent
     public static void register(final FMLClientSetupEvent event) {
+        RenderingRegistry.registerEntityRenderingHandler(ModEntities.FERAL_CANIS, CanisChordataRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntities.NECRAW_FASCII, NecrawFasciiRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntities.SUNDERED_CADAVER, SunderedCadaverRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntities.LANGUID_DWELLER, LanguidDwellerRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntities.FAMILIAR_CADAVER, FamiliarCadaverRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntities.BONE_ARROW_ENTITY, TippedArrowRenderer::new);
 
         RenderingRegistry.registerEntityRenderingHandler( ModEntities.SPELL_PROJ,
                 renderManager -> new RenderSpell(renderManager, new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/spell_proj.png")));
@@ -29,7 +38,6 @@ public class ModRenderers {
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.SUMMON_HORSE, HorseRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.LIGHTNING_ENTITY, LightningBoltRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.ENTITY_FLYING_ITEM, RenderFlyingItem::new);
-        RenderingRegistry.registerEntityRenderingHandler(ModEntities.FAMILIAR_CADAVER, FamiliarCadaverRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.ENTITY_RITUAL,
                 renderManager -> new RenderRitualProjectile(renderManager, new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/spell_proj.png")));
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.ENTITY_SPELL_ARROW, TippedArrowRenderer::new);
@@ -37,6 +45,5 @@ public class ModRenderers {
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.ENTITY_WARD,  renderManager -> new RenderRitualProjectile(renderManager, new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/spell_proj.png")));
         RenderingRegistry.registerEntityRenderingHandler( ModEntities.LINGER_SPELL,
                 renderManager -> new RenderBlank(renderManager, new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/spell_proj.png")));
-//        RenderingRegistry.registerEntityRenderingHandler(ModEntities.ENTITY_BOSS_SPIKE, BossProjectileRenderer::new);
     }
 }

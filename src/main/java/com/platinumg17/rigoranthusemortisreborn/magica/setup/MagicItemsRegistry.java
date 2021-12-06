@@ -3,6 +3,7 @@ package com.platinumg17.rigoranthusemortisreborn.magica.setup;
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.api.RigoranthusEmortisRebornAPI;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.ModEntities;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.items.curios.*;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.armor.ApprenticeArmor;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.armor.MasterArmor;
@@ -106,6 +107,12 @@ public class MagicItemsRegistry {
                     new SpellBook(ISpellTier.Tier.THREE).setRegistryName(LibItemNames.EMORTIC_SPELL_BOOK),
                     new SpellBook(ISpellTier.Tier.THREE).setRegistryName(LibItemNames.CREATIVE_SPELL_BOOK),
                     new EmorticOrigins().withTooltip(new TranslationTextComponent("tooltip.emortic_origins")),
+
+                    new SpawnEggItem(ModEntities.FERAL_CANIS, 0x999999, 0xffffff, defaultItemProperties()).setRegistryName(LibItemNames.CANIS_CHORDATA_SPAWN_EGG),
+                    new SpawnEggItem(ModEntities.SUNDERED_CADAVER, -6684673, -39322, defaultItemProperties()).setRegistryName(LibItemNames.SUNDERED_CADAVER_SPAWN_EGG),
+                    new SpawnEggItem(ModEntities.NECRAW_FASCII, 0x27640c, 0xffd966, defaultItemProperties()).setRegistryName(LibItemNames.NECRAW_FASCII_SPAWN_EGG),
+                    new SpawnEggItem(ModEntities.LANGUID_DWELLER, 0x968d81, 0x491919, defaultItemProperties()).setRegistryName(LibItemNames.LANGUID_DWELLER_SPAWN_EGG),
+
                     new ConservationRing(LibItemNames.RING_OF_LESSER_CONSERVATION) {
                         @Override
                         public int getDominionDiscount() {

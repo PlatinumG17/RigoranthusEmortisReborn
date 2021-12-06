@@ -166,7 +166,7 @@ public class FamiliarEntity extends CreatureEntity implements IAnimatable, IFami
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
-    public static AttributeModifierMap.MutableAttribute attributes() {
+    public static AttributeModifierMap.MutableAttribute familiarAttributes() {
         return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 40d)
                 .add(Attributes.MOVEMENT_SPEED, 0.2d).add(Attributes.FLYING_SPEED, Attributes.FLYING_SPEED.getDefaultValue())
                 .add(Attributes.FOLLOW_RANGE, 16D);

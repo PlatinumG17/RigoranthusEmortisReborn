@@ -5,13 +5,6 @@ import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
 import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
 import com.platinumg17.rigoranthusemortisreborn.core.init.fluid.FluidRegistry;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.effects.RigoranthusEffectRegistry;
-import com.platinumg17.rigoranthusemortisreborn.entity.RigoranthusEntityTypes;
-import com.platinumg17.rigoranthusemortisreborn.entity.mobs.FeralCanisEntity;
-import com.platinumg17.rigoranthusemortisreborn.entity.mobs.LanguidDwellerEntity;
-import com.platinumg17.rigoranthusemortisreborn.entity.mobs.NecrawFasciiEntity;
-import com.platinumg17.rigoranthusemortisreborn.entity.mobs.SunderedCadaverEntity;
-import com.platinumg17.rigoranthusemortisreborn.items.specialized.RigoranthusSpawnEgg;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -24,8 +17,6 @@ import net.minecraft.util.math.*;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.FOVUpdateEvent;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -33,29 +24,6 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = EmortisConstants.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class RigoranthusEventBusEvents {
-    @SubscribeEvent
-    public static void addEntityAttributes(EntityAttributeCreationEvent event) {
-        event.put(RigoranthusEntityTypes.FERAL_CANIS.get(), FeralCanisEntity.setCustomAttributes().build());
-        event.put(RigoranthusEntityTypes.SUNDERED_CADAVER.get(), SunderedCadaverEntity.setCustomAttributes().build());
-        event.put(RigoranthusEntityTypes.NECRAW_FASCII.get(), NecrawFasciiEntity.setCustomAttributes().build());
-        event.put(RigoranthusEntityTypes.LANGUID_DWELLER.get(), LanguidDwellerEntity.setCustomAttributes().build());
-//        event.put(SpecializedEntityTypes.CANIS.get(), CanisEntity.createMobAttributes()
-//                .add(Attributes.MAX_HEALTH, 80.0D)
-//                .add(Attributes.MOVEMENT_SPEED, 0.3D)
-//                .add(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
-//                .add(Attributes.ATTACK_DAMAGE, 4.0D)
-//                .add(Attributes.ATTACK_KNOCKBACK, 1.25D) // added
-//                .add(CanisAttributes.JUMP_POWER.get(), 1.0D) // was 0.42D
-//                .add(CanisAttributes.CRIT_CHANCE.get(), 0.01D)
-//                .add(CanisAttributes.CRIT_BONUS.get(), 1D)
-//                .build()
-//        );
-    }
-
-    @SubscribeEvent
-    public static void onRegisterEntities(RegistryEvent.Register<EntityType<?>> event) {
-        RigoranthusSpawnEgg.initSpawnEggs();
-    }
 
     @SubscribeEvent
     public void onPlayerAttackEntityEvent(AttackEntityEvent event) {

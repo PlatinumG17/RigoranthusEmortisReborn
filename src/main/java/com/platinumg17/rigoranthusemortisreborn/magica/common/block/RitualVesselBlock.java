@@ -6,6 +6,7 @@ import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.RitualT
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ItemEntity;
@@ -29,8 +30,8 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.stream.Stream;
 
-public class RitualBlock extends ModBlock {
-    public RitualBlock(String registryName) {
+public class RitualVesselBlock extends ModBlock {
+    public RitualVesselBlock(String registryName) {
         super(defaultProperties().noOcclusion().lightLevel((b) -> b.getValue(LIT) ? 15 : 0), registryName);
     }
 
@@ -39,12 +40,33 @@ public class RitualBlock extends ModBlock {
     @Override
     public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if (!(worldIn.getBlockEntity(pos) instanceof RitualTile) || handIn != Hand.MAIN_HAND || !player.getMainHandItem().isEmpty())
-            return super.use(state, worldIn, pos, player, handIn, hit);
-        RitualTile tile = (RitualTile) worldIn.getBlockEntity(pos);
-        if (tile.ritual != null && !tile.isRitualDone()) {
-            tile.startRitual();
+            return ActionResultType.PASS;//super.use(state, worldIn, pos, player, handIn, hit);
+
+        if(!worldIn.isClientSide) {
+            RitualTile tile = (RitualTile) worldIn.getBlockEntity(pos);
+
+            if (tile.stack != null && player.getItemInHand(handIn).isEmpty()) {
+                if(worldIn.getBlockState(pos.above()).getMaterial() != Material.AIR)
+                    return ActionResultType.SUCCESS;
+                ItemEntity item = new ItemEntity(worldIn, player.getX(), player.getY(), player.getZ(), tile.stack);
+                worldIn.addFreshEntity(item);
+                tile.stack = null;
+            }
+
+            else if (!player.inventory.getSelected().isEmpty()) {
+                if(tile.stack != null){
+                    ItemEntity item = new ItemEntity(worldIn, player.getX(), player.getY(), player.getZ(), tile.stack);
+                    worldIn.addFreshEntity(item);
+                }
+                tile.stack = player.inventory.removeItem(player.inventory.selected, 1);
+            }
+            worldIn.sendBlockUpdated(pos, state, state, 2);
+            if (tile.ritual != null && !tile.isRitualDone()) {
+                tile.startRitual();
+            }
         }
-        return super.use(state, worldIn, pos, player, handIn, hit);
+        return  ActionResultType.SUCCESS;
+        //return super.use(state, worldIn, pos, player, handIn, hit);
     }
 
     @Override
@@ -66,6 +88,9 @@ public class RitualBlock extends ModBlock {
         super.playerWillDestroy(worldIn, pos, state, player);
         if (worldIn.getBlockEntity(pos) instanceof RitualTile) {
             RitualTile tile = (RitualTile) worldIn.getBlockEntity(pos);
+            if (tile.stack != null){
+                worldIn.addFreshEntity(new ItemEntity(worldIn, pos.getX(), pos.getY(), pos.getZ(), tile.stack));
+            }
             if (tile.ritual != null && !tile.ritual.isRunning() && !tile.ritual.isDone()) {
                 worldIn.addFreshEntity(new ItemEntity(worldIn, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(RigoranthusEmortisRebornAPI.getInstance().getRitualItemMap().get(tile.ritual.getID()))));
             }
@@ -116,7 +141,9 @@ public class RitualBlock extends ModBlock {
             Block.box(5, 14, 12, 6, 15, 13),
             Block.box(2, 14, 4, 3, 15, 6),
             Block.box(3, 14, 10, 4, 15, 11),
-            Block.box(3, 14, 5, 4, 15, 6)
+            Block.box(3, 14, 5, 4, 15, 6),
+            Block.box(4, 0, 4, 12, 1, 12),
+            Block.box(4.95, 1, 4.95, 11.05, 2, 11.05)
     ).reduce((v1, v2) -> VoxelShapes.join(v1, v2, IBooleanFunction.OR)).get();
 
     public VoxelShape getShape(BlockState blockState, IBlockReader reader, BlockPos blockPos, ISelectionContext context) {

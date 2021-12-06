@@ -20,11 +20,11 @@
     ]
   },
   "grimoire_use": {
-    "subtitle": "rigoranthusemortisreborn.grimore_use",
+    "subtitle": "rigoranthusemortisreborn.grimoire_use",
     "category": "player",
     "sounds": [
       {
-        "name": "rigoranthusemortisreborn:grimore_use",
+        "name": "rigoranthusemortisreborn:grimoire_use",
         "stream": false
       }
     ]

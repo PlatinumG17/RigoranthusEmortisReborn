@@ -1,16 +1,14 @@
 package com.platinumg17.rigoranthusemortisreborn.entity.mobs;
 
-import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.CanisEntity;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.SpecializedEntityTypes;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.CanisEntity;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
-import com.platinumg17.rigoranthusemortisreborn.entity.RigoranthusEntityTypes;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.potions.ModPotions;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.ModEntities;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.controller.MovementController;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
@@ -18,32 +16,23 @@ import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.IPacket;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.network.play.server.SSpawnObjectPacket;
-import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.fml.network.NetworkHooks;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.Animation;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
 import software.bernie.geckolib3.core.controller.AnimationController;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
-
-import javax.annotation.Nonnull;
 
 public class FeralCanisEntity extends MonsterEntity implements IAnimatable {
 
@@ -53,14 +42,19 @@ public class FeralCanisEntity extends MonsterEntity implements IAnimatable {
 //    @Nonnull
 //    private Animation animation = Animation.IDLE;
 
-    public FeralCanisEntity(EntityType<? extends FeralCanisEntity> entity, World worldIn) {
+    public FeralCanisEntity(EntityType<FeralCanisEntity> entity, World worldIn) {
         super(entity, worldIn);
-        this.noCulling = true;
     }
+
+    public FeralCanisEntity(World p_i50190_2_) {
+        super(ModEntities.FERAL_CANIS, p_i50190_2_);
+    }
+
     @Override
-    public IPacket<?> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
+    public EntityType<?> getType() {
+        return ModEntities.FERAL_CANIS;
     }
+
     private <E extends IAnimatable> PlayState animationPredicate(AnimationEvent<E> event) {
 //        if (!this.dead && !this.isDeadOrDying()) {
 //            if (this.getState() == State.ATTACKING) {
@@ -75,7 +69,16 @@ public class FeralCanisEntity extends MonsterEntity implements IAnimatable {
 //        }
         return PlayState.CONTINUE;
     }
-
+    public static AttributeModifierMap.MutableAttribute attributes() {
+        return MobEntity.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, Config.feralCanisChordataMaxHealth.get())
+                .add(Attributes.MOVEMENT_SPEED, Config.feralCanisChordataMovementSpeed.get())
+                .add(Attributes.ATTACK_DAMAGE, Config.feralCanisChordataAttackDamage.get())
+                .add(Attributes.ARMOR, Config.feralCanisChordataArmorValue.get())
+                .add(Attributes.ATTACK_KNOCKBACK, Config.feralCanisChordataAttackKnockback.get())
+                .add(Attributes.KNOCKBACK_RESISTANCE, Config.feralCanisChordataKnockbackResistance.get())
+                .add(Attributes.FOLLOW_RANGE, 25.0D);
+    }
     @Override
     public void registerControllers(AnimationData animationData) {
         animationData.addAnimationController(new AnimationController<>(this, "controller", 0, this::animationPredicate));
@@ -130,7 +133,7 @@ public class FeralCanisEntity extends MonsterEntity implements IAnimatable {
 
         BlockPos blockpos = this.getOnPos();
         ItemStack stack = player.getItemInHand(hand);
-        SunderedCadaverEntity sunderedCadaver = RigoranthusEntityTypes.SUNDERED_CADAVER.get().create(level);
+        SunderedCadaverEntity sunderedCadaver = ModEntities.SUNDERED_CADAVER.create(level);
         CanisEntity canis = SpecializedEntityTypes.CANIS.get().create(level);
 
         if (stack.getItem() == ItemInit.PACT_OF_SERVITUDE.get()) {
@@ -215,20 +218,11 @@ public class FeralCanisEntity extends MonsterEntity implements IAnimatable {
                 return ActionResultType.sidedSuccess(this.level.isClientSide);
             }
 */
-    public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
-        return MobEntity.createMobAttributes()
-                .add(Attributes.MAX_HEALTH, Config.feralCanisChordataMaxHealth.get())
-                .add(Attributes.MOVEMENT_SPEED, Config.feralCanisChordataMovementSpeed.get())
-                .add(Attributes.ATTACK_DAMAGE, Config.feralCanisChordataAttackDamage.get())
-                .add(Attributes.ARMOR, Config.feralCanisChordataArmorValue.get())
-                .add(Attributes.ATTACK_KNOCKBACK, Config.feralCanisChordataAttackKnockback.get())
-                .add(Attributes.KNOCKBACK_RESISTANCE, Config.feralCanisChordataKnockbackResistance.get())
-                .add(Attributes.FOLLOW_RANGE, 25.0D);
-    }
+
     @Override
     public boolean hurt(DamageSource source, float amount) {
 
-        SunderedCadaverEntity sunderedCadaver = RigoranthusEntityTypes.SUNDERED_CADAVER.get().create(level);
+        SunderedCadaverEntity sunderedCadaver = ModEntities.SUNDERED_CADAVER.create(level);
 
         if (this.isInvulnerableTo(source)) {
             return false;

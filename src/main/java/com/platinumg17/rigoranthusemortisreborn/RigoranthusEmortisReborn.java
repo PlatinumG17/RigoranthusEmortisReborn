@@ -46,12 +46,6 @@ import com.platinumg17.rigoranthusemortisreborn.core.init.fluid.particles.Emorti
 import com.platinumg17.rigoranthusemortisreborn.core.init.network.REPacketHandler;
 import com.platinumg17.rigoranthusemortisreborn.core.init.network.messages.Messages;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusSoundRegistry;
-import com.platinumg17.rigoranthusemortisreborn.entity.RigoranthusEntityTypes;
-import com.platinumg17.rigoranthusemortisreborn.entity.render.mobs.CanisChordataRenderer;
-import com.platinumg17.rigoranthusemortisreborn.entity.render.mobs.LanguidDwellerRenderer;
-import com.platinumg17.rigoranthusemortisreborn.entity.render.mobs.NecrawFasciiRenderer;
-import com.platinumg17.rigoranthusemortisreborn.entity.render.mobs.SunderedCadaverRenderer;
-import com.platinumg17.rigoranthusemortisreborn.entity.render.projectile.BoneArrowRenderer;
 import com.platinumg17.rigoranthusemortisreborn.magica.IProxy;
 import com.platinumg17.rigoranthusemortisreborn.magica.TextureEvent;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.ClientHandler;
@@ -62,8 +56,8 @@ import com.platinumg17.rigoranthusemortisreborn.magica.common.network.Networking
 import com.platinumg17.rigoranthusemortisreborn.magica.common.potions.ModPotions;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.world.WorldEvent;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.*;
-import com.platinumg17.rigoranthusemortisreborn.world.EmortisMobSpawns;
 import com.platinumg17.rigoranthusemortisreborn.world.biome.EmortisBiomes;
+import com.platinumg17.rigoranthusemortisreborn.world.gen.feature.RigoranthusConfiguredFeatures;
 import com.platinumg17.rigoranthusemortisreborn.world.trees.RigoranthusWoodTypes;
 import net.minecraft.block.WoodType;
 import net.minecraft.client.Minecraft;
@@ -116,69 +110,49 @@ public class RigoranthusEmortisReborn {
             .simpleChannel();
     public static boolean caelusLoaded = false;
     public static ItemGroup RIGORANTHUS_EMORTIS_GROUP = new ItemGroup(EmortisConstants.MOD_ID) {
-        @Override
-        public ItemStack makeIcon() {
+        @Override public ItemStack makeIcon() {
             return new ItemStack(ItemInit.PACT_OF_SERVITUDE.get());
         }
     };
+
 	public RigoranthusEmortisReborn() {
         caelusLoaded = ModList.get().isLoaded("caelus");
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        REGISTRY_HELPER.register(modEventBus);
-        modEventBus.addListener(this::gatherData);
-		modEventBus.addListener(this::setup);
-		modEventBus.addListener(this::enqueueIMC);
-		modEventBus.addListener(this::processIMC);
-
-        APIRegistry.registerSpells();
-        MappingUtil.setup();
-
-        BlockInit.register(modEventBus);
-		ItemInit.ITEMS.register(modEventBus);
-        RigoranthusTileEntities.register(modEventBus);
-        FluidRegistry.register(modEventBus);
-        RigoranthusSoundRegistry.register(modEventBus);
-        RigoranthusEntityTypes.register(modEventBus);
-        BuildingBlockInit.register(modEventBus);
-        EmortisBiomes.register();
-        EmortisParticleTypes.PARTICLES.register(modEventBus);
-        CanisBlocks.BLOCKS.register(modEventBus);
-        CanisTileEntityTypes.TILE_ENTITIES.register(modEventBus);
-        CanisItems.ITEMS.register(modEventBus);
-        SpecializedEntityTypes.ENTITIES.register(modEventBus);
-        CanisContainerTypes.CONTAINERS.register(modEventBus);
-        CanisSerializers.SERIALIZERS.register(modEventBus);
-        CanisSkills.SKILLS.register(modEventBus);
-        CanisAttributes.ATTRIBUTES.register(modEventBus);
-        CanisAccouterments.ACCOUTERMENTS.register(modEventBus);
-        CanisAccoutrementTypes.ACCOUTREMENT_TYPE.register(modEventBus);
-        CanisRecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
-        CanisBedMaterials.BEDDINGS.register(modEventBus);
-        CanisBedMaterials.CASINGS.register(modEventBus);
-
         IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
-        modEventBus.addListener(this::doClientStuff);
-        forgeEventBus.addListener(this::onServerStarting);
-        forgeEventBus.addListener(this::registerCommands);
-        forgeEventBus.register(new CanisEventHandler());
-//        forgeEventBus.register(new BackwardsCompat());
-        modEventBus.addListener(CanisRegistries::newRegistry);
+        REGISTRY_HELPER.register(modEventBus);
+        modEventBus.addListener(this::gatherData);                  	modEventBus.addListener(this::enqueueIMC);
+		modEventBus.addListener(this::setup);                           modEventBus.addListener(this::processIMC);
+        forgeEventBus.addListener(this::onServerStarting);              forgeEventBus.addListener(this::registerCommands);
+        forgeEventBus.register(new CanisEventHandler());                modEventBus.addListener(this::doClientStuff);
+        modEventBus.register(Registration.class);                       modEventBus.addListener(CanisRegistries::newRegistry);
+
+        Registration.init();
+        APIRegistry.registerSpells();                                   MappingUtil.setup();
+        BlockInit.register(modEventBus);		                        ItemInit.ITEMS.register(modEventBus);
+        RigoranthusTileEntities.register(modEventBus);                  FluidRegistry.register(modEventBus);
+        RigoranthusSoundRegistry.SOUND_EVENTS.register(modEventBus);    BuildingBlockInit.register(modEventBus);
+
+        EmortisParticleTypes.PARTICLES.register(modEventBus);           CanisRecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
+        CanisBlocks.BLOCKS.register(modEventBus);                       CanisItems.ITEMS.register(modEventBus);
+        CanisTileEntityTypes.TILE_ENTITIES.register(modEventBus);       SpecializedEntityTypes.ENTITIES.register(modEventBus);
+        CanisSerializers.SERIALIZERS.register(modEventBus);             CanisContainerTypes.CONTAINERS.register(modEventBus);
+        CanisSkills.SKILLS.register(modEventBus);                       CanisAttributes.ATTRIBUTES.register(modEventBus);
+        CanisAccouterments.ACCOUTERMENTS.register(modEventBus);         CanisAccoutrementTypes.ACCOUTREMENT_TYPE.register(modEventBus);
+        CanisBedMaterials.CASINGS.register(modEventBus);                CanisBedMaterials.BEDDINGS.register(modEventBus);
 
         Messages.registerMessages("rigoranthusemortisreborn_network");
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, Config.COMMON_CONFIG);
-        modEventBus.register(Registration.class);
-        Registration.init();
         Config.loadConfig(Config.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve("rigoranthusemortisreborn/RigoranthusEmortisReborn-common.toml"));
 
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> Mod.EventBusSubscriber.Bus.FORGE.bus().get().register(PathClientEventHandler.class));
         Mod.EventBusSubscriber.Bus.FORGE.bus().get().register(PathFMLEventHandler.class);
+        Mod.EventBusSubscriber.Bus.FORGE.bus().get().register(RigoranthusConfiguredFeatures.class);
         MinecraftForge.EVENT_BUS.register(this);
         ModSetup.initGeckolib();
         //  Client Events  //
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
-            modEventBus.addListener(this::doClientStuff);
-//            modEventBus.addListener(CanisBlocks::registerBlockColors);
+            modEventBus.addListener(this::doClientStuff);   //            modEventBus.addListener(CanisBlocks::registerBlockColors);
             modEventBus.addListener(CanisItems::registerItemColors);
             modEventBus.addListener(ClientEventHandler::onModelBakeEvent);
                 forgeEventBus.register(new ClientEventHandler());
@@ -195,38 +169,22 @@ public class RigoranthusEmortisReborn {
 
     private void setup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            DominionCapability.register();
-            FamiliarCap.register();
-            APIRegistry.registerAmalgamatorRecipes();
-            Networking.registerMessages();
-            event.enqueueWork(ModPotions::addRecipes);
-            event.enqueueWork(WorldEvent::registerFeatures);
             REPacketHandler.setupChannel();
-
-            EmortisMobSpawns.registerSpawns();
-            CanisPacketHandler.init();
-            FoodHandler.registerHandler(new MeatFoodHandler());
-            FoodHandler.registerDynPredicate(ChungusPupperSkill.INNER_DYN_PRED);
-            InteractionHandler.registerHandler(new HelmetInteractionHandler());
-            ConfigHandler.initSkillConfig();
-            CanisReviveCommand.registerSerializers();
-            SpecializedEntityTypes.addEntityAttributes();
-            CanisEntity.initDataParameters();
-            Capabilities.init();
-            EmortisBiomes.addBiomeTypes();
+            DominionCapability.register();                         FamiliarCap.register();
+            APIRegistry.registerAmalgamatorRecipes();              Networking.registerMessages();
+            ModPotions.addRecipes();                                CanisReviveCommand.registerSerializers();
+            CanisPacketHandler.init();                             InteractionHandler.registerHandler(new HelmetInteractionHandler());
+            FoodHandler.registerHandler(new MeatFoodHandler());    FoodHandler.registerDynPredicate(ChungusPupperSkill.INNER_DYN_PRED);
+            ConfigHandler.initSkillConfig();                       SpecializedEntityTypes.addEntityAttributes();
+            CanisEntity.initDataParameters();                      Capabilities.init();
+            WorldEvent.registerFeatures();                         EmortisBiomes.addBiomeTypes();
+            VanillaCompatRigoranthus.registerCompostables();       VanillaCompatRigoranthus.registerFlammables();
+            WoodType.register(RigoranthusWoodTypes.AZULOREAL);     WoodType.register(RigoranthusWoodTypes.JESSIC);
 //            EmortisSurfaceBuilder.Configured.registerConfiguredSurfaceBuilders();
-//            VanillaCompatRigoranthus.registerDispenserBehaviors();
-            EmortisBiomes.addBiomeVariants();
-            if(Config.verdurousWoodlandsSpawnWeight.get() > 0) {
-                BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(EmortisBiomes.VERDUROUS_WOODLANDS.getKey(), Config.verdurousWoodlandsSpawnWeight.get()));
-            }
-            if(Config.verdurousFieldsSpawnWeight.get() > 0) {
-                BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(EmortisBiomes.VERDUROUS_FIELDS.getKey(), Config.verdurousFieldsSpawnWeight.get()));
-            }
-            VanillaCompatRigoranthus.registerCompostables();
-            VanillaCompatRigoranthus.registerFlammables();
-            WoodType.register(RigoranthusWoodTypes.AZULOREAL);
-            WoodType.register(RigoranthusWoodTypes.JESSIC);
+            if (Config.verdurousWoodlandsSpawnWeight.get() > 0) {
+                BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(EmortisBiomes.verdurousWoodlandsKey, Config.verdurousWoodlandsSpawnWeight.get()));}
+            if (Config.verdurousFieldsSpawnWeight.get() > 0) {
+                BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(EmortisBiomes.verdurousFieldsKey, Config.verdurousFieldsSpawnWeight.get()));}
         });
     }
     @SubscribeEvent
@@ -278,11 +236,6 @@ public class RigoranthusEmortisReborn {
 //        RenderingRegistry.registerEntityRenderingHandler(SpecializedEntityTypes.PAINTING, manager -> new RenderHangingArt<>(manager, new ResourceLocation("rigoranthusemortisreborn:painting")));
         RenderingRegistry.registerEntityRenderingHandler(SpecializedEntityTypes.CANIS.get(), CanisRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(SpecializedEntityTypes.CANIS_BEAM.get(), manager -> new CanisBeamRenderer<>(manager, event.getMinecraftSupplier().get().getItemRenderer()));
-        RenderingRegistry.registerEntityRenderingHandler(RigoranthusEntityTypes.FERAL_CANIS.get(), CanisChordataRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(RigoranthusEntityTypes.NECRAW_FASCII.get(), NecrawFasciiRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(RigoranthusEntityTypes.SUNDERED_CADAVER.get(), SunderedCadaverRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(RigoranthusEntityTypes.LANGUID_DWELLER.get(), LanguidDwellerRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(RigoranthusEntityTypes.BONE_ARROW.get(), BoneArrowRenderer::new);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientHandler::init);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(TextureEvent::textEvent);
     }

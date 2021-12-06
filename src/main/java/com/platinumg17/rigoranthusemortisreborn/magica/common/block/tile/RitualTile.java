@@ -10,17 +10,20 @@ import com.platinumg17.rigoranthusemortisreborn.api.apimagic.util.DominionUtil;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.particle.GlowParticleData;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.particle.ParticleColor;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.particle.ParticleUtil;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.block.RitualBlock;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.block.RitualVesselBlock;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.BlockRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Direction;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -29,6 +32,11 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.wrapper.InvWrapper;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -37,12 +45,18 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class RitualTile extends TileEntity implements ITickableTileEntity, ITooltipProvider, IAnimatable, ILightable {
+public class RitualTile extends AnimatedTile implements ITickableTileEntity, ITooltipProvider, IAnimatable, ILightable, IInventory {
+    private final LazyOptional<IItemHandler> itemHandler = LazyOptional.of(() -> new InvWrapper(this));
+    public float frames;
+    public ItemEntity entity;
+    public ItemStack stack;
+
     public AbstractRitual ritual;
     AnimationFactory manager = new AnimationFactory(this);
     public boolean isDecorative;
@@ -50,6 +64,7 @@ public class RitualTile extends TileEntity implements ITickableTileEntity, ITool
     int blue;
     int green;
     public boolean isOff;
+
     public RitualTile() {
         super(BlockRegistry.RITUAL_TILE);
     }
@@ -89,7 +104,7 @@ public class RitualTile extends TileEntity implements ITickableTileEntity, ITool
                 ritual.onEnd();
                 ritual = null;
                 getLevel().playSound(null, getBlockPos(), SoundEvents.FIRE_EXTINGUISH, SoundCategory.NEUTRAL, 1.0f, 1.0f);
-                getLevel().setBlock(getBlockPos(), getLevel().getBlockState(getBlockPos()).setValue(RitualBlock.LIT, false), 3);
+                getLevel().setBlock(getBlockPos(), getLevel().getBlockState(getBlockPos()).setValue(RitualVesselBlock.LIT, false), 3);
                 return;
             }
             if(!ritual.isRunning() && !level.isClientSide){
@@ -144,6 +159,7 @@ public class RitualTile extends TileEntity implements ITickableTileEntity, ITool
 
     @Override
     public void load(BlockState state, CompoundNBT tag) {
+        stack = ItemStack.of((CompoundNBT)tag.get("itemStack"));
         super.load(state, tag);
         String ritualID = tag.getString("ritualID");
         if(!ritualID.isEmpty()){
@@ -167,6 +183,11 @@ public class RitualTile extends TileEntity implements ITickableTileEntity, ITool
 
     @Override
     public CompoundNBT save(CompoundNBT tag) {
+        if(stack != null) {
+            CompoundNBT item = new CompoundNBT();
+            stack.save(item);
+            tag.put("itemStack", item);
+        }
         if(ritual != null){
             tag.putString("ritualID", ritual.getID());
             ritual.write(tag);
@@ -181,13 +202,87 @@ public class RitualTile extends TileEntity implements ITickableTileEntity, ITool
         return super.save(tag);
     }
 
+    @Override
+    public int getMaxStackSize() {
+        return 1;
+    }
+
+    @Override
+    public int getContainerSize() {
+        return 1;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return stack == null || stack.isEmpty();
+    }
+
+    @Override
+    public ItemStack getItem(int slot) {
+        return stack == null ? ItemStack.EMPTY : stack;
+    }
+
+    @Override
+    public ItemStack removeItem(int index, int count) {
+        ItemStack toReturn = getItem(0).copy();
+        stack.shrink(1);
+        updateBlock();
+        return toReturn;
+    }
+
+    @Override
+    public ItemStack removeItemNoUpdate(int index) {
+        ItemStack toReturn = getItem(0).copy();
+        stack.shrink(1);
+        updateBlock();
+        return toReturn;
+    }
+
+    @Override
+    public boolean canPlaceItem(int index, ItemStack s) {
+        return stack == null || stack.isEmpty();
+    }
+
+    @Override
+    public void setItem(int index, ItemStack s) {
+        if(stack == null || stack.isEmpty()) {
+            stack = s;
+            updateBlock();
+        }
+    }
+
+    @Override
+    public boolean stillValid(PlayerEntity player) {
+        return true;
+    }
+
+    @Override
+    public void clearContent() {
+        this.stack = ItemStack.EMPTY;
+    }
+
+    @Nonnull
+    @Override
+    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, final @Nullable Direction side) {
+        if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+            return itemHandler.cast();
+        }
+        return super.getCapability(cap, side);
+    }
+
+    @Override
+    protected void invalidateCaps() {
+        itemHandler.invalidate();
+        super.invalidateCaps();
+    }
+
     public void setRitual(String selectedRitual) {
         this.ritual = RigoranthusEmortisRebornAPI.getInstance().getRitual(selectedRitual);
         if(ritual != null){
             this.ritual.tile = this;
             World world = getLevel();
             BlockState state = world.getBlockState(getBlockPos());
-            world.setBlock(getBlockPos(), state.setValue(RitualBlock.LIT, true), 3);
+            world.setBlock(getBlockPos(), state.setValue(RitualVesselBlock.LIT, true), 3);
         }
         this.isDecorative = false;
         level.playSound(null, getBlockPos(), SoundEvents.FLINTANDSTEEL_USE, SoundCategory.NEUTRAL, 1.0f, 1.0f);
@@ -226,8 +321,13 @@ public class RitualTile extends TileEntity implements ITickableTileEntity, ITool
     @Override
     public void registerControllers(AnimationData animationData) {
         animationData.addAnimationController(new AnimationController(this, "idle", 0, this::idlePredicate));
+        animationData.addAnimationController(new AnimationController(this, "gripping", 0, this::gripPredicate));
     }
-
+    private <P extends IAnimatable> PlayState gripPredicate(AnimationEvent<P> pAnimationEvent) {
+        if(stack != null)
+            pAnimationEvent.getController().setAnimation(new AnimationBuilder().addAnimation("grip", false));
+        return PlayState.CONTINUE;
+    }
     private <P extends IAnimatable> PlayState idlePredicate(AnimationEvent<P> pAnimationEvent) {
         pAnimationEvent.getController().setAnimation(new AnimationBuilder().addAnimation("gem_float", true));
         return PlayState.CONTINUE;
@@ -245,6 +345,6 @@ public class RitualTile extends TileEntity implements ITickableTileEntity, ITool
         this.blue = spellContext.colors.b;
         this.isDecorative = true;
         BlockState state = world.getBlockState(getBlockPos());
-        world.setBlock(getBlockPos(), state.setValue(RitualBlock.LIT, true), 3);
+        world.setBlock(getBlockPos(), state.setValue(RitualVesselBlock.LIT, true), 3);
     }
 }

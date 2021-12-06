@@ -8,7 +8,6 @@ import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.core.init.fluid.FluidRegistry;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusSoundRegistry;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.effects.weapons.OnHitEffect;
-import com.platinumg17.rigoranthusemortisreborn.entity.RigoranthusEntityTypes;
 import com.platinumg17.rigoranthusemortisreborn.entity.item.GhastlyScepterItem;
 import com.platinumg17.rigoranthusemortisreborn.entity.item.GhastlyScepterRenderer;
 import com.platinumg17.rigoranthusemortisreborn.items.RigoranthusItemTier;
@@ -18,7 +17,6 @@ import com.platinumg17.rigoranthusemortisreborn.items.food.EmortisEdibles;
 import com.platinumg17.rigoranthusemortisreborn.items.ingots.*;
 import com.platinumg17.rigoranthusemortisreborn.items.itemeffects.ItemRightClickEffect;
 import com.platinumg17.rigoranthusemortisreborn.items.specialized.RazorToothItem;
-import com.platinumg17.rigoranthusemortisreborn.items.specialized.RigoranthusSpawnEgg;
 import com.platinumg17.rigoranthusemortisreborn.items.tooltypes.ToolRegistry;
 import com.platinumg17.rigoranthusemortisreborn.items.weapons.REWeaponItem;
 import com.platinumg17.rigoranthusemortisreborn.items.weapons.type.projectiles.BiliBombItem;
@@ -321,24 +319,8 @@ public class ItemInit {
 
 					///_______________________  M I S C E L L A N E O U S  _______________________///
 
-	public static final RegistryObject<Item> JESSIC_BOAT = HELPER.createBoatItem("jessic", DecorativeOrStorageBlocks.JESSIC_PLANKS);
-	public static final RegistryObject<Item> AZULOREAL_BOAT = HELPER.createBoatItem("azuloreal", DecorativeOrStorageBlocks.AZULOREAL_PLANKS);
-
-	public static final RegistryObject<RigoranthusSpawnEgg> CANIS_CHORDATA_SPAWN_EGG = ITEMS.register("canis_chordata_spawn_egg",
-			() -> new RigoranthusSpawnEgg(RigoranthusEntityTypes.FERAL_CANIS, 0x999999, 0xffffff,
-					new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)));
-
-	public static final RegistryObject<RigoranthusSpawnEgg> SUNDERED_CADAVER_SPAWN_EGG = ITEMS.register("sundered_cadaver_spawn_egg",
-			() -> new RigoranthusSpawnEgg(RigoranthusEntityTypes.SUNDERED_CADAVER, -6684673, -39322,
-					new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)));
-
-	public static final RegistryObject<RigoranthusSpawnEgg> NECRAW_FASCII_SPAWN_EGG = ITEMS.register("necraw_fascii_spawn_egg",
-			() -> new RigoranthusSpawnEgg(RigoranthusEntityTypes.NECRAW_FASCII, 0x27640c, 0xffd966,
-					new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)));
-
-	public static final RegistryObject<RigoranthusSpawnEgg> LANGUID_DWELLER_SPAWN_EGG = ITEMS.register("languid_dweller_spawn_egg",
-			() -> new RigoranthusSpawnEgg(RigoranthusEntityTypes.LANGUID_DWELLER, 0x968d81, 0x491919,
-					new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)));
+	public static final RegistryObject<Item> JESSIC_BOAT = HELPER.createBoatItem("jessic_boat", DecorativeOrStorageBlocks.JESSIC_PLANKS);
+	public static final RegistryObject<Item> AZULOREAL_BOAT = HELPER.createBoatItem("azuloreal_boat", DecorativeOrStorageBlocks.AZULOREAL_PLANKS);
 
 	public static void register(IEventBus modEventBus) {
 		ITEMS.register(modEventBus);

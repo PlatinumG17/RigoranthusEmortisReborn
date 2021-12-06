@@ -3,6 +3,7 @@ package com.platinumg17.rigoranthusemortisreborn.entity.mobs;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusSoundRegistry;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.effects.RigoranthusEffectRegistry;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.ModEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -25,15 +26,16 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 public class NecrawFasciiEntity extends ZombieEntity {
+
     public NecrawFasciiEntity(EntityType<? extends ZombieEntity> type, World worldIn) {
         super(type, worldIn);
     }
 
-    @Override
-    public IPacket<?> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
+    public NecrawFasciiEntity(World p_i50190_2_) {
+        super(ModEntities.NECRAW_FASCII, p_i50190_2_);
     }
-    public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
+
+    public static AttributeModifierMap.MutableAttribute attributes() {
         return MobEntity.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, Config.necrawFasciiMaxHealth.get())
                 .add(Attributes.MOVEMENT_SPEED, Config.necrawFasciiMovementSpeed.get())
@@ -55,6 +57,11 @@ public class NecrawFasciiEntity extends ZombieEntity {
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true, false));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillagerEntity.class, false));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
+    }
+
+    @Override
+    public EntityType<?> getType() {
+        return ModEntities.NECRAW_FASCII;
     }
 
     @Override

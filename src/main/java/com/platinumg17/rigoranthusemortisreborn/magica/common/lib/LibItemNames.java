@@ -2,6 +2,11 @@ package com.platinumg17.rigoranthusemortisreborn.magica.common.lib;
 
 public class LibItemNames {
 
+    public static final String CANIS_CHORDATA_SPAWN_EGG = "canis_chordata_spawn_egg";
+    public static final String SUNDERED_CADAVER_SPAWN_EGG = "sundered_cadaver_spawn_egg";
+    public static final String NECRAW_FASCII_SPAWN_EGG = "necraw_fascii_spawn_egg";
+    public static final String LANGUID_DWELLER_SPAWN_EGG = "languid_dweller_spawn_egg";
+
     public static final String FRAGMENTED_COBBLESTONE = "fragmented_cobblestone";
     public static final String DOMINION_FIBER = "dominion_fiber";
     public static final String BUCKET_OF_DOMINION = "bucket_of_dominion";

@@ -11,6 +11,7 @@ import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 import java.util.Random;
 
 public class VerdurousSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig> {
+
     public VerdurousSurfaceBuilder(Codec<SurfaceBuilderConfig> function) {
         super(function);
     }

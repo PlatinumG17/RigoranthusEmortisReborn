@@ -5,13 +5,17 @@ import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstant
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.LightTile;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.world.feature.SingleBlockFeature;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.BlockRegistry;
+import com.platinumg17.rigoranthusemortisreborn.world.biome.EmortisBiomes;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.PaneBlock;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.RegistryKey;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.ISeedReader;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeMaker;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.WorldGenRegion;
 import net.minecraft.world.gen.feature.BlockStateFeatureConfig;
@@ -21,12 +25,17 @@ import net.minecraft.world.gen.feature.Features;
 import net.minecraft.world.gen.feature.template.*;
 import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
 import net.minecraft.world.gen.placement.Placement;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ObjectHolder;
 
+import java.util.Objects;
 import java.util.Random;
+
+import static net.minecraft.world.gen.feature.Features.*;
+import static net.minecraftforge.common.BiomeDictionary.Type.*;
 
 @Mod.EventBusSubscriber(modid = EmortisConstants.MOD_ID)
 public class WorldEvent {
@@ -321,23 +330,4 @@ public class WorldEvent {
 //                    Objects.requireNonNull(WorldGenRegistries.CONFIGURED_FEATURE.get(EXTRA_RECONDITE_ORE))).build();
 //        }
 //    }
-
-    @ObjectHolder(EmortisConstants.MOD_ID)
-    @Mod.EventBusSubscriber(modid = EmortisConstants.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-    public static class BiomeRegistry {
-//        @SubscribeEvent
-//        public static void biomeRegistry(final RegistryEvent.Register<Biome> biomeRegistryEvent) {
-//            biomeRegistryEvent.getRegistry().registerAll(EmortisBiomes.VERDUROUS_WOODLANDS.get());
-//            BiomeDictionary.addTypes(EmortisBiomes.VERDUROUS_WOODLANDS.getKey(), BiomeDictionary.Type.FOREST, BiomeDictionary.Type.LUSH, BiomeDictionary.Type.OVERWORLD, BiomeDictionary.Type.DENSE, BiomeDictionary.Type.MAGICAL);
-//            biomeRegistryEvent.getRegistry().registerAll(EmortisBiomes.VERDUROUS_FIELDS.get());
-//            BiomeDictionary.addTypes(EmortisBiomes.VERDUROUS_FIELDS.getKey(), BiomeDictionary.Type.PLAINS, BiomeDictionary.Type.LUSH, BiomeDictionary.Type.OVERWORLD, BiomeDictionary.Type.SPARSE, BiomeDictionary.Type.MAGICAL);
-//        }
-        @SubscribeEvent
-        public static void featureRegistry(final RegistryEvent.Register<Feature<?>> registryEvent) {
-            registryEvent.getRegistry().register(LIGHTS.setRegistryName(FeatureLib.LIGHTS));
-        }
-//        private static RegistryKey<Biome> k(Biome b) {
-//            return RegistryKey.create(Registry.BIOME_REGISTRY, Objects.requireNonNull(b.getRegistryName()));
-//        }
-    }
 }

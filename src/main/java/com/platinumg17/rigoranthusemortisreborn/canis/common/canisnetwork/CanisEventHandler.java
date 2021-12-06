@@ -4,7 +4,6 @@ import com.platinumg17.rigoranthusemortisreborn.canis.common.SpecializedEntityTy
 import com.platinumg17.rigoranthusemortisreborn.canis.common.skill.PredatorSkill;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
-import com.platinumg17.rigoranthusemortisreborn.entity.RigoranthusEntityTypes;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.CanisEntity;
 import com.platinumg17.rigoranthusemortisreborn.canis.CanisItems;
 import com.platinumg17.rigoranthusemortisreborn.entity.mobs.FeralCanisEntity;

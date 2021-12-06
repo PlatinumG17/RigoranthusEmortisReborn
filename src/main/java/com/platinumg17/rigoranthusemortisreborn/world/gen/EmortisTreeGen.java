@@ -28,7 +28,7 @@ public class EmortisTreeGen {
 //        float loomingJessicChance = Config.loomingJessicSpawnWeight.get().floatValue();
 //        float megaAzulorealChance = Config.megaAzulorealSpawnWeight.get().floatValue();
 //        float megaJessicChance = Config.megaJessicSpawnWeight.get().floatValue();
-        if ((new ResourceLocation(EmortisBiomes.VERDUROUS_WOODLANDS.get().toString()).equals(event.getName())) || (new ResourceLocation(EmortisBiomes.VERDUROUS_FIELDS.get().toString()).equals(event.getName()))) {
+        if ((new ResourceLocation(EmortisBiomes.verdurousWoodlands.toString()).equals(event.getName())) || (new ResourceLocation(EmortisBiomes.verdurousFields.toString()).equals(event.getName()))) {
             List<Supplier<ConfiguredFeature<?, ?>>> base = event.getGeneration().getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION);
 
             base.add(() -> RigoranthusConfiguredFeatures.VERDUROUS_PATCH);

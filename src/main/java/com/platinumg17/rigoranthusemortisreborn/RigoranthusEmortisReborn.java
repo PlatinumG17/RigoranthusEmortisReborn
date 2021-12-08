@@ -55,6 +55,7 @@ import com.platinumg17.rigoranthusemortisreborn.magica.common.network.Networking
 import com.platinumg17.rigoranthusemortisreborn.magica.common.potions.ModPotions;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.world.WorldEvent;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.*;
+import com.platinumg17.rigoranthusemortisreborn.world.gen.EmortisBiomeGen;
 import com.platinumg17.rigoranthusemortisreborn.world.trees.RigoranthusWoodTypes;
 import net.minecraft.block.WoodType;
 import net.minecraft.client.Minecraft;
@@ -142,7 +143,6 @@ public class RigoranthusEmortisReborn {
 
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> Mod.EventBusSubscriber.Bus.FORGE.bus().get().register(PathClientEventHandler.class));
         Mod.EventBusSubscriber.Bus.FORGE.bus().get().register(PathFMLEventHandler.class);
-        //Mod.EventBusSubscriber.Bus.FORGE.bus().get().register(RigoranthusConfiguredFeatures.class);
         MinecraftForge.EVENT_BUS.register(this);
         ModSetup.initGeckolib();
         //  Client Events  //
@@ -173,13 +173,13 @@ public class RigoranthusEmortisReborn {
             FoodHandler.registerHandler(new MeatFoodHandler());    FoodHandler.registerDynPredicate(ChungusPupperSkill.INNER_DYN_PRED);
             ConfigHandler.initSkillConfig();                       SpecializedEntityTypes.addEntityAttributes();
             CanisEntity.initDataParameters();                      Capabilities.init();
-            WorldEvent.registerFeatures();                         WorldEvent.addBiomeTypes();
+            WorldEvent.registerFeatures();                         EmortisBiomeGen.addBiomeTypes();
             WoodType.register(RigoranthusWoodTypes.AZULOREAL);     WoodType.register(RigoranthusWoodTypes.JESSIC);
 //            EmortisSurfaceBuilder.Configured.registerConfiguredSurfaceBuilders();
             if (Config.verdurousWoodlandsSpawnWeight.get() > 0) {
-                BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(WorldEvent.verdurousWoodlandsKey, Config.verdurousWoodlandsSpawnWeight.get()));}
+                BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(EmortisBiomeGen.verdurousWoodlandsKey, Config.verdurousWoodlandsSpawnWeight.get()));}
             if (Config.verdurousFieldsSpawnWeight.get() > 0) {
-                BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(WorldEvent.verdurousFieldsKey, Config.verdurousFieldsSpawnWeight.get()));}
+                BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(EmortisBiomeGen.verdurousFieldsKey, Config.verdurousFieldsSpawnWeight.get()));}
         });
     }
     @SubscribeEvent
@@ -211,7 +211,6 @@ public class RigoranthusEmortisReborn {
             RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.AZULOREAL_TRAPDOOR.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.AZULOREAL_STAIRS.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.AZULOREAL_SLAB.get(), RenderType.cutout());
-
 //            RenderTypeLookup.setRenderLayer(Registration.LUMISHROOM.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(BlockInit.DWELLER_BRAIN.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(FluidRegistry.CADAVEROUS_ICHOR_FLUID.get(), RenderType.translucent());

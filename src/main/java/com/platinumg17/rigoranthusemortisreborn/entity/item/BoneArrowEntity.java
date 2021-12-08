@@ -1,12 +1,11 @@
 package com.platinumg17.rigoranthusemortisreborn.entity.item;
 
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
-import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusDamageSources;
-import com.platinumg17.rigoranthusemortisreborn.core.registry.effects.RigoranthusEffectRegistry;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.particle.GlowParticleData;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.particle.ParticleColor;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.ModEntities;
+import com.platinumg17.rigoranthusemortisreborn.magica.setup.MagicItemsRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -21,7 +20,6 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.particles.ParticleTypes;
-import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.vector.Vector3d;
@@ -31,7 +29,6 @@ import net.minecraftforge.fml.network.NetworkHooks;
 
 public class BoneArrowEntity extends ArrowEntity {
     public boolean impacted = false;
-    public int pierceLeft;
     BlockPos lastPosHit;
     Entity lastEntityHit;
     public static final DataParameter<Integer> RED = EntityDataManager.defineId(BoneArrowEntity.class, DataSerializers.INT);
@@ -171,11 +168,8 @@ public class BoneArrowEntity extends ArrowEntity {
     protected void attemptRemoval() {
         if (level.isClientSide)
             return;
-        this.pierceLeft--;
-        if (this.pierceLeft < 0) {
             this.level.broadcastEntityEvent(this, (byte) 3);
             this.remove();
-        }
     }
 
     @Override
@@ -269,15 +263,15 @@ public class BoneArrowEntity extends ArrowEntity {
         blockstate.onProjectileHit(this.level, blockstate, p_230299_1_, this);
         this.playSound(this.getHitGroundSoundEvent(), 1.0F, 1.2F / (this.random.nextFloat() * 0.2F + 0.9F));
     }
-    @Override public EntityType<?> getType() {return ModEntities.ENTITY_SPELL_ARROW;}
+    @Override public EntityType<?> getType() {return ModEntities.BONE_ARROW_ENTITY;}
     @Override public IPacket<?> getAddEntityPacket() {return NetworkHooks.getEntitySpawningPacket(this);}
-    public BoneArrowEntity(FMLPlayMessages.SpawnEntity packet, World world) {super(ModEntities.ENTITY_SPELL_ARROW, world);}
+    public BoneArrowEntity(FMLPlayMessages.SpawnEntity packet, World world) {super(ModEntities.BONE_ARROW_ENTITY, world);}
 
     @Override
     public double getBaseDamage() {return 1.5D;}
 
     @Override
     protected ItemStack getPickupItem() {
-        return new ItemStack(!this.impacted ? Registration.BONE_ARROW.getItem() : ItemInit.BONE_FRAGMENT.get());
+        return new ItemStack(!this.impacted ? MagicItemsRegistry.BONE_ARROW : ItemInit.BONE_FRAGMENT.get());
     }
 }

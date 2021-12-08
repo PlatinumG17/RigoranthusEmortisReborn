@@ -2,6 +2,7 @@ package com.platinumg17.rigoranthusemortisreborn.magica.common.datagen;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
+import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.ScribesBlock;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.BlockRegistry;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.MagicItemsRegistry;
@@ -36,6 +37,7 @@ public class DefaultTableProvider extends LootTableProvider {
         @Override
         protected void addTables() {
             registerDropSelf(BlockRegistry.DOMINION_GEM_BLOCK);
+//            registerDrop(BlockRegistry.RECONDITE_ORE, Registration.POWDERED_ESOTERICUM.get());
             registerDropSelf(BlockRegistry.SCONCE_BLOCK);
             registerBedCondition(BlockRegistry.SCRIBES_BLOCK, ScribesBlock.PART, BedPart.HEAD);
         }

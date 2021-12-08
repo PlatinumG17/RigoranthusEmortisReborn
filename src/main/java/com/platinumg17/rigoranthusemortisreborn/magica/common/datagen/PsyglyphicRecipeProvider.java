@@ -700,18 +700,10 @@ public class PsyglyphicRecipeProvider implements IDataProvider {
                 .buildPsyglyphicRecipe(EnchantmentRegistry.DOMINION_REGEN_ENCHANTMENT, 3, 5000));
 
         addRecipe(builder()
-                .withResult(MagicItemsRegistry.ENCHANTERS_SWORD)
-                .withReagent(Items.DIAMOND_SWORD)
-                .withPedestalItem(1, RigoranthusEmortisRebornAPI.getInstance().getGlyphItem(AugmentAmplify.INSTANCE))
-                .withPedestalItem(2,Ingredient.of(Tags.Items.STORAGE_BLOCKS_GOLD))
-                .withPedestalItem(2, Recipes.DOMINION_GEM_BLOCK)
-                .build());
-
-        addRecipe(builder()
                 .withResult(MagicItemsRegistry.LUSTERIC_SHIELD)
                 .withReagent(Items.SHIELD)
                 .withPedestalItem(2,Ingredient.of(Tags.Items.STORAGE_BLOCKS_GOLD))
-                .withPedestalItem(2, Recipes.DOMINION_GEM_BLOCK)
+                .withPedestalItem(2, Recipes.DOMINION_GEM)
                 .build());
 
         addRecipe(builder()

@@ -30,6 +30,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import static com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn.MOD_ID;
+import static com.platinumg17.rigoranthusemortisreborn.magica.setup.MagicItemsRegistry.defaultItemProperties;
 
 public class Registration {
     private static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MOD_ID);
@@ -56,9 +57,9 @@ public class Registration {
 //    public static final RegistryObject<ItemAugmentSpeed> SPEED_AUGMENT = ITEMS.register("augment_speed", () -> new ItemAugmentSpeed(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)));
 //    public static final RegistryObject<ItemAugmentFuel> FUEL_AUGMENT = ITEMS.register("augment_fuel", () -> new ItemAugmentFuel(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)));
 //    public static final RegistryObject<ItemSmelteryCopy> ITEM_COPY = ITEMS.register("item_copy", () -> new ItemSmelteryCopy(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)));
-    public static final RegistryObject<Block> RECONDITE_ORE = BLOCKS.register("recondite_ore", () -> new OreBlockEmortis(8, 15, AbstractBlock.Properties.of(Material.STONE, MaterialColor.STONE).strength(10f, 12f).harvestTool(ToolType.PICKAXE).harvestLevel(3).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final RegistryObject<Item> RECONDITE_ORE_ITEM = ITEMS.register("recondite_ore", () -> new BlockItem(RECONDITE_ORE.get(), new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)));
-    public static final RegistryObject<Item> POWDERED_ESOTERICUM = ITEMS.register("powdered_esotericum", () -> new Esotericum(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)));
+    public static final RegistryObject<Block> RECONDITE_ORE = BLOCKS.register("recondite_ore", OreBlockEmortis::new);
+    public static final RegistryObject<Item> RECONDITE_ORE_ITEM = ITEMS.register("recondite_ore", () -> new BlockItem(RECONDITE_ORE.get(), defaultItemProperties()));
+    public static final RegistryObject<Item> POWDERED_ESOTERICUM = ITEMS.register("powdered_esotericum", Esotericum::new);
 
 //    public static final RegistryObject<Block> ATTACHED_SPECTABILIS_STEM = BLOCKS.register("attached_spectabilis_stem", () -> new SpectabilisBush.AttachedStem((StemGrownBlock) BlockInit.SPECTABILIS.get(), AbstractBlock.Properties.of(Material.PLANT).noCollission().randomTicks().strength(0).sound(SoundType.CROP)));
 //    public static final RegistryObject<Block> SPECTABILIS_STEM = BLOCKS.register("spectabilis_stem", () -> new SpectabilisBush.Stem((StemGrownBlock) BlockInit.SPECTABILIS.get(), AbstractBlock.Properties.of(Material.PLANT).noCollission().randomTicks().strength(0).sound(SoundType.CROP)));

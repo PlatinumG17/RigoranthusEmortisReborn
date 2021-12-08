@@ -15,6 +15,7 @@ import com.platinumg17.rigoranthusemortisreborn.magica.common.lib.LibBlockNames;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.lib.LibItemNames;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.world.tree.StrippableLog;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.world.tree.SupplierBlockStateProvider;
+import com.platinumg17.rigoranthusemortisreborn.world.gen.feature.OreBlockEmortis;
 import com.platinumg17.rigoranthusemortisreborn.world.plants.SpectabilisBushBlock;
 import com.platinumg17.rigoranthusemortisreborn.world.plants.VerdurousLeavesBlock;
 import com.platinumg17.rigoranthusemortisreborn.world.trees.AzulorealTree;
@@ -45,6 +46,8 @@ public class BlockRegistry {
     public static AbstractBlock.Properties LOG_PROP = AbstractBlock.Properties.of(Material.WOOD).strength(2.0F).sound(SoundType.WOOD);
     public static AbstractBlock.Properties SAP_PROP = AbstractBlock.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS);
     public static AbstractBlock.Properties FLOWER_POT_PROP = AbstractBlock.Properties.of(Material.DECORATION).strength(0.0F).noOcclusion();
+
+//    @ObjectHolder(LibBlockNames.RECONDITE_ORE) public static OreBlockEmortis RECONDITE_ORE;
 
     @ObjectHolder(LibBlockNames.MASTERFUL_SMELTERY) public static BlockMasterfulSmeltery MASTERFUL_SMELTERY;
     @ObjectHolder(LibBlockNames.MASTERFUL_SMELTERY) public static TileEntityType<MasterfulSmelteryTile> MASTERFUL_SMELTERY_TILE;
@@ -174,6 +177,7 @@ public class BlockRegistry {
 //            registry.register(new SpellTurret());
 //            registry.register(new BasicSpellTurret());
 //            registry.register(new TimerSpellTurret());
+//            registry.register(new OreBlockEmortis());
             registry.register(new StrippableLog(LOG_PROP, LibBlockNames.AZULOREAL_LOG, () -> BlockRegistry.STRIPPED_AZULOREAL_LOG));
             registry.register(new RotatedPillarBlock(LOG_PROP).setRegistryName(LibBlockNames.STRIPPED_AZULOREAL_LOG));
             registry.register(createAzulorealLeavesBlock().setRegistryName(LibBlockNames.AZULOREAL_LEAVES));
@@ -279,6 +283,7 @@ public class BlockRegistry {
             registry.register(bilisBerry);
             registry.register(new BlockItem(BlockRegistry.MASTERFUL_SMELTERY, MagicItemsRegistry.defaultItemProperties().stacksTo(1)).setRegistryName(LibBlockNames.MASTERFUL_SMELTERY));
 
+//            registry.register(getDefaultBlockItem(BlockRegistry.RECONDITE_ORE, LibBlockNames.RECONDITE_ORE));
             registry.register(getDefaultBlockItem(BlockRegistry.FRAGMENTED_COBBLESTONE, LibBlockNames.FRAGMENTED_COBBLESTONE));
             registry.register(getDefaultBlockItem(BlockRegistry.LISIANTHUS, LibBlockNames.LISIANTHUS));
             registry.register(getDefaultBlockItem(BlockRegistry.AZULOREAL_ORCHID, LibBlockNames.AZULOREAL_ORCHID));
@@ -331,7 +336,6 @@ public class BlockRegistry {
 //            registry.register(new DoorBlock(woodProp).setRegistryName(LibBlockNames.AZULOREAL_DOOR));
 //            registry.register(new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, woodProp).setRegistryName(LibBlockNames.AZULOREAL_PRESSURE_PLATE));
 //            registry.register(new TrapDoorBlock(woodProp).setRegistryName(LibBlockNames.AZULOREAL_TRAPDOOR));
-
 
 //            registry.register(getDefaultBlockItem(BlockRegistry.JESSIC_PLANKS, LibBlockNames.JESSIC_PLANKS));
 //            registry.register(getDefaultBlockItem(BlockRegistry.JESSIC_BUTTON, LibBlockNames.JESSIC_BUTTON));

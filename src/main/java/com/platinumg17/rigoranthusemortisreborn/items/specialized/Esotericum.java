@@ -1,6 +1,7 @@
 package com.platinumg17.rigoranthusemortisreborn.items.specialized;
 
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.lib.LibItemNames;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
@@ -18,9 +19,12 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.List;
 
+import static com.platinumg17.rigoranthusemortisreborn.magica.setup.MagicItemsRegistry.defaultItemProperties;
+
 public class Esotericum extends Item {
-    public Esotericum(Properties properties) {
-        super(properties);
+    public Esotericum() {
+        super(defaultItemProperties());
+//        setRegistryName(LibItemNames.POWDERED_ESOTERICUM);
     }
 
     @Override

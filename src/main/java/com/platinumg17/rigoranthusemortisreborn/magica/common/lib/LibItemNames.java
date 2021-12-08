@@ -1,7 +1,7 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.common.lib;
 
 public class LibItemNames {
-
+    public static final String POWDERED_ESOTERICUM = "powdered_esotericum";
     public static final String BLASTING_AUGMENT = "augment_blasting";
     public static final String SMOKING_AUGMENT = "augment_smoking";
     public static final String SPEED_AUGMENT = "augment_speed";

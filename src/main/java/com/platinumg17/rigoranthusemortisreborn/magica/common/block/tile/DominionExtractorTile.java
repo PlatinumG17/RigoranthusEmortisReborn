@@ -5,6 +5,7 @@ import com.platinumg17.rigoranthusemortisreborn.magica.client.particle.ParticleC
 import com.platinumg17.rigoranthusemortisreborn.magica.common.network.Networking;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.network.PacketREEffect;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.BlockRegistry;
+import com.platinumg17.rigoranthusemortisreborn.magica.setup.MagicItemsRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.item.ItemEntity;
@@ -81,7 +82,7 @@ public class DominionExtractorTile extends DominionTile implements IAnimatable {
             dominion += 200; // was 100
             progress += 5;
         }
-        else if(i.getItem().getItem() == ItemInit.BOTTLE_OF_ICHOR.get().asItem()) {
+        else if(i.getItem().getItem() == MagicItemsRegistry.BOTTLE_OF_ICHOR) {
             dominion += 100; //was 50
             progress += 3;
         }

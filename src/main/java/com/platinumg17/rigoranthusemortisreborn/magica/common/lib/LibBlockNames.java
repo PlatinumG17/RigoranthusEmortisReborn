@@ -4,25 +4,24 @@ public class LibBlockNames {
     public static final String MASTERFUL_SMELTERY_CONTAINER = "masterful_smeltery_container";
     public static final String MASTERFUL_SMELTERY = "masterful_smeltery";
 
+    public static final String RECONDITE_ORE = "recondite_ore";
+
     public final static String POTTED_AZULOREAL_SAPLING = "potted_azuloreal_sapling";
     public final static String POTTED_JESSIC_SAPLING = "potted_jessic_sapling";
     public final static String POTTED_AZULOREAL_ORCHID = "potted_azuloreal_orchid";
     public final static String POTTED_IRIDESCENT_SPROUTS = "potted_iridescent_sprouts";
-
     public final static String AZULOREAL_LEAVES = "azuloreal_leaves";
     public final static String AZULOREAL_SAPLING = "azuloreal_sapling";
     public final static String AZULOREAL_LOG = "azuloreal_log";
     public final static String AZULOREAL_WOOD = "azuloreal_wood";
     public final static String STRIPPED_AZULOREAL_LOG = "stripped_azuloreal_log";
     public final static String STRIPPED_AZULOREAL_WOOD = "stripped_azuloreal_wood";
-
     public final static String JESSIC_LEAVES = "jessic_leaves";
     public final static String JESSIC_SAPLING = "jessic_sapling";
     public final static String JESSIC_LOG = "jessic_log";
     public final static String JESSIC_WOOD = "jessic_wood";
     public final static String STRIPPED_JESSIC_LOG = "stripped_jessic_log";
     public final static String STRIPPED_JESSIC_WOOD = "stripped_jessic_wood";
-
     public final static String AZULOREAL_ORCHID = "azuloreal_orchid";
     public final static String IRIDESCENT_SPROUTS = "iridescent_sprouts";
     public final static String SPECTABILIS_BUSH = "spectabilis_bush";

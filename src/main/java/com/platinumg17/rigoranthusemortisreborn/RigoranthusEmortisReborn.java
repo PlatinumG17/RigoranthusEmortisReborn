@@ -9,7 +9,6 @@ import com.platinumg17.rigoranthusemortisreborn.api.apimagic.util.MappingUtil;
 import com.platinumg17.rigoranthusemortisreborn.blocks.BlockInit;
 import com.platinumg17.rigoranthusemortisreborn.blocks.BuildingBlockInit;
 import com.platinumg17.rigoranthusemortisreborn.blocks.DecorativeOrStorageBlocks;
-import com.platinumg17.rigoranthusemortisreborn.blocks.tileentity.RigoranthusTileEntities;
 import com.platinumg17.rigoranthusemortisreborn.canis.*;
 import com.platinumg17.rigoranthusemortisreborn.canis.client.ClientSetup;
 import com.platinumg17.rigoranthusemortisreborn.canis.client.data.REBlockstateProvider;
@@ -56,8 +55,6 @@ import com.platinumg17.rigoranthusemortisreborn.magica.common.network.Networking
 import com.platinumg17.rigoranthusemortisreborn.magica.common.potions.ModPotions;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.world.WorldEvent;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.*;
-import com.platinumg17.rigoranthusemortisreborn.world.biome.EmortisBiomes;
-import com.platinumg17.rigoranthusemortisreborn.world.gen.feature.RigoranthusConfiguredFeatures;
 import com.platinumg17.rigoranthusemortisreborn.world.trees.RigoranthusWoodTypes;
 import net.minecraft.block.WoodType;
 import net.minecraft.client.Minecraft;
@@ -126,12 +123,10 @@ public class RigoranthusEmortisReborn {
         forgeEventBus.register(new CanisEventHandler());                modEventBus.addListener(this::doClientStuff);
         modEventBus.register(Registration.class);                       modEventBus.addListener(CanisRegistries::newRegistry);
 
-        Registration.init();
         APIRegistry.registerSpells();                                   MappingUtil.setup();
+        Registration.init();                                            FluidRegistry.register(modEventBus);
         BlockInit.register(modEventBus);		                        ItemInit.ITEMS.register(modEventBus);
-        RigoranthusTileEntities.register(modEventBus);                  FluidRegistry.register(modEventBus);
         RigoranthusSoundRegistry.SOUND_EVENTS.register(modEventBus);    BuildingBlockInit.register(modEventBus);
-
         EmortisParticleTypes.PARTICLES.register(modEventBus);           CanisRecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
         CanisBlocks.BLOCKS.register(modEventBus);                       CanisItems.ITEMS.register(modEventBus);
         CanisTileEntityTypes.TILE_ENTITIES.register(modEventBus);       SpecializedEntityTypes.ENTITIES.register(modEventBus);
@@ -147,7 +142,7 @@ public class RigoranthusEmortisReborn {
 
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> Mod.EventBusSubscriber.Bus.FORGE.bus().get().register(PathClientEventHandler.class));
         Mod.EventBusSubscriber.Bus.FORGE.bus().get().register(PathFMLEventHandler.class);
-        Mod.EventBusSubscriber.Bus.FORGE.bus().get().register(RigoranthusConfiguredFeatures.class);
+        //Mod.EventBusSubscriber.Bus.FORGE.bus().get().register(RigoranthusConfiguredFeatures.class);
         MinecraftForge.EVENT_BUS.register(this);
         ModSetup.initGeckolib();
         //  Client Events  //
@@ -169,22 +164,22 @@ public class RigoranthusEmortisReborn {
 
     private void setup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            REPacketHandler.setupChannel();
+            VanillaCompatRigoranthus.registerCompostables();       VanillaCompatRigoranthus.registerFlammables();
+            VanillaCompatRigoranthus.registerDispenserBehaviors(); REPacketHandler.setupChannel();
             DominionCapability.register();                         FamiliarCap.register();
             APIRegistry.registerAmalgamatorRecipes();              Networking.registerMessages();
-            ModPotions.addRecipes();                                CanisReviveCommand.registerSerializers();
+            ModPotions.addRecipes();                               CanisReviveCommand.registerSerializers();
             CanisPacketHandler.init();                             InteractionHandler.registerHandler(new HelmetInteractionHandler());
             FoodHandler.registerHandler(new MeatFoodHandler());    FoodHandler.registerDynPredicate(ChungusPupperSkill.INNER_DYN_PRED);
             ConfigHandler.initSkillConfig();                       SpecializedEntityTypes.addEntityAttributes();
             CanisEntity.initDataParameters();                      Capabilities.init();
-            WorldEvent.registerFeatures();                         EmortisBiomes.addBiomeTypes();
-            VanillaCompatRigoranthus.registerCompostables();       VanillaCompatRigoranthus.registerFlammables();
+            WorldEvent.registerFeatures();                         WorldEvent.addBiomeTypes();
             WoodType.register(RigoranthusWoodTypes.AZULOREAL);     WoodType.register(RigoranthusWoodTypes.JESSIC);
 //            EmortisSurfaceBuilder.Configured.registerConfiguredSurfaceBuilders();
             if (Config.verdurousWoodlandsSpawnWeight.get() > 0) {
-                BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(EmortisBiomes.verdurousWoodlandsKey, Config.verdurousWoodlandsSpawnWeight.get()));}
+                BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(WorldEvent.verdurousWoodlandsKey, Config.verdurousWoodlandsSpawnWeight.get()));}
             if (Config.verdurousFieldsSpawnWeight.get() > 0) {
-                BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(EmortisBiomes.verdurousFieldsKey, Config.verdurousFieldsSpawnWeight.get()));}
+                BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(WorldEvent.verdurousFieldsKey, Config.verdurousFieldsSpawnWeight.get()));}
         });
     }
     @SubscribeEvent
@@ -199,31 +194,25 @@ public class RigoranthusEmortisReborn {
             makeBow(ItemInit.BONE_BOW.get());
             Atlases.addWoodType(RigoranthusWoodTypes.AZULOREAL);
             Atlases.addWoodType(RigoranthusWoodTypes.JESSIC);
-            RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.JESSIC_DOOR.get(), RenderType.cutout());
-            RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.JESSIC_TRAPDOOR.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.JESSIC_LEAF_CARPET.get(), RenderType.cutoutMipped());
-            RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.POTTED_JESSIC_SAPLING.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.JESSIC_POST.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.STRIPPED_JESSIC_POST.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.JESSIC_HEDGE.get(), RenderType.cutoutMipped());
-            RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.AZULOREAL_DOOR.get(), RenderType.cutout());
-            RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.AZULOREAL_TRAPDOOR.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.AZULOREAL_LEAF_CARPET.get(), RenderType.cutoutMipped());
-            RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.POTTED_AZULOREAL_SAPLING.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.AZULOREAL_POST.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.STRIPPED_AZULOREAL_POST.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.AZULOREAL_HEDGE.get(), RenderType.cutoutMipped());
 
-            RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.JESSIC_LEAVES.get(), RenderType.cutoutMipped());
-            RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.JESSIC_SAPLING.get(), RenderType.cutout());
-            RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.AZULOREAL_LEAVES.get(), RenderType.cutoutMipped());
-            RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.AZULOREAL_SAPLING.get(), RenderType.cutout());
-            RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.AZULOREAL_ORCHID.get(), RenderType.cutout());
-            RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.IRIDESCENT_SPROUTS.get(), RenderType.cutout());
+            RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.JESSIC_DOOR.get(), RenderType.cutout());
+            RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.JESSIC_TRAPDOOR.get(), RenderType.cutout());
+            RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.JESSIC_STAIRS.get(), RenderType.cutout());
+            RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.JESSIC_SLAB.get(), RenderType.cutout());
+            RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.AZULOREAL_DOOR.get(), RenderType.cutout());
+            RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.AZULOREAL_TRAPDOOR.get(), RenderType.cutout());
+            RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.AZULOREAL_STAIRS.get(), RenderType.cutout());
+            RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.AZULOREAL_SLAB.get(), RenderType.cutout());
+
 //            RenderTypeLookup.setRenderLayer(Registration.LUMISHROOM.get(), RenderType.cutout());
-            RenderTypeLookup.setRenderLayer(BuildingBlockInit.LISIANTHUS.get(), RenderType.cutout());
-            RenderTypeLookup.setRenderLayer(Registration.SPECTABILIS_BUSH.get(), RenderType.cutout());
-            RenderTypeLookup.setRenderLayer(Registration.MASTERFUL_SMELTERY.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(BlockInit.DWELLER_BRAIN.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(FluidRegistry.CADAVEROUS_ICHOR_FLUID.get(), RenderType.translucent());
             RenderTypeLookup.setRenderLayer(FluidRegistry.CADAVEROUS_ICHOR_BLOCK.get(), RenderType.translucent());

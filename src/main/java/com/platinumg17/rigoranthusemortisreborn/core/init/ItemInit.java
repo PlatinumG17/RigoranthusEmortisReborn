@@ -13,7 +13,6 @@ import com.platinumg17.rigoranthusemortisreborn.entity.item.GhastlyScepterRender
 import com.platinumg17.rigoranthusemortisreborn.items.RigoranthusItemTier;
 import com.platinumg17.rigoranthusemortisreborn.items.armor.RigoranthusArmorMaterial;
 import com.platinumg17.rigoranthusemortisreborn.items.armor.armorsets.DwellerThoraxArmor;
-import com.platinumg17.rigoranthusemortisreborn.items.food.EmortisEdibles;
 import com.platinumg17.rigoranthusemortisreborn.items.ingots.*;
 import com.platinumg17.rigoranthusemortisreborn.items.itemeffects.ItemRightClickEffect;
 import com.platinumg17.rigoranthusemortisreborn.items.specialized.RazorToothItem;
@@ -38,12 +37,6 @@ public class ItemInit {
 	public static final ItemSubRegistryHelper HELPER = RigoranthusEmortisReborn.REGISTRY_HELPER.getItemSubHelper();
 
 
-				///_______________________  F O O D   I T E M S  _______________________///
-
-	public static final RegistryObject<Item> BILIS_BERRY = ITEMS.register("bilis_berry",
-			() -> new BlockNamedItem(Registration.SPECTABILIS_BUSH.get(), new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).food(EmortisEdibles.BILIS_BERRY)));
-
-
 					///_______________________  P A C T S  _______________________///
 
 	public static final RegistryObject<Item> PACT_OF_SERVITUDE = ITEMS.register("pact_of_servitude",
@@ -62,8 +55,8 @@ public class ItemInit {
 
 				///_______________________  I N G R E D I E N T S  _______________________///
 
-	public static final RegistryObject<Item> BOTTLE_OF_ICHOR = ITEMS.register("bottle_of_ichor",
-			() -> new GlassBottleItem(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)));
+//	public static final RegistryObject<Item> BOTTLE_OF_ICHOR = ITEMS.register("bottle_of_ichor",
+//			() -> new GlassBottleItem(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)));
 
 	public static final RegistryObject<Item> BUCKET_OF_CADAVEROUS_ICHOR = ITEMS.register("bucket_of_cadaverous_ichor",
 			() -> new BucketItem(() -> FluidRegistry.CADAVEROUS_ICHOR_FLUID.get().getSource(),
@@ -265,8 +258,8 @@ public class ItemInit {
 
 	///_______________________  D W E L L E R  S T U F F  _______________________///
 
-	public static final RegistryObject<Item> DWELLER_FLESH = ITEMS.register("dweller_flesh",
-			() -> new Item(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)));
+//	public static final RegistryObject<Item> DWELLER_FLESH = ITEMS.register("dweller_flesh",
+//			() -> new Item(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)));
 
 	public static final RegistryObject<Item> DWELLER_THORAX = ITEMS.register("dweller_thorax",
 			() -> new DwellerThoraxArmor(RigoranthusArmorMaterial.DWELLER, EquipmentSlotType.CHEST,
@@ -319,8 +312,8 @@ public class ItemInit {
 
 					///_______________________  M I S C E L L A N E O U S  _______________________///
 
-	public static final RegistryObject<Item> JESSIC_BOAT = HELPER.createBoatItem("jessic_boat", DecorativeOrStorageBlocks.JESSIC_PLANKS);
-	public static final RegistryObject<Item> AZULOREAL_BOAT = HELPER.createBoatItem("azuloreal_boat", DecorativeOrStorageBlocks.AZULOREAL_PLANKS);
+	public static final RegistryObject<Item> JESSIC_BOAT = HELPER.createBoatItem("jessic", DecorativeOrStorageBlocks.JESSIC_PLANKS);
+	public static final RegistryObject<Item> AZULOREAL_BOAT = HELPER.createBoatItem("azuloreal", DecorativeOrStorageBlocks.AZULOREAL_PLANKS);
 
 	public static void register(IEventBus modEventBus) {
 		ITEMS.register(modEventBus);

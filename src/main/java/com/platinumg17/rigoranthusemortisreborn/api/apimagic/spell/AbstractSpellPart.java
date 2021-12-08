@@ -141,7 +141,7 @@ public abstract class AbstractSpellPart implements ISpellTier, Comparable<Abstra
             }else if(this.getTier() == Tier.TWO){
                 ingredient = ItemInit.BLIGHT_ICHOR.get().getRegistryName().toString();
             }else{
-                ingredient = ItemInit.DWELLER_FLESH.get().getRegistryName().toString();
+                ingredient = MagicItemsRegistry.DWELLER_FLESH.getRegistryName().toString();
             }
             infoPage.addProperty("ingredient", ingredient);
             infoPage.addProperty("reagent", this.getCraftingReagent().getRegistryName().toString());

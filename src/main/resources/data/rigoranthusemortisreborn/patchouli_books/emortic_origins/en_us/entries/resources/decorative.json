@@ -1,0 +1,16 @@
+{
+    "name": "rigoranthusemortisreborn.decorative",
+    "icon": "rigoranthusemortisreborn:azuloreal_lamp",
+    "category": "resources",
+    "pages": [
+        {
+            "type": "text",
+            "text": "rigoranthusemortisreborn.page1.decorative"
+        },
+		{
+            "type":"crafting",
+			"recipe":"rigoranthusemortisreborn:jessic_lamp",
+            "recipe2":"rigoranthusemortisreborn:azuloreal_lamp"
+		}
+    ]
+}

@@ -11,7 +11,7 @@ import net.minecraft.potion.EffectType;
 
 public class EffectNecrotizingFasciitis extends Effect {
 
-    protected EffectNecrotizingFasciitis() {
+    public EffectNecrotizingFasciitis() {
         super(EffectType.HARMFUL, 0XED5151);
         this.addAttributeModifier(Attributes.MOVEMENT_SPEED, "7107DE5E-7CE8-4030-940E-514C1F160890",-0.3F, AttributeModifier.Operation.MULTIPLY_BASE);
         this.addAttributeModifier(Attributes.MAX_HEALTH, "5D6F0BA2-1186-46AC-B896-C61C5CEE99CC",-3.0F, AttributeModifier.Operation.ADDITION);

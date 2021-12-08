@@ -5,16 +5,16 @@ import com.platinumg17.rigoranthusemortisreborn.api.apimagic.psyglyphic_amalgama
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.psyglyphic_amalgamator.PsyglyphicEnchantingRecipe;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.recipe.GlyphPressRecipe;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.recipe.IchorCrystallizerRecipe;
+import com.platinumg17.rigoranthusemortisreborn.blocks.tileentity.gui.SmelteryScreenBase;
 import com.platinumg17.rigoranthusemortisreborn.canis.CanisBlocks;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.util.CanisBedUtil;
 import com.platinumg17.rigoranthusemortisreborn.config.ConfigValues;
-import com.platinumg17.rigoranthusemortisreborn.blocks.tileentity.gui.MasterfulSmelteryScreen;
-import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.crafting.CrushRecipe;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.potions.ModPotions;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.spell.effect.EffectCrush;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.BlockRegistry;
+import com.platinumg17.rigoranthusemortisreborn.magica.setup.MagicItemsRegistry;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.ModIds;
@@ -67,15 +67,15 @@ public class RigoranthusJEIPlugin implements IModPlugin {
 			registry.addRecipeCatalyst(new ItemStack(BlockRegistry.PSYGLYPHIC_AMALG_BLOCK), PsyglyphicAmalgamatorRecipeCategory.UID);
 			registry.addRecipeCatalyst(new ItemStack(RigoranthusEmortisRebornAPI.getInstance().getGlyphItem(EffectCrush.INSTANCE)), CrushRecipeCategory.UID);
 
-			registry.addRecipeCatalyst(new ItemStack(Registration.MASTERFUL_SMELTERY.get()), VanillaRecipeCategoryUid.FURNACE);
-			registry.addRecipeCatalyst(new ItemStack(Registration.MASTERFUL_SMELTERY.get()), VanillaRecipeCategoryUid.FUEL);
+			registry.addRecipeCatalyst(new ItemStack(BlockRegistry.MASTERFUL_SMELTERY), VanillaRecipeCategoryUid.FURNACE);
+			registry.addRecipeCatalyst(new ItemStack(BlockRegistry.MASTERFUL_SMELTERY), VanillaRecipeCategoryUid.FUEL);
 		}
 	}
 
 	@Override
 	public void registerGuiHandlers(IGuiHandlerRegistration registry) {
 		if (ConfigValues.enableJeiPlugin && ConfigValues.enableJeiClickArea) {
-			registry.addRecipeClickArea(MasterfulSmelteryScreen.class, 79, 35, 24, 17, VanillaRecipeCategoryUid.FUEL, VanillaRecipeCategoryUid.FURNACE);
+			registry.addRecipeClickArea(SmelteryScreenBase.class, 79, 35, 24, 17, VanillaRecipeCategoryUid.FUEL, VanillaRecipeCategoryUid.FURNACE);
 		}
 	}
 
@@ -121,10 +121,17 @@ public class RigoranthusJEIPlugin implements IModPlugin {
 		registration.addRecipes(crystalList, IchorCrystallizerRecipeCategory.UID);
 		registration.addRecipes(recipeList, GlyphPressRecipeCategory.UID);
 		registration.addRecipes(amalgamator, PsyglyphicAmalgamatorRecipeCategory.UID);
+
 		ItemStack dominionPot = PotionUtils.setPotion(new ItemStack(Items.POTION), ModPotions.DOMINION_REGEN_POTION);
+		ItemStack necroPot = PotionUtils.setPotion(new ItemStack(Items.POTION), ModPotions.NECROTIZING_FASCIITIS);
+
 		IJeiBrewingRecipe dominionPotionRecipe = registration.getVanillaRecipeFactory().createBrewingRecipe(Collections.singletonList(new ItemStack(BlockRegistry.DOMINION_BERRY_BUSH)),
 				PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD), dominionPot );
+		IJeiBrewingRecipe necroPotionRecipe = registration.getVanillaRecipeFactory().createBrewingRecipe(Collections.singletonList(new ItemStack(MagicItemsRegistry.DWELLER_FLESH)),
+				PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD), necroPot );
+
 		registration.addRecipes(Collections.singletonList(dominionPotionRecipe), new ResourceLocation(ModIds.MINECRAFT_ID, "brewing"));
+		registration.addRecipes(Collections.singletonList(necroPotionRecipe), new ResourceLocation(ModIds.MINECRAFT_ID, "brewing"));
 
 		registration.addRecipes(CanisBedRecipeMaker.createCanisBedRecipes(), VanillaRecipeCategoryUid.CRAFTING);
 	}

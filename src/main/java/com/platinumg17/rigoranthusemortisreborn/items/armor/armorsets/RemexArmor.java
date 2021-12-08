@@ -3,7 +3,7 @@ package com.platinumg17.rigoranthusemortisreborn.items.armor.armorsets;
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
-import com.platinumg17.rigoranthusemortisreborn.core.registry.effects.RigoranthusEffectRegistry;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.potions.ModPotions;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
@@ -51,10 +51,10 @@ public class RemexArmor extends ArmorItem {
             ItemStack chest = player.getItemBySlot(EquipmentSlotType.CHEST);
             ItemStack helm = player.getItemBySlot(EquipmentSlotType.HEAD);
             if (boots.getItem() == Registration.REMEX_NETHERITE_BOOTS && legs.getItem() == Registration.REMEX_NETHERITE_LEGGINGS && chest.getItem() == Registration.REMEX_NETHERITE_CHESTPLATE && helm.getItem() == Registration.REMEX_NETHERITE_HELMET) {
-                player.addEffect(new EffectInstance(RigoranthusEffectRegistry.REMEX_SET_BONUS, 5, 1));
+                player.addEffect(new EffectInstance(ModPotions.REMEX_SET_BONUS, 5, 1));
                 this.previousEquip = true;
             } else if (this.previousEquip) {
-                player.removeEffect(RigoranthusEffectRegistry.REMEX_SET_BONUS);
+                player.removeEffect(ModPotions.REMEX_SET_BONUS);
                 this.previousEquip = false;
             }
         }

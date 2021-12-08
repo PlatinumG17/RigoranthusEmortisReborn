@@ -1,5 +1,10 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.setup;
 
+import com.minecraftabnormals.abnormals_core.common.blocks.AbnormalsFlowerBlock;
+import com.minecraftabnormals.abnormals_core.common.blocks.wood.AbnormalsSaplingBlock;
+import com.platinumg17.rigoranthusemortisreborn.blocks.custom.BlockMasterfulSmeltery;
+import com.platinumg17.rigoranthusemortisreborn.blocks.tileentity.MasterfulSmelteryTile;
+import com.platinumg17.rigoranthusemortisreborn.blocks.tileentity.container.MasterfulSmelteryContainer;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.renderer.tile.*;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.*;
@@ -8,19 +13,27 @@ import com.platinumg17.rigoranthusemortisreborn.magica.common.items.AnimBlockIte
 import com.platinumg17.rigoranthusemortisreborn.magica.common.items.FluidBlockItem;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.lib.LibBlockNames;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.lib.LibItemNames;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.world.tree.StrippableLog;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.world.tree.SupplierBlockStateProvider;
+import com.platinumg17.rigoranthusemortisreborn.world.plants.SpectabilisBushBlock;
 import com.platinumg17.rigoranthusemortisreborn.world.plants.VerdurousLeavesBlock;
+import com.platinumg17.rigoranthusemortisreborn.world.trees.AzulorealTree;
+import com.platinumg17.rigoranthusemortisreborn.world.trees.JessicTree;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.entity.EntityType;
+import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.potion.Effects;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.gen.blockstateprovider.BlockStateProviderType;
 import net.minecraftforge.common.ToolType;
+import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -31,25 +44,37 @@ import net.minecraftforge.registries.ObjectHolder;
 public class BlockRegistry {
     public static AbstractBlock.Properties LOG_PROP = AbstractBlock.Properties.of(Material.WOOD).strength(2.0F).sound(SoundType.WOOD);
     public static AbstractBlock.Properties SAP_PROP = AbstractBlock.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS);
+    public static AbstractBlock.Properties FLOWER_POT_PROP = AbstractBlock.Properties.of(Material.DECORATION).strength(0.0F).noOcclusion();
 
-//    @ObjectHolder(LibBlockNames.AZULOREAL_LOG) public static StrippableLog AZULOREAL_LOG;
-//    @ObjectHolder(LibBlockNames.AZULOREAL_LEAVES) public static VerdurousLeavesBlock AZULOREAL_LEAVES;
-//    @ObjectHolder(LibBlockNames.AZULOREAL_SAPLING) public static SaplingBlock AZULOREAL_SAPLING;
-//    @ObjectHolder(LibBlockNames.AZULOREAL_WOOD) public static StrippableLog AZULOREAL_WOOD;
-//    @ObjectHolder(LibBlockNames.STRIPPED_AZULOREAL_LOG) public static RotatedPillarBlock STRIPPED_AZULOREAL_LOG;
-//    @ObjectHolder(LibBlockNames.STRIPPED_AZULOREAL_WOOD) public static RotatedPillarBlock STRIPPED_AZULOREAL_WOOD;
-//    @ObjectHolder(LibBlockNames.JESSIC_LOG) public static StrippableLog JESSIC_LOG;
-//    @ObjectHolder(LibBlockNames.JESSIC_LEAVES) public static VerdurousLeavesBlock JESSIC_LEAVES;
-//    @ObjectHolder(LibBlockNames.JESSIC_SAPLING) public static SaplingBlock JESSIC_SAPLING;
-//    @ObjectHolder(LibBlockNames.JESSIC_WOOD) public static StrippableLog JESSIC_WOOD;
-//    @ObjectHolder(LibBlockNames.STRIPPED_JESSIC_LOG) public static RotatedPillarBlock STRIPPED_JESSIC_LOG;
-//    @ObjectHolder(LibBlockNames.STRIPPED_JESSIC_WOOD) public static RotatedPillarBlock STRIPPED_JESSIC_WOOD;
+    @ObjectHolder(LibBlockNames.MASTERFUL_SMELTERY) public static BlockMasterfulSmeltery MASTERFUL_SMELTERY;
+    @ObjectHolder(LibBlockNames.MASTERFUL_SMELTERY) public static TileEntityType<MasterfulSmelteryTile> MASTERFUL_SMELTERY_TILE;
+    @ObjectHolder(LibBlockNames.MASTERFUL_SMELTERY) public static ContainerType<MasterfulSmelteryContainer> MASTERFUL_SMELTERY_CONTAINER;
 
-    /////    FLOWERS    /////
-//    @ObjectHolder(LibBlockNames.AZULOREAL_ORCHID) public static AbnormalsFlowerBlock AZULOREAL_ORCHID;
-//    @ObjectHolder(LibBlockNames.IRIDESCENT_SPROUTS) public static AbnormalsFlowerBlock IRIDESCENT_SPROUTS;
+    @ObjectHolder(LibBlockNames.POTTED_AZULOREAL_ORCHID) public static FlowerPotBlock POTTED_AZULOREAL_ORCHID;
+    @ObjectHolder(LibBlockNames.POTTED_IRIDESCENT_SPROUTS) public static FlowerPotBlock POTTED_IRIDESCENT_SPROUTS;
+    @ObjectHolder(LibBlockNames.POTTED_AZULOREAL_SAPLING) public static FlowerPotBlock POTTED_AZULOREAL_SAPLING;
+    @ObjectHolder(LibBlockNames.POTTED_JESSIC_SAPLING) public static FlowerPotBlock POTTED_JESSIC_SAPLING;
 
-//    @ObjectHolder(LibBlockNames.FRAGMENTED_COBBLESTONE) public static FragmentedBlock FRAGMENTED_COBBLESTONE;
+    @ObjectHolder(LibBlockNames.AZULOREAL_LOG) public static StrippableLog AZULOREAL_LOG;
+    @ObjectHolder(LibBlockNames.AZULOREAL_LEAVES) public static VerdurousLeavesBlock AZULOREAL_LEAVES;
+    @ObjectHolder(LibBlockNames.AZULOREAL_SAPLING) public static AbnormalsSaplingBlock AZULOREAL_SAPLING;
+    @ObjectHolder(LibBlockNames.AZULOREAL_WOOD) public static StrippableLog AZULOREAL_WOOD;
+    @ObjectHolder(LibBlockNames.STRIPPED_AZULOREAL_LOG) public static RotatedPillarBlock STRIPPED_AZULOREAL_LOG;
+    @ObjectHolder(LibBlockNames.STRIPPED_AZULOREAL_WOOD) public static RotatedPillarBlock STRIPPED_AZULOREAL_WOOD;
+
+    @ObjectHolder(LibBlockNames.JESSIC_LOG) public static StrippableLog JESSIC_LOG;
+    @ObjectHolder(LibBlockNames.JESSIC_LEAVES) public static VerdurousLeavesBlock JESSIC_LEAVES;
+    @ObjectHolder(LibBlockNames.JESSIC_SAPLING) public static AbnormalsSaplingBlock JESSIC_SAPLING;
+    @ObjectHolder(LibBlockNames.JESSIC_WOOD) public static StrippableLog JESSIC_WOOD;
+    @ObjectHolder(LibBlockNames.STRIPPED_JESSIC_LOG) public static RotatedPillarBlock STRIPPED_JESSIC_LOG;
+    @ObjectHolder(LibBlockNames.STRIPPED_JESSIC_WOOD) public static RotatedPillarBlock STRIPPED_JESSIC_WOOD;
+
+    ///    FLOWERS    /////
+    @ObjectHolder(LibBlockNames.AZULOREAL_ORCHID) public static AbnormalsFlowerBlock AZULOREAL_ORCHID;
+    @ObjectHolder(LibBlockNames.IRIDESCENT_SPROUTS) public static AbnormalsFlowerBlock IRIDESCENT_SPROUTS;
+    @ObjectHolder(LibBlockNames.SPECTABILIS_BUSH) public static SpectabilisBushBlock SPECTABILIS_BUSH;
+    @ObjectHolder(LibBlockNames.LISIANTHUS) public static TallFlowerBlock LISIANTHUS;
+    @ObjectHolder(LibBlockNames.FRAGMENTED_COBBLESTONE) public static FragmentedBlock FRAGMENTED_COBBLESTONE;
 
     @ObjectHolder(LibBlockNames.PHANTOM_BLOCK) public static PhantomBlock PHANTOM_BLOCK;
     @ObjectHolder(LibBlockNames.PHANTOM_BLOCK) public static TileEntityType<PhantomBlockTile> PHANTOM_TILE;
@@ -128,6 +153,7 @@ public class BlockRegistry {
             registry.register(new IntangibleAirBlock());
             registry.register(new LavaLily());
             registry.register(new DominionBerryBush(AbstractBlock.Properties.of(Material.PLANT).randomTicks().noCollission().sound(SoundType.SWEET_BERRY_BUSH)));
+            registry.register(new SpectabilisBushBlock(AbstractBlock.Properties.of(Material.PLANT).randomTicks().noCollission().sound(SoundType.SWEET_BERRY_BUSH)));
             registry.register(new CreativeDominionJar());
             registry.register(new RitualVesselBlock(LibBlockNames.RITUAL_VESSEL));
             registry.register(new ModBlock(ModBlock.defaultProperties().noOcclusion().lightLevel((s) -> 6),LibBlockNames.DOMINION_GEM_BLOCK));
@@ -143,33 +169,40 @@ public class BlockRegistry {
             registry.register(new DominionExtractorBlock());
             registry.register(new IchorExtractorBlock());
             registry.register(new PsyglyphicBlock());
+
+            registry.register(new BlockMasterfulSmeltery());
 //            registry.register(new SpellTurret());
 //            registry.register(new BasicSpellTurret());
 //            registry.register(new TimerSpellTurret());
-//            registry.register(new StrippableLog(LOG_PROP, LibBlockNames.AZULOREAL_LOG, () ->BlockRegistry.STRIPPED_AZULOREAL_LOG));
-//            registry.register(new RotatedPillarBlock(LOG_PROP).setRegistryName(LibBlockNames.STRIPPED_AZULOREAL_LOG));
-//            registry.register(createAzulorealLeavesBlock().setRegistryName(LibBlockNames.AZULOREAL_LEAVES));
-//            registry.register(new StrippableLog(LOG_PROP, LibBlockNames.AZULOREAL_WOOD, () ->BlockRegistry.STRIPPED_AZULOREAL_WOOD));
-//            registry.register(new RotatedPillarBlock(LOG_PROP).setRegistryName(LibBlockNames.STRIPPED_AZULOREAL_WOOD));
-//            registry.register(new SaplingBlock(new AzulorealTree(WorldEvent.AZULOREAL_TREE), SAP_PROP).setRegistryName(LibBlockNames.AZULOREAL_SAPLING));
-//
-//            registry.register(new StrippableLog(LOG_PROP, LibBlockNames.JESSIC_LOG, () ->BlockRegistry.STRIPPED_JESSIC_LOG));
-//            registry.register(new RotatedPillarBlock(LOG_PROP).setRegistryName(LibBlockNames.STRIPPED_JESSIC_LOG));
-//            registry.register(createJessicLeavesBlock().setRegistryName(LibBlockNames.JESSIC_LEAVES));
-//            registry.register(new StrippableLog(LOG_PROP, LibBlockNames.JESSIC_WOOD, () ->BlockRegistry.STRIPPED_JESSIC_WOOD));
-//            registry.register(new RotatedPillarBlock(LOG_PROP).setRegistryName(LibBlockNames.STRIPPED_JESSIC_WOOD));
-//            registry.register(new SaplingBlock(new JessicTree(WorldEvent.JESSIC_TREE), SAP_PROP).setRegistryName(LibBlockNames.JESSIC_SAPLING));
-//
-//            registry.register(createAzulorealOrchidBlock().setRegistryName(LibBlockNames.AZULOREAL_ORCHID));
-//            registry.register(createIridescentSproutBlock().setRegistryName(LibBlockNames.IRIDESCENT_SPROUTS));
-//            registry.register(new FragmentedBlock(FragmentedBlock.defaultProperties(), LibBlockNames.FRAGMENTED_COBBLESTONE).withTooltip(new TranslationTextComponent("tooltip.block.rigoranthusemortisreborn.fragmented_cobblestone")));
+            registry.register(new StrippableLog(LOG_PROP, LibBlockNames.AZULOREAL_LOG, () -> BlockRegistry.STRIPPED_AZULOREAL_LOG));
+            registry.register(new RotatedPillarBlock(LOG_PROP).setRegistryName(LibBlockNames.STRIPPED_AZULOREAL_LOG));
+            registry.register(createAzulorealLeavesBlock().setRegistryName(LibBlockNames.AZULOREAL_LEAVES));
+            registry.register(new StrippableLog(LOG_PROP, LibBlockNames.AZULOREAL_WOOD, () -> BlockRegistry.STRIPPED_AZULOREAL_WOOD));
+            registry.register(new RotatedPillarBlock(LOG_PROP).setRegistryName(LibBlockNames.STRIPPED_AZULOREAL_WOOD));
+            registry.register(new AbnormalsSaplingBlock(new AzulorealTree(), SAP_PROP).setRegistryName(LibBlockNames.AZULOREAL_SAPLING));
+            registry.register(new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, () -> AZULOREAL_SAPLING, FLOWER_POT_PROP).setRegistryName(LibBlockNames.POTTED_AZULOREAL_SAPLING));
+
+            registry.register(new StrippableLog(LOG_PROP, LibBlockNames.JESSIC_LOG, () -> BlockRegistry.STRIPPED_JESSIC_LOG));
+            registry.register(new RotatedPillarBlock(LOG_PROP).setRegistryName(LibBlockNames.STRIPPED_JESSIC_LOG));
+            registry.register(createJessicLeavesBlock().setRegistryName(LibBlockNames.JESSIC_LEAVES));
+            registry.register(new StrippableLog(LOG_PROP, LibBlockNames.JESSIC_WOOD, () -> BlockRegistry.STRIPPED_JESSIC_WOOD));
+            registry.register(new RotatedPillarBlock(LOG_PROP).setRegistryName(LibBlockNames.STRIPPED_JESSIC_WOOD));
+            registry.register(new AbnormalsSaplingBlock(new JessicTree(), SAP_PROP).setRegistryName(LibBlockNames.JESSIC_SAPLING));
+            registry.register(new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, () -> JESSIC_SAPLING, FLOWER_POT_PROP).setRegistryName(LibBlockNames.POTTED_JESSIC_SAPLING));
+
+            registry.register(createAzulorealOrchidBlock().setRegistryName(LibBlockNames.AZULOREAL_ORCHID));
+            registry.register(createIridescentSproutBlock().setRegistryName(LibBlockNames.IRIDESCENT_SPROUTS));
+            registry.register(new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, () -> AZULOREAL_ORCHID, FLOWER_POT_PROP).setRegistryName(LibBlockNames.POTTED_AZULOREAL_ORCHID));
+            registry.register(new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, () -> IRIDESCENT_SPROUTS, FLOWER_POT_PROP).setRegistryName(LibBlockNames.POTTED_IRIDESCENT_SPROUTS));
+            registry.register(new TallFlowerBlock(SAP_PROP).setRegistryName(LibBlockNames.LISIANTHUS));
+            registry.register(new FragmentedBlock(AbstractBlock.Properties.of(Material.SAND, MaterialColor.STONE).strength(0.8f, 0.8f).harvestTool(ToolType.SHOVEL).harvestLevel(0).sound(SoundType.GRAVEL)).withTooltip(new TranslationTextComponent("tooltip.block.rigoranthusemortisreborn.fragmented_cobblestone")));
         }
-//        public static AbnormalsFlowerBlock createAzulorealOrchidBlock() {
-//            return new AbnormalsFlowerBlock(()-> Effects.HEAL, 8, AbstractBlock.Properties.copy(Blocks.AZURE_BLUET));
-//        }
-//        public static AbnormalsFlowerBlock createIridescentSproutBlock() {
-//            return new AbnormalsFlowerBlock(()-> Effects.NIGHT_VISION, 10, AbstractBlock.Properties.copy(Blocks.NETHER_SPROUTS));
-//        }
+        public static AbnormalsFlowerBlock createAzulorealOrchidBlock() {
+            return new AbnormalsFlowerBlock(()-> Effects.HEAL, 8, AbstractBlock.Properties.copy(Blocks.AZURE_BLUET));
+        }
+        public static AbnormalsFlowerBlock createIridescentSproutBlock() {
+            return new AbnormalsFlowerBlock(()-> Effects.NIGHT_VISION, 10, AbstractBlock.Properties.copy(Blocks.NETHER_SPROUTS));
+        }
         static Block.Properties woodProp = AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD);
         public static VerdurousLeavesBlock createAzulorealLeavesBlock() {
             return new VerdurousLeavesBlock(AbstractBlock.Properties.of(Material.LEAVES, MaterialColor.SNOW)
@@ -184,6 +217,7 @@ public class BlockRegistry {
 
         @SubscribeEvent
         public static void onTileEntityRegistry(final RegistryEvent.Register<TileEntityType<?>> event){
+            event.getRegistry().register(TileEntityType.Builder.of(MasterfulSmelteryTile::new, BlockRegistry.MASTERFUL_SMELTERY).build(null).setRegistryName(LibBlockNames.MASTERFUL_SMELTERY));
             event.getRegistry().register(TileEntityType.Builder.of(PhantomBlockTile::new, BlockRegistry.PHANTOM_BLOCK).build(null).setRegistryName(LibBlockNames.PHANTOM_BLOCK));
             event.getRegistry().register(TileEntityType.Builder.of(DominionJarTile::new, BlockRegistry.DOMINION_JAR).build(null).setRegistryName(LibBlockNames.DOMINION_JAR));
             event.getRegistry().register(TileEntityType.Builder.of(LightTile::new, BlockRegistry.LIGHT_BLOCK).build(null).setRegistryName(LibBlockNames.LIGHT_BLOCK));
@@ -212,6 +246,10 @@ public class BlockRegistry {
         @SubscribeEvent
         public static void onMagicItemsRegistry(final RegistryEvent.Register<Item> itemRegistryEvent) {
             IForgeRegistry<Item> registry = itemRegistryEvent.getRegistry();
+            Item dominionBerry = new BlockItem(BlockRegistry.DOMINION_BERRY_BUSH, MagicItemsRegistry.defaultItemProperties().food(MagicItemsRegistry.DOMINION_BERRY_FOOD)).setRegistryName(LibItemNames.DOMINION_BERRY);
+            Item bilisBerry = new BlockItem(BlockRegistry.SPECTABILIS_BUSH, MagicItemsRegistry.defaultItemProperties().food(MagicItemsRegistry.BILIS_BERRY_FOOD)).setRegistryName(LibItemNames.BILIS_BERRY);
+            ComposterBlock.COMPOSTABLES.putIfAbsent(dominionBerry, 0.3f);
+            ComposterBlock.COMPOSTABLES.putIfAbsent(bilisBerry, 0.3f);
             registry.register(new BlockItem(BlockRegistry.PHANTOM_BLOCK, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.PHANTOM_BLOCK));
             registry.register(new BlockItem(BlockRegistry.LIGHT_BLOCK, new Item.Properties()).setRegistryName(LibBlockNames.LIGHT_BLOCK));
             registry.register(new BlockItem(BlockRegistry.DOMINION_JAR, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.DOMINION_JAR));
@@ -222,7 +260,6 @@ public class BlockRegistry {
             registry.register(new AnimBlockItem(BlockRegistry.SCRIBES_BLOCK, MagicItemsRegistry.defaultItemProperties().setISTER(() -> ScribesRenderer::getISTER)).setRegistryName(LibBlockNames.SCRIBES_BLOCK));
             registry.register(new BlockItem(BlockRegistry.PORTAL_BLOCK, new Item.Properties()).setRegistryName(LibBlockNames.PORTAL));
             registry.register(new FluidBlockItem(BlockRegistry.LAVA_LILY, MagicItemsRegistry.defaultItemProperties().fireResistant()).setRegistryName(LibBlockNames.LAVA_LILY));
-            registry.register(new BlockItem(BlockRegistry.DOMINION_BERRY_BUSH, MagicItemsRegistry.defaultItemProperties().food(MagicItemsRegistry.DOMINION_BERRY_FOOD)).setRegistryName(LibItemNames.DOMINION_BERRY));
             registry.register(new BlockItem(BlockRegistry.CREATIVE_DOMINION_JAR, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.CREATIVE_DOMINION_JAR));
             registry.register(new AnimBlockItem(BlockRegistry.RITUAL_BLOCK, MagicItemsRegistry.defaultItemProperties().setISTER(() -> RitualVesselRenderer::getISTER)).setRegistryName(LibBlockNames.RITUAL_VESSEL));
             registry.register(getDefaultBlockItem(BlockRegistry.DOMINION_GEM_BLOCK, LibBlockNames.DOMINION_GEM_BLOCK));
@@ -238,15 +275,23 @@ public class BlockRegistry {
             registry.register(new BlockItem(BlockRegistry.EMORTIC_CORE_BLOCK, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.EMORTIC_CORE));
             registry.register(new BlockItem(BlockRegistry.RUNE_BLOCK, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.RUNE));
             registry.register(new AnimBlockItem(BlockRegistry.PSYGLYPHIC_CIPHER, MagicItemsRegistry.defaultItemProperties().fireResistant().setISTER(() -> PsyglyphicRenderer::getISTER)).setRegistryName(LibBlockNames.PSYGLYPHIC_CIPHER));
-//            registry.register(new BlockItem(BlockRegistry.FRAGMENTED_COBBLESTONE, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.FRAGMENTED_COBBLESTONE));
-//            registry.register(getDefaultBlockItem(BlockRegistry.JESSIC_LEAVES, LibBlockNames.JESSIC_LEAVES));
-//            registry.register(getDefaultBlockItem(BlockRegistry.JESSIC_LOG, LibBlockNames.JESSIC_LOG));
-//            registry.register(getDefaultBlockItem(BlockRegistry.JESSIC_SAPLING, LibBlockNames.JESSIC_SAPLING));
-//            registry.register(getDefaultBlockItem(BlockRegistry.JESSIC_WOOD, LibBlockNames.JESSIC_WOOD));
-//            registry.register(getDefaultBlockItem(BlockRegistry.AZULOREAL_LEAVES, LibBlockNames.AZULOREAL_LEAVES));
-//            registry.register(getDefaultBlockItem(BlockRegistry.AZULOREAL_LOG, LibBlockNames.AZULOREAL_LOG));
-//            registry.register(getDefaultBlockItem(BlockRegistry.AZULOREAL_SAPLING, LibBlockNames.AZULOREAL_SAPLING));
-//            registry.register(getDefaultBlockItem(BlockRegistry.AZULOREAL_WOOD, LibBlockNames.AZULOREAL_WOOD));
+            registry.register(dominionBerry);
+            registry.register(bilisBerry);
+            registry.register(new BlockItem(BlockRegistry.MASTERFUL_SMELTERY, MagicItemsRegistry.defaultItemProperties().stacksTo(1)).setRegistryName(LibBlockNames.MASTERFUL_SMELTERY));
+
+            registry.register(getDefaultBlockItem(BlockRegistry.FRAGMENTED_COBBLESTONE, LibBlockNames.FRAGMENTED_COBBLESTONE));
+            registry.register(getDefaultBlockItem(BlockRegistry.LISIANTHUS, LibBlockNames.LISIANTHUS));
+            registry.register(getDefaultBlockItem(BlockRegistry.AZULOREAL_ORCHID, LibBlockNames.AZULOREAL_ORCHID));
+            registry.register(getDefaultBlockItem(BlockRegistry.IRIDESCENT_SPROUTS, LibBlockNames.IRIDESCENT_SPROUTS));
+            registry.register(getDefaultBlockItem(BlockRegistry.JESSIC_LEAVES, LibBlockNames.JESSIC_LEAVES));
+            registry.register(getDefaultBlockItem(BlockRegistry.JESSIC_LOG, LibBlockNames.JESSIC_LOG));
+            registry.register(getDefaultBlockItem(BlockRegistry.JESSIC_SAPLING, LibBlockNames.JESSIC_SAPLING));
+            registry.register(getDefaultBlockItem(BlockRegistry.JESSIC_WOOD, LibBlockNames.JESSIC_WOOD));
+            registry.register(getDefaultBlockItem(BlockRegistry.AZULOREAL_LEAVES, LibBlockNames.AZULOREAL_LEAVES));
+            registry.register(getDefaultBlockItem(BlockRegistry.AZULOREAL_LOG, LibBlockNames.AZULOREAL_LOG));
+            registry.register(getDefaultBlockItem(BlockRegistry.AZULOREAL_SAPLING, LibBlockNames.AZULOREAL_SAPLING));
+            registry.register(getDefaultBlockItem(BlockRegistry.AZULOREAL_WOOD, LibBlockNames.AZULOREAL_WOOD));
+
         }
         public static Item getDefaultBlockItem(Block block, String registry) {
             return new BlockItem(block, MagicItemsRegistry.defaultItemProperties()).setRegistryName(registry);
@@ -254,6 +299,12 @@ public class BlockRegistry {
         @SubscribeEvent
         public static void registerBlockProvider(final RegistryEvent.Register<BlockStateProviderType<?>> e) {
             e.getRegistry().register(new BlockStateProviderType<>(SupplierBlockStateProvider.CODEC).setRegistryName(EmortisConstants.MOD_ID, LibBlockNames.STATE_PROVIDER));
+        }
+        @SubscribeEvent
+        public static void onContainerRegistry(final RegistryEvent.Register<ContainerType<?>> containerRegistryEvent) {
+            IForgeRegistry<ContainerType<?>> registry = containerRegistryEvent.getRegistry();
+            registry.register(
+                    IForgeContainerType.create(MasterfulSmelteryContainer::new).setRegistryName(LibBlockNames.MASTERFUL_SMELTERY_CONTAINER));
         }
     }
     private static Boolean allowsSpawnOnLeaves(BlockState state, IBlockReader reader, BlockPos pos, EntityType<?> entity) {
@@ -263,3 +314,40 @@ public class BlockRegistry {
         return false;
     }
 }
+
+//            registry.register(new WoodButtonBlock(AbstractBlock.Properties.of(Material.DECORATION).noCollission().strength(0.5F).sound(SoundType.WOOD)).setRegistryName(LibBlockNames.JESSIC_BUTTON));
+//            registry.register(new StairsBlock(()-> JESSIC_PLANKS.defaultBlockState(),woodProp).setRegistryName(LibBlockNames.JESSIC_STAIRS));
+//            registry.register(new SlabBlock(woodProp).setRegistryName(LibBlockNames.JESSIC_SLAB));
+//            registry.register(new FenceGateBlock(woodProp).setRegistryName(LibBlockNames.JESSIC_FENCE_GATE));
+//            registry.register(new FenceBlock(woodProp).setRegistryName(LibBlockNames.JESSIC_FENCE));
+//            registry.register(new DoorBlock(woodProp).setRegistryName(LibBlockNames.JESSIC_DOOR));
+//            registry.register(new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, woodProp).setRegistryName(LibBlockNames.JESSIC_PRESSURE_PLATE));
+//            registry.register(new TrapDoorBlock(woodProp).setRegistryName(LibBlockNames.JESSIC_TRAPDOOR));
+//            registry.register(new WoodButtonBlock(AbstractBlock.Properties.of(Material.DECORATION).noCollission().strength(0.5F).sound(SoundType.WOOD)).setRegistryName(LibBlockNames.AZULOREAL_BUTTON));
+//            registry.register(new StairsBlock(()-> AZULOREAL_PLANKS.defaultBlockState(),woodProp).setRegistryName(LibBlockNames.AZULOREAL_STAIRS));
+//            registry.register(new SlabBlock(woodProp).setRegistryName(LibBlockNames.AZULOREAL_SLAB));
+//            registry.register(new FenceGateBlock(woodProp).setRegistryName(LibBlockNames.AZULOREAL_FENCE_GATE));
+//            registry.register(new FenceBlock(woodProp).setRegistryName(LibBlockNames.AZULOREAL_FENCE));
+//            registry.register(new DoorBlock(woodProp).setRegistryName(LibBlockNames.AZULOREAL_DOOR));
+//            registry.register(new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, woodProp).setRegistryName(LibBlockNames.AZULOREAL_PRESSURE_PLATE));
+//            registry.register(new TrapDoorBlock(woodProp).setRegistryName(LibBlockNames.AZULOREAL_TRAPDOOR));
+
+
+//            registry.register(getDefaultBlockItem(BlockRegistry.JESSIC_PLANKS, LibBlockNames.JESSIC_PLANKS));
+//            registry.register(getDefaultBlockItem(BlockRegistry.JESSIC_BUTTON, LibBlockNames.JESSIC_BUTTON));
+//            registry.register(getDefaultBlockItem(BlockRegistry.JESSIC_STAIRS, LibBlockNames.JESSIC_STAIRS));
+//            registry.register(getDefaultBlockItem(BlockRegistry.JESSIC_SLAB, LibBlockNames.JESSIC_SLAB));
+//            registry.register(getDefaultBlockItem(BlockRegistry.JESSIC_FENCE_GATE, LibBlockNames.JESSIC_FENCE_GATE));
+//            registry.register(getDefaultBlockItem(BlockRegistry.JESSIC_FENCE, LibBlockNames.JESSIC_FENCE));
+//            registry.register(getDefaultBlockItem(BlockRegistry.JESSIC_TRAPDOOR, LibBlockNames.JESSIC_TRAPDOOR));
+//            registry.register(getDefaultBlockItem(BlockRegistry.JESSIC_DOOR, LibBlockNames.JESSIC_DOOR));
+//            registry.register(getDefaultBlockItem(BlockRegistry.JESSIC_PRESSURE_PLATE, LibBlockNames.JESSIC_PRESSURE_PLATE));
+//            registry.register(getDefaultBlockItem(BlockRegistry.AZULOREAL_PLANKS, LibBlockNames.AZULOREAL_PLANKS));
+//            registry.register(getDefaultBlockItem(BlockRegistry.AZULOREAL_BUTTON, LibBlockNames.AZULOREAL_BUTTON));
+//            registry.register(getDefaultBlockItem(BlockRegistry.AZULOREAL_STAIRS, LibBlockNames.AZULOREAL_STAIRS));
+//            registry.register(getDefaultBlockItem(BlockRegistry.AZULOREAL_SLAB, LibBlockNames.AZULOREAL_SLAB));
+//            registry.register(getDefaultBlockItem(BlockRegistry.AZULOREAL_FENCE_GATE, LibBlockNames.AZULOREAL_FENCE_GATE));
+//            registry.register(getDefaultBlockItem(BlockRegistry.AZULOREAL_FENCE, LibBlockNames.AZULOREAL_FENCE));
+//            registry.register(getDefaultBlockItem(BlockRegistry.AZULOREAL_TRAPDOOR, LibBlockNames.AZULOREAL_TRAPDOOR));
+//            registry.register(getDefaultBlockItem(BlockRegistry.AZULOREAL_DOOR, LibBlockNames.AZULOREAL_DOOR));
+//            registry.register(getDefaultBlockItem(BlockRegistry.AZULOREAL_PRESSURE_PLATE, LibBlockNames.AZULOREAL_PRESSURE_PLATE));

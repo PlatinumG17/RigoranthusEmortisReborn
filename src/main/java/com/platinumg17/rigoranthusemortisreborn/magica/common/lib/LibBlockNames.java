@@ -1,6 +1,14 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.common.lib;
 
 public class LibBlockNames {
+    public static final String MASTERFUL_SMELTERY_CONTAINER = "masterful_smeltery_container";
+    public static final String MASTERFUL_SMELTERY = "masterful_smeltery";
+
+    public final static String POTTED_AZULOREAL_SAPLING = "potted_azuloreal_sapling";
+    public final static String POTTED_JESSIC_SAPLING = "potted_jessic_sapling";
+    public final static String POTTED_AZULOREAL_ORCHID = "potted_azuloreal_orchid";
+    public final static String POTTED_IRIDESCENT_SPROUTS = "potted_iridescent_sprouts";
+
     public final static String AZULOREAL_LEAVES = "azuloreal_leaves";
     public final static String AZULOREAL_SAPLING = "azuloreal_sapling";
     public final static String AZULOREAL_LOG = "azuloreal_log";
@@ -17,6 +25,8 @@ public class LibBlockNames {
 
     public final static String AZULOREAL_ORCHID = "azuloreal_orchid";
     public final static String IRIDESCENT_SPROUTS = "iridescent_sprouts";
+    public final static String SPECTABILIS_BUSH = "spectabilis_bush";
+    public final static String LISIANTHUS = "lisianthus";
     public final static String FRAGMENTED_COBBLESTONE = "fragmented_cobblestone";
 
     public static final String ICHOR_CRYSTALLIZER = "ichor_crystallizer";

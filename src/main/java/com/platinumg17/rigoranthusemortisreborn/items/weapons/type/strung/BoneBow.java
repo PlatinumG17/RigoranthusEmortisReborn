@@ -2,19 +2,19 @@ package com.platinumg17.rigoranthusemortisreborn.items.weapons.type.strung;
 
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.items.BoneArrow;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.item.ArrowItem;
-import net.minecraft.item.BowItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.item.*;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
+
+import java.util.function.Predicate;
 
 public class BoneBow extends BowItem {
     public BoneBow(Properties builder) {
@@ -24,6 +24,47 @@ public class BoneBow extends BowItem {
     @Override
     public int getDefaultProjectileRange() {
         return Config.bone_bow_projectile_range.get();
+    }
+
+    public ItemStack findAmmo(PlayerEntity playerEntity, ItemStack shootable) {
+        if (!(shootable.getItem() instanceof ShootableItem)) {
+            return ItemStack.EMPTY;
+        } else {
+            Predicate<ItemStack> predicate = ((ShootableItem)shootable.getItem()).getSupportedHeldProjectiles()
+                    .and(i -> !(i.getItem() instanceof BoneArrow) || (i.getItem() instanceof BoneArrow));
+            ItemStack itemstack = ShootableItem.getHeldProjectile(playerEntity, predicate);
+            if (!itemstack.isEmpty()) {
+                return itemstack;
+            } else {
+                predicate = ((ShootableItem)shootable.getItem()).getAllSupportedProjectiles().and(i -> !(i.getItem() instanceof BoneArrow) || (i.getItem() instanceof BoneArrow));
+
+                for(int i = 0; i < playerEntity.inventory.getContainerSize(); ++i) {
+                    ItemStack itemstack1 = playerEntity.inventory.getItem(i);
+                    if (predicate.test(itemstack1)) {
+                        return itemstack1;
+                    }
+                }
+                return playerEntity.abilities.instabuild ? new ItemStack(Items.ARROW) : ItemStack.EMPTY;
+            }
+        }
+    }
+
+    public void addArrow(AbstractArrowEntity abstractarrowentity, ItemStack bowStack,ItemStack arrowStack, boolean isArrowInfinite, PlayerEntity playerentity){
+        int power = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.POWER_ARROWS, bowStack);
+        if (power > 0) {
+            abstractarrowentity.setBaseDamage(abstractarrowentity.getBaseDamage() + (double)power * 0.5D + 0.5D);
+        }
+        int punch = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PUNCH_ARROWS, bowStack);
+        if (punch > 0) {
+            abstractarrowentity.setKnockback(punch);
+        }
+        if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.FLAMING_ARROWS, bowStack) > 0) {
+            abstractarrowentity.setSecondsOnFire(100);
+        }
+        if (isArrowInfinite || playerentity.abilities.instabuild && (arrowStack.getItem() == Items.SPECTRAL_ARROW || arrowStack.getItem() == Items.TIPPED_ARROW)) {
+            abstractarrowentity.pickup = AbstractArrowEntity.PickupStatus.CREATIVE_ONLY;
+        }
+        playerentity.level.addFreshEntity(abstractarrowentity);
     }
 
     @Override
@@ -89,5 +130,18 @@ public class BoneBow extends BowItem {
                 }
             }
         }
+    }
+    public Predicate<ItemStack> getAllSupportedProjectiles() {return ARROW_ONLY.or(i -> i.getItem() instanceof BoneArrow);}
+    @Override public AbstractArrowEntity customArrow(AbstractArrowEntity arrow) {
+        return super.customArrow(arrow);
+    }
+    @Override public int getEnchantmentValue() {
+        return super.getEnchantmentValue();
+    }
+    @Override public boolean isEnchantable(ItemStack stack) {
+        return true;
+    }
+    @Override public boolean isBookEnchantable(ItemStack stack, ItemStack book) {
+        return true;
     }
 }

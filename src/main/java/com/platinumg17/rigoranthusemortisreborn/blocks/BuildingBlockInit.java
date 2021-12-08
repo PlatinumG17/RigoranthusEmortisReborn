@@ -29,9 +29,6 @@ public class BuildingBlockInit {
     public static final RegistryObject<Block> AZULOREAL_LAMP = registerBlock("azuloreal_lamp",
             () -> new RedstoneLampBlock(AbstractBlock.Properties.of(Material.BUILDABLE_GLASS).lightLevel(litBlockEmission(15)).strength(0.3F).sound(SoundType.SHROOMLIGHT)));
 
-    public static final RegistryObject<Block> LISIANTHUS = registerBlock("lisianthus",
-            () -> new TallFlowerBlock(AbstractBlock.Properties.of(Material.REPLACEABLE_PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
-
     public static final RegistryObject<Block> APOGEAN_NETHERITE_BLOCK = registerBlock("apogean_netherite_block",
             () -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.METAL).lightLevel((p_235452_0_) -> { return 5; }).strength(25f, 30f)
                     .harvestTool(ToolType.PICKAXE).harvestLevel(4).requiresCorrectToolForDrops().sound(SoundType.STONE)));
@@ -68,10 +65,6 @@ public class BuildingBlockInit {
             () -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.METAL).lightLevel((p_235452_0_) -> { return 5; }).strength(25f, 30f)
                     .harvestTool(ToolType.PICKAXE).harvestLevel(4).requiresCorrectToolForDrops().sound(SoundType.STONE)));
 
-//    public static final RegistryObject<Block> AZULOREAL_LEAVES = registerBlock("azuloreal_leaves",
-//            () -> new LeavesBlock(AbstractBlock.Properties.of(Material.LEAVES).sound(SoundType.GRASS).strength(0.2F).randomTicks().noOcclusion().lightLevel((p_235455_0_) -> {
-//                return 12;
-//            })));
 
     private static ToIntFunction<BlockState> litBlockEmission(int var0) {
         return (p_lambda$litBlockEmission$34_1_) -> {

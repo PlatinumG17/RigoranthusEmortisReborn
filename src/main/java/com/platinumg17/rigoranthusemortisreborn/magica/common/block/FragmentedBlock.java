@@ -1,5 +1,6 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.common.block;
 
+import com.platinumg17.rigoranthusemortisreborn.magica.common.lib.LibBlockNames;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.GravelBlock;
 import net.minecraft.block.SoundType;
@@ -19,19 +20,11 @@ import java.util.List;
 
 public class FragmentedBlock extends GravelBlock {
     public List<ITextComponent> tooltip;
-    public FragmentedBlock(Properties properties, String registry) {
+    public FragmentedBlock(AbstractBlock.Properties properties) {
         super(properties);
-        setRegistryName(registry);
+        setRegistryName(LibBlockNames.FRAGMENTED_COBBLESTONE);
     }
 
-    public FragmentedBlock(String registryName){
-        this(defaultProperties(), registryName);
-    }
-
-    public static AbstractBlock.Properties defaultProperties() {
-        return AbstractBlock.Properties.of(Material.SAND, MaterialColor.STONE).strength(0.8f, 0.8f)
-                .harvestTool(ToolType.SHOVEL).harvestLevel(0).sound(SoundType.GRAVEL);
-    }
     public FragmentedBlock withTooltip(ITextComponent tip){
         tooltip = new ArrayList<>();
         tooltip.add(tip);

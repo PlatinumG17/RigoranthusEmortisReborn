@@ -1,7 +1,7 @@
 package com.platinumg17.rigoranthusemortisreborn.core.registry;
 
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.world.feature.LibSoundNames;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.lib.LibSoundNames;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.fml.RegistryObject;

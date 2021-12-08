@@ -3,6 +3,7 @@ package com.platinumg17.rigoranthusemortisreborn.items.armor;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
+import com.platinumg17.rigoranthusemortisreborn.magica.setup.MagicItemsRegistry;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.Items;
@@ -18,7 +19,7 @@ import java.util.function.Supplier;
 public enum RigoranthusArmorMaterial implements IArmorMaterial {
 
     DWELLER("dweller", Config.dweller_thorax_durability_multiplier.get(), new int[]{0, 0, Config.dweller_thorax_damage_reduction.get(), 0}, Config.dweller_thorax_enchantability.get(), SoundEvents.CORAL_BLOCK_STEP, Config.dweller_thorax_toughness.get().floatValue(), Config.dweller_thorax_knockback_resistance.get().floatValue(), () -> {
-        return Ingredient.of(ItemInit.DWELLER_FLESH.get());}),
+        return Ingredient.of(MagicItemsRegistry.DWELLER_FLESH);}),
 
     APOGEAN_NETHERITE("apogean_netherite", Config.apogean_durability_multiplier.get(), new int[]{Config.apogean_boots_damage_reduction.get(), Config.apogean_leggings_damage_reduction.get(), Config.apogean_chestplate_damage_reduction.get(), Config.apogean_helmet_damage_reduction.get()}, Config.apogean_armor_enchantability.get(), SoundEvents.ARMOR_EQUIP_NETHERITE, Config.apogean_toughness.get().floatValue(), Config.apogean_knockback_resistance.get().floatValue(), () -> {
         return Ingredient.of(ItemInit.APOGEAN_NETHERITE_INGOT.get());}),

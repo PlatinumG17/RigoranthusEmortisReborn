@@ -3,6 +3,8 @@ package com.platinumg17.rigoranthusemortisreborn.magica.common.datagen;
 import com.platinumg17.rigoranthusemortisreborn.api.RigoranthusEmortisRebornAPI;
 import com.platinumg17.rigoranthusemortisreborn.blocks.BlockInit;
 import com.platinumg17.rigoranthusemortisreborn.blocks.DecorativeOrStorageBlocks;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.canisnetwork.packet.data.REItemTagsProvider;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.CanisTags;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
 import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
@@ -46,7 +48,7 @@ public class Recipes extends RecipeProvider {
         {
             makeArmor("novice", consumer, MagicItemsRegistry.DOMINION_FIBER);
             makeArmor("apprentice", consumer, ItemInit.GHAST_IRON_INGOT.get());
-            makeArmor("emortic", consumer, ItemInit.DWELLER_FLESH.get());
+            makeArmor("emortic", consumer, MagicItemsRegistry.DWELLER_FLESH);
 
             CookingRecipeBuilder.smelting(Ingredient.of(Registration.RECONDITE_ORE.get()), MagicItemsRegistry.dominionGem,0.5f, 200)
                     .unlockedBy("has_ore", InventoryChangeTrigger.Instance.hasItems(Registration.RECONDITE_ORE.get())).save(consumer);
@@ -54,13 +56,7 @@ public class Recipes extends RecipeProvider {
             ShapelessRecipeBuilder.shapeless(MagicItemsRegistry.emorticOrigins).unlockedBy("has_journal", InventoryChangeTrigger.Instance.hasItems(MagicItemsRegistry.emorticOrigins))
                     .requires(DOMINION_GEM, 1)
                     .requires(Items.BOOK).save(consumer);
-//            ShapelessRecipeBuilder.shapeless(MagicItemsRegistry.DOMINION_FIBER, 4).unlockedBy("has_journal", InventoryChangeTrigger.Instance.hasItems(MagicItemsRegistry.emorticOrigins))
-//                    .requires(MagicItemsRegistry.MAGE_BLOOM)
-//                    .save(consumer);
-
-//            ShapelessRecipeBuilder.shapeless(MagicItemsRegistry.runicChalk, 1).unlockedBy("has_journal", InventoryChangeTrigger.Instance.hasItems(MagicItemsRegistry.emorticOrigins))
-//                    .requires(MagicItemsRegistry.magicClay).requires(Items.BONE_MEAL).requires(MagicItemsRegistry.DOMINION_FIBER)
-//                    .save(consumer);
+            
             ShapedRecipeBuilder.shaped(BlockRegistry.DOMINION_JAR).unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(MagicItemsRegistry.emorticOrigins))
                     .pattern("xyx")
                     .pattern("x x")
@@ -84,14 +80,7 @@ public class Recipes extends RecipeProvider {
                     .define('y', Tags.Items.GEMS_DIAMOND)
                     .define('z', Registration.RECONDITE_ORE.get()).save(consumer);
 
-//            ShapedRecipeBuilder.shaped(MagicItemsRegistry.prosaicBelt).unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(MagicItemsRegistry.emorticOrigins))
-//                    .pattern("   ")
-//                    .pattern("xyx")
-//                    .pattern(" x ")
-//                    .define('x', Tags.Items.LEATHER)
-//                    .define('y', DOMINION_GEM).save(consumer);
-
-            ShapedRecipeBuilder.shaped(MagicItemsRegistry.ringOfPotential).unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(MagicItemsRegistry.emorticOrigins))
+            ShapedRecipeBuilder.shaped(MagicItemsRegistry.unadornedRing).unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(MagicItemsRegistry.emorticOrigins))
                     .pattern("xxx")
                     .pattern("xyx")
                     .pattern("xxx").define('x', Tags.Items.NUGGETS_IRON).define('y', DOMINION_GEM).save(consumer);
@@ -101,7 +90,7 @@ public class Recipes extends RecipeProvider {
                     .pattern("yzy")
                     .pattern("y y").define('x',Ingredient.of(DecorativeOrStorageBlocks.AZULOREAL_SLAB.get()))
                     .define('y', Items.STICK)
-                    .define('z', Ingredient.of(RigoranthusTagRegistry.Items.AZULOREAL_LOGS)).save(consumer);
+                    .define('z', Ingredient.of(CanisTags.AZULOREAL_LOGS)).save(consumer);
 
             ShapedRecipeBuilder.shaped(MagicItemsRegistry.unadornedAmulet).unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(MagicItemsRegistry.emorticOrigins))
                     .pattern(" x ")

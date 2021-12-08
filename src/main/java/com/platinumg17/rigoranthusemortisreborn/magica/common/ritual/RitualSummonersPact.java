@@ -18,7 +18,7 @@ import net.minecraft.world.server.ServerWorld;
 
 import java.util.List;
 
-public class RitualBinding extends AbstractRitual {
+public class RitualSummonersPact extends AbstractRitual {
 
     @Override
     protected void tick() {

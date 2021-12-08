@@ -2,6 +2,7 @@ package com.platinumg17.rigoranthusemortisreborn.magica.common.block;
 
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.IchorJarTile;
+import com.platinumg17.rigoranthusemortisreborn.magica.setup.MagicItemsRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
@@ -138,7 +139,7 @@ public class IchorJar extends IchorBlock {
         if(tile == null)
             return ActionResultType.SUCCESS;
         ItemStack stack = player.getItemInHand(handIn);
-        if(stack.getItem() == ItemInit.BOTTLE_OF_ICHOR.get()) {
+        if(stack.getItem() == MagicItemsRegistry.BOTTLE_OF_ICHOR) {
             if (tile.getCurrentIchor() == 0) {
                 tile.addIchor(100);
                 if(!player.isCreative()) {
@@ -173,7 +174,7 @@ public class IchorJar extends IchorBlock {
             worldIn.sendBlockUpdated(pos, worldIn.getBlockState(pos), worldIn.getBlockState(pos), 3);
         }
         if(stack.getItem() == Items.GLASS_BOTTLE && tile.getCurrentIchor() >= 100){
-            ItemStack ichor = new ItemStack(ItemInit.BOTTLE_OF_ICHOR.get());
+            ItemStack ichor = new ItemStack(MagicItemsRegistry.BOTTLE_OF_ICHOR);
             player.addItem(ichor);
             player.getItemInHand(handIn).shrink(1);
             tile.removeIchor(100);

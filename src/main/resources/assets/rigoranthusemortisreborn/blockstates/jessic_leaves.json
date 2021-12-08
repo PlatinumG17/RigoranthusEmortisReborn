@@ -1,7 +1,9 @@
 {
   "variants": {
-    "": {
-      "model": "rigoranthusemortisreborn:block/jessic_leaves"
-    }
-  }
+    "": [
+      { "model": "rigoranthusemortisreborn:block/jessic_leaves", "weight": 3 },
+      { "model": "rigoranthusemortisreborn:block/jessic_leaves2", "weight": 3 },
+      { "model": "rigoranthusemortisreborn:block/jessic_leaves3", "weight": 4 }
+  ]
+}
 }

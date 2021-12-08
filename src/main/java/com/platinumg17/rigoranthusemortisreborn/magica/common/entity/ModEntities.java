@@ -21,7 +21,6 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.LightType;
-import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -30,8 +29,8 @@ import net.minecraftforge.registries.ObjectHolder;
 
 import java.util.Random;
 
-import static net.minecraft.world.gen.Heightmap.Type.MOTION_BLOCKING_NO_LEAVES;
 import static net.minecraft.entity.EntitySpawnPlacementRegistry.PlacementType.ON_GROUND;
+import static net.minecraft.world.gen.Heightmap.Type.MOTION_BLOCKING_NO_LEAVES;
 
 @ObjectHolder(EmortisConstants.MOD_ID)
 public class ModEntities {
@@ -125,21 +124,16 @@ public class ModEntities {
                     EntityType.Builder.<EntityOrbitProjectile>of(EntityOrbitProjectile::new, EntityClassification.MISC).sized(0.5f, 0.5f)
                     .clientTrackingRange(20).updateInterval(20).setShouldReceiveVelocityUpdates(true).setCustomClientFactory(EntityOrbitProjectile::new));
 
-//            SUNDERED_CADAVER =  build("sundered_cadaver", EntityType.Builder.<SunderedCadaverEntity>of((type, world) ->{
-//                        SunderedCadaverEntity cadaver = new SunderedCadaverEntity(type, world);
 //                        cadaver.spell = new Spell(MethodProjectile.INSTANCE, EffectIgnite.INSTANCE, AugmentSensitive.INSTANCE, EffectFlare.INSTANCE);
 //                        cadaver.color = new ParticleColor(250, 15, 15);
 //                        return cadaver;
-//                    }, EntityClassification.CREATURE)
-//                    .sized(1.4F, 3F).setTrackingRange(10));
 
             event.getRegistry().registerAll(
-                    LANGUID_DWELLER,            BONE_ARROW_ENTITY,
+                    LANGUID_DWELLER,            BONE_ARROW_ENTITY,      ENTITY_EVOKER_FANGS_ENTITY_TYPE,
                     FAMILIAR_CADAVER,           SUNDERED_CADAVER,       NECRAW_FASCII,          FERAL_CANIS,
                     ENTITY_FOLLOW_PROJ,         SPELL_PROJ,             ALLY_VEX,               LINGER_SPELL,
                     ENTITY_FLYING_ITEM,         ENTITY_RITUAL,          ENTITY_SPELL_ARROW,     SUMMON_WOLF,
-                    SUMMON_HORSE,               LIGHTNING_ENTITY,       ENTITY_DUMMY,           ENTITY_WARD,
-                    ENTITY_EVOKER_FANGS_ENTITY_TYPE
+                    SUMMON_HORSE,               LIGHTNING_ENTITY,       ENTITY_DUMMY,           ENTITY_WARD
             );
             EntitySpawnPlacementRegistry.register(SUNDERED_CADAVER,   ON_GROUND, MOTION_BLOCKING_NO_LEAVES, ModEntities::canMonsterSpawnInLight);
             EntitySpawnPlacementRegistry.register(NECRAW_FASCII,      ON_GROUND, MOTION_BLOCKING_NO_LEAVES, ModEntities::canMonsterSpawnInLight);

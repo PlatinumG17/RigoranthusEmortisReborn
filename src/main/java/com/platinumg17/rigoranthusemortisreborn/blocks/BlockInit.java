@@ -52,10 +52,6 @@ public class BlockInit {
 			() -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.STONE).strength(8f, 10f)
 					.harvestTool(ToolType.PICKAXE).harvestLevel(2).requiresCorrectToolForDrops().sound(SoundType.STONE)), "tooltip.block.rigoranthusemortisreborn.fortified_sandesite");
 
-	public static final RegistryObject<Block> FRAGMENTED_COBBLESTONE = registerBlock("fragmented_cobblestone",
-			() -> new GravelBlock(AbstractBlock.Properties.of(Material.SAND, MaterialColor.STONE).strength(0.8f, 0.8f)
-					.harvestTool(ToolType.SHOVEL).harvestLevel(0).sound(SoundType.GRAVEL)), "tooltip.block.rigoranthusemortisreborn.fragmented_cobblestone");
-
 	public static final RegistryObject<Block> FRAGMENTED_NETHERRACK = registerBlock("fragmented_netherrack",
 			() -> new GravelBlock(AbstractBlock.Properties.of(Material.SAND, MaterialColor.NETHER).strength(0.6f, 0.6f)
 					.harvestTool(ToolType.SHOVEL).harvestLevel(0).sound(SoundType.NETHERRACK)), "tooltip.block.rigoranthusemortisreborn.fragmented_netherrack");

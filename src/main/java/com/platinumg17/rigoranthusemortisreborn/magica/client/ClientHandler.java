@@ -1,5 +1,6 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.client;
 
+import com.platinumg17.rigoranthusemortisreborn.blocks.DecorativeOrStorageBlocks;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.renderer.tile.*;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.BlockRegistry;
@@ -38,6 +39,23 @@ public class ClientHandler {
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.RELAY_DEPOSIT_TILE, (t) -> new GenericRenderer(t, "relay_deposit"));
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.EMORTIC_RELAY_TILE, (t) -> new GenericRenderer(t, "emortic_relay"));
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.EMORTIC_RELAY_SPLITTER_TILE, (t) -> new GenericRenderer(t, "relay_splitter"));
+
+        RenderTypeLookup.setRenderLayer(BlockRegistry.MASTERFUL_SMELTERY, RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(BlockRegistry.POTTED_JESSIC_SAPLING, RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(BlockRegistry.POTTED_AZULOREAL_SAPLING, RenderType.cutout());
+
+//        RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.JESSIC_DOOR.get(), RenderType.cutout());
+//        RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.JESSIC_TRAPDOOR.get(), RenderType.cutout());
+//        RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.AZULOREAL_DOOR.get(), RenderType.cutout());
+//        RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.AZULOREAL_TRAPDOOR.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(BlockRegistry.JESSIC_LEAVES, RenderType.cutoutMipped());
+        RenderTypeLookup.setRenderLayer(BlockRegistry.JESSIC_SAPLING, RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(BlockRegistry.AZULOREAL_LEAVES, RenderType.cutoutMipped());
+        RenderTypeLookup.setRenderLayer(BlockRegistry.AZULOREAL_SAPLING, RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(BlockRegistry.AZULOREAL_ORCHID, RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(BlockRegistry.IRIDESCENT_SPROUTS, RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(BlockRegistry.LISIANTHUS, RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(BlockRegistry.SPECTABILIS_BUSH, RenderType.cutout());
 
         RenderTypeLookup.setRenderLayer(BlockRegistry.EMORTIC_RELAY, RenderType.cutout());
         RenderTypeLookup.setRenderLayer(BlockRegistry.RELAY_DEPOSIT, RenderType.cutout());

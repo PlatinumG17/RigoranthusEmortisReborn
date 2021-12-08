@@ -1,6 +1,7 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.common.world.feature;
 
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.lib.LibSoundNames;
 import net.minecraft.client.audio.BackgroundMusicSelector;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;

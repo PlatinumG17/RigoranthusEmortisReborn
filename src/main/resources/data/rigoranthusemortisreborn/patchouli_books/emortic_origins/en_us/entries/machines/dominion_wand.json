@@ -1,0 +1,19 @@
+{
+    "name": "item.rigoranthusemortisreborn.dominion_wand",
+    "icon": "rigoranthusemortisreborn:dominion_wand",
+    "category": "machines",
+    "pages": [
+        {
+            "type": "text",
+            "text": "rigoranthusemortisreborn.page1.dominion_wand"
+        },
+    {
+      "type": "amalgamator_recipe",
+      "recipe": "rigoranthusemortisreborn:dominion_wand"
+    },
+		{
+            "type": "relations",
+            "entries":["amalgamator/emortic_relay"]        
+        }
+    ]
+}

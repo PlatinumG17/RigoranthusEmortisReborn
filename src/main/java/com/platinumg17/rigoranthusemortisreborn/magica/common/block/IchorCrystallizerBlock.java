@@ -3,21 +3,20 @@ package com.platinumg17.rigoranthusemortisreborn.magica.common.block;
 import com.platinumg17.rigoranthusemortisreborn.blocks.BlockInit;
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.IchorCrystallizerTile;
+import com.platinumg17.rigoranthusemortisreborn.magica.setup.MagicItemsRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.Property;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.IBooleanFunction;
@@ -25,7 +24,6 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -56,7 +54,7 @@ public class IchorCrystallizerBlock extends ModBlock {
                 tile.baseMaterial = ItemStack.EMPTY;
             }
             else if (!player.inventory.getSelected().isEmpty()) {
-                if(player.getItemInHand(handIn).getItem() == ItemInit.BOTTLE_OF_ICHOR.get()
+                if(player.getItemInHand(handIn).getItem() == MagicItemsRegistry.BOTTLE_OF_ICHOR
                         || player.getItemInHand(handIn).getItem() == ItemInit.GHAST_IRON_INGOT.get()
                         || player.getItemInHand(handIn).getItem() == ItemInit.BLIGHT_ICHOR.get()
                         || player.getItemInHand(handIn).getItem() == ItemInit.BUCKET_OF_CADAVEROUS_ICHOR.get()
@@ -163,8 +161,4 @@ public class IchorCrystallizerBlock extends ModBlock {
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         return SHAPE;
     }
-
-//    public BlockRenderType getRenderType(BlockState p_149645_1_) {
-//        return BlockRenderType.ENTITYBLOCK_ANIMATED;
-//    }
 }

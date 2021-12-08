@@ -1,4 +1,4 @@
-package com.platinumg17.rigoranthusemortisreborn.magica.common.world.feature;
+package com.platinumg17.rigoranthusemortisreborn.magica.common.lib;
 
 public class LibSoundNames {
     public final static String UN_DIA_DE_ABRIL = "un_dia_de_abril";

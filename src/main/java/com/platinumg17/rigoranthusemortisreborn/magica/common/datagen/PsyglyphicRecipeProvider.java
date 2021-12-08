@@ -80,7 +80,7 @@ public class PsyglyphicRecipeProvider implements IDataProvider {
                 .build());
         addRecipe(builder()
                 .withResult(MagicItemsRegistry.ringOfLesserConservation)
-                .withReagent(MagicItemsRegistry.ringOfPotential)
+                .withReagent(MagicItemsRegistry.unadornedRing)
                 .withPedestalItem(4,  Ingredient.of(Tags.Items.GEMS_DIAMOND))
                 .withPedestalItem(2,Ingredient.of(Tags.Items.ENDER_PEARLS))
                 .withPedestalItem(2,   Recipes.DOMINION_GEM)
@@ -175,7 +175,7 @@ public class PsyglyphicRecipeProvider implements IDataProvider {
                 .buildPsyglyphicRecipe(EnchantmentRegistry.REACTIVE_ENCHANTMENT, 2, 6000));
 
         addRecipe(builder()
-                .withPedestalItem(4, ItemInit.DWELLER_FLESH.get())
+                .withPedestalItem(4, MagicItemsRegistry.DWELLER_FLESH)
                 .withPedestalItem(1,Ingredient.of(Tags.Items.ENDER_PEARLS))
                 .withPedestalItem(RigoranthusEmortisRebornAPI.getInstance().getGlyphItem(AugmentPierce.INSTANCE))
                 .withPedestalItem(RigoranthusEmortisRebornAPI.getInstance().getGlyphItem(AugmentExtract.INSTANCE))

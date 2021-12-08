@@ -2,12 +2,22 @@ package com.platinumg17.rigoranthusemortisreborn.magica.common.lib;
 
 public class LibItemNames {
 
+    public static final String BLASTING_AUGMENT = "augment_blasting";
+    public static final String SMOKING_AUGMENT = "augment_smoking";
+    public static final String SPEED_AUGMENT = "augment_speed";
+    public static final String FUEL_AUGMENT = "augment_fuel";
+    public static final String ITEM_COPY = "item_copy";
+
+    public static final String BOTTLE_OF_ICHOR = "bottle_of_ichor";
+    public static final String DWELLER_FLESH = "dweller_flesh";
+    public static final String BONE_ARROW = "bone_arrow";
     public static final String CANIS_CHORDATA_SPAWN_EGG = "canis_chordata_spawn_egg";
     public static final String SUNDERED_CADAVER_SPAWN_EGG = "sundered_cadaver_spawn_egg";
     public static final String NECRAW_FASCII_SPAWN_EGG = "necraw_fascii_spawn_egg";
     public static final String LANGUID_DWELLER_SPAWN_EGG = "languid_dweller_spawn_egg";
 
-    public static final String FRAGMENTED_COBBLESTONE = "fragmented_cobblestone";
+    public static final String JESSIC_BOAT = "jessic_boat";
+    public static final String AZULOREAL_BOAT = "azuloreal_boat";
     public static final String DOMINION_FIBER = "dominion_fiber";
     public static final String BUCKET_OF_DOMINION = "bucket_of_dominion";
     public static final String EMORTIC_ORIGINS = "emortic_origins";
@@ -28,6 +38,7 @@ public class LibItemNames {
     public static final String DOMINION_GEM = "dominion_gem";
     public static final String BLANK_PARCHMENT = "blank_parchment";
     public static final String DOMINION_BERRY = "dominion_berry";
+    public static final String BILIS_BERRY = "bilis_berry";
 
     public static final String WAND = "wand";
     public static final String RITUAL_BOOK = "ritual_book";

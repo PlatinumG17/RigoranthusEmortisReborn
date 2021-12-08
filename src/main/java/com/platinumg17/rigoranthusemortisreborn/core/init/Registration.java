@@ -3,17 +3,18 @@ package com.platinumg17.rigoranthusemortisreborn.core.init;
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
-import com.platinumg17.rigoranthusemortisreborn.items.*;
+import com.platinumg17.rigoranthusemortisreborn.items.RigoranthusItemTier;
 import com.platinumg17.rigoranthusemortisreborn.items.armor.RigoranthusArmorMaterial;
 import com.platinumg17.rigoranthusemortisreborn.items.armor.armorsets.*;
-import com.platinumg17.rigoranthusemortisreborn.items.specialized.smeltery.*;
 import com.platinumg17.rigoranthusemortisreborn.items.specialized.Esotericum;
+import com.platinumg17.rigoranthusemortisreborn.items.specialized.smeltery.ItemSoulCoal;
 import com.platinumg17.rigoranthusemortisreborn.items.tooltypes.CrushingHammerItem;
-import com.platinumg17.rigoranthusemortisreborn.items.weapons.type.projectiles.BoneArrowItem;
+import com.platinumg17.rigoranthusemortisreborn.magica.setup.MagicItemsRegistry;
 import com.platinumg17.rigoranthusemortisreborn.world.gen.feature.OreBlockEmortis;
 import com.platinumg17.rigoranthusemortisreborn.world.plants.LumiShroomBlock;
-import com.platinumg17.rigoranthusemortisreborn.world.plants.SpectabilisBushBlock;
-import net.minecraft.block.*;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -21,18 +22,12 @@ import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.*;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
-import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-import com.platinumg17.rigoranthusemortisreborn.blocks.custom.BlockMasterfulSmeltery;
-import com.platinumg17.rigoranthusemortisreborn.blocks.tileentity.container.MasterfulSmelteryContainer;
-import com.platinumg17.rigoranthusemortisreborn.blocks.tileentity.MasterfulSmelteryTile;
 
 import static com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn.MOD_ID;
 
@@ -47,27 +42,26 @@ public class Registration {
         TILES.register(FMLJavaModLoadingContext.get().getModEventBus());
         CONTAINERS.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
-    public static final RegistryObject<BlockMasterfulSmeltery> MASTERFUL_SMELTERY = BLOCKS.register(BlockMasterfulSmeltery.MASTERFUL_SMELTERY, () -> new BlockMasterfulSmeltery(AbstractBlock.Properties.of(Material.HEAVY_METAL).noCollission().copy(Blocks.IRON_BLOCK)));
-    public static final RegistryObject<Item> MASTERFUL_SMELTERY_ITEM = ITEMS.register(BlockMasterfulSmeltery.MASTERFUL_SMELTERY, () -> new BlockItem(MASTERFUL_SMELTERY.get(), new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(1)));
-    public static final RegistryObject<TileEntityType<MasterfulSmelteryTile>> MASTERFUL_SMELTERY_TILE = TILES.register(BlockMasterfulSmeltery.MASTERFUL_SMELTERY, () -> TileEntityType.Builder.of(MasterfulSmelteryTile::new, MASTERFUL_SMELTERY.get()).build(null));
-    public static final RegistryObject<ContainerType<MasterfulSmelteryContainer>> MASTERFUL_SMELTERY_CONTAINER = CONTAINERS.register(BlockMasterfulSmeltery.MASTERFUL_SMELTERY, () -> IForgeContainerType.create((windowId, inv, data) -> {
-        BlockPos pos = data.readBlockPos();
-        World world = inv.player.getEntity().level;
-        return new MasterfulSmelteryContainer(windowId, world, pos, inv, inv.player);}));
+//    public static final RegistryObject<Block> MASTERFUL_SMELTERY = BLOCKS.register(LibBlockNames.MASTERFUL_SMELTERY, () -> new BlockMasterfulSmeltery(AbstractBlock.Properties.of(Material.HEAVY_METAL).noCollission().copy(Blocks.IRON_BLOCK)));
+//    public static final RegistryObject<Item> MASTERFUL_SMELTERY_ITEM = ITEMS.register(LibBlockNames.MASTERFUL_SMELTERY, () -> new BlockItem(MASTERFUL_SMELTERY.get(), new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(1)));
+//    public static final RegistryObject<TileEntityType<MasterfulSmelteryTile>> MASTERFUL_SMELTERY_TILE = TILES.register(LibBlockNames.MASTERFUL_SMELTERY, () -> TileEntityType.Builder.of(MasterfulSmelteryTile::new, MASTERFUL_SMELTERY.get()).build(null));
+//    public static final RegistryObject<ContainerType<MasterfulSmelteryContainer>> MASTERFUL_SMELTERY_CONTAINER = CONTAINERS.register(LibBlockNames.MASTERFUL_SMELTERY, () -> IForgeContainerType.create((windowId, inv, data) -> {
+//        BlockPos pos = data.readBlockPos();
+//        World world = inv.player.getEntity().level;
+//        return new MasterfulSmelteryContainer(windowId, world, pos, inv, inv.player);}));
 //    public static void registerBlocks(RegistryEvent.Register<Block> event) {}
 
-    public static final RegistryObject<ItemAugmentBlasting> BLASTING_AUGMENT = ITEMS.register("augment_blasting", () -> new ItemAugmentBlasting(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)));
-    public static final RegistryObject<ItemAugmentSmoking> SMOKING_AUGMENT = ITEMS.register("augment_smoking", () -> new ItemAugmentSmoking(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)));
-    public static final RegistryObject<ItemAugmentSpeed> SPEED_AUGMENT = ITEMS.register("augment_speed", () -> new ItemAugmentSpeed(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)));
-    public static final RegistryObject<ItemAugmentFuel> FUEL_AUGMENT = ITEMS.register("augment_fuel", () -> new ItemAugmentFuel(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)));
-    public static final RegistryObject<ItemSmelteryCopy> ITEM_COPY = ITEMS.register("item_copy", () -> new ItemSmelteryCopy(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)));
+//    public static final RegistryObject<ItemAugmentBlasting> BLASTING_AUGMENT = ITEMS.register("augment_blasting", () -> new ItemAugmentBlasting(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)));
+//    public static final RegistryObject<ItemAugmentSmoking> SMOKING_AUGMENT = ITEMS.register("augment_smoking", () -> new ItemAugmentSmoking(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)));
+//    public static final RegistryObject<ItemAugmentSpeed> SPEED_AUGMENT = ITEMS.register("augment_speed", () -> new ItemAugmentSpeed(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)));
+//    public static final RegistryObject<ItemAugmentFuel> FUEL_AUGMENT = ITEMS.register("augment_fuel", () -> new ItemAugmentFuel(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)));
+//    public static final RegistryObject<ItemSmelteryCopy> ITEM_COPY = ITEMS.register("item_copy", () -> new ItemSmelteryCopy(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)));
     public static final RegistryObject<Block> RECONDITE_ORE = BLOCKS.register("recondite_ore", () -> new OreBlockEmortis(8, 15, AbstractBlock.Properties.of(Material.STONE, MaterialColor.STONE).strength(10f, 12f).harvestTool(ToolType.PICKAXE).harvestLevel(3).requiresCorrectToolForDrops().sound(SoundType.STONE)));
     public static final RegistryObject<Item> RECONDITE_ORE_ITEM = ITEMS.register("recondite_ore", () -> new BlockItem(RECONDITE_ORE.get(), new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)));
     public static final RegistryObject<Item> POWDERED_ESOTERICUM = ITEMS.register("powdered_esotericum", () -> new Esotericum(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)));
 
 //    public static final RegistryObject<Block> ATTACHED_SPECTABILIS_STEM = BLOCKS.register("attached_spectabilis_stem", () -> new SpectabilisBush.AttachedStem((StemGrownBlock) BlockInit.SPECTABILIS.get(), AbstractBlock.Properties.of(Material.PLANT).noCollission().randomTicks().strength(0).sound(SoundType.CROP)));
 //    public static final RegistryObject<Block> SPECTABILIS_STEM = BLOCKS.register("spectabilis_stem", () -> new SpectabilisBush.Stem((StemGrownBlock) BlockInit.SPECTABILIS.get(), AbstractBlock.Properties.of(Material.PLANT).noCollission().randomTicks().strength(0).sound(SoundType.CROP)));
-    public static final RegistryObject<Block> SPECTABILIS_BUSH = BLOCKS.register("spectabilis_bush", () -> new SpectabilisBushBlock(AbstractBlock.Properties.of(Material.PLANT).randomTicks().noCollission().sound(SoundType.SWEET_BERRY_BUSH)));
     public static final RegistryObject<Block> LUMISHROOM = BLOCKS.register("lumishroom", () -> new LumiShroomBlock(AbstractBlock.Properties.of(Material.PLANT, MaterialColor.COLOR_YELLOW).noCollission().randomTicks().strength(0).sound(SoundType.GRASS).lightLevel(state -> 11)));
 
     public static final Item APOGEAN_SWORD = new SwordItem(RigoranthusItemTier.APOGEAN, Config.apogean_sword_damage.get(), Config.apogean_sword_speed.get().floatValue(), new Item.Properties().fireResistant().rarity(Rarity.EPIC).tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(1)).setRegistryName("apogean_sword");
@@ -155,17 +149,16 @@ public class Registration {
     public static final Item UNFIRED_BRICK = new Item(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)).setRegistryName("unfired_brick");
     public static final Item UNFIRED_NETHER_BRICK = new Item(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)).setRegistryName("unfired_nether_brick");
 
-    public static final Item BONE_ARROW = new BoneArrowItem(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)).setRegistryName("bone_arrow");
     public static final Item BONE_SPEAR = new SwordItem(RigoranthusItemTier.BONE, Config.bone_spear_damage.get(), Config.bone_spear_speed.get().floatValue(), new Item.Properties().rarity(Rarity.UNCOMMON).tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(1)).setRegistryName("bone_spear");
 
     public static void registerItemProperties() {
         ItemModelsProperties.register(Items.CROSSBOW, new ResourceLocation(EmortisConstants.MOD_ID, "bone_arrow"), (stack, world, entity) -> {
-            return entity != null && CrossbowItem.isCharged(stack) && CrossbowItem.containsChargedProjectile(stack, Registration.BONE_ARROW.getItem()) ? 1.0F : 0.0F;
+            return entity != null && CrossbowItem.isCharged(stack) && CrossbowItem.containsChargedProjectile(stack, MagicItemsRegistry.BONE_ARROW.getItem()) ? 1.0F : 0.0F;
         });
     }
 
     public static void registerItems(RegistryEvent.Register<Item> event) {
-        if (Config.enableBoneWeapons.get()) {event.getRegistry().register(BONE_SPEAR); event.getRegistry().register(BONE_ARROW);}
+        if (Config.enableBoneWeapons.get()) {event.getRegistry().register(BONE_SPEAR);}
         if (Config.enableSoulCoal.get()) { event.getRegistry().register(SOUL_COAL); }
         if (Config.enableUnfiredBricks.get()) {
             event.getRegistry().register(MUD_GLOB);

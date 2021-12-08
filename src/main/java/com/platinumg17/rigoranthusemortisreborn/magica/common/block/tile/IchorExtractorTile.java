@@ -6,6 +6,7 @@ import com.platinumg17.rigoranthusemortisreborn.magica.client.particle.ParticleC
 import com.platinumg17.rigoranthusemortisreborn.magica.common.network.Networking;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.network.PacketREEffect;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.BlockRegistry;
+import com.platinumg17.rigoranthusemortisreborn.magica.setup.MagicItemsRegistry;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityType;
@@ -101,7 +102,7 @@ public class IchorExtractorTile extends IchorTile implements IAnimatable {
             ichor += 200; // was 100
             progress += 5;
         }
-        else if(i.getItem().getItem() == ItemInit.BOTTLE_OF_ICHOR.get().asItem()) {
+        else if(i.getItem().getItem() == MagicItemsRegistry.BOTTLE_OF_ICHOR) {
             ichor += 100; //was 50
             progress += 3;
         }

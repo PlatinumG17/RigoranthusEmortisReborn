@@ -7,7 +7,7 @@ import com.platinumg17.rigoranthusemortisreborn.api.apimagic.psyglyphic_amalgama
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.ritual.AbstractRitual;
 import com.platinumg17.rigoranthusemortisreborn.magica.GlyphLib;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.CadaverFamiliar;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.ritual.RitualBinding;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.ritual.RitualSummonersPact;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.ritual.RitualHealing;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.spell.augment.*;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.spell.effect.*;
@@ -86,7 +86,7 @@ public class APIRegistry {
         registerSpell(EffectGlider.INSTANCE);
         registerSpell(MethodOrbit.INSTANCE);
 //        registerSpell(EffectRune.INSTANCE);
-        registerRitual(new RitualBinding());
+        registerRitual(new RitualSummonersPact());
         registerRitual(new RitualHealing());
 //        registerRitual(new RitualCadaverSummoning());
 

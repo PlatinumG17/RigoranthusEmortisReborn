@@ -313,7 +313,7 @@ public class RitualTile extends AnimatedTile implements ITickableTileEntity, ITo
                 }
             }
             if(ritual.needsDominionNow())
-                tooltips.add(new TranslationTextComponent("rigoranthusemortisreborn.wixie.need_dominion").getString());
+                tooltips.add(new TranslationTextComponent("rigoranthusemortisreborn.ritual.need_dominion").getString());
         }
         return tooltips;
     }

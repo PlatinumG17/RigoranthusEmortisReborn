@@ -56,7 +56,7 @@ public class VerdurousLeavesBlock extends LeavesBlock {
     }
 
     protected int getDistance(BlockState neighbor) {
-        if((neighbor.getBlock() == DecorativeOrStorageBlocks.JESSIC_LOG.get()) || (neighbor.getBlock() == DecorativeOrStorageBlocks.AZULOREAL_LOG.get())) {return 0;}
+        if((neighbor.getBlock() == BlockRegistry.JESSIC_LOG) || (neighbor.getBlock() == BlockRegistry.AZULOREAL_LOG)) {return 0;}
 
         else {return neighbor.getBlock() == this ? neighbor.getValue(DISTANCE) : 7;}
     }

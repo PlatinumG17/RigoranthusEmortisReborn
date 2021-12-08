@@ -11,12 +11,12 @@ import net.minecraftforge.common.Tags.IOptionalNamedTag;
 
 public class RigoranthusTagRegistry {
     public static class Blocks {
+        public static final Tags.IOptionalNamedTag<Block> AZULOREAL_FENCE = createForgeTag("wooden_fences/azuloreal");
+        public static final Tags.IOptionalNamedTag<Block> AZULOREAL_FENCE_GATE = createForgeTag("fence_gates/azuloreal");
+        public static final Tags.IOptionalNamedTag<Block> JESSIC_FENCE = createForgeTag("wooden_fences/jessic");
+        public static final Tags.IOptionalNamedTag<Block> JESSIC_FENCE_GATE = createForgeTag("fence_gates/jessic");
 
         public static final Tags.IOptionalNamedTag<Block> ORE = createTag("ore");
-        public static final Tags.IOptionalNamedTag<Block> JESSIC_LOGS = createTag("jessic_logs");
-        public static final Tags.IOptionalNamedTag<Block> JESSIC = createTag("jessic");
-        public static final Tags.IOptionalNamedTag<Block> AZULOREAL_LOGS = createTag("azuloreal_logs");
-        public static final Tags.IOptionalNamedTag<Block> AZULOREAL = createTag("azuloreal");
         public static final Tags.IOptionalNamedTag<Block> APOGEAN = createForgeTag("storage_blocks/apogean");
         public static final Tags.IOptionalNamedTag<Block> AQUEOUS = createForgeTag("storage_blocks/aqueous");
         public static final Tags.IOptionalNamedTag<Block> ATROPHYING = createForgeTag("storage_blocks/atrophying");
@@ -30,13 +30,6 @@ public class RigoranthusTagRegistry {
         public static final Tags.IOptionalNamedTag<Block> RECONDITE_ORE = createForgeTag("ores/recondite");
         public static final Tags.IOptionalNamedTag<Block> ORES = createForgeTag("ores");
         public static final Tags.IOptionalNamedTag<Block> STORAGE_BLOCKS = createForgeTag("storage_blocks");
-        public static final Tags.IOptionalNamedTag<Block> MASTERFUL = createForgeTag("furnaces/masterful");
-        public static final Tags.IOptionalNamedTag<Block> JESSIC_LOG = createForgeTag("logs/jessic");
-        public static final Tags.IOptionalNamedTag<Block> JESSIC_FENCE = createForgeTag("wooden_fences/jessic");
-        public static final Tags.IOptionalNamedTag<Block> JESSIC_FENCE_GATE = createForgeTag("fence_gates/jessic");
-        public static final Tags.IOptionalNamedTag<Block> AZULOREAL_LOG = createForgeTag("logs/azuloreal");
-        public static final Tags.IOptionalNamedTag<Block> AZULOREAL_FENCE = createForgeTag("wooden_fences/azuloreal");
-        public static final Tags.IOptionalNamedTag<Block> AZULOREAL_FENCE_GATE = createForgeTag("fence_gates/azuloreal");
 
         public static IOptionalNamedTag<Block> createTag(String name) {
             return BlockTags.createOptional(new ResourceLocation(EmortisConstants.MOD_ID, name));
@@ -62,11 +55,6 @@ public class RigoranthusTagRegistry {
 
         public static final Tags.IOptionalNamedTag<Item> CRUSHING_HAMMER = createTag("crushing_hammer");
         public static final Tags.IOptionalNamedTag<Item> NETHERITE_INGOTS = createForgeTag("ingots/netherite");
-        public static final Tags.IOptionalNamedTag<Item> JESSIC_LOGS = createTag("jessic_logs");
-        public static final Tags.IOptionalNamedTag<Item> JESSIC = createTag("jessic");
-        public static final Tags.IOptionalNamedTag<Item> AZULOREAL_LOGS = createTag("azuloreal_logs");
-        public static final Tags.IOptionalNamedTag<Item> AZULOREAL = createTag("azuloreal");
-        public static final Tags.IOptionalNamedTag<Item> AZULOREAL_LOG = createForgeTag("logs/azuloreal");
         public static final Tags.IOptionalNamedTag<Item> AZULOREAL_FENCE = createForgeTag("wooden_fences/azuloreal");
         public static final Tags.IOptionalNamedTag<Item> AZULOREAL_FENCE_GATE = createForgeTag("fence_gates/azuloreal");
 
@@ -82,8 +70,6 @@ public class RigoranthusTagRegistry {
         public static final Tags.IOptionalNamedTag<Item> PHANTASMAL_ARMOR_SET = createTag("armor/phantasmal_armor_set");
         public static final Tags.IOptionalNamedTag<Item> REMEX_ARMOR_SET = createTag("armor/remex_armor_set");
 
-        public static final Tags.IOptionalNamedTag<Item> MASTERFUL = createForgeTag("furnaces/masterful");
-        public static final Tags.IOptionalNamedTag<Item> JESSIC_LOG = createForgeTag("logs/jessic");
         public static final Tags.IOptionalNamedTag<Item> JESSIC_FENCE = createForgeTag("wooden_fences/jessic");
         public static final Tags.IOptionalNamedTag<Item> JESSIC_FENCE_GATE = createForgeTag("fence_gates/jessic");
         public static final Tags.IOptionalNamedTag<Item> NETHERITE_ARMOR = createForgeTag("armor/netherite");

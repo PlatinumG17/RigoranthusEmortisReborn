@@ -6,6 +6,7 @@ import com.platinumg17.rigoranthusemortisreborn.blocks.BuildingBlockInit;
 import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
 import com.platinumg17.rigoranthusemortisreborn.entity.item.BoneArrowEntity;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.BlockRegistry;
+import com.platinumg17.rigoranthusemortisreborn.magica.setup.MagicItemsRegistry;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.dispenser.IPosition;
 import net.minecraft.dispenser.ProjectileDispenseBehavior;
@@ -14,34 +15,37 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class VanillaCompatRigoranthus {
-//    public static void registerDispenserBehaviors() {
-//        DispenserBlock.registerBehavior(Registration.BONE_ARROW.getItem(), new ProjectileDispenseBehavior() {
-//            protected ProjectileEntity getProjectile(World worldIn, IPosition position, ItemStack stackIn) {
-//                return new BoneArrowEntity(worldIn, position.x(), position.y(), position.z());
-//            }
-//        });
-//    }
+    public static void registerDispenserBehaviors() {
+        DispenserBlock.registerBehavior(MagicItemsRegistry.BONE_ARROW, new ProjectileDispenseBehavior() {
+            protected ProjectileEntity getProjectile(World worldIn, IPosition position, ItemStack stackIn) {
+                return new BoneArrowEntity(worldIn, position.x(), position.y(), position.z());
+            }
+        });
+    }
     public static void registerCompostables() {
         // Compostable
-        DataUtil.registerCompostable(DecorativeOrStorageBlocks.AZULOREAL_LEAVES.get(), 0.3F);
-        DataUtil.registerCompostable(DecorativeOrStorageBlocks.AZULOREAL_SAPLING.get(), 0.3F);
+        DataUtil.registerCompostable(BlockRegistry.AZULOREAL_LEAVES, 0.3F);
+        DataUtil.registerCompostable(BlockRegistry.AZULOREAL_SAPLING, 0.3F);
         DataUtil.registerCompostable(DecorativeOrStorageBlocks.AZULOREAL_LEAF_CARPET.get(), 0.3F);
 
-        DataUtil.registerCompostable(DecorativeOrStorageBlocks.JESSIC_LEAVES.get(), 0.3F);
-        DataUtil.registerCompostable(DecorativeOrStorageBlocks.JESSIC_SAPLING.get(), 0.3F);
+        DataUtil.registerCompostable(BlockRegistry.JESSIC_LEAVES, 0.3F);
+        DataUtil.registerCompostable(BlockRegistry.JESSIC_SAPLING, 0.3F);
         DataUtil.registerCompostable(DecorativeOrStorageBlocks.JESSIC_LEAF_CARPET.get(), 0.3F);
 
-        DataUtil.registerCompostable(DecorativeOrStorageBlocks.AZULOREAL_ORCHID.get(), 0.65F);
-        DataUtil.registerCompostable(DecorativeOrStorageBlocks.IRIDESCENT_SPROUTS.get(), 0.65F);
-        DataUtil.registerCompostable(BuildingBlockInit.LISIANTHUS.get(), 0.65F);
+        DataUtil.registerCompostable(BlockRegistry.AZULOREAL_ORCHID, 0.65F);
+        DataUtil.registerCompostable(BlockRegistry.IRIDESCENT_SPROUTS, 0.65F);
+        DataUtil.registerCompostable(BlockRegistry.LISIANTHUS, 0.65F);
+
+        DataUtil.registerCompostable(BlockRegistry.SPECTABILIS_BUSH, 0.65F);
+        DataUtil.registerCompostable(BlockRegistry.DOMINION_BERRY_BUSH, 0.65F);
     }
     public static void registerFlammables() {
         // Flammability
-        DataUtil.registerFlammable(DecorativeOrStorageBlocks.AZULOREAL_LEAVES.get(), 30, 60);
-        DataUtil.registerFlammable(DecorativeOrStorageBlocks.AZULOREAL_LOG.get(), 5, 5);
-        DataUtil.registerFlammable(DecorativeOrStorageBlocks.STRIPPED_AZULOREAL_LOG.get(), 5, 5);
-        DataUtil.registerFlammable(DecorativeOrStorageBlocks.AZULOREAL_WOOD.get(), 5, 5);
-        DataUtil.registerFlammable(DecorativeOrStorageBlocks.STRIPPED_AZULOREAL_WOOD.get(), 5, 5);
+        DataUtil.registerFlammable(BlockRegistry.AZULOREAL_LEAVES, 30, 60);
+        DataUtil.registerFlammable(BlockRegistry.AZULOREAL_LOG, 5, 5);
+        DataUtil.registerFlammable(BlockRegistry.STRIPPED_AZULOREAL_LOG, 5, 5);
+        DataUtil.registerFlammable(BlockRegistry.AZULOREAL_WOOD, 5, 5);
+        DataUtil.registerFlammable(BlockRegistry.STRIPPED_AZULOREAL_WOOD, 5, 5);
         DataUtil.registerFlammable(DecorativeOrStorageBlocks.AZULOREAL_PLANKS.get(), 5, 20);
         DataUtil.registerFlammable(DecorativeOrStorageBlocks.AZULOREAL_SLAB.get(), 5, 20);
         DataUtil.registerFlammable(DecorativeOrStorageBlocks.AZULOREAL_STAIRS.get(), 5, 20);
@@ -54,11 +58,11 @@ public class VanillaCompatRigoranthus {
         DataUtil.registerFlammable(DecorativeOrStorageBlocks.AZULOREAL_HEDGE.get(), 5, 20);
         DataUtil.registerFlammable(DecorativeOrStorageBlocks.AZULOREAL_BOOKSHELF.get(), 30, 20);
 
-        DataUtil.registerFlammable(DecorativeOrStorageBlocks.JESSIC_LEAVES.get(), 30, 60);
-        DataUtil.registerFlammable(DecorativeOrStorageBlocks.JESSIC_LOG.get(), 5, 5);
-        DataUtil.registerFlammable(DecorativeOrStorageBlocks.STRIPPED_JESSIC_LOG.get(), 5, 5);
-        DataUtil.registerFlammable(DecorativeOrStorageBlocks.JESSIC_WOOD.get(), 5, 5);
-        DataUtil.registerFlammable(DecorativeOrStorageBlocks.STRIPPED_JESSIC_WOOD.get(), 5, 5);
+        DataUtil.registerFlammable(BlockRegistry.JESSIC_LEAVES, 30, 60);
+        DataUtil.registerFlammable(BlockRegistry.JESSIC_LOG, 5, 5);
+        DataUtil.registerFlammable(BlockRegistry.STRIPPED_JESSIC_LOG, 5, 5);
+        DataUtil.registerFlammable(BlockRegistry.JESSIC_WOOD, 5, 5);
+        DataUtil.registerFlammable(BlockRegistry.STRIPPED_JESSIC_WOOD, 5, 5);
         DataUtil.registerFlammable(DecorativeOrStorageBlocks.JESSIC_PLANKS.get(), 5, 20);
         DataUtil.registerFlammable(DecorativeOrStorageBlocks.JESSIC_SLAB.get(), 5, 20);
         DataUtil.registerFlammable(DecorativeOrStorageBlocks.JESSIC_STAIRS.get(), 5, 20);

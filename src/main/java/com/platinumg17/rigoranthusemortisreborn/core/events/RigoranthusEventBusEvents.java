@@ -1,10 +1,10 @@
 package com.platinumg17.rigoranthusemortisreborn.core.events;
 
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
-import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
 import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
 import com.platinumg17.rigoranthusemortisreborn.core.init.fluid.FluidRegistry;
-import com.platinumg17.rigoranthusemortisreborn.core.registry.effects.RigoranthusEffectRegistry;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.potions.ModPotions;
+import com.platinumg17.rigoranthusemortisreborn.magica.setup.MagicItemsRegistry;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -44,8 +44,8 @@ public class RigoranthusEventBusEvents {
                         event.getWorld().playSound(event.getPlayer(),
                         event.getPlayer().getX(), event.getPlayer().getY(), event.getPlayer().getZ(), SoundEvents.BOTTLE_FILL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
                         event.getPlayer().awardStat(Stats.ITEM_USED.get(Items.GLASS_BOTTLE));
-                        if (!event.getPlayer().addItem(new ItemStack(ItemInit.BOTTLE_OF_ICHOR.get()))) {
-                            event.getPlayer().spawnAtLocation(new ItemStack(ItemInit.BOTTLE_OF_ICHOR.get()));
+                        if (!event.getPlayer().addItem(new ItemStack(MagicItemsRegistry.BOTTLE_OF_ICHOR))) {
+                            event.getPlayer().spawnAtLocation(new ItemStack(MagicItemsRegistry.BOTTLE_OF_ICHOR));
                         }
                         event.getPlayer().swing(event.getHand());
                         if (!event.getPlayer().isCreative()) {
@@ -147,7 +147,7 @@ public class RigoranthusEventBusEvents {
 //    }
     @SubscribeEvent
     public void onFOVUpdate(FOVUpdateEvent event) {
-        if (event.getEntity().hasEffect(RigoranthusEffectRegistry.NECROTIZING_FASCIITIS)) {
+        if (event.getEntity().hasEffect(ModPotions.NECROTIZING_FASCIITIS_EFFECT)) {
             event.setNewfov(1.0F);
         }
     }

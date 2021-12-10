@@ -13,7 +13,7 @@ import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.RitualTile;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.items.FamiliarScript;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.items.Glyph;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.items.RitualTablet;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.items.RitualOffering;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.spell.validation.StandardSpellValidator;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.entity.familiar.AbstractFamiliarHolder;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.recipe.PotionIngredient;
@@ -106,7 +106,7 @@ public class RigoranthusEmortisRebornAPI {
     /**
      * Contains the list of parchment item instances created during registration
      */
-    private HashMap<String, RitualTablet> ritualParchmentMap;
+    private HashMap<String, RitualOffering> ritualParchmentMap;
 
     /** Validator to use when crafting a spell in the spell book. */
     private ISpellValidator craftingSpellValidator;
@@ -166,7 +166,7 @@ public class RigoranthusEmortisRebornAPI {
     }
 
     public AbstractRitual registerRitual(String id, AbstractRitual ritual){
-        ritualParchmentMap.put(id, new RitualTablet(getRitualRegistryName(id), ritual));
+        ritualParchmentMap.put(id, new RitualOffering(getRitualRegistryName(id), ritual));
         return ritualMap.put(id, ritual);
     }
 
@@ -217,7 +217,7 @@ public class RigoranthusEmortisRebornAPI {
         return ritualMap;
     }
 
-    public Map<String, RitualTablet> getRitualItemMap(){
+    public Map<String, RitualOffering> getRitualItemMap(){
         return ritualParchmentMap;
     }
 

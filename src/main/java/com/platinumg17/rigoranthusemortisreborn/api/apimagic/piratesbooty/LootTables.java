@@ -3,7 +3,7 @@ package com.platinumg17.rigoranthusemortisreborn.api.apimagic.piratesbooty;
 import com.platinumg17.rigoranthusemortisreborn.api.RigoranthusEmortisRebornAPI;
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.datagen.DungeonLootGenerator;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.items.RitualTablet;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.items.RitualOffering;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.potions.ModPotions;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.BlockRegistry;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.MagicItemsRegistry;
@@ -53,8 +53,8 @@ public class LootTables {
         UNCOMMON_LOOT.add(() -> new ItemStack(MagicItemsRegistry.BONE_ARROW, 16 + r.nextInt(16)));
 
         UNCOMMON_LOOT.add(() ->{
-            List<RitualTablet> tablets = new ArrayList<>(RigoranthusEmortisRebornAPI.getInstance().getRitualItemMap().values());
-            return new ItemStack(tablets.get(r.nextInt(tablets.size())));
+            List<RitualOffering> offerings = new ArrayList<>(RigoranthusEmortisRebornAPI.getInstance().getRitualItemMap().values());
+            return new ItemStack(offerings.get(r.nextInt(offerings.size())));
         });
 
 //        RARE_LOOT.add(() -> makeTome("Xacris' Tiny Hut", new Spell()

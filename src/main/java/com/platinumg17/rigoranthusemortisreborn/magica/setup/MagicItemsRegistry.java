@@ -2,20 +2,22 @@ package com.platinumg17.rigoranthusemortisreborn.magica.setup;
 
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.api.RigoranthusEmortisRebornAPI;
+import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.interfaces.ISpellTier;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.ModEntities;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.items.curios.*;
+import com.platinumg17.rigoranthusemortisreborn.items.specialized.smeltery.*;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.armor.ApprenticeArmor;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.armor.MasterArmor;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.armor.NoviceArmor;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.ModEntities;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.items.*;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.items.curios.AbstractDominionCurio;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.items.curios.ConservationRing;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.items.curios.SummonersStrength;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.lib.LibItemNames;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.potions.ModPotions;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.spell.augment.AugmentAmplify;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.spell.augment.AugmentPierce;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.spell.augment.AugmentSplit;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.items.ModItem;
-import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.interfaces.ISpellTier;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.potion.EffectInstance;
@@ -33,6 +35,17 @@ import static com.platinumg17.rigoranthusemortisreborn.magica.setup.InjectionUti
 
 @ObjectHolder(EmortisConstants.MOD_ID)
 public class MagicItemsRegistry {
+    @ObjectHolder("debug") public static REItemDebug debug;
+//    @ObjectHolder(LibItemNames.POWDERED_ESOTERICUM) public static Esotericum POWDERED_ESOTERICUM;
+
+    @ObjectHolder(LibItemNames.BLASTING_AUGMENT) public static ItemAugmentBlasting BLASTING_AUGMENT;
+    @ObjectHolder(LibItemNames.SMOKING_AUGMENT) public static ItemAugmentSmoking SMOKING_AUGMENT;
+    @ObjectHolder(LibItemNames.SPEED_AUGMENT) public static ItemAugmentSpeed SPEED_AUGMENT;
+    @ObjectHolder(LibItemNames.FUEL_AUGMENT) public static ItemAugmentFuel FUEL_AUGMENT;
+    @ObjectHolder(LibItemNames.ITEM_COPY) public static ItemSmelteryCopy ITEM_COPY;
+
+    @ObjectHolder(LibItemNames.BOTTLE_OF_ICHOR) public static GlassBottleItem BOTTLE_OF_ICHOR;
+    @ObjectHolder(LibItemNames.DWELLER_FLESH) public static ModItem DWELLER_FLESH;
     @ObjectHolder(LibItemNames.NOVICE_SPELL_BOOK) public static SpellBook noviceSpellBook;
     @ObjectHolder(LibItemNames.APPRENTICE_SPELL_BOOK) public static SpellBook apprenticeSpellBook;
     @ObjectHolder(LibItemNames.EMORTIC_SPELL_BOOK) public static SpellBook emorticSpellBook;
@@ -41,39 +54,37 @@ public class MagicItemsRegistry {
     @ObjectHolder(LibItemNames.BLANK_GLYPH) public static  Item blankGlyph;
     @ObjectHolder(LibItemNames.BUCKET_OF_DOMINION) public static ModItem bucketOfDominion;
     @ObjectHolder(LibItemNames.DOMINION_FIBER) public static ModItem DOMINION_FIBER;
-
 //    @ObjectHolder(LibItemNames.PROSAIC_BELT) public static ModItem prosaicBelt;
     @ObjectHolder(LibItemNames.EMORTIC_ORIGINS) public static EmorticOrigins emorticOrigins = Null();
-    @ObjectHolder(LibItemNames.UNADORNED_RING) public  static ModItem ringOfPotential;
+    @ObjectHolder(LibItemNames.UNADORNED_RING) public  static ModItem unadornedRing;
     @ObjectHolder(LibItemNames.RING_OF_LESSER_CONSERVATION) public static ConservationRing ringOfLesserConservation;
     @ObjectHolder(LibItemNames.RING_OF_GREATER_CONSERVATION) public static ConservationRing ringOfGreaterConservation;
     
     @ObjectHolder(LibItemNames.SPELL_PARCHMENT) public static SpellParchment spellParchment;
-    @ObjectHolder(LibItemNames.AMULET_OF_DOMINION_BOOST)public static AbstractDominionCurio amuletOfDominionBoost;
-    @ObjectHolder(LibItemNames.AMULET_OF_DOMINION_REGEN)public static AbstractDominionCurio amuletOfDominionRegen;
-    @ObjectHolder(LibItemNames.UNADORNED_AMULET)public static ModItem unadornedAmulet;
-    @ObjectHolder(LibItemNames.DOMINION_WAND)public static DominionWand dominionWand;
-    @ObjectHolder("debug")public static REItemDebug debug;
-    @ObjectHolder(LibItemNames.DOMINION_GEM)public static ModItem dominionGem;
+    @ObjectHolder(LibItemNames.AMULET_OF_DOMINION_BOOST) public static AbstractDominionCurio amuletOfDominionBoost;
+    @ObjectHolder(LibItemNames.AMULET_OF_DOMINION_REGEN) public static AbstractDominionCurio amuletOfDominionRegen;
+    @ObjectHolder(LibItemNames.UNADORNED_AMULET) public static ModItem unadornedAmulet;
+    @ObjectHolder(LibItemNames.DOMINION_WAND) public static DominionWand dominionWand;
 
-    @ObjectHolder(LibItemNames.BLANK_PARCHMENT)public static ModItem BLANK_PARCHMENT;
-    @ObjectHolder(LibItemNames.WAND)public static Wand WAND;
-    @ObjectHolder(LibItemNames.ADONIS)public static Adonis ADONIS;
+    @ObjectHolder(LibItemNames.DOMINION_GEM) public static ModItem dominionGem;
+    @ObjectHolder(LibItemNames.BLANK_PARCHMENT) public static ModItem BLANK_PARCHMENT;
+    @ObjectHolder(LibItemNames.WAND) public static Wand WAND;
+    @ObjectHolder(LibItemNames.ADONIS) public static Adonis ADONIS;
 
-    @ObjectHolder(LibItemNames.AMPLIFY_ARROW)public static SpellArrow AMPLIFY_ARROW;
-    @ObjectHolder(LibItemNames.SPLIT_ARROW)public static SpellArrow SPLIT_ARROW;
-    @ObjectHolder(LibItemNames.PIERCE_ARROW)public static SpellArrow PIERCE_ARROW;
+    @ObjectHolder(LibItemNames.AMPLIFY_ARROW) public static SpellArrow AMPLIFY_ARROW;
+    @ObjectHolder(LibItemNames.SPLIT_ARROW) public static SpellArrow SPLIT_ARROW;
+    @ObjectHolder(LibItemNames.PIERCE_ARROW) public static SpellArrow PIERCE_ARROW;
+    @ObjectHolder(LibItemNames.BONE_ARROW) public static BoneArrow BONE_ARROW;
 
-    @ObjectHolder(LibItemNames.EXP_GEM)public static ExperienceGem EXPERIENCE_GEM;
-    @ObjectHolder(LibItemNames.GREATER_EXP_GEM)public static ExperienceGem GREATER_EXPERIENCE_GEM;
-
-    @ObjectHolder(LibItemNames.ENCHANTERS_SWORD)public static EnchantersSword ENCHANTERS_SWORD;
-    @ObjectHolder(LibItemNames.LUSTERIC_SHIELD)public static LustericShield LUSTERIC_SHIELD;
-
-    @ObjectHolder(LibItemNames.CASTER_TOME)public static CasterTome CASTER_TOME;
-    @ObjectHolder(LibItemNames.SUMMON_FOCUS)public static SummoningFocus SUMMONING_FOCUS;
+    @ObjectHolder(LibItemNames.EXP_GEM) public static ExperienceGem EXPERIENCE_GEM;
+    @ObjectHolder(LibItemNames.GREATER_EXP_GEM) public static ExperienceGem GREATER_EXPERIENCE_GEM;
+//    @ObjectHolder(LibItemNames.ENCHANTERS_SWORD) public static EnchantersSword ENCHANTERS_SWORD;
+    @ObjectHolder(LibItemNames.LUSTERIC_SHIELD) public static LustericShield LUSTERIC_SHIELD;
+    @ObjectHolder(LibItemNames.CASTER_TOME) public static CasterTome CASTER_TOME;
+    @ObjectHolder(LibItemNames.SUMMON_FOCUS) public static SummonersStrength SUMMONING_FOCUS;
 
     public static Food DOMINION_BERRY_FOOD = (new Food.Builder()).nutrition(2).saturationMod(0.1F).effect(() -> new EffectInstance(ModPotions.DOMINION_REGEN_EFFECT, 100), 1.0f).alwaysEat().build();
+    public static Food BILIS_BERRY_FOOD = (new Food.Builder()).nutrition(3).saturationMod(0.5F).build();
 
     @Mod.EventBusSubscriber(modid = EmortisConstants.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class RegistrationHandler {
@@ -83,13 +94,27 @@ public class MagicItemsRegistry {
         public static void registerItems(final RegistryEvent.Register<Item> event) {
             Item[] items = {
                     new REItemDebug(),
+                    new LustericShield(),
+                    new GlassBottleItem(defaultItemProperties().stacksTo(16)).setRegistryName(LibItemNames.BOTTLE_OF_ICHOR),
+                    new ModItem(defaultItemProperties().stacksTo(1), LibItemNames.BUCKET_OF_DOMINION),
+                    new ModItem(LibItemNames.DWELLER_FLESH),
+                    new ItemAugmentBlasting(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)).setRegistryName(LibItemNames.BLASTING_AUGMENT),
+                    new ItemAugmentSmoking(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)).setRegistryName(LibItemNames.SMOKING_AUGMENT),
+                    new ItemAugmentSpeed(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)).setRegistryName(LibItemNames.SPEED_AUGMENT),
+                    new ItemAugmentFuel(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)).setRegistryName(LibItemNames.FUEL_AUGMENT),
+                    new ItemSmelteryCopy(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)).setRegistryName(LibItemNames.ITEM_COPY),
+
+                    new SpawnEggItem(ModEntities.FERAL_CANIS, 0x999999, 0xffffff, defaultItemProperties()).setRegistryName(LibItemNames.CANIS_CHORDATA_SPAWN_EGG),
+                    new SpawnEggItem(ModEntities.SUNDERED_CADAVER, -6684673, -39322, defaultItemProperties()).setRegistryName(LibItemNames.SUNDERED_CADAVER_SPAWN_EGG),
+                    new SpawnEggItem(ModEntities.NECRAW_FASCII, 0x27640c, 0xffd966, defaultItemProperties()).setRegistryName(LibItemNames.NECRAW_FASCII_SPAWN_EGG),
+                    new SpawnEggItem(ModEntities.LANGUID_DWELLER, 0x968d81, 0x491919, defaultItemProperties()).setRegistryName(LibItemNames.LANGUID_DWELLER_SPAWN_EGG),
+
                     new DominionWand(),
                     new ModItem(LibItemNames.BLANK_GLYPH),
                     new ModItem(LibItemNames.UNADORNED_AMULET).withTooltip(new TranslationTextComponent("rigoranthusemortisreborn.tooltip.unadorned")),
                     new ModItem(LibItemNames.DOMINION_FIBER),
 //                    new ModItem(LibItemNames.PROSAIC_BELT).withTooltip(new TranslationTextComponent("rigoranthusemortisreborn.tooltip.unadorned")),
                     new ModItem(LibItemNames.UNADORNED_RING).withTooltip(new TranslationTextComponent("rigoranthusemortisreborn.tooltip.unadorned")),
-                    new ModItem(defaultItemProperties().stacksTo(1), LibItemNames.BUCKET_OF_DOMINION),
                     new NoviceArmor(EquipmentSlotType.FEET).setRegistryName("novice_boots"),
                     new NoviceArmor(EquipmentSlotType.LEGS).setRegistryName("novice_leggings"),
                     new NoviceArmor(EquipmentSlotType.CHEST).setRegistryName("novice_robes"),
@@ -107,11 +132,6 @@ public class MagicItemsRegistry {
                     new SpellBook(ISpellTier.Tier.THREE).setRegistryName(LibItemNames.EMORTIC_SPELL_BOOK),
                     new SpellBook(ISpellTier.Tier.THREE).setRegistryName(LibItemNames.CREATIVE_SPELL_BOOK),
                     new EmorticOrigins().withTooltip(new TranslationTextComponent("tooltip.emortic_origins")),
-
-                    new SpawnEggItem(ModEntities.FERAL_CANIS, 0x999999, 0xffffff, defaultItemProperties()).setRegistryName(LibItemNames.CANIS_CHORDATA_SPAWN_EGG),
-                    new SpawnEggItem(ModEntities.SUNDERED_CADAVER, -6684673, -39322, defaultItemProperties()).setRegistryName(LibItemNames.SUNDERED_CADAVER_SPAWN_EGG),
-                    new SpawnEggItem(ModEntities.NECRAW_FASCII, 0x27640c, 0xffd966, defaultItemProperties()).setRegistryName(LibItemNames.NECRAW_FASCII_SPAWN_EGG),
-                    new SpawnEggItem(ModEntities.LANGUID_DWELLER, 0x968d81, 0x491919, defaultItemProperties()).setRegistryName(LibItemNames.LANGUID_DWELLER_SPAWN_EGG),
 
                     new ConservationRing(LibItemNames.RING_OF_LESSER_CONSERVATION) {
                         @Override
@@ -145,7 +165,7 @@ public class MagicItemsRegistry {
                     new FormSpellArrow(LibItemNames.PIERCE_ARROW, AugmentPierce.INSTANCE, 2),
                     new FormSpellArrow(LibItemNames.SPLIT_ARROW, AugmentSplit.INSTANCE, 2),
                     new SpellArrow(LibItemNames.AMPLIFY_ARROW, AugmentAmplify.INSTANCE, 2),
-                    
+                    new BoneArrow(LibItemNames.BONE_ARROW),
                     new ExperienceGem(defaultItemProperties(), LibItemNames.EXP_GEM) {
                         @Override
                         public int getValue() {
@@ -158,10 +178,10 @@ public class MagicItemsRegistry {
                             return 12;
                         }
                     }.withTooltip(new TranslationTextComponent("rigoranthusemortisreborn.tooltip.exp_gem")),
-                    new LustericShield(),
-                    new EnchantersSword(ItemTier.NETHERITE, 3, -2.4F).setRegistryName(LibItemNames.ENCHANTERS_SWORD),
+
+//                    new EnchantersSword(ItemTier.NETHERITE, 3, -2.4F).setRegistryName(LibItemNames.ENCHANTERS_SWORD),
                     new CasterTome(defaultItemProperties().stacksTo(1), LibItemNames.CASTER_TOME),
-                    new SummoningFocus(defaultItemProperties().stacksTo(1), LibItemNames.SUMMON_FOCUS),
+                    new SummonersStrength(defaultItemProperties().stacksTo(1), LibItemNames.SUMMON_FOCUS),
             };
 
             final IForgeRegistry<Item> registry = event.getRegistry();
@@ -169,7 +189,7 @@ public class MagicItemsRegistry {
                 registry.register(glyph);
                 ITEMS.add(glyph);
             }
-            for(RitualTablet ritualParchment : RigoranthusEmortisRebornAPI.getInstance().getRitualItemMap().values()){
+            for(RitualOffering ritualParchment : RigoranthusEmortisRebornAPI.getInstance().getRitualItemMap().values()){
                 registry.register(ritualParchment);
                 ITEMS.add(ritualParchment);
             }

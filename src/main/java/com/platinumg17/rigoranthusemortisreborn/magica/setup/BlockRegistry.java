@@ -47,10 +47,9 @@ public class BlockRegistry {
     public static AbstractBlock.Properties FLOWER_POT_PROP = AbstractBlock.Properties.of(Material.DECORATION).strength(0.0F).noOcclusion();
 
 //    @ObjectHolder(LibBlockNames.RECONDITE_ORE) public static OreBlockEmortis RECONDITE_ORE;
-
-    @ObjectHolder(LibBlockNames.MASTERFUL_SMELTERY) public static BlockMasterfulSmeltery MASTERFUL_SMELTERY;
-    @ObjectHolder(LibBlockNames.MASTERFUL_SMELTERY) public static TileEntityType<MasterfulSmelteryTile> MASTERFUL_SMELTERY_TILE;
-    @ObjectHolder(LibBlockNames.MASTERFUL_SMELTERY) public static ContainerType<MasterfulSmelteryContainer> MASTERFUL_SMELTERY_CONTAINER;
+//    @ObjectHolder(LibBlockNames.MASTERFUL_SMELTERY) public static BlockMasterfulSmeltery MASTERFUL_SMELTERY;
+//    @ObjectHolder(LibBlockNames.MASTERFUL_SMELTERY) public static TileEntityType<MasterfulSmelteryTile> MASTERFUL_SMELTERY_TILE;
+//    @ObjectHolder(LibBlockNames.MASTERFUL_SMELTERY) public static ContainerType<MasterfulSmelteryContainer> MASTERFUL_SMELTERY_CONTAINER;
 
     @ObjectHolder(LibBlockNames.POTTED_AZULOREAL_ORCHID) public static FlowerPotBlock POTTED_AZULOREAL_ORCHID;
     @ObjectHolder(LibBlockNames.POTTED_IRIDESCENT_SPROUTS) public static FlowerPotBlock POTTED_IRIDESCENT_SPROUTS;
@@ -172,7 +171,7 @@ public class BlockRegistry {
             registry.register(new IchorExtractorBlock());
             registry.register(new PsyglyphicBlock());
 
-            registry.register(new BlockMasterfulSmeltery());
+//            registry.register(new BlockMasterfulSmeltery());
 //            registry.register(new SpellTurret());
 //            registry.register(new BasicSpellTurret());
 //            registry.register(new TimerSpellTurret());
@@ -220,7 +219,7 @@ public class BlockRegistry {
 
         @SubscribeEvent
         public static void onTileEntityRegistry(final RegistryEvent.Register<TileEntityType<?>> event){
-            event.getRegistry().register(TileEntityType.Builder.of(MasterfulSmelteryTile::new, BlockRegistry.MASTERFUL_SMELTERY).build(null).setRegistryName(LibBlockNames.MASTERFUL_SMELTERY));
+//            event.getRegistry().register(TileEntityType.Builder.of(MasterfulSmelteryTile::new, BlockRegistry.MASTERFUL_SMELTERY).build(null).setRegistryName(LibBlockNames.MASTERFUL_SMELTERY));
             event.getRegistry().register(TileEntityType.Builder.of(PhantomBlockTile::new, BlockRegistry.PHANTOM_BLOCK).build(null).setRegistryName(LibBlockNames.PHANTOM_BLOCK));
             event.getRegistry().register(TileEntityType.Builder.of(DominionJarTile::new, BlockRegistry.DOMINION_JAR).build(null).setRegistryName(LibBlockNames.DOMINION_JAR));
             event.getRegistry().register(TileEntityType.Builder.of(LightTile::new, BlockRegistry.LIGHT_BLOCK).build(null).setRegistryName(LibBlockNames.LIGHT_BLOCK));
@@ -280,8 +279,7 @@ public class BlockRegistry {
             registry.register(new AnimBlockItem(BlockRegistry.PSYGLYPHIC_CIPHER, MagicItemsRegistry.defaultItemProperties().fireResistant().setISTER(() -> PsyglyphicRenderer::getISTER)).setRegistryName(LibBlockNames.PSYGLYPHIC_CIPHER));
             registry.register(dominionBerry);
             registry.register(bilisBerry);
-            registry.register(new BlockItem(BlockRegistry.MASTERFUL_SMELTERY, MagicItemsRegistry.defaultItemProperties().stacksTo(1)).setRegistryName(LibBlockNames.MASTERFUL_SMELTERY));
-
+//            registry.register(new BlockItem(BlockRegistry.MASTERFUL_SMELTERY, MagicItemsRegistry.defaultItemProperties().stacksTo(1)).setRegistryName(LibBlockNames.MASTERFUL_SMELTERY));
 //            registry.register(getDefaultBlockItem(BlockRegistry.RECONDITE_ORE, LibBlockNames.RECONDITE_ORE));
             registry.register(getDefaultBlockItem(BlockRegistry.FRAGMENTED_COBBLESTONE, LibBlockNames.FRAGMENTED_COBBLESTONE));
             registry.register(getDefaultBlockItem(BlockRegistry.LISIANTHUS, LibBlockNames.LISIANTHUS));
@@ -304,12 +302,12 @@ public class BlockRegistry {
         public static void registerBlockProvider(final RegistryEvent.Register<BlockStateProviderType<?>> e) {
             e.getRegistry().register(new BlockStateProviderType<>(SupplierBlockStateProvider.CODEC).setRegistryName(EmortisConstants.MOD_ID, LibBlockNames.STATE_PROVIDER));
         }
-        @SubscribeEvent
-        public static void onContainerRegistry(final RegistryEvent.Register<ContainerType<?>> containerRegistryEvent) {
-            IForgeRegistry<ContainerType<?>> registry = containerRegistryEvent.getRegistry();
-            registry.register(
-                    IForgeContainerType.create(MasterfulSmelteryContainer::new).setRegistryName(LibBlockNames.MASTERFUL_SMELTERY_CONTAINER));
-        }
+//        @SubscribeEvent
+//        public static void onContainerRegistry(final RegistryEvent.Register<ContainerType<?>> containerRegistryEvent) {
+//            IForgeRegistry<ContainerType<?>> registry = containerRegistryEvent.getRegistry();
+//            registry.register(
+//                    IForgeContainerType.create(MasterfulSmelteryContainer::new).setRegistryName(LibBlockNames.MASTERFUL_SMELTERY_CONTAINER));
+//        }
     }
     private static Boolean allowsSpawnOnLeaves(BlockState state, IBlockReader reader, BlockPos pos, EntityType<?> entity) {
         return entity == EntityType.OCELOT || entity == EntityType.PARROT;

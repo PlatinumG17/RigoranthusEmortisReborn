@@ -85,7 +85,7 @@ public class Recipes extends RecipeProvider {
                     .pattern("xyx")
                     .pattern("xxx").define('x', Tags.Items.NUGGETS_IRON).define('y', DOMINION_GEM).save(consumer);
 
-            ShapedRecipeBuilder.shaped(BlockRegistry.SCRIBES_BLOCK).unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(MagicItemsRegistry.emorticOrigins))
+            ShapedRecipeBuilder.shaped(BlockRegistry.TABLE_BLOCK).unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(MagicItemsRegistry.emorticOrigins))
                     .pattern("xxx")
                     .pattern("yzy")
                     .pattern("y y").define('x',Ingredient.of(DecorativeOrStorageBlocks.AZULOREAL_SLAB.get()))

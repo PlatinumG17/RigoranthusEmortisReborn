@@ -212,6 +212,7 @@ public class RigoranthusEmortisReborn {
             RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.AZULOREAL_STAIRS.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.AZULOREAL_SLAB.get(), RenderType.cutout());
 //            RenderTypeLookup.setRenderLayer(Registration.LUMISHROOM.get(), RenderType.cutout());
+            RenderTypeLookup.setRenderLayer(Registration.MASTERFUL_SMELTERY.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(BlockInit.DWELLER_BRAIN.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(FluidRegistry.CADAVEROUS_ICHOR_FLUID.get(), RenderType.translucent());
             RenderTypeLookup.setRenderLayer(FluidRegistry.CADAVEROUS_ICHOR_BLOCK.get(), RenderType.translucent());

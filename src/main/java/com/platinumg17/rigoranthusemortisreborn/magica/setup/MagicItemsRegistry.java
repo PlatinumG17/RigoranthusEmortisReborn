@@ -37,12 +37,11 @@ import static com.platinumg17.rigoranthusemortisreborn.magica.setup.InjectionUti
 public class MagicItemsRegistry {
     @ObjectHolder("debug") public static REItemDebug debug;
 //    @ObjectHolder(LibItemNames.POWDERED_ESOTERICUM) public static Esotericum POWDERED_ESOTERICUM;
-
-    @ObjectHolder(LibItemNames.BLASTING_AUGMENT) public static ItemAugmentBlasting BLASTING_AUGMENT;
-    @ObjectHolder(LibItemNames.SMOKING_AUGMENT) public static ItemAugmentSmoking SMOKING_AUGMENT;
-    @ObjectHolder(LibItemNames.SPEED_AUGMENT) public static ItemAugmentSpeed SPEED_AUGMENT;
-    @ObjectHolder(LibItemNames.FUEL_AUGMENT) public static ItemAugmentFuel FUEL_AUGMENT;
-    @ObjectHolder(LibItemNames.ITEM_COPY) public static ItemSmelteryCopy ITEM_COPY;
+//    @ObjectHolder(LibItemNames.BLASTING_AUGMENT) public static ItemAugmentBlasting BLASTING_AUGMENT;
+//    @ObjectHolder(LibItemNames.SMOKING_AUGMENT) public static ItemAugmentSmoking SMOKING_AUGMENT;
+//    @ObjectHolder(LibItemNames.SPEED_AUGMENT) public static ItemAugmentSpeed SPEED_AUGMENT;
+//    @ObjectHolder(LibItemNames.FUEL_AUGMENT) public static ItemAugmentFuel FUEL_AUGMENT;
+//    @ObjectHolder(LibItemNames.ITEM_COPY) public static ItemSmelteryCopy ITEM_COPY;
 
     @ObjectHolder(LibItemNames.BOTTLE_OF_ICHOR) public static GlassBottleItem BOTTLE_OF_ICHOR;
     @ObjectHolder(LibItemNames.DWELLER_FLESH) public static ModItem DWELLER_FLESH;
@@ -98,11 +97,11 @@ public class MagicItemsRegistry {
                     new GlassBottleItem(defaultItemProperties().stacksTo(16)).setRegistryName(LibItemNames.BOTTLE_OF_ICHOR),
                     new ModItem(defaultItemProperties().stacksTo(1), LibItemNames.BUCKET_OF_DOMINION),
                     new ModItem(LibItemNames.DWELLER_FLESH),
-                    new ItemAugmentBlasting(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)).setRegistryName(LibItemNames.BLASTING_AUGMENT),
-                    new ItemAugmentSmoking(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)).setRegistryName(LibItemNames.SMOKING_AUGMENT),
-                    new ItemAugmentSpeed(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)).setRegistryName(LibItemNames.SPEED_AUGMENT),
-                    new ItemAugmentFuel(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)).setRegistryName(LibItemNames.FUEL_AUGMENT),
-                    new ItemSmelteryCopy(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)).setRegistryName(LibItemNames.ITEM_COPY),
+//                    new ItemAugmentBlasting(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)).setRegistryName(LibItemNames.BLASTING_AUGMENT),
+//                    new ItemAugmentSmoking(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)).setRegistryName(LibItemNames.SMOKING_AUGMENT),
+//                    new ItemAugmentSpeed(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)).setRegistryName(LibItemNames.SPEED_AUGMENT),
+//                    new ItemAugmentFuel(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)).setRegistryName(LibItemNames.FUEL_AUGMENT),
+//                    new ItemSmelteryCopy(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)).setRegistryName(LibItemNames.ITEM_COPY),
 
                     new SpawnEggItem(ModEntities.FERAL_CANIS, 0x999999, 0xffffff, defaultItemProperties()).setRegistryName(LibItemNames.CANIS_CHORDATA_SPAWN_EGG),
                     new SpawnEggItem(ModEntities.SUNDERED_CADAVER, -6684673, -39322, defaultItemProperties()).setRegistryName(LibItemNames.SUNDERED_CADAVER_SPAWN_EGG),

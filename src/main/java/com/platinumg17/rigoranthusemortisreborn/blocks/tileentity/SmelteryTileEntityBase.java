@@ -63,12 +63,11 @@ public abstract class SmelteryTileEntityBase extends TileEntityInventory impleme
     public static final int INPUT = 0;
     public static final int FUEL = 1;
     public static final int OUTPUT = 2;
-    
+
     protected AbstractCookingRecipe curRecipe;
-    
+
     private Random rand = new Random();
     public int show_inventory_settings;
-    //private int jovial;
     protected int timer;
     private int currentAugment; // 0 == none 1 == Blasting 2 == Smoking 3 == Speed 4 == Fuel
     /**
@@ -270,9 +269,6 @@ public abstract class SmelteryTileEntityBase extends TileEntityInventory impleme
         if (state.getValue(BlockMasterfulSmelteryBase.TYPE) != this.getStateType()) {
             level.setBlock(worldPosition, state.setValue(BlockMasterfulSmelteryBase.TYPE, this.getStateType()), 3);
         }
-        //if (state.getValue(BlockMasterfulSmelteryBase.JOVIAL) != this.jovial) {
-        //    level.setBlock(worldPosition, state.setValue(BlockMasterfulSmelteryBase.JOVIAL, this.jovial), 3);
-        //}
     }
 
     @Override
@@ -287,7 +283,6 @@ public abstract class SmelteryTileEntityBase extends TileEntityInventory impleme
         }
         boolean wasBurning = this.isBurning();
         boolean flag1 = false;
-//        boolean flag2 = false;
 
         if (this.isBurning()) {
             --this.furnaceBurnTime;
@@ -365,43 +360,43 @@ public abstract class SmelteryTileEntityBase extends TileEntityInventory impleme
 
             ItemStack itemstack = this.inventory.get(FUEL);
             if (this.isBurning() || !itemstack.isEmpty() && !this.inventory.get(INPUT).isEmpty()) {
-            	Optional<AbstractCookingRecipe> irecipe = Optional.empty();
-            	if (!getItem(INPUT).isEmpty()) {
-            		irecipe = grabRecipe();
-            	}
-            	
+                Optional<AbstractCookingRecipe> irecipe = Optional.empty();
+                if (!getItem(INPUT).isEmpty()) {
+                    irecipe = grabRecipe();
+                }
+
                 boolean valid = this.canSmelt(irecipe.orElse(null));
                 if (!this.isBurning() && valid) {
-                	if (!this.getItem(3).isEmpty() && this.getItem(3).getItem() instanceof ItemAugmentFuel) {
-                		this.furnaceBurnTime = 2 * (getBurnTime(itemstack)) * get_cook_time / 200;
-                	} else if (!this.getItem(3).isEmpty() && this.getItem(3).getItem() instanceof ItemAugmentSpeed) {
-                		this.furnaceBurnTime = (getBurnTime(itemstack) / 2) * get_cook_time / 200;
-                	} else {
-                		this.furnaceBurnTime = getBurnTime(itemstack) * get_cook_time / 200;
-                	}
-                	this.recipesUsed = this.furnaceBurnTime;
+                    if (!this.getItem(3).isEmpty() && this.getItem(3).getItem() instanceof ItemAugmentFuel) {
+                        this.furnaceBurnTime = 2 * (getBurnTime(itemstack)) * get_cook_time / 200;
+                    } else if (!this.getItem(3).isEmpty() && this.getItem(3).getItem() instanceof ItemAugmentSpeed) {
+                        this.furnaceBurnTime = (getBurnTime(itemstack) / 2) * get_cook_time / 200;
+                    } else {
+                        this.furnaceBurnTime = getBurnTime(itemstack) * get_cook_time / 200;
+                    }
+                    this.recipesUsed = this.furnaceBurnTime;
 
-                if (this.isBurning()) {
-                	flag1 = true;
-                	if (itemstack.hasContainerItem()) this.inventory.set(FUEL, itemstack.getContainerItem());
-                	else if (!itemstack.isEmpty()) {
-                		itemstack.shrink(1);
-                		//this.setChanged();
-                		if (itemstack.isEmpty()) {
-                			this.inventory.set(FUEL, itemstack.getContainerItem());
+                    if (this.isBurning()) {
+                        flag1 = true;
+                        if (itemstack.hasContainerItem()) this.inventory.set(FUEL, itemstack.getContainerItem());
+                        else if (!itemstack.isEmpty()) {
+                            itemstack.shrink(1);
+                            //this.setChanged();
+                            if (itemstack.isEmpty()) {
+                                this.inventory.set(FUEL, itemstack.getContainerItem());
                             }
-                      	}
-                	}
-               	}
+                        }
+                    }
+                }
                 if (this.isBurning() && valid) {
-                	++this.cookTime;
-                	if (this.cookTime >= this.totalCookTime) {
-                		this.cookTime = 0;
-                		this.totalCookTime = this.getCookTime();
-                		this.smeltItem(irecipe.orElse(null));
+                    ++this.cookTime;
+                    if (this.cookTime >= this.totalCookTime) {
+                        this.cookTime = 0;
+                        this.totalCookTime = this.getCookTime();
+                        this.smeltItem(irecipe.orElse(null));
                         this.autoIO();
                         flag1 = true;
-                	}
+                    }
 //                } else {
 //                    this.cookTime = 0;
                 }
@@ -434,9 +429,6 @@ public abstract class SmelteryTileEntityBase extends TileEntityInventory impleme
                 if (state.getValue(BlockMasterfulSmelteryBase.TYPE) != this.getStateType()) {
                     level.setBlock(worldPosition, state.setValue(BlockMasterfulSmelteryBase.TYPE, this.getStateType()), 3);
                 }
-                //if (state.getValue(BlockMasterfulSmelteryBase.JOVIAL) != this.jovial) {
-                //    level.setBlock(worldPosition, state.setValue(BlockMasterfulSmelteryBase.JOVIAL, this.jovial), 3);
-                //}
             }
         }
         if (flag1) {
@@ -741,7 +733,7 @@ public abstract class SmelteryTileEntityBase extends TileEntityInventory impleme
         this.totalCookTime = tag.getInt("CookTimeTotal");
         this.timer = 0;
         this.currentAugment = tag.getInt("Augment");
-        //this.jovial = tag.getInt("Jovial");
+
         this.recipesUsed = SmelteryTileEntityBase.getBurnTime(this.inventory.get(1));
         CompoundNBT compoundnbt = tag.getCompound("RecipesUsed");
         for (String s : compoundnbt.getAllKeys()) {
@@ -749,7 +741,7 @@ public abstract class SmelteryTileEntityBase extends TileEntityInventory impleme
         }
         this.show_inventory_settings = tag.getInt("ShowInvSettings");
         this.smelterySettings.read(tag);
-        
+
         super.load(state, tag);
     }
 
@@ -761,7 +753,6 @@ public abstract class SmelteryTileEntityBase extends TileEntityInventory impleme
         tag.putInt("CookTime", this.cookTime);
         tag.putInt("CookTimeTotal", this.totalCookTime);
         tag.putInt("Augment", this.currentAugment);
-        //tag.putInt("Jovial", this.jovial);
 
         tag.putInt("ShowInvSettings", this.show_inventory_settings);
         this.smelterySettings.write(tag);

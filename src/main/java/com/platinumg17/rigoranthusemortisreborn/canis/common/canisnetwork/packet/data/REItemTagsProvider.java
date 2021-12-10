@@ -3,6 +3,7 @@ package com.platinumg17.rigoranthusemortisreborn.canis.common.canisnetwork.packe
 import com.platinumg17.rigoranthusemortisreborn.canis.CanisItems;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.CanisTags;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
+import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.BlockRegistry;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.MagicItemsRegistry;
 import net.minecraft.block.Block;
@@ -51,7 +52,7 @@ public class REItemTagsProvider extends ItemTagsProvider {
         appendToTag(CanisTags.JESSIC);
         appendToTag(CanisTags.AZULOREAL);
 
-        createBlockTag(CanisTags.MASTERFUL, BlockRegistry.MASTERFUL_SMELTERY);
+        createBlockTag(CanisTags.MASTERFUL, Registration.MASTERFUL_SMELTERY.get());
         createBlockTag(CanisTags.JESSIC_LOG, BlockRegistry.JESSIC_LOG, BlockRegistry.JESSIC_WOOD, BlockRegistry.STRIPPED_JESSIC_LOG, BlockRegistry.STRIPPED_JESSIC_WOOD);
         createBlockTag(CanisTags.AZULOREAL_LOG, BlockRegistry.AZULOREAL_LOG, BlockRegistry.AZULOREAL_WOOD, BlockRegistry.STRIPPED_AZULOREAL_LOG, BlockRegistry.STRIPPED_AZULOREAL_WOOD);
         createBlockTag(CanisTags.JESSIC_LOGS, BlockRegistry.JESSIC_LOG, BlockRegistry.JESSIC_WOOD, BlockRegistry.STRIPPED_JESSIC_LOG, BlockRegistry.STRIPPED_JESSIC_WOOD);

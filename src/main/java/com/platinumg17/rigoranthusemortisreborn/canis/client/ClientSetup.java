@@ -32,7 +32,6 @@ public class ClientSetup {
         ScreenManager.register(CanisContainerTypes.WAYWARD_TRAVELLER.get(), WaywardTravellerScreen::new);
         ScreenManager.register(CanisContainerTypes.TREAT_BAG.get(), TreatBagScreen::new);
         ScreenManager.register(CanisContainerTypes.CANIS_INVENTORIES.get(), CanisInventoriesScreen::new);
-        ScreenManager.register(BlockRegistry.MASTERFUL_SMELTERY_CONTAINER, SmelteryScreenBase::new);
     }
 
     public static void setupTileEntityRenderers(final FMLClientSetupEvent event) {

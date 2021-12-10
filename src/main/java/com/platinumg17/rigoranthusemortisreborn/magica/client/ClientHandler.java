@@ -39,7 +39,6 @@ public class ClientHandler {
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.EMORTIC_RELAY_TILE, (t) -> new GenericRenderer(t, "emortic_relay"));
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.EMORTIC_RELAY_SPLITTER_TILE, (t) -> new GenericRenderer(t, "relay_splitter"));
 
-        RenderTypeLookup.setRenderLayer(BlockRegistry.MASTERFUL_SMELTERY, RenderType.cutout());
         RenderTypeLookup.setRenderLayer(BlockRegistry.POTTED_JESSIC_SAPLING, RenderType.cutout());
         RenderTypeLookup.setRenderLayer(BlockRegistry.POTTED_AZULOREAL_SAPLING, RenderType.cutout());
 

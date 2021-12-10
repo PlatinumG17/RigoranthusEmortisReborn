@@ -11,7 +11,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class RigoranthusTileEntities {
 	public static DeferredRegister<TileEntityType<?>> TILE_ENTITIES =
 			DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, EmortisConstants.MOD_ID);
-	
+
 	public static RegistryObject<TileEntityType<MasterfulSmelteryTile>> MASTERFUL_SMELTERY_TILE =
 			TILE_ENTITIES.register("masterful_smeltery_tile", () -> TileEntityType.Builder.of(
 					MasterfulSmelteryTile::new, Registration.MASTERFUL_SMELTERY.get()).build(null));

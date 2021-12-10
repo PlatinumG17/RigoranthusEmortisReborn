@@ -10,6 +10,7 @@ import com.platinumg17.rigoranthusemortisreborn.canis.CanisBlocks;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.util.CanisBedUtil;
 import com.platinumg17.rigoranthusemortisreborn.config.ConfigValues;
+import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.crafting.CrushRecipe;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.potions.ModPotions;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.spell.effect.EffectCrush;
@@ -67,8 +68,8 @@ public class RigoranthusJEIPlugin implements IModPlugin {
 			registry.addRecipeCatalyst(new ItemStack(BlockRegistry.PSYGLYPHIC_AMALG_BLOCK), PsyglyphicAmalgamatorRecipeCategory.UID);
 			registry.addRecipeCatalyst(new ItemStack(RigoranthusEmortisRebornAPI.getInstance().getGlyphItem(EffectCrush.INSTANCE)), CrushRecipeCategory.UID);
 
-			registry.addRecipeCatalyst(new ItemStack(BlockRegistry.MASTERFUL_SMELTERY), VanillaRecipeCategoryUid.FURNACE);
-			registry.addRecipeCatalyst(new ItemStack(BlockRegistry.MASTERFUL_SMELTERY), VanillaRecipeCategoryUid.FUEL);
+			registry.addRecipeCatalyst(new ItemStack(Registration.MASTERFUL_SMELTERY.get()), VanillaRecipeCategoryUid.FURNACE);
+			registry.addRecipeCatalyst(new ItemStack(Registration.MASTERFUL_SMELTERY.get()), VanillaRecipeCategoryUid.FUEL);
 		}
 	}
 

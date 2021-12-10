@@ -1,4 +1,4 @@
-package com.platinumg17.rigoranthusemortisreborn.magica.common.world.feature;
+package com.platinumg17.rigoranthusemortisreborn.world.gen.feature;
 
 import com.mojang.serialization.Codec;
 import net.minecraft.util.math.BlockPos;

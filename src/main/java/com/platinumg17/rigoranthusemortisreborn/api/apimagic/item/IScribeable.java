@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 public interface IScribeable {
     /**
      * When *other* items are used on the scribes block while this item is currently on the stand.
-     * Params come from ScribesBlock#onBlockActivated
+     * Params come from TableBlock#onBlockActivated
      * @return True if the item was successfully scribed, false if it was not.
      */
     boolean onScribe(World world, BlockPos pos, PlayerEntity player, Hand handIn, ItemStack thisStack);

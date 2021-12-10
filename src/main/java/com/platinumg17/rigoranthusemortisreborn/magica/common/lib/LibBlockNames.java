@@ -40,7 +40,7 @@ public class LibBlockNames {
     public final static String PSYGLYPHIC_CIPHER = "psyglyphic_cipher";
     public final static String SPLINTERED_PEDESTAL = "splintered_pedestal";
     // TODO: Rename
-    public static final String SCRIBES_BLOCK = "scribes_table";
+    public static final String TABLE_BLOCK = "scribes_table";
     public static final String RUNE = "rune";
     public static final String PORTAL = "portal";
     public static final String INTANGIBLE_AIR = "intangible_air";

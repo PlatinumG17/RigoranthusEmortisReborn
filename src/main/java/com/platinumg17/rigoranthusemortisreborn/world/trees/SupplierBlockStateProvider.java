@@ -1,4 +1,4 @@
-package com.platinumg17.rigoranthusemortisreborn.magica.common.world.tree;
+package com.platinumg17.rigoranthusemortisreborn.world.trees;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

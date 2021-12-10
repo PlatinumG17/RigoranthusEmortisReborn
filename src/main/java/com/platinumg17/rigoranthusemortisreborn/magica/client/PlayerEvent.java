@@ -3,44 +3,24 @@ package com.platinumg17.rigoranthusemortisreborn.magica.client;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.Spell;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.util.MappingUtil;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
-import com.platinumg17.rigoranthusemortisreborn.magica.client.particle.GlowParticleData;
-import com.platinumg17.rigoranthusemortisreborn.magica.client.particle.ParticleColor;
-import com.platinumg17.rigoranthusemortisreborn.magica.client.particle.ParticleUtil;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.block.ScribesBlock;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.block.TableBlock;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.enchantment.EnchantmentRegistry;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.items.SpellBook;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.items.SpellParchment;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.network.Networking;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.network.PacketGetPersistentData;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.potions.ModPotions;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.FirstPersonRenderer;
-import net.minecraft.client.world.ClientWorld;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderPlayerEvent;
-import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
-import net.minecraftforge.fml.network.PacketDistributor;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import static com.platinumg17.rigoranthusemortisreborn.api.apimagic.util.DropDistribution.rand;
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = EmortisConstants.MOD_ID)
@@ -55,7 +35,7 @@ public class PlayerEvent {
     @SubscribeEvent
     public static void onBlock(final PlayerInteractEvent.RightClickBlock event) {
         PlayerEntity entity = event.getPlayer();
-        if(!event.getWorld().isClientSide || event.getHand() != Hand.MAIN_HAND || event.getWorld().getBlockState(event.getPos()).getBlock() instanceof ScribesBlock)
+        if(!event.getWorld().isClientSide || event.getHand() != Hand.MAIN_HAND || event.getWorld().getBlockState(event.getPos()).getBlock() instanceof TableBlock)
             return;
         if(entity.getItemInHand(event.getHand()).getItem() instanceof SpellBook){
             event.setCanceled(true);

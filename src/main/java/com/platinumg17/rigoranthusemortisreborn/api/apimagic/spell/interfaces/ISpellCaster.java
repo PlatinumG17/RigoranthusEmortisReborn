@@ -7,7 +7,7 @@ import com.platinumg17.rigoranthusemortisreborn.api.apimagic.util.MathUtil;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.particle.ParticleColor;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.IntangibleAirTile;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.PhantomBlockTile;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.ScribesTile;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.TableTile;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.spell.augment.AugmentSensitive;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.util.PortUtil;
 import net.minecraft.entity.LivingEntity;
@@ -74,7 +74,7 @@ public interface ISpellCaster {
                 .withColors(getColor()));
         boolean isSensitive = resolver.spell.getBuffsAtIndex(0, playerIn, AugmentSensitive.INSTANCE) > 0;
         RayTraceResult result = playerIn.pick(5, 0, isSensitive);
-        if(result instanceof BlockRayTraceResult && worldIn.getBlockEntity(((BlockRayTraceResult) result).getBlockPos()) instanceof ScribesTile)
+        if(result instanceof BlockRayTraceResult && worldIn.getBlockEntity(((BlockRayTraceResult) result).getBlockPos()) instanceof TableTile)
             return new ActionResult<>(ActionResultType.SUCCESS, stack);
         if(result instanceof BlockRayTraceResult && !playerIn.isShiftKeyDown()){
             if(worldIn.getBlockEntity(((BlockRayTraceResult) result).getBlockPos()) != null &&

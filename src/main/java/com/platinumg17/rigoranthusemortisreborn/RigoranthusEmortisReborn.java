@@ -53,7 +53,7 @@ import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.pathfinding
 import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.pathfinding.PathFMLEventHandler;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.network.Networking;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.potions.ModPotions;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.world.WorldEvent;
+import com.platinumg17.rigoranthusemortisreborn.world.WorldEvent;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.*;
 import com.platinumg17.rigoranthusemortisreborn.world.gen.EmortisBiomeGen;
 import com.platinumg17.rigoranthusemortisreborn.world.trees.RigoranthusWoodTypes;

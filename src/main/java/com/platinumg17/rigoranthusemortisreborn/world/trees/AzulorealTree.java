@@ -1,6 +1,6 @@
 package com.platinumg17.rigoranthusemortisreborn.world.trees;
 
-import com.platinumg17.rigoranthusemortisreborn.magica.common.world.WorldEvent;
+import com.platinumg17.rigoranthusemortisreborn.world.WorldEvent;
 import net.minecraft.block.trees.BigTree;
 import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
 import net.minecraft.world.gen.feature.ConfiguredFeature;

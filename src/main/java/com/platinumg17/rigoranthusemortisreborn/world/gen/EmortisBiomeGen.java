@@ -3,9 +3,9 @@ package com.platinumg17.rigoranthusemortisreborn.world.gen;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.ModEntities;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.world.FeatureLib;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.world.WorldEvent;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.world.feature.BiomeMusic;
+import com.platinumg17.rigoranthusemortisreborn.world.gen.feature.FeatureLib;
+import com.platinumg17.rigoranthusemortisreborn.world.WorldEvent;
+import com.platinumg17.rigoranthusemortisreborn.world.gen.feature.BiomeMusic;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.BlockRegistry;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -29,8 +29,8 @@ import net.minecraftforge.registries.ObjectHolder;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-import static com.platinumg17.rigoranthusemortisreborn.magica.common.world.FeatureLib.*;
-import static com.platinumg17.rigoranthusemortisreborn.magica.common.world.FeatureLib.VANILLA_VERDUROUS;
+import static com.platinumg17.rigoranthusemortisreborn.world.gen.feature.FeatureLib.*;
+import static com.platinumg17.rigoranthusemortisreborn.world.gen.feature.FeatureLib.VANILLA_VERDUROUS;
 import static net.minecraftforge.common.BiomeDictionary.Type.*;
 import static net.minecraftforge.common.BiomeDictionary.Type.PLAINS;
 

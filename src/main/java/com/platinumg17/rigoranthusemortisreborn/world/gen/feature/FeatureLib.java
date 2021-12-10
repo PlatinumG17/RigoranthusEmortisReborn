@@ -1,4 +1,4 @@
-package com.platinumg17.rigoranthusemortisreborn.magica.common.world;
+package com.platinumg17.rigoranthusemortisreborn.world.gen.feature;
 
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import net.minecraft.util.ResourceLocation;

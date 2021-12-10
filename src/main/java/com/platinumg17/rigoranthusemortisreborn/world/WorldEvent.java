@@ -1,4 +1,4 @@
-package com.platinumg17.rigoranthusemortisreborn.magica.common.world;
+package com.platinumg17.rigoranthusemortisreborn.world;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
@@ -6,8 +6,8 @@ import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstant
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.LightTile;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.lib.LibBlockNames;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.world.feature.SingleBlockFeature;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.world.tree.SupplierBlockStateProvider;
+import com.platinumg17.rigoranthusemortisreborn.world.gen.feature.SingleBlockFeature;
+import com.platinumg17.rigoranthusemortisreborn.world.trees.SupplierBlockStateProvider;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.BlockRegistry;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.PaneBlock;
@@ -29,9 +29,7 @@ import net.minecraft.world.gen.foliageplacer.AcaciaFoliagePlacer;
 import net.minecraft.world.gen.foliageplacer.FancyFoliagePlacer;
 import net.minecraft.world.gen.foliageplacer.MegaPineFoliagePlacer;
 import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
-import net.minecraft.world.gen.placement.ConfiguredPlacement;
 import net.minecraft.world.gen.placement.Placement;
-import net.minecraft.world.gen.placement.TopSolidRangeConfig;
 import net.minecraft.world.gen.treedecorator.AlterGroundTreeDecorator;
 import net.minecraft.world.gen.trunkplacer.FancyTrunkPlacer;
 import net.minecraft.world.gen.trunkplacer.ForkyTrunkPlacer;
@@ -40,7 +38,7 @@ import net.minecraftforge.fml.common.Mod;
 
 import java.util.Random;
 
-import static com.platinumg17.rigoranthusemortisreborn.magica.common.world.FeatureLib.*;
+import static com.platinumg17.rigoranthusemortisreborn.world.gen.feature.FeatureLib.*;
 import static net.minecraft.world.gen.feature.Features.*;
 
 @Mod.EventBusSubscriber(modid = EmortisConstants.MOD_ID)

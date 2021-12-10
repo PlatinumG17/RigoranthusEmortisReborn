@@ -1,4 +1,4 @@
-package com.platinumg17.rigoranthusemortisreborn.magica.common.world.feature;
+package com.platinumg17.rigoranthusemortisreborn.world.gen.feature;
 
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.lib.LibSoundNames;

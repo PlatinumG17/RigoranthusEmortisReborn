@@ -18,7 +18,7 @@ public class LootTables extends BaseLootTableProvider {
         blockTables.put(BlockRegistry.DOMINION_JAR, createDominionManchineTable("dominion_jar", BlockRegistry.DOMINION_JAR));
         System.out.println(BlockRegistry.ICHOR_JAR);
         blockTables.put(BlockRegistry.ICHOR_JAR, createIchorJarTable("ichor_jar", BlockRegistry.ICHOR_JAR));
-        putStandardLoot(BlockRegistry.SCRIBES_BLOCK);
+        putStandardLoot(BlockRegistry.TABLE_BLOCK);
         putStandardLoot(BlockRegistry.LAVA_LILY);
     }
 

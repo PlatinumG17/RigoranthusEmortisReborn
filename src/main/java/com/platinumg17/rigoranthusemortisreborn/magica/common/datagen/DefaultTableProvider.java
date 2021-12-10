@@ -2,16 +2,13 @@ package com.platinumg17.rigoranthusemortisreborn.magica.common.datagen;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
-import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.block.ScribesBlock;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.block.TableBlock;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.BlockRegistry;
-import com.platinumg17.rigoranthusemortisreborn.magica.setup.MagicItemsRegistry;
 import net.minecraft.advancements.criterion.StatePropertiesPredicate;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.LootTableProvider;
 import net.minecraft.data.loot.BlockLootTables;
-import net.minecraft.item.Items;
 import net.minecraft.loot.*;
 import net.minecraft.loot.conditions.BlockStateProperty;
 import net.minecraft.state.Property;
@@ -39,7 +36,7 @@ public class DefaultTableProvider extends LootTableProvider {
             registerDropSelf(BlockRegistry.DOMINION_GEM_BLOCK);
 //            registerDrop(BlockRegistry.RECONDITE_ORE, Registration.POWDERED_ESOTERICUM.get());
             registerDropSelf(BlockRegistry.SCONCE_BLOCK);
-            registerBedCondition(BlockRegistry.SCRIBES_BLOCK, ScribesBlock.PART, BedPart.HEAD);
+            registerBedCondition(BlockRegistry.TABLE_BLOCK, TableBlock.PART, BedPart.HEAD);
         }
         protected <T extends Comparable<T> & IStringSerializable> void registerBedCondition(Block block, Property<T> prop, T isValue) {
             list.add(block);

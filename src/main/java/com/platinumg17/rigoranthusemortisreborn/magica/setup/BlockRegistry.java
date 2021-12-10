@@ -13,9 +13,8 @@ import com.platinumg17.rigoranthusemortisreborn.magica.common.items.AnimBlockIte
 import com.platinumg17.rigoranthusemortisreborn.magica.common.items.FluidBlockItem;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.lib.LibBlockNames;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.lib.LibItemNames;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.world.tree.StrippableLog;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.world.tree.SupplierBlockStateProvider;
-import com.platinumg17.rigoranthusemortisreborn.world.gen.feature.OreBlockEmortis;
+import com.platinumg17.rigoranthusemortisreborn.world.trees.StrippableLog;
+import com.platinumg17.rigoranthusemortisreborn.world.trees.SupplierBlockStateProvider;
 import com.platinumg17.rigoranthusemortisreborn.world.plants.SpectabilisBushBlock;
 import com.platinumg17.rigoranthusemortisreborn.world.plants.VerdurousLeavesBlock;
 import com.platinumg17.rigoranthusemortisreborn.world.trees.AzulorealTree;
@@ -93,8 +92,8 @@ public class BlockRegistry {
     @ObjectHolder(LibBlockNames.SPLINTERED_PEDESTAL) public static SplinteredPedestal SPLINTERED_PEDESTAL;
     @ObjectHolder(LibBlockNames.DOMINION_JAR) public static DominionJar DOMINION_JAR;
     @ObjectHolder(LibBlockNames.DOMINION_JAR) public static TileEntityType<DominionJarTile> DOMINION_JAR_TILE;
-    @ObjectHolder(LibBlockNames.SCRIBES_BLOCK) public static ScribesBlock SCRIBES_BLOCK;
-    @ObjectHolder(LibBlockNames.SCRIBES_BLOCK) public static TileEntityType<ScribesTile> SCRIBES_TABLE_TILE;
+    @ObjectHolder(LibBlockNames.TABLE_BLOCK) public static TableBlock TABLE_BLOCK;
+    @ObjectHolder(LibBlockNames.TABLE_BLOCK) public static TileEntityType<TableTile> TABLE_TILE;
     @ObjectHolder(LibBlockNames.PORTAL) public static PortalBlock PORTAL_BLOCK;
     @ObjectHolder(LibBlockNames.PORTAL) public static TileEntityType<PortalTile> PORTAL_TILE_TYPE;
     @ObjectHolder(LibBlockNames.INTANGIBLE_AIR) public static IntangibleAirBlock INTANGIBLE_AIR;
@@ -151,7 +150,7 @@ public class BlockRegistry {
             registry.register(new IchorCrystallizerBlock());
             registry.register(new PsyglyphicAmalgamatorBlock());
             registry.register(new SplinteredPedestal());
-            registry.register(new ScribesBlock());
+            registry.register(new TableBlock());
             registry.register(new PortalBlock());
             registry.register(new IntangibleAirBlock());
             registry.register(new LavaLily());
@@ -229,7 +228,7 @@ public class BlockRegistry {
             event.getRegistry().register(TileEntityType.Builder.of(IchorCrystallizerTile::new, BlockRegistry.ICHOR_CRYSTALLIZER_BLOCK).build(null).setRegistryName(LibBlockNames.ICHOR_CRYSTALLIZER));
             event.getRegistry().register(TileEntityType.Builder.of(PsyglyphicAmalgamatorTile::new, BlockRegistry.PSYGLYPHIC_AMALG_BLOCK).build(null).setRegistryName(LibBlockNames.PSYGLYPHIC_AMALGAMATOR));
             event.getRegistry().register(TileEntityType.Builder.of(SplinteredPedestalTile::new, BlockRegistry.SPLINTERED_PEDESTAL).build(null).setRegistryName(LibBlockNames.SPLINTERED_PEDESTAL));
-            event.getRegistry().register(TileEntityType.Builder.of(ScribesTile::new, BlockRegistry.SCRIBES_BLOCK).build(null).setRegistryName(LibBlockNames.SCRIBES_BLOCK));
+            event.getRegistry().register(TileEntityType.Builder.of(TableTile::new, BlockRegistry.TABLE_BLOCK).build(null).setRegistryName(LibBlockNames.TABLE_BLOCK));
             event.getRegistry().register(TileEntityType.Builder.of(PortalTile::new, BlockRegistry.PORTAL_BLOCK).build(null).setRegistryName(LibBlockNames.PORTAL));
             event.getRegistry().register(TileEntityType.Builder.of(IntangibleAirTile::new, BlockRegistry.INTANGIBLE_AIR).build(null).setRegistryName(LibBlockNames.INTANGIBLE_AIR));
             event.getRegistry().register(TileEntityType.Builder.of(CreativeDominionJarTile::new, BlockRegistry.CREATIVE_DOMINION_JAR).build(null).setRegistryName(LibBlockNames.CREATIVE_DOMINION_JAR));
@@ -261,7 +260,7 @@ public class BlockRegistry {
             registry.register(new AnimBlockItem(BlockRegistry.ICHOR_CRYSTALLIZER_BLOCK, MagicItemsRegistry.defaultItemProperties().setISTER(() -> IchorCrystallizerRenderer::getISTER)).setRegistryName(LibBlockNames.ICHOR_CRYSTALLIZER));
             registry.register(new BlockItem(BlockRegistry.PSYGLYPHIC_AMALG_BLOCK, MagicItemsRegistry.defaultItemProperties().setISTER(()-> PsyglyphicAmalgamatorRenderer.ISRender::new)).setRegistryName(LibBlockNames.PSYGLYPHIC_AMALGAMATOR));
             registry.register(new BlockItem(BlockRegistry.SPLINTERED_PEDESTAL, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.SPLINTERED_PEDESTAL));
-            registry.register(new AnimBlockItem(BlockRegistry.SCRIBES_BLOCK, MagicItemsRegistry.defaultItemProperties().setISTER(() -> ScribesRenderer::getISTER)).setRegistryName(LibBlockNames.SCRIBES_BLOCK));
+            registry.register(new AnimBlockItem(BlockRegistry.TABLE_BLOCK, MagicItemsRegistry.defaultItemProperties().setISTER(() -> TableRenderer::getISTER)).setRegistryName(LibBlockNames.TABLE_BLOCK));
             registry.register(new BlockItem(BlockRegistry.PORTAL_BLOCK, new Item.Properties()).setRegistryName(LibBlockNames.PORTAL));
             registry.register(new FluidBlockItem(BlockRegistry.LAVA_LILY, MagicItemsRegistry.defaultItemProperties().fireResistant()).setRegistryName(LibBlockNames.LAVA_LILY));
             registry.register(new BlockItem(BlockRegistry.CREATIVE_DOMINION_JAR, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.CREATIVE_DOMINION_JAR));

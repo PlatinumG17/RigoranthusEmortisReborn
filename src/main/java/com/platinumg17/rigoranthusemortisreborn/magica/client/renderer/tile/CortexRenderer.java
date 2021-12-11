@@ -6,7 +6,7 @@ package com.platinumg17.rigoranthusemortisreborn.magica.client.renderer.tile;
 //import com.platinumg17.rigoranthusemortisreborn.magica.client.particle.GlowParticleData;
 //import com.platinumg17.rigoranthusemortisreborn.magica.client.particle.ParticleColor;
 //import com.platinumg17.rigoranthusemortisreborn.magica.client.particle.ParticleUtil;
-//import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.EmorticCoreTile;
+//import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.EmorticCortexTile;
 //import net.minecraft.client.Minecraft;
 //import net.minecraft.client.renderer.IRenderTypeBuffer;
 //import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
@@ -17,17 +17,17 @@ package com.platinumg17.rigoranthusemortisreborn.magica.client.renderer.tile;
 //
 //import java.util.Random;
 //
-//public class CoreRenderer extends TileEntityRenderer<EmorticCoreTile> {
+//public class CoreRenderer extends TileEntityRenderer<EmorticCortexTile> {
 //
-//    public static EmorticCoreModel model = new EmorticCoreModel();
-//    public static final ResourceLocation texture = new ResourceLocation(EmortisConstants.MOD_ID, "geo/emortic_core.geo.json");
+//    public static EmorticCortexModel model = new EmorticCortexModel();
+//    public static final ResourceLocation texture = new ResourceLocation(EmortisConstants.MOD_ID, "geo/emortic_cortex.geo.json");
 //
 //    public CoreRenderer(TileEntityRendererDispatcher p_i226006_1_) {
 //        super(p_i226006_1_);
 //    }
 //
 //    @Override
-//    public void render(EmorticCoreTile tileEntityIn, float partialTicks, MatrixStack ms, IRenderTypeBuffer buffers, int light, int overlay) {
+//    public void render(EmorticCortexTile tileEntityIn, float partialTicks, MatrixStack ms, IRenderTypeBuffer buffers, int light, int overlay) {
 //        World world = tileEntityIn.getLevel();
 //        Random rand = world.random;
 //        BlockPos pos = tileEntityIn.getBlockPos();

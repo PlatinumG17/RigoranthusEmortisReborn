@@ -35,7 +35,7 @@ public class ClientHandler {
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.DOMINION_EXTRACTOR_TILE, DominionExtractorRenderer::new);
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.ICHOR_EXTRACTOR_TILE, IchorExtractorRenderer::new);
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.RUNE_TILE, RuneRenderer::new);
-        ClientRegistry.bindTileEntityRenderer(BlockRegistry.EMORTIC_CORE_TILE, EmorticCoreRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(BlockRegistry.EMORTIC_CORTEX_TILE, EmorticCortexRenderer::new);
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.RELAY_DEPOSIT_TILE, (t) -> new GenericRenderer(t, "relay_deposit"));
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.EMORTIC_RELAY_TILE, (t) -> new GenericRenderer(t, "emortic_relay"));
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.EMORTIC_RELAY_SPLITTER_TILE, (t) -> new GenericRenderer(t, "relay_splitter"));
@@ -59,7 +59,7 @@ public class ClientHandler {
         RenderTypeLookup.setRenderLayer(BlockRegistry.EMORTIC_RELAY, RenderType.cutout());
         RenderTypeLookup.setRenderLayer(BlockRegistry.RELAY_DEPOSIT, RenderType.cutout());
         RenderTypeLookup.setRenderLayer(BlockRegistry.RUNE_BLOCK, RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(BlockRegistry.EMORTIC_CORE_BLOCK, RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(BlockRegistry.EMORTIC_CORTEX_BLOCK, RenderType.cutout());
         RenderTypeLookup.setRenderLayer(BlockRegistry.CRYSTALLIZER_BLOCK, RenderType.cutout());
         RenderTypeLookup.setRenderLayer(BlockRegistry.DOMINION_EXTRACTOR_BLOCK, RenderType.cutout());
         RenderTypeLookup.setRenderLayer(BlockRegistry.ICHOR_EXTRACTOR_BLOCK, RenderType.cutout());

@@ -12,7 +12,7 @@
 			},
 			"bones": [
 				{
-					"name": "emortic_core",
+					"name": "emortic_cortex",
 					"pivot": [8, 0, -8],
 					"cubes": [
 						{"origin": [-5, 13, -5], "size": [10, 1, 10], "uv": [0, 11]},
@@ -65,7 +65,7 @@
 				},
 				{
 					"name": "brain",
-					"parent": "emortic_core",
+					"parent": "emortic_cortex",
 					"pivot": [0.49167, 7.5066, 0.43749],
 					"cubes": [
 						{"origin": [0.5, 7, -1.75], "size": [2.25, 3, 4], "uv": [20, 25]},

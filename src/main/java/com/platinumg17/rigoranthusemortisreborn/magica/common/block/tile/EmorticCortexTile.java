@@ -1,10 +1,6 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile;
 
-import com.platinumg17.rigoranthusemortisreborn.magica.client.particle.GlowParticleData;
-import com.platinumg17.rigoranthusemortisreborn.magica.client.particle.ParticleColor;
-import com.platinumg17.rigoranthusemortisreborn.magica.client.particle.ParticleUtil;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.BlockRegistry;
-import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -14,11 +10,11 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class EmorticCoreTile extends TileEntity implements IAnimatable {
+public class EmorticCortexTile extends TileEntity implements IAnimatable {
     AnimationFactory manager = new AnimationFactory(this);
 
-    public EmorticCoreTile() {
-        super(BlockRegistry.EMORTIC_CORE_TILE);
+    public EmorticCortexTile() {
+        super(BlockRegistry.EMORTIC_CORTEX_TILE);
     }
 
     @Override

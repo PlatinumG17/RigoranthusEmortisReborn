@@ -2,14 +2,11 @@ package com.platinumg17.rigoranthusemortisreborn.magica.common.datagen;
 
 import com.platinumg17.rigoranthusemortisreborn.api.RigoranthusEmortisRebornAPI;
 import com.platinumg17.rigoranthusemortisreborn.blocks.BlockInit;
-import com.platinumg17.rigoranthusemortisreborn.blocks.BuildingBlockInit;
 import com.platinumg17.rigoranthusemortisreborn.blocks.DecorativeOrStorageBlocks;
-import com.platinumg17.rigoranthusemortisreborn.canis.common.canisnetwork.packet.data.REItemTagsProvider;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.CanisTags;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
 import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
-import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusTagRegistry;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.lib.RitualLib;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.spell.effect.EffectHeal;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.BlockRegistry;
@@ -19,8 +16,6 @@ import net.minecraft.block.Block;
 import net.minecraft.data.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
-import net.minecraft.item.crafting.BlastingRecipe;
-import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ITag;
@@ -30,7 +25,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.List;
 import java.util.function.Consumer;
 
 public class Recipes extends RecipeProvider {
@@ -114,7 +108,7 @@ public class Recipes extends RecipeProvider {
                     .pattern("xyx")
                     .pattern(" x ").define('x',  Tags.Items.NUGGETS_IRON).define('y',DOMINION_GEM).save(consumer);
 
-            ShapedRecipeBuilder.shaped(BlockRegistry.EMORTIC_CORE_BLOCK).unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(MagicItemsRegistry.emorticOrigins))
+            ShapedRecipeBuilder.shaped(BlockRegistry.EMORTIC_CORTEX_BLOCK).unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(MagicItemsRegistry.emorticOrigins))
                     .pattern("xxx")
                     .pattern("y y")
                     .pattern("xxx").define('y',  Tags.Items.INGOTS_GOLD).define('x', BlockInit.OPULENT_MAGMA.get()).save(consumer);

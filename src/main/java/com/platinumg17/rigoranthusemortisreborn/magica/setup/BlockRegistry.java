@@ -2,9 +2,6 @@ package com.platinumg17.rigoranthusemortisreborn.magica.setup;
 
 import com.minecraftabnormals.abnormals_core.common.blocks.AbnormalsFlowerBlock;
 import com.minecraftabnormals.abnormals_core.common.blocks.wood.AbnormalsSaplingBlock;
-import com.platinumg17.rigoranthusemortisreborn.blocks.custom.BlockMasterfulSmeltery;
-import com.platinumg17.rigoranthusemortisreborn.blocks.tileentity.MasterfulSmelteryTile;
-import com.platinumg17.rigoranthusemortisreborn.blocks.tileentity.container.MasterfulSmelteryContainer;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.renderer.tile.*;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.*;
@@ -23,7 +20,6 @@ import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.entity.EntityType;
-import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.potion.Effects;
@@ -33,7 +29,6 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.gen.blockstateprovider.BlockStateProviderType;
 import net.minecraftforge.common.ToolType;
-import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -125,8 +120,8 @@ public class BlockRegistry {
     @ObjectHolder(LibBlockNames.ICHOR_EXTRACTOR) public static TileEntityType<IchorExtractorTile> ICHOR_EXTRACTOR_TILE;
     @ObjectHolder(LibBlockNames.RUNE) public static TileEntityType<RuneTile> RUNE_TILE;
     @ObjectHolder(LibBlockNames.RUNE) public static RuneBlock RUNE_BLOCK;
-    @ObjectHolder(LibBlockNames.EMORTIC_CORE) public static EmorticCore EMORTIC_CORE_BLOCK;
-    @ObjectHolder(LibBlockNames.EMORTIC_CORE) public static TileEntityType<EmorticCoreTile> EMORTIC_CORE_TILE;
+    @ObjectHolder(LibBlockNames.EMORTIC_CORTEX) public static EmorticCortex EMORTIC_CORTEX_BLOCK;
+    @ObjectHolder(LibBlockNames.EMORTIC_CORTEX) public static TileEntityType<EmorticCortexTile> EMORTIC_CORTEX_TILE;
     @ObjectHolder(LibBlockNames.CRYSTALLIZER) public static CrystallizerBlock CRYSTALLIZER_BLOCK;
     @ObjectHolder(LibBlockNames.CRYSTALLIZER) public static TileEntityType<CrystallizerTile> CRYSTALLIZER_TILE;
 
@@ -162,7 +157,7 @@ public class BlockRegistry {
             registry.register(new EmorticRelay());
             registry.register(new RuneBlock());
             registry.register(new EmorticRelaySplitter());
-            registry.register(new EmorticCore());
+            registry.register(new EmorticCortex());
             registry.register(new CrystallizerBlock());
             registry.register(new DominionExtractorBlock());
             registry.register(new IchorExtractorBlock());
@@ -235,7 +230,7 @@ public class BlockRegistry {
             event.getRegistry().register(TileEntityType.Builder.of(IchorExtractorTile::new, BlockRegistry.ICHOR_EXTRACTOR_BLOCK).build(null).setRegistryName(LibBlockNames.ICHOR_EXTRACTOR));
             event.getRegistry().register(TileEntityType.Builder.of(EmorticRelaySplitterTile::new, BlockRegistry.EMORTIC_RELAY_SPLITTER).build(null).setRegistryName(LibBlockNames.EMORTIC_RELAY_SPLITTER));
             event.getRegistry().register(TileEntityType.Builder.of(RuneTile::new, BlockRegistry.RUNE_BLOCK).build(null).setRegistryName(LibBlockNames.RUNE));
-            event.getRegistry().register(TileEntityType.Builder.of(EmorticCoreTile::new, BlockRegistry.EMORTIC_CORE_BLOCK).build(null).setRegistryName(LibBlockNames.EMORTIC_CORE));
+            event.getRegistry().register(TileEntityType.Builder.of(EmorticCortexTile::new, BlockRegistry.EMORTIC_CORTEX_BLOCK).build(null).setRegistryName(LibBlockNames.EMORTIC_CORTEX));
             event.getRegistry().register(TileEntityType.Builder.of(CrystallizerTile::new, BlockRegistry.CRYSTALLIZER_BLOCK).build(null).setRegistryName(LibBlockNames.CRYSTALLIZER));
             event.getRegistry().register(TileEntityType.Builder.of(PsyglyphicCipherTile::new, BlockRegistry.PSYGLYPHIC_CIPHER).build(null).setRegistryName(LibBlockNames.PSYGLYPHIC_CIPHER));
         }
@@ -268,7 +263,7 @@ public class BlockRegistry {
             registry.register(new AnimBlockItem(BlockRegistry.DOMINION_EXTRACTOR_BLOCK, MagicItemsRegistry.defaultItemProperties().fireResistant().setISTER(() -> DominionExtractorRenderer::getISTER)).setRegistryName(LibBlockNames.DOMINION_EXTRACTOR));
             registry.register(new AnimBlockItem(BlockRegistry.ICHOR_EXTRACTOR_BLOCK, MagicItemsRegistry.defaultItemProperties().fireResistant().setISTER(() -> IchorExtractorRenderer::getISTER)).setRegistryName(LibBlockNames.ICHOR_EXTRACTOR));
             registry.register(new BlockItem(BlockRegistry.CRYSTALLIZER_BLOCK, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.CRYSTALLIZER));
-            registry.register(new AnimBlockItem(BlockRegistry.EMORTIC_CORE_BLOCK, MagicItemsRegistry.defaultItemProperties().setISTER(() -> EmorticCoreRenderer::getISTER)).setRegistryName(LibBlockNames.EMORTIC_CORE));
+            registry.register(new AnimBlockItem(BlockRegistry.EMORTIC_CORTEX_BLOCK, MagicItemsRegistry.defaultItemProperties().setISTER(() -> EmorticCortexRenderer::getISTER)).setRegistryName(LibBlockNames.EMORTIC_CORTEX));
             registry.register(new BlockItem(BlockRegistry.RUNE_BLOCK, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.RUNE));
             registry.register(new AnimBlockItem(BlockRegistry.PSYGLYPHIC_CIPHER, MagicItemsRegistry.defaultItemProperties().fireResistant().setISTER(() -> PsyglyphicRenderer::getISTER)).setRegistryName(LibBlockNames.PSYGLYPHIC_CIPHER));
             registry.register(dominionBerry);

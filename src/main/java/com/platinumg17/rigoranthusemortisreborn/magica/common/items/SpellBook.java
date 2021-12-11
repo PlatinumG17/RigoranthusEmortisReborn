@@ -16,7 +16,7 @@ import com.platinumg17.rigoranthusemortisreborn.magica.client.particle.ParticleC
 import com.platinumg17.rigoranthusemortisreborn.magica.client.renderer.item.SpellBookRenderer;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.IntangibleAirTile;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.PhantomBlockTile;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.ScribesTile;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.TableTile;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.network.Networking;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.network.PacketOpenSpellBook;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.util.PortUtil;
@@ -114,7 +114,7 @@ public class SpellBook extends Item implements ISpellTier, IScribeable, IDisplay
                 .withColors(SpellBook.getSpellColor(stack.getOrCreateTag(), SpellBook.getMode(stack.getOrCreateTag()))));
         boolean isSensitive = resolver.spell.getBuffsAtIndex(0, playerIn, AugmentSensitive.INSTANCE) > 0; //TODO  recent removal
         RayTraceResult result = playerIn.pick(5, 0, isSensitive);
-        if(result instanceof BlockRayTraceResult && worldIn.getBlockEntity(((BlockRayTraceResult) result).getBlockPos()) instanceof ScribesTile)
+        if(result instanceof BlockRayTraceResult && worldIn.getBlockEntity(((BlockRayTraceResult) result).getBlockPos()) instanceof TableTile)
             return new ActionResult<>(ActionResultType.SUCCESS, stack);
         if(result instanceof BlockRayTraceResult && !playerIn.isShiftKeyDown()){
             if(worldIn.getBlockEntity(((BlockRayTraceResult) result).getBlockPos()) != null &&

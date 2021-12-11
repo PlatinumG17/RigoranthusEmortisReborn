@@ -1,15 +1,15 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.common.block;
 
-import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.EmorticCoreTile;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.EmorticCortexTile;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockReader;
 
-public class EmorticCore extends ModBlock {
+public class EmorticCortex extends ModBlock {
 
-    public EmorticCore() {
-        super(defaultProperties().noOcclusion().lightLevel((state) -> 15), "emortic_core");
+    public EmorticCortex() {
+        super(defaultProperties().noOcclusion().lightLevel((state) -> 15), "emortic_cortex");
     }
 
     @Override
@@ -19,7 +19,7 @@ public class EmorticCore extends ModBlock {
 
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new EmorticCoreTile();
+        return new EmorticCortexTile();
     }
 
     @Override

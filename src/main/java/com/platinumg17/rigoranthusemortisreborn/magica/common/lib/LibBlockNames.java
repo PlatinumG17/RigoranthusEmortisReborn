@@ -3,7 +3,6 @@ package com.platinumg17.rigoranthusemortisreborn.magica.common.lib;
 public class LibBlockNames {
     public static final String MASTERFUL_SMELTERY_CONTAINER = "masterful_smeltery_container";
     public static final String MASTERFUL_SMELTERY = "masterful_smeltery";
-
     public static final String RECONDITE_ORE = "recondite_ore";
 
     public static final String POTTED_AZULOREAL_SAPLING = "potted_azuloreal_sapling";
@@ -53,14 +52,10 @@ public class LibBlockNames {
     public final static String RITUAL_VESSEL = "ritual_vessel";
     public final static String DOMINION_GEM_BLOCK = "dominion_gem_block";
     public final static String SCONCE = "sconce";
-    public static final String EMORTIC_CORE = "emortic_core";
-    public static final String RELAY_WARP = "relay_warp";
+    public static final String EMORTIC_CORTEX = "emortic_cortex";
     public static final String EMORTIC_RELAY = "emortic_relay";
     public static final String EMORTIC_RELAY_SPLITTER = "relay_splitter";
     public static final String DOMINION_EXTRACTOR = "dominion_extractor";
     public static final String ICHOR_EXTRACTOR = "ichor_extractor";
     public static final String RELAY_DEPOSIT = "relay_deposit";
-    public static final String BASIC_SPELL_TURRET = "basic_spell_turret";
-    public static final String TIMER_SPELL_TURRET = "timer_spell_turret";
-    public static final String SPELL_TURRET = "spell_turret";
 }

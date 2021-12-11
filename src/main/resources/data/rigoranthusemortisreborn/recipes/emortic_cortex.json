@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "xxx",
+    "yby",
+    "xxx"
+  ],
+  "key": {
+    "x": {
+      "tag": "forge:ingots/iron"
+    },
+    "y": {
+      "tag": "forge:glass"
+    },
+    "b": {
+      "item": "rigoranthusemortisreborn:dweller_brain"
+    }
+  },
+  "result": {
+    "item": "rigoranthusemortisreborn:emortic_cortex"
+  }
+}

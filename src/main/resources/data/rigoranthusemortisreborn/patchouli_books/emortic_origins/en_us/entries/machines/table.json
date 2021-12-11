@@ -1,0 +1,19 @@
+{
+    "name": "Scribes Table",
+    "icon": "rigoranthusemortisreborn:table",
+    "category": "machines",
+    "pages": [
+        {
+            "type": "text",
+            "text": "rigoranthusemortisreborn.page1.table"
+        },
+		{
+		"type":"text",
+		"text":"rigoranthusemortisreborn.page2.table"
+		},
+		{
+            "type":"crafting",
+			"recipe":"rigoranthusemortisreborn:table"
+		}
+    ]
+}

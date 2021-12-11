@@ -3,9 +3,11 @@ package com.platinumg17.rigoranthusemortisreborn.magica.common.items;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.renderer.item.ShieldRenderer;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.capability.DominionCapability;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.lib.LibItemNames;
+import net.minecraft.block.DispenserBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShieldItem;
 import net.minecraft.util.ActionResult;
@@ -23,6 +25,7 @@ public class LustericShield extends ShieldItem implements IAnimatable {
 
     public LustericShield() {
         super(defaultItemProperties().durability(500).setISTER(() -> ShieldRenderer::new));
+        DispenserBlock.registerBehavior(this, ArmorItem.DISPENSE_ITEM_BEHAVIOR);
         setRegistryName(LibItemNames.LUSTERIC_SHIELD);
     }
 

@@ -124,7 +124,7 @@ public class PsyglyphicAmalgamatorRecipe implements IPsyglyphicRecipe {
 
     public JsonElement asRecipe(){
         JsonObject jsonobject = new JsonObject();
-        jsonobject.addProperty("type", "rigoranthusemortisreborn:psyglyphic_amalgamator");
+        jsonobject.addProperty("type", "rigoranthusemortisreborn:amalgamator_recipe");
         int counter = 1;
         for(Ingredient i : pedestalItems){
             JsonArray item = new JsonArray();
@@ -216,7 +216,7 @@ public class PsyglyphicAmalgamatorRecipe implements IPsyglyphicRecipe {
 
     @Override
     public IRecipeType<?> getType() {
-        return Registry.RECIPE_TYPE.get(new ResourceLocation(EmortisConstants.MOD_ID, "psyglyphic_amalgamator"));
+        return Registry.RECIPE_TYPE.get(new ResourceLocation(EmortisConstants.MOD_ID, "amalgamator_recipe"));
     }
 
     public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<PsyglyphicAmalgamatorRecipe> {

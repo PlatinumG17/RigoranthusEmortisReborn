@@ -17,17 +17,17 @@ public class IchorExtractorModel<T extends IchorTile> extends AnimatedGeoModel<I
     }
 
     @Override
-    public ResourceLocation getModelLocation(IchorTile agronomicExtractor) {
+    public ResourceLocation getModelLocation(IchorTile ichorExtractor) {
         return modelLocation;
     }
 
     @Override
-    public ResourceLocation getTextureLocation(IchorTile agronomicExtractor) {
+    public ResourceLocation getTextureLocation(IchorTile ichorExtractor) {
         return textLoc;
     }
 
     @Override
-    public ResourceLocation getAnimationFileLocation(IchorTile agronomicExtractor) {
+    public ResourceLocation getAnimationFileLocation(IchorTile ichorExtractor) {
         return animationLoc;
     }
 }

@@ -65,7 +65,7 @@ public class EmortisBiomeGen {
                         .grassColorOverride(5627304)
                         .foliageColorOverride(8442041).skyColor(11726569)
                         .ambientMoodSound(BiomeMusic.CALM_RIGHT)
-                        //.backgroundMusic(BiomeMusic.UN_DIA_DE_ABRIL_MUSIC)
+                        .backgroundMusic(BiomeMusic.UN_DIA_DE_ABRIL_MUSIC)
                         .build())
                 .mobSpawnSettings(mobspawninfo$builder.build()).generationSettings(biomegenerationsettings$builder.build()).build();
     }
@@ -97,7 +97,7 @@ public class EmortisBiomeGen {
                         .skyColor(getSkyColorWithTemperatureModifier(0.5F))
                         .grassColorOverride(5627304)
                         .foliageColorOverride(8442041).skyColor(11726569)
-                        //.ambientMoodSound(BiomeMusic.CALM_RIGHT)
+                        .ambientMoodSound(BiomeMusic.CALM_RIGHT)
                         .backgroundMusic(BiomeMusic.UN_DIA_DE_ABRIL_MUSIC)
                         .build())
                 .mobSpawnSettings(mobspawninfo$builder.build()).generationSettings(biomegenerationsettings$builder.build()).build();

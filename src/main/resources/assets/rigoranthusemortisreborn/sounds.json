@@ -392,7 +392,7 @@
     "sounds": [
       {
         "name": "rigoranthusemortisreborn:un_dia_de_abril",
-        "stream": false
+        "stream": true
       }
     ]
   },
@@ -401,7 +401,7 @@
     "sounds": [
       {
         "name": "rigoranthusemortisreborn:calm_right",
-        "stream": false
+        "stream": true
       }
     ]
   },

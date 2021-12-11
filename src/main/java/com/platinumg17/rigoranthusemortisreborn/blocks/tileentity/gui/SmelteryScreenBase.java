@@ -2,8 +2,8 @@ package com.platinumg17.rigoranthusemortisreborn.blocks.tileentity.gui;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.blocks.tileentity.container.MasterfulSmelteryContainerBase;
-import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.core.init.network.messages.Messages;
 import com.platinumg17.rigoranthusemortisreborn.core.init.network.messages.PacketSettingsButton;
 import com.platinumg17.rigoranthusemortisreborn.core.init.network.messages.PacketShowSettingsButton;
@@ -28,8 +28,8 @@ import java.util.List;
 @OnlyIn(Dist.CLIENT)
 public abstract class SmelteryScreenBase<T extends MasterfulSmelteryContainerBase> extends ContainerScreen<T> {
 
-    public ResourceLocation GUI = new ResourceLocation(EmortisConstants.MOD_ID + ":" + "textures/gui/smeltery.png");
-    public static final ResourceLocation WIDGETS = new ResourceLocation(EmortisConstants.MOD_ID + ":" + "textures/gui/widgets.png");
+    public ResourceLocation GUI = new ResourceLocation(RigoranthusEmortisReborn.MOD_ID + ":" + "textures/gui/smeltery.png");
+    public static final ResourceLocation WIDGETS = new ResourceLocation(RigoranthusEmortisReborn.MOD_ID + ":" + "textures/gui/widgets.png");
     PlayerInventory playerInv;
     ITextComponent name;
 
@@ -74,74 +74,74 @@ public abstract class SmelteryScreenBase<T extends MasterfulSmelteryContainerBas
 
         if (!getMenu().showInventoryButtons()) {
             if (mouseX >= -20 && mouseX <= 0 && mouseY >= 4 && mouseY <= 26) {
-                this.renderTooltip(matrix, new TranslationTextComponent("tooltip." + EmortisConstants.MOD_ID + ".gui_open"), mouseX, mouseY);
+                this.renderTooltip(matrix, new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".gui_open"), mouseX, mouseY);
             }
         } else {
             if (mouseX >= -13 && mouseX <= 0 && mouseY >= 4 && mouseY <= 26) {
                 this.renderComponentTooltip(matrix, StringHelper.getShiftInfoGui(), mouseX, mouseY);
             } else if (mouseX >= -47 && mouseX <= -34 && mouseY >= 12 && mouseY <= 25) {
                 List<ITextComponent> list = Lists.newArrayList();
-                list.add(new TranslationTextComponent("tooltip." + EmortisConstants.MOD_ID + ".gui_auto_input"));
+                list.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".gui_auto_input"));
                 list.add(new StringTextComponent("" + this.getMenu().getAutoInput()));
                 this.renderComponentTooltip(matrix, list, mouseX, mouseY);
             } else if (mouseX >= -29 && mouseX <= -16 && mouseY >= 12 && mouseY <= 25) {
                 List<ITextComponent> list = Lists.newArrayList();
-                list.add(new TranslationTextComponent("tooltip." + EmortisConstants.MOD_ID + ".gui_auto_output"));
+                list.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".gui_auto_output"));
                 list.add(new StringTextComponent("" + this.getMenu().getAutoOutput()));
                 this.renderComponentTooltip(matrix, list, mouseX, mouseY);
             } else if (mouseX >= -32 && mouseX <= -23 && mouseY >= 31 && mouseY <= 40) {
                 List<ITextComponent> list = Lists.newArrayList();
-                list.add(new TranslationTextComponent("tooltip." + EmortisConstants.MOD_ID + ".gui_top"));
+                list.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".gui_top"));
                 list.add(this.getMenu().getTooltip(1));
                 this.renderComponentTooltip(matrix, list, mouseX, mouseY);
             } else if (mouseX >= -32 && mouseX <= -23 && mouseY >= 55 && mouseY <= 64) {
                 List<ITextComponent> list = Lists.newArrayList();
-                list.add(new TranslationTextComponent("tooltip." + EmortisConstants.MOD_ID + ".gui_bottom"));
+                list.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".gui_bottom"));
                 list.add(this.getMenu().getTooltip(0));
                 this.renderComponentTooltip(matrix, list, mouseX, mouseY);
             } else if (mouseX >= -32 && mouseX <= -23 && mouseY >= 43 && mouseY <= 52) {
                 List<ITextComponent> list = Lists.newArrayList();
                 if (isShiftKeyDown()) {
-                    list.add(new TranslationTextComponent("tooltip." + EmortisConstants.MOD_ID + ".gui_reset"));
+                    list.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".gui_reset"));
                 } else {
-                    list.add(new TranslationTextComponent("tooltip." + EmortisConstants.MOD_ID + ".gui_front"));
+                    list.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".gui_front"));
                     list.add(this.getMenu().getTooltip(this.getMenu().getIndexFront()));
                 }
                 this.renderComponentTooltip(matrix, list, mouseX, mouseY);
             } else if (mouseX >= -44 && mouseX <= -35 && mouseY >= 43 && mouseY <= 52) {
                 List<ITextComponent> list = Lists.newArrayList();
-                list.add(new TranslationTextComponent("tooltip." + EmortisConstants.MOD_ID + ".gui_left"));
+                list.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".gui_left"));
                 list.add(this.getMenu().getTooltip(this.getMenu().getIndexLeft()));
                 this.renderComponentTooltip(matrix, list, mouseX, mouseY);
             } else if (mouseX >= -20 && mouseX <= -11 && mouseY >= 43 && mouseY <= 52) {
                 List<ITextComponent> list = Lists.newArrayList();
-                list.add(new TranslationTextComponent("tooltip." + EmortisConstants.MOD_ID + ".gui_right"));
+                list.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".gui_right"));
                 list.add(this.getMenu().getTooltip(this.getMenu().getIndexRight()));
                 this.renderComponentTooltip(matrix, list, mouseX, mouseY);
             } else if (mouseX >= -20 && mouseX <= -11 && mouseY >= 55 && mouseY <= 64) {
                 List<ITextComponent> list = Lists.newArrayList();
-                list.add(new TranslationTextComponent("tooltip." + EmortisConstants.MOD_ID + ".gui_back"));
+                list.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".gui_back"));
                 list.add(this.getMenu().getTooltip(this.getMenu().getIndexBack()));
                 this.renderComponentTooltip(matrix, list, mouseX, mouseY);
             } else if (mouseX >= -47 && mouseX <= -34 && mouseY >= 70 && mouseY <= 83) {
                 List<ITextComponent> list = Lists.newArrayList();
-                list.add(new TranslationTextComponent("tooltip." + EmortisConstants.MOD_ID + ".gui_redstone_ignored"));
+                list.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".gui_redstone_ignored"));
                 this.renderComponentTooltip(matrix, list, mouseX, mouseY);
             } else if (mouseX >= -31 && mouseX <= -18 && mouseY >= 70 && mouseY <= 83) {
                 List<ITextComponent> list = Lists.newArrayList();
                 if (isShiftKeyDown()) {
-                    list.add(new TranslationTextComponent("tooltip." + EmortisConstants.MOD_ID + ".gui_redstone_low"));
+                    list.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".gui_redstone_low"));
                 } else {
-                    list.add(new TranslationTextComponent("tooltip." + EmortisConstants.MOD_ID + ".gui_redstone_high"));
+                    list.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".gui_redstone_high"));
                 }
                 this.renderComponentTooltip(matrix, list, mouseX, mouseY);
             } else if (mouseX >= -15 && mouseX <= -2 && mouseY >= 70 && mouseY <= 83) {
                 List<ITextComponent> list = Lists.newArrayList();
-                list.add(new TranslationTextComponent("tooltip." + EmortisConstants.MOD_ID + ".gui_redstone_comparator"));
+                list.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".gui_redstone_comparator"));
                 this.renderComponentTooltip(matrix, list, mouseX, mouseY);
             } else if (mouseX >= -47 && mouseX <= -34 && mouseY >= 86 && mouseY <= 99) {
                 List<ITextComponent> list = Lists.newArrayList();
-                list.add(new TranslationTextComponent("tooltip." + EmortisConstants.MOD_ID + ".gui_redstone_comparator_sub"));
+                list.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".gui_redstone_comparator_sub"));
                 this.renderComponentTooltip(matrix, list, mouseX, mouseY);
             }
         }

@@ -34,13 +34,13 @@ public class RecipeRegistry {
     public static void register(final RegistryEvent.Register<IRecipeSerializer<?>> evt) {
         Registry.register(Registry.RECIPE_TYPE, new ResourceLocation(EmortisConstants.MOD_ID, "ichor_crystallizer_recipe"), CRYSTAL_TYPE);
         Registry.register(Registry.RECIPE_TYPE, new ResourceLocation(EmortisConstants.MOD_ID, "glyph_recipe"), GLYPH_TYPE);
-        Registry.register(Registry.RECIPE_TYPE, new ResourceLocation(EmortisConstants.MOD_ID, "psyglyphic_amalgamator"), PSYGLYPHIC_TYPE);
+        Registry.register(Registry.RECIPE_TYPE, new ResourceLocation(EmortisConstants.MOD_ID, "amalgamator_recipe"), PSYGLYPHIC_TYPE);
         Registry.register(Registry.RECIPE_TYPE, new ResourceLocation(EmortisConstants.MOD_ID, PsyglyphicEnchantingRecipe.RECIPE_ID), ENCHANTMENT_TYPE);
         Registry.register(Registry.RECIPE_TYPE, new ResourceLocation(EmortisConstants.MOD_ID, CrushRecipe.RECIPE_ID), CRUSH_TYPE);
 
         evt.getRegistry().register(CRYSTALLIZER_SERIALIZER.setRegistryName(new ResourceLocation(EmortisConstants.MOD_ID, "ichor_crystallizer_recipe")));
         evt.getRegistry().register(PRESS_SERIALIZER.setRegistryName(new ResourceLocation(EmortisConstants.MOD_ID, "glyph_recipe")));
-        evt.getRegistry().register(PSYGLYPHIC_SERIALIZER.setRegistryName(new ResourceLocation(EmortisConstants.MOD_ID, "psyglyphic_amalgamator")));
+        evt.getRegistry().register(PSYGLYPHIC_SERIALIZER.setRegistryName(new ResourceLocation(EmortisConstants.MOD_ID, "amalgamator_recipe")));
         evt.getRegistry().register(ENCHANTMENT_SERIALIZER.setRegistryName(new ResourceLocation(EmortisConstants.MOD_ID, PsyglyphicEnchantingRecipe.RECIPE_ID)));
     }
 

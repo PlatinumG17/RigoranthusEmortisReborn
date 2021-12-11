@@ -1,6 +1,6 @@
 {
 	"name": "Offering Rituals",
 	"description": "Offering Rituals are ceremonies in which offerings are made in exchange for powerful benefits, most notably being the binding of familiars. To get started with Rituals, you will need a Vessel of Offerance and the Offering for the ritual you would like to perform.",
-	"icon": "rigoranthusemortisreborn:ritual",
+	"icon": "rigoranthusemortisreborn:ritual_vessel",
 	"sortnum":10
 }

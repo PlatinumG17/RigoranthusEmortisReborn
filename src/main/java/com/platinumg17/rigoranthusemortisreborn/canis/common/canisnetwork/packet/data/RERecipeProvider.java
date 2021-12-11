@@ -8,7 +8,6 @@ import com.platinumg17.rigoranthusemortisreborn.canis.common.util.REUtil;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.*;
 import net.minecraft.item.Items;
-import net.minecraft.tags.ItemTags;
 
 import java.nio.file.Path;
 import java.util.function.Consumer;
@@ -45,16 +44,11 @@ public class RERecipeProvider extends RecipeProvider {
 
 //        ShapedRecipeBuilder.shaped(CanisItems.CAPE.get(), 1).pattern("S S").pattern("LWL").pattern("WLW").define('L', Items.LEATHER).define('S', Items.STRING).define('W', ItemTags.WOOL).unlockedBy("has_leather", has(Items.LEATHER)).save(consumer);
 //        ShapedRecipeBuilder.shaped(CanisItems.CAPE_COLORED.get(), 1).pattern("S S").pattern("LLL").pattern("LLL").define('L', Items.LEATHER).define('S', Items.STRING).unlockedBy("has_leather", has(Items.LEATHER)).save(consumer);
-//        ShapedRecipeBuilder.shaped(CanisItems.SPOTTED_COLLAR.get(), 1).pattern("BWB").pattern("WCW").pattern("BSB").define('C', CanisItems.WOOL_COLLAR.get()).define('B', Items.BLACK_DYE).define('W', Items.WHITE_DYE).define('S', Items.STRING).unlockedBy("has_wool_collar", has(CanisItems.WOOL_COLLAR.get())).save(consumer);
-//        ShapedRecipeBuilder.shaped(CanisItems.SPOTTED_COLLAR.get(), 1).pattern("WBW").pattern("BCB").pattern("WSW").define('C', CanisItems.WOOL_COLLAR.get()).define('B', Items.BLACK_DYE).define('W', Items.WHITE_DYE).define('S', Items.STRING).unlockedBy("has_wool_collar", has(CanisItems.WOOL_COLLAR.get())).save(consumer, REUtil.getResource("spotted_collar_alt"));
 //        ShapelessRecipeBuilder.shapeless(CanisItems.MULTICOLORED_COLLAR.get(), 1).requires(CanisItems.WOOL_COLLAR.get()).requires(Items.STRING).requires(Items.BLUE_DYE).requires(Items.LIME_DYE).requires(Items.YELLOW_DYE).requires(Items.ORANGE_DYE).requires(Items.RED_DYE).requires(Items.PURPLE_DYE).unlockedBy("has_wool_collar", has(CanisItems.WOOL_COLLAR.get())).save(consumer);
 
         ShapedRecipeBuilder.shaped(CanisItems.SUNGLASSES.get(), 1).pattern("S S").pattern("GSG").define('S', Items.STICK).define('G', Blocks.GLASS_PANE).unlockedBy("has_stick", has(Items.STICK)).save(consumer);
         ShapedRecipeBuilder.shaped(CanisItems.TINY_BONE.get(), 1).pattern("BI").pattern("IB").define('B', Items.BONE).define('I', Items.IRON_INGOT).unlockedBy("has_iron_ingot", has(Items.IRON_INGOT)).save(consumer);
         ShapedRecipeBuilder.shaped(CanisItems.BIG_BONE.get(), 1).pattern("BI").pattern("IB").pattern("BI").define('B', Items.BONE).define('I', Items.IRON_INGOT).unlockedBy("has_iron_ingot", has(Items.IRON_INGOT)).save(consumer);
-
-//        ShapedRecipeBuilder.shaped(CanisItems.RADIO_COLLAR.get(), 1).pattern("XX").pattern("YX").define('X', Items.IRON_INGOT).define('Y', Items.REDSTONE).unlockedBy("has_redstone", has(Items.REDSTONE)).save(consumer);
-//        ShapelessRecipeBuilder.shapeless(CanisItems.RADAR.get(), 1).requires(Items.MAP, 1).requires(Items.REDSTONE, 1).requires(CanisItems.RADIO_COLLAR.get(), 1).unlockedBy("has_redstone", has(Items.REDSTONE)).save(consumer);
 
         CustomRecipeBuilder.special(CanisRecipeSerializers.CANIS_BED.get()).save(consumer, REUtil.getResourcePath("canis_bed"));
     }

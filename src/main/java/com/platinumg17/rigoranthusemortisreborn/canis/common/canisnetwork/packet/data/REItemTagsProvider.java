@@ -6,7 +6,6 @@ import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstant
 import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.BlockRegistry;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.MagicItemsRegistry;
-import net.minecraft.block.Block;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.ItemTagsProvider;
@@ -52,13 +51,13 @@ public class REItemTagsProvider extends ItemTagsProvider {
         appendToTag(CanisTags.JESSIC);
         appendToTag(CanisTags.AZULOREAL);
 
-        createBlockTag(CanisTags.MASTERFUL, Registration.MASTERFUL_SMELTERY.get());
-        createBlockTag(CanisTags.JESSIC_LOG, BlockRegistry.JESSIC_LOG, BlockRegistry.JESSIC_WOOD, BlockRegistry.STRIPPED_JESSIC_LOG, BlockRegistry.STRIPPED_JESSIC_WOOD);
-        createBlockTag(CanisTags.AZULOREAL_LOG, BlockRegistry.AZULOREAL_LOG, BlockRegistry.AZULOREAL_WOOD, BlockRegistry.STRIPPED_AZULOREAL_LOG, BlockRegistry.STRIPPED_AZULOREAL_WOOD);
-        createBlockTag(CanisTags.JESSIC_LOGS, BlockRegistry.JESSIC_LOG, BlockRegistry.JESSIC_WOOD, BlockRegistry.STRIPPED_JESSIC_LOG, BlockRegistry.STRIPPED_JESSIC_WOOD);
-        createBlockTag(CanisTags.AZULOREAL_LOGS, BlockRegistry.AZULOREAL_LOG, BlockRegistry.AZULOREAL_WOOD, BlockRegistry.STRIPPED_AZULOREAL_LOG, BlockRegistry.STRIPPED_AZULOREAL_WOOD);
-        createBlockTag(CanisTags.JESSIC, BlockRegistry.JESSIC_LOG, BlockRegistry.JESSIC_WOOD, BlockRegistry.STRIPPED_JESSIC_LOG, BlockRegistry.STRIPPED_JESSIC_WOOD);
-        createBlockTag(CanisTags.AZULOREAL, BlockRegistry.AZULOREAL_LOG, BlockRegistry.AZULOREAL_WOOD, BlockRegistry.STRIPPED_AZULOREAL_LOG, BlockRegistry.STRIPPED_AZULOREAL_WOOD);
+        createBlockTag(CanisTags.MASTERFUL, Registration.MASTERFUL_SMELTERY.get().asItem());
+        createBlockTag(CanisTags.JESSIC_LOG, BlockRegistry.JESSIC_LOG.asItem(), BlockRegistry.JESSIC_WOOD.asItem(), BlockRegistry.STRIPPED_JESSIC_LOG.asItem(), BlockRegistry.STRIPPED_JESSIC_WOOD.asItem());
+        createBlockTag(CanisTags.AZULOREAL_LOG, BlockRegistry.AZULOREAL_LOG.asItem(), BlockRegistry.AZULOREAL_WOOD.asItem(), BlockRegistry.STRIPPED_AZULOREAL_LOG.asItem(), BlockRegistry.STRIPPED_AZULOREAL_WOOD.asItem());
+        createBlockTag(CanisTags.JESSIC_LOGS, BlockRegistry.JESSIC_LOG.asItem(), BlockRegistry.JESSIC_WOOD.asItem(), BlockRegistry.STRIPPED_JESSIC_LOG.asItem(), BlockRegistry.STRIPPED_JESSIC_WOOD.asItem());
+        createBlockTag(CanisTags.AZULOREAL_LOGS, BlockRegistry.AZULOREAL_LOG.asItem(), BlockRegistry.AZULOREAL_WOOD.asItem(), BlockRegistry.STRIPPED_AZULOREAL_LOG.asItem(), BlockRegistry.STRIPPED_AZULOREAL_WOOD.asItem());
+        createBlockTag(CanisTags.JESSIC, BlockRegistry.JESSIC_LOG.asItem(), BlockRegistry.JESSIC_WOOD.asItem(), BlockRegistry.STRIPPED_JESSIC_LOG.asItem(), BlockRegistry.STRIPPED_JESSIC_WOOD.asItem());
+        createBlockTag(CanisTags.AZULOREAL, BlockRegistry.AZULOREAL_LOG.asItem(), BlockRegistry.AZULOREAL_WOOD.asItem(), BlockRegistry.STRIPPED_AZULOREAL_LOG.asItem(), BlockRegistry.STRIPPED_AZULOREAL_WOOD.asItem());
         appendToTag(ItemTags.LOGS_THAT_BURN, CanisTags.AZULOREAL_LOGS, CanisTags.JESSIC_LOGS);
         tag(ItemTags.LOGS)
                 .add(BlockRegistry.AZULOREAL_LOG.asItem())
@@ -78,9 +77,8 @@ public class REItemTagsProvider extends ItemTagsProvider {
         tag(tag).add(Arrays.stream(items).map(Supplier::get).map(IItemProvider::asItem).toArray(Item[]::new));
     }
 
-
-    private void createBlockTag(ITag.INamedTag<Item> tag, Block... items) {
-        tag(tag).add(Arrays.stream(items).map(Block::asItem).toArray(Item[]::new));
+    private void createBlockTag(ITag.INamedTag<Item> tag, Item... items) {
+        tag(tag).add(Arrays.stream(items).toArray(Item[]::new));
     }
 
     @SafeVarargs

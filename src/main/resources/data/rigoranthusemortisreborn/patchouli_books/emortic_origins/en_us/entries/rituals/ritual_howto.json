@@ -1,7 +1,7 @@
 {
   "name": "Performing Rituals",
   "sortnum":-1,
-  "icon": "rigoranthusemortisreborn:ritual",
+  "icon": "rigoranthusemortisreborn:ritual_vessel",
   "category": "rituals",
   "pages": [
     {
@@ -12,10 +12,10 @@
       "text": "To activate your ritual, interact with the Vessel with an empty hand. If a ritual requires Dominion to operate, the Vessel will pull from Dominion Jars within 6 blocks. Information related to rituals and their requirements can be found in their respective entries."
     },{
             "type":"crafting",
-			"recipe":"rigoranthusemortisreborn:ritual"
+			"recipe":"rigoranthusemortisreborn:ritual_vessel"
 		}, {
             "type": "relations",
-            "entries":["machines/ritual"]        
+            "entries":["machines/ritual_vessel"]        
         }
   ]
 }

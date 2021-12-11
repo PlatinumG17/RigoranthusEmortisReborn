@@ -15,7 +15,7 @@
       "text": "rigoranthusemortisreborn.page4.summoning_familiars"
     },{
 		"type": "relations",
-		"entries":["machines/ritual","rituals/binding"]        
+		"entries":["machines/ritual_vessel","rituals/binding"]
        }
   ]
 }

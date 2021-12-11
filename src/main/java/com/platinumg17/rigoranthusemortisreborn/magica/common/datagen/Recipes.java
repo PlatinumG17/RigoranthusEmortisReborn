@@ -2,6 +2,7 @@ package com.platinumg17.rigoranthusemortisreborn.magica.common.datagen;
 
 import com.platinumg17.rigoranthusemortisreborn.api.RigoranthusEmortisRebornAPI;
 import com.platinumg17.rigoranthusemortisreborn.blocks.BlockInit;
+import com.platinumg17.rigoranthusemortisreborn.blocks.BuildingBlockInit;
 import com.platinumg17.rigoranthusemortisreborn.blocks.DecorativeOrStorageBlocks;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.canisnetwork.packet.data.REItemTagsProvider;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.CanisTags;
@@ -18,6 +19,8 @@ import net.minecraft.block.Block;
 import net.minecraft.data.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraft.item.crafting.BlastingRecipe;
+import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ITag;
@@ -27,6 +30,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 public class Recipes extends RecipeProvider {
@@ -41,8 +45,11 @@ public class Recipes extends RecipeProvider {
     public static ITag.INamedTag<Block> MAGIC_PLANTS =  BlockTags.createOptional(new ResourceLocation(EmortisConstants.MOD_ID, "magic_plants"));
     public static ITag.INamedTag<Item> MAGIC_FOOD = ItemTags.bind("rigoranthusemortisreborn:magic_food");
 
-    public static Ingredient DOMINION_GEM = Ingredient.of(DOMINION_GEM_TAG);
-    public static Ingredient DOMINION_GEM_BLOCK = Ingredient.of(DOMINION_GEM_BLOCK_TAG);
+    public static ITag.INamedTag<Block> AZULOREAL_LOGS_TAG =  BlockTags.createOptional(new ResourceLocation(EmortisConstants.MOD_ID, "azuloreal_logs"));
+    public static ITag.INamedTag<Block> JESSIC_LOGS_TAG =  BlockTags.createOptional(new ResourceLocation(EmortisConstants.MOD_ID, "jessic_logs"));
+
+    public static Ingredient DOMINION_GEM = Ingredient.of(MagicItemsRegistry.dominionGem);
+    public static Ingredient DOMINION_GEM_BLOCK = Ingredient.of(BlockRegistry.DOMINION_GEM_BLOCK);
     @Override
     protected void buildShapelessRecipes(Consumer<IFinishedRecipe> consumer) {
         {
@@ -56,6 +63,16 @@ public class Recipes extends RecipeProvider {
             ShapelessRecipeBuilder.shapeless(MagicItemsRegistry.emorticOrigins).unlockedBy("has_journal", InventoryChangeTrigger.Instance.hasItems(MagicItemsRegistry.emorticOrigins))
                     .requires(DOMINION_GEM, 1)
                     .requires(Items.BOOK).save(consumer);
+
+            ShapedRecipeBuilder.shaped(MagicItemsRegistry.unadornedRing).unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(MagicItemsRegistry.emorticOrigins))
+                    .pattern("xyx")
+                    .pattern("x x")
+                    .pattern("xxx").define('x', Tags.Items.NUGGETS_IRON).define('y', Tags.Items.INGOTS_IRON).save(consumer);
+
+            ShapedRecipeBuilder.shaped(MagicItemsRegistry.unadornedAmulet).unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(MagicItemsRegistry.emorticOrigins))
+                    .pattern("xyx")
+                    .pattern("l l")
+                    .pattern(" l ").define('x', Tags.Items.NUGGETS_IRON).define('y', Tags.Items.INGOTS_IRON).define('l', Tags.Items.LEATHER).save(consumer);
             
             ShapedRecipeBuilder.shaped(BlockRegistry.DOMINION_JAR).unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(MagicItemsRegistry.emorticOrigins))
                     .pattern("xyx")
@@ -126,6 +143,7 @@ public class Recipes extends RecipeProvider {
 
             shapelessBuilder(BlockRegistry.DOMINION_GEM_BLOCK,1).requires(DOMINION_GEM, 9).save(consumer);
             shapelessBuilder(MagicItemsRegistry.dominionGem, 9).requires(BlockRegistry.DOMINION_GEM_BLOCK,1).save(consumer, new ResourceLocation(EmortisConstants.MOD_ID, "dominion_gem_2"));
+
             ShapedRecipeBuilder.shaped(Items.ARROW, 2)
                     .unlockedBy("has_journal", InventoryChangeTrigger.Instance.hasItems(MagicItemsRegistry.emorticOrigins))
                     .pattern(" x ")
@@ -134,7 +152,7 @@ public class Recipes extends RecipeProvider {
                     .define('x', ItemInit.RAZORTOOTH_KUNAI.get())
                     .define('y', Items.STICK)
                     .define('z', Items.FEATHER)
-                    .save(consumer, new ResourceLocation(EmortisConstants.MOD_ID, "spike_to_arrow"));
+                    .save(consumer, new ResourceLocation(EmortisConstants.MOD_ID, "razortooth_to_arrow"));
 
             shapelessBuilder(BlockRegistry.RITUAL_BLOCK)
                     .requires(BlockRegistry.SPLINTERED_PEDESTAL)
@@ -176,15 +194,6 @@ public class Recipes extends RecipeProvider {
                     .requires(Items.ENDER_PEARL, 1)
                     .requires(DOMINION_GEM, 3)
                     .save(consumer);
-//
-//            ShapedRecipeBuilder.shaped(BlockRegistry.BASIC_SPELL_TURRET).unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(MagicItemsRegistry.emorticOrigins))
-//                    .pattern("xxx")
-//                    .pattern("xzy")
-//                    .pattern("yyy")
-//                    .define('z', Ingredient.of(Tags.Items.STORAGE_BLOCKS_REDSTONE))
-//                    .define('x', DOMINION_GEM)
-//                    .define('y', Ingredient.of(Tags.Items.INGOTS_GOLD))
-//                    .save(consumer);
         }
     }
 
@@ -192,33 +201,33 @@ public class Recipes extends RecipeProvider {
         return RigoranthusEmortisRebornAPI.getInstance().getRitualItemMap().get(id);
     }
 
-//    public static ShapedRecipeBuilder makeWood(IItemProvider logs, IItemProvider wood, int count){
-//        return ShapedRecipeBuilder.shaped(wood, count).unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(MagicItemsRegistry.emorticOrigins))
-//                .pattern("xx ")
-//                .pattern("xx ").define('x', logs);
-//    }
-//    private static void shapedWoodenTrapdoor(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider trapdoor, IItemProvider input) {
-//        ShapedRecipeBuilder.shaped(trapdoor, 2).define('#', input).pattern("###").pattern("###").group("wooden_trapdoor")
-//                .unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(MagicItemsRegistry.emorticOrigins)).save(recipeConsumer);
-//    }
-//    public static void shapedWoodenStairs(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider stairs, IItemProvider input) {
-//        ShapedRecipeBuilder.shaped(stairs, 4)
-//                .define('#', input)
-//                .pattern("#  ")
-//                .pattern("## ")
-//                .pattern("###").unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(MagicItemsRegistry.emorticOrigins))
-//                .save(recipeConsumer);
-//    }
-//    private static void shapelessWoodenButton(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider button, IItemProvider input) {
-//        ShapelessRecipeBuilder.shapeless(button).requires(input)
-//                .unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(MagicItemsRegistry.emorticOrigins))
-//                .save(recipeConsumer);
-//    }
-//    private static void strippedLogToWood(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider stripped, IItemProvider output) {
-//        ShapedRecipeBuilder.shaped(output, 3).define('#', stripped).pattern("##").pattern("##").group("bark")
-//                .unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(MagicItemsRegistry.emorticOrigins))
-//                .save(recipeConsumer);
-//    }
+    public static ShapedRecipeBuilder makeWood(IItemProvider logs, IItemProvider wood, int count){
+        return ShapedRecipeBuilder.shaped(wood, count).unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(MagicItemsRegistry.emorticOrigins))
+                .pattern("xx ")
+                .pattern("xx ").define('x', logs);
+    }
+    private static void shapedWoodenTrapdoor(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider trapdoor, IItemProvider input) {
+        ShapedRecipeBuilder.shaped(trapdoor, 2).define('#', input).pattern("###").pattern("###").group("wooden_trapdoor")
+                .unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(MagicItemsRegistry.emorticOrigins)).save(recipeConsumer);
+    }
+    public static void shapedWoodenStairs(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider stairs, IItemProvider input) {
+        ShapedRecipeBuilder.shaped(stairs, 4)
+                .define('#', input)
+                .pattern("#  ")
+                .pattern("## ")
+                .pattern("###").unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(MagicItemsRegistry.emorticOrigins))
+                .save(recipeConsumer);
+    }
+    private static void shapelessWoodenButton(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider button, IItemProvider input) {
+        ShapelessRecipeBuilder.shapeless(button).requires(input)
+                .unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(MagicItemsRegistry.emorticOrigins))
+                .save(recipeConsumer);
+    }
+    private static void strippedLogToWood(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider stripped, IItemProvider output) {
+        ShapedRecipeBuilder.shaped(output, 3).define('#', stripped).pattern("##").pattern("##").group("bark")
+                .unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(MagicItemsRegistry.emorticOrigins))
+                .save(recipeConsumer);
+    }
 //    private static void shapedWoodenDoor(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider door, IItemProvider input) {
 //        ShapedRecipeBuilder.shaped(door, 3).define('#', input).pattern("##").pattern("##").pattern("##").group("wooden_door")
 //                .unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(MagicItemsRegistry.emorticOrigins))

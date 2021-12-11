@@ -6,22 +6,22 @@ public class LibBlockNames {
 
     public static final String RECONDITE_ORE = "recondite_ore";
 
-    public final static String POTTED_AZULOREAL_SAPLING = "potted_azuloreal_sapling";
-    public final static String POTTED_JESSIC_SAPLING = "potted_jessic_sapling";
-    public final static String POTTED_AZULOREAL_ORCHID = "potted_azuloreal_orchid";
-    public final static String POTTED_IRIDESCENT_SPROUTS = "potted_iridescent_sprouts";
-    public final static String AZULOREAL_LEAVES = "azuloreal_leaves";
-    public final static String AZULOREAL_SAPLING = "azuloreal_sapling";
-    public final static String AZULOREAL_LOG = "azuloreal_log";
-    public final static String AZULOREAL_WOOD = "azuloreal_wood";
-    public final static String STRIPPED_AZULOREAL_LOG = "stripped_azuloreal_log";
-    public final static String STRIPPED_AZULOREAL_WOOD = "stripped_azuloreal_wood";
-    public final static String JESSIC_LEAVES = "jessic_leaves";
-    public final static String JESSIC_SAPLING = "jessic_sapling";
-    public final static String JESSIC_LOG = "jessic_log";
-    public final static String JESSIC_WOOD = "jessic_wood";
-    public final static String STRIPPED_JESSIC_LOG = "stripped_jessic_log";
-    public final static String STRIPPED_JESSIC_WOOD = "stripped_jessic_wood";
+    public static final String POTTED_AZULOREAL_SAPLING = "potted_azuloreal_sapling";
+    public static final String POTTED_JESSIC_SAPLING = "potted_jessic_sapling";
+    public static final String POTTED_AZULOREAL_ORCHID = "potted_azuloreal_orchid";
+    public static final String POTTED_IRIDESCENT_SPROUTS = "potted_iridescent_sprouts";
+    public static final String AZULOREAL_LEAVES = "azuloreal_leaves";
+    public static final String AZULOREAL_SAPLING = "azuloreal_sapling";
+    public static final String AZULOREAL_LOG = "azuloreal_log";
+    public static final String AZULOREAL_WOOD = "azuloreal_wood";
+    public static final String STRIPPED_AZULOREAL_LOG = "stripped_azuloreal_log";
+    public static final String STRIPPED_AZULOREAL_WOOD = "stripped_azuloreal_wood";
+    public static final String JESSIC_LEAVES = "jessic_leaves";
+    public static final String JESSIC_SAPLING = "jessic_sapling";
+    public static final String JESSIC_LOG = "jessic_log";
+    public static final String JESSIC_WOOD = "jessic_wood";
+    public static final String STRIPPED_JESSIC_LOG = "stripped_jessic_log";
+    public static final String STRIPPED_JESSIC_WOOD = "stripped_jessic_wood";
     public final static String AZULOREAL_ORCHID = "azuloreal_orchid";
     public final static String IRIDESCENT_SPROUTS = "iridescent_sprouts";
     public final static String SPECTABILIS_BUSH = "spectabilis_bush";
@@ -39,8 +39,7 @@ public class LibBlockNames {
     public final static String PSYGLYPHIC_AMALGAMATOR = "psyglyphic_amalgamator";
     public final static String PSYGLYPHIC_CIPHER = "psyglyphic_cipher";
     public final static String SPLINTERED_PEDESTAL = "splintered_pedestal";
-    // TODO: Rename
-    public static final String TABLE_BLOCK = "scribes_table";
+    public static final String TABLE_BLOCK = "table";
     public static final String RUNE = "rune";
     public static final String PORTAL = "portal";
     public static final String INTANGIBLE_AIR = "intangible_air";

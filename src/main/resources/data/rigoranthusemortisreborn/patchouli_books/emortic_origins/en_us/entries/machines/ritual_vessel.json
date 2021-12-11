@@ -1,15 +1,15 @@
 {
-    "name": "Ritual Brazier",
-    "icon": "rigoranthusemortisreborn:ritual",
+    "name": "Emortic Vessel",
+    "icon": "rigoranthusemortisreborn:ritual_vessel",
     "category": "machines",
     "pages": [
         {
             "type": "text",
-            "text": "rigoranthusemortisreborn.page1.ritual"
+            "text": "rigoranthusemortisreborn.page1.ritual_vessel"
         },
 		{
             "type":"crafting",
-			"recipe":"rigoranthusemortisreborn:ritual"
+			"recipe":"rigoranthusemortisreborn:ritual_vessel"
 		},{
             "type": "relations",
             "entries":["rituals/ritual_howto"]        

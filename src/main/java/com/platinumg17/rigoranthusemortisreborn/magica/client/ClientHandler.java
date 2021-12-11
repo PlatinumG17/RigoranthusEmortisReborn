@@ -35,6 +35,7 @@ public class ClientHandler {
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.DOMINION_EXTRACTOR_TILE, DominionExtractorRenderer::new);
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.ICHOR_EXTRACTOR_TILE, IchorExtractorRenderer::new);
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.RUNE_TILE, RuneRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(BlockRegistry.EMORTIC_CORE_TILE, EmorticCoreRenderer::new);
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.RELAY_DEPOSIT_TILE, (t) -> new GenericRenderer(t, "relay_deposit"));
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.EMORTIC_RELAY_TILE, (t) -> new GenericRenderer(t, "emortic_relay"));
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.EMORTIC_RELAY_SPLITTER_TILE, (t) -> new GenericRenderer(t, "relay_splitter"));

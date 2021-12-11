@@ -132,10 +132,7 @@ public class BlockRegistry {
 
     @ObjectHolder(LibBlockNames.PSYGLYPHIC_CIPHER) public static PsyglyphicBlock PSYGLYPHIC_CIPHER;
     @ObjectHolder(LibBlockNames.PSYGLYPHIC_CIPHER) public static TileEntityType<PsyglyphicCipherTile> PSYGLYPHIC_TILE;
-//    @ObjectHolder(LibBlockNames.SPELL_TURRET) public static TileEntityType<SpellTurretTile> SPELL_TURRET_TYPE;
-//    @ObjectHolder(LibBlockNames.SPELL_TURRET) public static SpellTurret SPELL_TURRET;
-//    @ObjectHolder(LibBlockNames.BASIC_SPELL_TURRET) public static BasicSpellTurret BASIC_SPELL_TURRET;
-//    @ObjectHolder(LibBlockNames.BASIC_SPELL_TURRET) public static TileEntityType<BasicSpellTurretTile> BASIC_SPELL_TURRET_TILE;
+
     @ObjectHolder(LibBlockNames.STATE_PROVIDER) public static BlockStateProviderType stateProviderType;
     @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
     public static class RegistryEvents {
@@ -157,7 +154,7 @@ public class BlockRegistry {
             registry.register(new SpectabilisBushBlock(AbstractBlock.Properties.of(Material.PLANT).randomTicks().noCollission().sound(SoundType.SWEET_BERRY_BUSH)));
             registry.register(new CreativeDominionJar());
             registry.register(new RitualVesselBlock(LibBlockNames.RITUAL_VESSEL));
-            registry.register(new ModBlock(ModBlock.defaultProperties().noOcclusion().lightLevel((s) -> 6),LibBlockNames.DOMINION_GEM_BLOCK));
+            registry.register(new ModBlock(ModBlock.defaultProperties().noOcclusion().lightLevel((s) -> 6), LibBlockNames.DOMINION_GEM_BLOCK));
             registry.register(new SconceBlock(LibBlockNames.SCONCE));
             registry.register(new IchorJar());
             registry.register(new CreativeIchorJar());
@@ -172,9 +169,6 @@ public class BlockRegistry {
             registry.register(new PsyglyphicBlock());
 
 //            registry.register(new BlockMasterfulSmeltery());
-//            registry.register(new SpellTurret());
-//            registry.register(new BasicSpellTurret());
-//            registry.register(new TimerSpellTurret());
 //            registry.register(new OreBlockEmortis());
             registry.register(new StrippableLog(LOG_PROP, LibBlockNames.AZULOREAL_LOG, () -> BlockRegistry.STRIPPED_AZULOREAL_LOG));
             registry.register(new RotatedPillarBlock(LOG_PROP).setRegistryName(LibBlockNames.STRIPPED_AZULOREAL_LOG));
@@ -274,7 +268,7 @@ public class BlockRegistry {
             registry.register(new AnimBlockItem(BlockRegistry.DOMINION_EXTRACTOR_BLOCK, MagicItemsRegistry.defaultItemProperties().fireResistant().setISTER(() -> DominionExtractorRenderer::getISTER)).setRegistryName(LibBlockNames.DOMINION_EXTRACTOR));
             registry.register(new AnimBlockItem(BlockRegistry.ICHOR_EXTRACTOR_BLOCK, MagicItemsRegistry.defaultItemProperties().fireResistant().setISTER(() -> IchorExtractorRenderer::getISTER)).setRegistryName(LibBlockNames.ICHOR_EXTRACTOR));
             registry.register(new BlockItem(BlockRegistry.CRYSTALLIZER_BLOCK, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.CRYSTALLIZER));
-            registry.register(new BlockItem(BlockRegistry.EMORTIC_CORE_BLOCK, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.EMORTIC_CORE));
+            registry.register(new AnimBlockItem(BlockRegistry.EMORTIC_CORE_BLOCK, MagicItemsRegistry.defaultItemProperties().setISTER(() -> EmorticCoreRenderer::getISTER)).setRegistryName(LibBlockNames.EMORTIC_CORE));
             registry.register(new BlockItem(BlockRegistry.RUNE_BLOCK, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.RUNE));
             registry.register(new AnimBlockItem(BlockRegistry.PSYGLYPHIC_CIPHER, MagicItemsRegistry.defaultItemProperties().fireResistant().setISTER(() -> PsyglyphicRenderer::getISTER)).setRegistryName(LibBlockNames.PSYGLYPHIC_CIPHER));
             registry.register(dominionBerry);
@@ -293,6 +287,11 @@ public class BlockRegistry {
             registry.register(getDefaultBlockItem(BlockRegistry.AZULOREAL_LOG, LibBlockNames.AZULOREAL_LOG));
             registry.register(getDefaultBlockItem(BlockRegistry.AZULOREAL_SAPLING, LibBlockNames.AZULOREAL_SAPLING));
             registry.register(getDefaultBlockItem(BlockRegistry.AZULOREAL_WOOD, LibBlockNames.AZULOREAL_WOOD));
+
+            registry.register(getDefaultBlockItem(BlockRegistry.STRIPPED_JESSIC_LOG, LibBlockNames.STRIPPED_JESSIC_LOG));
+            registry.register(getDefaultBlockItem(BlockRegistry.STRIPPED_JESSIC_WOOD, LibBlockNames.STRIPPED_JESSIC_WOOD));
+            registry.register(getDefaultBlockItem(BlockRegistry.STRIPPED_AZULOREAL_LOG, LibBlockNames.STRIPPED_AZULOREAL_LOG));
+            registry.register(getDefaultBlockItem(BlockRegistry.STRIPPED_AZULOREAL_WOOD, LibBlockNames.STRIPPED_AZULOREAL_WOOD));
 
         }
         public static Item getDefaultBlockItem(Block block, String registry) {

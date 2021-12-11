@@ -1,7 +1,8 @@
 package com.platinumg17.rigoranthusemortisreborn.canis.client;
 
-import com.platinumg17.rigoranthusemortisreborn.blocks.tileentity.gui.SmelteryScreenBase;
+import com.platinumg17.rigoranthusemortisreborn.blocks.tileentity.gui.MasterfulSmelteryScreen;
 import com.platinumg17.rigoranthusemortisreborn.canis.CanisContainerTypes;
+import com.platinumg17.rigoranthusemortisreborn.canis.CanisSkills;
 import com.platinumg17.rigoranthusemortisreborn.canis.CanisTileEntityTypes;
 import com.platinumg17.rigoranthusemortisreborn.canis.client.entity.render.CollarRenderManager;
 import com.platinumg17.rigoranthusemortisreborn.canis.client.entity.render.layer.SaviorCanisRenderer;
@@ -17,8 +18,7 @@ import com.platinumg17.rigoranthusemortisreborn.canis.client.tileentity.renderer
 import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.accouterments.CanisAccouterments;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.Resources;
-import com.platinumg17.rigoranthusemortisreborn.canis.CanisSkills;
-import com.platinumg17.rigoranthusemortisreborn.magica.setup.BlockRegistry;
+import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
@@ -32,6 +32,7 @@ public class ClientSetup {
         ScreenManager.register(CanisContainerTypes.WAYWARD_TRAVELLER.get(), WaywardTravellerScreen::new);
         ScreenManager.register(CanisContainerTypes.TREAT_BAG.get(), TreatBagScreen::new);
         ScreenManager.register(CanisContainerTypes.CANIS_INVENTORIES.get(), CanisInventoriesScreen::new);
+        ScreenManager.register(Registration.MASTERFUL_SMELTERY_CONTAINER.get(), MasterfulSmelteryScreen::new);
     }
 
     public static void setupTileEntityRenderers(final FMLClientSetupEvent event) {

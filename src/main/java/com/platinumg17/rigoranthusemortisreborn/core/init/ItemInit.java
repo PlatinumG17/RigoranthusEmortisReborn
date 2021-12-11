@@ -25,8 +25,6 @@ import com.platinumg17.rigoranthusemortisreborn.items.weapons.type.projectiles.b
 import com.platinumg17.rigoranthusemortisreborn.items.weapons.type.strung.BoneBow;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;

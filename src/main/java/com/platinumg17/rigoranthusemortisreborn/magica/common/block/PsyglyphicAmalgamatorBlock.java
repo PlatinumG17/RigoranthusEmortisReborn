@@ -44,7 +44,7 @@ public class PsyglyphicAmalgamatorBlock extends ModBlock {
         PsyglyphicAmalgamatorTile tile = (PsyglyphicAmalgamatorTile) world.getBlockEntity(pos);
         if(tile.isCrafting)
             return ActionResultType.SUCCESS;
-        if(!(world.getBlockState(pos.below()).getBlock() instanceof EmorticCore)){
+        if(!(world.getBlockState(pos.below()).getBlock() instanceof EmorticCortex)){
             PortUtil.sendMessage(player, new TranslationTextComponent("alert.core"));
             return ActionResultType.SUCCESS;
         }

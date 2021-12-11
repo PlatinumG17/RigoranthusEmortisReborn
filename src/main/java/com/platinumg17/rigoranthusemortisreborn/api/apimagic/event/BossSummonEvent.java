@@ -48,7 +48,7 @@ package com.platinumg17.rigoranthusemortisreborn.api.apimagic.event;
 ////                SummonWolf wolf = new SummonWolf(ModEntities.SUMMON_WOLF, world);
 ////
 ////                wolf.setPos(getPos().getX(), getPos().getY(), getPos().getZ());
-////                wolf.isWildenSummon = true;
+////                wolf.isHostileSummon = true;
 ////                wolf.ticksLeft = 100 + phase * 60;
 ////                summon(wolf, getPos(), boss.getTarget());
 ////

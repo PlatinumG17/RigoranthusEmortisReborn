@@ -29,7 +29,6 @@ public class BrainBlock extends Block implements IWaterLoggable {
 
     public BrainBlock(Properties properties) {
         super(properties);
-        DispenserBlock.registerBehavior(this, ArmorItem.DISPENSE_ITEM_BEHAVIOR);
         this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, Boolean.valueOf(false)));
     }
 

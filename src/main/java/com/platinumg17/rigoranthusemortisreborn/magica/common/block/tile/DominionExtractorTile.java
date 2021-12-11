@@ -90,45 +90,45 @@ public class DominionExtractorTile extends DominionTile implements IAnimatable {
         return dominion;
     }
 
-    public void doRandomAction() {
-        if(level.isClientSide)
-            return;
-        AtomicBoolean set = new AtomicBoolean(false);
-        BlockPos.withinManhattanStream(worldPosition, 1, 0,1).forEach(p ->{
-            if(!set.get() && level.getBlockState(p).isAir() && level.getFluidState(p.below()).getType() == Fluids.LAVA || level.getFluidState(p.below()).getType() == Fluids.FLOWING_LAVA){
-                level.setBlockAndUpdate(p, BlockRegistry.LAVA_LILY.getState(level, p));
-                set.set(true);
-            }
-        });
-        BlockPos magmaPos = getBlockInArea(Blocks.MAGMA_BLOCK, 1);
-        if(magmaPos != null && progress >= 200){
-            level.setBlockAndUpdate(magmaPos, Blocks.LAVA.defaultBlockState());
-            progress -= 200;
-            return;
-        }
-        BlockPos stonePos = getBlockInArea(Blocks.STONE, 1);
-        if(stonePos != null && progress >= 150){
-            level.setBlockAndUpdate(stonePos, Blocks.MAGMA_BLOCK.defaultBlockState());
-            progress -= 150;
-            return;
-        }
-        stonePos = getTagInArea(Tags.Blocks.STONE, 1);
-        if(stonePos != null && progress >= 150){
-            level.setBlockAndUpdate(stonePos, Blocks.MAGMA_BLOCK.defaultBlockState());
-            progress -= 150;
-            return;
-        }
-    }
+//    public void doRandomAction() {
+//        if(level.isClientSide)
+//            return;
+//        AtomicBoolean set = new AtomicBoolean(false);
+//        BlockPos.withinManhattanStream(worldPosition, 1, 0,1).forEach(p ->{
+//            if(!set.get() && level.getBlockState(p).isAir() && level.getFluidState(p.below()).getType() == Fluids.LAVA || level.getFluidState(p.below()).getType() == Fluids.FLOWING_LAVA){
+//                level.setBlockAndUpdate(p, BlockRegistry.LAVA_LILY.getState(level, p));
+//                set.set(true);
+//            }
+//        });
+//        BlockPos magmaPos = getBlockInArea(Blocks.MAGMA_BLOCK, 1);
+//        if(magmaPos != null && progress >= 200){
+//            level.setBlockAndUpdate(magmaPos, Blocks.LAVA.defaultBlockState());
+//            progress -= 200;
+//            return;
+//        }
+//        BlockPos stonePos = getBlockInArea(Blocks.STONE, 1);
+//        if(stonePos != null && progress >= 150){
+//            level.setBlockAndUpdate(stonePos, Blocks.MAGMA_BLOCK.defaultBlockState());
+//            progress -= 150;
+//            return;
+//        }
+//        stonePos = getTagInArea(Tags.Blocks.STONE, 1);
+//        if(stonePos != null && progress >= 150){
+//            level.setBlockAndUpdate(stonePos, Blocks.MAGMA_BLOCK.defaultBlockState());
+//            progress -= 150;
+//            return;
+//        }
+//    }
 
-    public BlockPos getTagInArea(ITag<Block> block, int range){
-        AtomicReference<BlockPos> posFound = new AtomicReference<>();
-        BlockPos.betweenClosedStream(worldPosition.offset(range, -1, range), worldPosition.offset(-range, -1, -range)).forEach(blockPos -> {
-            blockPos = blockPos.immutable();
-            if(posFound.get() == null && level.getBlockState(blockPos).getBlock().is(block))
-                posFound.set(blockPos);
-        });
-        return posFound.get();
-    }
+//    public BlockPos getTagInArea(ITag<Block> block, int range){
+//        AtomicReference<BlockPos> posFound = new AtomicReference<>();
+//        BlockPos.betweenClosedStream(worldPosition.offset(range, -1, range), worldPosition.offset(-range, -1, -range)).forEach(blockPos -> {
+//            blockPos = blockPos.immutable();
+//            if(posFound.get() == null && level.getBlockState(blockPos).getBlock().is(block))
+//                posFound.set(blockPos);
+//        });
+//        return posFound.get();
+//    }
 
     public BlockPos getBlockInArea(Block block, int range){
         AtomicReference<BlockPos> posFound = new AtomicReference<>();

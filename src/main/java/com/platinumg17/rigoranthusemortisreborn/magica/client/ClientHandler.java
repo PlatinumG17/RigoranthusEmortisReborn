@@ -79,7 +79,7 @@ public class ClientHandler {
         RenderTypeLookup.setRenderLayer(BlockRegistry.CREATIVE_DOMINION_JAR, RenderType.translucent());
         RenderTypeLookup.setRenderLayer(BlockRegistry.DOMINION_GEM_BLOCK, RenderType.translucent());
         RenderTypeLookup.setRenderLayer(BlockRegistry.RITUAL_BLOCK, RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(BlockRegistry.SCONCE_BLOCK, RenderType.cutout());
+//        RenderTypeLookup.setRenderLayer(BlockRegistry.SCONCE_BLOCK, RenderType.cutout());
         event.enqueueWork(() -> {
             ItemModelsProperties.register(MagicItemsRegistry.LUSTERIC_SHIELD, new ResourceLocation(EmortisConstants.MOD_ID,"blocking"), (p_239421_0_, p_239421_1_, p_239421_2_) -> {
                 return p_239421_2_ != null && p_239421_2_.isUsingItem() && p_239421_2_.getUseItem() == p_239421_0_ ? 1.0F : 0.0F;

@@ -21,7 +21,7 @@ import java.util.UUID;
 
 public class SummonWolf extends WolfEntity implements ISummon {
     public int ticksLeft;
-    public boolean isWildenSummon;
+    public boolean isHostileSummon;
     public SummonWolf(EntityType<? extends WolfEntity> type, World worldIn) {
         super(type, worldIn);
     }
@@ -72,14 +72,14 @@ public class SummonWolf extends WolfEntity implements ISummon {
     public void readAdditionalSaveData(CompoundNBT compound) {
         super.readAdditionalSaveData(compound);
         this.ticksLeft = compound.getInt("left");
-        this.isWildenSummon = compound.getBoolean("wildenSummon");
+        this.isHostileSummon = compound.getBoolean("hostileSummon");
     }
 
     @Override
     public void addAdditionalSaveData(CompoundNBT compound) {
         super.addAdditionalSaveData(compound);
         compound.putInt("left", ticksLeft);
-        compound.putBoolean("wildenSummon", isWildenSummon);
+        compound.putBoolean("hostileSummon", isHostileSummon);
     }
     @Override protected int getExperienceReward(PlayerEntity player) {return 0;}
     @Override public int getTicksLeft() {return ticksLeft;}

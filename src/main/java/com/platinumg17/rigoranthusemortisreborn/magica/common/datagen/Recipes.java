@@ -154,10 +154,10 @@ public class Recipes extends RecipeProvider {
                     .requires(Ingredient.of(Tags.Items.INGOTS_GOLD), 3)
                     .save(consumer);
 
-            shapelessBuilder(BlockRegistry.SCONCE_BLOCK)
-                    .requires(Recipes.DOMINION_GEM)
-                    .requires(Ingredient.of(Tags.Items.NUGGETS_GOLD), 2)
-                    .save(consumer);
+//            shapelessBuilder(BlockRegistry.SCONCE_BLOCK)
+//                    .requires(Recipes.DOMINION_GEM)
+//                    .requires(Ingredient.of(Tags.Items.NUGGETS_GOLD), 2)
+//                    .save(consumer);
 
             shapelessBuilder(getRitualItem(RitualLib.RESTORATION))
                     .requires(BlockRegistry.ICHOR_JAR)

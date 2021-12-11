@@ -3,6 +3,7 @@ package com.platinumg17.rigoranthusemortisreborn.magica.client.renderer.tile;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.util.MappingUtil;
+import com.platinumg17.rigoranthusemortisreborn.magica.client.renderer.item.FixedGeoBlockItemRenderer;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.renderer.item.GenericItemRenderer;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.GlyphPressTile;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.MagicItemsRegistry;
@@ -96,7 +97,7 @@ public class PressRenderer extends GeoBlockRenderer<GlyphPressTile> {
             }
         }
     }
-    public static GenericItemRenderer getISTER(){
-        return new GenericItemRenderer(new PressModel());
+    public static FixedGeoBlockItemRenderer getISTER(){
+        return new FixedGeoBlockItemRenderer(new PressModel());
     }
 }

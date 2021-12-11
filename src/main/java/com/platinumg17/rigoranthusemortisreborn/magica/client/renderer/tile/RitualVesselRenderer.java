@@ -2,6 +2,7 @@ package com.platinumg17.rigoranthusemortisreborn.magica.client.renderer.tile;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.platinumg17.rigoranthusemortisreborn.magica.client.renderer.item.FixedGeoBlockItemRenderer;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.renderer.item.GenericItemRenderer;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.RitualTile;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -19,7 +20,7 @@ public class RitualVesselRenderer extends GeoBlockRenderer<RitualTile> {
     public RenderType getRenderType(RitualTile animatable, float partialTicks, MatrixStack stack, IRenderTypeBuffer renderTypeBuffer, IVertexBuilder vertexBuilder, int packedLightIn, ResourceLocation textureLocation) {
         return RenderType.entityTranslucent(textureLocation);
     }
-    public static GenericItemRenderer getISTER(){
-        return new GenericItemRenderer(new RitualVesselModel());
+    public static FixedGeoBlockItemRenderer getISTER(){
+        return new FixedGeoBlockItemRenderer(new RitualVesselModel());
     }
 }

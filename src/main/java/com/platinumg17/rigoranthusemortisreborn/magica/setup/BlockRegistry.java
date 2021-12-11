@@ -100,8 +100,8 @@ public class BlockRegistry {
     @ObjectHolder(LibBlockNames.RITUAL_VESSEL) public static TileEntityType<RitualTile> RITUAL_TILE;
     @ObjectHolder(LibBlockNames.DOMINION_GEM_BLOCK) public static ModBlock DOMINION_GEM_BLOCK;
 
-    @ObjectHolder(LibBlockNames.SCONCE) public static SconceBlock SCONCE_BLOCK;
-    @ObjectHolder(LibBlockNames.SCONCE) public static TileEntityType<SconceTile> SCONCE_TILE;
+//    @ObjectHolder(LibBlockNames.SCONCE) public static SconceBlock SCONCE_BLOCK;
+//    @ObjectHolder(LibBlockNames.SCONCE) public static TileEntityType<SconceTile> SCONCE_TILE;
     @ObjectHolder(LibBlockNames.ICHOR_JAR) public static IchorJar ICHOR_JAR;
     @ObjectHolder(LibBlockNames.ICHOR_JAR) public static TileEntityType<IchorJarTile> ICHOR_JAR_TILE;
     @ObjectHolder(LibBlockNames.CREATIVE_ICHOR_JAR) public static CreativeIchorJar CREATIVE_ICHOR_JAR;
@@ -150,7 +150,7 @@ public class BlockRegistry {
             registry.register(new CreativeDominionJar());
             registry.register(new RitualVesselBlock(LibBlockNames.RITUAL_VESSEL));
             registry.register(new ModBlock(ModBlock.defaultProperties().noOcclusion().lightLevel((s) -> 6), LibBlockNames.DOMINION_GEM_BLOCK));
-            registry.register(new SconceBlock(LibBlockNames.SCONCE));
+//            registry.register(new SconceBlock(LibBlockNames.SCONCE));
             registry.register(new IchorJar());
             registry.register(new CreativeIchorJar());
             registry.register(new RelayDepositBlock());
@@ -221,7 +221,7 @@ public class BlockRegistry {
             event.getRegistry().register(TileEntityType.Builder.of(IntangibleAirTile::new, BlockRegistry.INTANGIBLE_AIR).build(null).setRegistryName(LibBlockNames.INTANGIBLE_AIR));
             event.getRegistry().register(TileEntityType.Builder.of(CreativeDominionJarTile::new, BlockRegistry.CREATIVE_DOMINION_JAR).build(null).setRegistryName(LibBlockNames.CREATIVE_DOMINION_JAR));
             event.getRegistry().register(TileEntityType.Builder.of(RitualTile::new, BlockRegistry.RITUAL_BLOCK).build(null).setRegistryName(LibBlockNames.RITUAL_VESSEL));
-            event.getRegistry().register(TileEntityType.Builder.of(SconceTile::new, BlockRegistry.SCONCE_BLOCK).build(null).setRegistryName(LibBlockNames.SCONCE));
+//            event.getRegistry().register(TileEntityType.Builder.of(SconceTile::new, BlockRegistry.SCONCE_BLOCK).build(null).setRegistryName(LibBlockNames.SCONCE));
             event.getRegistry().register(TileEntityType.Builder.of(IchorJarTile::new, BlockRegistry.ICHOR_JAR).build(null).setRegistryName(LibBlockNames.ICHOR_JAR));
             event.getRegistry().register(TileEntityType.Builder.of(CreativeIchorJarTile::new, BlockRegistry.CREATIVE_ICHOR_JAR).build(null).setRegistryName(LibBlockNames.CREATIVE_ICHOR_JAR));
             event.getRegistry().register(TileEntityType.Builder.of(RelayDepositTile::new, BlockRegistry.RELAY_DEPOSIT).build(null).setRegistryName(LibBlockNames.RELAY_DEPOSIT));
@@ -254,7 +254,7 @@ public class BlockRegistry {
             registry.register(new BlockItem(BlockRegistry.CREATIVE_DOMINION_JAR, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.CREATIVE_DOMINION_JAR));
             registry.register(new AnimBlockItem(BlockRegistry.RITUAL_BLOCK, MagicItemsRegistry.defaultItemProperties().setISTER(() -> RitualVesselRenderer::getISTER)).setRegistryName(LibBlockNames.RITUAL_VESSEL));
             registry.register(getDefaultBlockItem(BlockRegistry.DOMINION_GEM_BLOCK, LibBlockNames.DOMINION_GEM_BLOCK));
-            registry.register(getDefaultBlockItem(BlockRegistry.SCONCE_BLOCK, LibBlockNames.SCONCE));
+//            registry.register(getDefaultBlockItem(BlockRegistry.SCONCE_BLOCK, LibBlockNames.SCONCE));
             registry.register(new BlockItem(BlockRegistry.ICHOR_JAR, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.ICHOR_JAR));
             registry.register(new BlockItem(BlockRegistry.CREATIVE_ICHOR_JAR, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.CREATIVE_ICHOR_JAR));
             registry.register(new AnimBlockItem(BlockRegistry.RELAY_DEPOSIT, MagicItemsRegistry.defaultItemProperties().setISTER(() -> GenericRenderer.getISTER("relay_deposit"))).setRegistryName(LibBlockNames.RELAY_DEPOSIT));

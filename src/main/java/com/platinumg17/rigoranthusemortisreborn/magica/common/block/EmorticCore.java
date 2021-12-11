@@ -1,15 +1,15 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.common.block;
 
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.EmorticCoreTile;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.lib.LibBlockNames;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockReader;
 
 public class EmorticCore extends ModBlock {
+
     public EmorticCore() {
-        super(defaultProperties().noOcclusion().lightLevel((state) -> 15), LibBlockNames.EMORTIC_CORE);
+        super(defaultProperties().noOcclusion().lightLevel((state) -> 15), "emortic_core");
     }
 
     @Override
@@ -24,6 +24,6 @@ public class EmorticCore extends ModBlock {
 
     @Override
     public BlockRenderType getRenderShape(BlockState p_149645_1_) {
-        return BlockRenderType.MODEL;
+        return BlockRenderType.ENTITYBLOCK_ANIMATED;
     }
 }

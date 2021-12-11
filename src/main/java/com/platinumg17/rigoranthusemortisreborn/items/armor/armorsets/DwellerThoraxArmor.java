@@ -49,7 +49,12 @@ public class DwellerThoraxArmor extends ArmorItem {
     public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack stack, EquipmentSlotType armorSlot, A _default) {
         return DwellerThoraxModel.getModel(armorSlot, entityLiving);
     }
-
+    @Override public boolean isEnchantable(ItemStack stack) {
+        return true;
+    }
+    @Override public boolean isBookEnchantable(ItemStack stack, ItemStack book) {
+        return true;
+    }
     @Override
     public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
         return RigoranthusEmortisReborn.MOD_ID + ":textures/models/armor/dweller_layer_1.png";

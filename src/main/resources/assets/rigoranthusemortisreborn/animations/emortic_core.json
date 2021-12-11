@@ -1,0 +1,20 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"brain_float": {
+			"loop": true,
+			"bones": {
+				"emortic_core": {
+					"position": {
+						"vector": [0, "math.cos(query.anim_time*30)*1", 0]
+					}
+				},
+				"brain": {
+					"position": {
+						"vector": [0, "math.sin(query.anim_time*30)*1", 0]
+					}
+				}
+			}
+		}
+	}
+}

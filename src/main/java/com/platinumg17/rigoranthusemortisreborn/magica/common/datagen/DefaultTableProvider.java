@@ -34,7 +34,14 @@ public class DefaultTableProvider extends LootTableProvider {
         @Override
         protected void addTables() {
             registerDropSelf(BlockRegistry.DOMINION_GEM_BLOCK);
-//            registerDrop(BlockRegistry.RECONDITE_ORE, Registration.POWDERED_ESOTERICUM.get());
+            registerDropSelf(BlockRegistry.AZULOREAL_LOG);
+            registerDropSelf(BlockRegistry.AZULOREAL_WOOD);
+            registerDropSelf(BlockRegistry.STRIPPED_AZULOREAL_LOG);
+            registerDropSelf(BlockRegistry.STRIPPED_AZULOREAL_WOOD);
+            registerDropSelf(BlockRegistry.JESSIC_LOG);
+            registerDropSelf(BlockRegistry.JESSIC_WOOD);
+            registerDropSelf(BlockRegistry.STRIPPED_JESSIC_LOG);
+            registerDropSelf(BlockRegistry.STRIPPED_JESSIC_WOOD);
             registerDropSelf(BlockRegistry.SCONCE_BLOCK);
             registerBedCondition(BlockRegistry.TABLE_BLOCK, TableBlock.PART, BedPart.HEAD);
         }

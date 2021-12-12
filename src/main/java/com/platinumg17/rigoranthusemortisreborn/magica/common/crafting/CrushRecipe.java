@@ -34,6 +34,24 @@ public class CrushRecipe implements IRecipe<IInventory> {
         this.id = id;
     }
 
+    public CrushRecipe(String id, Ingredient input, List<CrushOutput> outputs){
+        this(new ResourceLocation(EmortisConstants.MOD_ID, "crush_" + id), input, outputs);
+    }
+
+    public CrushRecipe(String id, Ingredient input){
+        this(id, input, new ArrayList<>());
+    }
+
+    public CrushRecipe withItems(ItemStack output, float chance){
+        this.outputs.add(new CrushOutput(output, chance));
+        return this;
+    }
+
+    public CrushRecipe withItems(ItemStack output){
+        this.outputs.add(new CrushOutput(output, 1.0f));
+        return this;
+    }
+
     public List<ItemStack> getRolledOutputs(Random random){
         List<ItemStack> finalOutputs = new ArrayList<>();
         for(CrushOutput crushRoll : outputs){
@@ -47,6 +65,10 @@ public class CrushRecipe implements IRecipe<IInventory> {
     @Override
     public boolean matches(IInventory inventory, World world) {
         return this.input.test(inventory.getItem(0));
+    }
+
+    public boolean matches(ItemStack i, World world){
+        return this.input.test(i);
     }
 
     @Nonnull
@@ -82,6 +104,22 @@ public class CrushRecipe implements IRecipe<IInventory> {
         return Registry.RECIPE_TYPE.get(new ResourceLocation(EmortisConstants.MOD_ID, RECIPE_ID));
     }
 
+    public JsonElement asRecipe(){
+        JsonObject jsonobject = new JsonObject();
+        jsonobject.addProperty("type", "rigoranthusemortisreborn:crush");
+        jsonobject.add("input", input.toJson());
+        JsonArray array = new JsonArray();
+        for(CrushOutput output : outputs){
+            JsonObject element = new JsonObject();
+            element.addProperty("item", output.stack.getItem().getRegistryName().toString());
+            element.addProperty("chance", output.chance);
+            element.addProperty("count", output.stack.getCount());
+            array.add(element);
+        }
+        jsonobject.add("output", array);
+        return jsonobject;
+    }
+
     public static class CrushOutput{
         public ItemStack stack;
         public float chance;
@@ -96,14 +134,21 @@ public class CrushRecipe implements IRecipe<IInventory> {
 
         @Override
         public CrushRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
-            Ingredient input = Ingredient.fromJson(JSONUtils.getAsJsonArray(json, "input"));
+            Ingredient input = null;
+            if(JSONUtils.isArrayNode(json, "input")){
+                input = Ingredient.fromJson(JSONUtils.getAsJsonArray(json, "input"));
+            }else{
+                input = Ingredient.fromJson(JSONUtils.getAsJsonObject(json, "input"));;
+            }
             JsonArray outputs = JSONUtils.getAsJsonArray(json,"output");
             List<CrushOutput> parsedOutputs = new ArrayList<>();
 
             for(JsonElement e : outputs){
                 JsonObject obj = e.getAsJsonObject();
                 float chance = JSONUtils.getAsFloat(obj, "chance");
-                ItemStack output = ShapedRecipe.itemFromJson(JSONUtils.getAsJsonObject(obj, "item"));
+                String itemId = JSONUtils.getAsString(obj, "item");
+                int count = obj.has("count") ? JSONUtils.getAsInt(obj, "count") : 1;
+                ItemStack output = new ItemStack(Registry.ITEM.get(new ResourceLocation(itemId)), count);
                 parsedOutputs.add(new CrushOutput(output, chance));
             }
             return new CrushRecipe(recipeId, input, parsedOutputs);

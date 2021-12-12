@@ -3,6 +3,7 @@ package com.platinumg17.rigoranthusemortisreborn.api;
 import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.*;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.psyglyphic_amalgamator.IPsyglyphicRecipe;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.psyglyphic_amalgamator.PsyglyphicAmalgamatorRecipe;
+import com.platinumg17.rigoranthusemortisreborn.api.apimagic.psyglyphic_amalgamator.PsyglyphicEnchantingRecipe;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.recipe.GlyphPressRecipe;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.recipe.IchorCrystallizerRecipe;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.ritual.AbstractRitual;
@@ -21,6 +22,7 @@ import com.platinumg17.rigoranthusemortisreborn.api.apimagic.recipe.VanillaPotio
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.MagicItemsRegistry;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.AbstractSpellPart;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.interfaces.ISpellValidator;
+import com.platinumg17.rigoranthusemortisreborn.magica.setup.RecipeRegistry;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.IRecipe;
@@ -234,38 +236,27 @@ public class RigoranthusEmortisRebornAPI {
     }
 
     public List<IPsyglyphicRecipe> getPsyglyphicAmalgamatorRecipes(World world) {
-        List<IPsyglyphicRecipe> recipes = new ArrayList<>(psyglyphicAmalgamatorRecipes);
-        RecipeManager manager = world.getRecipeManager();
-        for(IRecipe i : manager.getRecipes()){
-            if(i instanceof PsyglyphicAmalgamatorRecipe){
-                recipes.add((IPsyglyphicRecipe) i);
-            }
-        }
-        return recipes;
+        return world.getRecipeManager().getAllRecipesFor(RecipeRegistry.PSYGLYPHIC_TYPE);
     }
 
-    public GlyphPressRecipe getGlyphPressRecipe(World world, Item reagent, @Nullable ISpellTier.Tier tier){
+    public @Nullable GlyphPressRecipe getGlyphPressRecipe(World world, Item reagent, @Nullable ISpellTier.Tier tier){
         if(reagent == null || reagent == Items.AIR)
             return null;
         RecipeManager manager = world.getRecipeManager();
-        for(IRecipe i : manager.getRecipes()){
-            if(i instanceof GlyphPressRecipe){
-                if(((GlyphPressRecipe) i).reagent.getItem() == reagent && ((GlyphPressRecipe) i).tier == tier)
-                    return (GlyphPressRecipe) i;
-            }
+        for(GlyphPressRecipe i : manager.getAllRecipesFor(RecipeRegistry.GLYPH_TYPE)){
+            if(i.reagent.getItem() == reagent && i.tier == tier)
+                return i;
         }
         return null;
     }
 
-    public IchorCrystallizerRecipe getIchorCrystallizerRecipe(World world, Item reagent, Item base){
+    public @Nullable IchorCrystallizerRecipe getIchorCrystallizerRecipe(World world, Item reagent, Item base){
         if(reagent == null || reagent == Items.AIR)
             return null;
         RecipeManager manager = world.getRecipeManager();
-        for(IRecipe i : manager.getRecipes()){
-            if(i instanceof IchorCrystallizerRecipe){
-                if(((IchorCrystallizerRecipe) i).reagent.getItem() == reagent)
-                    return (IchorCrystallizerRecipe) i;
-            }
+        for(IchorCrystallizerRecipe i : manager.getAllRecipesFor(RecipeRegistry.CRYSTAL_TYPE)) {
+            if (i.reagent.getItem() == reagent)
+                return i;
         }
         return null;
     }

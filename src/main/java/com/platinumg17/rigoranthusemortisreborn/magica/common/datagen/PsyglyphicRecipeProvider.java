@@ -713,31 +713,13 @@ public class PsyglyphicRecipeProvider implements IDataProvider {
                 .withPedestalItem(Ingredient.of(Tags.Items.INGOTS_GOLD))
                 .build());
 
-//        addRecipe(builder()
-//                .withResult(BlockRegistry.RELAY_WARP)
-//                .withReagent(BlockRegistry.EMORTIC_RELAY)
-//                .withPedestalItem(4, Ingredient.of(Tags.Items.ENDER_PEARLS))
-//                .withPedestalItem(4, Ingredient.of(Items.POPPED_CHORUS_FRUIT))
-//                .build());
-//
+
         addRecipe(builder()
                 .withResult(BlockRegistry.RELAY_DEPOSIT)
                 .withReagent(BlockRegistry.EMORTIC_RELAY)
                 .withPedestalItem(4,Ingredient.of(Items.HOPPER))
                 .build());
 
-//        addRecipe(builder()
-//                .withResult(BlockRegistry.TIMER_SPELL_TURRET)
-//                .withReagent(BlockRegistry.BASIC_SPELL_TURRET)
-//                .withPedestalItem(Items.CLOCK)
-//                .build());
-//
-//        addRecipe(builder()
-//                .withResult(BlockRegistry.SPELL_TURRET)
-//                .withReagent(BlockRegistry.BASIC_SPELL_TURRET)
-//                .withPedestalItem(Recipes.DOMINION_GEM_BLOCK)
-//                .withPedestalItem(2, Ingredient.of(Tags.Items.RODS_BLAZE))
-//                .build());
     }
 
     public void addRecipe(PsyglyphicAmalgamatorRecipe recipe){

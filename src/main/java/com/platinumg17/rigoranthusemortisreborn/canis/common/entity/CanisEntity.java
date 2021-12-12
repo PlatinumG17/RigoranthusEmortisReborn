@@ -840,6 +840,11 @@ public class CanisEntity extends AbstractCanisEntity {
     }
 
     @Override
+    public boolean canBeLeashed(PlayerEntity player) {
+        return this.canInteract(player) && super.canBeLeashed(player);
+    }
+
+    @Override
     public void setUUID(UUID uniqueIdIn) {
         // If the UUID is changed remove old one and add new one
         UUID oldUniqueId = this.getUUID();

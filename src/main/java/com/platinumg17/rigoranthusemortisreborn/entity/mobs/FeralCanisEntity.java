@@ -5,6 +5,7 @@ import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.CanisEntity;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.ModEntities;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.util.PortUtil;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -24,6 +25,7 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import software.bernie.geckolib3.core.IAnimatable;
@@ -108,7 +110,6 @@ public class FeralCanisEntity extends MonsterEntity implements IAnimatable {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal( 1, new NearestAttackableTargetGoal<>( this, PlayerEntity.class, true));
-//        this.goalSelector.addGoal(2, new ZombieAttackGoal(this, 1.0D, false));
         this.goalSelector.addGoal(3, new LeapAtTargetGoal(this, (float) 0.3));
         this.goalSelector.addGoal(4, new LookRandomlyGoal(this));
         this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 0.8D));
@@ -134,30 +135,26 @@ public class FeralCanisEntity extends MonsterEntity implements IAnimatable {
         BlockPos blockpos = this.getOnPos();
         ItemStack stack = player.getItemInHand(hand);
         SunderedCadaverEntity sunderedCadaver = ModEntities.SUNDERED_CADAVER.create(level);
+        SunderedCadaverEntity sunderedCadaver2 = ModEntities.SUNDERED_CADAVER.create(level);
         CanisEntity canis = SpecializedEntityTypes.CANIS.get().create(level);
 
         if (stack.getItem() == ItemInit.PACT_OF_SERVITUDE.get()) {
-
+            if (!player.abilities.instabuild) {
+                stack.shrink(1);
+            }
+            player.swing(hand);
             if (!player.level.isClientSide) {
-                if (!player.abilities.instabuild) {
-                    stack.shrink(1);
-                }
-                level.playSound(player, blockpos, SoundEvents.BOOK_PAGE_TURN, SoundCategory.NEUTRAL, 1.0F, (level.random.nextFloat() - level.random.nextFloat()) * 0.4F + 1.0F); // was  0.2F + 1.0F
-
+                level.playSound(player, blockpos, SoundEvents.BOOK_PAGE_TURN, SoundCategory.NEUTRAL, 1.0F, (level.random.nextFloat() - level.random.nextFloat()) * 0.8F + 1.0F);
                 if ((Math.random() <= 0.15)) {
-//                    if (player.level.isClientSide) {
-                        this.level.addParticle(ParticleTypes.SOUL, this.getRandomX(1.0D), this.getRandomY() + 0.5D, this.getRandomZ(1.0D), 0.0D, 0.0D, 0.0D); //((ServerWorld) level).sendParticles(player, true, 5, 3, 3, IPacket <?> level) //    (ParticleTypes.SOUL, this.blockPosition(), 5, 3, 3, 3, 1);
-                        this.level.addParticle(ParticleTypes.SOUL, this.getRandomX(1.5D), this.getRandomY() + 0.8D, this.getRandomZ(1.5D), 0.0D, 0.0D, 0.0D);
-//                    }
+                    this.level.addParticle(ParticleTypes.SOUL, this.getRandomX(1.0D), this.getRandomY() + 0.5D, this.getRandomZ(1.0D), 0.0D, 0.0D, 0.0D);
+                    this.level.addParticle(ParticleTypes.SOUL, this.getRandomX(1.5D), this.getRandomY() + 0.8D, this.getRandomZ(1.5D), 0.0D, 0.0D, 0.0D);
 
                     level.playSound(null, blockpos, SoundEvents.WOLF_HOWL, SoundCategory.NEUTRAL, 1f, 0.8f);
-                    this.setNoActionTime(60); // Alternatively, use --> this.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 100, 7));
+                    this.navigation.stop();
                     this.setSecondsOnFire(3);
+                    PortUtil.sendMessageCenterScreen(player, (new TranslationTextComponent("rigoranthusemortisreborn.canis.successfully_tamed")));
                     this.waitTicks = 60;
-                    player.displayClientMessage(new StringTextComponent("\u00A76The Pact was Successful. \u00A7cThe Beasts Impurities will now be Expelled."), (true));
-
-                    this.ticks += 1;
-                    if (this.ticks >= this.waitTicks)
+                    if (this.ticks <= this.waitTicks)
                         canis.setTame(true);
                     canis.setOwnerUUID(player.getUUID());
                     canis.setHealth(canis.getMaxHealth());
@@ -166,81 +163,47 @@ public class FeralCanisEntity extends MonsterEntity implements IAnimatable {
                     level.addFreshEntity(canis);
                     this.remove();
                 }
-            }
-            return ActionResultType.SUCCESS;
-        }
-        else {
-            if ((Math.random() <= 0.15)) {
-                if (this.level instanceof ServerWorld) {
-                    LightningBoltEntity lightningBoltEntity = EntityType.LIGHTNING_BOLT.create(level);
-                    lightningBoltEntity.absMoveTo(this.getX(), this.getY(), this.getZ(), this.yRot, this.xRot);
-                    lightningBoltEntity.setVisualOnly(true);
-                    level.addFreshEntity(lightningBoltEntity);
+                else if ((Math.random() <= 0.15)) {
+                    if (this.level instanceof ServerWorld) {
+                        LightningBoltEntity lightningBoltEntity = EntityType.LIGHTNING_BOLT.create(level);
+                        lightningBoltEntity.absMoveTo(this.getX(), this.getY(), this.getZ(), this.yRot, this.xRot);
+                        lightningBoltEntity.setVisualOnly(true);
+                        level.addFreshEntity(lightningBoltEntity);
 
-                    sunderedCadaver.absMoveTo(this.getX(), this.getY(), this.getZ(), this.yRot, this.xRot);
-                    level.addFreshEntity(sunderedCadaver);
-                    level.addFreshEntity(sunderedCadaver);
-                }
-                this.level.playSound(null, blockpos, SoundEvents.WOLF_GROWL, SoundCategory.NEUTRAL, 1f, 0.8f);
+                        sunderedCadaver.absMoveTo(this.getX(), this.getY(), this.getZ(), this.yRot, this.xRot);
+                        sunderedCadaver2.absMoveTo(this.getX(), this.getY(), this.getZ(), this.yRot, this.xRot);
+                        level.addFreshEntity(sunderedCadaver);
+                        level.addFreshEntity(sunderedCadaver2);
+                    }
+                    this.level.playSound(null, blockpos, SoundEvents.WOLF_GROWL, SoundCategory.NEUTRAL, 1f, 0.8f);
 
-                if (!this.level.isClientSide) {
-                    ((PlayerEntity) lastHurtByPlayer).displayClientMessage(new StringTextComponent("\u00A7cMake Yourself Scarce, Weakling...."), (false));
+                    PortUtil.sendMessageCenterScreen(player, (new TranslationTextComponent("rigoranthusemortisreborn.canis.failed_to_tame")));
                 }
             }
-            return ActionResultType.FAIL;
         }
+        return ActionResultType.SUCCESS;
     }
-/*
-        if (this.isTamed() && sourceentity.isSecondaryUseActive()) {
-            this.openInventory(sourceentity);
-            return ActionResultType.sidedSuccess(this.level.isClientSide);
-        }
-        if (!itemstack.isEmpty()) {
-            if (itemstack.getItem() == ItemInit.PACT_OF_SERVITUDE.get()) {
-                sourceentity.swing(Hand.MAIN_HAND, true);
-                if (!sourceentity.isCreative()) {
-                    itemstack.shrink(1);
-                }
-                if (this.level.isClientSide()) {
-                    level.playSound(null, blockpos, SoundEvents.BOOK_PAGE_TURN, SoundCategory.NEUTRAL, 1.0F, (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F);
-                }
-            if (!this.hasChest() && itemstack.getItem() == Blocks.CHEST.asItem()) {
-                this.setChest(true);
-                this.playChestEquipsSound();
-                if (!sourceentity.abilities.instabuild) {
-                    itemstack.shrink(1);
-                }
-                this.createInventory();
-                return ActionResultType.sidedSuccess(this.level.isClientSide);
-            }
-            if (!this.isSaddled() && itemstack.getItem() == Items.SADDLE) {
-                this.openInventory(sourceentity);
-                return ActionResultType.sidedSuccess(this.level.isClientSide);
-            }
-*/
 
     @Override
     public boolean hurt(DamageSource source, float amount) {
 
         SunderedCadaverEntity sunderedCadaver = ModEntities.SUNDERED_CADAVER.create(level);
-
+        SunderedCadaverEntity sunderedCadaver2 = ModEntities.SUNDERED_CADAVER.create(level);
         if (this.isInvulnerableTo(source)) {
             return false;
         }
         if (this.getLastHurtByMob() instanceof PlayerEntity && this.lastHurtByPlayer != null) {
             if ((Math.random() < 0.1)) {
-                if (!this.level.isClientSide) {
-                    ((PlayerEntity) lastHurtByPlayer).displayClientMessage(new StringTextComponent("\u00A7cMake Yourself Scarce, Weakling...."), (false));
-                }
+                PortUtil.sendMessageCenterScreen((PlayerEntity) lastHurtByPlayer, (new TranslationTextComponent("rigoranthusemortisreborn.canis.failed_to_tame")));
                 if (level instanceof ServerWorld) {
                     LightningBoltEntity lightningBoltEntity = EntityType.LIGHTNING_BOLT.create(level);
                     lightningBoltEntity.absMoveTo(this.getX(), this.getY(), this.getZ(), this.yRot, this.xRot);
                     lightningBoltEntity.setVisualOnly(true);
                     level.addFreshEntity(lightningBoltEntity);
-
                     sunderedCadaver.absMoveTo(this.getX(), this.getY(), this.getZ(), this.yRot, this.xRot);
+                    sunderedCadaver2.absMoveTo(this.getX(), this.getY(), this.getZ(), this.yRot, this.xRot);
                     level.addFreshEntity(sunderedCadaver);
-                    level.addFreshEntity(sunderedCadaver);
+                    level.addFreshEntity(sunderedCadaver2);
                 }
             }
         }

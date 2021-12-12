@@ -13,10 +13,6 @@ public class CanisTags {
     public static ITag.INamedTag<Item> WAYWARD_TRAVELLER_BLACKLIST = tag("wayward_traveller_blacklist");
     public static ITag.INamedTag<Item> TREATS = tag("treats");
 
-    public static ITag.INamedTag<Item> MASTERFUL = tag("forge:furnaces/masterful");
-    public static ITag.INamedTag<Item> JESSIC_LOG = tag("forge:logs/jessic");
-    public static ITag.INamedTag<Item> AZULOREAL_LOG = tag("forge:logs/azuloreal");
-
     public static ITag.INamedTag<Item> JESSIC_LOGS = tag("jessic_logs");
     public static ITag.INamedTag<Item> JESSIC = tag("jessic");
     public static ITag.INamedTag<Item> AZULOREAL_LOGS = tag("azuloreal_logs");

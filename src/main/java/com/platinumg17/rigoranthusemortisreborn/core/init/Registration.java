@@ -75,7 +75,6 @@ public class Registration {
     public static final RegistryObject<Block> LUMISHROOM = BLOCKS.register("lumishroom", () -> new LumiShroomBlock(AbstractBlock.Properties.of(Material.PLANT, MaterialColor.COLOR_YELLOW).noCollission().randomTicks().strength(0).sound(SoundType.GRASS).lightLevel(state -> 11)));
 
 
-//    			() -> new REWeaponItem(new REWeaponItem.Builder(RigoranthusItemTier.FROSTBITTEN, 6, -2.4F).efficiency(1.0F).set(ToolRegistry.SWORD_TOOL).add(
 //            OnHitEffect.SWEEP).add(OnHitEffect.ICE_SHARD), new Item.Properties().defaultDurability(200).tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)));
 
     public static final Item APOGEAN_SWORD = new REWeaponItem(new REWeaponItem.Builder(RigoranthusItemTier.APOGEAN, Config.apogean_sword_damage.get(), Config.apogean_sword_speed.get().floatValue()).set(ToolRegistry.SWORD_TOOL), new Item.Properties().fireResistant().rarity(Rarity.EPIC).tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(1)).setRegistryName("apogean_sword");

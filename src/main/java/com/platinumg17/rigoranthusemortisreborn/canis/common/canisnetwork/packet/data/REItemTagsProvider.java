@@ -32,33 +32,14 @@ public class REItemTagsProvider extends ItemTagsProvider {
 
     @Override
     public void addTags() {
-        createTag(CanisTags.SNACK_ITEMS_TAMED, CanisItems.BREEDING_BONE, CanisItems.THROW_STICK, CanisItems.THROW_BONE, Items.BONE.delegate);
-        appendToTag(CanisTags.TREATS);
-        createTag(CanisTags.SNACK_ITEMS_UNTAMED, CanisItems.TRAINING_TREAT, Items.BONE.delegate);
-        createTag(CanisTags.BREEDING_ITEMS, CanisItems.BREEDING_BONE);
-        createTag(CanisTags.WAYWARD_TRAVELLER_BLACKLIST, CanisItems.THROW_BONE, CanisItems.THROW_BONE_WET, CanisItems.THROW_STICK, CanisItems.THROW_STICK_WET);
-        createTag(CanisTags.TREATS, CanisItems.TRAINING_TREAT, CanisItems.REGULAR_TREAT, CanisItems.MASTER_TREAT, CanisItems.HOMINI_TREAT);
-
-        tag(ItemTags.ARROWS).add(MagicItemsRegistry.BONE_ARROW);
-        tag(ItemTags.SMALL_FLOWERS).add(BlockRegistry.AZULOREAL_ORCHID.asItem()).add(BlockRegistry.IRIDESCENT_SPROUTS.asItem());
-        tag(ItemTags.TALL_FLOWERS).add(BlockRegistry.LISIANTHUS.asItem());
-
-        appendToTag(CanisTags.MASTERFUL);
-        appendToTag(CanisTags.JESSIC_LOG);
-        appendToTag(CanisTags.AZULOREAL_LOG);
-        appendToTag(CanisTags.JESSIC_LOGS);
-        appendToTag(CanisTags.AZULOREAL_LOGS);
-        appendToTag(CanisTags.JESSIC);
-        appendToTag(CanisTags.AZULOREAL);
-
-        createBlockTag(CanisTags.MASTERFUL, Registration.MASTERFUL_SMELTERY.get().asItem());
-        createBlockTag(CanisTags.JESSIC_LOG, BlockRegistry.JESSIC_LOG.asItem(), BlockRegistry.JESSIC_WOOD.asItem(), BlockRegistry.STRIPPED_JESSIC_LOG.asItem(), BlockRegistry.STRIPPED_JESSIC_WOOD.asItem());
-        createBlockTag(CanisTags.AZULOREAL_LOG, BlockRegistry.AZULOREAL_LOG.asItem(), BlockRegistry.AZULOREAL_WOOD.asItem(), BlockRegistry.STRIPPED_AZULOREAL_LOG.asItem(), BlockRegistry.STRIPPED_AZULOREAL_WOOD.asItem());
         createBlockTag(CanisTags.JESSIC_LOGS, BlockRegistry.JESSIC_LOG.asItem(), BlockRegistry.JESSIC_WOOD.asItem(), BlockRegistry.STRIPPED_JESSIC_LOG.asItem(), BlockRegistry.STRIPPED_JESSIC_WOOD.asItem());
         createBlockTag(CanisTags.AZULOREAL_LOGS, BlockRegistry.AZULOREAL_LOG.asItem(), BlockRegistry.AZULOREAL_WOOD.asItem(), BlockRegistry.STRIPPED_AZULOREAL_LOG.asItem(), BlockRegistry.STRIPPED_AZULOREAL_WOOD.asItem());
         createBlockTag(CanisTags.JESSIC, BlockRegistry.JESSIC_LOG.asItem(), BlockRegistry.JESSIC_WOOD.asItem(), BlockRegistry.STRIPPED_JESSIC_LOG.asItem(), BlockRegistry.STRIPPED_JESSIC_WOOD.asItem());
         createBlockTag(CanisTags.AZULOREAL, BlockRegistry.AZULOREAL_LOG.asItem(), BlockRegistry.AZULOREAL_WOOD.asItem(), BlockRegistry.STRIPPED_AZULOREAL_LOG.asItem(), BlockRegistry.STRIPPED_AZULOREAL_WOOD.asItem());
-        appendToTag(ItemTags.LOGS_THAT_BURN, CanisTags.AZULOREAL_LOGS, CanisTags.JESSIC_LOGS);
+
+        tag(ItemTags.ARROWS).add(MagicItemsRegistry.BONE_ARROW);
+        tag(ItemTags.SMALL_FLOWERS).add(BlockRegistry.AZULOREAL_ORCHID.asItem()).add(BlockRegistry.IRIDESCENT_SPROUTS.asItem());
+        tag(ItemTags.TALL_FLOWERS).add(BlockRegistry.LISIANTHUS.asItem());
         tag(ItemTags.LOGS)
                 .add(BlockRegistry.AZULOREAL_LOG.asItem())
                 .add(BlockRegistry.AZULOREAL_WOOD.asItem())
@@ -68,8 +49,16 @@ public class REItemTagsProvider extends ItemTagsProvider {
                 .add(BlockRegistry.JESSIC_WOOD.asItem())
                 .add(BlockRegistry.STRIPPED_JESSIC_LOG.asItem())
                 .add(BlockRegistry.STRIPPED_JESSIC_WOOD.asItem());
-        appendToTag(ItemTags.SOUL_FIRE_BASE_BLOCKS, CanisTags.AZULOREAL_LOGS);
+        tag(ItemTags.SOUL_FIRE_BASE_BLOCKS).addTags(CanisTags.AZULOREAL_LOGS);
+        tag(ItemTags.LOGS_THAT_BURN).addTags(CanisTags.AZULOREAL_LOGS, CanisTags.JESSIC_LOGS);
         tag(ItemTags.SAPLINGS).add(BlockRegistry.AZULOREAL_SAPLING.asItem()).add(BlockRegistry.JESSIC_SAPLING.asItem());
+
+        createTag(CanisTags.SNACK_ITEMS_TAMED, CanisItems.BREEDING_BONE, CanisItems.THROW_STICK, CanisItems.THROW_BONE, Items.BONE.delegate);
+        appendToTag(CanisTags.TREATS);
+        createTag(CanisTags.SNACK_ITEMS_UNTAMED, CanisItems.TRAINING_TREAT, Items.BONE.delegate);
+        createTag(CanisTags.BREEDING_ITEMS, CanisItems.BREEDING_BONE);
+        createTag(CanisTags.WAYWARD_TRAVELLER_BLACKLIST, CanisItems.THROW_BONE, CanisItems.THROW_BONE_WET, CanisItems.THROW_STICK, CanisItems.THROW_STICK_WET);
+        createTag(CanisTags.TREATS, CanisItems.TRAINING_TREAT, CanisItems.REGULAR_TREAT, CanisItems.MASTER_TREAT, CanisItems.HOMINI_TREAT);
     }
 
     @SafeVarargs

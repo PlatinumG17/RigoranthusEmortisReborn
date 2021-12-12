@@ -64,6 +64,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.network.datasync.DataParameter;
@@ -451,25 +452,25 @@ public class CanisEntity extends AbstractCanisEntity {
                 return ActionResultType.SUCCESS;
             }
         }
-        /////       NOT NEEDED SINCE A TAME CANIS CANNOT SPAWN ON ITS OWN      /////
-//        else { // Not tamed
-////            if (stack.getItem() == ItemInit.PACT_OF_SERVITUDE.get()) {
-//                if (!this.level.isClientSide) {
-////                    this.usePlayerItem(player, stack);
-////                    if (stack.getItem() == ItemInit.PACT_OF_SERVITUDE.get() || this.random.nextInt(14) == 0) {
-//                        this.tame(player);
-//                        this.navigation.stop();
-//                        this.setTarget((LivingEntity) null);
-//                        this.setOrderedToSit(true);
-//                        this.setHealth(80.0F);
-//                        this.level.broadcastEntityEvent(this, EmortisConstants.EntityState.CANIS_HEARTS);
-////                    } else {
-////                        this.level.broadcastEntityEvent(this, EmortisConstants.EntityState.CANIS_SMOKE);
-////                    }
-//                }
-//                return ActionResultType.SUCCESS;
-////            }
-//        }
+        ///       NOT NEEDED SINCE A TAME CANIS CANNOT SPAWN ON ITS OWN      /////
+        else { // Not tamed
+            if (stack.getItem() == Items.BONE || stack.getItem() == CanisItems.TRAINING_TREAT.get()) {
+                if (!this.level.isClientSide) {
+                    this.usePlayerItem(player, stack);
+                    if (stack.getItem() == CanisItems.TRAINING_TREAT.get() || this.random.nextInt(3) == 0) {
+                        this.tame(player);
+                        this.navigation.stop();
+                        this.setTarget((LivingEntity) null);
+                        this.setOrderedToSit(true);
+                        this.setHealth(80.0F);
+                        this.level.broadcastEntityEvent(this, EmortisConstants.EntityState.CANIS_HEARTS);
+                    } else {
+                        this.level.broadcastEntityEvent(this, EmortisConstants.EntityState.CANIS_SMOKE);
+                    }
+                }
+                return ActionResultType.SUCCESS;
+            }
+        }
         Optional<ICanisFoodHandler> foodHandler = FoodHandler.getMatch(this, stack, player);
         if (foodHandler.isPresent()) {
             this.playEatingSound();
@@ -486,7 +487,7 @@ public class CanisEntity extends AbstractCanisEntity {
             }
         }
         ActionResultType actionresulttype = super.mobInteract(player, hand);
-        if ((!actionresulttype.consumesAction() || this.isBaby()) && this.canInteract(player)) {
+        if ((!actionresulttype.consumesAction())/* || this.isBaby()) */ && this.canInteract(player)) {
             this.setOrderedToSit(!this.isOrderedToSit());
             this.jumping = false;
             this.navigation.stop();

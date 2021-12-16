@@ -1,4 +1,4 @@
-//package com.platinumg17.rigoranthusemortisreborn.entity.model.mobs.canis;
+package com.platinumg17.rigoranthusemortisreborn.entity.model.mobs.canis;
 //
 //import com.mojang.blaze3d.matrix.MatrixStack;
 //import com.mojang.blaze3d.vertex.IVertexBuilder;

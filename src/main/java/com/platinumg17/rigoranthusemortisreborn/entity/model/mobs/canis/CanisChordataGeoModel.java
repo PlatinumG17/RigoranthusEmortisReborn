@@ -7,6 +7,7 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.processor.IBone;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 import software.bernie.geckolib3.model.provider.data.EntityModelData;
+import javax.annotation.Nullable;
 
 public class CanisChordataGeoModel extends AnimatedGeoModel<FeralCanisEntity> {
     private static final ResourceLocation TEXTURE_CANIS = new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/chordata.png");
@@ -66,11 +67,14 @@ public class CanisChordataGeoModel extends AnimatedGeoModel<FeralCanisEntity> {
 //        return null;
     }
     @Override
-    public void setLivingAnimations(FeralCanisEntity entity, Integer uniqueID, AnimationEvent customPredicate) {
+    public void setLivingAnimations(FeralCanisEntity entity, Integer uniqueID, @Nullable AnimationEvent customPredicate) {
         super.setLivingAnimations(entity, uniqueID, customPredicate);
         IBone head = this.getAnimationProcessor().getBone("head");
-        EntityModelData extraData = (EntityModelData) customPredicate.getExtraDataOfType(EntityModelData.class).get(0);
-        head.setRotationX(extraData.headPitch * 0.017453292F);
-        head.setRotationY(extraData.netHeadYaw * 0.017453292F);
+        if (customPredicate != null) {
+            EntityModelData extraData = (EntityModelData) customPredicate.getExtraDataOfType(EntityModelData.class).get(0);
+            head.setRotationY(extraData.netHeadYaw * ((float) Math.PI / 180F));
+//        head.setRotationX(extraData.headPitch * 0.017453292F);
+//        head.setRotationY(extraData.netHeadYaw * 0.017453292F);
+        }
     }
 }

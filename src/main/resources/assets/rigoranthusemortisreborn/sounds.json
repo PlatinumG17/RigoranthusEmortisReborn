@@ -391,8 +391,7 @@
     "category": "ambient",
     "sounds": [
       {
-        "name": "rigoranthusemortisreborn:un_dia_de_abril",
-        "stream": true
+        "name": "rigoranthusemortisreborn:un_dia_de_abril"
       }
     ]
   },
@@ -400,8 +399,7 @@
     "category": "ambient",
     "sounds": [
       {
-        "name": "rigoranthusemortisreborn:calm_right",
-        "stream": true
+        "name": "rigoranthusemortisreborn:calm_right"
       }
     ]
   },

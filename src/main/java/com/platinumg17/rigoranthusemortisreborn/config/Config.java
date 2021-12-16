@@ -387,7 +387,7 @@ public class Config {
         feralCanisChordataMaxHealth = builder.comment(" How much Health this mob has.\n Default: 100.0").translation("rigoranthusemortisreborn.config.server.canis.max_health").defineInRange("canis.max_health", 100.0, 2.0, 10000);
         feralCanisChordataArmorValue = builder.comment(" How Resistant to Attacks from Players this mob is.\n Default: 6.0").translation("rigoranthusemortisreborn.config.server.canis.armor").defineInRange("canis.armor", 6.0, 0.0, 10000);
         feralCanisChordataAttackDamage = builder.comment(" How much Damage does this mobs Attacks do.\n Default: 4.0").translation("rigoranthusemortisreborn.config.server.canis.attack").defineInRange("canis.attack", 4.0, 0.0, 10000);
-        feralCanisChordataMovementSpeed = builder.comment(" How Fast this mob is.\n Default: 0.27").translation("rigoranthusemortisreborn.config.server.canis.movement_speed").defineInRange("canis.movement_speed", 0.27, 0.0, 10);
+        feralCanisChordataMovementSpeed = builder.comment(" How Fast this mob is.\n Default: 0.29").translation("rigoranthusemortisreborn.config.server.canis.movement_speed").defineInRange("canis.movement_speed", 0.29, 0.0, 10);
         feralCanisChordataAttackKnockback = builder.comment(" How far does each Attack push players back.\n Default: 1.25").translation("rigoranthusemortisreborn.config.server.canis.knockback").defineInRange("canis.knockback", 1.25, 0.0, 100);
         feralCanisChordataKnockbackResistance = builder.comment(" How well does this mob stay in one place while players attack it.\n Default: 0.4").translation("rigoranthusemortisreborn.config.server.canis.knockback_resistance").defineInRange("canis.knockback_resistance", 0.4, 0.0, 100);
     }

@@ -20,16 +20,35 @@ import software.bernie.geckolib3.util.RenderUtils;
 import javax.annotation.Nullable;
 
 public class CanisChordataRenderer extends GeoEntityRenderer<FeralCanisEntity> {
-    private static final ResourceLocation TEXTURE_CANIS = new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/chordata.png");
+    public CanisChordataRenderer(EntityRendererManager renderManager) {
+        super(renderManager, new CanisChordataGeoModel());
+        this.shadowRadius = 0.7F;
+    }
+
+    @Override
+    public RenderType getRenderType(FeralCanisEntity animatable, float partialTicks, MatrixStack stack, @Nullable IRenderTypeBuffer renderTypeBuffer, @Nullable IVertexBuilder vertexBuilder, int packedLightIn, ResourceLocation textureLocation) {
+        return RenderType.entityTranslucent(this.getTextureLocation(animatable));
+    }
+}
+
+
+
+
+
+
+
+
+
+
+//    private static final ResourceLocation TEXTURE_CANIS = new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/chordata.png");
 //    private static final RenderType[] GLOW = new RenderType[2];
 //
 //    protected final List<GeoLayerRenderer<T>> layerRenderers = Lists.newArrayList();
 //    private final AnimatedGeoModel<T> modelProvider;
 
-    public CanisChordataRenderer(EntityRendererManager renderManager) {
-        super(renderManager, new CanisChordataGeoModel());
-        this.shadowRadius = 0.7F;
-
+//    public CanisChordataRenderer(EntityRendererManager renderManager) {
+//        super(renderManager, new CanisChordataGeoModel());
+//        this.shadowRadius = 0.7F;
 //        this.addLayer(new AbstractEyesLayer<CanisChordataEntity, CanisChordataModel>(this) {
 //            @Override
 //            public RenderType renderType() {return GLOW[0];}
@@ -39,28 +58,28 @@ public class CanisChordataRenderer extends GeoEntityRenderer<FeralCanisEntity> {
 //                this.getParentModel().renderToBuffer(matrices, ivertexbuilder, 15728640, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
 //            }
 //        });
-    }
+//    }
 
-    FeralCanisEntity feralCanis;
-    IRenderTypeBuffer buffer;
-    ResourceLocation text;
+//    FeralCanisEntity feralCanis;
+//    IRenderTypeBuffer buffer;
+//    ResourceLocation text;
 
-    @Override
-    protected void applyRotations(FeralCanisEntity entityLiving, MatrixStack matrixStackIn, float ageInTicks, float rotationYaw, float partialTicks) {
-        super.applyRotations(entityLiving, matrixStackIn, ageInTicks, rotationYaw, partialTicks);
-    }
-    @Override
-    public void renderEarly(FeralCanisEntity animatable, MatrixStack stackIn, float ticks, IRenderTypeBuffer renderTypeBuffer, IVertexBuilder vertexBuilder, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float partialTicks) {
-        this.feralCanis = animatable;
-        this.buffer = renderTypeBuffer;
-        this.text = this.getTextureLocation(animatable);
-        super.renderEarly(animatable, stackIn, ticks, renderTypeBuffer, vertexBuilder, packedLightIn, packedOverlayIn, red, green, blue, partialTicks);
-    }
+//    @Override
+//    protected void applyRotations(FeralCanisEntity entityLiving, MatrixStack matrixStackIn, float ageInTicks, float rotationYaw, float partialTicks) {
+//        super.applyRotations(entityLiving, matrixStackIn, ageInTicks, rotationYaw, partialTicks);
+//    }
+//    @Override
+//    public void renderEarly(FeralCanisEntity animatable, MatrixStack stackIn, float ticks, IRenderTypeBuffer renderTypeBuffer, IVertexBuilder vertexBuilder, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float partialTicks) {
+//        this.feralCanis = animatable;
+//        this.buffer = renderTypeBuffer;
+//        this.text = this.getTextureLocation(animatable);
+//        super.renderEarly(animatable, stackIn, ticks, renderTypeBuffer, vertexBuilder, packedLightIn, packedOverlayIn, red, green, blue, partialTicks);
+//    }
 
-    @Override
-    public void render(FeralCanisEntity entity, float entityYaw, float p_225623_3_, MatrixStack matrixStack, IRenderTypeBuffer iRenderTypeBuffer, int p_225623_6_) {
-        super.render(entity, entityYaw, p_225623_3_, matrixStack, iRenderTypeBuffer, p_225623_6_);
-    }
+//    @Override
+//    public void render(FeralCanisEntity entity, float entityYaw, float p_225623_3_, MatrixStack matrixStack, IRenderTypeBuffer iRenderTypeBuffer, int p_225623_6_) {
+//        super.render(entity, entityYaw, p_225623_3_, matrixStack, iRenderTypeBuffer, p_225623_6_);
+//    }
 //    @Override
 //    public void renderRecursively(GeoBone bone, MatrixStack stack, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
 //        if(bone.getName().equals("item")){
@@ -79,20 +98,6 @@ public class CanisChordataRenderer extends GeoEntityRenderer<FeralCanisEntity> {
 
 
 
-    @Override
-    public RenderType getRenderType(FeralCanisEntity animatable, float partialTicks, MatrixStack stack, @Nullable IRenderTypeBuffer renderTypeBuffer, @Nullable IVertexBuilder vertexBuilder, int packedLightIn, ResourceLocation textureLocation) {
-        return RenderType.entityCutoutNoCull(textureLocation);
-    }
-
-    @Override
-    public ResourceLocation getTextureLocation(FeralCanisEntity entity) {
-        return TEXTURE_CANIS;
-    }
-
-
-
-
-
 //    static {
 //        GLOW[0] = RenderType.eyes(new ResourceLocation(RigoranthusEmortisReborn.MOD_ID, ("textures/entity/canis/canis_chordata_e.png")));
 //    }
@@ -102,4 +107,3 @@ public class CanisChordataRenderer extends GeoEntityRenderer<FeralCanisEntity> {
 //        stack.pushPose();
 //    EntityModelData entityModelData = new EntityModelData();
 //    entityModelData.isCanis = entity.isCanis();
-}

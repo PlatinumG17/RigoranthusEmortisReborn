@@ -8,12 +8,9 @@ import com.platinumg17.rigoranthusemortisreborn.entity.goals.CanisAttackGoal;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.IAnimationListener;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.ModEntities;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.util.PortUtil;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.controller.MovementController;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
@@ -43,7 +40,6 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-import java.time.format.TextStyle;
 import java.util.function.Predicate;
 
 public class FeralCanisEntity extends MonsterEntity implements IAnimatable, IAnimationListener {
@@ -146,7 +142,6 @@ public class FeralCanisEntity extends MonsterEntity implements IAnimatable, IAni
     protected void registerGoals() {
         this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
-//        this.goalSelector.addGoal(3, new LeapAtTargetGoal(this, (float) 0.3));
         this.addBehaviourGoals();
     }
     protected void addBehaviourGoals() {
@@ -320,17 +315,11 @@ public class FeralCanisEntity extends MonsterEntity implements IAnimatable, IAni
         return super.hurt(source, amount);
     }
 
-    public enum Animations{ BITING }
-
     @Override
     public void startAnimation(int arg) {
         try{
             if(arg == Animations.BITING.ordinal()){
                 AnimationController controller = this.animationFactory.getOrCreateAnimationData(this.hashCode()).getAnimationControllers().get("attackController");
-
-                if(controller.getCurrentAnimation() != null && (controller.getCurrentAnimation().animationName.equals("attack"))) {
-                    return;
-                }
                 controller.markNeedsReload();
                 controller.setAnimation(new AnimationBuilder().addAnimation("attack", false));
             }
@@ -338,4 +327,5 @@ public class FeralCanisEntity extends MonsterEntity implements IAnimatable, IAni
             e.printStackTrace();
         }
     }
+    public enum Animations{ BITING }
 }

@@ -22,7 +22,7 @@ import javax.annotation.Nullable;
 public class CanisChordataRenderer extends GeoEntityRenderer<FeralCanisEntity> {
     public CanisChordataRenderer(EntityRendererManager renderManager) {
         super(renderManager, new CanisChordataGeoModel());
-        this.shadowRadius = 0.7F;
+        this.shadowRadius = 1.0F;
     }
 
     @Override

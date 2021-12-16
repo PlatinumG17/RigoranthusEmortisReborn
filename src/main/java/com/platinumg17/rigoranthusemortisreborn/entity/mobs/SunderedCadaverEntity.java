@@ -171,34 +171,6 @@ public class SunderedCadaverEntity extends ZombieEntity implements IAnimatable, 
     }
 
 //    @Override
-//    public void aiStep() {
-//        if (this.isAlive()) {
-//            boolean flag = this.isSunSensitive() && this.isSunBurnTick();
-//            if (flag) {
-//                ItemStack itemstack = this.getItemBySlot(EquipmentSlotType.HEAD);
-//                if (!itemstack.isEmpty()) {
-//                    if (itemstack.isDamageableItem()) {
-//                        itemstack.setDamageValue(itemstack.getDamageValue() + this.random.nextInt(2));
-//                        if (itemstack.getDamageValue() >= itemstack.getMaxDamage()) {
-//                            this.broadcastBreakEvent(EquipmentSlotType.HEAD);
-//                            this.setItemSlot(EquipmentSlotType.HEAD, ItemStack.EMPTY);
-//                        }
-//                    }
-//
-//                    flag = false;
-//                }
-//                if (!(this.checkSpawnRules(this.level, SpawnReason.MOB_SUMMONED))) {
-//                    if (flag) {
-//                        this.setSecondsOnFire(8);
-//                    }
-//                }
-//            }
-//        }
-//
-//        super.aiStep();
-//    }
-
-//    @Override
 //    public void addAdditionalSaveData(CompoundNBT tag) {
 //        super.addAdditionalSaveData(tag);
 ////        NBTUtil.storeBlockPos(tag, "home", getHome());
@@ -248,10 +220,6 @@ public class SunderedCadaverEntity extends ZombieEntity implements IAnimatable, 
         try{
             if(arg == SunderedCadaverEntity.Animations.POUNCING.ordinal()){
                 AnimationController controller = this.animationFactory.getOrCreateAnimationData(this.hashCode()).getAnimationControllers().get("attackController");
-
-                if(controller.getCurrentAnimation() != null && (controller.getCurrentAnimation().animationName.equals("attack"))) {
-                    return;
-                }
                 controller.markNeedsReload();
                 controller.setAnimation(new AnimationBuilder().addAnimation("attack", false));
             }
@@ -263,9 +231,7 @@ public class SunderedCadaverEntity extends ZombieEntity implements IAnimatable, 
     @Override
     protected void registerGoals() {
         super.registerGoals();
-
         this.goalSelector.addGoal(1, new SunderedCadaverAttackGoal(this, true));
-//        this.goalSelector.addGoal(2, new PounceAttackGoal(this, true,() -> pounceCooldown <= 0 /*&& !this.entityData.get(SUMMONED)*/, Animations.POUNCE.ordinal(), 72, 5));
         this.goalSelector.addGoal(2, new RandomWalkingGoal(this, 1.0f));
 //        this.goalSelector.addGoal(2, new CastSpellGoal(this, 1.2d, 20,15f, () -> castCooldown <= 0 && !this.entityData.get(SUMMONED), Animations.CAST.ordinal(), 20));
         this.goalSelector.addGoal(5, new MoveTowardsTargetGoal(this, 1.0f, 8));

@@ -19,6 +19,7 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.structure.StructureFeatures;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilders;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
@@ -113,7 +114,7 @@ public class EmortisBiomeGen {
         BiomeDictionary.addTypes(verdurousWoodlandsKey, FOREST, LUSH, OVERWORLD, DENSE, MAGICAL);
     }
     public static Biome verdurousWoodlands =
-            makeVerdurousWoodlandsBiome(() -> ConfiguredSurfaceBuilders.GIANT_TREE_TAIGA, 0.4F, 0.425F).setRegistryName(EmortisConstants.MOD_ID, "verdurous_woodlands");
+            makeVerdurousWoodlandsBiome(() -> ConfiguredSurfaceBuilders.GRASS, 0.4F, 0.425F).setRegistryName(EmortisConstants.MOD_ID, "verdurous_woodlands");
 
     public static Biome verdurousFields =
             makeVerdurousFieldsBiome(() -> ConfiguredSurfaceBuilders.GRASS, 0.125F, 0.05F).setRegistryName(EmortisConstants.MOD_ID, "verdurous_fields");
@@ -254,7 +255,6 @@ public class EmortisBiomeGen {
         DefaultBiomeFeatures.addMossyStoneBlock(feature);
         DefaultBiomeFeatures.addLightBambooVegetation(feature);
 //                                                         TODO  -->  CONSIDER ADDING CUSTOM TREE GEN HERE
-        DefaultBiomeFeatures.addJungleTrees(feature);
         DefaultBiomeFeatures.addWarmFlowers(feature);
         DefaultBiomeFeatures.addJungleGrass(feature);
         withVerdurousFeatures(feature);

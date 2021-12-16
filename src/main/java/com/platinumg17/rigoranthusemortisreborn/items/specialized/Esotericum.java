@@ -24,7 +24,6 @@ import static com.platinumg17.rigoranthusemortisreborn.magica.setup.MagicItemsRe
 public class Esotericum extends Item {
     public Esotericum() {
         super(defaultItemProperties());
-//        setRegistryName(LibItemNames.POWDERED_ESOTERICUM);
     }
 
     @Override

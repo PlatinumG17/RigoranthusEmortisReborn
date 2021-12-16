@@ -288,7 +288,7 @@
 				}
 			}
 		},
-		"attacking": {
+		"attack": {
 			"animation_length": 2.20833,
 			"bones": {
 				"eyes": {

@@ -113,7 +113,6 @@ public class SpellContext {
      */
     public static class CasterType{
         public static final CasterType RUNE = new CasterType("rune");
-        public static final CasterType TURRET = new CasterType("turret");
         public static final CasterType ENTITY = new CasterType("entity");
         public static final CasterType OTHER = new CasterType("other");
         public String id;

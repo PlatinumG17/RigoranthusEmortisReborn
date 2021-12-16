@@ -18,7 +18,7 @@ public class SunderedCadaverRenderer extends GeoEntityRenderer<SunderedCadaverEn
 
     public SunderedCadaverRenderer(EntityRendererManager manager) {
         super(manager, new SunderedCadaverGeoModel());
-        this.shadowRadius = 0.7F;
+        this.shadowRadius = 0.5F;
     }
     @Override
     public RenderType getRenderType(SunderedCadaverEntity animatable, float partialTicks, MatrixStack stack, @Nullable IRenderTypeBuffer renderTypeBuffer, @Nullable IVertexBuilder vertexBuilder, int packedLightIn, ResourceLocation textureLocation) {

@@ -53,14 +53,18 @@ public interface ItemRightClickEffect {
             ItemStack itemStackIn = player.getItemInHand(hand);
             world.playSound(null, player.getX(), player.getY(), player.getZ(), RigoranthusSoundRegistry.FIREBALL.get(), SoundCategory.PLAYERS, 1.2F, 1.0F);
             Vector3d vector3d = player.getViewVector(1.0F);
-            double d2 = player.getX() - (player.getX() - vector3d.x * 4.0D);
-            double d3 = player.getY(0.5D) + (0.5D + player.getY(0.5D));
-            double d4 = player.getZ() - (player.getZ() - vector3d.z * 4.0D);
-            if(!world.isClientSide) {
-                FireballEntity fireballentity = new FireballEntity(world, player, d2, d3, d4);//world, player, 0, -5.0, 0);//player.getX(), player.getY(), player.getZ());//
 
+//            double d2 = player.getX() - (player.getX() - vector3d.x * 4.0D);
+//            double d3 = player.getY(0.5D) + (0.5D + player.getY(0.5D));
+//            double d4 = player.getZ() - (player.getZ() - vector3d.z * 4.0D);
+            double d2 = player.getX();
+            double d3 = player.getY();
+            double d4 = player.getZ();
+
+            if(!world.isClientSide) {
+                FireballEntity fireballentity = new FireballEntity(world, player, d2, d3, d4);//player.getX(), player.getY(), player.getZ());//
                 fireballentity.explosionPower = 1;
-                fireballentity.shootFromRotation(player, player.xRot, player.yRot, 0.0F, 6.0F, 0.0F);
+                fireballentity.shootFromRotation(player, player.xRot, player.yRot, 0.0F, -9.0F, 0.0F); //(player, player.xRot, player.yRot, 0.0F, 1.0F * 3.0F, 1.0F);
                 ParticleUtil.spawnPoof((ServerWorld) world, player.blockPosition());
                 player.swing(hand, true);
                 player.getCooldowns().addCooldown(itemStackIn.getItem(), 60);

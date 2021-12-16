@@ -47,7 +47,7 @@ public class ModEntities {
     public static EntityType<NecrawFasciiEntity> NECRAW_FASCII = build("necraw_fascii", EntityType.Builder.<NecrawFasciiEntity>of(NecrawFasciiEntity::new, EntityClassification.MONSTER)
             .sized(1f, 1.3f).setTrackingRange(20)
             .setShouldReceiveVelocityUpdates(true));
-    public static EntityType<LanguidDwellerEntity> LANGUID_DWELLER = build("languid_dweller", EntityType.Builder.<LanguidDwellerEntity>of(LanguidDwellerEntity::new, EntityClassification.CREATURE)
+    public static EntityType<LanguidDwellerEntity> LANGUID_DWELLER = build("languid_dweller", EntityType.Builder.<LanguidDwellerEntity>of(LanguidDwellerEntity::new, EntityClassification.MONSTER)
             .sized(1.6f, 1.8f).setTrackingRange(16)
             .setShouldReceiveVelocityUpdates(true));
 

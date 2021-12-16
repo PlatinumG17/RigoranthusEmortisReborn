@@ -3,7 +3,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "forge:logs/azuloreal"
+      "tag": "rigoranthusemortisreborn:azuloreal_logs"
     }
   ],
   "result": {

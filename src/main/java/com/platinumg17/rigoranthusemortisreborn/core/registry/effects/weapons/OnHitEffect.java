@@ -35,16 +35,18 @@ import java.util.function.Supplier;
 public interface OnHitEffect {
     void onHit(ItemStack stack, LivingEntity target, LivingEntity attacker);
     static OnHitEffect setOnFire(int duration) {return (itemStack, target, attacker) -> target.setSecondsOnFire(duration);}
-    OnHitEffect RAGE_STRENGTH =/* requireAspect(RAGE, */chanceWithCritMod(
+
+    OnHitEffect RAGE_STRENGTH = chanceWithCritMod(
             userPotionEffect(() -> new EffectInstance(Effects.DAMAGE_BOOST, 80, 1)));
-    OnHitEffect HOPE_RESISTANCE =/* requireAspect(HOPE,*/ chanceWithCritMod(
+    OnHitEffect HOPE_RESISTANCE = chanceWithCritMod(
             userPotionEffect(() -> new EffectInstance(Effects.DAMAGE_RESISTANCE, 120, 2)));
-    OnHitEffect LIFE_SATURATION = /*requireAspect(LIFE,*/ chanceWithCritMod(
+    OnHitEffect LIFE_SATURATION = chanceWithCritMod(
             userPotionEffect(() -> new EffectInstance(Effects.SATURATION, 1, 1))
                     .and(enemyPotionEffect(() -> new EffectInstance(Effects.HUNGER, 60, 100))));
-    OnHitEffect BREATH_LEVITATION_AOE = /*requireAspect(BREATH,*/ chanceWithCritMod(
+
+    OnHitEffect BREATH_LEVITATION_AOE = chanceWithCritMod(
             potionAOE(() -> new EffectInstance(Effects.LEVITATION, 30, 2), () -> SoundEvents.ENDER_DRAGON_FLAP, 1.4F));
-    OnHitEffect TIME_SLOWNESS_AOE = /*requireAspect(TIME,*/ chanceWithCritMod(
+    OnHitEffect TIME_SLOWNESS_AOE = chanceWithCritMod(
             potionAOE(() -> new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 100, 4), () -> SoundEvents.BELL_RESONATE, 2F));
 
     OnHitEffect ICE_SHARD = (stack, target, attacker) -> {
@@ -92,7 +94,7 @@ public interface OnHitEffect {
         }
     };
 
-    OnHitEffect DROP_FOE_ITEM = (stack, target, attacker) -> {
+    OnHitEffect DISARM_ENEMY = (stack, target, attacker) -> {
         ItemStack heldByTarget = target.getMainHandItem();
         if(!target.level.isClientSide && !heldByTarget.isEmpty() && attacker.getRandom().nextFloat() < .05) {
             ItemEntity item = new ItemEntity(target.level, target.getX(), target.getY(), target.getZ(), heldByTarget.copy());
@@ -152,7 +154,7 @@ public interface OnHitEffect {
         }
     };
 
-    OnHitEffect SPACE_TELEPORT = /*requireAspect(SPACE,*/ onCrit((stack, target, attacker) -> {
+    OnHitEffect SPACE_TELEPORT = onCrit((stack, target, attacker) -> {
         double oldPosX = attacker.getX();
         double oldPosY = attacker.getY();
         double oldPosZ = attacker.getZ();

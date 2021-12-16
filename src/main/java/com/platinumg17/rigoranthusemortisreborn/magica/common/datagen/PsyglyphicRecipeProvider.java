@@ -5,8 +5,10 @@ import com.google.gson.GsonBuilder;
 import com.platinumg17.rigoranthusemortisreborn.api.RigoranthusEmortisRebornAPI;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.psyglyphic_amalgamator.IPsyglyphicRecipe;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.psyglyphic_amalgamator.PsyglyphicAmalgamatorRecipe;
+import com.platinumg17.rigoranthusemortisreborn.blocks.BlockInit;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
+import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.enchantment.EnchantmentRegistry;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.spell.augment.*;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.spell.effect.*;
@@ -73,6 +75,52 @@ public class PsyglyphicRecipeProvider implements IDataProvider {
     }
 
     public void addEntries(){
+
+        addRecipe(builder()
+                .withResult(ItemInit.CRY_OF_DESPERATION.get())
+                .withReagent(BlockInit.BLOCK_OF_ESOTERICUM.get().asItem())
+                .withPedestalItem(2,  Ingredient.of(Tags.Items.STORAGE_BLOCKS_GOLD))
+                .withPedestalItem(4,  Ingredient.of(Items.DARK_OAK_PLANKS))
+                .withPedestalItem(2,  Recipes.DOMINION_GEM)
+                .build());
+        addRecipe(builder()
+                .withResult(ItemInit.MORRAI.get())
+                .withReagent(ItemInit.EMORTIC_WEAPON_GRIP.get())
+                .withPedestalItem(2,  Ingredient.of(ItemInit.IRON_SLIME_BALL.get()))
+                .withPedestalItem(1,  Ingredient.of(Items.LEAD))
+                .withPedestalItem(1,  Recipes.DOMINION_GEM)
+                .build());
+        addRecipe(builder()
+                .withResult(ItemInit.ANDURIL.get())
+                .withReagent(ItemInit.EMORTIC_WEAPON_GRIP.get())
+                .withPedestalItem(1,  Ingredient.of(Items.FIRE_CHARGE))
+                .withPedestalItem(1,  Recipes.DOMINION_GEM)
+                .withPedestalItem(2,  Ingredient.of(ItemInit.GHAST_IRON_INGOT.get()))
+                .build());
+        addRecipe(builder()
+                .withResult(ItemInit.BLIGHT_ICHOR.get())
+                .withReagent(Items.WITHER_SKELETON_SKULL)
+                .withPedestalItem(4,  Ingredient.of(MagicItemsRegistry.BOTTLE_OF_ICHOR))
+                .build());
+        addRecipe(builder()
+                .withResult(ItemInit.RAZORTOOTH_FRISBEE.get())
+                .withReagent(ItemInit.EMORTIC_WEAPON_GRIP.get())
+                .withPedestalItem(1,  Recipes.DOMINION_GEM)
+                .withPedestalItem(7,  Ingredient.of(ItemInit.RAZORTOOTH_KUNAI.get()))
+                .build());
+        addRecipe(builder()
+                .withResult(MagicItemsRegistry.ADONIS)
+                .withReagent(Items.BOW)
+                .withPedestalItem(2, Ingredient.of(ItemInit.EMORTIC_WEAPON_GRIP.get()))
+                .withPedestalItem(1, Ingredient.of(ItemInit.PSYGLYPHIC_SCRIPT.get()))
+                .withPedestalItem(4, Ingredient.of(Items.GOLD_INGOT))
+                .withPedestalItem(1,  Recipes.DOMINION_GEM)
+                .build());
+        addRecipe(builder()
+                .withResult(MagicItemsRegistry.unadornedRing)
+                .withReagent(Ingredient.of(Tags.Items.INGOTS_IRON))
+                .withPedestalItem(4,  Ingredient.of(Tags.Items.NUGGETS_IRON))
+                .build());
         addRecipe(builder()
                 .withResult(BlockRegistry.DOMINION_BERRY_BUSH)
                 .withReagent(Ingredient.of(Tags.Items.SEEDS))
@@ -81,23 +129,32 @@ public class PsyglyphicRecipeProvider implements IDataProvider {
         addRecipe(builder()
                 .withResult(MagicItemsRegistry.ringOfLesserConservation)
                 .withReagent(MagicItemsRegistry.unadornedRing)
-                .withPedestalItem(4,  Ingredient.of(Tags.Items.GEMS_DIAMOND))
-                .withPedestalItem(2,Ingredient.of(Tags.Items.ENDER_PEARLS))
-                .withPedestalItem(2,   Recipes.DOMINION_GEM)
-                .withPedestalItem(2,   Ingredient.of(Tags.Items.ENDER_PEARLS))
+                .withPedestalItem(2,  Ingredient.of(Tags.Items.GEMS_DIAMOND))
+                .withPedestalItem(2,  Ingredient.of(Registration.POWDERED_ESOTERICUM.get()))
+                .withPedestalItem(2,  Recipes.DOMINION_GEM)
+                .withPedestalItem(2,  Ingredient.of(Tags.Items.ENDER_PEARLS))
                 .build());
         addRecipe(builder()
                 .withResult(MagicItemsRegistry.ringOfGreaterConservation)
                 .withReagent(MagicItemsRegistry.ringOfLesserConservation)
-                .withPedestalItem(4,  Ingredient.of(Tags.Items.GEMS_DIAMOND))
-                .withPedestalItem(2,Ingredient.of(Tags.Items.RODS_BLAZE))
+                .withPedestalItem(2,  Ingredient.of(Tags.Items.GEMS_DIAMOND))
+                .withPedestalItem(2,  Ingredient.of(Tags.Items.RODS_BLAZE))
+                .withPedestalItem(2,  Ingredient.of(Registration.POWDERED_ESOTERICUM.get()))
                 .withPedestalItem(2, Recipes.DOMINION_GEM)
+                .build());
+
+        addRecipe(builder()
+                .withResult(MagicItemsRegistry.unadornedAmulet)
+                .withReagent(Registration.POWDERED_ESOTERICUM.get())
+                .withPedestalItem(4, Ingredient.of(Tags.Items.LEATHER))
+                .withPedestalItem(4, Ingredient.of(Tags.Items.INGOTS_GOLD))
                 .build());
         addRecipe(builder()
                 .withResult(MagicItemsRegistry.amuletOfDominionBoost)
                 .withReagent(MagicItemsRegistry.unadornedAmulet)
-                .withPedestalItem(3,Ingredient.of(Tags.Items.GEMS_DIAMOND))
-                .withPedestalItem(5, Recipes.DOMINION_GEM)
+                .withPedestalItem(2,Ingredient.of(Tags.Items.GEMS_DIAMOND))
+                .withPedestalItem(2,  Ingredient.of(Registration.POWDERED_ESOTERICUM.get()))
+                .withPedestalItem(3, Recipes.DOMINION_GEM)
                 .build());
         addRecipe(builder()
                 .withResult(MagicItemsRegistry.amuletOfDominionRegen)
@@ -130,14 +187,6 @@ public class PsyglyphicRecipeProvider implements IDataProvider {
                 .withPedestalItem(2, Ingredient.of(ItemInit.PSYGLYPHIC_SCRIPT.get()))
                 .withPedestalItem(RigoranthusEmortisRebornAPI.getInstance().getGlyphItem(MethodProjectile.INSTANCE))
                 .withPedestalItem(RigoranthusEmortisRebornAPI.getInstance().getGlyphItem(AugmentAccelerate.INSTANCE))
-                .build());
-
-        addRecipe(builder()
-                .withResult(MagicItemsRegistry.ADONIS)
-                .withReagent(Items.BOW)
-                .withPedestalItem(Recipes.DOMINION_GEM_BLOCK)
-                .withPedestalItem(Ingredient.of(Tags.Items.STORAGE_BLOCKS_GOLD))
-                .withPedestalItem(RigoranthusEmortisRebornAPI.getInstance().getGlyphItem(MethodProjectile.INSTANCE))
                 .build());
 
         addRecipe(builder()

@@ -16,7 +16,6 @@ public class RigoranthusTagRegistry {
         public static final Tags.IOptionalNamedTag<Block> JESSIC_FENCE = createForgeTag("wooden_fences/jessic");
         public static final Tags.IOptionalNamedTag<Block> JESSIC_FENCE_GATE = createForgeTag("fence_gates/jessic");
 
-        public static final Tags.IOptionalNamedTag<Block> ORE = createTag("ore");
         public static final Tags.IOptionalNamedTag<Block> APOGEAN = createForgeTag("storage_blocks/apogean");
         public static final Tags.IOptionalNamedTag<Block> AQUEOUS = createForgeTag("storage_blocks/aqueous");
         public static final Tags.IOptionalNamedTag<Block> ATROPHYING = createForgeTag("storage_blocks/atrophying");
@@ -28,7 +27,6 @@ public class RigoranthusTagRegistry {
         public static final Tags.IOptionalNamedTag<Block> REMEX = createForgeTag("storage_blocks/remex");
         public static final Tags.IOptionalNamedTag<Block> ESOTERICUM = createForgeTag("storage_blocks/esotericum");
         public static final Tags.IOptionalNamedTag<Block> RECONDITE_ORE = createForgeTag("ores/recondite");
-        public static final Tags.IOptionalNamedTag<Block> ORES = createForgeTag("ores");
         public static final Tags.IOptionalNamedTag<Block> STORAGE_BLOCKS = createForgeTag("storage_blocks");
 
         public static IOptionalNamedTag<Block> createTag(String name) {

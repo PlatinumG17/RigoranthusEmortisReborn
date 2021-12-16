@@ -49,12 +49,9 @@ public class SunderedCadaverEntity extends ZombieEntity implements IAnimatable, 
 
     public static final DataParameter<Integer> STATE = EntityDataManager.defineId(SunderedCadaverEntity.class, DataSerializers.INT);
     private final AnimationFactory animationFactory = new AnimationFactory(this);
-//    public static final DataParameter<Boolean> POUNCING = EntityDataManager.defineId(SunderedCadaverEntity.class, DataSerializers.BOOLEAN);
 //    public static final DataParameter<Boolean> CASTING = EntityDataManager.defineId(SunderedCadaverEntity.class, DataSerializers.BOOLEAN);
 //    public static final DataParameter<Boolean> SUMMONED = EntityDataManager.defineId(SunderedCadaverEntity.class, DataSerializers.BOOLEAN);
 //    public static final DataParameter<Optional<BlockPos>> HOME = EntityDataManager.defineId(SunderedCadaverEntity.class, DataSerializers.OPTIONAL_BLOCK_POS);
-//    public int pounceCooldown;
-//    public int castCooldown;
 //    public Spell spell = Spell.EMPTY;
     public ParticleColor color = ParticleUtil.defaultParticleColor();
 
@@ -76,17 +73,13 @@ public class SunderedCadaverEntity extends ZombieEntity implements IAnimatable, 
         super.onSyncedDataUpdated(data);
     }
 
-//    @Override
-//    public void tick() {
-//        super.tick();
-////        if(pounceCooldown > 0)
-////            pounceCooldown--;
-////        if(castCooldown > 0)
-////            castCooldown--;
-//        if(!level.isClientSide && level.getGameTime() % 20 == 0 && !this.isDeadOrDying()){
-//            this.heal(0.5f);
-//        }
-//    }
+    @Override
+    public void tick() {
+        super.tick();
+        if(!level.isClientSide && level.getGameTime() % 20 == 0 && !this.isDeadOrDying() && this.hasCustomName()) {
+            this.heal(0.1f);
+        }
+    }
 
     @Override
     public void die(DamageSource source) {

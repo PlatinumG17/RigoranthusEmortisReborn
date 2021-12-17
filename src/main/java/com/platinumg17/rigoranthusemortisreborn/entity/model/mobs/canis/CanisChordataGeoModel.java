@@ -26,7 +26,7 @@ public class CanisChordataGeoModel extends AnimatedGeoModel<FeralCanisEntity> {
     private static final ResourceLocation MODEL_HOMINI = new ResourceLocation(EmortisConstants.MOD_ID, "geo/homini.geo.json");
 
     @Override
-    public ResourceLocation getModelLocation(FeralCanisEntity canisChordataEntity){
+    public ResourceLocation getModelLocation(FeralCanisEntity canisChordataEntity) {
 //        if (canisChordataEntity.isCanis()) {
             return MODEL_CANIS;
 //        } else if (canisChordataEntity.isKyphos()) {
@@ -40,7 +40,7 @@ public class CanisChordataGeoModel extends AnimatedGeoModel<FeralCanisEntity> {
     }
 
     @Override
-    public ResourceLocation getTextureLocation(FeralCanisEntity canisChordataEntity){
+    public ResourceLocation getTextureLocation(FeralCanisEntity canisChordataEntity) {
 //        if (canisChordataEntity.isCanis()) {
             return TEXTURE_CANIS;
 //        } else if (canisChordataEntity.isKyphos()) {
@@ -54,7 +54,7 @@ public class CanisChordataGeoModel extends AnimatedGeoModel<FeralCanisEntity> {
     }
 
     @Override
-    public ResourceLocation getAnimationFileLocation(FeralCanisEntity canisChordataEntity){
+    public ResourceLocation getAnimationFileLocation(FeralCanisEntity canisChordataEntity) {
 //        if (canisChordataEntity.isCanis()) {
             return ANIMATION_CANIS;
 //        } else if (canisChordataEntity.isKyphos()) {
@@ -72,9 +72,8 @@ public class CanisChordataGeoModel extends AnimatedGeoModel<FeralCanisEntity> {
         IBone head = this.getAnimationProcessor().getBone("head");
         if (customPredicate != null) {
             EntityModelData extraData = (EntityModelData) customPredicate.getExtraDataOfType(EntityModelData.class).get(0);
-            head.setRotationY(extraData.netHeadYaw * ((float) Math.PI / 180F));
-//        head.setRotationX(extraData.headPitch * 0.017453292F);
-//        head.setRotationY(extraData.netHeadYaw * 0.017453292F);
+            head.setRotationY(extraData.netHeadYaw * ((float) Math.PI / 120F));
+            head.setRotationX(extraData.headPitch * ((float) Math.PI / 120F));
         }
     }
 }

@@ -37,8 +37,8 @@ public class SunderedCadaverGeoModel extends AnimatedGeoModel<SunderedCadaverEnt
         IBone head = this.getAnimationProcessor().getBone("head");
         if (customPredicate != null) {
             EntityModelData extraData = (EntityModelData) customPredicate.getExtraDataOfType(EntityModelData.class).get(0);
-            head.setRotationY(extraData.netHeadYaw * ((float) Math.PI / 180F));
-//        head.setRotationX(extraData.headPitch * 0.017453292F);
+            head.setRotationY(extraData.netHeadYaw * ((float) Math.PI / 120F));
+            head.setRotationX(extraData.headPitch * ((float) Math.PI / 120F));
         }
     }
 }

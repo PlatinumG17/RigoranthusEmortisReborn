@@ -5,6 +5,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.state.IntegerProperty;
+import net.minecraft.state.Property;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
@@ -16,9 +18,9 @@ import javax.annotation.Nullable;
 
 import java.util.Random;
 
-import static com.platinumg17.rigoranthusemortisreborn.magica.common.block.SconceBlock.LIGHT_LEVEL;
-
 public class LightBlock extends ModBlock {
+
+    public static final Property<Integer> LIGHT_LEVEL = IntegerProperty.create("level", 0, 15);
 
     protected static final VoxelShape SHAPE = box(4.0D, 4.0D, 4.0D, 12.0D, 12.0D, 12.0D);
 

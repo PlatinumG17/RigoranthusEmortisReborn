@@ -30,6 +30,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.Difficulty;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import software.bernie.geckolib3.core.IAnimatable;
@@ -40,6 +42,7 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
+import javax.annotation.Nullable;
 import java.util.function.Predicate;
 
 public class FeralCanisEntity extends MonsterEntity implements IAnimatable, IAnimationListener {
@@ -55,8 +58,8 @@ public class FeralCanisEntity extends MonsterEntity implements IAnimatable, IAni
         this.noCulling = true;
     }
 
-    public FeralCanisEntity(World p_i50190_2_) {
-        super(ModEntities.FERAL_CANIS, p_i50190_2_);
+    public FeralCanisEntity(World world) {
+        super(ModEntities.FERAL_CANIS, world);
     }
 
     @Override
@@ -236,13 +239,13 @@ public class FeralCanisEntity extends MonsterEntity implements IAnimatable, IAni
                     if (level instanceof ServerWorld) {
                         LightningBoltEntity lightningBoltEntity = EntityType.LIGHTNING_BOLT.create(level);
 
-                        lightningBoltEntity.absMoveTo(this.getX(), this.getY(), this.getZ(), this.yRot, this.xRot);
+                        lightningBoltEntity.absMoveTo(this.getX(), this.getY(), this.getZ(), this.yRot, 0.0F);
                         lightningBoltEntity.setVisualOnly(true);
 
                         level.addFreshEntity(lightningBoltEntity);
 
-                        sunderedCadaver.absMoveTo(this.getX(), this.getY(), this.getZ(), this.yRot, this.xRot);
-                        sunderedCadaver2.absMoveTo(this.getX(), this.getY(), this.getZ(), this.yRot, this.xRot);
+                        sunderedCadaver.absMoveTo(this.getX(), this.getY(), this.getZ(), this.yRot, 0.0F);
+                        sunderedCadaver2.absMoveTo(this.getX(), this.getY(), this.getZ(), this.yRot, 0.0F);
 
                         sunderedCadaver.finalizeSpawn((ServerWorld)level, level.getCurrentDifficultyAt(player.blockPosition()), SpawnReason.MOB_SUMMONED, (ILivingEntityData)null, (CompoundNBT)null);
                         sunderedCadaver2.finalizeSpawn((ServerWorld)level, level.getCurrentDifficultyAt(player.blockPosition()), SpawnReason.MOB_SUMMONED, (ILivingEntityData)null, (CompoundNBT)null);
@@ -271,6 +274,8 @@ public class FeralCanisEntity extends MonsterEntity implements IAnimatable, IAni
         SunderedCadaverEntity sunderedCadaver = ModEntities.SUNDERED_CADAVER.create(level);
         SunderedCadaverEntity sunderedCadaver2 = ModEntities.SUNDERED_CADAVER.create(level);
 
+        MobEntity silverFish = new SunderedCadaverEntity(ModEntities.SUNDERED_CADAVER, level);
+
         if (this.isInvulnerableTo(source)) {
             return false;
         }
@@ -284,13 +289,13 @@ public class FeralCanisEntity extends MonsterEntity implements IAnimatable, IAni
 
                     LightningBoltEntity lightningBoltEntity = EntityType.LIGHTNING_BOLT.create(level);
 
-                    lightningBoltEntity.absMoveTo(this.getX(), this.getY(), this.getZ(), this.yRot, this.xRot);
+                    lightningBoltEntity.absMoveTo(this.getX(), this.getY(), this.getZ(), this.yRot, 0.0F);
                     lightningBoltEntity.setVisualOnly(true);
 
                     level.addFreshEntity(lightningBoltEntity);
 
-                    sunderedCadaver.absMoveTo(this.getX(), this.getY(), this.getZ(), this.yRot, this.xRot);
-                    sunderedCadaver2.absMoveTo(this.getX(), this.getY(), this.getZ(), this.yRot, this.xRot);
+                    sunderedCadaver.absMoveTo(this.getX(), this.getY(), this.getZ(), this.yRot, 0.0F);
+                    sunderedCadaver2.absMoveTo(this.getX(), this.getY(), this.getZ(), this.yRot, 0.0F);
 
                     sunderedCadaver.finalizeSpawn((ServerWorld)level, level.getCurrentDifficultyAt(lastHurtByPlayer.blockPosition()), SpawnReason.MOB_SUMMONED, (ILivingEntityData)null, (CompoundNBT)null);
                     sunderedCadaver2.finalizeSpawn((ServerWorld)level, level.getCurrentDifficultyAt(lastHurtByPlayer.blockPosition()), SpawnReason.MOB_SUMMONED, (ILivingEntityData)null, (CompoundNBT)null);
@@ -328,4 +333,13 @@ public class FeralCanisEntity extends MonsterEntity implements IAnimatable, IAni
         }
     }
     public enum Animations{ BITING }
+
+    @Nullable
+    public ILivingEntityData finalizeSpawn(IServerWorld serverWorld, DifficultyInstance difficulty, SpawnReason spawnReason, @Nullable ILivingEntityData entityData, @Nullable CompoundNBT nbt) {
+        entityData = super.finalizeSpawn(serverWorld, difficulty, spawnReason, entityData, nbt);
+        float f = difficulty.getSpecialMultiplier();
+
+        this.setCanBreakDoors(this.supportsBreakDoorGoal() && this.random.nextFloat() < f * 0.1F);
+        return entityData;
+    }
 }

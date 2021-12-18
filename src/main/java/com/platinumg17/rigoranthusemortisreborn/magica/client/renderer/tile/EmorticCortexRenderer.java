@@ -7,6 +7,7 @@ import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.Emortic
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import software.bernie.geckolib3.renderers.geo.GeoBlockRenderer;
 
@@ -19,6 +20,11 @@ public class EmorticCortexRenderer extends GeoBlockRenderer<EmorticCortexTile> {
     @Override
     public RenderType getRenderType(EmorticCortexTile animatable, float partialTicks, MatrixStack stack, IRenderTypeBuffer renderTypeBuffer, IVertexBuilder vertexBuilder, int packedLightIn, ResourceLocation textureLocation) {
         return RenderType.entityTranslucent(textureLocation);
+    }
+
+    @Override
+    public boolean shouldRenderOffScreen(TileEntity p_188185_1_) {
+        return false;
     }
 
     public static FixedGeoBlockItemRenderer getISTER(){

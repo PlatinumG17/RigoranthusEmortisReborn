@@ -2,6 +2,9 @@ package com.platinumg17.rigoranthusemortisreborn.entity.mobs;
 
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusSoundRegistry;
+import com.platinumg17.rigoranthusemortisreborn.magica.client.particle.ParticleColor;
+import com.platinumg17.rigoranthusemortisreborn.magica.client.particle.ParticleUtil;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.IAnimationListener;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.ModEntities;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.potions.ModPotions;
 import net.minecraft.block.BlockState;
@@ -15,29 +18,73 @@ import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EntityPredicates;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import software.bernie.geckolib3.core.IAnimatable;
+import software.bernie.geckolib3.core.PlayState;
+import software.bernie.geckolib3.core.builder.AnimationBuilder;
+import software.bernie.geckolib3.core.controller.AnimationController;
+import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
+import software.bernie.geckolib3.core.manager.AnimationData;
+import software.bernie.geckolib3.core.manager.AnimationFactory;
+import software.bernie.geckolib3.core.processor.IBone;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Random;
 
-public class NecrawFasciiEntity extends ZombieEntity {
+public class NecrawFasciiEntity extends ZombieEntity implements IAnimatable, IAnimationListener {
+
+    private final AnimationFactory animationFactory = new AnimationFactory(this);
 
     public NecrawFasciiEntity(EntityType<? extends ZombieEntity> type, World worldIn) {
         super(type, worldIn);
+        this.noCulling = true;
     }
 
-    public NecrawFasciiEntity(World p_i50190_2_) {
-        super(ModEntities.NECRAW_FASCII, p_i50190_2_);
+    public NecrawFasciiEntity(World world) {
+        super(ModEntities.NECRAW_FASCII, world);
+    }
+
+    @Override
+    public EntityType<?> getType() {
+        return ModEntities.NECRAW_FASCII;
+    }
+
+    @Override
+    protected float getStandingEyeHeight(Pose pose, EntitySize size) {
+        return 0.8F;
+    }
+
+    private <E extends IAnimatable> PlayState walkPredicate(AnimationEvent<E> event) {
+        if (event.isMoving()) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));
+            return PlayState.CONTINUE;
+        }
+        return PlayState.STOP;
+    }
+
+    private <E extends Entity> PlayState attackPredicate(AnimationEvent event) {
+        return PlayState.CONTINUE;
+    }
+
+    private <E extends Entity> PlayState idlePredicate(AnimationEvent event) {
+        event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", true));
+        return PlayState.CONTINUE;
+    }
+
+    public boolean canAttack(){
+        return getTarget() != null && this.getHealth() >= 1;
     }
 
     public static AttributeModifierMap.MutableAttribute attributes() {
@@ -49,6 +96,26 @@ public class NecrawFasciiEntity extends ZombieEntity {
                 .add(Attributes.ATTACK_KNOCKBACK, Config.necrawFasciiAttackKnockback.get())
                 .add(Attributes.KNOCKBACK_RESISTANCE, Config.necrawFasciiKnockbackResistance.get())
                 .add(Attributes.FOLLOW_RANGE, 20.0D).add((Attributes.SPAWN_REINFORCEMENTS_CHANCE));
+    }
+
+    @Override
+    public void registerControllers(AnimationData animationData) {
+        animationData.addAnimationController(new AnimationController<>(this, "walkController", 0, this::walkPredicate));
+//        animationData.addAnimationController(new AnimationController<>(this, "attackController", 1, this::attackPredicate));
+        animationData.addAnimationController(new AnimationController<>(this, "idleController", 0, this::idlePredicate));
+    }
+
+    @Override
+    public AnimationFactory getFactory() {
+        return this.animationFactory;
+    }
+
+    @Override
+    protected void updateControlFlags() {
+        super.updateControlFlags();
+        this.goalSelector.setControlFlag(Goal.Flag.MOVE, true);
+        this.goalSelector.setControlFlag(Goal.Flag.JUMP, true);
+        this.goalSelector.setControlFlag(Goal.Flag.LOOK, true);
     }
 
     @Override
@@ -66,9 +133,18 @@ public class NecrawFasciiEntity extends ZombieEntity {
     }
 
     @Override
-    public EntityType<?> getType() {
-        return ModEntities.NECRAW_FASCII;
+    public void startAnimation(int arg) {
+        try{
+            if(arg == NecrawFasciiEntity.Animations.LUNGING.ordinal()){
+                AnimationController controller = this.animationFactory.getOrCreateAnimationData(this.hashCode()).getAnimationControllers().get("attackController");
+                controller.markNeedsReload();
+                controller.setAnimation(new AnimationBuilder().addAnimation("attack", false));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
+    public enum Animations{ LUNGING }
 
     @Override
     protected int getExperienceReward(PlayerEntity player)
@@ -112,7 +188,7 @@ public class NecrawFasciiEntity extends ZombieEntity {
     public void aiStep() {
         super.aiStep();
         for(int i = 0; i < 3; i++){
-            this.level.addParticle(ParticleTypes.FALLING_NECTAR, this.getRandomX(1.0), this.getRandomY(), this.getRandomZ(1.0), 0, 0, 0);
+            this.level.addParticle(ParticleTypes.FALLING_NECTAR, this.getRandomX(1.0), this.getRandomY(), this.getRandomZ(1.0), 0.0D, 0.0D, 0.0D);
         }
     }
 

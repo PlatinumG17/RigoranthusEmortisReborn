@@ -4,7 +4,7 @@ import com.platinumg17.rigoranthusemortisreborn.canis.common.SpecializedEntityTy
 import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.CanisEntity;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
-import com.platinumg17.rigoranthusemortisreborn.entity.goals.CanisAttackGoal;
+import com.platinumg17.rigoranthusemortisreborn.entity.goals.FeralCanisAttackGoal;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.IAnimationListener;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.ModEntities;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.util.PortUtil;
@@ -19,14 +19,10 @@ import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.pathfinding.GroundPathNavigator;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.Difficulty;
@@ -48,7 +44,6 @@ import java.util.function.Predicate;
 public class FeralCanisEntity extends MonsterEntity implements IAnimatable, IAnimationListener {
 
     private static final Predicate<Difficulty> DOOR_BREAKING_PREDICATE = (p_213697_0_) -> {return p_213697_0_ == Difficulty.HARD;};
-    public static final DataParameter<Integer> STATE = EntityDataManager.defineId(FeralCanisEntity.class, DataSerializers.INT);
     private final AnimationFactory animationFactory = new AnimationFactory(this);
     private final BreakDoorGoal breakDoorGoal = new BreakDoorGoal(this, DOOR_BREAKING_PREDICATE);
     private boolean canBreakDoors;
@@ -65,6 +60,11 @@ public class FeralCanisEntity extends MonsterEntity implements IAnimatable, IAni
     @Override
     public EntityType<?> getType() {
         return ModEntities.FERAL_CANIS;
+    }
+
+    @Override
+    protected float getStandingEyeHeight(Pose pose, EntitySize size) {
+        return 1.15F;
     }
 
     private <E extends IAnimatable> PlayState walkPredicate(AnimationEvent<E> event) {
@@ -117,23 +117,6 @@ public class FeralCanisEntity extends MonsterEntity implements IAnimatable, IAni
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(STATE, 0);
-    }
-
-    public enum State {IDLE, ATTACKING}
-
-    public State getState() {
-        State[] states = State.values();
-        return states[MathHelper.clamp(this.entityData.get(STATE), 0, states.length - 1)];
-    }
-
-    public void setState(State state) {
-        this.entityData.set(STATE, state.ordinal());
-    }
-
-    @Override
     protected void updateControlFlags() {
         super.updateControlFlags();
         this.goalSelector.setControlFlag(Goal.Flag.MOVE, true);
@@ -148,7 +131,7 @@ public class FeralCanisEntity extends MonsterEntity implements IAnimatable, IAni
         this.addBehaviourGoals();
     }
     protected void addBehaviourGoals() {
-        this.goalSelector.addGoal(2, new CanisAttackGoal(this,true));
+        this.goalSelector.addGoal(2, new FeralCanisAttackGoal(this,true));
         this.goalSelector.addGoal(5, new MoveTowardsTargetGoal(this, 1.0f, 8));
         this.goalSelector.addGoal(6, new MoveThroughVillageGoal(this, 1.0D, true, 4, this::canBreakDoors));
         this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
@@ -273,8 +256,7 @@ public class FeralCanisEntity extends MonsterEntity implements IAnimatable, IAni
 
         SunderedCadaverEntity sunderedCadaver = ModEntities.SUNDERED_CADAVER.create(level);
         SunderedCadaverEntity sunderedCadaver2 = ModEntities.SUNDERED_CADAVER.create(level);
-
-        MobEntity silverFish = new SunderedCadaverEntity(ModEntities.SUNDERED_CADAVER, level);
+//        MobEntity sunderedCadaver = new SunderedCadaverEntity(ModEntities.SUNDERED_CADAVER, level);
 
         if (this.isInvulnerableTo(source)) {
             return false;

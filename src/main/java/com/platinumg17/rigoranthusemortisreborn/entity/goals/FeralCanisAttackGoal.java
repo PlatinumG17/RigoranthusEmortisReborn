@@ -11,7 +11,7 @@ import net.minecraft.pathfinding.Path;
 
 import java.util.EnumSet;
 
-public class CanisAttackGoal extends Goal {
+public class FeralCanisAttackGoal extends Goal {
 
     protected final FeralCanisEntity mob;
     private final double speedModifier;
@@ -31,7 +31,7 @@ public class CanisAttackGoal extends Goal {
     public boolean arrived = false;
     public boolean done = false;
 
-    public CanisAttackGoal(FeralCanisEntity canis, boolean followUnseen) {
+    public FeralCanisAttackGoal(FeralCanisEntity canis, boolean followUnseen) {
         this.mob = canis;
         this.speedModifier = 1.2f;
         this.followingTargetEvenIfNotSeen = followUnseen;

@@ -13,18 +13,24 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.pathfinding.ClimberPathNavigator;
+import net.minecraft.pathfinding.PathNavigator;
+import net.minecraft.potion.Effect;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityPredicates;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
@@ -40,10 +46,11 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Random;
 
-public class SunderedCadaverEntity extends ZombieEntity implements IAnimatable, IAnimationListener {
+public class SunderedCadaverEntity extends CreatureEntity implements IAnimatable, IAnimationListener {
 
-    public static final DataParameter<Integer> STATE = EntityDataManager.defineId(SunderedCadaverEntity.class, DataSerializers.INT);
+    private static final DataParameter<Byte> DATA_FLAGS_ID = EntityDataManager.defineId(SunderedCadaverEntity.class, DataSerializers.BYTE);
     private final AnimationFactory animationFactory = new AnimationFactory(this);
 //    public static final DataParameter<Boolean> CASTING = EntityDataManager.defineId(SunderedCadaverEntity.class, DataSerializers.BOOLEAN);
 //    public static final DataParameter<Boolean> SUMMONED = EntityDataManager.defineId(SunderedCadaverEntity.class, DataSerializers.BOOLEAN);
@@ -65,15 +72,21 @@ public class SunderedCadaverEntity extends ZombieEntity implements IAnimatable, 
         return ModEntities.SUNDERED_CADAVER;
     }
 
-    public void onSyncedDataUpdated(DataParameter<?> data) {
-        super.onSyncedDataUpdated(data);
+    @Override
+    public void onSyncedDataUpdated(DataParameter<?> data) {super.onSyncedDataUpdated(data);}
+
+    protected PathNavigator createNavigation(World world) {
+        return new ClimberPathNavigator(this, world);
     }
 
     @Override
     public void tick() {
         super.tick();
-        if(!level.isClientSide && level.getGameTime() % 20 == 0 && !this.isDeadOrDying() && this.hasCustomName()) {
-            this.heal(0.1f);
+        if (!this.level.isClientSide) {
+            this.setClimbing(this.horizontalCollision);
+            if (level.getGameTime() % 20 == 0 && !this.isDeadOrDying() && this.hasCustomName()) {
+                this.heal(0.1f);
+            }
         }
     }
 
@@ -130,18 +143,7 @@ public class SunderedCadaverEntity extends ZombieEntity implements IAnimatable, 
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
-        this.entityData.define(STATE, 0);
-    }
-
-    public enum State { IDLE }
-
-    public State getState() {
-        State[] states = State.values();
-        return states[MathHelper.clamp(this.entityData.get(STATE), 0, states.length - 1)];
-    }
-
-    public void setState(State state) {
-        this.entityData.set(STATE, state.ordinal());
+        this.entityData.define(DATA_FLAGS_ID, (byte)0);
     }
 
     @Override
@@ -152,9 +154,32 @@ public class SunderedCadaverEntity extends ZombieEntity implements IAnimatable, 
         this.goalSelector.setControlFlag(Goal.Flag.LOOK, true);
     }
 
-    @Override
     protected boolean isSunSensitive() {
         return !this.hasCustomName();
+    }
+
+    @Override
+    public void aiStep() {
+        if (this.isAlive()) {
+            boolean flag = this.isSunSensitive() && this.isSunBurnTick();
+            if (flag) {
+                ItemStack itemstack = this.getItemBySlot(EquipmentSlotType.HEAD);
+                if (!itemstack.isEmpty()) {
+                    if (itemstack.isDamageableItem()) {
+                        itemstack.setDamageValue(itemstack.getDamageValue() + this.random.nextInt(2));
+                        if (itemstack.getDamageValue() >= itemstack.getMaxDamage()) {
+                            this.broadcastBreakEvent(EquipmentSlotType.HEAD);
+                            this.setItemSlot(EquipmentSlotType.HEAD, ItemStack.EMPTY);
+                        }
+                    }
+                    flag = false;
+                }
+                if (flag) {
+                    this.setSecondsOnFire(8);
+                }
+            }
+        }
+        super.aiStep();
     }
 
 //    @Override
@@ -180,6 +205,11 @@ public class SunderedCadaverEntity extends ZombieEntity implements IAnimatable, 
 //        this.castCooldown = 40;
 //    }
 
+    @Override
+    public CreatureAttribute getMobType() {
+        return CreatureAttribute.UNDEAD;
+    }
+
     public static AttributeModifierMap.MutableAttribute attributes() {
         return MobEntity.createMobAttributes()
             .add(Attributes.MAX_HEALTH, Config.sunderedCadaverMaxHealth.get())
@@ -203,7 +233,7 @@ public class SunderedCadaverEntity extends ZombieEntity implements IAnimatable, 
     @Override
     public void startAnimation(int arg) {
         try{
-            if(arg == SunderedCadaverEntity.Animations.POUNCING.ordinal()){
+            if(arg == SunderedCadaverEntity.Animations.POUNCING.ordinal()) {
                 AnimationController controller = this.animationFactory.getOrCreateAnimationData(this.hashCode()).getAnimationControllers().get("attackController");
                 controller.markNeedsReload();
                 controller.setAnimation(new AnimationBuilder().addAnimation("attack", false));
@@ -235,9 +265,18 @@ public class SunderedCadaverEntity extends ZombieEntity implements IAnimatable, 
 //        this.setCanPickUpLoot(this.random.nextFloat() < 0.55F * f);
         if (entityData == null) {
             entityData = new SunderedCadaverEntity.GroupData(true);
+            if (difficulty.getDifficulty() == Difficulty.HARD && serverWorld.getRandom().nextFloat() < 0.1F * difficulty.getSpecialMultiplier()) {
+                ((SunderedCadaverEntity.GroupData)entityData).setRandomEffect(serverWorld.getRandom());
+            }
         }
+
         if (entityData instanceof SunderedCadaverEntity.GroupData) {
             SunderedCadaverEntity.GroupData cadaverGroupData = (SunderedCadaverEntity.GroupData)entityData;
+            Effect effect = (cadaverGroupData).effect;
+
+            if (effect != null) {
+                this.addEffect(new EffectInstance(effect, Integer.MAX_VALUE));
+            }
 
             if (cadaverGroupData.canSpawnJockey) {
                 if ((double)serverWorld.getRandom().nextFloat() < 0.05D) {
@@ -272,11 +311,47 @@ public class SunderedCadaverEntity extends ZombieEntity implements IAnimatable, 
         return entityData;
     }
 
+    @Override
+    public boolean onClimbable() {
+        return this.isClimbing();
+    }
+
+    public boolean isClimbing() {
+        return (this.entityData.get(DATA_FLAGS_ID) & 1) != 0;
+    }
+
+    public void setClimbing(boolean climbing) {
+        byte b0 = this.entityData.get(DATA_FLAGS_ID);
+        if (climbing) {
+            b0 = (byte)(b0 | 1);
+        } else {
+            b0 = (byte)(b0 & -2);
+        }
+
+        this.entityData.set(DATA_FLAGS_ID, b0);
+    }
+    @Override
+    protected float getStandingEyeHeight(Pose pose, EntitySize size) {
+        return 0.85F;
+    }
+
     public static class GroupData implements ILivingEntityData {
+
+        public Effect effect;
         public final boolean canSpawnJockey;
 
         public GroupData(boolean canBeJockey) {
             this.canSpawnJockey = canBeJockey;
+        }
+        public void setRandomEffect(Random p_111104_1_) {
+            int i = p_111104_1_.nextInt(5);
+            if (i <= 1) {
+                this.effect = Effects.MOVEMENT_SPEED;
+            } else if (i <= 2) {
+                this.effect = Effects.DAMAGE_BOOST;
+            } else if (i <= 3) {
+                this.effect = Effects.REGENERATION;
+            }
         }
     }
 
@@ -290,8 +365,11 @@ public class SunderedCadaverEntity extends ZombieEntity implements IAnimatable, 
         if (this.random.nextFloat() < multiplier * 0.05F) {
             this.getAttribute(Attributes.SPAWN_REINFORCEMENTS_CHANCE).addPermanentModifier(new AttributeModifier("Leader Cadaver bonus", this.random.nextDouble() * 0.25D + 0.5D, AttributeModifier.Operation.ADDITION));
             this.getAttribute(Attributes.MAX_HEALTH).addPermanentModifier(new AttributeModifier("Leader Cadaver bonus", this.random.nextDouble() * 3.0D + 1.0D, AttributeModifier.Operation.MULTIPLY_TOTAL));
-            this.setCanBreakDoors(this.supportsBreakDoorGoal());
         }
+    }
+
+    protected void randomizeReinforcementsChance() {
+        this.getAttribute(Attributes.SPAWN_REINFORCEMENTS_CHANCE).setBaseValue(this.random.nextDouble() * net.minecraftforge.common.ForgeConfig.SERVER.zombieBaseSummonChance.get());
     }
 
     @Override protected int getExperienceReward(PlayerEntity player) {return 10 + this.level.random.nextInt(5);}

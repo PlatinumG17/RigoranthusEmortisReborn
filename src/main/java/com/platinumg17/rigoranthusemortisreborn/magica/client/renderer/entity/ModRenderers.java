@@ -1,7 +1,7 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.client.renderer.entity;
 
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
-import com.platinumg17.rigoranthusemortisreborn.entity.render.mobs.CanisChordataRenderer;
+import com.platinumg17.rigoranthusemortisreborn.entity.render.mobs.FeralCanisRenderer;
 import com.platinumg17.rigoranthusemortisreborn.entity.render.mobs.LanguidDwellerRenderer;
 import com.platinumg17.rigoranthusemortisreborn.entity.render.mobs.NecrawFasciiRenderer;
 import com.platinumg17.rigoranthusemortisreborn.entity.render.mobs.SunderedCadaverRenderer;
@@ -21,7 +21,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 public class ModRenderers {
     @SubscribeEvent
     public static void register(final FMLClientSetupEvent event) {
-        RenderingRegistry.registerEntityRenderingHandler(ModEntities.FERAL_CANIS, CanisChordataRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntities.FERAL_CANIS, FeralCanisRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.NECRAW_FASCII, NecrawFasciiRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.SUNDERED_CADAVER, SunderedCadaverRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.LANGUID_DWELLER, LanguidDwellerRenderer::new);

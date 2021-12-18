@@ -9,7 +9,7 @@ import software.bernie.geckolib3.model.AnimatedGeoModel;
 import software.bernie.geckolib3.model.provider.data.EntityModelData;
 import javax.annotation.Nullable;
 
-public class CanisChordataGeoModel extends AnimatedGeoModel<FeralCanisEntity> {
+public class FeralCanisGeoModel extends AnimatedGeoModel<FeralCanisEntity> {
     private static final ResourceLocation TEXTURE_CANIS = new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/chordata.png");
     private static final ResourceLocation TEXTURE_KYPHOS = new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/kyphos.png");
     private static final ResourceLocation TEXTURE_CAVALIER = new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/cavalier.png");

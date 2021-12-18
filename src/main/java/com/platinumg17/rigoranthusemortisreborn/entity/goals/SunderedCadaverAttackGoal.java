@@ -150,7 +150,6 @@ public class SunderedCadaverAttackGoal extends Goal {
             } else if (d0 > 256.0D) {
                 this.ticksUntilNextPathRecalculation += 5;
             }
-
             if (!this.mob.getNavigation().moveTo(livingentity, this.speedModifier)) {
                 this.ticksUntilNextPathRecalculation += 15;
             }
@@ -168,6 +167,7 @@ public class SunderedCadaverAttackGoal extends Goal {
     }
 
     protected double getAttackReachSqr(LivingEntity targetEntity) {
-        return this.mob.getBbWidth() * 2.0F * this.mob.getBbWidth() * 2.0F + targetEntity.getBbWidth();
+//        return this.mob.getBbWidth() * 2.0F * this.mob.getBbWidth() * 2.0F + targetEntity.getBbWidth();
+        return (double)(4.0F + targetEntity.getBbWidth());
     }
 }

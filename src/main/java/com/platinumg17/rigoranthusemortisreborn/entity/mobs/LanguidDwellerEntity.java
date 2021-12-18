@@ -2,7 +2,6 @@ package com.platinumg17.rigoranthusemortisreborn.entity.mobs;
 
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusSoundRegistry;
-import com.platinumg17.rigoranthusemortisreborn.entity.goals.CanisAttackGoal;
 import com.platinumg17.rigoranthusemortisreborn.entity.goals.DwellerAttackGoal;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.IAnimationListener;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.ModEntities;
@@ -12,14 +11,11 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
+import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.monster.SilverfishEntity;
-import net.minecraft.entity.monster.SpiderEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.pathfinding.GroundPathNavigator;
 import net.minecraft.potion.EffectInstance;
@@ -28,7 +24,6 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.GroundPathHelper;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
@@ -45,15 +40,14 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 import javax.annotation.Nullable;
 import java.util.function.Predicate;
 
-public class LanguidDwellerEntity extends SpiderEntity implements IAnimatable, IAnimationListener {
+public class LanguidDwellerEntity extends MonsterEntity implements IAnimatable, IAnimationListener {
 
     private static final Predicate<Difficulty> DOOR_BREAKING_PREDICATE = (p_213697_0_) -> {return p_213697_0_ == Difficulty.HARD;};
-    public static final DataParameter<Integer> STATE = EntityDataManager.defineId(LanguidDwellerEntity.class, DataSerializers.INT);
     private final AnimationFactory animationFactory = new AnimationFactory(this);
     private final BreakDoorGoal breakDoorGoal = new BreakDoorGoal(this, DOOR_BREAKING_PREDICATE);
     private boolean canBreakDoors;
 
-    public LanguidDwellerEntity(EntityType<? extends SpiderEntity> type, World worldIn) {
+    public LanguidDwellerEntity(EntityType<LanguidDwellerEntity> type, World worldIn) {
         super(type, worldIn);
         this.noCulling = true;
     }
@@ -65,6 +59,11 @@ public class LanguidDwellerEntity extends SpiderEntity implements IAnimatable, I
     @Override
     public EntityType<?> getType() {
         return ModEntities.LANGUID_DWELLER;
+    }
+
+    @Override
+    protected float getStandingEyeHeight(Pose pose, EntitySize size) {
+        return 1.9F;
     }
 
     private <E extends IAnimatable> PlayState walkPredicate(AnimationEvent<E> event) {
@@ -109,23 +108,6 @@ public class LanguidDwellerEntity extends SpiderEntity implements IAnimatable, I
     @Override
     public AnimationFactory getFactory() {
         return this.animationFactory;
-    }
-
-    @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(STATE, 0);
-    }
-
-    public enum State {IDLE, ATTACKING}
-
-    public State getState() {
-        State[] states = State.values();
-        return states[MathHelper.clamp(this.entityData.get(STATE), 0, states.length - 1)];
-    }
-
-    public void setState(State state) {
-        this.entityData.set(STATE, state.ordinal());
     }
 
     @Override
@@ -218,13 +200,11 @@ public class LanguidDwellerEntity extends SpiderEntity implements IAnimatable, I
 
                 silverFish.moveTo(this.getX(), this.getY(), this.getZ(), level.getRandom().nextFloat() * 360F, 0);
 
-                silverFish.finalizeSpawn((ServerWorld) level, level.getCurrentDifficultyAt(this.blockPosition()),
-                        SpawnReason.MOB_SUMMONED, null, null);
+                silverFish.finalizeSpawn((ServerWorld) level, level.getCurrentDifficultyAt(this.blockPosition()), SpawnReason.MOB_SUMMONED, null, null);
                 level.addFreshEntity(silverFish);
             }
         }
     }
-
     if (source == DamageSource.FALL)
         return false;
     if (source == DamageSource.DROWN)
@@ -236,8 +216,8 @@ public class LanguidDwellerEntity extends SpiderEntity implements IAnimatable, I
 
     public void aiStep() {
         super.aiStep();
-        for(int i = 0; i < 3; i++){
-            this.level.addParticle(ParticleTypes.ENCHANT, this.getRandomX(1.0), this.getRandomY(), this.getRandomZ(1.0), 0, 0, 0);
+        for(int i = 0; i < 10; i++){
+            this.level.addParticle(ParticleTypes.ENCHANT, this.getRandomX(1.0), this.getRandomY(), this.getRandomZ(1.0), 0.0D, 0.0D, 0.0D);
         }
     }
 

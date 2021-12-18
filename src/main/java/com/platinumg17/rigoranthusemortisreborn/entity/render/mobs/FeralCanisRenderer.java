@@ -2,26 +2,19 @@ package com.platinumg17.rigoranthusemortisreborn.entity.render.mobs;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.entity.mobs.FeralCanisEntity;
-import com.platinumg17.rigoranthusemortisreborn.entity.model.mobs.canis.CanisChordataGeoModel;
-import net.minecraft.client.Minecraft;
+import com.platinumg17.rigoranthusemortisreborn.entity.model.mobs.canis.FeralCanisGeoModel;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.client.renderer.model.ItemCameraTransforms;
-import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import software.bernie.geckolib3.geo.render.built.GeoBone;
 import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
-import software.bernie.geckolib3.util.RenderUtils;
 
 import javax.annotation.Nullable;
 
-public class CanisChordataRenderer extends GeoEntityRenderer<FeralCanisEntity> {
-    public CanisChordataRenderer(EntityRendererManager renderManager) {
-        super(renderManager, new CanisChordataGeoModel());
+public class FeralCanisRenderer extends GeoEntityRenderer<FeralCanisEntity> {
+    public FeralCanisRenderer(EntityRendererManager renderManager) {
+        super(renderManager, new FeralCanisGeoModel());
         this.shadowRadius = 1.0F;
     }
 
@@ -46,8 +39,8 @@ public class CanisChordataRenderer extends GeoEntityRenderer<FeralCanisEntity> {
 //    protected final List<GeoLayerRenderer<T>> layerRenderers = Lists.newArrayList();
 //    private final AnimatedGeoModel<T> modelProvider;
 
-//    public CanisChordataRenderer(EntityRendererManager renderManager) {
-//        super(renderManager, new CanisChordataGeoModel());
+//    public FeralCanisRenderer(EntityRendererManager renderManager) {
+//        super(renderManager, new FeralCanisGeoModel());
 //        this.shadowRadius = 0.7F;
 //        this.addLayer(new AbstractEyesLayer<CanisChordataEntity, CanisChordataModel>(this) {
 //            @Override

@@ -50,6 +50,12 @@ import java.util.stream.Collectors;
  */
 public class RigoranthusEmortisRebornAPI {
 
+    /**
+     * The version of the api classes - may not always match the mod's version
+     */
+    public static final String API_VERSION = "1.0.0";
+    public static final String RIGORANTHUS_MODID = "rigoranthusemortisreborn";
+
     public static IForgeRegistry<Skill> SKILLS;
     public static IForgeRegistry<Accoutrement> ACCOUTERMENTS;
     public static IForgeRegistry<AccoutrementType> ACCOUTREMENT_TYPE;
@@ -59,7 +65,7 @@ public class RigoranthusEmortisRebornAPI {
     public List<VanillaPotionRecipe> vanillaPotionRecipes = new ArrayList<>();
     private List<BrewingRecipe> brewingRecipes;
 
-    public List<BrewingRecipe> getAllPotionRecipes(){
+    public List<BrewingRecipe> getAllPotionRecipes() {
         if(brewingRecipes == null){
             brewingRecipes = new ArrayList<>();
             BrewingRecipeRegistry.getRecipes().forEach(ib ->{
@@ -296,5 +302,6 @@ public class RigoranthusEmortisRebornAPI {
     }
     private static final RigoranthusEmortisRebornAPI RigoranthusEmortisRebornAPI = new RigoranthusEmortisRebornAPI();
 
-    public static final Logger LOGGER = LogManager.getLogger("rigoranthusemortisreborn");
+//    public static final Logger LOGGER = LogManager.getLogger("rigoranthusemortisreborn");
+    public static final Logger LOGGER = LogManager.getLogger(RIGORANTHUS_MODID + "_api");
 }

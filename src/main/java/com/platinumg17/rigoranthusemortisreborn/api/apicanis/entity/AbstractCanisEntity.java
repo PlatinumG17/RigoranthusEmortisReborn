@@ -11,13 +11,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import com.platinumg17.rigoranthusemortisreborn.api.apicanis.feature.EnumGender;
+import software.bernie.geckolib3.core.IAnimatable;
 
 import javax.annotation.Nullable;
 import java.util.UUID;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
-public abstract class AbstractCanisEntity extends TameableEntity implements ICanis {
+public abstract class AbstractCanisEntity extends TameableEntity implements ICanis, IAnimatable {
 
     protected AbstractCanisEntity(EntityType<? extends TameableEntity> type, World worldIn) {
         super(type, worldIn);

@@ -2,6 +2,7 @@ package com.platinumg17.rigoranthusemortisreborn.canis.common.entity;
 
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.canis.CanisBlocks;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.ai.FindWaterGoal;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.util.*;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.config.ConfigValues;
@@ -34,6 +35,8 @@ import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import com.platinumg17.rigoranthusemortisreborn.entity.mobs.FeralCanisEntity;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.IAnimationListener;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
@@ -44,14 +47,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
-import net.minecraft.entity.ai.goal.LeapAtTargetGoal;
-import net.minecraft.entity.ai.goal.LookAtGoal;
-import net.minecraft.entity.ai.goal.LookRandomlyGoal;
-import net.minecraft.entity.ai.goal.MeleeAttackGoal;
-import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
-import net.minecraft.entity.ai.goal.SitGoal;
-import net.minecraft.entity.ai.goal.SwimGoal;
-import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
+import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.AbstractSkeletonEntity;
 import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.monster.GhastEntity;
@@ -111,8 +107,17 @@ import com.platinumg17.rigoranthusemortisreborn.api.apicanis.interfaces.ICanisFo
 import com.platinumg17.rigoranthusemortisreborn.api.apicanis.interfaces.ICanisTransmogrification;
 import com.platinumg17.rigoranthusemortisreborn.api.apicanis.interfaces.IThrowableItem;
 import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.*;
+import software.bernie.geckolib3.core.IAnimatable;
+import software.bernie.geckolib3.core.PlayState;
+import software.bernie.geckolib3.core.builder.AnimationBuilder;
+import software.bernie.geckolib3.core.controller.AnimationController;
+import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
+import software.bernie.geckolib3.core.manager.AnimationData;
+import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class CanisEntity extends AbstractCanisEntity {
+public class CanisEntity extends AbstractCanisEntity implements IAnimationListener {
+
+    private final AnimationFactory animationFactory = new AnimationFactory(this);
 
     private static final DataParameter<Optional<ITextComponent>> LAST_KNOWN_NAME = EntityDataManager.defineId(CanisEntity.class, DataSerializers.OPTIONAL_COMPONENT);
     private static final DataParameter<Byte> CANIS_FLAGS = EntityDataManager.defineId(CanisEntity.class, DataSerializers.BYTE);
@@ -165,6 +170,57 @@ public class CanisEntity extends AbstractCanisEntity {
         this.setTame(false);
         this.setGender(EnumGender.random(this.getRandom()));
     }
+
+    @Override
+    public void registerControllers(AnimationData animationData) {
+        animationData.addAnimationController(new AnimationController<>(this, "walkController", 0, this::walkPredicate));
+        animationData.addAnimationController(new AnimationController<>(this, "attackController", 1, this::attackPredicate));
+        animationData.addAnimationController(new AnimationController<>(this, "idleController", 0, this::idlePredicate));
+    }
+
+    private <E extends IAnimatable> PlayState walkPredicate(AnimationEvent<E> event) {
+        if (event.isMoving()) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));
+            return PlayState.CONTINUE;
+        }
+        return PlayState.STOP;
+    }
+
+    private <E extends Entity> PlayState attackPredicate(AnimationEvent event) {
+        return PlayState.CONTINUE;
+    }
+
+    private <E extends IAnimatable> PlayState idlePredicate(AnimationEvent<E> event) {
+        event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", true));
+        return PlayState.CONTINUE;
+    }
+
+    @Override
+    public AnimationFactory getFactory() {
+        return this.animationFactory;
+    }
+
+    @Override
+    protected void updateControlFlags() {
+        super.updateControlFlags();
+        this.goalSelector.setControlFlag(Goal.Flag.MOVE, true);
+        this.goalSelector.setControlFlag(Goal.Flag.JUMP, true);
+        this.goalSelector.setControlFlag(Goal.Flag.LOOK, true);
+    }
+
+    @Override
+    public void startAnimation(int arg) {
+        try{
+            if(arg == Animations.BITING.ordinal()){
+                AnimationController controller = this.animationFactory.getOrCreateAnimationData(this.hashCode()).getAnimationControllers().get("attackController");
+                controller.markNeedsReload();
+                controller.setAnimation(new AnimationBuilder().addAnimation("attack", false));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    public enum Animations{ BITING }
 
     @Override
     protected void defineSynchedData() {

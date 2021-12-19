@@ -165,18 +165,8 @@ public class MagicItemsRegistry {
                     new FormSpellArrow(LibItemNames.SPLIT_ARROW, AugmentSplit.INSTANCE, 2),
                     new SpellArrow(LibItemNames.AMPLIFY_ARROW, AugmentAmplify.INSTANCE, 2),
                     new BoneArrow(LibItemNames.BONE_ARROW),
-                    new ExperienceGem(defaultItemProperties(), LibItemNames.EXP_GEM) {
-                        @Override
-                        public int getValue() {
-                            return 3;
-                        }
-                    }.withTooltip(new TranslationTextComponent("rigoranthusemortisreborn.tooltip.exp_gem")),
-                    new ExperienceGem(defaultItemProperties(), LibItemNames.GREATER_EXP_GEM) {
-                        @Override
-                        public int getValue() {
-                            return 12;
-                        }
-                    }.withTooltip(new TranslationTextComponent("rigoranthusemortisreborn.tooltip.exp_gem")),
+                    new ExperienceGem(defaultItemProperties(), LibItemNames.EXP_GEM) { @Override public int getValue() { return 3; }},
+                    new ExperienceGem(defaultItemProperties(), LibItemNames.GREATER_EXP_GEM) { @Override public int getValue() { return 12; }},
 
 //                    new EnchantersSword(ItemTier.NETHERITE, 3, -2.4F).setRegistryName(LibItemNames.ENCHANTERS_SWORD),
                     new CasterTome(defaultItemProperties().stacksTo(1), LibItemNames.CASTER_TOME),

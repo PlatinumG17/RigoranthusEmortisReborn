@@ -260,4 +260,7 @@ public class RigoranthusEmortisReborn {
 //    public static void onServerStopped(final FMLServerStoppingEvent event) {
 //        Pathfinding.shutdown();
 //    }
+    public static ResourceLocation rl(String path) {
+        return new ResourceLocation(EmortisConstants.MOD_ID, path);
+    }
 }

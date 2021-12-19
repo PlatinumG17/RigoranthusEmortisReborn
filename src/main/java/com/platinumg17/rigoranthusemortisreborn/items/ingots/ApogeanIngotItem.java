@@ -14,9 +14,10 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class ApogeanIngotItem extends Item {
-    public ApogeanIngotItem(Properties p_i48487_1_) {
-        super(p_i48487_1_);
+    public ApogeanIngotItem(Properties properites) {
+        super(properites);
     }
+
     @Override
     public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         if (Screen.hasShiftDown()) {
@@ -36,5 +37,4 @@ public class ApogeanIngotItem extends Item {
             tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".hold_shift").setStyle(Style.EMPTY));
         }
     }
-
 }

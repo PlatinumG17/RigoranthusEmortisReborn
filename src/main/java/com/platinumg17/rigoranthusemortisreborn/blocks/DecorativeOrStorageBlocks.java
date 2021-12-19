@@ -37,14 +37,6 @@ public class DecorativeOrStorageBlocks {
 
     /////    AZULOREAL    /////
 
-//    public static final RegistryObject<Block> STRIPPED_AZULOREAL_LOG = HELPER.createBlock("stripped_azuloreal_log", ()->new StrippedLogBlock(Properties.LOG), ItemGroup.TAB_BUILDING_BLOCKS);
-//    public static final RegistryObject<Block> STRIPPED_AZULOREAL_WOOD = HELPER.createBlock("stripped_azuloreal_wood", ()->new StrippedWoodBlock(Properties.LOG), ItemGroup.TAB_BUILDING_BLOCKS);
-//    public static final RegistryObject<Block> AZULOREAL_LOG = HELPER.createBlock("azuloreal_log", ()->new AbnormalsLogBlock(STRIPPED_AZULOREAL_LOG, Properties.LOG), ItemGroup.TAB_BUILDING_BLOCKS);
-//    public static final RegistryObject<Block> AZULOREAL_WOOD = HELPER.createBlock("azuloreal_wood", ()->new WoodBlock(STRIPPED_AZULOREAL_WOOD, Properties.LOG), ItemGroup.TAB_BUILDING_BLOCKS);
-//    public static final RegistryObject<Block> AZULOREAL_LEAVES = HELPER.createBlock("azuloreal_leaves", ()->new VerdurousLeavesBlock(Properties.AZULOREAL_LEAVES), ItemGroup.TAB_DECORATIONS);
-//    public static final RegistryObject<Block> AZULOREAL_SAPLING = HELPER.createBlock("azuloreal_sapling", ()->new AbnormalsSaplingBlock(new AzulorealTree(), Properties.SAPLING), ItemGroup.TAB_DECORATIONS);
-
-//    public static final RegistryObject<Block> POTTED_AZULOREAL_SAPLING = HELPER.createBlockNoItem("potted_azuloreal_sapling", ()->new FlowerPotBlock(BlockRegistry.AZULOREAL_SAPLING, Properties.FLOWER_POT));
     public static final RegistryObject<Block> AZULOREAL_PLANKS = HELPER.createBlock("azuloreal_planks", ()->new PlanksBlock(Properties.PLANKS), ItemGroup.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> AZULOREAL_SLAB = HELPER.createBlock("azuloreal_slab", ()->new WoodSlabBlock(Properties.PLANKS), ItemGroup.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> AZULOREAL_STAIRS = HELPER.createBlock("azuloreal_stairs", ()->new WoodStairsBlock(AZULOREAL_PLANKS.get().defaultBlockState(), Properties.PLANKS), ItemGroup.TAB_BUILDING_BLOCKS);
@@ -68,14 +60,6 @@ public class DecorativeOrStorageBlocks {
 
     /////    JESSIC    /////
 
-//    public static final RegistryObject<Block> STRIPPED_JESSIC_LOG = HELPER.createBlock("stripped_jessic_log", ()->new StrippedLogBlock(Properties.LOG), ItemGroup.TAB_BUILDING_BLOCKS);
-//    public static final RegistryObject<Block> STRIPPED_JESSIC_WOOD = HELPER.createBlock("stripped_jessic_wood", ()->new StrippedWoodBlock(Properties.LOG), ItemGroup.TAB_BUILDING_BLOCKS);
-//    public static final RegistryObject<Block> JESSIC_LOG = HELPER.createBlock("jessic_log", ()->new AbnormalsLogBlock(STRIPPED_JESSIC_LOG, Properties.LOG), ItemGroup.TAB_BUILDING_BLOCKS);
-//    public static final RegistryObject<Block> JESSIC_WOOD = HELPER.createBlock("jessic_wood", ()->new WoodBlock(STRIPPED_JESSIC_WOOD, Properties.LOG), ItemGroup.TAB_BUILDING_BLOCKS);
-//    public static final RegistryObject<Block> JESSIC_LEAVES = HELPER.createBlock("jessic_leaves", ()->new VerdurousLeavesBlock(Properties.JESSIC_LEAVES), ItemGroup.TAB_DECORATIONS);
-//    public static final RegistryObject<Block> JESSIC_SAPLING = HELPER.createBlock("jessic_sapling", ()->new AbnormalsSaplingBlock(new JessicTree(), Properties.SAPLING), ItemGroup.TAB_DECORATIONS);
-
-//    public static final RegistryObject<Block> POTTED_JESSIC_SAPLING = HELPER.createBlockNoItem("potted_jessic_sapling", ()->new FlowerPotBlock(BlockRegistry.JESSIC_SAPLING, Properties.FLOWER_POT));
     public static final RegistryObject<Block> JESSIC_PLANKS = HELPER.createBlock("jessic_planks", ()->new PlanksBlock(Properties.PLANKS), ItemGroup.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> JESSIC_SLAB = HELPER.createBlock("jessic_slab", ()->new WoodSlabBlock(Properties.PLANKS), ItemGroup.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> JESSIC_STAIRS = HELPER.createBlock("jessic_stairs", ()->new WoodStairsBlock(JESSIC_PLANKS.get().defaultBlockState(), Properties.PLANKS), ItemGroup.TAB_BUILDING_BLOCKS);
@@ -96,15 +80,6 @@ public class DecorativeOrStorageBlocks {
     public static final RegistryObject<Block> JESSIC_POST = HELPER.createCompatFuelBlock("quark", "jessic_post", () -> new WoodPostBlock(STRIPPED_JESSIC_POST, Properties.PLANKS), 300, ItemGroup.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> JESSIC_HEDGE = HELPER.createCompatFuelBlock("quark", "jessic_hedge", () -> new HedgeBlock(Properties.HEDGE), 300, ItemGroup.TAB_DECORATIONS);
     public static final Pair<RegistryObject<AbnormalsChestBlock>, RegistryObject<AbnormalsTrappedChestBlock>> JESSIC_CHESTS = HELPER.createCompatChestBlocks("quark", "jessic", MaterialColor.TERRACOTTA_MAGENTA);
-
-//    /////    FLOWERS    /////
-//    public static final RegistryObject<Block> AZULOREAL_ORCHID = HELPER.createBlock("azuloreal_orchid", ()->new AbnormalsFlowerBlock(()->Effects.HEAL, 8, AbstractBlock.Properties.copy(Blocks.AZURE_BLUET)), ItemGroup.TAB_DECORATIONS);
-//    public static final RegistryObject<Block> IRIDESCENT_SPROUTS = HELPER.createBlock("iridescent_sprouts", ()->new AbnormalsFlowerBlock(()->Effects.NIGHT_VISION, 10, AbstractBlock.Properties.copy(Blocks.NETHER_SPROUTS)), ItemGroup.TAB_DECORATIONS);
-
-    /////   POTTED  FLOWERS    /////
-//    public static final RegistryObject<Block> POTTED_AZULOREAL_ORCHID = HELPER.createBlockNoItem("potted_azuloreal_orchid", ()->new FlowerPotBlock(BlockRegistry.AZULOREAL_ORCHID, Properties.FLOWER_POT));
-//    public static final RegistryObject<Block> POTTED_IRIDESCENT_SPROUTS = HELPER.createBlockNoItem("potted_iridescent_sprouts", ()->new FlowerPotBlock(BlockRegistry.IRIDESCENT_SPROUTS, Properties.FLOWER_POT));
-    //public static final RegistryObject<Block> POTTED_LISIANTHUS = HELPER.createBlockNoItem("potted_lisianthus", () -> new FlowerPotBlock(LISIANTHUS.get(), Block.Properties.copy(Blocks.POTTED_ALLIUM)));
 
     public static class Properties {
         public static final AbstractBlock.Properties JESSIC_LEAVES = AbstractBlock.Properties.of(Material.LEAVES, MaterialColor.COLOR_PURPLE).harvestTool(ToolType.HOE).noOcclusion().lightLevel((p_235455_0_) -> 10).strength(0.2F).randomTicks().sound(SoundType.GRASS).isValidSpawn(DecorativeOrStorageBlocks.Properties::always).isSuffocating(DecorativeOrStorageBlocks.Properties::never).isViewBlocking(DecorativeOrStorageBlocks.Properties::never);

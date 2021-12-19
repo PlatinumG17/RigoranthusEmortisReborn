@@ -34,9 +34,9 @@ import java.util.Collections;
 
 public class DelphicBloomEntity extends LivingEntity implements IAnimatable, IEntityAdditionalSpawnData {
     // Animation lengths
-    private static final int OPENING_LENGTH = 120;     //6 sec open animation * 20 ticks/sec = 120
-    private static final int OPEN_IDLE_LENGTH = 320;   //4 sec idle animation * 4 loops * 20 ticks/sec = 320
-    private static final int VANISHING_LENGTH = 13;    //0.65 sec vanish animation * 20 ticks/sec = 13
+    private static final int OPENING_LENGTH = 120;     //   6       sec open animation   *  20 ticks/sec            = 120
+    private static final int OPEN_IDLE_LENGTH = 320;   //   4       sec idle animation   *  4 loops * 20 ticks/sec  = 320
+    private static final int VANISHING_LENGTH = 13;    //   0.65    sec vanish animation *  20 ticks/sec            = 13
 
     // Animation start times
     private static final int IDLE_TIME = -1;
@@ -201,8 +201,7 @@ public class DelphicBloomEntity extends LivingEntity implements IAnimatable, IEn
 
     public void setAnimationFromPacket(Animation newAnimation)
     {
-        if(level.isClientSide) //allows client-side effects tied to server-side events
-        {
+        if(level.isClientSide) {
             animation = newAnimation;
             if(animation == Animation.IDLE)
                 addRestoreEffects();

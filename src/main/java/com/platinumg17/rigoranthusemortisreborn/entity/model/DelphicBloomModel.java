@@ -9,7 +9,7 @@ import software.bernie.geckolib3.model.AnimatedGeoModel;
 public class DelphicBloomModel extends AnimatedGeoModel<DelphicBloomEntity> {
     @Override
     public ResourceLocation getAnimationFileLocation(DelphicBloomEntity entity) {
-        return new ResourceLocation(EmortisConstants.MOD_ID, "animations/delphic_bloom.animation.json");
+        return new ResourceLocation(EmortisConstants.MOD_ID, "animations/delphic_bloom.json");
     }
 
     @Override

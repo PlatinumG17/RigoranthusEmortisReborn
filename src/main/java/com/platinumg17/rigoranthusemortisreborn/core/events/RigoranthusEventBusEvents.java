@@ -3,7 +3,6 @@ package com.platinumg17.rigoranthusemortisreborn.core.events;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
 import com.platinumg17.rigoranthusemortisreborn.core.init.fluid.FluidRegistry;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.potions.ModPotions;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.MagicItemsRegistry;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -16,7 +15,6 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
-import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -40,7 +38,7 @@ public class RigoranthusEventBusEvents {
             if (raytraceresult.getType() == RayTraceResult.Type.BLOCK) {
                 BlockPos blockpos = raytraceresult.getBlockPos();
                 if (event.getWorld().mayInteract(event.getPlayer(), blockpos)) {
-                    if (event.getWorld().getFluidState(blockpos).getType().equals(FluidRegistry.CADAVEROUS_ICHOR_FLUID.get().getSource())) {
+                    if (event.getWorld().getFluidState(blockpos).getType().equals(FluidRegistry.CADAVEROUS_ICHOR_FLUID.get().getFluid())) {
                         event.getWorld().playSound(event.getPlayer(),
                         event.getPlayer().getX(), event.getPlayer().getY(), event.getPlayer().getZ(), SoundEvents.BOTTLE_FILL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
                         event.getPlayer().awardStat(Stats.ITEM_USED.get(Items.GLASS_BOTTLE));
@@ -71,48 +69,6 @@ public class RigoranthusEventBusEvents {
         Vector3d vector3d1 = vector3d.add((double) f6 * d0, (double) f5 * d0, (double) f7 * d0);
         return worldIn.clip(new RayTraceContext(vector3d, vector3d1, RayTraceContext.BlockMode.OUTLINE, fluidMode, player));
     }
-
-/*
-    @SubscribeEvent
-    public static void getFogDensity(EntityViewRenderEvent.RenderFogEvent.FogDensity event) {
-        ActiveRenderInfo info = event.getInfo();
-        if (info.getFluidInCamera().getType() == FluidRegistry.CADAVEROUS_ICHOR_FLUID.get()) {
-            event.setDensity(3f);
-            event.setCanceled(true);
-//        ActiveRenderInfo info = event.getInfo();
-//        FluidState fluidState = info.getFluidInCamera();
-//        if (fluidState.isEmpty())
-//            return;
-//        Fluid fluid = fluidState.getType();
-
-//        if (fluid.isSame(FluidRegistry.CADAVEROUS_ICHOR_FLUID.get())) {  //TODO --> is it better to use isSame() or equals() ?
-//            event.setDensity(3f);
-//            event.setCanceled(true);
-//            return;
-        }
-    }
-
-    @SubscribeEvent
-    public static void getFogColor(EntityViewRenderEvent.FogColors event) {
-        ActiveRenderInfo info = event.getInfo();
-        if (info.getFluidInCamera().getType() == FluidRegistry.CADAVEROUS_ICHOR_FLUID.get()) {
-            event.setRed(48 / 256f);
-            event.setGreen(4 / 256f);
-            event.setBlue(4 / 256f);
-            event.setCanceled(true);
-//        ActiveRenderInfo info = event.getInfo();
-//        FluidState fluidState = info.getFluidInCamera();
-//        if (fluidState.isEmpty())
-//            return;
-//        Fluid fluid = fluidState.getType();
-
-//        if (fluid.isSame(FluidRegistry.CADAVEROUS_ICHOR_FLUID.get())) {
-//            event.setRed(48 / 256f);
-//            event.setGreen(4 / 256f);
-//            event.setBlue(4 / 256f);
-        }
-    }
-*/
 
 //    public ItemEntity drop(ItemStack p_146097_1_, boolean p_146097_2_, boolean p_146097_3_) {
 //        ItemEntity itementity = super.drop(p_146097_1_, p_146097_2_, p_146097_3_);
@@ -145,10 +101,4 @@ public class RigoranthusEventBusEvents {
 //        }
 //        return entered;
 //    }
-    @SubscribeEvent
-    public void onFOVUpdate(FOVUpdateEvent event) {
-        if (event.getEntity().hasEffect(ModPotions.NECROTIZING_FASCIITIS_EFFECT)) {
-            event.setNewfov(1.0F);
-        }
-    }
 }

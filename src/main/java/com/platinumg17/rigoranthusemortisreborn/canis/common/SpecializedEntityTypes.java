@@ -50,15 +50,11 @@ public class SpecializedEntityTypes {
     public static final RegistryObject<EntityType<DelphicBloomEntity>> DELPHIC_BLOOM = register("delphic_bloom", DelphicBloomEntity::new, EntityClassification.MISC, (b) -> b
             .sized(2F, 2F).setShouldReceiveVelocityUpdates(false).setTrackingRange(10));
 
-//    public static RegistryObject<EntityType<EminentialEntity>> EMINENTIAL_PROJECTION = register("eminential_entity").createNothing(EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) -> new EminentialEntity(world)).noSave().noSummon(), "eminential_entity");
-
     private static <E extends Entity, T extends EntityType<E>> RegistryObject<EntityType<E>> register(final String name, final EntityType.IFactory<E> sup, final EntityClassification classification, final Function<EntityType.Builder<E>, EntityType.Builder<E>> builder) {
         return register(name, () -> builder.apply(EntityType.Builder.of(sup, classification)).build(REUtil.getResourcePath(name)));
     }
     private static <E extends Entity, T extends EntityType<E>> RegistryObject<T> register(final String name, final Supplier<T> sup) {return ENTITIES.register(name, sup);}
     public static void addEntityAttributes() {
-//        GlobalEntityTypeAttributes.put(EMINENTIAL_PROJECTION.get(),
-//                MobEntity.createMobAttributes().build());
         GlobalEntityTypeAttributes.put(DELPHIC_BLOOM.get(),
                 LivingEntity.createLivingAttributes().build());
         GlobalEntityTypeAttributes.put(CANIS.get(),
@@ -75,8 +71,3 @@ public class SpecializedEntityTypes {
         );
     }
 }
-
-//    public static final RegistryObject<EntityType<EminentialEntity>> EMINENTIAL_PROJECTION = register("eminential_entity", EminentialEntity::new, EntityClassification.MISC, (b) -> b
-//            .setCustomClientFactory(EminentialEntity::new)
-//            .noSave()
-//            .noSummon());

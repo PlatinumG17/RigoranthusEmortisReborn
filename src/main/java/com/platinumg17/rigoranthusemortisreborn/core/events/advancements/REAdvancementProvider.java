@@ -80,12 +80,6 @@ public class REAdvancementProvider extends AdvancementProvider {
 //                .display(DisplayInfoBuilder.create().icon(CanisItems.CAPE).frame(FrameType.TASK).translate("canis.accumulating_accoutrements").build())
 //                .addCriterion("accumulating_accoutrements", InventoryChangeTrigger.Instance.hasItems(Items.STONE_PICKAXE))
 //                .save(consumer, REUtil.getResourcePath("default/accumulating_accoutrements"));
-//
-//        Advancement advancement3 = Advancement.Builder.advancement()
-//                .parent(advancement2)
-//                .display(DisplayInfoBuilder.create().icon(CanisItems.RADIO_COLLAR).frame(FrameType.TASK).translate("canis.radio_collar").build())
-//                .addCriterion("iron", InventoryChangeTrigger.Instance.hasItems(Items.IRON_INGOT))
-//                .save(consumer, REUtil.getResourcePath("default/radio_collar"));
     }
 
     private static Path getPath(Path pathIn, Advancement advancementIn) {

@@ -117,7 +117,7 @@ public class CanisModel<T extends AbstractCanisEntity> extends TintedAgeableMode
         if (canis.isInSittingPose()) {
             if (canis.isLying()) {
                 this.legBackLeft.setPos(4.5F, 16.3995F, 5.7202F);
-//                this.legBackLeft.texOffs(17, 69).addBox(-1.5F, -5.0F, -2.5F, 3.0F, 10.0F, 5.0F);
+//                this.legBackLeft.teexOffs(17, 69).addBox(-1.5F, -5.0F, -2.5F, 3.0F, 10.0F, 5.0F);
 //                this.legBackLeft.texOffs(34, 75).addBox(-1.5F, -3.0F, -1.5F, 3.0F, 6.0F, 3.0F);
 //                this.legBackLeft.texOffs(0, 24).addBox(-1.5F, -4.0F, -1.5F, 3.0F, 8.0F, 3.0F);
                 this.legFrontRight.setPos(-3.5F, 17.1527F, -13.1608F);

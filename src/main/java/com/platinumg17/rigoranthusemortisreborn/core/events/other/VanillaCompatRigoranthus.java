@@ -3,25 +3,49 @@ package com.platinumg17.rigoranthusemortisreborn.core.events.other;
 import com.minecraftabnormals.abnormals_core.core.util.DataUtil;
 import com.platinumg17.rigoranthusemortisreborn.blocks.DecorativeOrStorageBlocks;
 import com.platinumg17.rigoranthusemortisreborn.blocks.BuildingBlockInit;
+import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
 import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
 import com.platinumg17.rigoranthusemortisreborn.entity.item.BoneArrowEntity;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.BlockRegistry;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.MagicItemsRegistry;
 import net.minecraft.block.DispenserBlock;
-import net.minecraft.dispenser.IPosition;
-import net.minecraft.dispenser.ProjectileDispenseBehavior;
+import net.minecraft.dispenser.*;
 import net.minecraft.entity.projectile.ProjectileEntity;
+import net.minecraft.item.BucketItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
+
 public class VanillaCompatRigoranthus {
+
+    private static final IDispenseItemBehavior BUCKET_DISPENSE_BEHAVIOR = new DefaultDispenseItemBehavior() {
+        @Nonnull
+        @Override
+        public ItemStack execute(@Nonnull IBlockSource source, @Nonnull ItemStack stack) {
+            World world = source.getLevel();
+            BucketItem bucket = (BucketItem) stack.getItem();
+            BlockPos pos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
+            if (bucket.emptyBucket(null, world, pos, null)) {
+                bucket.checkExtraContent(world, stack, pos);
+                return new ItemStack(Items.BUCKET);
+            }
+            return super.execute(source, stack);
+        }
+    };
+
     public static void registerDispenserBehaviors() {
+        DispenserBlock.registerBehavior(ItemInit.BUCKET_OF_CADAVEROUS_ICHOR.get(), BUCKET_DISPENSE_BEHAVIOR);
+
         DispenserBlock.registerBehavior(MagicItemsRegistry.BONE_ARROW, new ProjectileDispenseBehavior() {
             protected ProjectileEntity getProjectile(World worldIn, IPosition position, ItemStack stackIn) {
                 return new BoneArrowEntity(worldIn, position.x(), position.y(), position.z());
             }
         });
     }
+
     public static void registerCompostables() {
         // Compostable
         DataUtil.registerCompostable(BlockRegistry.AZULOREAL_LEAVES, 0.3F);

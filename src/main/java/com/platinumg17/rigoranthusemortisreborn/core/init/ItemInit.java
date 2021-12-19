@@ -57,7 +57,7 @@ public class ItemInit {
 //			() -> new GlassBottleItem(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)));
 
 	public static final RegistryObject<Item> BUCKET_OF_CADAVEROUS_ICHOR = ITEMS.register("bucket_of_cadaverous_ichor",
-			() -> new BucketItem(() -> FluidRegistry.CADAVEROUS_ICHOR_FLUID.get().getSource(),
+			() -> new BucketItem(() -> FluidRegistry.CADAVEROUS_ICHOR_FLUID.get(),
 					new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).craftRemainder(Items.BUCKET).stacksTo(1)));
 
 	public static final RegistryObject<Item> BONE_FRAGMENT = ITEMS.register("bone_fragment",

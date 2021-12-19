@@ -1,6 +1,7 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.common.event;
 
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
+import com.platinumg17.rigoranthusemortisreborn.blocks.custom.OpulentMagmaBlock;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
@@ -61,9 +62,9 @@ public class EventHandler {
 
     @SubscribeEvent
     public static void livingAttackEvent(LivingAttackEvent e){
-        if(e.getSource() == DamageSource.HOT_FLOOR && e.getEntityLiving() != null && !e.getEntity().getCommandSenderWorld().isClientSide){
+        if(e.getSource() == DamageSource.HOT_FLOOR && e.getEntityLiving() /* != null */ instanceof PlayerEntity && !e.getEntity().getCommandSenderWorld().isClientSide) {
             World world = e.getEntity().level;
-            if(world.getBlockState(e.getEntityLiving().blockPosition()).getBlock() instanceof LavaLily){
+            if(world.getBlockState(e.getEntityLiving().blockPosition()).getBlock() instanceof OpulentMagmaBlock){
                 e.setCanceled(true);
             }
         }
@@ -91,37 +92,37 @@ public class EventHandler {
     }
 
     @SubscribeEvent
-    public static void clientTickEnd(TickEvent.ClientTickEvent event){
-        if(event.phase == TickEvent.Phase.END){
+    public static void clientTickEnd(TickEvent.ClientTickEvent event) {
+        if(event.phase == TickEvent.Phase.END) {
             ClientInfo.ticksInGame++;
         }
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
-    public static void onGlideTick(TickEvent.PlayerTickEvent event){
+    public static void onGlideTick(TickEvent.PlayerTickEvent event) {
         if(RigoranthusEmortisReborn.caelusLoaded && event.player.hasEffect(ModPotions.GLIDER_EFFECT)) {
             CaelusHandler.setFlying(event.player);
         }
     }
 
     @SubscribeEvent
-    public static void playerDamaged(LivingHurtEvent e){
+    public static void playerDamaged(LivingHurtEvent e) {
         if(e.getEntityLiving() != null && e.getEntityLiving().getActiveEffectsMap().containsKey(ModPotions.SHIELD_POTION)
-                && (e.getSource() == DamageSource.MAGIC || e.getSource() == DamageSource.GENERIC || e.getSource() instanceof EntityDamageSource)){
+                && (e.getSource() == DamageSource.MAGIC || e.getSource() == DamageSource.GENERIC || e.getSource() instanceof EntityDamageSource)) {
             float damage = e.getAmount() - (1.0f + 0.5f * e.getEntityLiving().getActiveEffectsMap().get(ModPotions.SHIELD_POTION).getAmplifier());
             e.setAmount(Math.max(0, damage));
         }
     }
 
     @SubscribeEvent
-    public static void entityHurt(LivingHurtEvent e){
+    public static void entityHurt(LivingHurtEvent e) {
         if(e.getEntityLiving() != null && e.getSource() == DamageSource.LIGHTNING_BOLT && e.getEntityLiving().getEffect(ModPotions.SHOCKED_EFFECT) != null) {
             float damage = e.getAmount() + 3.0f + 3.0f * e.getEntityLiving().getEffect(ModPotions.SHOCKED_EFFECT).getAmplifier();
             e.setAmount(Math.max(0, damage));
         }
         LivingEntity entity = e.getEntityLiving();
         if(entity != null  && entity.getEffect(ModPotions.HEX_EFFECT) != null &&
-                (entity.getEffect(Effects.POISON) != null || entity.getEffect(Effects.WITHER) != null || entity.isOnFire() || entity.getEffect(ModPotions.SHOCKED_EFFECT) != null)){
+                (entity.getEffect(Effects.POISON) != null || entity.getEffect(Effects.WITHER) != null || entity.isOnFire() || entity.getEffect(ModPotions.SHOCKED_EFFECT) != null)) {
             e.setAmount(e.getAmount() + 0.5f + 0.33f*entity.getEffect(ModPotions.HEX_EFFECT).getAmplifier());
         }
     }
@@ -134,7 +135,7 @@ public class EventHandler {
         }
     }
 
-    @SubscribeEvent
+/*    @SubscribeEvent
     public static void dispelEvent(DispelEvent event){
         if(event.rayTraceResult instanceof EntityRayTraceResult && ((EntityRayTraceResult) event.rayTraceResult).getEntity() instanceof LivingEntity){
             LivingEntity entity = (LivingEntity) ((EntityRayTraceResult) event.rayTraceResult).getEntity();
@@ -146,7 +147,7 @@ public class EventHandler {
                 }
             }
         }
-    }
+    }*/
 
     @SubscribeEvent
     public static void commandRegister(RegisterCommandsEvent event){

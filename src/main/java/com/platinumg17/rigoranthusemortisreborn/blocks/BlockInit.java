@@ -3,6 +3,7 @@ package com.platinumg17.rigoranthusemortisreborn.blocks;
 import com.google.common.collect.Maps;
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.blocks.custom.BrainBlock;
+import com.platinumg17.rigoranthusemortisreborn.blocks.custom.OpulentMagmaBlock;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
 import net.minecraft.block.*;
@@ -56,9 +57,7 @@ public class BlockInit {
 			() -> new GravelBlock(AbstractBlock.Properties.of(Material.SAND, MaterialColor.NETHER).strength(0.6f, 0.6f)
 					.harvestTool(ToolType.SHOVEL).harvestLevel(0).sound(SoundType.NETHERRACK)), "tooltip.block.rigoranthusemortisreborn.fragmented_netherrack");
 
-	public static final RegistryObject<Block> OPULENT_MAGMA = registerBlock("opulent_magma",
-			() -> new MagmaBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.GOLD).lightLevel((p_235452_0_) -> { return 15; }).strength(8f, 10f)
-					.harvestTool(ToolType.PICKAXE).harvestLevel(2).requiresCorrectToolForDrops().sound(SoundType.LANTERN)), "tooltip.block.rigoranthusemortisreborn.opulent_magma");
+	public static final RegistryObject<Block> OPULENT_MAGMA = registerBlock("opulent_magma", OpulentMagmaBlock::new, "tooltip.block.rigoranthusemortisreborn.opulent_magma");
 
 	public static final RegistryObject<Block> GOLD_AMALGAM = registerBlock("gold_amalgam",
 			() -> new Block(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).strength(10f, 15f)
@@ -83,10 +82,9 @@ public class BlockInit {
 //		public static final RegistryObject<Block> SPECTABILIS = registerBlock("spectabilis",
 //				() -> new SpectabilisBush(AbstractBlock.Properties.of(Material.VEGETABLE, MaterialColor.COLOR_RED).strength(1.0F).sound(SoundType.CROP)), "tooltip.block.rigoranthusemortisreborn.spectabilis");
 
-
     private static ToIntFunction<BlockState> litBlockEmission(int var0) {
-		return (p_lambda$litBlockEmission$34_1_) -> {
-			return (Boolean)p_lambda$litBlockEmission$34_1_.getValue(BlockStateProperties.LIT) ? var0 : 0;
+		return (litEmission) -> {
+			return (Boolean)litEmission.getValue(BlockStateProperties.LIT) ? var0 : 0;
 		};
 	}
 

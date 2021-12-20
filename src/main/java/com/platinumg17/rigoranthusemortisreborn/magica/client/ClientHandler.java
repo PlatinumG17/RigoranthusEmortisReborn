@@ -64,7 +64,7 @@ public class ClientHandler {
         RenderTypeLookup.setRenderLayer(BlockRegistry.ICHOR_CRYSTALLIZER_BLOCK, RenderType.cutout());
         RenderTypeLookup.setRenderLayer(BlockRegistry.GLYPH_PRESS_BLOCK, RenderType.translucent());
         RenderTypeLookup.setRenderLayer(BlockRegistry.SPLINTERED_PEDESTAL, RenderType.translucent());
-        RenderTypeLookup.setRenderLayer(BlockRegistry.PSYGLYPHIC_AMALG_BLOCK, RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(BlockRegistry.PSYGLYPHIC_AMALG_BLOCK, RenderType.translucent());
         RenderTypeLookup.setRenderLayer(BlockRegistry.LIGHT_BLOCK, RenderType.translucent());
         RenderTypeLookup.setRenderLayer(BlockRegistry.PHANTOM_BLOCK, RenderType.cutout());
         RenderTypeLookup.setRenderLayer(BlockRegistry.TABLE_BLOCK, RenderType.translucent());
@@ -91,7 +91,7 @@ public class ClientHandler {
 //            (PotionUtils.getPotion(stack) != Potions.EMPTY ? PotionUtils.getColor(stack) : -1), MagicItemsRegistry.);
 //
 //        event.getBlockColors().register((state, reader, pos, tIndex) ->
-//            reader != null && pos != null && reader.getBlockEntity(pos) instanceof PotionJarTile
-//                ? ((PotionJarTile) reader.getBlockEntity(pos)).getColor() : -1, BlockRegistry.JAR);
+//            reader != null && pos != null && reader.getBlockEntity(pos) instanceof JarTile
+//                ? ((JarTile) reader.getBlockEntity(pos)).getColor() : -1, BlockRegistry.JAR);
 //    }
 }

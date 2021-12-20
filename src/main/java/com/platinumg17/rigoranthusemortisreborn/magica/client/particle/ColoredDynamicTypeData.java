@@ -4,12 +4,10 @@ import com.mojang.brigadier.StringReader;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.platinumg17.rigoranthusemortisreborn.core.init.fluid.particles.EmortisParticleTypes;
+import com.platinumg17.rigoranthusemortisreborn.core.registry.fluid.particles.EmortisParticleTypes;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleType;
-
-import net.minecraft.particles.IParticleData.IDeserializer;
 
 public class ColoredDynamicTypeData implements IParticleData {
     private ParticleType<ColoredDynamicTypeData> type;

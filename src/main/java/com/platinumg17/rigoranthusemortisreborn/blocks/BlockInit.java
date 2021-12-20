@@ -57,7 +57,7 @@ public class BlockInit {
 			() -> new GravelBlock(AbstractBlock.Properties.of(Material.SAND, MaterialColor.NETHER).strength(0.6f, 0.6f)
 					.harvestTool(ToolType.SHOVEL).harvestLevel(0).sound(SoundType.NETHERRACK)), "tooltip.block.rigoranthusemortisreborn.fragmented_netherrack");
 
-	public static final RegistryObject<Block> OPULENT_MAGMA = registerBlock("opulent_magma", OpulentMagmaBlock::new, "tooltip.block.rigoranthusemortisreborn.opulent_magma");
+	public static final RegistryObject<Block> OPULENT_MAGMA = registerBlock("opulent_magma", () -> new OpulentMagmaBlock(), "tooltip.block.rigoranthusemortisreborn.opulent_magma");
 
 	public static final RegistryObject<Block> GOLD_AMALGAM = registerBlock("gold_amalgam",
 			() -> new Block(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).strength(10f, 15f)

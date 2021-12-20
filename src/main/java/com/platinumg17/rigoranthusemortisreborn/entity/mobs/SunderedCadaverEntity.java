@@ -13,7 +13,9 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
 import net.minecraft.entity.passive.ChickenEntity;
+import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
@@ -22,12 +24,14 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.ClimberPathNavigator;
+import net.minecraft.pathfinding.GroundPathNavigator;
 import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityPredicates;
+import net.minecraft.util.GroundPathHelper;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Difficulty;
@@ -47,11 +51,15 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
+import java.util.function.Predicate;
 
 public class SunderedCadaverEntity extends CreatureEntity implements IAnimatable, IAnimationListener {
 
     private static final DataParameter<Byte> DATA_FLAGS_ID = EntityDataManager.defineId(SunderedCadaverEntity.class, DataSerializers.BYTE);
+    private static final Predicate<Difficulty> DOOR_BREAKING_PREDICATE = (p_213697_0_) -> {return p_213697_0_ == Difficulty.HARD;};
     private final AnimationFactory animationFactory = new AnimationFactory(this);
+    private final BreakDoorGoal breakDoorGoal = new BreakDoorGoal(this, DOOR_BREAKING_PREDICATE);
+    private boolean canBreakDoors;
 //    public static final DataParameter<Boolean> CASTING = EntityDataManager.defineId(SunderedCadaverEntity.class, DataSerializers.BOOLEAN);
 //    public static final DataParameter<Boolean> SUMMONED = EntityDataManager.defineId(SunderedCadaverEntity.class, DataSerializers.BOOLEAN);
 //    public static final DataParameter<Optional<BlockPos>> HOME = EntityDataManager.defineId(SunderedCadaverEntity.class, DataSerializers.OPTIONAL_BLOCK_POS);
@@ -131,16 +139,6 @@ public class SunderedCadaverEntity extends CreatureEntity implements IAnimatable
     }
 
     @Override
-    public AnimationFactory getFactory() {
-        return this.animationFactory;
-    }
-
-    @Override
-    public boolean causeFallDamage(float distance, float damageMultiplier) {
-        return false;
-    }
-
-    @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(DATA_FLAGS_ID, (byte)0);
@@ -154,6 +152,12 @@ public class SunderedCadaverEntity extends CreatureEntity implements IAnimatable
         this.goalSelector.setControlFlag(Goal.Flag.LOOK, true);
     }
 
+    @Override public AnimationFactory getFactory() {
+        return this.animationFactory;
+    }
+    @Override public boolean causeFallDamage(float distance, float damageMultiplier) {
+        return false;
+    }
     protected boolean isSunSensitive() {
         return !this.hasCustomName();
     }
@@ -174,36 +178,11 @@ public class SunderedCadaverEntity extends CreatureEntity implements IAnimatable
                     }
                     flag = false;
                 }
-                if (flag) {
-                    this.setSecondsOnFire(8);
-                }
+                if (flag) { this.setSecondsOnFire(8); }
             }
         }
         super.aiStep();
     }
-
-//    @Override
-//    public void addAdditionalSaveData(CompoundNBT tag) {
-//        super.addAdditionalSaveData(tag);
-////        NBTUtil.storeBlockPos(tag, "home", getHome());
-////        tag.putInt("cast", castCooldown);
-//    }
-//    @Override
-//    public void readAdditionalSaveData(CompoundNBT tag) {
-//        super.readAdditionalSaveData(tag);
-////        if(NBTUtil.hasBlockPos(tag, "home")){
-////            setHome(NBTUtil.getBlockPos(tag, "home"));}
-////        this.castCooldown = tag.getInt("cast");
-//    }
-//    @Override
-//    public void performRangedAttack(LivingEntity p_82196_1_, float p_82196_2_) {
-//        EntitySpellResolver resolver = new EntitySpellResolver(new SpellContext(spell, this).withColors(color.toWrapper()));
-//        EntityProjectileSpell projectileSpell = new EntityProjectileSpell(level, resolver);
-//        projectileSpell.setColor(color.toWrapper());
-//        projectileSpell.shoot(this, this.xRot, this.yRot, 0.0F, 1.0f, 0.8f);
-//        level.addFreshEntity(projectileSpell);
-//        this.castCooldown = 40;
-//    }
 
     @Override
     public CreatureAttribute getMobType() {
@@ -245,17 +224,64 @@ public class SunderedCadaverEntity extends CreatureEntity implements IAnimatable
 
     @Override
     protected void registerGoals() {
-        super.registerGoals();
-        this.goalSelector.addGoal(1, new SunderedCadaverAttackGoal(this, true));
-        this.goalSelector.addGoal(2, new RandomWalkingGoal(this, 1.0f));
-//        this.goalSelector.addGoal(2, new CastSpellGoal(this, 1.2d, 20,15f, () -> castCooldown <= 0 && !this.entityData.get(SUMMONED), Animations.CAST.ordinal(), 20));
-        this.goalSelector.addGoal(5, new MoveTowardsTargetGoal(this, 1.0f, 8));
-        this.goalSelector.addGoal(4, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-        this.goalSelector.addGoal(3, new LookRandomlyGoal(this));
         this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
+        this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
+        this.addBehaviourGoals();
+    }
+
+    protected void addBehaviourGoals() {
+        this.goalSelector.addGoal(1, new SunderedCadaverAttackGoal(this, true));
+//        this.goalSelector.addGoal(2, new CastSpellGoal(this, 1.2d, 20,15f, () -> castCooldown <= 0 && !this.entityData.get(SUMMONED), Animations.CAST.ordinal(), 20));
+        this.goalSelector.addGoal(2, new FollowMobGoal(this, (float) 1, 10, 5));
+        this.goalSelector.addGoal(5, new MoveTowardsTargetGoal(this, 1.0f, 8));
+        this.goalSelector.addGoal(6, new MoveThroughVillageGoal(this, 1.0D, true, 4, this::canBreakDoors));
+        this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+        this.goalSelector.addGoal(8, new RandomWalkingGoal(this, 1.0f));
         this.goalSelector.addGoal(8, new SwimGoal(this));
-        this.goalSelector.addGoal(5, new FollowMobGoal(this, (float) 1, 10, 5));
-        this.targetSelector.addGoal(2, (new HurtByTargetGoal(this)).setAlertOthers(this.getClass()));
+        this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers(this.getClass()));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillagerEntity.class, false));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
+    }
+
+    public boolean canBreakDoors() {
+        return this.canBreakDoors;
+    }
+
+    public void setCanBreakDoors(boolean canBreak) {
+        if (this.supportsBreakDoorGoal() && GroundPathHelper.hasGroundPathNavigation(this)) {
+            if (this.canBreakDoors != canBreak) {
+                this.canBreakDoors = canBreak;
+                ((GroundPathNavigator)this.getNavigation()).setCanOpenDoors(canBreak);
+                if (canBreak) {
+                    this.goalSelector.addGoal(1, this.breakDoorGoal);
+                } else {
+                    this.goalSelector.removeGoal(this.breakDoorGoal);
+                }
+            }
+        } else if (this.canBreakDoors) {
+            this.goalSelector.removeGoal(this.breakDoorGoal);
+            this.canBreakDoors = false;
+        }
+    }
+
+    protected boolean supportsBreakDoorGoal() {
+        return true;
+    }
+
+    public void addAdditionalSaveData(CompoundNBT nbt) {
+        super.addAdditionalSaveData(nbt);
+        nbt.putBoolean("CanBreakDoors", this.canBreakDoors());
+//        NBTUtil.storeBlockPos(tag, "home", getHome());
+//        tag.putInt("cast", castCooldown);
+    }
+
+    public void readAdditionalSaveData(CompoundNBT nbt) {
+        super.readAdditionalSaveData(nbt);
+        this.setCanBreakDoors(nbt.getBoolean("CanBreakDoors"));
+//        if(NBTUtil.hasBlockPos(tag, "home")){
+//            setHome(NBTUtil.getBlockPos(tag, "home"));}
+//        this.castCooldown = tag.getInt("cast");
     }
 
     @Nullable
@@ -269,7 +295,6 @@ public class SunderedCadaverEntity extends CreatureEntity implements IAnimatable
                 ((SunderedCadaverEntity.GroupData)entityData).setRandomEffect(serverWorld.getRandom());
             }
         }
-
         if (entityData instanceof SunderedCadaverEntity.GroupData) {
             SunderedCadaverEntity.GroupData cadaverGroupData = (SunderedCadaverEntity.GroupData)entityData;
             Effect effect = (cadaverGroupData).effect;
@@ -277,7 +302,6 @@ public class SunderedCadaverEntity extends CreatureEntity implements IAnimatable
             if (effect != null) {
                 this.addEffect(new EffectInstance(effect, Integer.MAX_VALUE));
             }
-
             if (cadaverGroupData.canSpawnJockey) {
                 if ((double)serverWorld.getRandom().nextFloat() < 0.05D) {
                     List<ChickenEntity> list = serverWorld.getEntitiesOfClass(ChickenEntity.class, this.getBoundingBox().inflate(5.0D, 3.0D, 5.0D), EntityPredicates.ENTITY_NOT_BEING_RIDDEN);
@@ -307,6 +331,7 @@ public class SunderedCadaverEntity extends CreatureEntity implements IAnimatable
 //                this.armorDropChances[EquipmentSlotType.HEAD.getIndex()] = 0.0F;
 //            }
 //        }
+        this.setCanBreakDoors(this.supportsBreakDoorGoal() && this.random.nextFloat() < f * 0.1F);
         this.handleAttributes(f);
         return entityData;
     }
@@ -378,3 +403,14 @@ public class SunderedCadaverEntity extends CreatureEntity implements IAnimatable
     @Override protected SoundEvent getHurtSound(DamageSource damageSourceIn) { return RigoranthusSoundRegistry.CADAVER_HURT.get();}
     @Override protected void playStepSound(BlockPos pos, BlockState blockIn) {this.playSound(RigoranthusSoundRegistry.UNDEAD_STEP.get(), 0.20F, 0.5F);}
 }
+
+
+//    @Override
+//    public void performRangedAttack(LivingEntity p_82196_1_, float p_82196_2_) {
+//        EntitySpellResolver resolver = new EntitySpellResolver(new SpellContext(spell, this).withColors(color.toWrapper()));
+//        EntityProjectileSpell projectileSpell = new EntityProjectileSpell(level, resolver);
+//        projectileSpell.setColor(color.toWrapper());
+//        projectileSpell.shoot(this, this.xRot, this.yRot, 0.0F, 1.0f, 0.8f);
+//        level.addFreshEntity(projectileSpell);
+//        this.castCooldown = 40;
+//    }

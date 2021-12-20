@@ -2,7 +2,7 @@ package com.platinumg17.rigoranthusemortisreborn.core.events;
 
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
-import com.platinumg17.rigoranthusemortisreborn.core.init.fluid.FluidRegistry;
+import com.platinumg17.rigoranthusemortisreborn.core.registry.fluid.FluidRegistry;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.MagicItemsRegistry;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;

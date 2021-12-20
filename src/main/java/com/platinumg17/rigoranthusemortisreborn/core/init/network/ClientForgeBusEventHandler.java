@@ -3,7 +3,7 @@ package com.platinumg17.rigoranthusemortisreborn.core.init.network;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
-import com.platinumg17.rigoranthusemortisreborn.core.init.fluid.FluidRegistry;
+import com.platinumg17.rigoranthusemortisreborn.core.registry.fluid.FluidRegistry;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.potions.ModPotions;
 import net.minecraft.client.renderer.ActiveRenderInfo;
 import net.minecraft.fluid.Fluid;

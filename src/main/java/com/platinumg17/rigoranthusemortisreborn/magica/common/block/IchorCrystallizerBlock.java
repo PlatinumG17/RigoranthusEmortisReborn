@@ -54,15 +54,15 @@ public class IchorCrystallizerBlock extends ModBlock {
                 tile.baseMaterial = ItemStack.EMPTY;
             }
             else if (!player.inventory.getSelected().isEmpty()) {
-                if(player.getItemInHand(handIn).getItem() == MagicItemsRegistry.BOTTLE_OF_ICHOR
-                        || player.getItemInHand(handIn).getItem() == ItemInit.GHAST_IRON_INGOT.get()
-                        || player.getItemInHand(handIn).getItem() == ItemInit.BLIGHT_ICHOR.get()
-                        || player.getItemInHand(handIn).getItem() == ItemInit.BUCKET_OF_CADAVEROUS_ICHOR.get()
-                        || player.getItemInHand(handIn).getItem() == BlockInit.DWELLER_BRAIN.get().asItem()
-                        || player.getItemInHand(handIn).getItem() == ItemInit.PACT_OF_SERVITUDE.get()
-                        || player.getItemInHand(handIn).getItem() == ItemInit.PACT_OF_MYRMIDON.get()
-                        || player.getItemInHand(handIn).getItem() == ItemInit.PACT_OF_PURTURBATION.get()
-                        || player.getItemInHand(handIn).getItem() == Items.PAPER) {
+                if(    player.getItemInHand(handIn).getItem() == MagicItemsRegistry.BOTTLE_OF_ICHOR
+                    || player.getItemInHand(handIn).getItem() == ItemInit.GHAST_IRON_INGOT.get()
+                    || player.getItemInHand(handIn).getItem() == ItemInit.BLIGHT_ICHOR.get()
+                    || player.getItemInHand(handIn).getItem() == ItemInit.BUCKET_OF_CADAVEROUS_ICHOR.get()
+                    || player.getItemInHand(handIn).getItem() == BlockInit.DWELLER_BRAIN.get().asItem()
+                    || player.getItemInHand(handIn).getItem() == ItemInit.PACT_OF_SERVITUDE.get()
+                    || player.getItemInHand(handIn).getItem() == ItemInit.PACT_OF_MYRMIDON.get()
+                    || player.getItemInHand(handIn).getItem() == ItemInit.PACT_OF_PURTURBATION.get()
+                    || player.getItemInHand(handIn).getItem() == Items.PAPER) {
                     if(tile.baseMaterial != null && !tile.baseMaterial.isEmpty()){
                         ItemEntity item = new ItemEntity(world, player.getX(), player.getY(), player.getZ(), tile.baseMaterial);
                         world.addFreshEntity(item);

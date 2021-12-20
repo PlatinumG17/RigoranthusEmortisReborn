@@ -1,15 +1,9 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.common.event;
 
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
-import com.platinumg17.rigoranthusemortisreborn.blocks.custom.OpulentMagmaBlock;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
-import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
-import com.platinumg17.rigoranthusemortisreborn.api.apimagic.event.DispelEvent;
-import com.platinumg17.rigoranthusemortisreborn.api.apimagic.event.FlightRefreshEvent;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.ClientInfo;
-import com.platinumg17.rigoranthusemortisreborn.magica.client.particle.ParticleUtil;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.block.LavaLily;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.command.DataDumpCommand;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.command.PathCommand;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.command.ResetCommand;
@@ -18,7 +12,6 @@ import com.platinumg17.rigoranthusemortisreborn.magica.common.potions.ModPotions
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.MagicItemsRegistry;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.monster.WitchEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -26,13 +19,8 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
-import net.minecraft.util.math.EntityRayTraceResult;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHealEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -60,15 +48,15 @@ public class EventHandler {
         }
     }
 
-    @SubscribeEvent
-    public static void livingAttackEvent(LivingAttackEvent e){
-        if(e.getSource() == DamageSource.HOT_FLOOR && e.getEntityLiving() /* != null */ instanceof PlayerEntity && !e.getEntity().getCommandSenderWorld().isClientSide) {
-            World world = e.getEntity().level;
-            if(world.getBlockState(e.getEntityLiving().blockPosition()).getBlock() instanceof OpulentMagmaBlock){
-                e.setCanceled(true);
-            }
-        }
-    }
+//    @SubscribeEvent
+//    public static void livingAttackEvent(LivingAttackEvent e){
+//        if(e.getSource() == DamageSource.HOT_FLOOR && e.getEntityLiving() /* != null */ instanceof PlayerEntity && !e.getEntity().getCommandSenderWorld().isClientSide) {
+//            World world = e.getEntity().level;
+//            if(world.getBlockState(e.getEntityLiving().blockPosition()).getBlock() instanceof OpulentMagmaBlock){
+//                e.setCanceled(true);
+//            }
+//        }
+//    }
 
     @SubscribeEvent
     public static void jumpEvent(LivingEvent.LivingJumpEvent e) {

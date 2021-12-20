@@ -21,7 +21,6 @@ public class StrippableLog extends RotatedPillarBlock {
         setRegistryName(registryName);
     }
 
-
     @Override
     public BlockState getToolModifiedState(BlockState state, World world, BlockPos pos, PlayerEntity player, ItemStack stack, ToolType toolType) {
         if (toolType == ToolType.AXE) return strippedState.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, state.getValue(RotatedPillarBlock.AXIS));

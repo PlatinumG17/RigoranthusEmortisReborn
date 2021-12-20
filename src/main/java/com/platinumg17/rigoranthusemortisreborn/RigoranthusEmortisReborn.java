@@ -40,8 +40,8 @@ import com.platinumg17.rigoranthusemortisreborn.core.events.advancements.REAdvan
 import com.platinumg17.rigoranthusemortisreborn.core.events.other.VanillaCompatRigoranthus;
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
 import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
-import com.platinumg17.rigoranthusemortisreborn.core.init.fluid.FluidRegistry;
-import com.platinumg17.rigoranthusemortisreborn.core.init.fluid.particles.EmortisParticleTypes;
+import com.platinumg17.rigoranthusemortisreborn.core.registry.fluid.FluidRegistry;
+import com.platinumg17.rigoranthusemortisreborn.core.registry.fluid.particles.EmortisParticleTypes;
 import com.platinumg17.rigoranthusemortisreborn.core.init.network.REPacketHandler;
 import com.platinumg17.rigoranthusemortisreborn.core.init.network.messages.Messages;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusSoundRegistry;

@@ -34,17 +34,17 @@ import java.util.ArrayList;
 import java.util.Optional;
 import java.util.UUID;
 
-public class EntityDummy extends CreatureEntity implements ISummon {
+public class EntityEminentialProjection extends CreatureEntity implements ISummon {
     private NetworkPlayerInfo playerInfo;
     public int ticksLeft;
-    private static final DataParameter<Optional<UUID>> OWNER_UUID = EntityDataManager.defineId(EntityDummy.class, DataSerializers.OPTIONAL_UUID);
+    private static final DataParameter<Optional<UUID>> OWNER_UUID = EntityDataManager.defineId(EntityEminentialProjection.class, DataSerializers.OPTIONAL_UUID);
 
-    public EntityDummy(EntityType<? extends CreatureEntity> p_i48577_1_, World p_i48577_2_) {
-        super(p_i48577_1_, p_i48577_2_);
+    public EntityEminentialProjection(EntityType<? extends CreatureEntity> entity, World worldIn) {
+        super(entity, worldIn);
     }
 
-    public EntityDummy(World world){
-        super(ModEntities.ENTITY_DUMMY, world);
+    public EntityEminentialProjection(World world){
+        super(ModEntities.EMINENTIAL_ENTITY, world);
     }
 
     @Override
@@ -91,14 +91,14 @@ public class EntityDummy extends CreatureEntity implements ISummon {
     }
 
     @Override
-    public ItemStack getItemBySlot(EquipmentSlotType p_184582_1_) {
+    public ItemStack getItemBySlot(EquipmentSlotType slot) {
         if(!level.isClientSide)
             return ItemStack.EMPTY;
-        return level.getPlayerByUUID(getOwnerID()) != null ? level.getPlayerByUUID(getOwnerID()).getItemBySlot(p_184582_1_) : ItemStack.EMPTY;
+        return level.getPlayerByUUID(getOwnerID()) != null ? level.getPlayerByUUID(getOwnerID()).getItemBySlot(slot) : ItemStack.EMPTY;
     }
 
     @Override
-    public void setItemSlot(EquipmentSlotType p_184201_1_, ItemStack p_184201_2_) { }
+    public void setItemSlot(EquipmentSlotType slotType, ItemStack stack) { }
 
     public ResourceLocation getSkinTextureLocation() {
         NetworkPlayerInfo networkplayerinfo = this.getPlayerInfo();

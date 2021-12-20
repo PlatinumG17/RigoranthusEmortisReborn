@@ -53,7 +53,7 @@ public class ModEntities {
 
     public static EntityType<EntityProjectileSpell> SPELL_PROJ = null;
     public static EntityType<EntityAllyVex> ALLY_VEX = null;
-    public static EntityType<EntityEvokerFangs> ENTITY_EVOKER_FANGS_ENTITY_TYPE = null;
+    public static EntityType<EntityEvokerFangs> ENTITY_EVOKER_FANGS_TYPE = null;
     public static EntityType<EntityFollowProjectile> ENTITY_FOLLOW_PROJ = null;
     public static EntityType<EntityFlyingItem> ENTITY_FLYING_ITEM = null;
     public static EntityType<EntityRitualProjectile> ENTITY_RITUAL = null;
@@ -61,7 +61,7 @@ public class ModEntities {
     public static EntityType<SummonWolf> SUMMON_WOLF = null;
     public static EntityType<SummonHorse> SUMMON_HORSE = null;
     public static EntityType<LightningEntity> LIGHTNING_ENTITY = null;
-    public static EntityType<EntityDummy> ENTITY_DUMMY = null;
+    public static EntityType<EntityEminentialProjection> EMINENTIAL_ENTITY = null;
     public static EntityType<EntityOrbitProjectile> ENTITY_WARD = null;
     public static EntityType<EntityLingeringSpell> LINGER_SPELL = null;
 
@@ -85,7 +85,7 @@ public class ModEntities {
                     EntityType.Builder.<EntityLingeringSpell>of(EntityLingeringSpell::new, EntityClassification.MISC)
                     .sized(0.5f, 0.5f).setTrackingRange(20).setShouldReceiveVelocityUpdates(true).setUpdateInterval(120).setCustomClientFactory(EntityLingeringSpell::new));
 
-            ENTITY_EVOKER_FANGS_ENTITY_TYPE = build("fangs",
+            ENTITY_EVOKER_FANGS_TYPE = build("fangs",
                     EntityType.Builder.<EntityEvokerFangs>of(EntityEvokerFangs::new, EntityClassification.MISC).sized(0.5F, 0.8F).setUpdateInterval(60));
 
             ALLY_VEX = build("ally_vex",
@@ -113,8 +113,8 @@ public class ModEntities {
             SUMMON_HORSE = build("summon_horse",
                     EntityType.Builder.<SummonHorse>of(SummonHorse::new, EntityClassification.CREATURE).sized(1.3964844F, 1.6F).clientTrackingRange(10));
 
-            ENTITY_DUMMY = build("dummy",
-                    EntityType.Builder.<EntityDummy>of(EntityDummy::new, EntityClassification.MISC).sized(1.0f, 2.0f).setTrackingRange(10).setShouldReceiveVelocityUpdates(true));
+            EMINENTIAL_ENTITY = build("dummy",
+                    EntityType.Builder.<EntityEminentialProjection>of(EntityEminentialProjection::new, EntityClassification.MISC).sized(1.0f, 2.0f).setTrackingRange(10).setShouldReceiveVelocityUpdates(true));
 
             LIGHTNING_ENTITY = build("emortic_lightning",
                     EntityType.Builder.<LightningEntity>of(LightningEntity::new, EntityClassification.MISC).sized(0.0F, 0.0F)
@@ -129,11 +129,11 @@ public class ModEntities {
 //                        return cadaver;
 
             event.getRegistry().registerAll(
-                    LANGUID_DWELLER,            BONE_ARROW_ENTITY,      ENTITY_EVOKER_FANGS_ENTITY_TYPE,
+                    LANGUID_DWELLER,            BONE_ARROW_ENTITY,      ENTITY_EVOKER_FANGS_TYPE,
                     FAMILIAR_CADAVER,           SUNDERED_CADAVER,       NECRAW_FASCII,          FERAL_CANIS,
                     ENTITY_FOLLOW_PROJ,         SPELL_PROJ,             ALLY_VEX,               LINGER_SPELL,
                     ENTITY_FLYING_ITEM,         ENTITY_RITUAL,          ENTITY_SPELL_ARROW,     SUMMON_WOLF,
-                    SUMMON_HORSE,               LIGHTNING_ENTITY,       ENTITY_DUMMY,           ENTITY_WARD
+                    SUMMON_HORSE,               LIGHTNING_ENTITY,       EMINENTIAL_ENTITY,      ENTITY_WARD
             );
             EntitySpawnPlacementRegistry.register(SUNDERED_CADAVER,   ON_GROUND, MOTION_BLOCKING_NO_LEAVES, ModEntities::canMonsterSpawnInLight);
             EntitySpawnPlacementRegistry.register(NECRAW_FASCII,      ON_GROUND, MOTION_BLOCKING_NO_LEAVES, ModEntities::canMonsterSpawnInLight);
@@ -150,7 +150,7 @@ public class ModEntities {
             event.put(ALLY_VEX,             VexEntity.createAttributes().build());
             event.put(SUMMON_WOLF,          WolfEntity.createAttributes().build());
             event.put(SUMMON_HORSE,         AbstractHorseEntity.createBaseHorseAttributes().build());
-            event.put(ENTITY_DUMMY,         MobEntity.createMobAttributes()
+            event.put(EMINENTIAL_ENTITY,    MobEntity.createMobAttributes()
                     .add(Attributes.MAX_HEALTH, 20.0D)
                     .add(Attributes.MOVEMENT_SPEED, 0.25D).build());
         }

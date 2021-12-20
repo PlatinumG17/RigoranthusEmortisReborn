@@ -14,11 +14,11 @@ import mezz.jei.api.gui.drawable.IDrawableAnimated;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.category.IRecipeCategory;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.ArrayList;
@@ -36,14 +36,14 @@ public class PsyglyphicAmalgamatorRecipeCategory implements IRecipeCategory<Psyg
 
     public PsyglyphicAmalgamatorRecipeCategory(IGuiHelper helper){
         this.helper = helper;
-        background = helper.createBlankDrawable(60,50);
+        background = helper.createDrawable(JEIConstants.RECIPE_GUI_AMALGAMATOR, 0, 0, 132, 84);
         icon = helper.createDrawableIngredient(new ItemStack(BlockRegistry.PSYGLYPHIC_AMALG_BLOCK));
         this.cachedArrows = CacheBuilder.newBuilder()
                 .maximumSize(25)
                 .build(new CacheLoader<Integer, IDrawableAnimated>() {
                     @Override
                     public IDrawableAnimated load(Integer cookTime) {
-                        return helper.drawableBuilder(JEIConstants.RECIPE_GUI_VANILLA, 82, 128, 24, 17)
+                        return helper.drawableBuilder(JEIConstants.RECIPE_GUI_AMALGAMATOR, 132, 0, 22, 15)
                                 .buildAnimated(cookTime, IDrawableAnimated.StartDirection.LEFT, false);
                     }
                 });
@@ -65,7 +65,7 @@ public class PsyglyphicAmalgamatorRecipeCategory implements IRecipeCategory<Psyg
 
     @Override
     public IDrawable getBackground() {
-        return helper.createBlankDrawable(100,75);
+        return this.background;
     }
 
     @Override
@@ -75,11 +75,14 @@ public class PsyglyphicAmalgamatorRecipeCategory implements IRecipeCategory<Psyg
 
     @Override
     public void draw(PsyglyphicAmalgamatorRecipe recipe, MatrixStack matrixStack, double mouseX, double mouseY) {
+        int recipeWidth = this.background.getWidth();
+        int recipeHeight = this.background.getHeight();
         IDrawableAnimated arrow = this.cachedArrows.getUnchecked(40);
-        arrow.draw( matrixStack,55, 22);
+        arrow.draw( matrixStack, 72, 27);
         FontRenderer renderer = Minecraft.getInstance().font;
         if(recipe.consumesDominion())
-            renderer.draw(matrixStack, new TranslationTextComponent("rigoranthusemortisreborn.dominion", recipe.dominionCost), 0.0f,65f, 10);
+            //renderer.draw(matrixStack, new TranslationTextComponent("rigoranthusemortisreborn.dominion", recipe.dominionCost), 0.0f, 3, 71);//65, 10);
+            renderer.draw(matrixStack, new TranslationTextComponent("rigoranthusemortisreborn.dominion", recipe.dominionCost), 12f, 6f, 4210752);
     }
 
     @Override
@@ -97,39 +100,35 @@ public class PsyglyphicAmalgamatorRecipeCategory implements IRecipeCategory<Psyg
     @Override
     public void setRecipe(IRecipeLayout recipeLayout, PsyglyphicAmalgamatorRecipe o, IIngredients ingredients) {
         int index = 0;
-        recipeLayout.getItemStacks().init(index, true, 18, 22);
+        recipeLayout.getItemStacks().init(index, true, 26, 26);
         recipeLayout.getItemStacks().set(index, ingredients.getInputs(VanillaTypes.ITEM).get(0));
         index++;
-        recipeLayout.getItemStacks().init(index, true, 80, 22);
+        recipeLayout.getItemStacks().init(index, true, 105, 26);
         recipeLayout.getItemStacks().set(index, ingredients.getOutputs(VanillaTypes.ITEM).get(0));
         try {
             index++;
-            recipeLayout.getItemStacks().init(index, true, 0, 4);
+            recipeLayout.getItemStacks().init(index, true, 6, 6);
             recipeLayout.getItemStacks().set(index, ingredients.getInputs(VanillaTypes.ITEM).get(2));
-
             index++;
-            recipeLayout.getItemStacks().init(index, true, 18, 4);
+            recipeLayout.getItemStacks().init(index, true, 26, 6);
             recipeLayout.getItemStacks().set(index, ingredients.getInputs(VanillaTypes.ITEM).get(3));
-
             index++;
-            recipeLayout.getItemStacks().init(index, true, 36, 4);
+            recipeLayout.getItemStacks().init(index, true, 46, 6);
             recipeLayout.getItemStacks().set(index, ingredients.getInputs(VanillaTypes.ITEM).get(4));
-
             index++;
-            recipeLayout.getItemStacks().init(index, true, 0, 22);
+            recipeLayout.getItemStacks().init(index, true, 6, 26);
             recipeLayout.getItemStacks().set(index, ingredients.getInputs(VanillaTypes.ITEM).get(5));
-
             index++;
-            recipeLayout.getItemStacks().init(index, true, 36, 22);
+            recipeLayout.getItemStacks().init(index, true, 46, 26);
             recipeLayout.getItemStacks().set(index, ingredients.getInputs(VanillaTypes.ITEM).get(6));
             index++;
-            recipeLayout.getItemStacks().init(index, true, 0, 40);
+            recipeLayout.getItemStacks().init(index, true, 6, 46);
             recipeLayout.getItemStacks().set(index, ingredients.getInputs(VanillaTypes.ITEM).get(7));
             index++;
-            recipeLayout.getItemStacks().init(index, true, 18, 40);
+            recipeLayout.getItemStacks().init(index, true, 26, 46);
             recipeLayout.getItemStacks().set(index, ingredients.getInputs(VanillaTypes.ITEM).get(8));
             index++;
-            recipeLayout.getItemStacks().init(index, true, 36, 40);
+            recipeLayout.getItemStacks().init(index, true, 46, 46);
             recipeLayout.getItemStacks().set(index, ingredients.getInputs(VanillaTypes.ITEM).get(9));
         }catch (Exception e){}
     }

@@ -237,7 +237,7 @@ public class BlockRegistry {
             registry.register(new BlockItem(BlockRegistry.DOMINION_JAR, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.DOMINION_JAR));
             registry.register(new AnimBlockItem(BlockRegistry.GLYPH_PRESS_BLOCK, MagicItemsRegistry.defaultItemProperties().setISTER(() -> PressRenderer::getISTER)).setRegistryName(LibBlockNames.GLYPH_PRESS));
             registry.register(new AnimBlockItem(BlockRegistry.ICHOR_CRYSTALLIZER_BLOCK, MagicItemsRegistry.defaultItemProperties().setISTER(() -> IchorCrystallizerRenderer::getISTER)).setRegistryName(LibBlockNames.ICHOR_CRYSTALLIZER));
-            registry.register(new BlockItem(BlockRegistry.PSYGLYPHIC_AMALG_BLOCK, MagicItemsRegistry.defaultItemProperties().setISTER(()-> PsyglyphicAmalgamatorRenderer.ISRender::new)).setRegistryName(LibBlockNames.PSYGLYPHIC_AMALGAMATOR));
+            registry.register(new BlockItem(BlockRegistry.PSYGLYPHIC_AMALG_BLOCK, MagicItemsRegistry.defaultItemProperties()/*.setISTER(()-> PsyglyphicAmalgamatorRenderer::getISTER)*/).setRegistryName(LibBlockNames.PSYGLYPHIC_AMALGAMATOR));
             registry.register(new BlockItem(BlockRegistry.SPLINTERED_PEDESTAL, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.SPLINTERED_PEDESTAL));
             registry.register(new AnimBlockItem(BlockRegistry.TABLE_BLOCK, MagicItemsRegistry.defaultItemProperties().setISTER(() -> TableRenderer::getISTER)).setRegistryName(LibBlockNames.TABLE_BLOCK));
             registry.register(new BlockItem(BlockRegistry.PORTAL_BLOCK, new Item.Properties()).setRegistryName(LibBlockNames.PORTAL));

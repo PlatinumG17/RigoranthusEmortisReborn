@@ -24,18 +24,16 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 
 public class PsyglyphicAmalgamatorBlock extends ModBlock {
+
     public PsyglyphicAmalgamatorBlock() {
         super(ModBlock.defaultProperties().noOcclusion(),"psyglyphic_amalgamator");
     }
-    @Override
-    public boolean hasTileEntity(BlockState state) {
+
+    @Override public boolean hasTileEntity(BlockState state) {
         return true;
     }
 
-    @Override
-    public void attack(BlockState state, World worldIn, BlockPos pos, PlayerEntity player) {
-        super.attack(state, worldIn, pos, player);
-    }
+    @Override public void attack(BlockState state, World worldIn, BlockPos pos, PlayerEntity player) {super.attack(state, worldIn, pos, player);}
 
     @Override
     public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
@@ -59,7 +57,7 @@ public class PsyglyphicAmalgamatorBlock extends ModBlock {
                     tile.catalystItem = player.inventory.removeItem(player.inventory.selected, 1);
                 }
             }
-        }else{
+        } else {
             ItemEntity item = new ItemEntity(world, player.getX(), player.getY(), player.getZ(), tile.catalystItem);
             world.addFreshEntity(item);
             tile.catalystItem = ItemStack.EMPTY;
@@ -67,15 +65,14 @@ public class PsyglyphicAmalgamatorBlock extends ModBlock {
                 tile.catalystItem = player.inventory.removeItem(player.inventory.selected, 1);
             }
         }
-
         world.sendBlockUpdated(pos, state, state, 2);
         return ActionResultType.SUCCESS;
     }
 
-    @Override
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        return Block.box(1D, 1.0D, 1.0D, 15, 16, 15);
-    }
+//    @Override
+//    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+//        return Block.box(1D, 1.0D, 1.0D, 15, 16, 15);
+//    }
 
     @Override
     public void playerWillDestroy(World worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
@@ -93,6 +90,6 @@ public class PsyglyphicAmalgamatorBlock extends ModBlock {
 
     @Override
     public BlockRenderType getRenderShape(BlockState p_149645_1_) {
-        return BlockRenderType.ENTITYBLOCK_ANIMATED;
+        return BlockRenderType.MODEL;
     }
 }

@@ -37,15 +37,15 @@ public class PsyglyphicAmalgamatorRecipe implements IPsyglyphicRecipe {
         this.pedestalItems = pedestalItems;
         this.result = result;
         this.category = category;
-        dominionCost = 0;
+        dominionCost = 200;
         this.id = new ResourceLocation(EmortisConstants.MOD_ID, result.getItem().getRegistryName().getPath());
     }
 
     public PsyglyphicAmalgamatorRecipe(ResourceLocation id, List<Ingredient> pedestalItems, Ingredient reagent, ItemStack result) {
-        this(id, pedestalItems, reagent, result, 0);
+        this(id, pedestalItems, reagent, result, 200);
     }
 
-    public PsyglyphicAmalgamatorRecipe(ResourceLocation id, List<Ingredient> pedestalItems, Ingredient reagent,ItemStack result, int cost){
+    public PsyglyphicAmalgamatorRecipe(ResourceLocation id, List<Ingredient> pedestalItems, Ingredient reagent, ItemStack result, int cost){
         this.reagent = reagent;
         this.pedestalItems = pedestalItems;
         this.result = result;
@@ -58,7 +58,7 @@ public class PsyglyphicAmalgamatorRecipe implements IPsyglyphicRecipe {
         reagent = Ingredient.EMPTY;
         result = ItemStack.EMPTY;
         pedestalItems = new ArrayList<>();
-        dominionCost = 0;
+        dominionCost = 200;
         this.id = new ResourceLocation(EmortisConstants.MOD_ID, "empty");
     }
 
@@ -71,7 +71,7 @@ public class PsyglyphicAmalgamatorRecipe implements IPsyglyphicRecipe {
         this.result = new ItemStack(result);
         this.pedestalItems = stacks;
         this.category = category;
-        dominionCost = 0;
+        dominionCost = 200;
         this.id = new ResourceLocation(EmortisConstants.MOD_ID, result.getRegistryName().getPath());
     }
 
@@ -116,9 +116,9 @@ public class PsyglyphicAmalgamatorRecipe implements IPsyglyphicRecipe {
     @Override
     public String toString() {
         return "PsyglyphicAmalgamatorRecipe{" +
-                "catalyst=" + reagent +
-                ", result=" + result +
-                ", pedestalItems=" + pedestalItems +
+                "catalyst = " + reagent +
+                ", result = " + result +
+                ", pedestalItems = " + pedestalItems +
                 '}';
     }
 
@@ -129,7 +129,7 @@ public class PsyglyphicAmalgamatorRecipe implements IPsyglyphicRecipe {
         for(Ingredient i : pedestalItems){
             JsonArray item = new JsonArray();
             item.add(i.toJson());
-            jsonobject.add("item_"+counter, item);
+            jsonobject.add("item_" + counter, item);
             counter++;
         }
         JsonArray reagent =  new JsonArray();

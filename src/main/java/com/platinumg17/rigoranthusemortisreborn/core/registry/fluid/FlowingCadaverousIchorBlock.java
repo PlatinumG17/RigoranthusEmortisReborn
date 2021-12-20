@@ -1,4 +1,4 @@
-package com.platinumg17.rigoranthusemortisreborn.core.init.fluid;
+package com.platinumg17.rigoranthusemortisreborn.core.registry.fluid;
 
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.BlockRegistry;
 import net.minecraft.block.Block;

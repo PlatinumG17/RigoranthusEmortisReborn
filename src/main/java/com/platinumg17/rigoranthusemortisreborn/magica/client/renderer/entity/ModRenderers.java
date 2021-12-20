@@ -32,7 +32,7 @@ public class ModRenderers {
                 renderManager -> new RenderSpell(renderManager, new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/spell_proj.png")));
         RenderingRegistry.registerEntityRenderingHandler( ModEntities.ENTITY_FOLLOW_PROJ,
                 renderManager -> new RenderBlank(renderManager, new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/spell_proj.png")));
-        RenderingRegistry.registerEntityRenderingHandler(ModEntities.ENTITY_EVOKER_FANGS_ENTITY_TYPE, RenderFangs::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntities.ENTITY_EVOKER_FANGS_TYPE, RenderFangs::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.ALLY_VEX, RenderAllyVex::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.SUMMON_WOLF, WolfRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.SUMMON_HORSE, HorseRenderer::new);
@@ -41,7 +41,7 @@ public class ModRenderers {
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.ENTITY_RITUAL,
                 renderManager -> new RenderRitualProjectile(renderManager, new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/spell_proj.png")));
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.ENTITY_SPELL_ARROW, TippedArrowRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(ModEntities.ENTITY_DUMMY, DummyRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntities.EMINENTIAL_ENTITY, EminentialProjectionRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.ENTITY_WARD,  renderManager -> new RenderRitualProjectile(renderManager, new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/spell_proj.png")));
         RenderingRegistry.registerEntityRenderingHandler( ModEntities.LINGER_SPELL,
                 renderManager -> new RenderBlank(renderManager, new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/spell_proj.png")));

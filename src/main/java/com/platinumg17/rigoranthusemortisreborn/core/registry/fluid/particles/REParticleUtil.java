@@ -1,4 +1,4 @@
-package com.platinumg17.rigoranthusemortisreborn.core.init.fluid.particles;
+package com.platinumg17.rigoranthusemortisreborn.core.registry.fluid.particles;
 
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import net.minecraft.client.Minecraft;

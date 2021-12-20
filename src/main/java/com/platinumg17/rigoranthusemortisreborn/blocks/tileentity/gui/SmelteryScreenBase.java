@@ -57,7 +57,7 @@ public abstract class SmelteryScreenBase<T extends MasterfulSmelteryContainerBas
     @Override
     protected void renderLabels(MatrixStack matrix, int mouseX, int mouseY) {
         this.minecraft.font.draw(matrix, this.playerInv.getDisplayName(), 7, this.getYSize() - 93, 4210752);
-        this.minecraft.font.draw(matrix, name, 7 + this.getXSize() / 2 - this.minecraft.font.width(name.getString()) / 2, 6, 4210752);
+        this.minecraft.font.draw(matrix, name, 7 + (float)(this.getXSize() / 2) - (float) (this.minecraft.font.width(name.getString()) / 2), 6, 4210752);
 
         if (this.getMenu().showInventoryButtons() && this.getMenu().getRedstoneMode() == 4) {
             int comSub = this.getMenu().getComSub();

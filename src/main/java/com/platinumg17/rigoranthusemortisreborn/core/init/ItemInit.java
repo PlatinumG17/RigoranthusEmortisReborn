@@ -5,7 +5,7 @@ import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.blocks.DecorativeOrStorageBlocks;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
-import com.platinumg17.rigoranthusemortisreborn.core.init.fluid.FluidRegistry;
+import com.platinumg17.rigoranthusemortisreborn.core.registry.fluid.FluidRegistry;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusSoundRegistry;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.effects.weapons.OnHitEffect;
 import com.platinumg17.rigoranthusemortisreborn.entity.item.GhastlyScepterItem;
@@ -52,9 +52,6 @@ public class ItemInit {
 
 
 				///_______________________  I N G R E D I E N T S  _______________________///
-
-//	public static final RegistryObject<Item> BOTTLE_OF_ICHOR = ITEMS.register("bottle_of_ichor",
-//			() -> new GlassBottleItem(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)));
 
 	public static final RegistryObject<Item> BUCKET_OF_CADAVEROUS_ICHOR = ITEMS.register("bucket_of_cadaverous_ichor",
 			() -> new BucketItem(() -> FluidRegistry.CADAVEROUS_ICHOR_FLUID.get(),
@@ -176,7 +173,6 @@ public class ItemInit {
 //					ItemRightClickEffect.switchTo(() -> ItemInit.STEOCLASTS_DRAWN.get())), new Item.Properties().defaultDurability(250)));
 
 
-
 				     ///_______________________  M A G I C  _______________________///
 
 	public static final RegistryObject<Item> PSYGLYPHIC_SCRIPT = ITEMS.register("psyglyphic_script",
@@ -219,7 +215,6 @@ public class ItemInit {
 					ItemRightClickEffect.shootFireball()), new Item.Properties().setISTER(() -> GhastlyScepterRenderer::new).tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).rarity(Rarity.EPIC)));
 
 
-
  /*
  .add(OnHitEffect.LIFE_SATURATION)
 
@@ -251,7 +246,6 @@ public class ItemInit {
 	.add(InventoryTickEffect.BREATH_SLOW_FALLING)
  	.setEating(FinishUseItemEffect.foodEffect(2, 0.3F)
   */
-
 
 
 	///_______________________  D W E L L E R  S T U F F  _______________________///

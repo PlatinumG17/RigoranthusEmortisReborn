@@ -1,4 +1,4 @@
-package com.platinumg17.rigoranthusemortisreborn.core.init.fluid.particles;
+package com.platinumg17.rigoranthusemortisreborn.core.registry.fluid.particles;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;

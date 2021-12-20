@@ -42,7 +42,7 @@ public class IchorCrystallizerBlock extends ModBlock {
     }
 
     @Override
-    public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult p_225533_6_) {
+    public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult rayTraceResult) {
         if(!world.isClientSide) {
             IchorCrystallizerTile tile = (IchorCrystallizerTile) world.getBlockEntity(pos);
             if(tile.isCrafting)

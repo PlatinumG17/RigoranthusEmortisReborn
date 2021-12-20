@@ -51,7 +51,6 @@ public class LibBlockNames {
 
     public final static String RITUAL_VESSEL = "ritual_vessel";
     public final static String DOMINION_GEM_BLOCK = "dominion_gem_block";
-    public final static String SCONCE = "sconce";
     public static final String EMORTIC_CORTEX = "emortic_cortex";
     public static final String EMORTIC_RELAY = "emortic_relay";
     public static final String EMORTIC_RELAY_SPLITTER = "relay_splitter";

@@ -4,8 +4,7 @@ import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.*;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.psyglyphic_amalgamator.IPsyglyphicRecipe;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.psyglyphic_amalgamator.PsyglyphicAmalgamatorRecipe;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.psyglyphic_amalgamator.PsyglyphicEnchantingRecipe;
-import com.platinumg17.rigoranthusemortisreborn.api.apimagic.recipe.GlyphPressRecipe;
-import com.platinumg17.rigoranthusemortisreborn.api.apimagic.recipe.IchorCrystallizerRecipe;
+import com.platinumg17.rigoranthusemortisreborn.api.apimagic.recipe.*;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.ritual.AbstractRitual;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.ritual.RitualContext;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.interfaces.ISpellTier;
@@ -17,8 +16,6 @@ import com.platinumg17.rigoranthusemortisreborn.magica.common.items.Glyph;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.items.RitualOffering;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.spell.validation.StandardSpellValidator;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.entity.familiar.AbstractFamiliarHolder;
-import com.platinumg17.rigoranthusemortisreborn.api.apimagic.recipe.PotionIngredient;
-import com.platinumg17.rigoranthusemortisreborn.api.apimagic.recipe.VanillaPotionRecipe;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.MagicItemsRegistry;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.AbstractSpellPart;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.interfaces.ISpellValidator;
@@ -53,7 +50,7 @@ public class RigoranthusEmortisRebornAPI {
     /**
      * The version of the api classes - may not always match the mod's version
      */
-    public static final String API_VERSION = "1.0.0";
+    public static final String API_VERSION = "2.0.1";
     public static final String RIGORANTHUS_MODID = "rigoranthusemortisreborn";
 
     public static IForgeRegistry<Skill> SKILLS;
@@ -85,6 +82,7 @@ public class RigoranthusEmortisRebornAPI {
     }
 
     public enum PatchouliCategories{
+        mobs,
         spells,
         machines,
         equipment,
@@ -122,6 +120,8 @@ public class RigoranthusEmortisRebornAPI {
     private ISpellValidator castingSpellValidator;
 
     private List<IPsyglyphicRecipe> psyglyphicAmalgamatorRecipes;
+
+    private List<IIchoricRecipe> ichorCrystallizerRecipes;
     /**
      * Spells that all spellbooks contain
      */
@@ -233,6 +233,10 @@ public class RigoranthusEmortisRebornAPI {
         return psyglyphicAmalgamatorRecipes;
     }
 
+    public List<IIchoricRecipe> getIchorCrystallizerRecipes() {
+        return ichorCrystallizerRecipes;
+    }
+
     public Map<String, AbstractFamiliarHolder> getFamiliarHolderMap(){
         return this.familiarHolderMap;
     }
@@ -245,23 +249,16 @@ public class RigoranthusEmortisRebornAPI {
         return world.getRecipeManager().getAllRecipesFor(RecipeRegistry.PSYGLYPHIC_TYPE);
     }
 
+    public List<IIchoricRecipe> getIchorCrystallizerRecipes(World world) {
+        return world.getRecipeManager().getAllRecipesFor(RecipeRegistry.CRYSTAL_TYPE);
+    }
+
     public @Nullable GlyphPressRecipe getGlyphPressRecipe(World world, Item reagent, @Nullable ISpellTier.Tier tier){
         if(reagent == null || reagent == Items.AIR)
             return null;
         RecipeManager manager = world.getRecipeManager();
         for(GlyphPressRecipe i : manager.getAllRecipesFor(RecipeRegistry.GLYPH_TYPE)){
             if(i.reagent.getItem() == reagent && i.tier == tier)
-                return i;
-        }
-        return null;
-    }
-
-    public @Nullable IchorCrystallizerRecipe getIchorCrystallizerRecipe(World world, Item reagent, Item base){
-        if(reagent == null || reagent == Items.AIR)
-            return null;
-        RecipeManager manager = world.getRecipeManager();
-        for(IchorCrystallizerRecipe i : manager.getAllRecipesFor(RecipeRegistry.CRYSTAL_TYPE)) {
-            if (i.reagent.getItem() == reagent)
                 return i;
         }
         return null;
@@ -289,6 +286,7 @@ public class RigoranthusEmortisRebornAPI {
         glyphMap = new HashMap<>();
         startingSpells = new ArrayList<>();
         psyglyphicAmalgamatorRecipes = new ArrayList<>();
+            ichorCrystallizerRecipes = new ArrayList<>();
         ritualMap = new HashMap<>();
         ritualParchmentMap = new HashMap<>();
         craftingSpellValidator = new StandardSpellValidator(false);

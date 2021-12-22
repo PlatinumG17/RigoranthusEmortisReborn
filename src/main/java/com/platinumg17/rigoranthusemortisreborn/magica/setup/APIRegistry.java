@@ -4,6 +4,7 @@ import com.platinumg17.rigoranthusemortisreborn.api.RigoranthusEmortisRebornAPI;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.psyglyphic_amalgamator.IPsyglyphicRecipe;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.psyglyphic_amalgamator.ReactivePsyglyphicRecipe;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.psyglyphic_amalgamator.SpellWriteRecipe;
+import com.platinumg17.rigoranthusemortisreborn.api.apimagic.recipe.IIchoricRecipe;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.ritual.AbstractRitual;
 import com.platinumg17.rigoranthusemortisreborn.magica.GlyphLib;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.CadaverFamiliar;

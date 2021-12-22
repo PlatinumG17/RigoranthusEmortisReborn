@@ -81,8 +81,8 @@ public class PsyglyphicAmalgamatorRecipeCategory implements IRecipeCategory<Psyg
         arrow.draw( matrixStack, 72, 27);
         FontRenderer renderer = Minecraft.getInstance().font;
         if(recipe.consumesDominion())
-            //renderer.draw(matrixStack, new TranslationTextComponent("rigoranthusemortisreborn.dominion", recipe.dominionCost), 0.0f, 3, 71);//65, 10);
-            renderer.draw(matrixStack, new TranslationTextComponent("rigoranthusemortisreborn.dominion", recipe.dominionCost), 12f, 6f, 4210752);
+            renderer.draw(matrixStack, new TranslationTextComponent("rigoranthusemortisreborn.dominion", recipe.dominionCost), 0.0f, 3, 71);//65, 10);
+            //renderer.draw(matrixStack, new TranslationTextComponent("rigoranthusemortisreborn.dominion", recipe.dominionCost), 12f, 6f, 4210752);
     }
 
     @Override

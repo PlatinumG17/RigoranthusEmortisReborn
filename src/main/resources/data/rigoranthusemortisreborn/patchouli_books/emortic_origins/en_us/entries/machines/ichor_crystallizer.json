@@ -1,0 +1,24 @@
+{
+    "name": "Ichoric Crystallizer",
+    "icon": "rigoranthusemortisreborn:ichor_crystallizer",
+    "category": "machines",
+    "pages": [
+        {
+            "type": "text",
+            "text": "rigoranthusemortisreborn.page1.ichor_crystallizer"
+        },
+		{
+		"type":"text",
+		"text":"rigoranthusemortisreborn.page2.ichor_crystallizer"
+		},
+		{
+            "type":"crafting",
+			"recipe":"rigoranthusemortisreborn:ichor_crystallizer",
+			"recipe2":"rigoranthusemortisreborn:bottle_of_ichor"
+		},{
+			"type":"crafting",
+			"recipe":"rigoranthusemortisreborn:ghast_iron",
+			"recipe2":"rigoranthusemortisreborn:blight_ichor"
+		}
+    ]
+}

@@ -22,6 +22,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -81,7 +82,9 @@ public class IchorCrystallizerRecipeCategory implements IRecipeCategory<IchorCry
     @Override
     public void setIngredients(IchorCrystallizerRecipe ichorCrystallizerRecipe, IIngredients iIngredients) {
         List<List<ItemStack>> itemStacks = new ArrayList<>();
-        itemStacks.add(Collections.singletonList(ichorCrystallizerRecipe.reagent));
+        itemStacks.add(Arrays.asList(ichorCrystallizerRecipe.base.getItems()));
+        itemStacks.add(Arrays.asList(ichorCrystallizerRecipe.reagent.getItems()));
+        itemStacks.add(Collections.singletonList(ichorCrystallizerRecipe.output));
         iIngredients.setInputLists(VanillaTypes.ITEM, itemStacks);
         iIngredients.setOutput(VanillaTypes.ITEM, ichorCrystallizerRecipe.output);
     }

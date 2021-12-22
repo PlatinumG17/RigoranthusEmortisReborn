@@ -16,6 +16,7 @@ public class ModDatagen {
         event.getGenerator().addProvider(new LootTables(event.getGenerator()));
         event.getGenerator().addProvider(new DefaultTableProvider(event.getGenerator()));
 //        event.getGenerator().addProvider(new ItemModelGenerator(event.getGenerator(), EmortisConstants.MOD_ID, event.getExistingFileHelper()));
+        event.getGenerator().addProvider(new IchorCrystallizerRecipeProvider(event.getGenerator()));
 //        event.getGenerator().addProvider(new LangDatagen(event.getGenerator(), EmortisConstants.MOD_ID, "en_us"));
         event.getGenerator().addProvider(new SpellDocProvider(event.getGenerator()));
         event.getGenerator().addProvider(new Recipes(event.getGenerator()));

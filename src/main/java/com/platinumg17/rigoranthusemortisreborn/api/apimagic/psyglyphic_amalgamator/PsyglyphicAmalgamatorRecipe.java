@@ -37,7 +37,7 @@ public class PsyglyphicAmalgamatorRecipe implements IPsyglyphicRecipe {
         this.pedestalItems = pedestalItems;
         this.result = result;
         this.category = category;
-        dominionCost = 200;
+        dominionCost = 0;
         this.id = new ResourceLocation(EmortisConstants.MOD_ID, result.getItem().getRegistryName().getPath());
     }
 
@@ -58,7 +58,7 @@ public class PsyglyphicAmalgamatorRecipe implements IPsyglyphicRecipe {
         reagent = Ingredient.EMPTY;
         result = ItemStack.EMPTY;
         pedestalItems = new ArrayList<>();
-        dominionCost = 200;
+        dominionCost = 0;
         this.id = new ResourceLocation(EmortisConstants.MOD_ID, "empty");
     }
 

@@ -49,7 +49,7 @@ public class PsyglyphicAmalgamatorBlock extends ModBlock {
             PortUtil.sendMessage(player, new TranslationTextComponent("alert.core"));
             return ActionResultType.SUCCESS;
         }
-        if (tile.catalystItem == null || tile.catalystItem.isEmpty()){
+        if (tile.catalystItem == null || tile.catalystItem.isEmpty()) {
             IPsyglyphicRecipe recipe = tile.getRecipe(player.getMainHandItem(), player);
             if (recipe == null) {
                 PortUtil.sendMessage(player, new TranslationTextComponent("rigoranthusemortisreborn.amalgamator.norecipe"));

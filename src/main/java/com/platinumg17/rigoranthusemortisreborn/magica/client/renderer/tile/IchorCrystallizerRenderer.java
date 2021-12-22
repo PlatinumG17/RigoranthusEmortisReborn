@@ -5,7 +5,6 @@ import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.util.MappingUtil;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.renderer.item.FixedGeoBlockItemRenderer;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.IchorCrystallizerTile;
-import com.platinumg17.rigoranthusemortisreborn.magica.setup.MagicItemsRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
@@ -72,15 +71,14 @@ public class IchorCrystallizerRenderer extends GeoBlockRenderer<IchorCrystallize
 
         if (tileEntityIn.counter <= 40) {
             renderPressedItem(x, y, z, tileEntityIn.baseMaterial.getItem(), matrixStack, iRenderTypeBuffer,packedLightIn,  packedOverlayIn);
-        }else if(tileEntityIn.counter <= 110){
-            renderPressedItem(x, y, z, MagicItemsRegistry.dominionGem, matrixStack, iRenderTypeBuffer,packedLightIn,  packedOverlayIn);
-        }else{
+        }
+        else if(tileEntityIn.counter >= 70) {
             renderPressedItem(x, y, z, tileEntityIn.baseMaterial.getItem(), matrixStack, iRenderTypeBuffer,packedLightIn,  packedOverlayIn);
         }
-        if(tileEntityIn.counter > 70 && tileEntityIn.counter < 120){
+        if(tileEntityIn.counter > 40 && tileEntityIn.counter < 90){
             BlockPos pos = tileEntityIn.getBlockPos();
             World world = tileEntityIn.getLevel();
-            if(world.getGameTime() % 3 != 0)
+            if(world.getGameTime() % 8 != 0)
                 return;
             for (int i = 0; i < 1; i++) {
                 double posX = pos.getX();
@@ -89,11 +87,11 @@ public class IchorCrystallizerRenderer extends GeoBlockRenderer<IchorCrystallize
                 double randX = world.random.nextFloat() > 0.5 ? world.random.nextFloat() : -world.random.nextFloat();
                 double randZ = world.random.nextFloat() > 0.5 ? world.random.nextFloat() : -world.random.nextFloat();
                 double d0 = posX + 0.5 + randX * 0.2;
-                double d1 = posY + 0.4;
+                double d1 = posY + 0.3;
                 double d2 = posZ + 0.5 + randZ * 0.2;
                 double spdX = world.random.nextFloat() > 0.5 ? world.random.nextFloat() : -world.random.nextFloat();
                 double spdZ = world.random.nextFloat() > 0.5 ? world.random.nextFloat() : -world.random.nextFloat();
-                world.addParticle(ParticleTypes.ENCHANTED_HIT, d0, d1, d2,  spdX * 0.05, 0.0,  spdZ * 0.05);
+                world.addParticle(ParticleTypes.CRIT, d0, d1, d2,  spdX * 0.05, -0.4,  spdZ * 0.05);
             }
         }
     }

@@ -4,6 +4,7 @@ import com.platinumg17.rigoranthusemortisreborn.api.apimagic.psyglyphic_amalgama
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.psyglyphic_amalgamator.PsyglyphicAmalgamatorRecipe;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.psyglyphic_amalgamator.PsyglyphicEnchantingRecipe;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.recipe.GlyphPressRecipe;
+import com.platinumg17.rigoranthusemortisreborn.api.apimagic.recipe.IIchoricRecipe;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.recipe.IchorCrystallizerRecipe;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.crafting.CrushRecipe;
@@ -18,9 +19,8 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
 public class RecipeRegistry {
-//    compileOnly fg.deobf("mezz.jei:jei-1.16.5:${project.jei_version}:api")
-//    runtimeOnly fg.deobf("mezz.jei:jei-1.16.5:${project.jei_version}")
-    public static final IRecipeType<IchorCrystallizerRecipe> CRYSTAL_TYPE = new RecipeType();
+
+    public static final IRecipeType<IIchoricRecipe> CRYSTAL_TYPE = new RecipeType();
     public static final IRecipeType<GlyphPressRecipe> GLYPH_TYPE = new RecipeType();
     public static final IRecipeType<IPsyglyphicRecipe> PSYGLYPHIC_TYPE = new RecipeType();
     public static final IRecipeType<PsyglyphicEnchantingRecipe> ENCHANTMENT_TYPE = new RecipeType();

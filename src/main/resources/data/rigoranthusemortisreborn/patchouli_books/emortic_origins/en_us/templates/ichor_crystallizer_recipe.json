@@ -1,0 +1,30 @@
+{
+	"processor": "com.platinumg17.rigoranthusemortisreborn.magica.client.patchouli.IchorCrystallizerProcessor",
+    "components": [
+		{
+			"type": "header",
+			"text": "block.rigoranthusemortisreborn.ichor_crystallizer",
+			"x": -1,
+			"y": -1
+        },
+		 {
+            "type":"text",
+            "text":"Reagent:",
+            "x":5,
+            "y":25
+        },
+        {
+            "type":"item",
+            "item":"#reagent",
+            "framed":true,
+            "x":50,
+            "y":20
+        },
+        {
+            "type":"header",
+            "text":"#footer",
+            "x":-1,
+            "y":50
+        }
+	]
+}

@@ -1,20 +1,12 @@
 {
-  "group": "rigoranthusemortisreborn",
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "GI",
-    "IG"
-  ],
-  "key": {
-    "I": {
-      "tag": "forge:ingots/iron"
+  "type": "rigoranthusemortisreborn:ichor_crystallizer_recipe",
+  "base": {
+      "item": "minecraft:iron_ingot"
     },
-    "G": {
-        "item": "minecraft:ghast_tear"
-    }
-  },
-  "result": {
-    "item": "rigoranthusemortisreborn:ghast_iron_ingot",
-    "count": 1
+  "reagent": {
+      "item": "minecraft:ghast_tear"
+    },
+  "output": {
+    "item": "rigoranthusemortisreborn:ghast_iron_ingot"
   }
 }

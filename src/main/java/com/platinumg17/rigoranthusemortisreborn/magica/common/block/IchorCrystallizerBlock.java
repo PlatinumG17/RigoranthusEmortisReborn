@@ -1,16 +1,15 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.common.block;
 
-import com.platinumg17.rigoranthusemortisreborn.blocks.BlockInit;
-import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
+import com.platinumg17.rigoranthusemortisreborn.api.apimagic.recipe.IIchoricRecipe;
+import com.platinumg17.rigoranthusemortisreborn.api.apimagic.util.DominionUtil;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.IchorCrystallizerTile;
-import com.platinumg17.rigoranthusemortisreborn.magica.setup.MagicItemsRegistry;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.util.PortUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.Property;
 import net.minecraft.state.StateContainer;
@@ -23,6 +22,7 @@ import net.minecraft.util.math.shapes.IBooleanFunction;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
@@ -43,44 +43,52 @@ public class IchorCrystallizerBlock extends ModBlock {
 
     @Override
     public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult rayTraceResult) {
-        if(!world.isClientSide) {
-            IchorCrystallizerTile tile = (IchorCrystallizerTile) world.getBlockEntity(pos);
-            if(tile.isCrafting)
-                return ActionResultType.PASS;
+        if (world.isClientSide || handIn != Hand.MAIN_HAND)
+            return ActionResultType.SUCCESS;
+        IchorCrystallizerTile tile = (IchorCrystallizerTile) world.getBlockEntity(pos);
+        if (tile.isCrafting)
+            return ActionResultType.PASS;
 
-            if (tile.baseMaterial != null && !tile.baseMaterial.isEmpty() && player.getItemInHand(handIn).isEmpty()) {
-                ItemEntity item = new ItemEntity(world, player.getX(), player.getY(), player.getZ(), tile.baseMaterial);
-                world.addFreshEntity(item);
-                tile.baseMaterial = ItemStack.EMPTY;
-            }
-            else if (!player.inventory.getSelected().isEmpty()) {
-                if(    player.getItemInHand(handIn).getItem() == MagicItemsRegistry.BOTTLE_OF_ICHOR
-                    || player.getItemInHand(handIn).getItem() == ItemInit.GHAST_IRON_INGOT.get()
-                    || player.getItemInHand(handIn).getItem() == ItemInit.BLIGHT_ICHOR.get()
-                    || player.getItemInHand(handIn).getItem() == ItemInit.BUCKET_OF_CADAVEROUS_ICHOR.get()
-                    || player.getItemInHand(handIn).getItem() == BlockInit.DWELLER_BRAIN.get().asItem()
-                    || player.getItemInHand(handIn).getItem() == ItemInit.PACT_OF_SERVITUDE.get()
-                    || player.getItemInHand(handIn).getItem() == ItemInit.PACT_OF_MYRMIDON.get()
-                    || player.getItemInHand(handIn).getItem() == ItemInit.PACT_OF_PURTURBATION.get()
-                    || player.getItemInHand(handIn).getItem() == Items.PAPER) {
-                    if(tile.baseMaterial != null && !tile.baseMaterial.isEmpty()){
-                        ItemEntity item = new ItemEntity(world, player.getX(), player.getY(), player.getZ(), tile.baseMaterial);
-                        world.addFreshEntity(item);
-                    }
+        if (tile.baseMaterial != null && !tile.baseMaterial.isEmpty() && player.getItemInHand(handIn).isEmpty()) {
+            ItemEntity item = new ItemEntity(world, player.getX(), player.getY(), player.getZ(), tile.baseMaterial);
+            world.addFreshEntity(item);
+            tile.baseMaterial = ItemStack.EMPTY;
+        }
+        else if (!player.inventory.getSelected().isEmpty()) {
+
+            if (tile.baseMaterial == null || tile.baseMaterial.isEmpty()) {
+                if (!player.inventory.getSelected().isEmpty()) {
                     tile.baseMaterial = player.inventory.removeItem(player.inventory.selected, 1);
-                }else if(tile.baseMaterial != null && !tile.baseMaterial.isEmpty()){
-                    if(tile.reagentItem != null && !tile.reagentItem.isEmpty()){
-                        ItemEntity item = new ItemEntity(world, player.getX(), player.getY(), player.getZ(), tile.reagentItem);
-                        world.addFreshEntity(item);
-                    }
-                    tile.reagentItem = player.inventory.removeItem(player.inventory.selected, 1);
-                    if(!tile.craft(player) && player.inventory.add(tile.reagentItem)) {
-                        tile.reagentItem = ItemStack.EMPTY;
+                }
+            }
+            else if(tile.baseMaterial != null && !tile.baseMaterial.isEmpty()) {
+                if(tile.reagentItem != null && !tile.reagentItem.isEmpty()){
+                    ItemEntity item = new ItemEntity(world, player.getX(), player.getY(), player.getZ(), tile.reagentItem);
+                    world.addFreshEntity(item);
+                }
+                tile.reagentItem = player.inventory.removeItem(player.inventory.selected, 1);
+                if(!tile.isCrafting && player.inventory.add(tile.reagentItem)) {
+                    tile.reagentItem = ItemStack.EMPTY;
+                }
+                IIchoricRecipe recipe = tile.getRecipe(player.getMainHandItem(), tile.baseMaterial, player);
+                if (recipe == null) {
+                    PortUtil.sendMessage(player, new TranslationTextComponent("rigoranthusemortisreborn.amalgamator.norecipe"));
+                } else if (recipe.consumesDominion() && !DominionUtil.hasDominionNearby(tile.getBlockPos(), tile.getLevel(), 10, recipe.dominionCost())) {
+                    PortUtil.sendMessage(player, new TranslationTextComponent("rigoranthusemortisreborn.amalgamator.nodominion"));
+                } else {
+                    if (tile.attemptCraft(player.getMainHandItem(), tile.baseMaterial, player)) {
+                        tile.reagentItem = player.inventory.removeItem(player.inventory.selected, 1);
                     }
                 }
             }
-            world.sendBlockUpdated(pos, state, state, 2);
+            else {
+                tile.reagentItem = ItemStack.EMPTY;
+                if (tile.attemptCraft(player.getMainHandItem(), tile.baseMaterial, player)) {
+                    tile.reagentItem = player.inventory.removeItem(player.inventory.selected, 1);
+                }
+            }
         }
+        world.sendBlockUpdated(pos, state, state, 2);
         return ActionResultType.SUCCESS;
     }
 
@@ -98,20 +106,12 @@ public class IchorCrystallizerBlock extends ModBlock {
         }
     }
 
+    @Override public BlockRenderType getRenderShape(BlockState state) { return BlockRenderType.ENTITYBLOCK_ANIMATED; }
+    @Override protected void createBlockStateDefinition(StateContainer.Builder<net.minecraft.block.Block, BlockState> builder) { builder.add(stage); }
+
     @Nullable
     @Override
-    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new IchorCrystallizerTile();
-    }
-
-    @Override
-    public BlockRenderType getRenderShape(BlockState state) {
-        return BlockRenderType.ENTITYBLOCK_ANIMATED;
-    }
-
-    @Override
-    protected void createBlockStateDefinition(StateContainer.Builder<net.minecraft.block.Block, BlockState> builder) { builder.add(stage); }
-
+    public TileEntity createTileEntity(BlockState state, IBlockReader world) { return new IchorCrystallizerTile(); }
     public static final VoxelShape SHAPE = Stream.of(
             Block.box(3, 15.025, 3, 13, 16, 13),
             Block.box(3, 0, 3, 13, 1, 13),
@@ -156,9 +156,5 @@ public class IchorCrystallizerBlock extends ModBlock {
             Block.box(1, 13, 13, 3, 16, 15),
             Block.box(13, 13, 13, 15, 16, 15)
     ).reduce((v1, v2) -> VoxelShapes.join(v1, v2, IBooleanFunction.OR)).get();
-
-    @Override
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        return SHAPE;
-    }
+    @Override public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) { return SHAPE; }
 }

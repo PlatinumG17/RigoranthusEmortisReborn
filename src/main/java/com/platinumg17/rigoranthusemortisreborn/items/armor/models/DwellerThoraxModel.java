@@ -16,8 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DwellerThoraxModel <T extends LivingEntity> extends BipedModel<T> {
-    // Made with Blockbench 3.9.2 // Exported for Minecraft version 1.15 - 1.16 with MCP mappings
-    // Made by PlatinumG17
+    // Made by: PlatinumG17 [Blockbench 3.9.2]
     private static final Map<Integer, DwellerThoraxModel<? extends LivingEntity>> CACHE = new HashMap<>();
     private static final ResourceLocation GUARD_VILLAGER_NAME = new ResourceLocation("guardvillagers:guard");
     final ModelRenderer Body;

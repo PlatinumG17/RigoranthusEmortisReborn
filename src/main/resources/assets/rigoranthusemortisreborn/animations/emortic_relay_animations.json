@@ -5,7 +5,7 @@
 			"loop": true,
 			"animation_length": 10.4,
 			"bones": {
-				"gem": {
+				"center_gem": {
 					"rotation": {
 						"0.0": {
 							"vector": [0, 0, 0]
@@ -24,7 +24,7 @@
 			"loop": true,
 			"animation_length": 10.4,
 			"bones": {
-				"framework": {
+				"framework3": {
 					"rotation": {
 						"0.0": {
 							"vector": [0, 0, 0]
@@ -34,7 +34,47 @@
 						}
 					}
 				},
-				"framework2": {
+				"gem1": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"10.4": {
+							"vector": [0, 0, 360]
+						}
+					}
+				},
+				"gem2": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"10.4": {
+							"vector": [0, 0, 360]
+						}
+					}
+				},
+				"gem3": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"10.4": {
+							"vector": [0, 0, 360]
+						}
+					}
+				},
+				"gem4": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"10.4": {
+							"vector": [0, 0, 360]
+						}
+					}
+				},
+				"bottomframe": {
 					"rotation": {
 						"0.0": {
 							"vector": [0, 0, 0]

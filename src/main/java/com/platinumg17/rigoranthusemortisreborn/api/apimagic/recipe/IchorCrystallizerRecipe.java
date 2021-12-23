@@ -23,9 +23,8 @@ import net.minecraftforge.registries.ForgeRegistryEntry;
 import javax.annotation.Nullable;
 import java.util.Objects;
 
-public class IchorCrystallizerRecipe implements IIchoricRecipe {//IRecipe<IInventory> {
+public class IchorCrystallizerRecipe implements IIchoricRecipe {
 
-//    public ICorrespondingCraft.CorrespondingCraft tier;
     public String category;
     public ResourceLocation id;
     public Ingredient base;    // Item part of the recipe
@@ -47,7 +46,6 @@ public class IchorCrystallizerRecipe implements IIchoricRecipe {//IRecipe<IInven
     }
 
     public IchorCrystallizerRecipe(ResourceLocation id, ItemStack output, Ingredient reagent, Ingredient base, int dominionCost) {
-
         this.reagent = reagent;
         this.base = base;
         this.output = output;
@@ -191,14 +189,8 @@ public class IchorCrystallizerRecipe implements IIchoricRecipe {//IRecipe<IInven
 
         @Override
         public IchorCrystallizerRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
-//            ItemStack base = new ItemStack(JSONUtils.getAsItem(json, "base"));
-//            ItemStack reagent = new ItemStack(JSONUtils.getAsItem(json, "reagent"));
-//            ItemStack output = new ItemStack(JSONUtils.getAsItem(json, "output"));
-                Ingredient base = Ingredient.fromJson(JSONUtils.getAsJsonObject(json, "base"));
-                Ingredient reagent = Ingredient.fromJson(JSONUtils.getAsJsonObject(json, "reagent"));
-    //            ItemStack output = ShapedRecipe.itemFromJson(JSONUtils.getAsJsonObject(json, "output"));
-//            ItemStack base = ShapedRecipe.itemFromJson(JSONUtils.getAsJsonObject(json, "base"));
-//            ItemStack reagent = ShapedRecipe.itemFromJson(JSONUtils.getAsJsonObject(json, "reagent"));
+            Ingredient base = Ingredient.fromJson(JSONUtils.getAsJsonObject(json, "base"));
+            Ingredient reagent = Ingredient.fromJson(JSONUtils.getAsJsonObject(json, "reagent"));
             ItemStack output = ShapedRecipe.itemFromJson(JSONUtils.getAsJsonObject(json, "output"));
 
             int cost = json.has("dominionCost") ? JSONUtils.getAsInt(json, "dominionCost") : 0;
@@ -208,8 +200,6 @@ public class IchorCrystallizerRecipe implements IIchoricRecipe {//IRecipe<IInven
         @Nullable
         @Override
         public IchorCrystallizerRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
-//            ItemStack base = buffer.readItem();
-//            ItemStack reagent = buffer.readItem();
             Ingredient base = Ingredient.fromNetwork(buffer);
             Ingredient reagent = Ingredient.fromNetwork(buffer);
             ItemStack output = buffer.readItem();
@@ -220,41 +210,10 @@ public class IchorCrystallizerRecipe implements IIchoricRecipe {//IRecipe<IInven
 
         @Override
         public void toNetwork(PacketBuffer buf, IchorCrystallizerRecipe recipe) {
-            recipe.base.toNetwork(buf);// buf.writeItem(recipe.base);
-            recipe.reagent.toNetwork(buf);//buf.writeItem(recipe.reagent);
+            recipe.base.toNetwork(buf);
+            recipe.reagent.toNetwork(buf);
             buf.writeItem(recipe.output);
             buf.writeInt(recipe.dominionCost);
         }
     }
 }
-
-
-
-
-
-
-//
-//    public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<IchorCrystallizerRecipe> {
-//        @Override
-//        public IchorCrystallizerRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
-//            ItemStack base = new ItemStack(JSONUtils.getAsItem(json, "base"));
-//            ItemStack input = new ItemStack(JSONUtils.getAsItem(json, "input"));
-//            ItemStack output = new ItemStack(JSONUtils.getAsItem(json, "output"));
-//            return new IchorCrystallizerRecipe(recipeId, base, input, output);
-//        }
-//        @Nullable
-//        @Override
-//        public IchorCrystallizerRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
-//            ItemStack base = buffer.readItem();
-//            ItemStack input = buffer.readItem();
-//            ItemStack output = buffer.readItem();
-//            return new IchorCrystallizerRecipe(recipeId, base, input, output);
-//        }
-//        @Override
-//        public void toNetwork(PacketBuffer buf, IchorCrystallizerRecipe recipe) {
-//            buf.writeItem(recipe.base);
-//            buf.writeItem(recipe.reagent);
-//            buf.writeItem(recipe.output);
-//        }
-//    }
-//}

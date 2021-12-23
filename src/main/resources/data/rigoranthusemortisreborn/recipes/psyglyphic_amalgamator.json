@@ -1,19 +1,28 @@
 {
     "type": "minecraft:crafting_shaped",
     "pattern": [
-      "xyx",
-      "x x",
-      "zzz"
+      "ydy",
+      "gpg",
+      "beb"
     ],
     "key": {
-      "x": {
-        "tag": "forge:ingots/iron"
+      "g": {
+        "tag": "forge:ingots/gold"
       },
       "y": {
         "tag": "forge:gems/diamond"
       },
-      "z": {
+      "d": {
         "item": "rigoranthusemortisreborn:dominion_gem"
+      },
+      "e": {
+        "item": "rigoranthusemortisreborn:powdered_esotericum"
+      },
+      "p": {
+        "tag": "forge:glass_panes"
+      },
+      "b": {
+        "item": "minecraft:blackstone"
       }
     },
     "result": {

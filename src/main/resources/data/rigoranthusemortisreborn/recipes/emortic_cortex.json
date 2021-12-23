@@ -1,19 +1,22 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "xxx",
+    "sys",
     "yby",
-    "xxx"
+    "ses"
   ],
   "key": {
-    "x": {
-      "tag": "forge:ingots/iron"
+    "s": {
+      "tag": "forge:stone"
     },
     "y": {
       "tag": "forge:glass"
     },
     "b": {
       "item": "rigoranthusemortisreborn:dweller_brain"
+    },
+    "e": {
+      "item": "minecraft:enchanting_table"
     }
   },
   "result": {

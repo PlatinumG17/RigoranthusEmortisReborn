@@ -73,28 +73,23 @@ public class Recipes extends RecipeProvider {
                     .pattern("x x")
                     .pattern("xxx").define('x', Tags.Items.GLASS).define('y', BlockInit.OPULENT_MAGMA.get()).save(consumer);
 
-            ShapedRecipeBuilder.shaped(BlockRegistry.GLYPH_PRESS_BLOCK).unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(MagicItemsRegistry.emorticOrigins))
-                    .pattern("xxx")
+            ShapedRecipeBuilder.shaped(BlockRegistry.ICHOR_CRYSTALLIZER_BLOCK).unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(MagicItemsRegistry.emorticOrigins))
+                    .pattern("sgs")
                     .pattern("xyx")
-                    .pattern("aba").define('x', Registration.RECONDITE_ORE.get()).define('y', Items.PISTON)
-                    .define('a', Tags.Items.STONE).define('b', Tags.Items.STORAGE_BLOCKS_IRON).save(consumer);
+                    .pattern("aba").define('x', Registration.POWDERED_ESOTERICUM.get()).define('y', Items.PISTON).define('g', Tags.Items.GLASS_PANES).define('s', Items.OBSIDIAN)
+                    .define('a', Tags.Items.GEMS_DIAMOND).define('b', Items.ENCHANTING_TABLE).save(consumer);
 
             ShapedRecipeBuilder.shaped(BlockRegistry.SPLINTERED_PEDESTAL).unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(MagicItemsRegistry.emorticOrigins))
-                    .pattern("xxx")
-                    .pattern(" x ")
-                    .pattern("xxx").define('x', Registration.RECONDITE_ORE.get()).save(consumer);
+                    .pattern("xgx")
+                    .pattern(" m ")
+                    .pattern("bmb").define('b', Items.BLACKSTONE).define('x', Tags.Items.INGOTS_GOLD).define('m', Items.MOSSY_STONE_BRICKS)
+                    .define('g', Tags.Items.GLASS_PANES).save(consumer);
 
             ShapedRecipeBuilder.shaped(BlockRegistry.PSYGLYPHIC_AMALG_BLOCK).unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(MagicItemsRegistry.emorticOrigins))
-                    .pattern("xyx")
-                    .pattern("x x")
-                    .pattern("zzz").define('x', Tags.Items.INGOTS_IRON)
-                    .define('y', Tags.Items.GEMS_DIAMOND)
-                    .define('z', Registration.RECONDITE_ORE.get()).save(consumer);
-
-            ShapedRecipeBuilder.shaped(MagicItemsRegistry.unadornedRing).unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(MagicItemsRegistry.emorticOrigins))
-                    .pattern("xxx")
-                    .pattern("xyx")
-                    .pattern("xxx").define('x', Tags.Items.NUGGETS_IRON).define('y', DOMINION_GEM).save(consumer);
+                    .pattern("ydy")
+                    .pattern("gpg")
+                    .pattern("beb").define('g', Tags.Items.INGOTS_GOLD).define('b', Items.BLACKSTONE).define('p', Tags.Items.GLASS_PANES).define('d', MagicItemsRegistry.dominionGem)
+                    .define('e', Registration.POWDERED_ESOTERICUM.get()).define('y', Tags.Items.GEMS_DIAMOND).save(consumer);
 
             ShapedRecipeBuilder.shaped(BlockRegistry.TABLE_BLOCK).unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(MagicItemsRegistry.emorticOrigins))
                     .pattern("xxx")
@@ -103,15 +98,11 @@ public class Recipes extends RecipeProvider {
                     .define('y', Items.STICK)
                     .define('z', Ingredient.of(CanisTags.AZULOREAL_LOGS)).save(consumer);
 
-            ShapedRecipeBuilder.shaped(MagicItemsRegistry.unadornedAmulet).unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(MagicItemsRegistry.emorticOrigins))
-                    .pattern(" x ")
-                    .pattern("xyx")
-                    .pattern(" x ").define('x',  Tags.Items.NUGGETS_IRON).define('y',DOMINION_GEM).save(consumer);
-
             ShapedRecipeBuilder.shaped(BlockRegistry.EMORTIC_CORTEX_BLOCK).unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(MagicItemsRegistry.emorticOrigins))
-                    .pattern("xxx")
-                    .pattern("y y")
-                    .pattern("xxx").define('y',  Tags.Items.INGOTS_GOLD).define('x', BlockInit.OPULENT_MAGMA.get()).save(consumer);
+                    .pattern("sys")
+                    .pattern("yby")
+                    .pattern("ses").define('s',  Tags.Items.STONE).define('y', Tags.Items.GLASS).define('b', BlockInit.DWELLER_BRAIN.get().asItem())
+                    .define('e', Registration.POWDERED_ESOTERICUM.get()).save(consumer);
 
             ShapedRecipeBuilder.shaped(MagicItemsRegistry.BLANK_PARCHMENT, 1).unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(MagicItemsRegistry.emorticOrigins))
                     .pattern("yyy")
@@ -131,10 +122,6 @@ public class Recipes extends RecipeProvider {
                     .define('s', DOMINION_GEM)
                     .define('i', Items.LAVA_BUCKET).save(consumer);
 
-            ShapelessRecipeBuilder.shapeless(BlockRegistry.LAVA_LILY, 8).unlockedBy("has_journal", InventoryChangeTrigger.Instance.hasItems(MagicItemsRegistry.emorticOrigins))
-                    .requires(Items.LILY_PAD, 1).requires(DOMINION_GEM, 8)
-                    .save(consumer);
-
             shapelessBuilder(BlockRegistry.DOMINION_GEM_BLOCK,1).requires(DOMINION_GEM, 9).save(consumer);
             shapelessBuilder(MagicItemsRegistry.dominionGem, 9).requires(BlockRegistry.DOMINION_GEM_BLOCK,1).save(consumer, new ResourceLocation(EmortisConstants.MOD_ID, "dominion_gem_2"));
 
@@ -153,11 +140,6 @@ public class Recipes extends RecipeProvider {
                     .requires(Recipes.DOMINION_GEM_BLOCK_TAG)
                     .requires(Ingredient.of(Tags.Items.INGOTS_GOLD), 3)
                     .save(consumer);
-
-//            shapelessBuilder(BlockRegistry.SCONCE_BLOCK)
-//                    .requires(Recipes.DOMINION_GEM)
-//                    .requires(Ingredient.of(Tags.Items.NUGGETS_GOLD), 2)
-//                    .save(consumer);
 
             shapelessBuilder(getRitualItem(RitualLib.RESTORATION))
                     .requires(BlockRegistry.ICHOR_JAR)

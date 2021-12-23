@@ -21,7 +21,6 @@ public class ClientHandler {
     @SubscribeEvent
     public static void init(final FMLClientSetupEvent event) {
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.ICHOR_CRYSTALLIZER_TILE, IchorCrystallizerRenderer::new);
-        ClientRegistry.bindTileEntityRenderer(BlockRegistry.GLYPH_PRESS_TILE, PressRenderer::new);
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.SPLINTERED_PEDESTAL_TILE, SplinteredPedestalRenderer::new);
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.PSYGLYPHIC_AMALG_TILE, PsyglyphicAmalgamatorRenderer::new);
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.TABLE_TILE, TableRenderer::new);
@@ -62,14 +61,13 @@ public class ClientHandler {
         RenderTypeLookup.setRenderLayer(BlockRegistry.ICHOR_JAR, RenderType.translucent());
         RenderTypeLookup.setRenderLayer(BlockRegistry.DOMINION_JAR, RenderType.translucent());
         RenderTypeLookup.setRenderLayer(BlockRegistry.ICHOR_CRYSTALLIZER_BLOCK, RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(BlockRegistry.GLYPH_PRESS_BLOCK, RenderType.translucent());
         RenderTypeLookup.setRenderLayer(BlockRegistry.SPLINTERED_PEDESTAL, RenderType.translucent());
         RenderTypeLookup.setRenderLayer(BlockRegistry.PSYGLYPHIC_AMALG_BLOCK, RenderType.translucent());
         RenderTypeLookup.setRenderLayer(BlockRegistry.LIGHT_BLOCK, RenderType.translucent());
         RenderTypeLookup.setRenderLayer(BlockRegistry.PHANTOM_BLOCK, RenderType.cutout());
         RenderTypeLookup.setRenderLayer(BlockRegistry.TABLE_BLOCK, RenderType.translucent());
         RenderTypeLookup.setRenderLayer(BlockRegistry.DOMINION_BERRY_BUSH, RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(BlockRegistry.LAVA_LILY, RenderType.cutout());
+//        RenderTypeLookup.setRenderLayer(BlockRegistry.RE_LILLY_PAD, RenderType.cutout());
         RenderTypeLookup.setRenderLayer(BlockRegistry.CREATIVE_DOMINION_JAR, RenderType.translucent());
         RenderTypeLookup.setRenderLayer(BlockRegistry.DOMINION_GEM_BLOCK, RenderType.translucent());
         RenderTypeLookup.setRenderLayer(BlockRegistry.RITUAL_BLOCK, RenderType.cutout());

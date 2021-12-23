@@ -21,7 +21,6 @@ public class ModDatagen {
         event.getGenerator().addProvider(new SpellDocProvider(event.getGenerator()));
         event.getGenerator().addProvider(new Recipes(event.getGenerator()));
         event.getGenerator().addProvider(new BlockStatesDatagen(event.getGenerator(), EmortisConstants.MOD_ID, event.getExistingFileHelper()));
-        event.getGenerator().addProvider(new GlyphRecipeProvider(event.getGenerator()));
         event.getGenerator().addProvider(new PsyglyphicRecipeProvider(event.getGenerator()));
         event.getGenerator().addProvider(new CrushRecipeProvider(event.getGenerator()));
         event.getGenerator().addProvider(new PatchouliProvider(event.getGenerator()));

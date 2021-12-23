@@ -19,7 +19,7 @@ public class LootTables extends BaseLootTableProvider {
         System.out.println(BlockRegistry.ICHOR_JAR);
         blockTables.put(BlockRegistry.ICHOR_JAR, createIchorJarTable("ichor_jar", BlockRegistry.ICHOR_JAR));
         putStandardLoot(BlockRegistry.TABLE_BLOCK);
-        putStandardLoot(BlockRegistry.LAVA_LILY);
+//        putStandardLoot(BlockRegistry.RE_LILLY_PAD);
     }
 
     public void putStandardLoot(Block block){

@@ -27,13 +27,16 @@ public class LibBlockNames {
     public final static String LISIANTHUS = "lisianthus";
     public final static String FRAGMENTED_COBBLESTONE = "fragmented_cobblestone";
 
+    public static final String DOMINION_BERRY_BUSH = "dominion_berry_bush";
+    public static final String CREATIVE_DOMINION_JAR = "creative_dominion_jar";
+    public static final String CREATIVE_ICHOR_JAR = "creative_ichor_jar";
+
     public static final String ICHOR_CRYSTALLIZER = "ichor_crystallizer";
     public static final String CRYSTALLIZER = "crystallizer";
     public static final String STATE_PROVIDER = "re_stateprovider";
     public final static String DOMINION_JAR = "dominion_jar";
     public final static String PHANTOM_BLOCK = "phantom_block";
     public final static String LIGHT_BLOCK = "light_block";
-    public final static String GLYPH_PRESS = "glyph_press";
     public final static String ICHOR_JAR = "ichor_jar";
     public final static String PSYGLYPHIC_AMALGAMATOR = "psyglyphic_amalgamator";
     public final static String PSYGLYPHIC_CIPHER = "psyglyphic_cipher";
@@ -42,12 +45,6 @@ public class LibBlockNames {
     public static final String RUNE = "rune";
     public static final String PORTAL = "portal";
     public static final String INTANGIBLE_AIR = "intangible_air";
-    // TODO: Rename
-    public static final String LAVA_LILY = "lava_lily";
-
-    public static final String DOMINION_BERRY_BUSH = "dominion_berry_bush";
-    public static final String CREATIVE_DOMINION_JAR = "creative_dominion_jar";
-    public static final String CREATIVE_ICHOR_JAR = "creative_ichor_jar";
 
     public final static String RITUAL_VESSEL = "ritual_vessel";
     public final static String DOMINION_GEM_BLOCK = "dominion_gem_block";
@@ -57,4 +54,6 @@ public class LibBlockNames {
     public static final String DOMINION_EXTRACTOR = "dominion_extractor";
     public static final String ICHOR_EXTRACTOR = "ichor_extractor";
     public static final String RELAY_DEPOSIT = "relay_deposit";
+
+    public static final String RE_LILLY_PAD = "lissome_lily";
 }

@@ -253,17 +253,6 @@ public class RigoranthusEmortisRebornAPI {
         return world.getRecipeManager().getAllRecipesFor(RecipeRegistry.CRYSTAL_TYPE);
     }
 
-    public @Nullable GlyphPressRecipe getGlyphPressRecipe(World world, Item reagent, @Nullable ISpellTier.Tier tier){
-        if(reagent == null || reagent == Items.AIR)
-            return null;
-        RecipeManager manager = world.getRecipeManager();
-        for(GlyphPressRecipe i : manager.getAllRecipesFor(RecipeRegistry.GLYPH_TYPE)){
-            if(i.reagent.getItem() == reagent && i.tier == tier)
-                return i;
-        }
-        return null;
-    }
-
     /**
      * Returns the {@link ISpellValidator} that enforces the standard rules for spell crafting.
      * This validator relaxes the rule about starting with a cast method, to allow for spells that will be imprinted

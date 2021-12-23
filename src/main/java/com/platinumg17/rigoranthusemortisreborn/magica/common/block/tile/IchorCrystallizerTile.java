@@ -123,7 +123,7 @@ public class IchorCrystallizerTile extends AnimatedTile implements ITickableTile
             updateBlock();
             return true;
         }
-        playerEntity.sendMessage(new TranslationTextComponent("rigoranthusemortisreborn.glyph_press.no_dominion"), Util.NIL_UUID);
+        playerEntity.sendMessage(new TranslationTextComponent("rigoranthusemortisreborn.ichor_crystallizer.no_dominion"), Util.NIL_UUID);
         return false;
     }
 

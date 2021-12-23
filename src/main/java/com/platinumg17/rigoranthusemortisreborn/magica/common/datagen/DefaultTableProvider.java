@@ -42,7 +42,6 @@ public class DefaultTableProvider extends LootTableProvider {
             registerDropSelf(BlockRegistry.JESSIC_WOOD);
             registerDropSelf(BlockRegistry.STRIPPED_JESSIC_LOG);
             registerDropSelf(BlockRegistry.STRIPPED_JESSIC_WOOD);
-//            registerDropSelf(BlockRegistry.SCONCE_BLOCK);
             registerBedCondition(BlockRegistry.TABLE_BLOCK, TableBlock.PART, BedPart.HEAD);
         }
         protected <T extends Comparable<T> & IStringSerializable> void registerBedCondition(Block block, Property<T> prop, T isValue) {

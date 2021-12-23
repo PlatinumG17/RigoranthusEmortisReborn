@@ -27,6 +27,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class IchorCrystallizerRecipeCategory implements IRecipeCategory<IchorCrystallizerRecipe> {
+
     public IDrawable background;
     public IDrawable icon;
     IGuiHelper helper;
@@ -36,7 +37,7 @@ public class IchorCrystallizerRecipeCategory implements IRecipeCategory<IchorCry
     public IchorCrystallizerRecipeCategory(IGuiHelper helper){
         this.helper = helper;
         background = helper.createBlankDrawable(60,30);
-        icon = helper.createDrawableIngredient(new ItemStack(BlockRegistry.CRYSTALLIZER_BLOCK));
+        icon = helper.createDrawableIngredient(new ItemStack(BlockRegistry.ICHOR_CRYSTALLIZER_BLOCK));
         this.cachedArrows = CacheBuilder.newBuilder()
                 .maximumSize(25)
                 .build(new CacheLoader<Integer, IDrawableAnimated>() {

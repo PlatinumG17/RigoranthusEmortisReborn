@@ -1,10 +1,10 @@
 {
   "type": "rigoranthusemortisreborn:ichor_crystallizer_recipe",
   "base": {
-      "item": "minecraft:iron_ingot"
+      "item": "minecraft:ghast_tear"
     },
   "reagent": {
-      "item": "minecraft:ghast_tear"
+      "tag": "forge:ingots/iron"
     },
   "output": {
     "item": "rigoranthusemortisreborn:ghast_iron_ingot"

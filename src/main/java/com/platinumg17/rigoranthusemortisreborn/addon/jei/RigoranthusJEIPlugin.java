@@ -3,7 +3,6 @@ package com.platinumg17.rigoranthusemortisreborn.addon.jei;
 import com.platinumg17.rigoranthusemortisreborn.api.RigoranthusEmortisRebornAPI;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.psyglyphic_amalgamator.PsyglyphicAmalgamatorRecipe;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.psyglyphic_amalgamator.PsyglyphicEnchantingRecipe;
-import com.platinumg17.rigoranthusemortisreborn.api.apimagic.recipe.GlyphPressRecipe;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.recipe.IchorCrystallizerRecipe;
 import com.platinumg17.rigoranthusemortisreborn.blocks.tileentity.gui.SmelteryScreenBase;
 import com.platinumg17.rigoranthusemortisreborn.canis.CanisBlocks;
@@ -49,7 +48,6 @@ public class RigoranthusJEIPlugin implements IModPlugin {
 	@Override
 	public void registerCategories(IRecipeCategoryRegistration registry) {
 		registry.addRecipeCategories(
-				new GlyphPressRecipeCategory(registry.getJeiHelpers().getGuiHelper()),
 				new IchorCrystallizerRecipeCategory(registry.getJeiHelpers().getGuiHelper()),
 				new PsyglyphicAmalgamatorRecipeCategory(registry.getJeiHelpers().getGuiHelper()),
 				new CrushRecipeCategory(registry.getJeiHelpers().getGuiHelper())
@@ -64,7 +62,6 @@ public class RigoranthusJEIPlugin implements IModPlugin {
 	public void registerRecipeCatalysts(IRecipeCatalystRegistration registry) {
 		if (ConfigValues.enableJeiPlugin && ConfigValues.enableJeiCatalysts) {
 			registry.addRecipeCatalyst(new ItemStack(BlockRegistry.CRYSTALLIZER_BLOCK), IchorCrystallizerRecipeCategory.UID);
-			registry.addRecipeCatalyst(new ItemStack(BlockRegistry.GLYPH_PRESS_BLOCK), GlyphPressRecipeCategory.UID);
 			registry.addRecipeCatalyst(new ItemStack(BlockRegistry.PSYGLYPHIC_AMALG_BLOCK), PsyglyphicAmalgamatorRecipeCategory.UID);
 			registry.addRecipeCatalyst(new ItemStack(RigoranthusEmortisRebornAPI.getInstance().getGlyphItem(EffectCrush.INSTANCE)), CrushRecipeCategory.UID);
 
@@ -100,14 +97,10 @@ public class RigoranthusJEIPlugin implements IModPlugin {
 	@Override
 	public void registerRecipes(IRecipeRegistration registration) {
 		List<IchorCrystallizerRecipe> crystalList = new ArrayList<>();
-		List<GlyphPressRecipe> recipeList = new ArrayList<>();
 		List<PsyglyphicAmalgamatorRecipe> amalgamator = new ArrayList<>();
 		List<CrushRecipe> crushRecipes = new ArrayList<>();
 		RecipeManager manager = Minecraft.getInstance().level.getRecipeManager();
 		for(IRecipe i : manager.getRecipes()){
-			if(i instanceof GlyphPressRecipe){
-				recipeList.add((GlyphPressRecipe) i);
-			}
 			if(i instanceof IchorCrystallizerRecipe){
 				crystalList.add((IchorCrystallizerRecipe) i);
 			}
@@ -120,7 +113,6 @@ public class RigoranthusJEIPlugin implements IModPlugin {
 		}
 		registration.addRecipes(crushRecipes, CrushRecipeCategory.UID);
 		registration.addRecipes(crystalList, IchorCrystallizerRecipeCategory.UID);
-		registration.addRecipes(recipeList, GlyphPressRecipeCategory.UID);
 		registration.addRecipes(amalgamator, PsyglyphicAmalgamatorRecipeCategory.UID);
 
 		ItemStack dominionPot = PotionUtils.setPotion(new ItemStack(Items.POTION), ModPotions.DOMINION_REGEN_POTION);

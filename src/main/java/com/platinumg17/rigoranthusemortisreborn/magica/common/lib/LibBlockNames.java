@@ -31,7 +31,7 @@ public class LibBlockNames {
     public static final String CREATIVE_DOMINION_JAR = "creative_dominion_jar";
     public static final String CREATIVE_ICHOR_JAR = "creative_ichor_jar";
 
-    public static final String ICHOR_CRYSTALLIZER = "ichor_crystallizer";
+    public static final String EMORTIC_CRAFTING_PRESS = "emortic_crafting_press";
     public static final String CRYSTALLIZER = "crystallizer";
     public static final String STATE_PROVIDER = "re_stateprovider";
     public final static String DOMINION_JAR = "dominion_jar";
@@ -49,11 +49,11 @@ public class LibBlockNames {
     public final static String RITUAL_VESSEL = "ritual_vessel";
     public final static String DOMINION_GEM_BLOCK = "dominion_gem_block";
     public static final String EMORTIC_CORTEX = "emortic_cortex";
-    public static final String EMORTIC_RELAY = "emortic_relay";
-    public static final String EMORTIC_RELAY_SPLITTER = "relay_splitter";
+
     public static final String DOMINION_EXTRACTOR = "dominion_extractor";
     public static final String ICHOR_EXTRACTOR = "ichor_extractor";
+    public static final String EMORTIC_RELAY = "emortic_relay";
     public static final String RELAY_DEPOSIT = "relay_deposit";
-
+    public static final String RELAY_SPLITTER = "relay_splitter";
     public static final String RE_LILLY_PAD = "lissome_lily";
 }

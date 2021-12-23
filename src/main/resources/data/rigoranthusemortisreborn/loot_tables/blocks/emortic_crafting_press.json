@@ -2,7 +2,7 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "name": "ichor_crystallizer",
+      "name": "emortic_crafting_press",
       "rolls": 1,
       "entries": [
         {
@@ -22,7 +22,7 @@
               ]
             }
           ],
-          "name": "rigoranthusemortisreborn:ichor_crystallizer"
+          "name": "rigoranthusemortisreborn:emortic_crafting_press"
         }
       ]
     }

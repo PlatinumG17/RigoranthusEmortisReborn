@@ -13,16 +13,16 @@ import net.minecraft.util.text.TranslationTextComponent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmorticRelaySplitterTile extends EmorticRelayTile {
+public class RelaySplitterTile extends EmorticRelayTile {
 
     ArrayList<BlockPos> toList = new ArrayList<>();
     ArrayList<BlockPos> fromList = new ArrayList<>();
 
-    public EmorticRelaySplitterTile() {
-        super(BlockRegistry.EMORTIC_RELAY_SPLITTER_TILE);
+    public RelaySplitterTile() {
+        super(BlockRegistry.RELAY_SPLITTER_TILE);
     }
 
-    public EmorticRelaySplitterTile(TileEntityType<?> type){
+    public RelaySplitterTile(TileEntityType<?> type){
         super(type);
     }
 

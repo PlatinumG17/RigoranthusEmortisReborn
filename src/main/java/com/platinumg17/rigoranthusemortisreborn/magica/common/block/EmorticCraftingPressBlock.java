@@ -2,7 +2,7 @@ package com.platinumg17.rigoranthusemortisreborn.magica.common.block;
 
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.recipe.IIchoricRecipe;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.util.DominionUtil;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.IchorCrystallizerTile;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.EmorticCraftingPressTile;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.util.PortUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
@@ -29,11 +29,11 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.stream.Stream;
 
-public class IchorCrystallizerBlock extends ModBlock {
+public class EmorticCraftingPressBlock extends ModBlock {
     public static final Property<Integer> stage = IntegerProperty.create("stage", 1, 31);
 
-    public IchorCrystallizerBlock() {
-        super(ModBlock.defaultProperties().noOcclusion(),"ichor_crystallizer");
+    public EmorticCraftingPressBlock() {
+        super(ModBlock.defaultProperties().noOcclusion(),"emortic_crafting_press");
     }
 
     @Override
@@ -45,7 +45,7 @@ public class IchorCrystallizerBlock extends ModBlock {
     public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult rayTraceResult) {
         if (world.isClientSide || handIn != Hand.MAIN_HAND)
             return ActionResultType.SUCCESS;
-        IchorCrystallizerTile tile = (IchorCrystallizerTile) world.getBlockEntity(pos);
+        EmorticCraftingPressTile tile = (EmorticCraftingPressTile) world.getBlockEntity(pos);
         if (tile.isCrafting)
             return ActionResultType.PASS;
 
@@ -95,9 +95,9 @@ public class IchorCrystallizerBlock extends ModBlock {
     @Override
     public void playerWillDestroy(World worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
         super.playerWillDestroy(worldIn, pos, state, player);
-        if(!(worldIn.getBlockEntity(pos) instanceof IchorCrystallizerTile) || worldIn.isClientSide)
+        if(!(worldIn.getBlockEntity(pos) instanceof EmorticCraftingPressTile) || worldIn.isClientSide)
             return;
-        IchorCrystallizerTile tile = ((IchorCrystallizerTile) worldIn.getBlockEntity(pos));
+        EmorticCraftingPressTile tile = ((EmorticCraftingPressTile) worldIn.getBlockEntity(pos));
         if(tile.baseMaterial != null && !tile.baseMaterial.isEmpty()){
             worldIn.addFreshEntity(new ItemEntity(worldIn, pos.getX(), pos.getY(), pos.getZ(), tile.baseMaterial));
             if(tile.reagentItem != null && !tile.reagentItem.isEmpty()){
@@ -111,7 +111,7 @@ public class IchorCrystallizerBlock extends ModBlock {
 
     @Nullable
     @Override
-    public TileEntity createTileEntity(BlockState state, IBlockReader world) { return new IchorCrystallizerTile(); }
+    public TileEntity createTileEntity(BlockState state, IBlockReader world) { return new EmorticCraftingPressTile(); }
     public static final VoxelShape SHAPE = Stream.of(
             Block.box(3, 15.025, 3, 13, 16, 13),
             Block.box(3, 0, 3, 13, 1, 13),

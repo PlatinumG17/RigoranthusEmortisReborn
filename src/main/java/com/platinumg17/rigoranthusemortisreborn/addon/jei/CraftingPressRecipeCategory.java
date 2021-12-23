@@ -4,11 +4,8 @@ import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.platinumg17.rigoranthusemortisreborn.api.apimagic.recipe.IchorCrystallizerRecipe;
-import com.platinumg17.rigoranthusemortisreborn.api.apimagic.recipe.IchorCrystallizerRecipe;
-import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.interfaces.ISpellTier;
+import com.platinumg17.rigoranthusemortisreborn.api.apimagic.recipe.CraftingPressRecipe;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
-import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.BlockRegistry;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;
@@ -17,6 +14,8 @@ import mezz.jei.api.gui.drawable.IDrawableAnimated;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.category.IRecipeCategory;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -26,24 +25,24 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class IchorCrystallizerRecipeCategory implements IRecipeCategory<IchorCrystallizerRecipe> {
+public class CraftingPressRecipeCategory implements IRecipeCategory<CraftingPressRecipe> {
 
     public IDrawable background;
     public IDrawable icon;
     IGuiHelper helper;
-    public final static ResourceLocation UID = new ResourceLocation(EmortisConstants.MOD_ID, "ichor_crystallizer_recipe");
+    public final static ResourceLocation UID = new ResourceLocation(EmortisConstants.MOD_ID, "crafting_press_recipe");
     private final LoadingCache<Integer, IDrawableAnimated> cachedArrows;
 
-    public IchorCrystallizerRecipeCategory(IGuiHelper helper){
+    public CraftingPressRecipeCategory(IGuiHelper helper){
         this.helper = helper;
-        background = helper.createBlankDrawable(60,30);
-        icon = helper.createDrawableIngredient(new ItemStack(BlockRegistry.ICHOR_CRYSTALLIZER_BLOCK));
+        background = helper.createDrawable(JEIConstants.RECIPE_GUI_PRESS, 0, 0, 117, 46);
+        icon = helper.createDrawableIngredient(new ItemStack(BlockRegistry.EMORTIC_CRAFTING_PRESS_BLOCK));
         this.cachedArrows = CacheBuilder.newBuilder()
                 .maximumSize(25)
                 .build(new CacheLoader<Integer, IDrawableAnimated>() {
                     @Override
                     public IDrawableAnimated load(Integer cookTime) {
-                        return helper.drawableBuilder(JEIConstants.RECIPE_GUI_VANILLA, 82, 128, 24, 17)
+                        return helper.drawableBuilder(JEIConstants.RECIPE_GUI_PRESS, 132, 0, 22, 15)
                                 .buildAnimated(cookTime, IDrawableAnimated.StartDirection.LEFT, false);
                     }
                 });
@@ -55,18 +54,18 @@ public class IchorCrystallizerRecipeCategory implements IRecipeCategory<IchorCry
     }
 
     @Override
-    public Class<? extends IchorCrystallizerRecipe> getRecipeClass() {
-        return IchorCrystallizerRecipe.class;
+    public Class<? extends CraftingPressRecipe> getRecipeClass() {
+        return CraftingPressRecipe.class;
     }
 
     @Override
     public String getTitle() {
-        return new TranslationTextComponent("block.rigoranthusemortisreborn.ichor_crystallizer").getString();
+        return new TranslationTextComponent("block.rigoranthusemortisreborn.emortic_crafting_press").getString();
     }
 
     @Override
     public IDrawable getBackground() {
-        return helper.createBlankDrawable(80,30);
+        return this.background;
     }
 
     @Override
@@ -75,31 +74,35 @@ public class IchorCrystallizerRecipeCategory implements IRecipeCategory<IchorCry
     }
 
     @Override
-    public void draw(IchorCrystallizerRecipe recipe, MatrixStack matrixStack, double mouseX, double mouseY) {
+    public void draw(CraftingPressRecipe recipe, MatrixStack matrixStack, double mouseX, double mouseY) {
         IDrawableAnimated arrow = this.cachedArrows.getUnchecked(40);
-        arrow.draw( matrixStack,38, 6);
+        arrow.draw( matrixStack,72, 27);
+        FontRenderer renderer = Minecraft.getInstance().font;
+        if(recipe.consumesDominion())
+            renderer.draw(matrixStack, new TranslationTextComponent("rigoranthusemortisreborn.dominion", recipe.dominionCost), 0.0f, 19, 54);//65, 10);
+        //renderer.draw(matrixStack, new TranslationTextComponent("rigoranthusemortisreborn.dominion", recipe.dominionCost), 12f, 6f, 4210752);
     }
 
     @Override
-    public void setIngredients(IchorCrystallizerRecipe ichorCrystallizerRecipe, IIngredients iIngredients) {
+    public void setIngredients(CraftingPressRecipe craftingPressRecipe, IIngredients iIngredients) {
         List<List<ItemStack>> itemStacks = new ArrayList<>();
-        itemStacks.add(Arrays.asList(ichorCrystallizerRecipe.base.getItems()));
-        itemStacks.add(Arrays.asList(ichorCrystallizerRecipe.reagent.getItems()));
-        itemStacks.add(Collections.singletonList(ichorCrystallizerRecipe.output));
+        itemStacks.add(Arrays.asList(craftingPressRecipe.base.getItems()));
+        itemStacks.add(Arrays.asList(craftingPressRecipe.reagent.getItems()));
+        itemStacks.add(Collections.singletonList(craftingPressRecipe.output));
         iIngredients.setInputLists(VanillaTypes.ITEM, itemStacks);
-        iIngredients.setOutput(VanillaTypes.ITEM, ichorCrystallizerRecipe.output);
+        iIngredients.setOutput(VanillaTypes.ITEM, craftingPressRecipe.output);
     }
 
     @Override
-    public void setRecipe(IRecipeLayout recipeLayout, IchorCrystallizerRecipe o, IIngredients ingredients) {
+    public void setRecipe(IRecipeLayout recipeLayout, CraftingPressRecipe o, IIngredients ingredients) {
         int index = 0;
-        recipeLayout.getItemStacks().init(index, true, 0, 4);
+        recipeLayout.getItemStacks().init(index, true, 26, 27);
         recipeLayout.getItemStacks().set(index, ingredients.getInputs(VanillaTypes.ITEM).get(0));
         index++;
-        recipeLayout.getItemStacks().init(index, true, 16, 4);
+        recipeLayout.getItemStacks().init(index, true, 46, 27);
         recipeLayout.getItemStacks().set(index, ingredients.getInputs(VanillaTypes.ITEM).get(1));
         index++;
-        recipeLayout.getItemStacks().init(index, true, 64, 4);
+        recipeLayout.getItemStacks().init(index, true, 104, 27);
         recipeLayout.getItemStacks().set(index, ingredients.getOutputs(VanillaTypes.ITEM).get(0));
     }
 }

@@ -39,7 +39,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class IchorCrystallizerTile extends AnimatedTile implements ITickableTileEntity, IAnimatable, IAnimationListener, ISidedInventory {
+public class EmorticCraftingPressTile extends AnimatedTile implements ITickableTileEntity, IAnimatable, IAnimationListener, ISidedInventory {
 
     private final Map<Direction, LazyOptional<IItemHandler>> itemHandlers = new HashMap<>();
     public long frames = 0;
@@ -51,8 +51,8 @@ public class IchorCrystallizerTile extends AnimatedTile implements ITickableTile
     private int craftingLength = 154;
     private NonNullList<ItemStack> items = NonNullList.withSize(10, ItemStack.EMPTY);
 
-    public IchorCrystallizerTile() {
-        super(BlockRegistry.ICHOR_CRYSTALLIZER_TILE);
+    public EmorticCraftingPressTile() {
+        super(BlockRegistry.EMORTIC_CRAFTING_PRESS_TILE);
         ImmutableList.of(Direction.UP, Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST).forEach(this::addItemHandler);
         addItemHandler(null);
 //        counter = 1;
@@ -123,7 +123,7 @@ public class IchorCrystallizerTile extends AnimatedTile implements ITickableTile
             updateBlock();
             return true;
         }
-        playerEntity.sendMessage(new TranslationTextComponent("rigoranthusemortisreborn.ichor_crystallizer.no_dominion"), Util.NIL_UUID);
+        playerEntity.sendMessage(new TranslationTextComponent("rigoranthusemortisreborn.emortic_crafting_press.no_dominion"), Util.NIL_UUID);
         return false;
     }
 

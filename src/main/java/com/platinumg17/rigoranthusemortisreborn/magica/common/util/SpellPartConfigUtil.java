@@ -1,6 +1,6 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.common.util;
 
-import com.platinumg17.rigoranthusemortisreborn.magica.GlyphLib;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.lib.GlyphLib;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 import java.util.List;

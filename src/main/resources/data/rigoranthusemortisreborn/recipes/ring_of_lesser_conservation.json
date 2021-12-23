@@ -2,22 +2,22 @@
     "type": "rigoranthusemortisreborn:amalgamator_recipe",
     "item_1": [
         {
-          "tag": "forge:gems/diamond"
+          "tag": "forge:ingots/gold"
         }
       ],
       "item_2": [
         {
-          "tag": "forge:gems/diamond"
+          "tag": "forge:ingots/gold"
         }
       ],
       "item_3": [
         {
-          "tag": "forge:gems/diamond"
+          "tag": "forge:ingots/gold"
         }
       ],
       "item_4": [
         {
-          "tag": "forge:gems/diamond"
+          "tag": "forge:ingots/gold"
         }
       ],
       "item_5": [

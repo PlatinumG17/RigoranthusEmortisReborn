@@ -1,6 +1,6 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.common.block;
 
-import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.EmorticRelaySplitterTile;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.RelaySplitterTile;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.lib.LibBlockNames;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
@@ -13,9 +13,9 @@ import net.minecraft.world.IBlockReader;
 
 import javax.annotation.Nullable;
 
-public class EmorticRelaySplitter extends ModBlock {
-    public EmorticRelaySplitter() {
-        super(defaultProperties().lightLevel((state) -> 8).noOcclusion(), LibBlockNames.EMORTIC_RELAY_SPLITTER);
+public class RelaySplitterBlock extends ModBlock {
+    public RelaySplitterBlock() {
+        super(defaultProperties().lightLevel((state) -> 8).noOcclusion(), LibBlockNames.RELAY_SPLITTER);
     }
 
     @Override
@@ -26,7 +26,7 @@ public class EmorticRelaySplitter extends ModBlock {
     @Nullable
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new EmorticRelaySplitterTile();
+        return new RelaySplitterTile();
     }
 
     @Override

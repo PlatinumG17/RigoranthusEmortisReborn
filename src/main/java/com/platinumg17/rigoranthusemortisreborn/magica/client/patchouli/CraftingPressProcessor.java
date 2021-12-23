@@ -1,6 +1,6 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.client.patchouli;
 
-import com.platinumg17.rigoranthusemortisreborn.api.apimagic.recipe.IchorCrystallizerRecipe;
+import com.platinumg17.rigoranthusemortisreborn.api.apimagic.recipe.CraftingPressRecipe;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.util.ResourceLocation;
@@ -8,13 +8,13 @@ import vazkii.patchouli.api.IComponentProcessor;
 import vazkii.patchouli.api.IVariable;
 import vazkii.patchouli.api.IVariableProvider;
 
-public class IchorCrystallizerProcessor implements IComponentProcessor {
-    IchorCrystallizerRecipe recipe;
+public class CraftingPressProcessor implements IComponentProcessor {
+    CraftingPressRecipe recipe;
     @Override
     public void setup(IVariableProvider variables) {
         RecipeManager manager = Minecraft.getInstance().level.getRecipeManager();
         String recipeID = variables.get("recipe").asString();
-        recipe = (IchorCrystallizerRecipe) manager.byKey(new ResourceLocation(recipeID)).orElse(null);
+        recipe = (CraftingPressRecipe) manager.byKey(new ResourceLocation(recipeID)).orElse(null);
     }
     @Override
     public IVariable process(String key) {

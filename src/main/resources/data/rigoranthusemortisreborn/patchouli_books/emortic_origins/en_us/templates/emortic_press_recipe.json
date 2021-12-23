@@ -1,9 +1,9 @@
 {
-	"processor": "com.platinumg17.rigoranthusemortisreborn.magica.client.patchouli.IchorCrystallizerProcessor",
+	"processor": "com.platinumg17.rigoranthusemortisreborn.magica.client.patchouli.CraftingPressProcessor",
     "components": [
 		{
 			"type": "header",
-			"text": "block.rigoranthusemortisreborn.ichor_crystallizer",
+			"text": "block.rigoranthusemortisreborn.emortic_crafting_press",
 			"x": -1,
 			"y": -1
         },

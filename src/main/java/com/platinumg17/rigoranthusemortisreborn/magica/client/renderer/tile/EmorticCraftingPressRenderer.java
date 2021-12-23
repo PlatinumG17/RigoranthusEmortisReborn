@@ -4,7 +4,7 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.util.MappingUtil;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.renderer.item.FixedGeoBlockItemRenderer;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.IchorCrystallizerTile;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.EmorticCraftingPressTile;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
@@ -22,18 +22,18 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import software.bernie.geckolib3.renderers.geo.GeoBlockRenderer;
 
-public class IchorCrystallizerRenderer extends GeoBlockRenderer<IchorCrystallizerTile> {
+public class EmorticCraftingPressRenderer extends GeoBlockRenderer<EmorticCraftingPressTile> {
 
-    public IchorCrystallizerRenderer(TileEntityRendererDispatcher rendererDispatcherIn) {
-        super(rendererDispatcherIn, new IchorCrystallizerModel());
+    public EmorticCraftingPressRenderer(TileEntityRendererDispatcher rendererDispatcherIn) {
+        super(rendererDispatcherIn, new EmorticCraftingPressModel());
     }
 
     @Override
-    public RenderType getRenderType(IchorCrystallizerTile animatable, float partialTicks, MatrixStack stack, IRenderTypeBuffer renderTypeBuffer, IVertexBuilder vertexBuilder, int packedLightIn, ResourceLocation textureLocation) {
+    public RenderType getRenderType(EmorticCraftingPressTile animatable, float partialTicks, MatrixStack stack, IRenderTypeBuffer renderTypeBuffer, IVertexBuilder vertexBuilder, int packedLightIn, ResourceLocation textureLocation) {
         return RenderType.entityTranslucent(textureLocation);
     }
 
-    public void renderFloatingItem(IchorCrystallizerTile tileEntityIn, ItemEntity entityItem, double x, double y, double z, MatrixStack stack, IRenderTypeBuffer iRenderTypeBuffer){
+    public void renderFloatingItem(EmorticCraftingPressTile tileEntityIn, ItemEntity entityItem, double x, double y, double z, MatrixStack stack, IRenderTypeBuffer iRenderTypeBuffer){
         stack.pushPose();
         tileEntityIn.frames++;
         entityItem.setYHeadRot(tileEntityIn.frames);
@@ -55,7 +55,7 @@ public class IchorCrystallizerRenderer extends GeoBlockRenderer<IchorCrystallize
     }
 
     @Override
-    public void renderEarly(IchorCrystallizerTile tileEntityIn, MatrixStack matrixStack, float ticks, IRenderTypeBuffer iRenderTypeBuffer, IVertexBuilder vertexBuilder, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float partialTicks) {
+    public void renderEarly(EmorticCraftingPressTile tileEntityIn, MatrixStack matrixStack, float ticks, IRenderTypeBuffer iRenderTypeBuffer, IVertexBuilder vertexBuilder, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float partialTicks) {
         double x = tileEntityIn.getBlockPos().getX();
         double y = tileEntityIn.getBlockPos().getY();
         double z = tileEntityIn.getBlockPos().getZ();
@@ -96,6 +96,6 @@ public class IchorCrystallizerRenderer extends GeoBlockRenderer<IchorCrystallize
         }
     }
     public static FixedGeoBlockItemRenderer getISTER(){
-        return new FixedGeoBlockItemRenderer<>(new IchorCrystallizerModel());
+        return new FixedGeoBlockItemRenderer<>(new EmorticCraftingPressModel());
     }
 }

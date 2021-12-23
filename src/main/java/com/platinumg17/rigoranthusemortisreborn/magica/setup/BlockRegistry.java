@@ -7,7 +7,6 @@ import com.platinumg17.rigoranthusemortisreborn.magica.client.renderer.tile.*;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.*;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.*;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.items.AnimBlockItem;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.items.FluidBlockItem;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.lib.LibBlockNames;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.lib.LibItemNames;
 import com.platinumg17.rigoranthusemortisreborn.world.trees.StrippableLog;
@@ -78,8 +77,8 @@ public class BlockRegistry {
     @ObjectHolder(LibBlockNames.LIGHT_BLOCK) public static TileEntityType<LightTile> LIGHT_TILE;
     @ObjectHolder(LibBlockNames.PSYGLYPHIC_AMALGAMATOR) public static TileEntityType<PsyglyphicAmalgamatorTile> PSYGLYPHIC_AMALG_TILE;
     @ObjectHolder(LibBlockNames.PSYGLYPHIC_AMALGAMATOR) public static PsyglyphicAmalgamatorBlock PSYGLYPHIC_AMALG_BLOCK;
-    @ObjectHolder(LibBlockNames.ICHOR_CRYSTALLIZER) public static IchorCrystallizerBlock ICHOR_CRYSTALLIZER_BLOCK;
-    @ObjectHolder(LibBlockNames.ICHOR_CRYSTALLIZER) public static TileEntityType<IchorCrystallizerTile> ICHOR_CRYSTALLIZER_TILE;
+    @ObjectHolder(LibBlockNames.EMORTIC_CRAFTING_PRESS) public static EmorticCraftingPressBlock EMORTIC_CRAFTING_PRESS_BLOCK;
+    @ObjectHolder(LibBlockNames.EMORTIC_CRAFTING_PRESS) public static TileEntityType<EmorticCraftingPressTile> EMORTIC_CRAFTING_PRESS_TILE;
     @ObjectHolder(LibBlockNames.SPLINTERED_PEDESTAL) public static TileEntityType<SplinteredPedestalTile> SPLINTERED_PEDESTAL_TILE;
     @ObjectHolder(LibBlockNames.SPLINTERED_PEDESTAL) public static SplinteredPedestal SPLINTERED_PEDESTAL;
     @ObjectHolder(LibBlockNames.DOMINION_JAR) public static DominionJar DOMINION_JAR;
@@ -107,8 +106,8 @@ public class BlockRegistry {
     @ObjectHolder(LibBlockNames.RELAY_DEPOSIT) public static TileEntityType<RelayDepositTile> RELAY_DEPOSIT_TILE;
     @ObjectHolder(LibBlockNames.EMORTIC_RELAY) public static TileEntityType<EmorticRelayTile> EMORTIC_RELAY_TILE;
     @ObjectHolder(LibBlockNames.EMORTIC_RELAY) public static EmorticRelay EMORTIC_RELAY;
-    @ObjectHolder(LibBlockNames.EMORTIC_RELAY_SPLITTER) public static EmorticRelaySplitter EMORTIC_RELAY_SPLITTER;
-    @ObjectHolder(LibBlockNames.EMORTIC_RELAY_SPLITTER) public static TileEntityType<EmorticRelaySplitterTile> EMORTIC_RELAY_SPLITTER_TILE;
+    @ObjectHolder(LibBlockNames.RELAY_SPLITTER) public static RelaySplitterBlock RELAY_SPLITTER;
+    @ObjectHolder(LibBlockNames.RELAY_SPLITTER) public static TileEntityType<RelaySplitterTile> RELAY_SPLITTER_TILE;
     @ObjectHolder(LibBlockNames.DOMINION_EXTRACTOR) public static DominionExtractorBlock DOMINION_EXTRACTOR_BLOCK;
     @ObjectHolder(LibBlockNames.DOMINION_EXTRACTOR) public static  TileEntityType<DominionExtractorTile> DOMINION_EXTRACTOR_TILE;
 
@@ -157,7 +156,7 @@ public class BlockRegistry {
             registry.register(new SplinteredPedestal());
             registry.register(new PsyglyphicAmalgamatorBlock());
             registry.register(new EmorticCortex());
-            registry.register(new IchorCrystallizerBlock());
+            registry.register(new EmorticCraftingPressBlock());
             registry.register(new RitualVesselBlock(LibBlockNames.RITUAL_VESSEL));
             registry.register(new PsyglyphicBlock());
             registry.register(new IchorJar());
@@ -166,7 +165,7 @@ public class BlockRegistry {
             registry.register(new CreativeDominionJar());
             registry.register(new EmorticRelay());
             registry.register(new RelayDepositBlock());
-            registry.register(new EmorticRelaySplitter());
+            registry.register(new RelaySplitterBlock());
             registry.register(new CrystallizerBlock());
             registry.register(new DominionExtractorBlock());
             registry.register(new IchorExtractorBlock());
@@ -203,7 +202,7 @@ public class BlockRegistry {
             event.getRegistry().register(TileEntityType.Builder.of(PhantomBlockTile::new, BlockRegistry.PHANTOM_BLOCK).build(null).setRegistryName(LibBlockNames.PHANTOM_BLOCK));
             event.getRegistry().register(TileEntityType.Builder.of(DominionJarTile::new, BlockRegistry.DOMINION_JAR).build(null).setRegistryName(LibBlockNames.DOMINION_JAR));
             event.getRegistry().register(TileEntityType.Builder.of(LightTile::new, BlockRegistry.LIGHT_BLOCK).build(null).setRegistryName(LibBlockNames.LIGHT_BLOCK));
-            event.getRegistry().register(TileEntityType.Builder.of(IchorCrystallizerTile::new, BlockRegistry.ICHOR_CRYSTALLIZER_BLOCK).build(null).setRegistryName(LibBlockNames.ICHOR_CRYSTALLIZER));
+            event.getRegistry().register(TileEntityType.Builder.of(EmorticCraftingPressTile::new, BlockRegistry.EMORTIC_CRAFTING_PRESS_BLOCK).build(null).setRegistryName(LibBlockNames.EMORTIC_CRAFTING_PRESS));
             event.getRegistry().register(TileEntityType.Builder.of(PsyglyphicAmalgamatorTile::new, BlockRegistry.PSYGLYPHIC_AMALG_BLOCK).build(null).setRegistryName(LibBlockNames.PSYGLYPHIC_AMALGAMATOR));
             event.getRegistry().register(TileEntityType.Builder.of(SplinteredPedestalTile::new, BlockRegistry.SPLINTERED_PEDESTAL).build(null).setRegistryName(LibBlockNames.SPLINTERED_PEDESTAL));
             event.getRegistry().register(TileEntityType.Builder.of(TableTile::new, BlockRegistry.TABLE_BLOCK).build(null).setRegistryName(LibBlockNames.TABLE_BLOCK));
@@ -217,7 +216,7 @@ public class BlockRegistry {
             event.getRegistry().register(TileEntityType.Builder.of(EmorticRelayTile::new, BlockRegistry.EMORTIC_RELAY).build(null).setRegistryName(LibBlockNames.EMORTIC_RELAY));
             event.getRegistry().register(TileEntityType.Builder.of(DominionExtractorTile::new, BlockRegistry.DOMINION_EXTRACTOR_BLOCK).build(null).setRegistryName(LibBlockNames.DOMINION_EXTRACTOR));
             event.getRegistry().register(TileEntityType.Builder.of(IchorExtractorTile::new, BlockRegistry.ICHOR_EXTRACTOR_BLOCK).build(null).setRegistryName(LibBlockNames.ICHOR_EXTRACTOR));
-            event.getRegistry().register(TileEntityType.Builder.of(EmorticRelaySplitterTile::new, BlockRegistry.EMORTIC_RELAY_SPLITTER).build(null).setRegistryName(LibBlockNames.EMORTIC_RELAY_SPLITTER));
+            event.getRegistry().register(TileEntityType.Builder.of(RelaySplitterTile::new, BlockRegistry.RELAY_SPLITTER).build(null).setRegistryName(LibBlockNames.RELAY_SPLITTER));
             event.getRegistry().register(TileEntityType.Builder.of(EmorticCortexTile::new, BlockRegistry.EMORTIC_CORTEX_BLOCK).build(null).setRegistryName(LibBlockNames.EMORTIC_CORTEX));
             event.getRegistry().register(TileEntityType.Builder.of(CrystallizerTile::new, BlockRegistry.CRYSTALLIZER_BLOCK).build(null).setRegistryName(LibBlockNames.CRYSTALLIZER));
             event.getRegistry().register(TileEntityType.Builder.of(PsyglyphicCipherTile::new, BlockRegistry.PSYGLYPHIC_CIPHER).build(null).setRegistryName(LibBlockNames.PSYGLYPHIC_CIPHER));
@@ -229,36 +228,8 @@ public class BlockRegistry {
             Item bilisBerry = new BlockItem(BlockRegistry.SPECTABILIS_BUSH, MagicItemsRegistry.defaultItemProperties().food(MagicItemsRegistry.BILIS_BERRY_FOOD)).setRegistryName(LibItemNames.BILIS_BERRY);
             ComposterBlock.COMPOSTABLES.putIfAbsent(dominionBerry, 0.3f);
             ComposterBlock.COMPOSTABLES.putIfAbsent(bilisBerry, 0.3f);
-            registry.register(new BlockItem(BlockRegistry.PHANTOM_BLOCK, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.PHANTOM_BLOCK));
-            registry.register(new BlockItem(BlockRegistry.LIGHT_BLOCK, new Item.Properties()).setRegistryName(LibBlockNames.LIGHT_BLOCK));
-            registry.register(new BlockItem(BlockRegistry.DOMINION_JAR, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.DOMINION_JAR));
-            registry.register(new AnimBlockItem(BlockRegistry.ICHOR_CRYSTALLIZER_BLOCK, MagicItemsRegistry.defaultItemProperties().setISTER(() -> IchorCrystallizerRenderer::getISTER)).setRegistryName(LibBlockNames.ICHOR_CRYSTALLIZER));
-            registry.register(new BlockItem(BlockRegistry.PSYGLYPHIC_AMALG_BLOCK, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.PSYGLYPHIC_AMALGAMATOR));
-            registry.register(new BlockItem(BlockRegistry.SPLINTERED_PEDESTAL, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.SPLINTERED_PEDESTAL));
-            registry.register(new AnimBlockItem(BlockRegistry.TABLE_BLOCK, MagicItemsRegistry.defaultItemProperties().setISTER(() -> TableRenderer::getISTER)).setRegistryName(LibBlockNames.TABLE_BLOCK));
-            registry.register(new BlockItem(BlockRegistry.PORTAL_BLOCK, new Item.Properties()).setRegistryName(LibBlockNames.PORTAL));
-//            registry.register(new FluidBlockItem(BlockRegistry.RE_LILLY_PAD, MagicItemsRegistry.defaultItemProperties().fireResistant()).setRegistryName(LibBlockNames.RE_LILLY_PAD));
-            registry.register(new BlockItem(BlockRegistry.CREATIVE_DOMINION_JAR, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.CREATIVE_DOMINION_JAR));
-            registry.register(new AnimBlockItem(BlockRegistry.RITUAL_BLOCK, MagicItemsRegistry.defaultItemProperties().setISTER(() -> RitualVesselRenderer::getISTER)).setRegistryName(LibBlockNames.RITUAL_VESSEL));
-            registry.register(getDefaultBlockItem(BlockRegistry.DOMINION_GEM_BLOCK, LibBlockNames.DOMINION_GEM_BLOCK));
-            registry.register(new BlockItem(BlockRegistry.ICHOR_JAR, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.ICHOR_JAR));
-            registry.register(new BlockItem(BlockRegistry.CREATIVE_ICHOR_JAR, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.CREATIVE_ICHOR_JAR));
-            registry.register(new AnimBlockItem(BlockRegistry.RELAY_DEPOSIT, MagicItemsRegistry.defaultItemProperties().setISTER(() -> GenericRenderer.getISTER("relay_deposit"))).setRegistryName(LibBlockNames.RELAY_DEPOSIT));
-            registry.register(new AnimBlockItem(BlockRegistry.EMORTIC_RELAY, MagicItemsRegistry.defaultItemProperties().setISTER(() -> GenericRenderer.getISTER("emortic_relay"))).setRegistryName(LibBlockNames.EMORTIC_RELAY));
-            registry.register(new AnimBlockItem(BlockRegistry.EMORTIC_RELAY_SPLITTER, MagicItemsRegistry.defaultItemProperties().setISTER(() -> GenericRenderer.getISTER("relay_splitter"))).setRegistryName(LibBlockNames.EMORTIC_RELAY_SPLITTER));
-            registry.register(new AnimBlockItem(BlockRegistry.DOMINION_EXTRACTOR_BLOCK, MagicItemsRegistry.defaultItemProperties().fireResistant().setISTER(() -> DominionExtractorRenderer::getISTER)).setRegistryName(LibBlockNames.DOMINION_EXTRACTOR));
-            registry.register(new AnimBlockItem(BlockRegistry.ICHOR_EXTRACTOR_BLOCK, MagicItemsRegistry.defaultItemProperties().fireResistant().setISTER(() -> IchorExtractorRenderer::getISTER)).setRegistryName(LibBlockNames.ICHOR_EXTRACTOR));
-            registry.register(new BlockItem(BlockRegistry.CRYSTALLIZER_BLOCK, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.CRYSTALLIZER));
-            registry.register(new AnimBlockItem(BlockRegistry.EMORTIC_CORTEX_BLOCK, MagicItemsRegistry.defaultItemProperties().setISTER(() -> EmorticCortexRenderer::getISTER)).setRegistryName(LibBlockNames.EMORTIC_CORTEX));
-            registry.register(new AnimBlockItem(BlockRegistry.PSYGLYPHIC_CIPHER, MagicItemsRegistry.defaultItemProperties().fireResistant().setISTER(() -> PsyglyphicRenderer::getISTER)).setRegistryName(LibBlockNames.PSYGLYPHIC_CIPHER));
             registry.register(dominionBerry);
             registry.register(bilisBerry);
-//            registry.register(new BlockItem(BlockRegistry.MASTERFUL_SMELTERY, MagicItemsRegistry.defaultItemProperties().stacksTo(1)).setRegistryName(LibBlockNames.MASTERFUL_SMELTERY));
-//            registry.register(getDefaultBlockItem(BlockRegistry.RECONDITE_ORE, LibBlockNames.RECONDITE_ORE));
-            registry.register(getDefaultBlockItem(BlockRegistry.FRAGMENTED_COBBLESTONE, LibBlockNames.FRAGMENTED_COBBLESTONE));
-            registry.register(getDefaultBlockItem(BlockRegistry.LISIANTHUS, LibBlockNames.LISIANTHUS));
-            registry.register(getDefaultBlockItem(BlockRegistry.AZULOREAL_ORCHID, LibBlockNames.AZULOREAL_ORCHID));
-            registry.register(getDefaultBlockItem(BlockRegistry.IRIDESCENT_SPROUTS, LibBlockNames.IRIDESCENT_SPROUTS));
             registry.register(getDefaultBlockItem(BlockRegistry.JESSIC_LEAVES, LibBlockNames.JESSIC_LEAVES));
             registry.register(getDefaultBlockItem(BlockRegistry.JESSIC_LOG, LibBlockNames.JESSIC_LOG));
             registry.register(getDefaultBlockItem(BlockRegistry.JESSIC_SAPLING, LibBlockNames.JESSIC_SAPLING));
@@ -267,11 +238,44 @@ public class BlockRegistry {
             registry.register(getDefaultBlockItem(BlockRegistry.AZULOREAL_LOG, LibBlockNames.AZULOREAL_LOG));
             registry.register(getDefaultBlockItem(BlockRegistry.AZULOREAL_SAPLING, LibBlockNames.AZULOREAL_SAPLING));
             registry.register(getDefaultBlockItem(BlockRegistry.AZULOREAL_WOOD, LibBlockNames.AZULOREAL_WOOD));
-
             registry.register(getDefaultBlockItem(BlockRegistry.STRIPPED_JESSIC_LOG, LibBlockNames.STRIPPED_JESSIC_LOG));
             registry.register(getDefaultBlockItem(BlockRegistry.STRIPPED_JESSIC_WOOD, LibBlockNames.STRIPPED_JESSIC_WOOD));
             registry.register(getDefaultBlockItem(BlockRegistry.STRIPPED_AZULOREAL_LOG, LibBlockNames.STRIPPED_AZULOREAL_LOG));
             registry.register(getDefaultBlockItem(BlockRegistry.STRIPPED_AZULOREAL_WOOD, LibBlockNames.STRIPPED_AZULOREAL_WOOD));
+            registry.register(getDefaultBlockItem(BlockRegistry.LISIANTHUS, LibBlockNames.LISIANTHUS));
+            registry.register(getDefaultBlockItem(BlockRegistry.AZULOREAL_ORCHID, LibBlockNames.AZULOREAL_ORCHID));
+            registry.register(getDefaultBlockItem(BlockRegistry.IRIDESCENT_SPROUTS, LibBlockNames.IRIDESCENT_SPROUTS));
+            registry.register(getDefaultBlockItem(BlockRegistry.FRAGMENTED_COBBLESTONE, LibBlockNames.FRAGMENTED_COBBLESTONE));
+
+            registry.register(getDefaultBlockItem(BlockRegistry.DOMINION_GEM_BLOCK, LibBlockNames.DOMINION_GEM_BLOCK));
+            registry.register(new BlockItem(BlockRegistry.SPLINTERED_PEDESTAL, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.SPLINTERED_PEDESTAL));
+            registry.register(new BlockItem(BlockRegistry.PSYGLYPHIC_AMALG_BLOCK, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.PSYGLYPHIC_AMALGAMATOR));
+            registry.register(new AnimBlockItem(BlockRegistry.EMORTIC_CORTEX_BLOCK, MagicItemsRegistry.defaultItemProperties().setISTER(() -> EmorticCortexRenderer::getISTER)).setRegistryName(LibBlockNames.EMORTIC_CORTEX));
+            registry.register(new AnimBlockItem(BlockRegistry.EMORTIC_CRAFTING_PRESS_BLOCK, MagicItemsRegistry.defaultItemProperties().setISTER(() -> EmorticCraftingPressRenderer::getISTER)).setRegistryName(LibBlockNames.EMORTIC_CRAFTING_PRESS));
+
+            registry.register(new AnimBlockItem(BlockRegistry.RITUAL_BLOCK, MagicItemsRegistry.defaultItemProperties().setISTER(() -> RitualVesselRenderer::getISTER)).setRegistryName(LibBlockNames.RITUAL_VESSEL));
+
+
+            registry.register(new BlockItem(BlockRegistry.DOMINION_JAR, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.DOMINION_JAR));
+            registry.register(new BlockItem(BlockRegistry.CREATIVE_DOMINION_JAR, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.CREATIVE_DOMINION_JAR));
+            registry.register(new BlockItem(BlockRegistry.ICHOR_JAR, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.ICHOR_JAR));
+            registry.register(new BlockItem(BlockRegistry.CREATIVE_ICHOR_JAR, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.CREATIVE_ICHOR_JAR));
+            registry.register(new AnimBlockItem(BlockRegistry.EMORTIC_RELAY, MagicItemsRegistry.defaultItemProperties().setISTER(() -> EmorticRelayRenderer::getISTER)).setRegistryName(LibBlockNames.EMORTIC_RELAY));
+            registry.register(new AnimBlockItem(BlockRegistry.RELAY_DEPOSIT, MagicItemsRegistry.defaultItemProperties().setISTER(() -> RelayDepositRenderer::getISTER)).setRegistryName(LibBlockNames.RELAY_DEPOSIT));
+            registry.register(new AnimBlockItem(BlockRegistry.RELAY_SPLITTER, MagicItemsRegistry.defaultItemProperties().setISTER(() -> RelaySplitterRenderer::getISTER)).setRegistryName(LibBlockNames.RELAY_SPLITTER));
+            registry.register(new AnimBlockItem(BlockRegistry.DOMINION_EXTRACTOR_BLOCK, MagicItemsRegistry.defaultItemProperties().fireResistant().setISTER(() -> DominionExtractorRenderer::getISTER)).setRegistryName(LibBlockNames.DOMINION_EXTRACTOR));
+            registry.register(new AnimBlockItem(BlockRegistry.ICHOR_EXTRACTOR_BLOCK, MagicItemsRegistry.defaultItemProperties().fireResistant().setISTER(() -> IchorExtractorRenderer::getISTER)).setRegistryName(LibBlockNames.ICHOR_EXTRACTOR));
+            registry.register(new BlockItem(BlockRegistry.CRYSTALLIZER_BLOCK, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.CRYSTALLIZER));
+
+            registry.register(new AnimBlockItem(BlockRegistry.PSYGLYPHIC_CIPHER, MagicItemsRegistry.defaultItemProperties().fireResistant().setISTER(() -> PsyglyphicRenderer::getISTER)).setRegistryName(LibBlockNames.PSYGLYPHIC_CIPHER));
+
+            registry.register(new AnimBlockItem(BlockRegistry.TABLE_BLOCK, MagicItemsRegistry.defaultItemProperties().setISTER(() -> TableRenderer::getISTER)).setRegistryName(LibBlockNames.TABLE_BLOCK));
+            registry.register(new BlockItem(BlockRegistry.PHANTOM_BLOCK, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.PHANTOM_BLOCK));
+            registry.register(new BlockItem(BlockRegistry.LIGHT_BLOCK, new Item.Properties()).setRegistryName(LibBlockNames.LIGHT_BLOCK));
+            registry.register(new BlockItem(BlockRegistry.PORTAL_BLOCK, new Item.Properties()).setRegistryName(LibBlockNames.PORTAL));
+//            registry.register(new FluidBlockItem(BlockRegistry.RE_LILLY_PAD, MagicItemsRegistry.defaultItemProperties().fireResistant()).setRegistryName(LibBlockNames.RE_LILLY_PAD));
+//            registry.register(new BlockItem(BlockRegistry.MASTERFUL_SMELTERY, MagicItemsRegistry.defaultItemProperties().stacksTo(1)).setRegistryName(LibBlockNames.MASTERFUL_SMELTERY));
+//            registry.register(getDefaultBlockItem(BlockRegistry.RECONDITE_ORE, LibBlockNames.RECONDITE_ORE));
         }
         public static Item getDefaultBlockItem(Block block, String registry) {
             return new BlockItem(block, MagicItemsRegistry.defaultItemProperties()).setRegistryName(registry);

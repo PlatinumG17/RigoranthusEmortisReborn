@@ -4,7 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.IchorCrystallizerTile;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.EmorticCraftingPressTile;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.RecipeRegistry;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -23,7 +23,7 @@ import net.minecraftforge.registries.ForgeRegistryEntry;
 import javax.annotation.Nullable;
 import java.util.Objects;
 
-public class IchorCrystallizerRecipe implements IIchoricRecipe {
+public class CraftingPressRecipe implements IIchoricRecipe {
 
     public String category;
     public ResourceLocation id;
@@ -32,7 +32,7 @@ public class IchorCrystallizerRecipe implements IIchoricRecipe {
     public ItemStack output;  // Result item
     public int dominionCost;
 
-    public IchorCrystallizerRecipe(ItemStack output, Ingredient reagent, Ingredient base, String category) {
+    public CraftingPressRecipe(ItemStack output, Ingredient reagent, Ingredient base, String category) {
         this.reagent = reagent;
         this.base = base;
         this.output = output;
@@ -41,11 +41,11 @@ public class IchorCrystallizerRecipe implements IIchoricRecipe {
         this.id = new ResourceLocation(EmortisConstants.MOD_ID, output.getItem().getRegistryName().getPath());
     }
 
-    public IchorCrystallizerRecipe(ResourceLocation id, Ingredient base, Ingredient reagent, ItemStack output) {
+    public CraftingPressRecipe(ResourceLocation id, Ingredient base, Ingredient reagent, ItemStack output) {
         this(id, output, base, reagent, 200);
     }
 
-    public IchorCrystallizerRecipe(ResourceLocation id, ItemStack output, Ingredient reagent, Ingredient base, int dominionCost) {
+    public CraftingPressRecipe(ResourceLocation id, ItemStack output, Ingredient reagent, Ingredient base, int dominionCost) {
         this.reagent = reagent;
         this.base = base;
         this.output = output;
@@ -54,7 +54,7 @@ public class IchorCrystallizerRecipe implements IIchoricRecipe {
         this.id = id;
     }
 
-    public IchorCrystallizerRecipe() {
+    public CraftingPressRecipe() {
         base = Ingredient.EMPTY;
         reagent = Ingredient.EMPTY;
         output = ItemStack.EMPTY;
@@ -62,7 +62,7 @@ public class IchorCrystallizerRecipe implements IIchoricRecipe {
         this.id = new ResourceLocation(EmortisConstants.MOD_ID, "empty");
     }
 
-    public IchorCrystallizerRecipe(Item output, Item base, Item reagent, String category) {
+    public CraftingPressRecipe(Item output, Item base, Item reagent, String category) {
         this.base = Ingredient.of(base);
         this.reagent = Ingredient.of(reagent);
         this.output = new ItemStack(output);
@@ -72,7 +72,7 @@ public class IchorCrystallizerRecipe implements IIchoricRecipe {
     }
 
     @Override
-    public boolean isMatch(ItemStack base, ItemStack reagent, IchorCrystallizerTile crystallizerTile, @Nullable PlayerEntity player) {
+    public boolean isMatch(ItemStack base, ItemStack reagent, EmorticCraftingPressTile crystallizerTile, @Nullable PlayerEntity player) {
         return doesReagentMatch(reagent) && doesBaseMatch(base);
     }
     public boolean doesReagentMatch(ItemStack reagent){
@@ -82,14 +82,14 @@ public class IchorCrystallizerRecipe implements IIchoricRecipe {
         return this.base.test(base);
     }
 
-    public boolean matches(IchorCrystallizerTile tile, World worldIn) {
+    public boolean matches(EmorticCraftingPressTile tile, World worldIn) {
         return isMatch(tile.baseMaterial, tile.reagentItem, tile, null);
     }
-    public boolean matches(IchorCrystallizerTile tile, World worldIn, @Nullable PlayerEntity playerEntity) {
+    public boolean matches(EmorticCraftingPressTile tile, World worldIn, @Nullable PlayerEntity playerEntity) {
         return isMatch(tile.baseMaterial, tile.reagentItem, tile, playerEntity);
     }
 
-    public ItemStack getResult(ItemStack base, ItemStack reagent, IchorCrystallizerTile crystallizerTile) {
+    public ItemStack getResult(ItemStack base, ItemStack reagent, EmorticCraftingPressTile crystallizerTile) {
         return output.copy();
     }
 
@@ -97,7 +97,7 @@ public class IchorCrystallizerRecipe implements IIchoricRecipe {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        IchorCrystallizerRecipe that = (IchorCrystallizerRecipe) o;
+        CraftingPressRecipe that = (CraftingPressRecipe) o;
         return Objects.equals(reagent, that.reagent) &&
                 Objects.equals(base, that.base);
     }
@@ -108,7 +108,7 @@ public class IchorCrystallizerRecipe implements IIchoricRecipe {
 
     @Override
     public String toString() {
-        return "IchorCrystallizerRecipe{" +
+        return "CraftingPressRecipe{" +
                 "reagent = " + reagent +
                 ", output = " + output +
                 ", base = " + base +
@@ -117,7 +117,7 @@ public class IchorCrystallizerRecipe implements IIchoricRecipe {
 
     public JsonElement asRecipe() {
         JsonObject jsonobject = new JsonObject();
-        jsonobject.addProperty("type", "rigoranthusemortisreborn:ichor_crystallizer_recipe");
+        jsonobject.addProperty("type", "rigoranthusemortisreborn:crafting_press_recipe");
 
         JsonArray base =  new JsonArray();
         base.add(this.base.toJson());
@@ -151,7 +151,7 @@ public class IchorCrystallizerRecipe implements IIchoricRecipe {
         descPage.addProperty("type", "text");
         descPage.addProperty("text", EmortisConstants.MOD_ID + ".page." + this.output.getItem().getRegistryName().toString().replace(EmortisConstants.MOD_ID + ":", ""));
         JsonObject infoPage = new JsonObject();
-        infoPage.addProperty("type", "ichor_crystallizer_recipe");
+        infoPage.addProperty("type", "crafting_press_recipe");
         infoPage.addProperty("recipe", this.output.getItem().getRegistryName().toString());
 
         jsonArray.add(descPage);
@@ -169,7 +169,7 @@ public class IchorCrystallizerRecipe implements IIchoricRecipe {
         return dominionCost;
     }
 
-    @Override public ItemStack assemble(IchorCrystallizerTile inv) {
+    @Override public ItemStack assemble(EmorticCraftingPressTile inv) {
         return this.output;
     }
     @Override public boolean canCraftInDimensions(int width, int height) {
@@ -179,37 +179,37 @@ public class IchorCrystallizerRecipe implements IIchoricRecipe {
     @Override public ResourceLocation getId() { return id; }
 
     @Override
-    public IRecipeSerializer<?> getSerializer() { return RecipeRegistry.CRYSTALLIZER_SERIALIZER; }
+    public IRecipeSerializer<?> getSerializer() { return RecipeRegistry.CRAFTING_PRESS_SERIALIZER; }
     @Override
     public IRecipeType<?> getType() {
-        return Registry.RECIPE_TYPE.get(new ResourceLocation(EmortisConstants.MOD_ID, "ichor_crystallizer_recipe"));
+        return Registry.RECIPE_TYPE.get(new ResourceLocation(EmortisConstants.MOD_ID, "crafting_press_recipe"));
     }
 
-    public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<IchorCrystallizerRecipe> {
+    public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<CraftingPressRecipe> {
 
         @Override
-        public IchorCrystallizerRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
+        public CraftingPressRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
             Ingredient base = Ingredient.fromJson(JSONUtils.getAsJsonObject(json, "base"));
             Ingredient reagent = Ingredient.fromJson(JSONUtils.getAsJsonObject(json, "reagent"));
             ItemStack output = ShapedRecipe.itemFromJson(JSONUtils.getAsJsonObject(json, "output"));
 
             int cost = json.has("dominionCost") ? JSONUtils.getAsInt(json, "dominionCost") : 0;
-            return new IchorCrystallizerRecipe(recipeId, output, base, reagent, cost);
+            return new CraftingPressRecipe(recipeId, output, base, reagent, cost);
         }
 
         @Nullable
         @Override
-        public IchorCrystallizerRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
+        public CraftingPressRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
             Ingredient base = Ingredient.fromNetwork(buffer);
             Ingredient reagent = Ingredient.fromNetwork(buffer);
             ItemStack output = buffer.readItem();
 
             int cost = buffer.readInt();
-            return new IchorCrystallizerRecipe(recipeId, output, base, reagent, cost);
+            return new CraftingPressRecipe(recipeId, output, base, reagent, cost);
         }
 
         @Override
-        public void toNetwork(PacketBuffer buf, IchorCrystallizerRecipe recipe) {
+        public void toNetwork(PacketBuffer buf, CraftingPressRecipe recipe) {
             recipe.base.toNetwork(buf);
             recipe.reagent.toNetwork(buf);
             buf.writeItem(recipe.output);

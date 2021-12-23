@@ -1,5 +1,5 @@
 {
-  "type": "rigoranthusemortisreborn:ichor_crystallizer_recipe",
+  "type": "rigoranthusemortisreborn:crafting_press_recipe",
   "base": {
       "item": "minecraft:ghast_tear"
     },

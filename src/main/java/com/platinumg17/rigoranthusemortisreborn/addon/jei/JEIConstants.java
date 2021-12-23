@@ -7,6 +7,7 @@ public class JEIConstants {
     public static final String TEXTURE_GUI_PATH = "textures/gui/";
     public static final String TEXTURE_GUI_VANILLA = "textures/gui/gui_vanilla.png";
     public static final ResourceLocation RECIPE_GUI_AMALGAMATOR = new ResourceLocation(EmortisConstants.MOD_ID, "textures/gui/jei/gui_amalgamator.png");
+    public static final ResourceLocation RECIPE_GUI_PRESS = new ResourceLocation(EmortisConstants.MOD_ID, "textures/gui/jei/gui_emortic_crafting_press.png");
     public static final ResourceLocation RECIPE_GUI_VANILLA = new ResourceLocation(EmortisConstants.MOD_ID, "textures/gui/jei/gui_vanilla.png");
     public static final ResourceLocation RECIPE_BACKGROUND_EMORTIS = new ResourceLocation(EmortisConstants.MOD_ID, "textures/gui/jei/gui_background_emortis.png");
     public static final int MAX_TOOLTIP_WIDTH = 150;

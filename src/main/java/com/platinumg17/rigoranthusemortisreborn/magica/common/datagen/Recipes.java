@@ -73,7 +73,7 @@ public class Recipes extends RecipeProvider {
                     .pattern("x x")
                     .pattern("xxx").define('x', Tags.Items.GLASS).define('y', BlockInit.OPULENT_MAGMA.get()).save(consumer);
 
-            ShapedRecipeBuilder.shaped(BlockRegistry.ICHOR_CRYSTALLIZER_BLOCK).unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(MagicItemsRegistry.emorticOrigins))
+            ShapedRecipeBuilder.shaped(BlockRegistry.EMORTIC_CRAFTING_PRESS_BLOCK).unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(MagicItemsRegistry.emorticOrigins))
                     .pattern("sgs")
                     .pattern("xyx")
                     .pattern("aba").define('x', Registration.POWDERED_ESOTERICUM.get()).define('y', Items.PISTON).define('g', Tags.Items.GLASS_PANES).define('s', Items.OBSIDIAN)

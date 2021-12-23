@@ -10,7 +10,7 @@
         },
 		{
             "type": "relations",
-            "entries":["dominion/dominion_jar","dominion/dominion_extractor","dominion/ichor_crystallizer"]
+            "entries":["dominion/dominion_jar","dominion/dominion_extractor","dominion/emortic_crafting_press"]
         }
     ]
 }

@@ -2,7 +2,7 @@ package com.platinumg17.rigoranthusemortisreborn.magica.common.datagen;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.platinumg17.rigoranthusemortisreborn.api.apimagic.recipe.IchorCrystallizerRecipe;
+import com.platinumg17.rigoranthusemortisreborn.api.apimagic.recipe.CraftingPressRecipe;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
 import net.minecraft.data.DataGenerator;
@@ -19,46 +19,46 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-public class IchorCrystallizerRecipeProvider implements IDataProvider {
+public class CraftingPressRecipeProvider implements IDataProvider {
 
     private final DataGenerator generator;
     private static final Gson GSON = (new GsonBuilder()).setPrettyPrinting().create();
     private static final Logger LOGGER = LogManager.getLogger();
 
-    public IchorCrystallizerRecipeProvider(DataGenerator generatorIn) {
+    public CraftingPressRecipeProvider(DataGenerator generatorIn) {
         this.generator = generatorIn;
     }
 
-    List<IchorCrystallizerRecipe> recipes = new ArrayList<>();
+    List<CraftingPressRecipe> recipes = new ArrayList<>();
 
     @Override
     public void run(DirectoryCache cache) throws IOException {
         addEntries();
         Path output = this.generator.getOutputFolder();
-        for (IchorCrystallizerRecipe g : recipes) {
+        for (CraftingPressRecipe g : recipes) {
                 System.out.println(g);
-                Path path = getRecipePath(output, ((IchorCrystallizerRecipe) g).getId().getPath());
-                IDataProvider.save(GSON, cache, ((IchorCrystallizerRecipe) g).asRecipe(), path);
+                Path path = getRecipePath(output, ((CraftingPressRecipe) g).getId().getPath());
+                IDataProvider.save(GSON, cache, ((CraftingPressRecipe) g).asRecipe(), path);
 
                 if (g.getResultItem().isEmpty())
                     continue;
-                Path path1 = getAmalgamatorPath(output, (IchorCrystallizerRecipe) g);
+                Path path1 = getPressPath(output, (CraftingPressRecipe) g);
                 try {
-                    IDataProvider.save(GSON, cache, ((IchorCrystallizerRecipe) g).serialize(), path1);
+                    IDataProvider.save(GSON, cache, ((CraftingPressRecipe) g).serialize(), path1);
                     System.out.println(g);
                 } catch (IOException ioexception) {
-                    LOGGER.error("Couldn't save ichoric crystallizer {}", path1, ioexception);
+                    LOGGER.error("Couldn't save Crafting Press {}", path1, ioexception);
                 }
         }
     }
 
-    private static Path getAmalgamatorPath(Path pathIn, IchorCrystallizerRecipe e) {
+    private static Path getPressPath(Path pathIn, CraftingPressRecipe e) {
         System.out.println(e.output.getItem().toString());
-        return pathIn.resolve("data/rigoranthusemortisreborn/ichor_crystallizer/" + e.output.getItem().getRegistryName().toString().replace(EmortisConstants.MOD_ID + ":", "") + ".json");
+        return pathIn.resolve("data/rigoranthusemortisreborn/emortic_crafting_press/" + e.output.getItem().getRegistryName().toString().replace(EmortisConstants.MOD_ID + ":", "") + ".json");
     }
 
-    public IchorCrystallizerRecipeBuilder builder() {
-        return IchorCrystallizerRecipeBuilder.builder();
+    public CraftingPressRecipeBuilder builder() {
+        return CraftingPressRecipeBuilder.builder();
     }
 
     public void addEntries() {
@@ -71,7 +71,7 @@ public class IchorCrystallizerRecipeProvider implements IDataProvider {
 
     }
 
-    public void addRecipe(IchorCrystallizerRecipe recipe) {
+    public void addRecipe(CraftingPressRecipe recipe) {
         recipes.add(recipe);
     }
 
@@ -85,6 +85,6 @@ public class IchorCrystallizerRecipeProvider implements IDataProvider {
 
     @Override
     public String getName() {
-        return "Ichoric Crystallizer";
+        return "Emortic Crafting Press";
     }
 }

@@ -31,3 +31,4 @@ forge*changelog.txt
 .cache
 /src/main/resources/assets/rigoranthusemortisreborn/models/
 test
+/src/Magica/

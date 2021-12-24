@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+      "yxy",
+      "yzy",
+      "yxy"
+    ],
+    "key": {
+      "x": {
+        "item": "rigoranthusemortisreborn:opulent_magma"
+      },
+      "y": {
+        "tag": "forge:ingots/gold"
+      },
+      "z": {
+        "item": "rigoranthusemortisreborn:dominion_gem"
+      }
+    },
+    "result": {
+      "item": "rigoranthusemortisreborn:ichor_crystallizer"
+    }
+  }

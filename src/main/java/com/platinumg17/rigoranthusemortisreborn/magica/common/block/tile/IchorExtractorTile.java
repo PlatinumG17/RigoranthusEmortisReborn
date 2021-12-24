@@ -1,6 +1,9 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile;
 
+import com.platinumg17.rigoranthusemortisreborn.api.RigoranthusEmortisRebornAPI;
+import com.platinumg17.rigoranthusemortisreborn.api.apimagic.util.IchorUtil;
 import com.platinumg17.rigoranthusemortisreborn.blocks.BlockInit;
+import com.platinumg17.rigoranthusemortisreborn.canis.CanisItems;
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.particle.ParticleColor;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.network.Networking;
@@ -9,6 +12,7 @@ import com.platinumg17.rigoranthusemortisreborn.magica.setup.BlockRegistry;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.MagicItemsRegistry;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -71,17 +75,14 @@ public class IchorExtractorTile extends IchorTile implements IAnimatable {
                 }
             }
         }
-        if(!level.isClientSide && level.getGameTime() % 20 == 0){
-            BlockPos ichorPos = findNearbyIchor(level, worldPosition);
-//            BlockPos needlePos = findNearbyNeedle(level, worldPosition);
-//            if(needlePos != null) {
-                if (ichorPos != null) {
-                    IchorJarTile tile = (IchorJarTile) level.getBlockEntity(ichorPos);
-                    int ichor = 100;
-
-                    addIchor(ichor);
-                    tile.removeIchor(100);
-//                }
+        if(!level.isClientSide && level.getGameTime() % 20 == 0) {
+            int ichor = 100;
+            //BlockPos ichorPos = findNearbyIchor(level, worldPosition);
+            //IchorJarTile tile = (IchorJarTile) level.getBlockEntity(ichorPos);
+            //if (ichorPos != null) { tile.removeIchor(100); }
+            if (IchorUtil.hasIchorNearby(this.worldPosition.below(), this.level, 0, ichor)) {
+                IchorUtil.takeIchorNearby(this.worldPosition.below(), this.level, 0, ichor);
+                this.addIchor(ichor);
             }
         }
     }
@@ -94,21 +95,45 @@ public class IchorExtractorTile extends IchorTile implements IAnimatable {
             ichor = extractionTime / 12; //TODO  --> Edit this value [12]
             progress = 1;
         }
+
+        if(i.getItem().getItem() == MagicItemsRegistry.DWELLER_FLESH.asItem()) {
+            ichor += 500;
+            progress += 10; // 5 used to be highest
+        }
         if(i.getItem().getItem() == ItemInit.BUCKET_OF_CADAVEROUS_ICHOR.get().asItem()) {
             ichor += 400;
-            progress += 10; // 5 used to be highest
+            progress += 9; // 5 used to be highest
         }
         if(i.getItem().getItem() == ItemInit.BLIGHT_ICHOR.get().asItem()) {
             ichor += 200; // was 100
             progress += 5;
         }
-        else if(i.getItem().getItem() == MagicItemsRegistry.BOTTLE_OF_ICHOR) {
+        if(i.getItem().getItem() == MagicItemsRegistry.BOTTLE_OF_ICHOR || i.getItem().getItem() == Items.FERMENTED_SPIDER_EYE) {
             ichor += 100; //was 50
             progress += 3;
         }
+        if (i.getItem().getItem() == Items.SPIDER_EYE) {
+            ichor += 75;
+            progress += 3;
+        }
+        if (i.getItem().getItem() == Items.BONE_BLOCK) {
+            ichor += 45;
+            progress += 1;
+        }
+        if (i.getItem().getItem() == Items.BONE || i.getItem().getItem() == Items.ROTTEN_FLESH) {
+            ichor += 15;
+            progress += 1;
+        }
+        else if(i.getItem().getItem() == Items.BONE_MEAL || i.getItem().getItem() == ItemInit.BONE_FRAGMENT.get()) {
+            ichor += 5;
+            progress += 1;
+        }
+
         this.progress += progress;
         return ichor;
     }
+
+
     public static @Nullable
     BlockPos findNearbyIchor(World level, BlockPos worldPosition){
         for(BlockPos p : BlockPos.withinManhattan(worldPosition.below(1), 1, 1,1)){
@@ -117,16 +142,6 @@ public class IchorExtractorTile extends IchorTile implements IAnimatable {
                 if (tile.getCurrentIchor() >= 100) {
                     return p;
                 }
-            }
-        }
-        return null;
-    }
-    public static @Nullable
-    BlockPos findNearbyNeedle(World level, BlockPos worldPosition) {
-        for(BlockPos p : BlockPos.withinManhattan(worldPosition.above(1), 0, 1, 0)) {
-            if(level.getBlockState(p).is(BlockInit.BLOCK_OF_ESOTERICUM.get())) {
-//                IchorJarTile tile = (IchorJarTile) level.getBlockEntity(p);
-                return p;
             }
         }
         return null;

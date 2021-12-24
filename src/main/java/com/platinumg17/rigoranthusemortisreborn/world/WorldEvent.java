@@ -4,9 +4,11 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.block.DominionBerryBush;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.LightTile;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.lib.LibBlockNames;
 import com.platinumg17.rigoranthusemortisreborn.world.gen.feature.SingleBlockFeature;
+import com.platinumg17.rigoranthusemortisreborn.world.plants.SpectabilisBushBlock;
 import com.platinumg17.rigoranthusemortisreborn.world.trees.SupplierBlockStateProvider;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.BlockRegistry;
 import net.minecraft.block.Blocks;
@@ -35,7 +37,6 @@ import net.minecraft.world.gen.trunkplacer.FancyTrunkPlacer;
 import net.minecraft.world.gen.trunkplacer.ForkyTrunkPlacer;
 import net.minecraft.world.gen.trunkplacer.GiantTrunkPlacer;
 import net.minecraftforge.fml.common.Mod;
-
 import java.util.Random;
 
 import static com.platinumg17.rigoranthusemortisreborn.world.gen.feature.FeatureLib.*;
@@ -134,8 +135,8 @@ public class WorldEvent {
         float megaAzulorealChance = Config.megaAzulorealSpawnWeight.get().floatValue();
         float megaJessicChance = Config.megaJessicSpawnWeight.get().floatValue();
 
-        BlockClusterFeatureConfig DOMINION_BERRY_BUSH_CONFIG = (new BlockClusterFeatureConfig.Builder((new WeightedBlockStateProvider()).add(BlockRegistry.DOMINION_BERRY_BUSH.defaultBlockState(), 80), SimpleBlockPlacer.INSTANCE)).tries(64).whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK)).noProjection().build();
-        BlockClusterFeatureConfig BERRY_BUSH_PATCH_CONFIG = (new BlockClusterFeatureConfig.Builder((new WeightedBlockStateProvider()).add(BlockRegistry.SPECTABILIS_BUSH.defaultBlockState(), 80), SimpleBlockPlacer.INSTANCE)).tries(64).whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK)).noProjection().build();
+        BlockClusterFeatureConfig DOMINION_BERRY_BUSH_CONFIG = (new BlockClusterFeatureConfig.Builder((new WeightedBlockStateProvider()).add(BlockRegistry.DOMINION_BERRY_BUSH.defaultBlockState().setValue(DominionBerryBush.AGE, 3), 80), SimpleBlockPlacer.INSTANCE)).tries(64).whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK)).noProjection().build();
+        BlockClusterFeatureConfig BERRY_BUSH_PATCH_CONFIG = (new BlockClusterFeatureConfig.Builder((new WeightedBlockStateProvider()).add(BlockRegistry.SPECTABILIS_BUSH.defaultBlockState().setValue(SpectabilisBushBlock.AGE, 3), 80), SimpleBlockPlacer.INSTANCE)).tries(64).whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK)).noProjection().build();
         BlockClusterFeatureConfig ORCHID_CONFIG = (new BlockClusterFeatureConfig.Builder((new WeightedBlockStateProvider()).add(BlockRegistry.AZULOREAL_ORCHID.defaultBlockState(), 80), SimpleBlockPlacer.INSTANCE)).tries(64).whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK)).noProjection().build();
         BlockClusterFeatureConfig IRIDESCENT_SPROUT_CONFIG = (new BlockClusterFeatureConfig.Builder((new WeightedBlockStateProvider()).add(BlockRegistry.IRIDESCENT_SPROUTS.defaultBlockState(), 70), SimpleBlockPlacer.INSTANCE)).tries(64).whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK)).noProjection().build();
         BlockClusterFeatureConfig LISIANTHUS_CONFIG = (new BlockClusterFeatureConfig.Builder((new WeightedBlockStateProvider()).add(BlockRegistry.LISIANTHUS.defaultBlockState(), 90), DoublePlantBlockPlacer.INSTANCE)).tries(64).whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK)).noProjection().build();

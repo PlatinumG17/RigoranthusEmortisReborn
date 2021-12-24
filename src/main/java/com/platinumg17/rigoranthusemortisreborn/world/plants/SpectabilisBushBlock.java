@@ -3,9 +3,11 @@ package com.platinumg17.rigoranthusemortisreborn.world.plants;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.lib.LibBlockNames;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.BlockRegistry;
 import net.minecraft.block.*;
+import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -21,6 +23,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
+import javax.annotation.Nullable;
 import java.util.Random;
 
 public class SpectabilisBushBlock extends BushBlock implements IGrowable {
@@ -60,6 +63,12 @@ public class SpectabilisBushBlock extends BushBlock implements IGrowable {
             server.setBlock(blockPos, blockState.setValue(AGE, Integer.valueOf(i + 1)), 2);
             net.minecraftforge.common.ForgeHooks.onCropsGrowPost(server, blockPos, blockState);
         }
+    }
+
+    @Nullable
+    @Override
+    public PathNodeType getAiPathNodeType(BlockState state, IBlockReader world, BlockPos pos, @Nullable MobEntity entity) {
+        return PathNodeType.DAMAGE_OTHER;
     }
 //    @Override
 //    public void entityInside(BlockState blockState, World world, BlockPos blockPos, Entity entityIn) {

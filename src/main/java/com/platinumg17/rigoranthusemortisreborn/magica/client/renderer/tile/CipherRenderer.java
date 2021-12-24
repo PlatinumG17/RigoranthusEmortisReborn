@@ -2,7 +2,7 @@ package com.platinumg17.rigoranthusemortisreborn.magica.client.renderer.tile;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import com.platinumg17.rigoranthusemortisreborn.magica.client.renderer.item.GenericItemRenderer;
+import com.platinumg17.rigoranthusemortisreborn.magica.client.renderer.item.FixedGeoBlockItemRenderer;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.PsyglyphicCipherTile;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
@@ -11,9 +11,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import software.bernie.geckolib3.renderers.geo.GeoBlockRenderer;
 
-public class PsyglyphicRenderer extends GeoBlockRenderer<PsyglyphicCipherTile> {
+public class CipherRenderer extends GeoBlockRenderer<PsyglyphicCipherTile> {
 
-    public PsyglyphicRenderer(TileEntityRendererDispatcher rendererDispatcherIn) {
+    public CipherRenderer(TileEntityRendererDispatcher rendererDispatcherIn) {
         super(rendererDispatcherIn, new PsyglyphicCipherModel());
     }
 
@@ -27,7 +27,7 @@ public class PsyglyphicRenderer extends GeoBlockRenderer<PsyglyphicCipherTile> {
         return false;
     }
 
-    public static GenericItemRenderer getISTER(){
-        return new GenericItemRenderer(new PsyglyphicCipherModel());
+    public static FixedGeoBlockItemRenderer getISTER(){
+        return new FixedGeoBlockItemRenderer<>(new PsyglyphicCipherModel());
     }
 }

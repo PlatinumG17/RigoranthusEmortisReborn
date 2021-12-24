@@ -28,8 +28,6 @@ import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import java.util.Random;
 
 public class PsyglyphicAmalgamatorRenderer extends TileEntityRenderer<PsyglyphicAmalgamatorTile> {
-//    public static final PsyglyphicAmalgamatorModel model = new PsyglyphicAmalgamatorModel();
-//    public static final ResourceLocation texture = new ResourceLocation(EmortisConstants.MOD_ID + ":textures/blocks/amalgamator.png");
 
     public PsyglyphicAmalgamatorRenderer(TileEntityRendererDispatcher rendererDispatcher) {
         super(rendererDispatcher);
@@ -46,9 +44,7 @@ public class PsyglyphicAmalgamatorRenderer extends TileEntityRenderer<Psyglyphic
         if (tileEntityIn.entity == null || !ItemStack.matches(tileEntityIn.entity.getItem(), tileEntityIn.catalystItem)) {
             tileEntityIn.entity = new ItemEntity(tileEntityIn.getLevel(), x, y, z, tileEntityIn.catalystItem);
         }
-
         matrixStack.pushPose();
-//        IVertexBuilder buffer = iRenderTypeBuffer.getBuffer(entity.renderType(texture));
         double sinOffset = Math.pow(Math.cos((ClientInfo.ticksInGame + v)  /10)/4, 2);
         matrixStack.translate(0.5D,  0.5 + sinOffset, 0.5D);
         float angle = ((ClientInfo.ticksInGame + v)/5.0f) % 360;
@@ -63,9 +59,6 @@ public class PsyglyphicAmalgamatorRenderer extends TileEntityRenderer<Psyglyphic
                         particlePos.x(), particlePos.y(), particlePos.z(),
                         pos.getX()  +0.5, pos.getY() + 1  , pos.getZ() +0.5);
             }
-////            model.bone.xRot = angle;
-////            model.frame_bot.yRot = angle;
-////            model.frame_top.yRot = -angle;
             tileEntityIn.pedestalList().forEach((b) ->{
                 BlockPos pos2 = b.immutable();
                 for(int i = 0; i < 1; i++){
@@ -74,10 +67,6 @@ public class PsyglyphicAmalgamatorRenderer extends TileEntityRenderer<Psyglyphic
                             pos2.getX() +0.5 + ParticleUtil.inRange(-0.2, 0.2)  , pos2.getY() +1.5  + ParticleUtil.inRange(-0.3, 0.3) , pos2.getZ() +0.5 + ParticleUtil.inRange(-0.2, 0.2),
                             0,0,0);
                 }});
-//        }//else {
-//            model.bone.xRot = 0;
-////            model.frame_bot.yRot = 0;
-////            model.frame_top.yRot = 0;
         }
         matrixStack.popPose();
         ItemEntity entityItem = tileEntityIn.entity;
@@ -97,13 +86,4 @@ public class PsyglyphicAmalgamatorRenderer extends TileEntityRenderer<Psyglyphic
         Minecraft.getInstance().getEntityRenderDispatcher().getRenderer(entityItem);
         stack.popPose();
     }
-
-//    private void renderItem(ItemStack stack, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn,
-//                            int combinedLightIn) {
-//        Minecraft.getInstance().getItemRenderer().renderStatic(stack, ItemCameraTransforms.TransformType.FIXED, combinedLightIn,
-//                OverlayTexture.NO_OVERLAY, matrixStackIn, bufferIn);
-//    }
-//    private void renderBlock(MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, BlockState state) {
-//        Minecraft.getInstance().getBlockRenderer().renderBlock(state, matrixStackIn, bufferIn, combinedLightIn, OverlayTexture.NO_OVERLAY, EmptyModelData.INSTANCE);
-//    }
 }

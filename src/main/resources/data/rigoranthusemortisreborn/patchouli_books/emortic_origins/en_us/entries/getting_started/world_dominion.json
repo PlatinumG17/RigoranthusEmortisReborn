@@ -6,7 +6,7 @@
     "pages": [
         {
             "type": "text",
-            "text": "Dominion is a special resource that must be gathered using devices in the world. Dominion is used as a power source for machines like the Ichor Crystallizer and Psyglyphic Amalgamator. To begin gathering Dominion, you will need a Dominion Jar and a Dominion Relay"
+            "text": "Dominion is a special resource that must be gathered using devices in the world. Dominion is used as a power source for machines like the Emortic Crafting Press and Psyglyphic Amalgamator. To begin gathering Dominion, you will need a Dominion Jar and a Dominion Relay"
         },
 		{
             "type": "relations",

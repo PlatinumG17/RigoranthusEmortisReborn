@@ -88,7 +88,7 @@ public class EmorticCraftingPressTile extends AnimatedTile implements ITickableT
     }
 
     public IIchoricRecipe getRecipe(ItemStack reagent, ItemStack base, @Nullable PlayerEntity playerEntity){
-        return RigoranthusEmortisRebornAPI.getInstance().getIchorCrystallizerRecipes(level).stream().filter(r -> r.isMatch(base, reagent, this, playerEntity)).findFirst().orElse(null);
+        return RigoranthusEmortisRebornAPI.getInstance().getCraftingPressRecipes(level).stream().filter(r -> r.isMatch(base, reagent, this, playerEntity)).findFirst().orElse(null);
     }
 
     public boolean craftingPossible(ItemStack stack, ItemStack reagent, PlayerEntity playerEntity) {
@@ -119,7 +119,7 @@ public class EmorticCraftingPressTile extends AnimatedTile implements ITickableT
 
         if(jar != null){
             isCrafting = true;
-            Networking.sendToNearby(level, worldPosition, new PacketOneShotAnimation(worldPosition ));
+            Networking.sendToNearby(level, worldPosition, new PacketOneShotAnimation(worldPosition));
             updateBlock();
             return true;
         }

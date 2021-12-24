@@ -76,11 +76,10 @@ public class CraftingPressRecipeCategory implements IRecipeCategory<CraftingPres
     @Override
     public void draw(CraftingPressRecipe recipe, MatrixStack matrixStack, double mouseX, double mouseY) {
         IDrawableAnimated arrow = this.cachedArrows.getUnchecked(40);
-        arrow.draw( matrixStack,72, 27);
+        arrow.draw( matrixStack, 57, 8);
         FontRenderer renderer = Minecraft.getInstance().font;
         if(recipe.consumesDominion())
-            renderer.draw(matrixStack, new TranslationTextComponent("rigoranthusemortisreborn.dominion", recipe.dominionCost), 0.0f, 19, 54);//65, 10);
-        //renderer.draw(matrixStack, new TranslationTextComponent("rigoranthusemortisreborn.dominion", recipe.dominionCost), 12f, 6f, 4210752);
+            renderer.draw(matrixStack, new TranslationTextComponent("rigoranthusemortisreborn.dominion", recipe.dominionCost), 6f, 35f, 4210752);
     }
 
     @Override
@@ -96,13 +95,13 @@ public class CraftingPressRecipeCategory implements IRecipeCategory<CraftingPres
     @Override
     public void setRecipe(IRecipeLayout recipeLayout, CraftingPressRecipe o, IIngredients ingredients) {
         int index = 0;
-        recipeLayout.getItemStacks().init(index, true, 26, 27);
+        recipeLayout.getItemStacks().init(index, true, 10, 7);
         recipeLayout.getItemStacks().set(index, ingredients.getInputs(VanillaTypes.ITEM).get(0));
         index++;
-        recipeLayout.getItemStacks().init(index, true, 46, 27);
+        recipeLayout.getItemStacks().init(index, true, 30, 7);
         recipeLayout.getItemStacks().set(index, ingredients.getInputs(VanillaTypes.ITEM).get(1));
         index++;
-        recipeLayout.getItemStacks().init(index, true, 104, 27);
+        recipeLayout.getItemStacks().init(index, true, 88, 7);
         recipeLayout.getItemStacks().set(index, ingredients.getOutputs(VanillaTypes.ITEM).get(0));
     }
 }

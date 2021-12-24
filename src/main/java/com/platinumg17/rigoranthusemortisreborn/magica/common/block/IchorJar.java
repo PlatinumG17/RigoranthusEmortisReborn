@@ -17,6 +17,8 @@ import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.IBooleanFunction;
@@ -143,14 +145,14 @@ public class IchorJar extends IchorBlock {
             if (tile.getCurrentIchor() == 0) {
                 tile.addIchor(100);
                 if(!player.isCreative()) {
-                    player.addItem(new ItemStack(Items.GLASS_BOTTLE));
+                    player.setItemInHand(handIn, new ItemStack(Items.GLASS_BOTTLE));
                     stack.shrink(1);
                 }
             }
             else if(tile.getCurrentIchor() < tile.getMaxIchor()){
                 tile.addIchor(100);
                 if(!player.isCreative()) {
-                    player.addItem(new ItemStack(Items.GLASS_BOTTLE));
+                    player.setItemInHand(handIn, new ItemStack(Items.GLASS_BOTTLE));
                     stack.shrink(1);
                 }
             }
@@ -158,16 +160,18 @@ public class IchorJar extends IchorBlock {
         }
         if(stack.getItem() == ItemInit.BUCKET_OF_CADAVEROUS_ICHOR.get()) {
             if (tile.getCurrentIchor() == 0) {
+                player.level.playSound(null, player.blockPosition(), SoundEvents.BUCKET_EMPTY, SoundCategory.PLAYERS, 1.0f, 1.0f);
                 tile.addIchor(1000);
                 if(!player.isCreative()) {
-                    player.addItem(new ItemStack(Items.BUCKET));
+                    player.setItemInHand(handIn, new ItemStack(Items.BUCKET));
                     stack.shrink(1);
                 }
             }
             else if(tile.getCurrentIchor() < tile.getMaxIchor()){
                 tile.addIchor(1000);
+                player.level.playSound(null, player.blockPosition(), SoundEvents.BUCKET_EMPTY, SoundCategory.PLAYERS, 1.0f, 1.0f);
                 if(!player.isCreative()) {
-                    player.addItem(new ItemStack(Items.BUCKET));
+                    player.setItemInHand(handIn, new ItemStack(Items.BUCKET));
                     stack.shrink(1);
                 }
             }
@@ -175,14 +179,15 @@ public class IchorJar extends IchorBlock {
         }
         if(stack.getItem() == Items.GLASS_BOTTLE && tile.getCurrentIchor() >= 100){
             ItemStack ichor = new ItemStack(MagicItemsRegistry.BOTTLE_OF_ICHOR);
-            player.addItem(ichor);
+            player.setItemInHand(handIn, ichor);
             player.getItemInHand(handIn).shrink(1);
             tile.removeIchor(100);
         }
         if(stack.getItem() == Items.BUCKET && tile.getCurrentIchor() >= 1000){
             ItemStack ichor = new ItemStack(ItemInit.BUCKET_OF_CADAVEROUS_ICHOR.get());
-            player.addItem(ichor);
+            player.level.playSound(null, player.blockPosition(), SoundEvents.BUCKET_FILL, SoundCategory.PLAYERS, 1.0f, 1.0f);
             player.getItemInHand(handIn).shrink(1);
+            player.setItemInHand(handIn, ichor);
             tile.removeIchor(1000);
         }
         return super.use(state,worldIn,pos,player,handIn,hit);

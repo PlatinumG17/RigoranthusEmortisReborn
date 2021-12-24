@@ -29,14 +29,14 @@ public class ClientHandler {
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.INTANGIBLE_AIR_TYPE, IntangibleAirRenderer::new);
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.RITUAL_TILE, RitualVesselRenderer::new);
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.PHANTOM_TILE, PhantasmalBlockRenderer::new);
-        ClientRegistry.bindTileEntityRenderer(BlockRegistry.CRYSTALLIZER_TILE, CrystallizerRenderer::new);
-        ClientRegistry.bindTileEntityRenderer(BlockRegistry.PSYGLYPHIC_TILE, PsyglyphicRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(BlockRegistry.ICHOR_CRYSTALLIZER_TILE, IchorCrystallizerRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(BlockRegistry.PSYGLYPHIC_TILE, CipherRenderer::new);
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.DOMINION_EXTRACTOR_TILE, DominionExtractorRenderer::new);
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.ICHOR_EXTRACTOR_TILE, IchorExtractorRenderer::new);
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.EMORTIC_CORTEX_TILE, EmorticCortexRenderer::new);
-        ClientRegistry.bindTileEntityRenderer(BlockRegistry.RELAY_DEPOSIT_TILE, (t) -> new GenericRenderer(t, "relay_deposit"));
-        ClientRegistry.bindTileEntityRenderer(BlockRegistry.EMORTIC_RELAY_TILE, (t) -> new GenericRenderer(t, "emortic_relay"));
-        ClientRegistry.bindTileEntityRenderer(BlockRegistry.RELAY_SPLITTER_TILE, (t) -> new GenericRenderer(t, "relay_splitter"));
+        ClientRegistry.bindTileEntityRenderer(BlockRegistry.RELAY_DEPOSIT_TILE, RelayDepositRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(BlockRegistry.EMORTIC_RELAY_TILE, EmorticRelayRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(BlockRegistry.RELAY_SPLITTER_TILE, RelaySplitterRenderer::new);
 
         RenderTypeLookup.setRenderLayer(BlockRegistry.POTTED_JESSIC_SAPLING, RenderType.cutout());
         RenderTypeLookup.setRenderLayer(BlockRegistry.POTTED_AZULOREAL_SAPLING, RenderType.cutout());
@@ -50,17 +50,17 @@ public class ClientHandler {
         RenderTypeLookup.setRenderLayer(BlockRegistry.LISIANTHUS, RenderType.cutout());
         RenderTypeLookup.setRenderLayer(BlockRegistry.SPECTABILIS_BUSH, RenderType.cutout());
 
-        RenderTypeLookup.setRenderLayer(BlockRegistry.EMORTIC_RELAY, RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(BlockRegistry.RELAY_DEPOSIT, RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(BlockRegistry.EMORTIC_CORTEX_BLOCK, RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(BlockRegistry.CRYSTALLIZER_BLOCK, RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(BlockRegistry.EMORTIC_RELAY, RenderType.translucent());
+        RenderTypeLookup.setRenderLayer(BlockRegistry.RELAY_DEPOSIT, RenderType.translucent());
+        RenderTypeLookup.setRenderLayer(BlockRegistry.EMORTIC_CORTEX_BLOCK, RenderType.translucent());
+        RenderTypeLookup.setRenderLayer(BlockRegistry.ICHOR_CRYSTALLIZER_BLOCK, RenderType.translucent());
         RenderTypeLookup.setRenderLayer(BlockRegistry.DOMINION_EXTRACTOR_BLOCK, RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(BlockRegistry.ICHOR_EXTRACTOR_BLOCK, RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(BlockRegistry.ICHOR_EXTRACTOR_BLOCK, RenderType.translucent());
 
         RenderTypeLookup.setRenderLayer(BlockRegistry.CREATIVE_ICHOR_JAR, RenderType.translucent());
         RenderTypeLookup.setRenderLayer(BlockRegistry.ICHOR_JAR, RenderType.translucent());
         RenderTypeLookup.setRenderLayer(BlockRegistry.DOMINION_JAR, RenderType.translucent());
-        RenderTypeLookup.setRenderLayer(BlockRegistry.EMORTIC_CRAFTING_PRESS_BLOCK, RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(BlockRegistry.EMORTIC_CRAFTING_PRESS_BLOCK, RenderType.translucent());
         RenderTypeLookup.setRenderLayer(BlockRegistry.SPLINTERED_PEDESTAL, RenderType.translucent());
         RenderTypeLookup.setRenderLayer(BlockRegistry.PSYGLYPHIC_AMALG_BLOCK, RenderType.translucent());
         RenderTypeLookup.setRenderLayer(BlockRegistry.LIGHT_BLOCK, RenderType.translucent());

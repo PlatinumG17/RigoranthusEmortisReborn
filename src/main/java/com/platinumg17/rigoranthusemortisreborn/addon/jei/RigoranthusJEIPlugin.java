@@ -77,22 +77,22 @@ public class RigoranthusJEIPlugin implements IModPlugin {
 		}
 	}
 
-	@Override
-	public void registerItemSubtypes(ISubtypeRegistration registration) {
-		registration.registerSubtypeInterpreter(CanisBlocks.CANIS_BED.get().asItem(), stack -> {
-			Pair<ICasingMaterial, IBeddingMaterial> materials = CanisBedUtil.getMaterials(stack);
-
-			String casingKey = materials.getLeft() != null
-					? materials.getLeft().getRegistryName().toString()
-					: "rigoranthusemortisreborn:casing_missing";
-
-			String beddingKey = materials.getRight() != null
-					? materials.getRight().getRegistryName().toString()
-					: "rigoranthusemortisreborn:bedding_missing";
-
-			return casingKey + "+" + beddingKey;
-		});
-	}
+//	@Override
+//	public void registerItemSubtypes(ISubtypeRegistration registration) {
+//		registration.registerSubtypeInterpreter(CanisBlocks.CANIS_BED.get().asItem(), stack -> {
+//			Pair<ICasingMaterial, IBeddingMaterial> materials = CanisBedUtil.getMaterials(stack);
+//
+//			String casingKey = materials.getLeft() != null
+//					? materials.getLeft().getRegistryName().toString()
+//					: "rigoranthusemortisreborn:casing_missing";
+//
+//			String beddingKey = materials.getRight() != null
+//					? materials.getRight().getRegistryName().toString()
+//					: "rigoranthusemortisreborn:bedding_missing";
+//
+//			return casingKey + "+" + beddingKey;
+//		});
+//	}
 
 	@Override
 	public void registerRecipes(IRecipeRegistration registration) {

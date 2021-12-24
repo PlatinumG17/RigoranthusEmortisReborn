@@ -1,5 +1,6 @@
 package com.platinumg17.rigoranthusemortisreborn.api;
 
+import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.*;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.psyglyphic_amalgamator.IPsyglyphicRecipe;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.psyglyphic_amalgamator.PsyglyphicAmalgamatorRecipe;
@@ -8,8 +9,10 @@ import com.platinumg17.rigoranthusemortisreborn.api.apimagic.recipe.*;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.ritual.AbstractRitual;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.ritual.RitualContext;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.interfaces.ISpellTier;
+import com.platinumg17.rigoranthusemortisreborn.canis.CanisItems;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
+import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.RitualTile;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.items.FamiliarScript;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.items.Glyph;
@@ -21,6 +24,7 @@ import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.AbstractSpell
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.interfaces.ISpellValidator;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.RecipeRegistry;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.Ingredient;
@@ -34,10 +38,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -62,6 +63,41 @@ public class RigoranthusEmortisRebornAPI {
     public List<VanillaPotionRecipe> vanillaPotionRecipes = new ArrayList<>();
     private List<BrewingRecipe> brewingRecipes;
 
+    /**
+     * Map of all Items with Ichor Values
+     *
+     * key: Item
+     * value: Associated Ichor Value
+     */
+    private Hashtable<ItemStack, Integer> ichorValueMap;
+
+    public Hashtable<ItemStack, Integer> ichorValueMap() {
+        new Hashtable<ItemStack, Integer>();
+            ichorValueMap.put(Items.BONE_MEAL.getDefaultInstance(), 5);
+            ichorValueMap.put(ItemInit.BONE_FRAGMENT.get().getDefaultInstance(), 5);
+            ichorValueMap.put(CanisItems.TINY_BONE.get().getDefaultInstance(), 10);
+            ichorValueMap.put(Items.BONE.getDefaultInstance(), 15);
+            ichorValueMap.put(Items.ROTTEN_FLESH.getDefaultInstance(), 15);
+            ichorValueMap.put(Items.BONE_BLOCK.getDefaultInstance(), 45);
+            ichorValueMap.put(CanisItems.BIG_BONE.get().getDefaultInstance(), 75);
+            ichorValueMap.put(Items.SPIDER_EYE.getDefaultInstance(), 75);
+            ichorValueMap.put(Items.FERMENTED_SPIDER_EYE.getDefaultInstance(), 100);
+
+            ichorValueMap.put(MagicItemsRegistry.BOTTLE_OF_ICHOR.getDefaultInstance(), 100);
+            ichorValueMap.put(ItemInit.BUCKET_OF_CADAVEROUS_ICHOR.get().getDefaultInstance(), 400);
+            ichorValueMap.put(MagicItemsRegistry.DWELLER_FLESH.getStack(), 500);
+        return ichorValueMap;
+    }
+
+//    public Integer n = ichorValueMap.get(Items.BONE);
+//
+//    public int getIchorItemValue(int ichorName) {
+//        if (ichorValueMap != null) {
+//            System.out.println(Items.BONE.getItem().toString() + n);
+//        }
+//        return ichorValueMap.get(ichorName);
+//    }
+
     public List<BrewingRecipe> getAllPotionRecipes() {
         if(brewingRecipes == null){
             brewingRecipes = new ArrayList<>();
@@ -81,7 +117,7 @@ public class RigoranthusEmortisRebornAPI {
         return brewingRecipes;
     }
 
-    public enum PatchouliCategories{
+    public enum PatchouliCategories {
         mobs,
         spells,
         machines,
@@ -102,6 +138,8 @@ public class RigoranthusEmortisRebornAPI {
 
     private HashMap<String, AbstractFamiliarHolder> familiarHolderMap;
 
+
+
     /**
      * Contains the list of glyph item instances used by the glyph press.
      */
@@ -121,7 +159,7 @@ public class RigoranthusEmortisRebornAPI {
 
     private List<IPsyglyphicRecipe> psyglyphicAmalgamatorRecipes;
 
-    private List<IIchoricRecipe> ichorCrystallizerRecipes;
+    private List<IIchoricRecipe> craftingPressRecipes;
     /**
      * Spells that all spellbooks contain
      */
@@ -138,6 +176,21 @@ public class RigoranthusEmortisRebornAPI {
             throw new IllegalStateException("Attempted to add a starting spell for an unregistered spell. Spells must be added to the Spell Map first!");
         }
     }
+
+//    public static final Set<Item> ICHOR_ITEMS = new HashSet<>();
+//
+//    public Item getIchorItem(){
+//        ICHOR_ITEMS.add(Items.BONE);
+//
+//        for(Item i : ICHOR_ITEMS) {
+//            if(i.getRegistryName().equals(getIchorItem())){
+//                return i;
+//            }
+//        }
+//        return null;
+//    }
+
+
 
     public Item getGlyphItem(String glyphName){
         for(Item i : MagicItemsRegistry.RegistrationHandler.ITEMS){
@@ -233,8 +286,8 @@ public class RigoranthusEmortisRebornAPI {
         return psyglyphicAmalgamatorRecipes;
     }
 
-    public List<IIchoricRecipe> getIchorCrystallizerRecipes() {
-        return ichorCrystallizerRecipes;
+    public List<IIchoricRecipe> getCraftingPressRecipes() {
+        return craftingPressRecipes;
     }
 
     public Map<String, AbstractFamiliarHolder> getFamiliarHolderMap(){
@@ -249,8 +302,8 @@ public class RigoranthusEmortisRebornAPI {
         return world.getRecipeManager().getAllRecipesFor(RecipeRegistry.PSYGLYPHIC_TYPE);
     }
 
-    public List<IIchoricRecipe> getIchorCrystallizerRecipes(World world) {
-        return world.getRecipeManager().getAllRecipesFor(RecipeRegistry.CRYSTAL_TYPE);
+    public List<IIchoricRecipe> getCraftingPressRecipes(World world) {
+        return world.getRecipeManager().getAllRecipesFor(RecipeRegistry.CRAFTING_PRESS_TYPE);
     }
 
     /**
@@ -275,13 +328,14 @@ public class RigoranthusEmortisRebornAPI {
         glyphMap = new HashMap<>();
         startingSpells = new ArrayList<>();
         psyglyphicAmalgamatorRecipes = new ArrayList<>();
-            ichorCrystallizerRecipes = new ArrayList<>();
+        craftingPressRecipes = new ArrayList<>();
         ritualMap = new HashMap<>();
         ritualParchmentMap = new HashMap<>();
         craftingSpellValidator = new StandardSpellValidator(false);
         castingSpellValidator = new StandardSpellValidator(true);
         familiarHolderMap = new HashMap<>();
         familiarScriptMap = new HashMap<>();
+        ichorValueMap = new Hashtable<>();
     }
     /** Retrieves a handle to the singleton instance. */
     public static RigoranthusEmortisRebornAPI getInstance() {

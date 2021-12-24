@@ -1,24 +1,15 @@
 {
-    "name": "Emortic Crafting Press",
-    "icon": "rigoranthusemortisreborn:emortic_crafting_press",
+    "name": "Ichoric Crystallizer",
+    "icon": "rigoranthusemortisreborn:ichor_crystallizer",
     "category": "machines",
     "pages": [
         {
             "type": "text",
-            "text": "rigoranthusemortisreborn.page1.emortic_crafting_press"
+            "text": "rigoranthusemortisreborn.page.ichor_crystallizer1"
         },
 		{
-		"type":"text",
-		"text":"rigoranthusemortisreborn.page2.emortic_crafting_press"
-		},
-		{
             "type":"crafting",
-			"recipe":"rigoranthusemortisreborn:emortic_crafting_press",
-			"recipe2":"rigoranthusemortisreborn:bottle_of_ichor"
-		},{
-			"type":"crafting",
-			"recipe":"rigoranthusemortisreborn:ghast_iron",
-			"recipe2":"rigoranthusemortisreborn:blight_ichor"
+			"recipe":"rigoranthusemortisreborn:ichor_crystallizer"
 		}
     ]
 }

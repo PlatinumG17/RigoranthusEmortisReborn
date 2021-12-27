@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "X X",
-    " Y ",
-    "X X"
+    "XRX",
+    "RYR",
+    "XRX"
   ],
   "key": {
     "X": {
@@ -11,6 +11,9 @@
     },
     "Y": {
       "item": "minecraft:slime_ball"
+    },
+    "R": {
+      "item": "minecraft:rotten_flesh"
     }
   },
   "result": {

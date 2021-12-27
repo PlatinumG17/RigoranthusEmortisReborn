@@ -1,0 +1,53 @@
+{
+  "type": "rigoranthusemortisreborn:amalgamator_recipe",
+  "item_1": [
+    {
+      "item": "rigoranthusemortisreborn:dominion_gem"
+    }
+  ],
+  "item_2": [
+    {
+      "item": "rigoranthusemortisreborn:razortooth_kunai"
+    }
+  ],
+  "item_3": [
+    {
+      "item": "rigoranthusemortisreborn:razortooth_kunai"
+    }
+  ],
+  "item_4": [
+    {
+      "item": "rigoranthusemortisreborn:razortooth_kunai"
+    }
+  ],
+  "item_5": [
+    {
+      "item": "rigoranthusemortisreborn:razortooth_kunai"
+    }
+  ],
+  "item_6": [
+    {
+      "item": "rigoranthusemortisreborn:razortooth_kunai"
+    }
+  ],
+  "item_7": [
+    {
+      "item": "rigoranthusemortisreborn:razortooth_kunai"
+    }
+  ],
+  "item_8": [
+    {
+      "item": "rigoranthusemortisreborn:razortooth_kunai"
+    }
+  ],
+  "reagent": [
+    {
+      "item": "rigoranthusemortisreborn:emortic_weapon_grip"
+    }
+  ],
+  "dominionCost": 200,
+  "output": {
+    "item": "rigoranthusemortisreborn:razortooth_frisbee",
+    "count": 1
+  }
+}

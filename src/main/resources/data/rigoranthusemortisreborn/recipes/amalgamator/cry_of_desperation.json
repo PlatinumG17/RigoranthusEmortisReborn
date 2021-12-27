@@ -1,0 +1,53 @@
+{
+  "type": "rigoranthusemortisreborn:amalgamator_recipe",
+  "item_1": [
+    {
+      "tag": "forge:storage_blocks/gold"
+    }
+  ],
+  "item_2": [
+    {
+      "tag": "forge:storage_blocks/gold"
+    }
+  ],
+  "item_3": [
+    {
+      "item": "minecraft:dark_oak_planks"
+    }
+  ],
+  "item_4": [
+    {
+      "item": "minecraft:dark_oak_planks"
+    }
+  ],
+  "item_5": [
+    {
+      "item": "minecraft:dark_oak_planks"
+    }
+  ],
+  "item_6": [
+    {
+      "item": "minecraft:dark_oak_planks"
+    }
+  ],
+  "item_7": [
+    {
+      "item": "rigoranthusemortisreborn:dominion_gem"
+    }
+  ],
+  "item_8": [
+    {
+      "item": "rigoranthusemortisreborn:dominion_gem"
+    }
+  ],
+  "reagent": [
+    {
+      "item": "rigoranthusemortisreborn:powdered_esotericum"
+    }
+  ],
+  "dominionCost": 2000,
+  "output": {
+    "item": "rigoranthusemortisreborn:cry_of_desperation",
+    "count": 1
+  }
+}

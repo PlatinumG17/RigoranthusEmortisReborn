@@ -30,7 +30,7 @@ public class SpellDocProvider implements IDataProvider {
 
     @Override
     public void run(DirectoryCache cache) throws IOException {
-        APIRegistry.registerAmalgamatorRecipes();
+//        APIRegistry.registerAmalgamatorRecipes();
         Path path = this.generator.getOutputFolder();
         System.out.println("ACTING IN DOC PROVIDER");
         ArrayList<AbstractSpellPart> spells = new ArrayList<>(RigoranthusEmortisRebornAPI.getInstance().getSpell_map().values());
@@ -71,6 +71,6 @@ public class SpellDocProvider implements IDataProvider {
     }
     @Override
     public String getName() {
-        return "Spell Documentation Patchouli Provider";
+        return "Patchouli Documentation Provider";
     }
 }

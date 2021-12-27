@@ -68,7 +68,7 @@ public class FoodBowlTileEntity extends PlacedTileEntity implements INamedContai
         if (++this.timeoutCounter < 5) { return; }
         List<CanisEntity> canisList = this.level.getEntitiesOfClass(CanisEntity.class, new AxisAlignedBB(this.worldPosition).inflate(5, 5, 5));
         for (CanisEntity canis : canisList) {
-            //TODO make canis bowl remember who placed and only their caniss can attach to the bowl
+            //TODO make canis bowl remember who placed and only their cani can attach to the bowl
             UUID placerId = this.getPlacerId();
             if (placerId != null && placerId.equals(canis.getOwnerUUID()) && !canis.getBowlPos().isPresent()) {
                 canis.setBowlPos(this.worldPosition);

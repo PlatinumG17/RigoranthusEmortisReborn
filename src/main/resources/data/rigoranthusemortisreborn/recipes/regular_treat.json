@@ -1,25 +1,18 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    {
-      "item": "rigoranthusemortisreborn:training_treat"
-    },
-    {
-      "item": "rigoranthusemortisreborn:training_treat"
-    },
-    {
-      "item": "rigoranthusemortisreborn:training_treat"
-    },
-    {
-      "item": "rigoranthusemortisreborn:training_treat"
-    },
-    {
-      "item": "rigoranthusemortisreborn:training_treat"
-    },
-    {
-      "item": "minecraft:golden_apple"
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "YYY",
+    "YYY",
+    "B B"
   ],
+  "key": {
+    "B": {
+      "item": "rigoranthusemortisreborn:big_bone"
+    },
+    "Y": {
+      "item": "rigoranthusemortisreborn:training_treat"
+    }
+  },
   "result": {
     "item": "rigoranthusemortisreborn:regular_treat",
     "count": 5

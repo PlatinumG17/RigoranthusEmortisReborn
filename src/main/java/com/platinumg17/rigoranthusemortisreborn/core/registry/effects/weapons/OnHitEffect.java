@@ -1,10 +1,7 @@
 package com.platinumg17.rigoranthusemortisreborn.core.registry.effects.weapons;
 
 import com.google.common.collect.ImmutableList;
-
-import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.stats.StatsTracker;
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
-import com.platinumg17.rigoranthusemortisreborn.entity.mobs.LanguidDwellerEntity;
 import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityType;
@@ -14,14 +11,14 @@ import net.minecraft.entity.item.ArmorStandEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.*;
-import net.minecraft.util.math.*;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3i;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -256,7 +253,7 @@ public interface OnHitEffect {
 //            if(attacker instanceof ServerPlayerEntity) {
 //                Title title = PlayerSavedData.getData((ServerPlayerEntity) attacker).getTitle();
 //
-//                if((title != null && title.getHeroAspect() == aspect) || ((ServerPlayerEntity) attacker).isCreative())
+//                if((title != null && title.getAspect() == aspect) || ((ServerPlayerEntity) attacker).isCreative())
 //                    effect.onHit(stack, target, attacker);
 //            }
 //        };

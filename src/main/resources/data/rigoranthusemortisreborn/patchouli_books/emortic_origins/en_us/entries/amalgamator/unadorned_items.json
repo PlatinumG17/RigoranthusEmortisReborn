@@ -4,11 +4,11 @@
   "category": "equipment",
   "pages": [
 		{
-            "type":"crafting",
+      "type":"crafting",
 			"recipe":"rigoranthusemortisreborn:unadorned_amulet"
 		},
 		{
-            "type":"crafting",
+      "type":"crafting",
 			"recipe":"rigoranthusemortisreborn:unadorned_ring"
 		}
   ]

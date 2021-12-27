@@ -49,8 +49,8 @@ public class RigoranthusJEIPlugin implements IModPlugin {
 	public void registerCategories(IRecipeCategoryRegistration registry) {
 		registry.addRecipeCategories(
 				new CraftingPressRecipeCategory(registry.getJeiHelpers().getGuiHelper()),
-				new PsyglyphicAmalgamatorRecipeCategory(registry.getJeiHelpers().getGuiHelper()),
-				new CrushRecipeCategory(registry.getJeiHelpers().getGuiHelper())
+				new PsyglyphicAmalgamatorRecipeCategory(registry.getJeiHelpers().getGuiHelper())
+//				new CrushRecipeCategory(registry.getJeiHelpers().getGuiHelper())
 		);
 	}
 
@@ -63,7 +63,7 @@ public class RigoranthusJEIPlugin implements IModPlugin {
 		if (ConfigValues.enableJeiPlugin && ConfigValues.enableJeiCatalysts) {
 			registry.addRecipeCatalyst(new ItemStack(BlockRegistry.EMORTIC_CRAFTING_PRESS_BLOCK), CraftingPressRecipeCategory.UID);
 			registry.addRecipeCatalyst(new ItemStack(BlockRegistry.PSYGLYPHIC_AMALG_BLOCK), PsyglyphicAmalgamatorRecipeCategory.UID);
-			registry.addRecipeCatalyst(new ItemStack(RigoranthusEmortisRebornAPI.getInstance().getGlyphItem(EffectCrush.INSTANCE)), CrushRecipeCategory.UID);
+//			registry.addRecipeCatalyst(new ItemStack(RigoranthusEmortisRebornAPI.getInstance().getGlyphItem(EffectCrush.INSTANCE)), CrushRecipeCategory.UID);
 
 			registry.addRecipeCatalyst(new ItemStack(Registration.MASTERFUL_SMELTERY.get()), VanillaRecipeCategoryUid.FURNACE);
 			registry.addRecipeCatalyst(new ItemStack(Registration.MASTERFUL_SMELTERY.get()), VanillaRecipeCategoryUid.FUEL);
@@ -77,22 +77,24 @@ public class RigoranthusJEIPlugin implements IModPlugin {
 		}
 	}
 
-//	@Override
-//	public void registerItemSubtypes(ISubtypeRegistration registration) {
-//		registration.registerSubtypeInterpreter(CanisBlocks.CANIS_BED.get().asItem(), stack -> {
-//			Pair<ICasingMaterial, IBeddingMaterial> materials = CanisBedUtil.getMaterials(stack);
-//
-//			String casingKey = materials.getLeft() != null
-//					? materials.getLeft().getRegistryName().toString()
-//					: "rigoranthusemortisreborn:casing_missing";
-//
-//			String beddingKey = materials.getRight() != null
-//					? materials.getRight().getRegistryName().toString()
-//					: "rigoranthusemortisreborn:bedding_missing";
-//
-//			return casingKey + "+" + beddingKey;
-//		});
-//	}
+	@Override
+	public void registerItemSubtypes(ISubtypeRegistration registration) {
+		if (ConfigValues.enableAllCanisBedRecipes) {
+			registration.registerSubtypeInterpreter(CanisBlocks.CANIS_BED.get().asItem(), stack -> {
+				Pair<ICasingMaterial, IBeddingMaterial> materials = CanisBedUtil.getMaterials(stack);
+
+				String casingKey = materials.getLeft() != null
+						? materials.getLeft().getRegistryName().toString()
+						: "rigoranthusemortisreborn:casing_missing";
+
+				String beddingKey = materials.getRight() != null
+						? materials.getRight().getRegistryName().toString()
+						: "rigoranthusemortisreborn:bedding_missing";
+
+				return casingKey + "+" + beddingKey;
+			});
+		}
+	}
 
 	@Override
 	public void registerRecipes(IRecipeRegistration registration) {
@@ -107,11 +109,11 @@ public class RigoranthusJEIPlugin implements IModPlugin {
 			if(i instanceof PsyglyphicAmalgamatorRecipe && !(i instanceof PsyglyphicEnchantingRecipe)){
 				amalgamator.add((PsyglyphicAmalgamatorRecipe) i);
 			}
-			if(i instanceof CrushRecipe){
-				crushRecipes.add((CrushRecipe) i);
-			}
+//			if(i instanceof CrushRecipe){
+//				crushRecipes.add((CrushRecipe) i);
+//			}
 		}
-		registration.addRecipes(crushRecipes, CrushRecipeCategory.UID);
+//		registration.addRecipes(crushRecipes, CrushRecipeCategory.UID);
 		registration.addRecipes(pressRecipes, CraftingPressRecipeCategory.UID);
 		registration.addRecipes(amalgamator, PsyglyphicAmalgamatorRecipeCategory.UID);
 

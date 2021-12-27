@@ -231,6 +231,11 @@ public class CipherBlock extends ModBlock implements IWaterLoggable {
 //    } //TODO  is this needed? does this do anything?
 
     @Override
+    public boolean propagatesSkylightDown(BlockState state, IBlockReader reader, BlockPos pos) {
+        return !state.getValue(WATERLOGGED);
+    }
+
+    @Override
     public BlockRenderType getRenderShape(BlockState state) {
         return BlockRenderType.ENTITYBLOCK_ANIMATED;
     }

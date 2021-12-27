@@ -2,21 +2,15 @@
   "group": "rigoranthusemortisreborn",
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "01",
-    "23"
+    "SC",
+    "CS"
   ],
   "key": {
-    "0": {
+    "S": {
       "item": "minecraft:soul_sand"
     },
-    "1": {
+    "C": {
       "item": "minecraft:coal"
-    },
-    "2": {
-      "item": "minecraft:coal"
-    },
-    "3": {
-      "item": "minecraft:soul_sand"
     }
   },
   "result": {

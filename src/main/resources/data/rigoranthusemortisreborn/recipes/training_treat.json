@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "VUV",
+    "YYY",
     "XXX",
-    "YYY"
+    "VUV"
   ],
   "key": {
     "U": {
@@ -16,7 +16,7 @@
       "item": "minecraft:rotten_flesh"
     },
     "Y": {
-      "item": "minecraft:wheat"
+      "item": "minecraft:chicken"
     }
   },
   "result": {

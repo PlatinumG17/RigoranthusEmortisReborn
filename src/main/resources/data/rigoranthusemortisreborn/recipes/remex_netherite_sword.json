@@ -2,16 +2,16 @@
   "group": "rigoranthusemortisreborn",
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "0",
-    "0",
-    "1"
+    "I",
+    "I",
+    "G"
   ],
   "key": {
-    "0": {
+    "I": {
       "item": "rigoranthusemortisreborn:remex_netherite_ingot"
     },
-    "1": {
-      "item": "minecraft:gold_ingot"
+    "G": {
+      "tag": "forge:ingots/gold"
     }
   },
   "result": {

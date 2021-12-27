@@ -18,7 +18,6 @@ public class LibItemNames {
 
     public static final String JESSIC_BOAT = "jessic_boat";
     public static final String AZULOREAL_BOAT = "azuloreal_boat";
-    public static final String DOMINION_FIBER = "dominion_fiber";
     public static final String BUCKET_OF_DOMINION = "bucket_of_dominion";
     public static final String EMORTIC_ORIGINS = "emortic_origins";
 
@@ -32,7 +31,7 @@ public class LibItemNames {
     public static final String AMULET_OF_DOMINION_REGEN = "amulet_of_dominion_regen";
     public static final String AMULET_OF_DOMINION_BOOST = "amulet_of_dominion_boost";
     public static final String CREATIVE_SPELL_BOOK = "creative_spell_book";
-    public static final String SPELL_PARCHMENT = "spell_parchment";
+
     public static final String DOMINION_WAND = "dominion_wand";
     public static final String UNADORNED_AMULET = "unadorned_amulet";
     public static final String DOMINION_GEM = "dominion_gem";
@@ -40,21 +39,38 @@ public class LibItemNames {
     public static final String DOMINION_BERRY = "dominion_berry";
     public static final String BILIS_BERRY = "bilis_berry";
 
-    public static final String WAND = "wand";
-    public static final String RITUAL_BOOK = "ritual_book";
     public static final String ADONIS = "adonis";
-    public static final String PIERCE_ARROW = "pierce_arrow";
-    public static final String AMPLIFY_ARROW = "amplify_arrow";
-    public static final String SPLIT_ARROW = "split_arrow";
-
     public static final String EXP_GEM ="experience_gem";
     public static final String GREATER_EXP_GEM ="greater_experience_gem";
 
-    public static final String ENCHANTERS_SWORD = "enchanters_sword";
     public static final String LUSTERIC_SHIELD = "lusteric_shield";
     public static final String CASTER_TOME = "caster_tome";
-    public static final String SUMMON_FOCUS = "summon_focus";
+    public static final String SUMMONERS_STRENGTH = "summoners_strength";
+}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+    public static final String WAND = "wand";
+    public static final String RITUAL_BOOK = "ritual_book";
+    public static final String PIERCE_ARROW = "pierce_arrow";
+    public static final String AMPLIFY_ARROW = "amplify_arrow";
+    public static final String SPLIT_ARROW = "split_arrow";
+    public static final String ENCHANTERS_SWORD = "enchanters_sword";
     public static final String BLANK_GLYPH = "blank_glyph";
     public static final String RUNIC_CHALK = "runic_chalk";
-}
+    public static final String SPELL_PARCHMENT = "spell_parchment";
+*/

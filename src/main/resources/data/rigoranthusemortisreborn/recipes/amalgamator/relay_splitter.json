@@ -12,32 +12,32 @@
     ],
     "item_3": [
       {
-        "tag": "forge:gems/quartz"
+        "tag": "forge:glass_panes"
       }
     ],
     "item_4": [
       {
-        "tag": "forge:gems/quartz"
+        "tag": "forge:glass_panes"
       }
     ],
     "item_5": [
       {
-        "tag": "forge:gems/lapis"
+        "tag": "forge:ingots/gold"
       }
     ],
     "item_6": [
       {
-        "tag": "forge:gems/lapis"
+        "tag": "forge:ingots/gold"
       }
     ],
     "item_7": [
       {
-        "tag": "forge:gems/lapis"
+        "item": "minecraft:prismarine_crystals"
       }
     ],
     "item_8": [
       {
-        "tag": "forge:gems/lapis"
+        "item": "minecraft:prismarine_crystals"
       }
     ],
     "reagent": [

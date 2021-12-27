@@ -61,16 +61,17 @@ public class ConfigHandler {
 
     public static void refreshClient() {
         RigoranthusEmortisReborn.LOGGER.debug("Refresh Client Config");
-        ConfigValues.HOMINI_PARTICLES       = CLIENT.HOMINI_PARTICLES.get();
-        ConfigValues.RENDER_CHEST           = CLIENT.RENDER_CHEST.get();
-        ConfigValues.SHOW_SMELTERY_ERRORS   = CLIENT.SHOW_SMELTERY_ERRORS.get();
-        ConfigValues.cache_capacity         = CLIENT.cache_capacity.get();
-        ConfigValues.enableJeiPlugin        = CLIENT.enableJeiPlugin.get();
-        ConfigValues.enableJeiCatalysts     = CLIENT.enableJeiCatalysts.get();
-        ConfigValues.enableJeiClickArea     = CLIENT.enableJeiClickArea.get();
-        ConfigValues.smelteryXPDropValue    = CLIENT.smelteryXPDropValue.get();
-        ConfigValues.smelteryXPDropValue2   = CLIENT.smelteryXPDropValue2.get();
-        ConfigValues.masterfulSmelterySpeed = CLIENT.masterfulSmelterySpeed.get();
+        ConfigValues.HOMINI_PARTICLES         = CLIENT.HOMINI_PARTICLES.get();
+        ConfigValues.RENDER_CHEST             = CLIENT.RENDER_CHEST.get();
+        ConfigValues.SHOW_SMELTERY_ERRORS     = CLIENT.SHOW_SMELTERY_ERRORS.get();
+        ConfigValues.cache_capacity           = CLIENT.cache_capacity.get();
+        ConfigValues.enableJeiPlugin          = CLIENT.enableJeiPlugin.get();
+        ConfigValues.enableJeiCatalysts       = CLIENT.enableJeiCatalysts.get();
+        ConfigValues.enableJeiClickArea       = CLIENT.enableJeiClickArea.get();
+        ConfigValues.smelteryXPDropValue      = CLIENT.smelteryXPDropValue.get();
+        ConfigValues.smelteryXPDropValue2     = CLIENT.smelteryXPDropValue2.get();
+        ConfigValues.masterfulSmelterySpeed   = CLIENT.masterfulSmelterySpeed.get();
+        ConfigValues.enableAllCanisBedRecipes = CLIENT.enableAllCanisBedRecipes.get();
     }
 
     public static void refreshSkills() {
@@ -93,6 +94,7 @@ public class ConfigHandler {
         public ForgeConfigSpec.BooleanValue enableJeiPlugin;
         public ForgeConfigSpec.BooleanValue enableJeiCatalysts;
         public ForgeConfigSpec.BooleanValue enableJeiClickArea;
+        public ForgeConfigSpec.BooleanValue enableAllCanisBedRecipes;
 
         public ClientConfig(ForgeConfigSpec.Builder builder) {
             builder.push("General");
@@ -148,6 +150,10 @@ public class ConfigHandler {
                             .comment(" Debugging Tool that prints Smeltery Settings errors in chat.")
                             .translation("rigoranthusemortisreborn.config.client.display_smeltery_errors")
                             .define("display_smeltery_errors", false);
+                    enableAllCanisBedRecipes = builder
+                            .comment(" Show or Hide all of the Auto-Generated Canis Bed Recipes in JEI.")
+                            .translation("rigoranthusemortisreborn.config.client.show_all_recipes")
+                            .define("show_all_recipes", false);
             builder.pop();
         }
     }
@@ -155,7 +161,7 @@ public class ConfigHandler {
     static class SkillConfig {
         public Map<Skill, ForgeConfigSpec.BooleanValue> DISABLED_SKILLS;
         public SkillConfig(ForgeConfigSpec.Builder builder) {
-            builder.comment("Here you can disable skills.").push("Skills");
+            builder.comment("Here you can Disable Skills.").push("Skills");
             DISABLED_SKILLS = new HashMap<Skill, ForgeConfigSpec.BooleanValue>();
             RigoranthusEmortisRebornAPI.SKILLS.forEach((loc) -> DISABLED_SKILLS.put(loc, builder.define(loc.getRegistryName().toString(), true)));
             builder.pop();

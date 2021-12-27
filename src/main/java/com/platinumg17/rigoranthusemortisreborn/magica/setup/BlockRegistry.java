@@ -20,6 +20,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.BlockNamedItem;
 import net.minecraft.item.Item;
 import net.minecraft.potion.Effects;
 import net.minecraft.tileentity.TileEntityType;
@@ -224,8 +225,8 @@ public class BlockRegistry {
         @SubscribeEvent
         public static void onMagicItemsRegistry(final RegistryEvent.Register<Item> itemRegistryEvent) {
             IForgeRegistry<Item> registry = itemRegistryEvent.getRegistry();
-            Item dominionBerry = new BlockItem(BlockRegistry.DOMINION_BERRY_BUSH, MagicItemsRegistry.defaultItemProperties().food(MagicItemsRegistry.DOMINION_BERRY_FOOD)).setRegistryName(LibItemNames.DOMINION_BERRY);
-            Item bilisBerry = new BlockItem(BlockRegistry.SPECTABILIS_BUSH, MagicItemsRegistry.defaultItemProperties().food(MagicItemsRegistry.BILIS_BERRY_FOOD)).setRegistryName(LibItemNames.BILIS_BERRY);
+            Item dominionBerry = new BlockNamedItem(BlockRegistry.DOMINION_BERRY_BUSH, MagicItemsRegistry.defaultItemProperties().food(MagicItemsRegistry.DOMINION_BERRY_FOOD)).setRegistryName(LibItemNames.DOMINION_BERRY);
+            Item bilisBerry = new BlockNamedItem(BlockRegistry.SPECTABILIS_BUSH, MagicItemsRegistry.defaultItemProperties().food(MagicItemsRegistry.BILIS_BERRY_FOOD)).setRegistryName(LibItemNames.BILIS_BERRY);
             ComposterBlock.COMPOSTABLES.putIfAbsent(dominionBerry, 0.3f);
             ComposterBlock.COMPOSTABLES.putIfAbsent(bilisBerry, 0.3f);
             registry.register(dominionBerry);

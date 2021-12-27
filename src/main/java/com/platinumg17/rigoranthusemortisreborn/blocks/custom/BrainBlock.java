@@ -71,6 +71,11 @@ public class BrainBlock extends Block implements IWaterLoggable {
         }
     }
 
+    @Override
+    public boolean propagatesSkylightDown(BlockState state, IBlockReader reader, BlockPos pos) {
+        return !state.getValue(WATERLOGGED);
+    }
+
     protected boolean mayPlaceOn(BlockState blockState, IBlockReader reader, BlockPos blockPos) {
         return !blockState.getCollisionShape(reader, blockPos).getFaceShape(Direction.UP).isEmpty() || blockState.isFaceSturdy(reader, blockPos, Direction.UP);
     }

@@ -1,16 +1,19 @@
 {
     "type": "minecraft:crafting_shaped",
     "pattern": [
-      "g g",
-      "gMg",
-      "g g"
+      "GDG",
+      "GMG",
+      "GDG"
     ],
     "key": {
-      "g": {
+      "G": {
         "tag": "forge:ingots/gold"
       },
       "M": {
         "item": "rigoranthusemortisreborn:dominion_gem_block"
+      },
+      "D": {
+        "tag": "forge:gems/diamond"
       }
     },
     "result": {

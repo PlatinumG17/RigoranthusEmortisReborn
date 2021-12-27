@@ -1,0 +1,33 @@
+{
+  "type": "rigoranthusemortisreborn:amalgamator_recipe",
+  "item_1": [
+    {
+      "item": "rigoranthusemortisreborn:dominion_gem"
+    }
+  ],
+  "item_2": [
+    {
+      "item": "rigoranthusemortisreborn:dominion_gem"
+    }
+  ],
+  "item_3": [
+    {
+      "tag": "forge:storage_blocks/gold"
+    }
+  ],
+  "item_4": [
+    {
+      "tag": "forge:storage_blocks/gold"
+    }
+  ],
+  "reagent": [
+    {
+      "item": "minecraft:shield"
+    }
+  ],
+  "dominionCost": 100,
+  "output": {
+    "item": "rigoranthusemortisreborn:lusteric_shield",
+    "count": 1
+  }
+}

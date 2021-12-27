@@ -1,0 +1,48 @@
+{
+  "type": "rigoranthusemortisreborn:amalgamator_recipe",
+  "item_1": [
+    {
+      "item": "rigoranthusemortisreborn:dominion_gem"
+    }
+  ],
+  "item_2": [
+    {
+      "item": "rigoranthusemortisreborn:psyglyphic_script"
+    }
+  ],
+  "item_3": [
+    {
+      "tag": "forge:ingots/gold"
+    }
+  ],
+  "item_4": [
+    {
+      "tag": "forge:ingots/gold"
+    }
+  ],
+  "item_5": [
+    {
+      "tag": "forge:ingots/gold"
+    }
+  ],
+  "item_6": [
+    {
+      "tag": "forge:ingots/gold"
+    }
+  ],
+  "item_7": [
+    {
+      "item": "rigoranthusemortisreborn:emortic_weapon_grip"
+    }
+  ],
+  "reagent": [
+    {
+      "item": "minecraft:bow"
+    }
+  ],
+  "dominionCost": 200,
+  "output": {
+    "item": "rigoranthusemortisreborn:adonis",
+    "count": 1
+  }
+}

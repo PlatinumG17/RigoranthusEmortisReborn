@@ -25,9 +25,9 @@ import java.util.stream.Collectors;
 
 public class PsyglyphicAmalgamatorRecipe implements IPsyglyphicRecipe {
 
-    public Ingredient reagent; // Used in the splintered pedestal
+    public Ingredient reagent; // Used in the Amalgamator
     public ItemStack result; // Result item
-    public List<Ingredient> pedestalItems; // Items part of the recipe
+    public List<Ingredient> pedestalItems; // Items placed on splintered pedestals as part of the recipe
     public String category;
     public ResourceLocation id;
     public int dominionCost;
@@ -42,7 +42,7 @@ public class PsyglyphicAmalgamatorRecipe implements IPsyglyphicRecipe {
     }
 
     public PsyglyphicAmalgamatorRecipe(ResourceLocation id, List<Ingredient> pedestalItems, Ingredient reagent, ItemStack result) {
-        this(id, pedestalItems, reagent, result, 200);
+        this(id, pedestalItems, reagent, result, 0);
     }
 
     public PsyglyphicAmalgamatorRecipe(ResourceLocation id, List<Ingredient> pedestalItems, Ingredient reagent, ItemStack result, int cost){

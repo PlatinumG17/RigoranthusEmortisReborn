@@ -55,7 +55,6 @@ public class EmorticCraftingPressTile extends AnimatedTile implements ITickableT
         super(BlockRegistry.EMORTIC_CRAFTING_PRESS_TILE);
         ImmutableList.of(Direction.UP, Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST).forEach(this::addItemHandler);
         addItemHandler(null);
-//        counter = 1;
     }
 
     @Override
@@ -95,7 +94,7 @@ public class EmorticCraftingPressTile extends AnimatedTile implements ITickableT
         if(isCrafting || stack.isEmpty())
             return false;
         IIchoricRecipe recipe = this.getRecipe(stack, reagent, playerEntity);
-        return recipe != null && (!recipe.consumesDominion() || (recipe.consumesDominion() && DominionUtil.hasDominionNearby(worldPosition, level, 5, recipe.dominionCost())));
+        return recipe != null && (!recipe.consumesDominion() || (recipe.consumesDominion() && DominionUtil.hasDominionNearby(worldPosition, level, 10, recipe.dominionCost())));
     }
 
     public void updateBlock() {

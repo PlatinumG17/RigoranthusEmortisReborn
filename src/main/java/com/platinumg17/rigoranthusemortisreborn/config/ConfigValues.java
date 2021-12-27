@@ -15,6 +15,7 @@ public class ConfigValues {
     public static boolean RENDER_CHEST                  = true;
     public static boolean SHOW_SMELTERY_ERRORS          = false;
 //    public static boolean DISPLAY_OTHER_CANIS_SKINS     = true; // Requests skins that it does not have from the server
+    public static boolean enableAllCanisBedRecipes      = false;
     public static boolean enableJeiPlugin               = true;
     public static boolean enableJeiCatalysts            = true;
     public static boolean enableJeiClickArea            = true;

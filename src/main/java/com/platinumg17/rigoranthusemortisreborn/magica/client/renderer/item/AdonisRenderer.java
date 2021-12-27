@@ -8,7 +8,6 @@ import com.platinumg17.rigoranthusemortisreborn.magica.client.ClientInfo;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.particle.ParticleLineData;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.particle.ParticleUtil;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.items.Adonis;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.items.Wand;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;

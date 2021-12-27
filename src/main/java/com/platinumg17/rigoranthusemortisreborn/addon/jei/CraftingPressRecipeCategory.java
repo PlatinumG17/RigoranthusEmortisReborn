@@ -79,7 +79,7 @@ public class CraftingPressRecipeCategory implements IRecipeCategory<CraftingPres
         arrow.draw( matrixStack, 57, 8);
         FontRenderer renderer = Minecraft.getInstance().font;
         if(recipe.consumesDominion())
-            renderer.draw(matrixStack, new TranslationTextComponent("rigoranthusemortisreborn.dominion", recipe.dominionCost), 6f, 35f, 4210752);
+            renderer.draw(matrixStack, new TranslationTextComponent("rigoranthusemortisreborn.dominion", recipe.dominionCost), 6f, 35f, 0);
     }
 
     @Override

@@ -1,11 +1,7 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.setup;
 
 import com.platinumg17.rigoranthusemortisreborn.api.RigoranthusEmortisRebornAPI;
-import com.platinumg17.rigoranthusemortisreborn.api.apimagic.psyglyphic_amalgamator.IPsyglyphicRecipe;
-import com.platinumg17.rigoranthusemortisreborn.api.apimagic.psyglyphic_amalgamator.ReactivePsyglyphicRecipe;
-import com.platinumg17.rigoranthusemortisreborn.api.apimagic.psyglyphic_amalgamator.SpellWriteRecipe;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.ritual.AbstractRitual;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.lib.GlyphLib;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.CadaverFamiliar;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.ritual.RitualSummonersPact;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.ritual.RitualHealing;
@@ -14,21 +10,19 @@ import com.platinumg17.rigoranthusemortisreborn.magica.common.spell.effect.*;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.spell.method.*;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.entity.familiar.AbstractFamiliarHolder;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.AbstractSpellPart;
-import net.minecraft.item.ItemStack;
 
 public class APIRegistry {
 
-    public static void registerAmalgamatorRecipes() {
-        registerAmalgamatorRecipe(new ReactivePsyglyphicRecipe(new ItemStack[]{new ItemStack(MagicItemsRegistry.spellParchment),
-                new ItemStack(RigoranthusEmortisRebornAPI.getInstance().getGlyphItem(GlyphLib.AugmentAmplifyID)),
-                new ItemStack(RigoranthusEmortisRebornAPI.getInstance().getGlyphItem(GlyphLib.AugmentAmplifyID)),
-                new ItemStack(RigoranthusEmortisRebornAPI.getInstance().getGlyphItem(GlyphLib.AugmentAmplifyID))}, 3000));
-
-        registerAmalgamatorRecipe(new SpellWriteRecipe());
-    }
-    public static void registerAmalgamatorRecipe(IPsyglyphicRecipe recipe) {
-        RigoranthusEmortisRebornAPI.getInstance().getPsyglyphicAmalgamatorRecipes().add(recipe);
-    }
+//    public static void registerAmalgamatorRecipes() {
+//        registerAmalgamatorRecipe(new ReactivePsyglyphicRecipe(new ItemStack[]{new ItemStack(MagicItemsRegistry.spellParchment),
+//                new ItemStack(RigoranthusEmortisRebornAPI.getInstance().getGlyphItem(GlyphLib.AugmentAmplifyID)),
+//                new ItemStack(RigoranthusEmortisRebornAPI.getInstance().getGlyphItem(GlyphLib.AugmentAmplifyID)),
+//                new ItemStack(RigoranthusEmortisRebornAPI.getInstance().getGlyphItem(GlyphLib.AugmentAmplifyID))}, 3000));
+//        registerAmalgamatorRecipe(new SpellWriteRecipe());
+//    }
+//    public static void registerAmalgamatorRecipe(IPsyglyphicRecipe recipe) {
+//        RigoranthusEmortisRebornAPI.getInstance().getPsyglyphicAmalgamatorRecipes().add(recipe);
+//    }
 
     public static void registerSpells() {
         registerSpell(MethodProjectile.INSTANCE);

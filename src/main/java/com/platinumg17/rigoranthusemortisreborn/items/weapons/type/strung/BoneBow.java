@@ -101,12 +101,10 @@ public class BoneBow extends BowItem {
                         if (j > 0) {
                             abstractarrowentity.setBaseDamage(abstractarrowentity.getBaseDamage() + (double) j * 0.6D + 0.6D);
                         }
-
                         int k = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PUNCH_ARROWS, stack);
                         if (k > 0) {
                             abstractarrowentity.setKnockback(k);
                         }
-
                         if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.FLAMING_ARROWS, stack) > 0) {
                             abstractarrowentity.setSecondsOnFire(110);
                         }
@@ -118,7 +116,7 @@ public class BoneBow extends BowItem {
                             abstractarrowentity.pickup = AbstractArrowEntity.PickupStatus.CREATIVE_ONLY;
                         }
                         abstractarrowentity.getPersistentData().putBoolean(RigoranthusEmortisReborn.MOD_ID + "bone_bow", true);
-                        worldIn.addFreshEntity(abstractarrowentity);
+                        entityLiving.level.addFreshEntity(abstractarrowentity);
                     }
 
                     worldIn.playSound((PlayerEntity) null, playerentity.getX(), playerentity.getY(), playerentity.getZ(), SoundEvents.ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (random.nextFloat() * 0.4F + 1.2F) + f * 0.5F);

@@ -5,7 +5,6 @@ import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.interfaces.IS
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.Spell;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.SpellCaster;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.items.SpellBook;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.items.SpellParchment;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.util.PortUtil;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
@@ -28,7 +27,7 @@ public interface ICasterTool extends IScribeable, IDisplayDominion {
         ItemStack heldStack = player.getItemInHand(handIn);
         ISpellCaster caster = getSpellCaster(stack);
 
-        if(!((heldStack.getItem() instanceof SpellBook) || (heldStack.getItem() instanceof SpellParchment)) || heldStack.getTag() == null)
+        if(!(heldStack.getItem() instanceof SpellBook) || /*(heldStack.getItem() instanceof SpellParchment)) ||*/ heldStack.getTag() == null)
             return false;
         boolean success = false;
         Spell spell = new Spell();
@@ -71,7 +70,6 @@ public interface ICasterTool extends IScribeable, IDisplayDominion {
         return true;
     }
 
-
     default boolean isScribedSpellValid(ISpellCaster caster, PlayerEntity player, Hand hand, ItemStack stack, Spell spell){
         return spell.isValid();
     }
@@ -81,14 +79,13 @@ public interface ICasterTool extends IScribeable, IDisplayDominion {
         return true;
     }
 
-
     default void getInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip2, ITooltipFlag flagIn) {
         if(worldIn == null)
             return;
         ISpellCaster caster = getSpellCaster(stack);
 
         if(caster.getSpell().isEmpty()){
-            tooltip2.add(new TranslationTextComponent("rigoranthusemortisreborn.tooltip.can_inscribe"));
+//            tooltip2.add(new TranslationTextComponent("rigoranthusemortisreborn.tooltip.can_inscribe"));
             return;
         }
 

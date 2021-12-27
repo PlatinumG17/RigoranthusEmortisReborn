@@ -1,0 +1,53 @@
+{
+  "type": "rigoranthusemortisreborn:amalgamator_recipe",
+  "item_1": [
+    {
+      "item": "minecraft:fire_charge"
+    }
+  ],
+  "item_2": [
+    {
+      "item": "rigoranthusemortisreborn:powdered_esotericum"
+    }
+  ],
+  "item_3": [
+    {
+      "item": "minecraft:fire_charge"
+    }
+  ],
+  "item_4": [
+    {
+      "tag": "forge:storage_blocks/gold"
+    }
+  ],
+  "item_5": [
+    {
+      "tag": "forge:storage_blocks/gold"
+    }
+  ],
+  "item_6": [
+    {
+      "item": "rigoranthusemortisreborn:dominion_gem"
+    }
+  ],
+  "item_7": [
+    {
+      "tag": "forge:leather"
+    }
+  ],
+  "item_8": [
+    {
+      "item": "rigoranthusemortisreborn:dominion_gem"
+    }
+  ],
+  "reagent": [
+    {
+      "item": "rigoranthusemortisreborn:big_bone"
+    }
+  ],
+  "dominionCost": 1000,
+  "output": {
+    "item": "rigoranthusemortisreborn:ghastly_scepter",
+    "count": 1
+  }
+}

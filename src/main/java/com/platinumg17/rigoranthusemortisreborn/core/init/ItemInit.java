@@ -112,7 +112,7 @@ public class ItemInit {
 					OnHitEffect.SWEEP).add(OnHitEffect.DISARM_ENEMY), new Item.Properties().defaultDurability(200).tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).rarity(Rarity.UNCOMMON)));
 
 	public static final RegistryObject<Item> ANDURIL = ITEMS.register("anduril",
-			() -> new REWeaponItem(new REWeaponItem.Builder(RigoranthusItemTier.GHAST_IRON, 3, -2.4F).efficiency(15.0F).set(ToolRegistry.SWORD_TOOL).add(
+			() -> new REWeaponItem(new REWeaponItem.Builder(RigoranthusItemTier.GHAST_IRON, 4, -2.4F).efficiency(15.0F).set(ToolRegistry.SWORD_TOOL).add(
 					OnHitEffect.SWEEP).add(OnHitEffect.setOnFire(10)), new Item.Properties().defaultDurability(350).tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).rarity(Rarity.RARE)));
 
 //	public static final RegistryObject<Item> LUCK_OF_HEPHAESTUS = ITEMS.register("luck_of_hephaestus",
@@ -226,7 +226,7 @@ public class ItemInit {
 			() -> new REWeaponItem(new REWeaponItem.Builder(ItemTier.IRON, 1, -1.0F).efficiency(1.5F).set(ToolRegistry.MISC_TOOL).set(
 				ItemRightClickEffect.extinguishFire(1)).add(OnHitEffect.enemyKnockback(1.5F)), new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)));
 
-	public static final RegistryObject<Item> STEOCLASTS_SHEATHED = ITEMS.register("typhonic_trivializer",
+	public static final RegistryObject<Item> STEOCLASTS_SHEATHED = ITEMS.register("steoclasts_sheathed",
 			() -> new REWeaponItem(new REWeaponItem.Builder(RigoranthusItemTier.ESOTERIC_TIER, 2, -1.0F).efficiency(1.5F).set(ToolRegistry.MISC_TOOL).set(
 				ItemRightClickEffect.extinguishFire(3)).add(OnHitEffect.BREATH_LEVITATION_AOE).add(OnHitEffect.enemyKnockback(2.0F)), new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).rarity(Rarity.RARE)));
 
@@ -250,8 +250,6 @@ public class ItemInit {
 
 	///_______________________  D W E L L E R  S T U F F  _______________________///
 
-//	public static final RegistryObject<Item> DWELLER_FLESH = ITEMS.register("dweller_flesh",
-//			() -> new Item(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)));
 
 	public static final RegistryObject<Item> DWELLER_THORAX = ITEMS.register("dweller_thorax",
 			() -> new DwellerThoraxArmor(RigoranthusArmorMaterial.DWELLER, EquipmentSlotType.CHEST,

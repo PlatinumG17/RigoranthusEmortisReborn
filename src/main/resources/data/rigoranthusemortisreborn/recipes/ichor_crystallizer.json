@@ -1,19 +1,25 @@
 {
     "type": "minecraft:crafting_shaped",
     "pattern": [
-      "yxy",
-      "yzy",
-      "yxy"
+      "ypy",
+      "gzg",
+      "yby"
     ],
     "key": {
-      "x": {
-        "item": "rigoranthusemortisreborn:opulent_magma"
-      },
       "y": {
         "tag": "forge:ingots/gold"
       },
       "z": {
         "item": "rigoranthusemortisreborn:dominion_gem"
+      },
+      "g": {
+        "tag": "forge:glass"
+      },
+      "p": {
+        "item": "minecraft:piston"
+      },
+      "b": {
+        "item": "minecraft:blackstone"
       }
     },
     "result": {

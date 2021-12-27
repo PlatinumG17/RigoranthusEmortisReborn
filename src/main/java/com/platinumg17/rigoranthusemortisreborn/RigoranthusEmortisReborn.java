@@ -167,7 +167,8 @@ public class RigoranthusEmortisReborn {
             VanillaCompatRigoranthus.registerCompostables();       VanillaCompatRigoranthus.registerFlammables();
             VanillaCompatRigoranthus.registerDispenserBehaviors(); REPacketHandler.setupChannel();
             DominionCapability.register();                         FamiliarCap.register();
-            APIRegistry.registerAmalgamatorRecipes();              Networking.registerMessages();
+//            APIRegistry.registerAmalgamatorRecipes();
+            Networking.registerMessages();
             ModPotions.addRecipes();                               CanisReviveCommand.registerSerializers();
             CanisPacketHandler.init();                             InteractionHandler.registerHandler(new HelmetInteractionHandler());
             FoodHandler.registerHandler(new MeatFoodHandler());    FoodHandler.registerDynPredicate(ChungusPupperSkill.INNER_DYN_PRED);

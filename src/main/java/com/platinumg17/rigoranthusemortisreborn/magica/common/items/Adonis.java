@@ -165,7 +165,7 @@ public class Adonis extends BowItem implements IAnimatable, ICasterTool {
                     addArrow(arr, bowStack, arrowStack, isArrowInfinite, playerentity);
                 }
             }
-            worldIn.playSound(null, playerentity.getX(), playerentity.getY(), playerentity.getZ(), RigoranthusSoundRegistry.SHOOT_BOW.get(), SoundCategory.PLAYERS, 1.0F, 1.0F / (random.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
+            worldIn.playSound(null, playerentity.getX(), playerentity.getY(), playerentity.getZ(), SoundEvents.ARROW_SHOOT/*RigoranthusSoundRegistry.SHOOT_BOW.get()*/, SoundCategory.PLAYERS, 1.0F, 1.0F / (random.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
             if (!isArrowInfinite && !playerentity.abilities.instabuild) {
                 arrowStack.shrink(1);
             }
@@ -192,7 +192,7 @@ public class Adonis extends BowItem implements IAnimatable, ICasterTool {
     /**
      * Get the predicate to match ammunition when searching the player's inventory, not their main/offhand
      */
-    public Predicate<ItemStack> getAllSupportedProjectiles() {return ARROW_ONLY.or(i -> i.getItem() instanceof SpellArrow);}
+    public Predicate<ItemStack> getAllSupportedProjectiles() {return ARROW_ONLY.or(i -> i.getItem() instanceof SpellArrow).or(i -> i.getItem() instanceof BoneArrow);}
     @Override public void registerControllers(AnimationData data) {}
     @Override public AbstractArrowEntity customArrow(AbstractArrowEntity arrow) {
         return super.customArrow(arrow);
@@ -224,13 +224,8 @@ public class Adonis extends BowItem implements IAnimatable, ICasterTool {
         spell.recipe = recipe;
         return ICasterTool.super.setSpell(caster, player, hand, stack, spell);
     }
-    @Override public int getEnchantmentValue() {
-        return super.getEnchantmentValue();
-    }
-    @Override public boolean isEnchantable(ItemStack stack) {
-        return true;
-    }
-    @Override public boolean isBookEnchantable(ItemStack stack, ItemStack book) {
-        return true;
-    }
+    @Override public int getEnchantmentValue() { return super.getEnchantmentValue(); }
+    @Override public boolean isEnchantable(ItemStack stack) { return true; }
+    @Override public boolean isBookEnchantable(ItemStack stack, ItemStack book) { return true; }
+    @Override public int getDefaultProjectileRange() { return 22; }
 }

@@ -42,7 +42,7 @@ public class CraftingPressRecipe implements IIchoricRecipe {
     }
 
     public CraftingPressRecipe(ResourceLocation id, Ingredient base, Ingredient reagent, ItemStack output) {
-        this(id, output, base, reagent, 200);
+        this(id, output, base, reagent, 0);
     }
 
     public CraftingPressRecipe(ResourceLocation id, ItemStack output, Ingredient reagent, Ingredient base, int dominionCost) {

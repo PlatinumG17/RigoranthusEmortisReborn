@@ -5,12 +5,14 @@ import com.google.gson.GsonBuilder;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.recipe.CraftingPressRecipe;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
+import com.platinumg17.rigoranthusemortisreborn.magica.setup.MagicItemsRegistry;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DirectoryCache;
 import net.minecraft.data.IDataProvider;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.text.TranslationTextComponent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -65,10 +67,24 @@ public class CraftingPressRecipeProvider implements IDataProvider {
 
         addRecipe(builder()
                 .withResult(ItemInit.GHAST_IRON_INGOT.get())
-                .withReagent(Ingredient.of(Items.GHAST_TEAR))
-                .withBaseItem(Ingredient.of(Items.IRON_INGOT))
+                .withBaseItem(Ingredient.of(Items.GHAST_TEAR))
+                .withReagent(Ingredient.of(Items.IRON_INGOT))
                 .build());
-
+        addRecipe(builder()
+                .withResult(ItemInit.PACT_OF_SERVITUDE.get())
+                .withBaseItem(Ingredient.of(Items.PAPER))
+                .withReagent(Ingredient.of(MagicItemsRegistry.BOTTLE_OF_ICHOR))
+                .build());
+        addRecipe(builder()
+                .withResult(ItemInit.IRON_SLIME_BALL.get())
+                .withBaseItem(Ingredient.of(Items.IRON_INGOT))
+                .withReagent(Ingredient.of(Items.SLIME_BALL))
+                .build());
+        addRecipe(builder()
+                .withResult(ItemInit.RAZORTOOTH_KUNAI.get())
+                .withBaseItem(Ingredient.of(Items.IRON_NUGGET))
+                .withReagent(Ingredient.of(ItemInit.RAZOR_TOOTH.get()))
+                .build());
     }
 
     public void addRecipe(CraftingPressRecipe recipe) {
@@ -80,11 +96,11 @@ public class CraftingPressRecipeProvider implements IDataProvider {
     }
 
     private static Path getRecipePath(Path pathIn, String str) {
-        return pathIn.resolve("data/rigoranthusemortisreborn/recipes/" + str + ".json");
+        return pathIn.resolve("data/rigoranthusemortisreborn/recipes/crafting_press/" + str + ".json");
     }
 
     @Override
     public String getName() {
-        return "Emortic Crafting Press";
+        return new TranslationTextComponent("block.rigoranthusemortisreborn.emortic_crafting_press").getString();
     }
 }

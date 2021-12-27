@@ -7,7 +7,7 @@
   ],
   "item_2": [
     {
-      "tag": "forge:gems/diamond"
+      "item": "rigoranthusemortisreborn:dominion_jar"
     }
   ],
   "item_3": [
@@ -17,12 +17,12 @@
   ],
   "item_4": [
     {
-      "item": "rigoranthusemortisreborn:dominion_gem"
+      "tag": "forge:ingots/gold"
     }
   ],
   "item_5": [
     {
-      "item": "rigoranthusemortisreborn:dominion_gem"
+      "tag": "forge:ingots/gold"
     }
   ],
   "item_6": [

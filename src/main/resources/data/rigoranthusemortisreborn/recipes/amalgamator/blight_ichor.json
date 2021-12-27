@@ -1,0 +1,53 @@
+{
+  "type": "rigoranthusemortisreborn:amalgamator_recipe",
+  "item_1": [
+    {
+      "item": "rigoranthusemortisreborn:bottle_of_ichor"
+    }
+  ],
+  "item_2": [
+    {
+      "item": "rigoranthusemortisreborn:bottle_of_ichor"
+    }
+  ],
+  "item_3": [
+    {
+      "item": "minecraft:spider_eye"
+    }
+  ],
+  "item_4": [
+    {
+      "item": "minecraft:spider_eye"
+    }
+  ],
+  "item_5": [
+    {
+      "item": "minecraft:nether_wart"
+    }
+  ],
+  "item_6": [
+    {
+      "item": "minecraft:nether_wart"
+    }
+  ],
+  "item_7": [
+    {
+      "item": "minecraft:soul_sand"
+    }
+  ],
+  "item_8": [
+    {
+      "item": "minecraft:soul_sand"
+    }
+  ],
+  "reagent": [
+    {
+      "item": "minecraft:wither_skeleton_skull"
+    }
+  ],
+  "dominionCost": 100,
+  "output": {
+    "item": "rigoranthusemortisreborn:blight_ichor",
+    "count": 1
+  }
+}

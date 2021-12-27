@@ -1,0 +1,33 @@
+{
+  "type": "rigoranthusemortisreborn:amalgamator_recipe",
+  "item_1": [
+    {
+      "item": "minecraft:fire_charge"
+    }
+  ],
+  "item_2": [
+    {
+      "item": "rigoranthusemortisreborn:dominion_gem"
+    }
+  ],
+  "item_3": [
+    {
+      "item": "rigoranthusemortisreborn:ghast_iron_ingot"
+    }
+  ],
+  "item_4": [
+    {
+      "item": "rigoranthusemortisreborn:ghast_iron_ingot"
+    }
+  ],
+  "reagent": [
+    {
+      "item": "rigoranthusemortisreborn:emortic_weapon_grip"
+    }
+  ],
+  "dominionCost": 200,
+  "output": {
+    "item": "rigoranthusemortisreborn:anduril",
+    "count": 1
+  }
+}

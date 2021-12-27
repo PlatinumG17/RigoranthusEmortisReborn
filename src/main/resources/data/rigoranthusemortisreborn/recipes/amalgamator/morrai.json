@@ -1,0 +1,33 @@
+{
+  "type": "rigoranthusemortisreborn:amalgamator_recipe",
+  "item_1": [
+    {
+      "item": "rigoranthusemortisreborn:iron_slime_ball"
+    }
+  ],
+  "item_2": [
+    {
+      "item": "rigoranthusemortisreborn:iron_slime_ball"
+    }
+  ],
+  "item_3": [
+    {
+      "item": "minecraft:lead"
+    }
+  ],
+  "item_4": [
+    {
+      "item": "rigoranthusemortisreborn:dominion_gem"
+    }
+  ],
+  "reagent": [
+    {
+      "item": "rigoranthusemortisreborn:emortic_weapon_grip"
+    }
+  ],
+  "dominionCost": 100,
+  "output": {
+    "item": "rigoranthusemortisreborn:morrai",
+    "count": 1
+  }
+}

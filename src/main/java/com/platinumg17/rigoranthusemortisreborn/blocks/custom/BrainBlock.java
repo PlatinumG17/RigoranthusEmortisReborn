@@ -76,17 +76,20 @@ public class BrainBlock extends Block implements IWaterLoggable {
         return !state.getValue(WATERLOGGED);
     }
 
-    protected boolean mayPlaceOn(BlockState blockState, IBlockReader reader, BlockPos blockPos) {
-        return !blockState.getCollisionShape(reader, blockPos).getFaceShape(Direction.UP).isEmpty() || blockState.isFaceSturdy(reader, blockPos, Direction.UP);
+//    protected boolean mayPlaceOn(BlockState blockState, IBlockReader reader, BlockPos blockPos) {
+//        return !blockState.getCollisionShape(reader, blockPos).getFaceShape(Direction.UP).isEmpty() || blockState.isFaceSturdy(reader, blockPos, Direction.UP);
+//    }
+//    public boolean canSurvive(BlockState blockState, IWorldReader reader, BlockPos blockPos) {
+//        BlockPos blockpos = blockPos.below();
+//        return this.mayPlaceOn(reader.getBlockState(blockpos), reader, blockpos);
+//    }
+    @SuppressWarnings("deprecation")
+    @Override
+    public boolean canSurvive(BlockState state, IWorldReader reader, BlockPos pos) {
+        return canSupportCenter(reader, pos.below(), Direction.UP);
     }
-
-    public boolean canSurvive(BlockState blockState, IWorldReader reader, BlockPos blockPos) {
-        BlockPos blockpos = blockPos.below();
-        return this.mayPlaceOn(reader.getBlockState(blockpos), reader, blockpos);
-    }
-
-    public FluidState getFluidState(BlockState p_204507_1_) {
-        return p_204507_1_.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(p_204507_1_);
+    public FluidState getFluidState(BlockState state) {
+        return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
     @Override
     protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {builder.add(FACING, WATERLOGGED);}
@@ -96,5 +99,5 @@ public class BrainBlock extends Block implements IWaterLoggable {
     public BlockRenderType getRenderType(BlockState blockState) {return BlockRenderType.MODEL;}
     @Override
     public PushReaction getPistonPushReaction(BlockState blockState) {return PushReaction.DESTROY;}
-    public boolean isPathfindable(BlockState p_196266_1_, IBlockReader p_196266_2_, BlockPos p_196266_3_, PathType p_196266_4_) {return false;}
+    public boolean isPathfindable(BlockState blockState, IBlockReader blockReader, BlockPos pos, PathType pathType) {return false;}
 }

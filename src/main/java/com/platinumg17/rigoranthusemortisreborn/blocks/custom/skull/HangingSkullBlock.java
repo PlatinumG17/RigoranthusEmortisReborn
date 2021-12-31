@@ -51,7 +51,7 @@ public class HangingSkullBlock extends Block implements IWaterLoggable {
             return face;
         } else {
             Vector3d difference = context.getClickLocation().add(Vector3d.atCenterOf(context.getClickedPos())).add(0.5D, 0.0D, 0.5D);
-            return Direction.fromYRot(-Math.toDegrees(Math.atan2(difference.x(), difference.z()))).getOpposite();
+            return Direction.fromYRot(Math.toDegrees(Math.atan2(difference.x(), difference.z()))).getClockWise();
         }
     }
     public VoxelShape getOcclusionShape(BlockState state, IBlockReader blockReader, BlockPos pos) {

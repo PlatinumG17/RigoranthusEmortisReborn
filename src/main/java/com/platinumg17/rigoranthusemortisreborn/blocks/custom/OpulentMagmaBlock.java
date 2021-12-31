@@ -35,7 +35,7 @@ public class OpulentMagmaBlock extends Block {
     @Override
     public void stepOn(World world, BlockPos pos, Entity entityIn) {
         if (entityIn != null) {
-            if (!entityIn.fireImmune() && !(entityIn instanceof PlayerEntity) && !EnchantmentHelper.hasFrostWalker((LivingEntity) entityIn)) {
+            if (!entityIn.fireImmune() || !(entityIn instanceof PlayerEntity) || !EnchantmentHelper.hasFrostWalker((LivingEntity) entityIn)) {
                 entityIn.hurt(DamageSource.HOT_FLOOR, 1.0F);
             }
         }

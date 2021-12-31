@@ -16,7 +16,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 
-import com.platinumg17.rigoranthusemortisreborn.blocks.tileentity.SmelteryTileEntityBase;
+import com.platinumg17.rigoranthusemortisreborn.blocks.tileentity.smeltery.SmelteryTileEntityBase;
 
 import java.util.List;
 

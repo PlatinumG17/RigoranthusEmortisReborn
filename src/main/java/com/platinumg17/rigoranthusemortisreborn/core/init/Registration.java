@@ -2,7 +2,7 @@ package com.platinumg17.rigoranthusemortisreborn.core.init;
 
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.blocks.custom.BlockMasterfulSmeltery;
-import com.platinumg17.rigoranthusemortisreborn.blocks.tileentity.MasterfulSmelteryTile;
+import com.platinumg17.rigoranthusemortisreborn.blocks.tileentity.smeltery.MasterfulSmelteryTile;
 import com.platinumg17.rigoranthusemortisreborn.blocks.tileentity.container.MasterfulSmelteryContainer;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;

@@ -1,4 +1,4 @@
-package com.platinumg17.rigoranthusemortisreborn.blocks.tileentity;
+package com.platinumg17.rigoranthusemortisreborn.blocks.tileentity.smeltery;
 
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;

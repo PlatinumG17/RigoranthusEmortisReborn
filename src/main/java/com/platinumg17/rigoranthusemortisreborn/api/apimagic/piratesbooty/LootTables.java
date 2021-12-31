@@ -47,9 +47,6 @@ public class LootTables {
             PotionUtils.setPotion(stack, ModPotions.DOMINION_REGEN_POTION);
             return stack;
         });
-//        UNCOMMON_LOOT.add(() -> new ItemStack(MagicItemsRegistry.AMPLIFY_ARROW, 16 + r.nextInt(16)));
-//        UNCOMMON_LOOT.add(() -> new ItemStack(MagicItemsRegistry.SPLIT_ARROW, 16 + r.nextInt(16)));
-//        UNCOMMON_LOOT.add(() -> new ItemStack(MagicItemsRegistry.PIERCE_ARROW, 16 + r.nextInt(16)));
         UNCOMMON_LOOT.add(() -> new ItemStack(MagicItemsRegistry.BONE_ARROW, 16 + r.nextInt(16)));
 
         UNCOMMON_LOOT.add(() ->{

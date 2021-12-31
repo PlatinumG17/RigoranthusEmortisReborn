@@ -1,4 +1,4 @@
-package com.platinumg17.rigoranthusemortisreborn.blocks.tileentity;
+package com.platinumg17.rigoranthusemortisreborn.blocks.tileentity.smeltery;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;

@@ -1,4 +1,4 @@
-package com.platinumg17.rigoranthusemortisreborn.blocks.tileentity;
+package com.platinumg17.rigoranthusemortisreborn.blocks.tileentity.smeltery;
 
 import com.platinumg17.rigoranthusemortisreborn.config.ConfigValues;
 import com.platinumg17.rigoranthusemortisreborn.blocks.tileentity.container.MasterfulSmelteryContainer;

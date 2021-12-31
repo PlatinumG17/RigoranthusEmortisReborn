@@ -1,4 +1,4 @@
-package com.platinumg17.rigoranthusemortisreborn.blocks.tileentity;
+package com.platinumg17.rigoranthusemortisreborn.blocks.tileentity.smeltery;
 
 import com.google.common.collect.Lists;
 import com.platinumg17.rigoranthusemortisreborn.blocks.custom.BlockMasterfulSmelteryBase;

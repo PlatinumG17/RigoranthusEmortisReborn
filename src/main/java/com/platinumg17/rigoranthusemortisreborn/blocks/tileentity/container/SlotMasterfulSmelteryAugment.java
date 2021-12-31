@@ -1,6 +1,6 @@
 package com.platinumg17.rigoranthusemortisreborn.blocks.tileentity.container;
 import com.platinumg17.rigoranthusemortisreborn.items.specialized.smeltery.ItemAugment;
-import com.platinumg17.rigoranthusemortisreborn.blocks.tileentity.SmelteryTileEntityBase;
+import com.platinumg17.rigoranthusemortisreborn.blocks.tileentity.smeltery.SmelteryTileEntityBase;
 
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;

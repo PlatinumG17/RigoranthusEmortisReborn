@@ -37,6 +37,12 @@ public class ModBlock extends Block {
     public boolean shouldDisplayFluidOverlay(BlockState state, IBlockDisplayReader world, BlockPos pos, FluidState fluidState) {
         return true;
     }
+
+    @Override
+    public String getDescriptionId() {
+        return this.asItem().getDescriptionId();
+    }
+
     public ModBlock withTooltip(ITextComponent tip){
         tooltip = new ArrayList<>();
         tooltip.add(tip);

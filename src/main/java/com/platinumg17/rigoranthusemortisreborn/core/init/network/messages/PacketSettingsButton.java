@@ -7,7 +7,7 @@ import net.minecraftforge.fml.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
-import com.platinumg17.rigoranthusemortisreborn.blocks.tileentity.SmelteryTileEntityBase;
+import com.platinumg17.rigoranthusemortisreborn.blocks.tileentity.smeltery.SmelteryTileEntityBase;
 
 public class PacketSettingsButton {
 

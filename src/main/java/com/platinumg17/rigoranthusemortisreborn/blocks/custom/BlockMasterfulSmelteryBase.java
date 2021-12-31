@@ -36,7 +36,7 @@ import java.util.Random;
 import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
 import com.platinumg17.rigoranthusemortisreborn.items.specialized.smeltery.ItemAugment;
 import com.platinumg17.rigoranthusemortisreborn.items.specialized.smeltery.ItemSmelteryCopy;
-import com.platinumg17.rigoranthusemortisreborn.blocks.tileentity.SmelteryTileEntityBase;
+import com.platinumg17.rigoranthusemortisreborn.blocks.tileentity.smeltery.SmelteryTileEntityBase;
 
 public abstract class BlockMasterfulSmelteryBase extends Block {
     public static final IntegerProperty TYPE = IntegerProperty.create("type", 0, 2);

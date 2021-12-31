@@ -3,16 +3,13 @@ package com.platinumg17.rigoranthusemortisreborn.magica.common.block;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.lib.LibBlockNames;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.GravelBlock;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.material.MaterialColor;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.ToolType;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -23,6 +20,7 @@ public class FragmentedBlock extends GravelBlock {
     public FragmentedBlock(AbstractBlock.Properties properties) {
         super(properties);
         setRegistryName(LibBlockNames.FRAGMENTED_COBBLESTONE);
+        withTooltip(new TranslationTextComponent("tooltip.block.rigoranthusemortisreborn.fragmented_cobblestone"));
     }
 
     public FragmentedBlock withTooltip(ITextComponent tip){

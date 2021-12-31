@@ -4,8 +4,10 @@ import com.google.common.collect.Maps;
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.blocks.custom.BrainBlock;
 import com.platinumg17.rigoranthusemortisreborn.blocks.custom.OpulentMagmaBlock;
+import com.platinumg17.rigoranthusemortisreborn.blocks.custom.skull.RESkullBlock;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.lib.LibBlockNames;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -72,12 +74,16 @@ public class BlockInit {
 					.harvestTool(ToolType.SHOVEL).harvestLevel(0).sound(SoundType.GRAVEL)), "tooltip.block.rigoranthusemortisreborn.pink_salt");
 
 	public static final RegistryObject<Block> BLOCK_OF_ESOTERICUM = registerBlock("block_of_esotericum",
-			() -> new GravelBlock(AbstractBlock.Properties.of(Material.SAND, MaterialColor.STONE).strength(1f, 1f)
+			() -> new GravelBlock(AbstractBlock.Properties.of(Material.SAND, MaterialColor.STONE).strength(1.0f, 6.0f)
 					.harvestTool(ToolType.SHOVEL).harvestLevel(0).sound(SoundType.GRAVEL)), "tooltip.block.rigoranthusemortisreborn.block_of_esotericum");
 
 	public static final RegistryObject<Block> DWELLER_BRAIN = registerBlock("dweller_brain",
 			() -> new BrainBlock(AbstractBlock.Properties.of(Material.SPONGE, MaterialColor.COLOR_PINK).strength(0.2f, 0.2f)
 					.noOcclusion().harvestLevel(0).sound(SoundType.SLIME_BLOCK)), "tooltip.block.rigoranthusemortisreborn.dweller_brain");
+
+	public static final RegistryObject<Block> CADAVER_SKULL = registerBlock(LibBlockNames.CADAVER_SKULL,
+			() -> new RESkullBlock(AbstractBlock.Properties.of(Material.DECORATION, MaterialColor.PODZOL).strength(1.0f, 6.0f)
+					.noOcclusion().harvestLevel(0).sound(SoundType.BONE_BLOCK)), "tooltip.block.rigoranthusemortisreborn.cadaver_skull");
 
 //		public static final RegistryObject<Block> SPECTABILIS = registerBlock("spectabilis",
 //				() -> new SpectabilisBush(AbstractBlock.Properties.of(Material.VEGETABLE, MaterialColor.COLOR_RED).strength(1.0F).sound(SoundType.CROP)), "tooltip.block.rigoranthusemortisreborn.spectabilis");

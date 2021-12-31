@@ -1,32 +1,35 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile;
 
-import com.platinumg17.rigoranthusemortisreborn.api.RigoranthusEmortisRebornAPI;
-import com.platinumg17.rigoranthusemortisreborn.api.apimagic.util.IchorUtil;
-import com.platinumg17.rigoranthusemortisreborn.blocks.BlockInit;
-import com.platinumg17.rigoranthusemortisreborn.canis.CanisItems;
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
+import com.platinumg17.rigoranthusemortisreborn.entity.mobs.SunderedCadaverEntity;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.particle.ParticleColor;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.ModEntities;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.network.Networking;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.network.PacketREEffect;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.BlockRegistry;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.MagicItemsRegistry;
+import net.minecraft.block.Block;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ILivingEntityData;
+import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.Style;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.ForgeHooks;
 import software.bernie.geckolib3.core.IAnimatable;
 
 import javax.annotation.Nullable;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class IchorExtractorTile extends IchorTile implements IAnimatable {
-
-    public IchorExtractorTile(TileEntityType<?> tileEntityTypeIn) {
-        super(tileEntityTypeIn);
-    }
 
     public IchorExtractorTile(){
         super(BlockRegistry.ICHOR_EXTRACTOR_TILE);
@@ -34,12 +37,12 @@ public class IchorExtractorTile extends IchorTile implements IAnimatable {
 
     @Override
     public int getMaxIchor() {
-        return 20000;
+        return 2000;
     }
 
     @Override
     public int getTransferRate() {
-        return 10000;
+        return 1000;
     }
 
     @Override
@@ -75,16 +78,16 @@ public class IchorExtractorTile extends IchorTile implements IAnimatable {
                 }
             }
         }
-        if(!level.isClientSide && level.getGameTime() % 20 == 0) {
-            int ichor = 100;
-            //BlockPos ichorPos = findNearbyIchor(level, worldPosition);
-            //IchorJarTile tile = (IchorJarTile) level.getBlockEntity(ichorPos);
-            //if (ichorPos != null) { tile.removeIchor(100); }
-            if (IchorUtil.hasIchorNearby(this.worldPosition.below(), this.level, 0, ichor)) {
-                IchorUtil.takeIchorNearby(this.worldPosition.below(), this.level, 0, ichor);
-                this.addIchor(ichor);
-            }
-        }
+//        if(!level.isClientSide && level.getGameTime() % 20 == 0) {
+//            int ichor = 100;
+//            BlockPos ichorPos = findNearbyIchor(level, worldPosition);
+//            IchorJarTile tile = (IchorJarTile) level.getBlockEntity(ichorPos);
+//            if (ichorPos != null) { tile.removeIchor(100); }
+////            if (IchorUtil.hasIchorNearby(this.worldPosition.below(), this.level, 0, ichor)) {
+////                IchorUtil.takeIchorNearby(this.worldPosition.below(), this.level, 0, ichor);
+////                this.addIchor(ichor);
+////            }
+//        }
     }
 
     public int getIchorValue(ItemStack i) {
@@ -134,9 +137,61 @@ public class IchorExtractorTile extends IchorTile implements IAnimatable {
     }
 
 
+    public void doRandomAction() {
+        if(level.isClientSide)
+            return;
+        if(level.isDay())
+            return;
+
+        BlockPos skullPos = getBlockInArea(BlockRegistry.hangingCadaverSkull, 1);
+        if(skullPos != null && progress >= 200) {
+            SunderedCadaverEntity sunderedCadaver = ModEntities.SUNDERED_CADAVER.create(level);
+            SunderedCadaverEntity sunderedCadaver2 = ModEntities.SUNDERED_CADAVER.create(level);
+//            if ((Math.random() < 0.1)) {
+                if (level instanceof ServerWorld) {
+
+                    LightningBoltEntity lightningBoltEntity = EntityType.LIGHTNING_BOLT.create(level);
+
+                    lightningBoltEntity.absMoveTo(worldPosition.getX(), worldPosition.getY(), worldPosition.getZ(), 0.0F, 0.0F);
+                    lightningBoltEntity.setVisualOnly(true);
+
+                    level.addFreshEntity(lightningBoltEntity);
+
+                    sunderedCadaver.absMoveTo(worldPosition.getX() + 1, worldPosition.getY(), worldPosition.getZ() + 1, 0.0F, 0.0F);
+                    sunderedCadaver2.absMoveTo(worldPosition.getX() - 1, worldPosition.getY(), worldPosition.getZ() - 1, 0.0F, 0.0F);
+
+                    sunderedCadaver.finalizeSpawn((ServerWorld)level, level.getCurrentDifficultyAt(worldPosition), SpawnReason.MOB_SUMMONED, (ILivingEntityData)null, (CompoundNBT)null);
+                    sunderedCadaver2.finalizeSpawn((ServerWorld)level, level.getCurrentDifficultyAt(worldPosition), SpawnReason.MOB_SUMMONED, (ILivingEntityData)null, (CompoundNBT)null);
+
+                    level.addFreshEntity(sunderedCadaver);
+                    level.addFreshEntity(sunderedCadaver2);
+
+                    sunderedCadaver.setCustomName(new TranslationTextComponent("entity.rigoranthusemortisreborn.summoned_servant").withStyle(Style.EMPTY.withItalic(true)));
+                    sunderedCadaver2.setCustomName(new TranslationTextComponent("entity.rigoranthusemortisreborn.summoned_servant").withStyle(Style.EMPTY.withItalic(true)));
+
+                    sunderedCadaver.setCustomNameVisible(true);
+                    sunderedCadaver2.setCustomNameVisible(true);
+                }
+//            }
+//            level.setBlockAndUpdate(skullPos, Blocks.LAVA.defaultBlockState());
+            progress -= 200;
+            return;
+        }
+    }
+
+    public BlockPos getBlockInArea(Block block, int range){
+        AtomicReference<BlockPos> posFound = new AtomicReference<>();
+        BlockPos.betweenClosedStream(worldPosition.offset(5, -3, 5), worldPosition.offset(-5, 3, -5)).forEach(blockPos -> {
+            blockPos = blockPos.immutable();
+            if(posFound.get() == null && level.getBlockState(blockPos).getBlock() == block)
+                posFound.set(blockPos);
+        });
+        return posFound.get();
+    }
+
     public static @Nullable
     BlockPos findNearbyIchor(World level, BlockPos worldPosition){
-        for(BlockPos p : BlockPos.withinManhattan(worldPosition.below(1), 1, 1,1)){
+        for(BlockPos p : BlockPos.withinManhattan(worldPosition.below(1), 0, 0,0)){
             if(level.getBlockEntity(p) instanceof IchorJarTile) {
                 IchorJarTile tile = (IchorJarTile) level.getBlockEntity(p);
                 if (tile.getCurrentIchor() >= 100) {

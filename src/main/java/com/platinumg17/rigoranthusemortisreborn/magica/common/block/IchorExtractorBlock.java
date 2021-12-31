@@ -10,15 +10,7 @@ import javax.annotation.Nullable;
 
 public class IchorExtractorBlock extends AbsorbtionBlock {
     public IchorExtractorBlock() {
-        super(defaultProperties().noOcclusion().lightLevel(state -> 15), LibBlockNames.ICHOR_EXTRACTOR);
-    }
-
-    public IchorExtractorBlock(Properties properties, String registry) {
-        super(properties, registry);
-    }
-
-    public IchorExtractorBlock(String registryName) {
-        super(registryName);
+        super(defaultProperties().noOcclusion().lightLevel(state -> 12), LibBlockNames.ICHOR_EXTRACTOR);
     }
 
     @Nullable

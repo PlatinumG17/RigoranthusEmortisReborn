@@ -167,7 +167,6 @@ public class Config {
     public static ForgeConfigSpec.DoubleValue GLYPH_REGEN_BONUS;
 
     public static ForgeConfigSpec.ConfigValue<List<? extends String>> DIMENSION_BLACKLIST;
-    public static ForgeConfigSpec.IntValue ARCHWOOD_FOREST_WEIGHT;
     public static ForgeConfigSpec.ConfigValue<? extends String> CRYSTALLIZER_ITEM;
 
     public static Map<String, Integer> addonSpellCosts = new HashMap<>();
@@ -323,7 +322,6 @@ public class Config {
         MOB_WEIGHT = builder.comment(" How often Mob spawn").defineInRange("mobWeight",5,0,100);
         MOBS_ATTACK_ANIMALS = builder.comment(" Should Mobs from this mod attack animals?").define("mobsHuntAnimals", true);
 
-        ARCHWOOD_FOREST_WEIGHT = builder.comment(" Archwood forest spawn weight").defineInRange("archwoodForest", 3, 0, Integer.MAX_VALUE);
         CRYSTALLIZER_ITEM = builder.comment(" Crystallizer output item. Do not use a wrong ID!").define("crystallizer_output", "rigoranthusemortisreborn:dominion_gem");
         builder.pop();
 
@@ -341,7 +339,8 @@ public class Config {
         builder.pop();
 
         COMMON_CONFIG = builder.build();
-        RegistryHelper.generateConfig(EmortisConstants.MOD_ID, new ArrayList<>(RigoranthusEmortisRebornAPI.getInstance().getSpell_map().values()));
+        FMLPaths.getOrCreateGameRelativePath(FMLPaths.CONFIGDIR.get().resolve(EmortisConstants.MOD_ID), EmortisConstants.MOD_ID);
+//        RegistryHelper.generateConfig(EmortisConstants.MOD_ID, new ArrayList<>(RigoranthusEmortisRebornAPI.getInstance().getSpell_map().values()));
     }
     public static boolean isStarterEnabled(AbstractSpellPart e){
         return e.STARTER_SPELL != null && e.STARTER_SPELL.get();
@@ -350,7 +349,7 @@ public class Config {
         sunderedCadaverSpawnWeight = builder.comment(" How often this mob Spawns.\n Higher Number = Spawn More Often\n Set to 0 to disable spawns.\n Default: 45").translation("rigoranthusemortisreborn.config.server.cadaver.spawn_weight").defineInRange("cadaver.spawn_weight", 45, 0, 10000);
         sunderedCadaverMinGroupSize = builder.comment(" Minimum Number of mobs that will Spawn Together in a Group.\n Set to 0 to disable spawns.\n Default: 1").translation("rigoranthusemortisreborn.config.server.cadaver.min_group_size").defineInRange("cadaver.min_group_size", 1, 0, 100);
         sunderedCadaverMaxGroupSize = builder.comment(" Maximum Number of mobs that will Spawn Together in a Group.\n Set to 0 to disable spawns.\n Default: 5").translation("rigoranthusemortisreborn.config.server.cadaver.max_group_size").defineInRange("cadaver.max_group_size", 5, 0, 100);
-        sunderedCadaverMaxHealth = builder.comment(" How much Health this mob has.\n Default: 40.0").translation("rigoranthusemortisreborn.config.server.cadaver.max_health").defineInRange("cadaver.max_health", 40.0, 2.0, 10000);
+        sunderedCadaverMaxHealth = builder.comment(" How much Health this mob has.\n Default: 30.0").translation("rigoranthusemortisreborn.config.server.cadaver.max_health").defineInRange("cadaver.max_health", 30.0, 2.0, 10000);
         sunderedCadaverArmorValue = builder.comment(" How Resistant to Attacks from Players this mob is.\n Default: 3.5").translation("rigoranthusemortisreborn.config.server.cadaver.armor").defineInRange("cadaver.armor", 3.5, 0.0, 10000);
         sunderedCadaverAttackDamage = builder.comment(" How much Damage does this mobs Attacks do.\n Default: 3.0").translation("rigoranthusemortisreborn.config.server.cadaver.attack").defineInRange("cadaver.attack", 3.0, 0.0, 10000);
         sunderedCadaverMovementSpeed = builder.comment(" How Fast this mob is.\n Default: 0.3").translation("rigoranthusemortisreborn.config.server.cadaver.movement_speed").defineInRange("cadaver.movement_speed", 0.3, 0.0, 10);
@@ -376,7 +375,7 @@ public class Config {
         languidDwellerMaxHealth = builder.comment(" How much Health this mob has.\n Default: 100.0").translation("rigoranthusemortisreborn.config.server.dweller.max_health").defineInRange("dweller.max_health", 100.0, 2.0, 10000);
         languidDwellerArmorValue = builder.comment(" How Resistant to Attacks from Players this mob is.\n Default: 12.0").translation("rigoranthusemortisreborn.config.server.dweller.armor").defineInRange("dweller.armor", 12.0, 0.0, 10000);
         languidDwellerAttackDamage = builder.comment(" How much Damage does this mobs Attacks do.\n Default: 7.0").translation("rigoranthusemortisreborn.config.server.dweller.attack").defineInRange("dweller.attack", 7.0, 0.0, 10000);
-        languidDwellerMovementSpeed = builder.comment(" How Fast this mob is.\n Default: 0.25").translation("rigoranthusemortisreborn.config.server.dweller.movement_speed").defineInRange("dweller.movement_speed", 0.25, 0.0, 10);
+        languidDwellerMovementSpeed = builder.comment(" How Fast this mob is.\n Default: 0.27").translation("rigoranthusemortisreborn.config.server.dweller.movement_speed").defineInRange("dweller.movement_speed", 0.27, 0.0, 10);
         languidDwellerAttackKnockback = builder.comment(" How far does each Attack push players back.\n Default: 1.2").translation("rigoranthusemortisreborn.config.server.dweller.knockback").defineInRange("dweller.knockback", 1.2, 0.0, 100);
         languidDwellerKnockbackResistance = builder.comment(" How well does this mob stay in one place while players attack it.\n Default: 2.0").translation("rigoranthusemortisreborn.config.server.dweller.knockback_resistance").defineInRange("dweller.knockback_resistance", 2.0, 0.0, 100);
     }
@@ -809,14 +808,14 @@ public class Config {
         Config.sunderedCadaverSpawnWeight.get();              Config.necrawFasciiSpawnWeight.get();
         Config.sunderedCadaverMinGroupSize.get();             Config.necrawFasciiMinGroupSize.get();
         Config.sunderedCadaverMaxGroupSize.get();             Config.necrawFasciiMaxGroupSize.get();
-        Config.dweller_thorax_knockback_resistance.get();     Config.MOB_WEIGHT.get();
-        Config.SPAWN_ORE.get();                               Config.SPAWN_BERRIES.get();
+        Config.dweller_thorax_knockback_resistance.get();     Config.SPAWN_ORE.get();
+        Config.SPAWN_BERRIES.get();                           Config.TIER_MAX_BONUS.get();
         Config.INIT_MAX_DOMINION.get();                       Config.GLYPH_MAX_BONUS.get();
         Config.INIT_DOMINION_REGEN.get();                     Config.GLYPH_REGEN_BONUS.get();
         Config.DOMINION_BOOST_BONUS.get();                    Config.DOMINION_REGEN_POTION.get();
         Config.SUMMON_FAMILIAR_DOMINION_COST.get();           Config.MOBS_ATTACK_ANIMALS.get();
         Config.DOMINION_REGEN_ENCHANT_BONUS.get();            Config.REGEN_INTERVAL.get();
-        Config.TIER_MAX_BONUS.get();
+
     }
 
     @SubscribeEvent

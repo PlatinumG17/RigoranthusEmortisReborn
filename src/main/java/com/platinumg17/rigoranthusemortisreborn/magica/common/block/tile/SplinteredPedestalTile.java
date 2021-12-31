@@ -98,7 +98,6 @@ public class SplinteredPedestalTile extends AnimatedTile implements IInventory {
         return true;
     }
 
-
     @Override
     public void clearContent() {
         this.stack = ItemStack.EMPTY;

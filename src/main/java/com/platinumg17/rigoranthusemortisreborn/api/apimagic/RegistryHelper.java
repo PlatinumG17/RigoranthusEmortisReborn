@@ -13,7 +13,7 @@ public class RegistryHelper {
      * Helper method for generating a folder of configs for a given spell. This conforms to the Rigoranthus config spec and is highly recommended.
      */
     public static void generateConfig(String modID, List<AbstractSpellPart> glyphs){
-        FMLPaths.getOrCreateGameRelativePath(FMLPaths.CONFIGDIR.get().resolve(modID), "Rigoranthus-Emortis-Reborn");
+        FMLPaths.getOrCreateGameRelativePath(FMLPaths.CONFIGDIR.get().resolve(modID), modID/*"Rigoranthus-Emortis-Reborn"*/);
         for(AbstractSpellPart spellPart : glyphs){
             ForgeConfigSpec spec;
             ForgeConfigSpec.Builder spellBuilder = new ForgeConfigSpec.Builder();

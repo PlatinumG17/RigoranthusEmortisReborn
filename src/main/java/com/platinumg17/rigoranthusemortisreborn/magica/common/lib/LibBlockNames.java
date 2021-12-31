@@ -1,9 +1,9 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.common.lib;
 
 public class LibBlockNames {
-    public static final String MASTERFUL_SMELTERY_CONTAINER = "masterful_smeltery_container";
-    public static final String MASTERFUL_SMELTERY = "masterful_smeltery";
-    public static final String RECONDITE_ORE = "recondite_ore";
+
+    public static final String CADAVER_SKULL = "cadaver_skull";
+    public static final String HANGING_CADAVER_SKULL = "hanging_cadaver_skull";
 
     public static final String POTTED_AZULOREAL_SAPLING = "potted_azuloreal_sapling";
     public static final String POTTED_JESSIC_SAPLING = "potted_jessic_sapling";

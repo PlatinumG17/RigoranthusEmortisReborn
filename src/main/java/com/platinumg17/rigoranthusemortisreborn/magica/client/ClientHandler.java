@@ -37,10 +37,12 @@ public class ClientHandler {
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.RELAY_DEPOSIT_TILE, RelayDepositRenderer::new);
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.EMORTIC_RELAY_TILE, EmorticRelayRenderer::new);
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.RELAY_SPLITTER_TILE, RelaySplitterRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(BlockRegistry.hangingCadaverSkullTile, HangingSkullRenderer::new);
+
+        RenderTypeLookup.setRenderLayer(BlockRegistry.hangingCadaverSkull, RenderType.translucent());
 
         RenderTypeLookup.setRenderLayer(BlockRegistry.POTTED_JESSIC_SAPLING, RenderType.cutout());
         RenderTypeLookup.setRenderLayer(BlockRegistry.POTTED_AZULOREAL_SAPLING, RenderType.cutout());
-
         RenderTypeLookup.setRenderLayer(BlockRegistry.JESSIC_LEAVES, RenderType.cutoutMipped());
         RenderTypeLookup.setRenderLayer(BlockRegistry.JESSIC_SAPLING, RenderType.cutout());
         RenderTypeLookup.setRenderLayer(BlockRegistry.AZULOREAL_LEAVES, RenderType.cutoutMipped());

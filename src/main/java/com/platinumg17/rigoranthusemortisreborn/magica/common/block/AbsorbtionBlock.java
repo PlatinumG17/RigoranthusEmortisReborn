@@ -28,7 +28,9 @@ public class AbsorbtionBlock extends ModBlock {
         IchorTile tile = (IchorTile) worldIn.getBlockEntity(pos);
         if(tile == null)
             return;
-        tile.doRandomAction();
+        if(!worldIn.isDay()) {
+            tile.doRandomAction();
+        }
     }
 
     @Override

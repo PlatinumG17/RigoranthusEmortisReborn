@@ -13,8 +13,8 @@ import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
 public class SplinteredPedestalRenderer extends TileEntityRenderer<SplinteredPedestalTile> {
 
-    public SplinteredPedestalRenderer(TileEntityRendererDispatcher p_i226006_1_) {
-        super(p_i226006_1_);
+    public SplinteredPedestalRenderer(TileEntityRendererDispatcher renderManager) {
+        super(renderManager);
     }
 
     public void renderFloatingItem(SplinteredPedestalTile tileEntityIn, ItemEntity entityItem, double x, double y, double z, MatrixStack stack, IRenderTypeBuffer iRenderTypeBuffer){

@@ -30,7 +30,7 @@ public abstract class DominionBlock extends ModBlock {
                 if(player.getItemInHand(handIn).getItem() == MagicItemsRegistry.bucketOfDominion){
                     if(tile.getMaxDominion() - tile.getCurrentDominion() >= 1000){
                         tile.addDominion(1000);
-                        worldIn.playSound(player, pos, SoundEvents.BUCKET_EMPTY, SoundCategory.PLAYERS, 1.0f, 1.0f);
+                        player.level.playSound(null, pos, SoundEvents.BUCKET_EMPTY, SoundCategory.PLAYERS, 1.0f, 1.0f);
                         if(!player.isCreative())
                             player.setItemInHand(handIn, new ItemStack(Items.BUCKET));
                     }
@@ -49,7 +49,7 @@ public abstract class DominionBlock extends ModBlock {
                     }else if(tile.getCurrentDominion() >= 1000 && player.getItemInHand(handIn).getCount() == 1){
                         player.level.playSound(null, player.blockPosition(), SoundEvents.BUCKET_FILL, SoundCategory.PLAYERS, 1.0f, 1.0f);
                         tile.removeDominion(1000);
-                        player.setItemInHand(player.getUsedItemHand(),new ItemStack(MagicItemsRegistry.bucketOfDominion));
+                        player.setItemInHand(player.getUsedItemHand(), new ItemStack(MagicItemsRegistry.bucketOfDominion));
                     }
                 }
             }

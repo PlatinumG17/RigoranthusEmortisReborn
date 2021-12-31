@@ -20,7 +20,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class SplinteredPedestal extends ModBlock implements IWaterLoggable {
+public class SplinteredPedestal extends ModBlock {
     public SplinteredPedestal() {
         super(ModBlock.defaultProperties().noOcclusion(), LibBlockNames.SPLINTERED_PEDESTAL);
     }

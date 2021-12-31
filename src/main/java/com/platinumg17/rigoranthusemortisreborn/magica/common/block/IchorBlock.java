@@ -38,13 +38,14 @@ public abstract class IchorBlock extends ModBlock {
                             player.setItemInHand(handIn, new ItemStack(Items.BUCKET));
                     }
                     return super.use(state, worldIn, pos, player, handIn, hit);
-                }else if(player.getItemInHand(handIn).getItem() instanceof BucketItem && ((BucketItem)player.getItemInHand(handIn).getItem()).getFluid() == Fluids.EMPTY){
+                } else if (player.getItemInHand(handIn).getItem() instanceof BucketItem && ((BucketItem)player.getItemInHand(handIn).getItem()).getFluid() == Fluids.EMPTY) {
                     if(tile.getCurrentIchor() >= 1000){
-                        if(player.getItemInHand(handIn).getCount() == 1){
-                            player.setItemInHand(handIn, new ItemStack(ItemInit.BUCKET_OF_CADAVEROUS_ICHOR.get()));
+                        if(player.getItemInHand(handIn).getCount() == 1) {
+                            player.setItemInHand(handIn, new ItemStack((ItemInit.BUCKET_OF_CADAVEROUS_ICHOR.get()).getItem()));
                             player.level.playSound(null, player.blockPosition(), SoundEvents.BUCKET_FILL, SoundCategory.PLAYERS, 1.0f, 1.0f);
                             tile.removeIchor(1000);
-                        }else if(player.addItem(new ItemStack(ItemInit.BUCKET_OF_CADAVEROUS_ICHOR.get()))) {
+                        }
+                        else if(player.addItem(new ItemStack((ItemInit.BUCKET_OF_CADAVEROUS_ICHOR.get()).getItem()))) {
                             player.level.playSound(null, player.blockPosition(), SoundEvents.BUCKET_FILL, SoundCategory.PLAYERS, 1.0f, 1.0f);
                             player.getItemInHand(handIn).shrink(1);
                             tile.removeIchor(1000);
@@ -52,7 +53,7 @@ public abstract class IchorBlock extends ModBlock {
                     }else if(tile.getCurrentIchor() >= 1000 && player.getItemInHand(handIn).getCount() == 1){
                         player.level.playSound(null, player.blockPosition(), SoundEvents.BUCKET_FILL, SoundCategory.PLAYERS, 1.0f, 1.0f);
                         tile.removeIchor(1000);
-                        player.setItemInHand(player.getUsedItemHand(),new ItemStack(ItemInit.BUCKET_OF_CADAVEROUS_ICHOR.get()));
+                        player.setItemInHand(player.getUsedItemHand(), new ItemStack((ItemInit.BUCKET_OF_CADAVEROUS_ICHOR.get()).getItem()));
                     }
                 }
             }

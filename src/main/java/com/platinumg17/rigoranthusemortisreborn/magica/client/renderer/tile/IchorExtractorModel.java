@@ -13,7 +13,7 @@ public class IchorExtractorModel<T extends IchorTile> extends AnimatedGeoModel<I
 
     public IchorExtractorModel(String name){
         this.modelLocation = new ResourceLocation(EmortisConstants.MOD_ID, "geo/" + name + ".geo.json");
-        this.textLoc = new ResourceLocation(EmortisConstants.MOD_ID, "textures/blocks/" + name + ".png");
+        this.textLoc = new ResourceLocation(EmortisConstants.MOD_ID, "textures/blocks/" + "ichor_crystallizer" + ".png");
     }
 
     @Override

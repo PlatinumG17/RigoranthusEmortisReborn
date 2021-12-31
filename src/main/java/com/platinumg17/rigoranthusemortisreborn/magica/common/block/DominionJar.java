@@ -132,50 +132,47 @@ public class DominionJar extends DominionBlock {
         int step = (tile.getMaxDominion() - 1) / 14;
         return (tile.getCurrentDominion() - 1) / step + 1;
     }
-
     @Override
     public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if(worldIn.isClientSide)
-            return ActionResultType.SUCCESS;
-
-        DominionJarTile tile = (DominionJarTile) worldIn.getBlockEntity(pos);
-        if(tile == null)
-            return ActionResultType.SUCCESS;
-        ItemStack stack = player.getItemInHand(handIn);
-        if(stack.getItem() == MagicItemsRegistry.bucketOfDominion) {
-            if (tile.getCurrentDominion() == 0) {
-                player.level.playSound(null, player.blockPosition(), SoundEvents.BUCKET_EMPTY, SoundCategory.PLAYERS, 1.0f, 1.0f);
-                tile.addDominion(1000);
-                if(!player.isCreative()) {
-                    player.setItemInHand(handIn, new ItemStack(Items.BUCKET));
-                    stack.shrink(1);
-                }
-            }
-            else if(tile.getCurrentDominion() < tile.getMaxDominion()){
-                tile.addDominion(1000);
-                player.level.playSound(null, player.blockPosition(), SoundEvents.BUCKET_EMPTY, SoundCategory.PLAYERS, 1.0f, 1.0f);
-                if(!player.isCreative()) {
-                    player.setItemInHand(handIn, new ItemStack(Items.BUCKET));
-                    stack.shrink(1);
-                }
-            }
-            worldIn.sendBlockUpdated(pos, worldIn.getBlockState(pos), worldIn.getBlockState(pos), 3);
-        }
-//        if(stack.getItem() == Items.GLASS_BOTTLE && tile.getCurrentIchor() >= 100){
-//            ItemStack ichor = new ItemStack(MagicItemsRegistry.BOTTLE_OF_ICHOR);
-//            player.addItem(ichor);
-//            player.getItemInHand(handIn).shrink(1);
-//            tile.removeIchor(100);
-//        }
-        if(stack.getItem() == Items.BUCKET && tile.getCurrentDominion() >= 1000) {
-            ItemStack ichor = new ItemStack(MagicItemsRegistry.bucketOfDominion);
-            player.level.playSound(null, player.blockPosition(), SoundEvents.BUCKET_FILL, SoundCategory.PLAYERS, 1.0f, 1.0f);
-            player.getItemInHand(handIn).shrink(1);
-            player.setItemInHand(handIn, ichor);
-            tile.removeDominion(1000);
-        }
         return super.use(state,worldIn,pos,player,handIn,hit);
     }
+//    @Override
+//    public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+//        if(worldIn.isClientSide)
+//            return ActionResultType.SUCCESS;
+//
+//        DominionJarTile tile = (DominionJarTile) worldIn.getBlockEntity(pos);
+//        if(tile == null)
+//            return ActionResultType.SUCCESS;
+//        ItemStack stack = player.getItemInHand(handIn);
+//        if(stack.getItem() == MagicItemsRegistry.bucketOfDominion) {
+//            if (tile.getCurrentDominion() == 0) {
+//                player.level.playSound(null, player.blockPosition(), SoundEvents.BUCKET_EMPTY, SoundCategory.PLAYERS, 1.0f, 1.0f);
+//                tile.addDominion(1000);
+//                if(!player.isCreative()) {
+//                    player.setItemInHand(handIn, new ItemStack(Items.BUCKET));
+//                    stack.shrink(1);
+//                }
+//            }
+//            else if(tile.getCurrentDominion() < tile.getMaxDominion()){
+//                tile.addDominion(1000);
+//                player.level.playSound(null, player.blockPosition(), SoundEvents.BUCKET_EMPTY, SoundCategory.PLAYERS, 1.0f, 1.0f);
+//                if(!player.isCreative()) {
+//                    player.setItemInHand(handIn, new ItemStack(Items.BUCKET));
+//                    stack.shrink(1);
+//                }
+//            }
+//            worldIn.sendBlockUpdated(pos, worldIn.getBlockState(pos), worldIn.getBlockState(pos), 3);
+//        }
+//        if(stack.getItem() == Items.BUCKET && tile.getCurrentDominion() >= 1000) {
+//            ItemStack ichor = new ItemStack(MagicItemsRegistry.bucketOfDominion);
+//            player.level.playSound(null, player.blockPosition(), SoundEvents.BUCKET_FILL, SoundCategory.PLAYERS, 1.0f, 1.0f);
+//            player.getItemInHand(handIn).shrink(1);
+//            player.setItemInHand(handIn, ichor);
+//            tile.removeDominion(1000);
+//        }
+//        return super.use(state,worldIn,pos,player,handIn,hit);
+//    }
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {

@@ -134,64 +134,68 @@ public class IchorJar extends IchorBlock {
 
     @Override
     public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if(worldIn.isClientSide)
-            return ActionResultType.SUCCESS;
-
-        IchorJarTile tile = (IchorJarTile) worldIn.getBlockEntity(pos);
-        if(tile == null)
-            return ActionResultType.SUCCESS;
-        ItemStack stack = player.getItemInHand(handIn);
-        if(stack.getItem() == MagicItemsRegistry.BOTTLE_OF_ICHOR) {
-            if (tile.getCurrentIchor() == 0) {
-                tile.addIchor(100);
-                if(!player.isCreative()) {
-                    player.setItemInHand(handIn, new ItemStack(Items.GLASS_BOTTLE));
-                    stack.shrink(1);
-                }
-            }
-            else if(tile.getCurrentIchor() < tile.getMaxIchor()){
-                tile.addIchor(100);
-                if(!player.isCreative()) {
-                    player.setItemInHand(handIn, new ItemStack(Items.GLASS_BOTTLE));
-                    stack.shrink(1);
-                }
-            }
-            worldIn.sendBlockUpdated(pos, worldIn.getBlockState(pos), worldIn.getBlockState(pos), 3);
-        }
-        if(stack.getItem() == ItemInit.BUCKET_OF_CADAVEROUS_ICHOR.get()) {
-            if (tile.getCurrentIchor() == 0) {
-                player.level.playSound(null, player.blockPosition(), SoundEvents.BUCKET_EMPTY, SoundCategory.PLAYERS, 1.0f, 1.0f);
-                tile.addIchor(1000);
-                if(!player.isCreative()) {
-                    player.setItemInHand(handIn, new ItemStack(Items.BUCKET));
-                    stack.shrink(1);
-                }
-            }
-            else if(tile.getCurrentIchor() < tile.getMaxIchor()){
-                tile.addIchor(1000);
-                player.level.playSound(null, player.blockPosition(), SoundEvents.BUCKET_EMPTY, SoundCategory.PLAYERS, 1.0f, 1.0f);
-                if(!player.isCreative()) {
-                    player.setItemInHand(handIn, new ItemStack(Items.BUCKET));
-                    stack.shrink(1);
-                }
-            }
-            worldIn.sendBlockUpdated(pos, worldIn.getBlockState(pos), worldIn.getBlockState(pos), 3);
-        }
-        if(stack.getItem() == Items.GLASS_BOTTLE && tile.getCurrentIchor() >= 100){
-            ItemStack ichor = new ItemStack(MagicItemsRegistry.BOTTLE_OF_ICHOR);
-            player.setItemInHand(handIn, ichor);
-            player.getItemInHand(handIn).shrink(1);
-            tile.removeIchor(100);
-        }
-        if(stack.getItem() == Items.BUCKET && tile.getCurrentIchor() >= 1000){
-            ItemStack ichor = new ItemStack(ItemInit.BUCKET_OF_CADAVEROUS_ICHOR.get());
-            player.level.playSound(null, player.blockPosition(), SoundEvents.BUCKET_FILL, SoundCategory.PLAYERS, 1.0f, 1.0f);
-            player.getItemInHand(handIn).shrink(1);
-            player.setItemInHand(handIn, ichor);
-            tile.removeIchor(1000);
-        }
         return super.use(state,worldIn,pos,player,handIn,hit);
     }
+//    @Override
+//    public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+//        if(worldIn.isClientSide)
+//            return ActionResultType.SUCCESS;
+//
+//        IchorJarTile tile = (IchorJarTile) worldIn.getBlockEntity(pos);
+//        if(tile == null)
+//            return ActionResultType.SUCCESS;
+//        ItemStack stack = player.getItemInHand(handIn);
+//        if(stack.getItem() == MagicItemsRegistry.BOTTLE_OF_ICHOR) {
+//            if (tile.getCurrentIchor() == 0) {
+//                tile.addIchor(100);
+//                if(!player.isCreative()) {
+//                    player.setItemInHand(handIn, new ItemStack(Items.GLASS_BOTTLE));
+//                    stack.shrink(1);
+//                }
+//            }
+//            else if(tile.getCurrentIchor() < tile.getMaxIchor()){
+//                tile.addIchor(100);
+//                if(!player.isCreative()) {
+//                    player.setItemInHand(handIn, new ItemStack(Items.GLASS_BOTTLE));
+//                    stack.shrink(1);
+//                }
+//            }
+//            worldIn.sendBlockUpdated(pos, worldIn.getBlockState(pos), worldIn.getBlockState(pos), 3);
+//        }
+//        if(stack.getItem() == ItemInit.BUCKET_OF_CADAVEROUS_ICHOR.get()) {
+//            if (tile.getCurrentIchor() == 0) {
+//                player.level.playSound(null, player.blockPosition(), SoundEvents.BUCKET_EMPTY, SoundCategory.PLAYERS, 1.0f, 1.0f);
+//                tile.addIchor(1000);
+//                if(!player.isCreative()) {
+//                    player.setItemInHand(handIn, new ItemStack(Items.BUCKET));
+//                    stack.shrink(1);
+//                }
+//            }
+//            else if(tile.getCurrentIchor() < tile.getMaxIchor()){
+//                tile.addIchor(1000);
+//                player.level.playSound(null, player.blockPosition(), SoundEvents.BUCKET_EMPTY, SoundCategory.PLAYERS, 1.0f, 1.0f);
+//                if(!player.isCreative()) {
+//                    player.setItemInHand(handIn, new ItemStack(Items.BUCKET));
+//                    stack.shrink(1);
+//                }
+//            }
+//            worldIn.sendBlockUpdated(pos, worldIn.getBlockState(pos), worldIn.getBlockState(pos), 3);
+//        }
+//        if(stack.getItem() == Items.GLASS_BOTTLE && tile.getCurrentIchor() >= 100){
+//            ItemStack ichor = new ItemStack(MagicItemsRegistry.BOTTLE_OF_ICHOR);
+//            player.setItemInHand(handIn, ichor);
+//            player.getItemInHand(handIn).shrink(1);
+//            tile.removeIchor(100);
+//        }
+//        if(stack.getItem() == Items.BUCKET && tile.getCurrentIchor() >= 1000){
+//            ItemStack ichor = new ItemStack(ItemInit.BUCKET_OF_CADAVEROUS_ICHOR.get());
+//            player.level.playSound(null, player.blockPosition(), SoundEvents.BUCKET_FILL, SoundCategory.PLAYERS, 1.0f, 1.0f);
+//            player.getItemInHand(handIn).shrink(1);
+//            player.setItemInHand(handIn, ichor);
+//            tile.removeIchor(1000);
+//        }
+//        return super.use(state,worldIn,pos,player,handIn,hit);
+//    }
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {

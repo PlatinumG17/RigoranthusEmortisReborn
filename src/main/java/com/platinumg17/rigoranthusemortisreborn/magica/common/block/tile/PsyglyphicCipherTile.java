@@ -27,26 +27,26 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PsyglyphicCipherTile extends TileEntity implements IAnimatable, ITooltipProvider, ITickableTileEntity {
-    public int tickCounter;
-    public boolean hasBeenUsed;
-    public static final BooleanProperty UTILIZED = BooleanProperty.create("transcribed");
+public class PsyglyphicCipherTile extends TileEntity implements IAnimatable {//, ITooltipProvider, ITickableTileEntity {
+//    public int tickCounter;
+//    public boolean hasBeenUsed;
+//    public static final BooleanProperty UTILIZED = BooleanProperty.create("transcribed");
 
     public PsyglyphicCipherTile() {
         super(BlockRegistry.PSYGLYPHIC_TILE);
     }
-    @Override
-    public void tick() {
-        if (level.isClientSide)
-            return;
-        if (!hasBeenUsed) {
-            transcriptionEffect();
-            return;
-        }
-    }
-    public void transcriptionEffect() {
-        tickCounter++;
-    }
+//    @Override
+//    public void tick() {
+//        if (level.isClientSide)
+//            return;
+//        if (!hasBeenUsed) {
+//            transcriptionEffect();
+//            return;
+//        }
+//    }
+//    public void transcriptionEffect() {
+//        tickCounter++;
+//    }
 
     AnimationFactory manager = new AnimationFactory(this);
     @Override
@@ -64,43 +64,43 @@ public class PsyglyphicCipherTile extends TileEntity implements IAnimatable, ITo
         return manager;
     }
 
-    @Override
-    public List<String> getTooltip() {
-        List<String> tooltips = new ArrayList<>();
-            tooltips.add("Psyglyphic Cipher");
-            if (this.hasBeenUsed) {
-                tooltips.add(new TranslationTextComponent("rigoranthusemortisreborn.tooltip.cipher_used").getString());
-            } else {
-                tooltips.add(new TranslationTextComponent("rigoranthusemortisreborn.tooltip.cipher_not_used").getString());
-            }
-        return tooltips;
-    }
+//    @Override
+//    public List<String> getTooltip() {
+//        List<String> tooltips = new ArrayList<>();
+//            tooltips.add("Psyglyphic Cipher");
+//            if (this.hasBeenUsed) {
+//                tooltips.add(new TranslationTextComponent("rigoranthusemortisreborn.tooltip.cipher_used").getString());
+//            } else {
+//                tooltips.add(new TranslationTextComponent("rigoranthusemortisreborn.tooltip.cipher_not_used").getString());
+//            }
+//        return tooltips;
+//    }
 
-    @Override
-    public void load(BlockState state, CompoundNBT tag) {
-        super.load(state, tag);
-        hasBeenUsed = tag.getBoolean("transcribed");
-    }
+//    @Override
+//    public void load(BlockState state, CompoundNBT tag) {
+//        super.load(state, tag);
+//        hasBeenUsed = tag.getBoolean("transcribed");
+//    }
+//
+//    @Override
+//    public CompoundNBT save(CompoundNBT tag) {
+//        tag.putBoolean("transcribed", hasBeenUsed);
+//        return super.save(tag);
+//    }
 
-    @Override
-    public CompoundNBT save(CompoundNBT tag) {
-        tag.putBoolean("transcribed", hasBeenUsed);
-        return super.save(tag);
-    }
-
-    @SubscribeEvent
-    public void rightClick(PlayerInteractEvent.RightClickBlock event) {
-        if (!(event.getWorld().getBlockEntity(event.getPos()) instanceof PsyglyphicCipherTile))
-            return;
-
-        World world = event.getWorld();
-        BlockPos pos = event.getPos();
-
-        if (world.getBlockState(pos).getBlock() instanceof CipherBlock) {
-            BlockRegistry.PSYGLYPHIC_CIPHER.use(world.getBlockState(pos), world, pos, event.getPlayer(), event.getHand(), null);
-            event.setCanceled(true);
-        }
-    }
+//    @SubscribeEvent
+//    public void rightClick(PlayerInteractEvent.RightClickBlock event) {
+//        if (!(event.getWorld().getBlockEntity(event.getPos()) instanceof PsyglyphicCipherTile))
+//            return;
+//
+//        World world = event.getWorld();
+//        BlockPos pos = event.getPos();
+//
+//        if (world.getBlockState(pos).getBlock() instanceof CipherBlock) {
+//            BlockRegistry.PSYGLYPHIC_CIPHER.use(world.getBlockState(pos), world, pos, event.getPlayer(), event.getHand(), null);
+//            event.setCanceled(true);
+//        }
+//    }
     @Override
     @Nullable
     public SUpdateTileEntityPacket getUpdatePacket() {

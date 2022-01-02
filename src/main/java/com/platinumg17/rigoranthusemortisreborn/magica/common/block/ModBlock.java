@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ModBlock extends Block {
-    public List<ITextComponent> tooltip;
     public ModBlock(Properties properties, String registry) {
         super(properties);
         setRegistryName(registry);
@@ -36,17 +35,5 @@ public class ModBlock extends Block {
     @Override
     public boolean shouldDisplayFluidOverlay(BlockState state, IBlockDisplayReader world, BlockPos pos, FluidState fluidState) {
         return true;
-    }
-
-    public ModBlock withTooltip(ITextComponent tip){
-        tooltip = new ArrayList<>();
-        tooltip.add(tip);
-        return this;
-    }
-    @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip2, ITooltipFlag flagIn) {
-        if(tooltip != null && !tooltip.isEmpty()){
-            tooltip2.addAll(tooltip);
-        }
     }
 }

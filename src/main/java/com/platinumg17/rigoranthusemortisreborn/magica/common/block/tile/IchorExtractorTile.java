@@ -30,20 +30,15 @@ import software.bernie.geckolib3.core.IAnimatable;
 
 import java.util.concurrent.atomic.AtomicReference;
 
-public class IchorExtractorTile extends IchorTile implements IAnimatable {
+public class IchorExtractorTile extends DominionTile implements IAnimatable {
 
     public IchorExtractorTile(){
         super(BlockRegistry.ICHOR_EXTRACTOR_TILE);
     }
 
     @Override
-    public int getMaxIchor() {
-        return 2000;
-    }
-
-    @Override
     public int getTransferRate() {
-        return 1000;
+        return 5000;
     }
 
     @Override
@@ -51,12 +46,12 @@ public class IchorExtractorTile extends IchorTile implements IAnimatable {
         super.tick();
         if(level.isClientSide)
             return;
-        if(level.getGameTime() % 20 == 0 && this.canAcceptIchor()) {
+        if(level.getGameTime() % 20 == 0 && this.canAcceptDominion()) {
 
             for (ItemEntity i : level.getEntitiesOfClass(ItemEntity.class, new AxisAlignedBB(worldPosition).inflate(1.0))) {
-                int ichor = getIchorValue(i.getItem());
+                int ichor = getDominionValue(i.getItem());
                 if (ichor > 0) {
-                    this.addIchor(ichor);
+                    this.addDominion(ichor);
                     ItemStack containerItem = i.getItem().getContainerItem();
                     i.getItem().shrink(1);
                     if (!containerItem.isEmpty()) {
@@ -68,30 +63,30 @@ public class IchorExtractorTile extends IchorTile implements IAnimatable {
                 }
             }
             for (SplinteredPedestalTile i : getSurroundingPedestals()) {
-                int ichorValue = getIchorValue(i.getItem(0));
+                int ichorValue = getDominionValue(i.getItem(0));
                 if (ichorValue > 0) {
-                    this.addIchor(ichorValue);
+                    this.addDominion(ichorValue);
                     ItemStack containerItem = i.getItem(0).getContainerItem();
                     i.removeItem(0, 1);
                     i.setItem(0, containerItem);
                     Networking.sendToNearby(level, getBlockPos(),
-                            new PacketREEffect(PacketREEffect.EffectType.BURST, i.getBlockPos().above(), new ParticleColor.IntWrapper(255, 0, 0)));
+                            new PacketREEffect(PacketREEffect.EffectType.TIMED_HELIX, i.getBlockPos(), new ParticleColor.IntWrapper(255, 0, 0)));
                 }
             }
         }
 //        if(!level.isClientSide && level.getGameTime() % 20 == 0) {
 //            int ichor = 100;
-//            BlockPos ichorPos = findNearbyIchor(level, worldPosition);
-//            IchorJarTile tile = (IchorJarTile) level.getBlockEntity(ichorPos);
-//            if (ichorPos != null) { tile.removeIchor(100); }
-////            if (IchorUtil.hasIchorNearby(this.worldPosition.below(), this.level, 0, ichor)) {
-////                IchorUtil.takeIchorNearby(this.worldPosition.below(), this.level, 0, ichor);
-////                this.addIchor(ichor);
+//            BlockPos ichorPos = findNearbyDominion(level, worldPosition);
+//            DominionJarTile tile = (DominionJarTile) level.getBlockEntity(ichorPos);
+//            if (ichorPos != null) { tile.removeDominion(100); }
+////            if (DominionUtil.hasDominionNearby(this.worldPosition.below(), this.level, 0, ichor)) {
+////                DominionUtil.takeDominionNearby(this.worldPosition.below(), this.level, 0, ichor);
+////                this.addDominion(ichor);
 ////            }
 //        }
     }
 
-    public int getIchorValue(ItemStack i) {
+    public int getDominionValue(ItemStack i) {
         int ichor = 0;
         int progress = 0;
         int extractionTime = ForgeHooks.getBurnTime(i, null) ;

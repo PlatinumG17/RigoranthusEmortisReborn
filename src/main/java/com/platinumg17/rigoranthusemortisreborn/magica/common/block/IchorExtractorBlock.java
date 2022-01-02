@@ -8,7 +8,7 @@ import net.minecraft.world.IBlockReader;
 
 import javax.annotation.Nullable;
 
-public class IchorExtractorBlock extends AbsorbtionBlock {
+public class IchorExtractorBlock extends ExtractorBlock {
     public IchorExtractorBlock() {
         super(defaultProperties().noOcclusion().lightLevel(state -> 12), LibBlockNames.ICHOR_EXTRACTOR);
     }

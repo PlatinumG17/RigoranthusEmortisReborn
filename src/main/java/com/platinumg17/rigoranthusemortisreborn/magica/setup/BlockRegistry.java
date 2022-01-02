@@ -120,8 +120,6 @@ public class BlockRegistry {
     @ObjectHolder(LibBlockNames.EMORTIC_RELAY) public static EmorticRelay EMORTIC_RELAY;
     @ObjectHolder(LibBlockNames.RELAY_SPLITTER) public static RelaySplitterBlock RELAY_SPLITTER;
     @ObjectHolder(LibBlockNames.RELAY_SPLITTER) public static TileEntityType<RelaySplitterTile> RELAY_SPLITTER_TILE;
-//    @ObjectHolder(LibBlockNames.DOMINION_EXTRACTOR) public static DominionExtractorBlock DOMINION_EXTRACTOR_BLOCK;
-//    @ObjectHolder(LibBlockNames.DOMINION_EXTRACTOR) public static  TileEntityType<DominionExtractorTile> DOMINION_EXTRACTOR_TILE;
 
     @ObjectHolder(LibBlockNames.ICHOR_EXTRACTOR) public static IchorExtractorBlock ICHOR_EXTRACTOR_BLOCK;
     @ObjectHolder(LibBlockNames.ICHOR_EXTRACTOR) public static TileEntityType<IchorExtractorTile> ICHOR_EXTRACTOR_TILE;
@@ -160,7 +158,7 @@ public class BlockRegistry {
             registry.register(new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, () -> AZULOREAL_ORCHID, FLOWER_POT_PROP).setRegistryName(LibBlockNames.POTTED_AZULOREAL_ORCHID));
             registry.register(new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, () -> IRIDESCENT_SPROUTS, FLOWER_POT_PROP).setRegistryName(LibBlockNames.POTTED_IRIDESCENT_SPROUTS));
             registry.register(new TallFlowerBlock(SAP_PROP).setRegistryName(LibBlockNames.LISIANTHUS));
-            registry.register(new FragmentedBlock(AbstractBlock.Properties.of(Material.SAND, MaterialColor.STONE).strength(0.8f, 0.8f).harvestTool(ToolType.SHOVEL).harvestLevel(0).sound(SoundType.GRAVEL)));//.withTooltip(new TranslationTextComponent("tooltip.block.rigoranthusemortisreborn.fragmented_cobblestone")));
+            registry.register(new FragmentedBlock(AbstractBlock.Properties.of(Material.SAND, MaterialColor.STONE).strength(0.8f, 0.8f).harvestTool(ToolType.SHOVEL).harvestLevel(0).sound(SoundType.GRAVEL)));
             registry.register(new DominionBerryBush(AbstractBlock.Properties.of(Material.PLANT).randomTicks().noCollission().sound(SoundType.SWEET_BERRY_BUSH)));
             registry.register(new SpectabilisBushBlock(AbstractBlock.Properties.of(Material.PLANT).randomTicks().noCollission().sound(SoundType.SWEET_BERRY_BUSH)));
 
@@ -180,7 +178,6 @@ public class BlockRegistry {
             registry.register(new RelayDepositBlock());
             registry.register(new RelaySplitterBlock());
             registry.register(new IchorCrystallizerBlock());
-//            registry.register(new DominionExtractorBlock());
             registry.register(new IchorExtractorBlock());
             registry.register(new LightBlock());
             registry.register(new TableBlock());
@@ -227,7 +224,6 @@ public class BlockRegistry {
             event.getRegistry().register(TileEntityType.Builder.of(CreativeIchorJarTile::new, BlockRegistry.CREATIVE_ICHOR_JAR).build(null).setRegistryName(LibBlockNames.CREATIVE_ICHOR_JAR));
             event.getRegistry().register(TileEntityType.Builder.of(RelayDepositTile::new, BlockRegistry.RELAY_DEPOSIT).build(null).setRegistryName(LibBlockNames.RELAY_DEPOSIT));
             event.getRegistry().register(TileEntityType.Builder.of(EmorticRelayTile::new, BlockRegistry.EMORTIC_RELAY).build(null).setRegistryName(LibBlockNames.EMORTIC_RELAY));
-//            event.getRegistry().register(TileEntityType.Builder.of(DominionExtractorTile::new, BlockRegistry.DOMINION_EXTRACTOR_BLOCK).build(null).setRegistryName(LibBlockNames.DOMINION_EXTRACTOR));
             event.getRegistry().register(TileEntityType.Builder.of(IchorExtractorTile::new, BlockRegistry.ICHOR_EXTRACTOR_BLOCK).build(null).setRegistryName(LibBlockNames.ICHOR_EXTRACTOR));
             event.getRegistry().register(TileEntityType.Builder.of(RelaySplitterTile::new, BlockRegistry.RELAY_SPLITTER).build(null).setRegistryName(LibBlockNames.RELAY_SPLITTER));
             event.getRegistry().register(TileEntityType.Builder.of(EmorticCortexTile::new, BlockRegistry.EMORTIC_CORTEX_BLOCK).build(null).setRegistryName(LibBlockNames.EMORTIC_CORTEX));
@@ -261,33 +257,30 @@ public class BlockRegistry {
             registry.register(getDefaultBlockItem(BlockRegistry.IRIDESCENT_SPROUTS, LibBlockNames.IRIDESCENT_SPROUTS));
             registry.register(getDefaultBlockItem(BlockRegistry.DOMINION_GEM_BLOCK, LibBlockNames.DOMINION_GEM_BLOCK));
 
-            registry.register(new AnimBlockItem(BlockRegistry.hangingCadaverSkull, MagicItemsRegistry.defaultItemProperties().setISTER(() -> HangingSkullRenderer::getISTER)).setRegistryName(LibBlockNames.HANGING_CADAVER_SKULL));
-
-//            registry.register(new BlockItem(BlockRegistry.SPLINTERED_PEDESTAL, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.SPLINTERED_PEDESTAL));
-//            registry.register(new BlockItem(BlockRegistry.PSYGLYPHIC_AMALG_BLOCK, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.PSYGLYPHIC_AMALGAMATOR));
-//            registry.register(new AnimBlockItem(BlockRegistry.EMORTIC_CORTEX_BLOCK, MagicItemsRegistry.defaultItemProperties().setISTER(() -> EmorticCortexRenderer::getISTER)).setRegistryName(LibBlockNames.EMORTIC_CORTEX));
-//            registry.register(new AnimBlockItem(BlockRegistry.EMORTIC_CRAFTING_PRESS_BLOCK, MagicItemsRegistry.defaultItemProperties().setISTER(() -> EmorticCraftingPressRenderer::getISTER)).setRegistryName(LibBlockNames.EMORTIC_CRAFTING_PRESS));
-            registry.register(new AnimBlockItem(BlockRegistry.RITUAL_BLOCK, MagicItemsRegistry.defaultItemProperties().setISTER(() -> RitualVesselRenderer::getISTER)).setRegistryName(LibBlockNames.RITUAL_VESSEL));
+//            registry.register(new AnimBlockItem(BlockRegistry.hangingCadaverSkull, MagicItemsRegistry.defaultItemProperties().setISTER(() -> HangingSkullRenderer::getISTER)).setRegistryName(LibBlockNames.HANGING_CADAVER_SKULL));
 
             registry.register(new BlockItem(BlockRegistry.DOMINION_JAR, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.DOMINION_JAR));
             registry.register(new BlockItem(BlockRegistry.CREATIVE_DOMINION_JAR, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.CREATIVE_DOMINION_JAR));
             registry.register(new BlockItem(BlockRegistry.ICHOR_JAR, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.ICHOR_JAR));
             registry.register(new BlockItem(BlockRegistry.CREATIVE_ICHOR_JAR, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.CREATIVE_ICHOR_JAR));
-//            registry.register(new AnimBlockItem(BlockRegistry.EMORTIC_RELAY, MagicItemsRegistry.defaultItemProperties().setISTER(() -> EmorticRelayRenderer::getISTER)).setRegistryName(LibBlockNames.EMORTIC_RELAY));
-//            registry.register(new AnimBlockItem(BlockRegistry.RELAY_DEPOSIT, MagicItemsRegistry.defaultItemProperties().setISTER(() -> RelayDepositRenderer::getISTER)).setRegistryName(LibBlockNames.RELAY_DEPOSIT));
-//            registry.register(new AnimBlockItem(BlockRegistry.RELAY_SPLITTER, MagicItemsRegistry.defaultItemProperties().setISTER(() -> RelaySplitterRenderer::getISTER)).setRegistryName(LibBlockNames.RELAY_SPLITTER));
-//            registry.register(new AnimBlockItem(BlockRegistry.DOMINION_EXTRACTOR_BLOCK, MagicItemsRegistry.defaultItemProperties().fireResistant().setISTER(() -> DominionExtractorRenderer::getISTER)).setRegistryName(LibBlockNames.DOMINION_EXTRACTOR));
-//            registry.register(new AnimBlockItem(BlockRegistry.ICHOR_EXTRACTOR_BLOCK, MagicItemsRegistry.defaultItemProperties().fireResistant().setISTER(() -> IchorExtractorRenderer::getISTER)).setRegistryName(LibBlockNames.ICHOR_EXTRACTOR));
-//            registry.register(new AnimBlockItem(BlockRegistry.ICHOR_CRYSTALLIZER_BLOCK, MagicItemsRegistry.defaultItemProperties().setISTER(() -> IchorCrystallizerRenderer::getISTER)).setRegistryName(LibBlockNames.ICHOR_CRYSTALLIZER));
-//            registry.register(new AnimBlockItem(BlockRegistry.PSYGLYPHIC_CIPHER, MagicItemsRegistry.defaultItemProperties().fireResistant().setISTER(() -> CipherRenderer::getISTER)).setRegistryName(LibBlockNames.PSYGLYPHIC_CIPHER));
-
+            registry.register(new AnimBlockItem(BlockRegistry.RITUAL_BLOCK, MagicItemsRegistry.defaultItemProperties().setISTER(() -> RitualVesselRenderer::getISTER)).setRegistryName(LibBlockNames.RITUAL_VESSEL));
             registry.register(new AnimBlockItem(BlockRegistry.TABLE_BLOCK, MagicItemsRegistry.defaultItemProperties().setISTER(() -> TableRenderer::getISTER)).setRegistryName(LibBlockNames.TABLE_BLOCK));
             registry.register(new BlockItem(BlockRegistry.PHANTOM_BLOCK, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.PHANTOM_BLOCK));
             registry.register(new BlockItem(BlockRegistry.LIGHT_BLOCK, new Item.Properties()).setRegistryName(LibBlockNames.LIGHT_BLOCK));
             registry.register(new BlockItem(BlockRegistry.PORTAL_BLOCK, new Item.Properties()).setRegistryName(LibBlockNames.PORTAL));
 //            registry.register(new FluidBlockItem(BlockRegistry.RE_LILLY_PAD, MagicItemsRegistry.defaultItemProperties().fireResistant()).setRegistryName(LibBlockNames.RE_LILLY_PAD));
 
-            Item relayDeposit = new AnimBlockItem(BlockRegistry.RELAY_DEPOSIT, new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).setISTER(() -> RelayDepositRenderer::getISTER)) {
+            Item hangingCadaverSkull = new AnimBlockItem(BlockRegistry.hangingCadaverSkull, new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).fireResistant().setISTER(() -> HangingSkullRenderer::getISTER)) {
+                @Override public void appendHoverText(ItemStack stack, @Nullable World worldIn, List< ITextComponent > tooltip, ITooltipFlag flagIn) {
+                    if (Screen.hasShiftDown()) {
+                        tooltip.add(new TranslationTextComponent("tooltip.block." + EmortisConstants.MOD_ID + ".hanging_cadaver_skull"));
+                    } else {
+                        tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".hold_shift").setStyle(Style.EMPTY)); }
+                    super.appendHoverText(stack, worldIn, tooltip, flagIn);
+                }
+            }.setRegistryName(LibBlockNames.HANGING_CADAVER_SKULL);
+
+            Item relayDeposit = new AnimBlockItem(BlockRegistry.RELAY_DEPOSIT, new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).fireResistant().setISTER(() -> RelayDepositRenderer::getISTER)) {
                 @Override public void appendHoverText(ItemStack stack, @Nullable World worldIn, List< ITextComponent > tooltip, ITooltipFlag flagIn) {
                     if (Screen.hasShiftDown()) {
                         tooltip.add(new TranslationTextComponent("tooltip.block." + EmortisConstants.MOD_ID + ".relay_deposit"));
@@ -300,7 +293,7 @@ public class BlockRegistry {
                 }
             }.setRegistryName(LibBlockNames.RELAY_DEPOSIT);
 
-            Item relaySplitter = new AnimBlockItem(BlockRegistry.RELAY_SPLITTER, new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).setISTER(() -> RelaySplitterRenderer::getISTER)) {
+            Item relaySplitter = new AnimBlockItem(BlockRegistry.RELAY_SPLITTER, new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).fireResistant().setISTER(() -> RelaySplitterRenderer::getISTER)) {
                 @Override public void appendHoverText(ItemStack stack, @Nullable World worldIn, List< ITextComponent > tooltip, ITooltipFlag flagIn) {
                     if (Screen.hasShiftDown()) {
                         tooltip.add(new TranslationTextComponent("tooltip.block." + EmortisConstants.MOD_ID + ".relay_splitter"));
@@ -315,7 +308,7 @@ public class BlockRegistry {
                 }
             }.setRegistryName(LibBlockNames.RELAY_SPLITTER);
 
-            Item emorticRelay = new AnimBlockItem(BlockRegistry.EMORTIC_RELAY, new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).setISTER(() -> EmorticRelayRenderer::getISTER)) {
+            Item emorticRelay = new AnimBlockItem(BlockRegistry.EMORTIC_RELAY, new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).fireResistant().setISTER(() -> EmorticRelayRenderer::getISTER)) {
                 @Override public void appendHoverText(ItemStack stack, @Nullable World worldIn, List< ITextComponent > tooltip, ITooltipFlag flagIn) {
                     if (Screen.hasShiftDown()) {
                         tooltip.add(new TranslationTextComponent("tooltip.block." + EmortisConstants.MOD_ID + ".emortic_relay"));
@@ -332,7 +325,7 @@ public class BlockRegistry {
                 }
             }.setRegistryName(LibBlockNames.EMORTIC_RELAY);
 
-            Item emorticCortex = new AnimBlockItem(BlockRegistry.EMORTIC_CORTEX_BLOCK, new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).setISTER(() -> EmorticCortexRenderer::getISTER)) {
+            Item emorticCortex = new AnimBlockItem(BlockRegistry.EMORTIC_CORTEX_BLOCK, new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).fireResistant().setISTER(() -> EmorticCortexRenderer::getISTER)) {
                 @Override public void appendHoverText(ItemStack stack, @Nullable World worldIn, List< ITextComponent > tooltip, ITooltipFlag flagIn) {
                 if (Screen.hasShiftDown()) {
                     tooltip.add(new TranslationTextComponent("tooltip.block." + EmortisConstants.MOD_ID + ".emortic_cortex"));
@@ -408,6 +401,7 @@ public class BlockRegistry {
 
             registry.register(registerTooltipBlockItem(LibBlockNames.FRAGMENTED_COBBLESTONE, BlockRegistry.FRAGMENTED_COBBLESTONE,"fragmented_cobblestone", "fragmented_cobblestone2"));
 
+            registry.register(hangingCadaverSkull);
             registry.register(emorticRelay);
             registry.register(relaySplitter);
             registry.register(relayDeposit);

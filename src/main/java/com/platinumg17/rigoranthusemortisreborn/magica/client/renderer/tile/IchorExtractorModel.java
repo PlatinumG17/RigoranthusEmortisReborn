@@ -1,11 +1,12 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.client.renderer.tile;
 
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.DominionTile;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.IchorTile;
 import net.minecraft.util.ResourceLocation;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 
-public class IchorExtractorModel<T extends IchorTile> extends AnimatedGeoModel<IchorTile> {
+public class IchorExtractorModel<T extends DominionTile> extends AnimatedGeoModel<DominionTile> {
 
     public ResourceLocation modelLocation;
     public ResourceLocation textLoc;
@@ -17,17 +18,17 @@ public class IchorExtractorModel<T extends IchorTile> extends AnimatedGeoModel<I
     }
 
     @Override
-    public ResourceLocation getModelLocation(IchorTile ichorExtractor) {
+    public ResourceLocation getModelLocation(DominionTile ichorExtractor) {
         return modelLocation;
     }
 
     @Override
-    public ResourceLocation getTextureLocation(IchorTile ichorExtractor) {
+    public ResourceLocation getTextureLocation(DominionTile ichorExtractor) {
         return textLoc;
     }
 
     @Override
-    public ResourceLocation getAnimationFileLocation(IchorTile ichorExtractor) {
+    public ResourceLocation getAnimationFileLocation(DominionTile ichorExtractor) {
         return animationLoc;
     }
 }

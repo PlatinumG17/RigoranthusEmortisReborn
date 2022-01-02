@@ -114,13 +114,13 @@ public class Recipes extends RecipeProvider {
 //                    .requires(Ingredient.of(ItemTags.bind("forge:gems/mana")), 4)
 //                    .save(consumer);
 
-            ShapedRecipeBuilder.shaped(BlockRegistry.DOMINION_EXTRACTOR_BLOCK).unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(Items.CRAFTING_TABLE))
-                    .pattern(" s ")
-                    .pattern("gig")
-                    .pattern(" s ")
-                    .define('g', Tags.Items.INGOTS_GOLD)
-                    .define('s', DOMINION_GEM)
-                    .define('i', Items.LAVA_BUCKET).save(consumer);
+//            ShapedRecipeBuilder.shaped(BlockRegistry.DOMINION_EXTRACTOR_BLOCK).unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(Items.CRAFTING_TABLE))
+//                    .pattern(" s ")
+//                    .pattern("gig")
+//                    .pattern(" s ")
+//                    .define('g', Tags.Items.INGOTS_GOLD)
+//                    .define('s', DOMINION_GEM)
+//                    .define('i', Items.LAVA_BUCKET).save(consumer);
 
             shapelessBuilder(BlockRegistry.DOMINION_GEM_BLOCK,1).requires(DOMINION_GEM, 9).save(consumer);
             shapelessBuilder(MagicItemsRegistry.dominionGem, 9).requires(BlockRegistry.DOMINION_GEM_BLOCK,1).save(consumer, new ResourceLocation(EmortisConstants.MOD_ID, "dominion_gem_from_block"));

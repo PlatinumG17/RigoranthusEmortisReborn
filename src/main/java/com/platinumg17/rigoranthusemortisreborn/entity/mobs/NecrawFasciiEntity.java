@@ -19,6 +19,8 @@ import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
@@ -64,6 +66,49 @@ public class NecrawFasciiEntity extends ZombieEntity implements IAnimatable, IAn
     @Override
     protected float getStandingEyeHeight(Pose pose, EntitySize size) {
         return 0.8F;
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        if (!this.level.isClientSide) {
+            if (level.getGameTime() % 20 == 0 && !this.isDeadOrDying() && this.hasCustomName()) {
+                this.heal(0.1f);
+            }
+        }
+    }
+    protected boolean isSunSensitive() {
+        return !this.hasCustomName();
+    }
+
+    @Override
+    public void aiStep() {
+        if (this.isAlive()) {
+            for(int i = 0; i < 3; i++){
+                this.level.addParticle(ParticleTypes.FALLING_NECTAR, this.getRandomX(1.0), this.getRandomY(), this.getRandomZ(1.0), 0.0D, 0.0D, 0.0D);
+            }
+            boolean flag = this.isSunSensitive() && this.isSunBurnTick();
+            if (flag) {
+                ItemStack itemstack = this.getItemBySlot(EquipmentSlotType.HEAD);
+                if (!itemstack.isEmpty()) {
+                    if (itemstack.isDamageableItem()) {
+                        itemstack.setDamageValue(itemstack.getDamageValue() + this.random.nextInt(2));
+                        if (itemstack.getDamageValue() >= itemstack.getMaxDamage()) {
+                            this.broadcastBreakEvent(EquipmentSlotType.HEAD);
+                            this.setItemSlot(EquipmentSlotType.HEAD, ItemStack.EMPTY);
+                        }
+                    }
+                    flag = false;
+                }
+                if (flag) { this.setSecondsOnFire(8); }
+            }
+        }
+        super.aiStep();
+    }
+
+    @Override
+    public CreatureAttribute getMobType() {
+        return CreatureAttribute.UNDEAD;
     }
 
     private <E extends IAnimatable> PlayState walkPredicate(AnimationEvent<E> event) {
@@ -183,13 +228,6 @@ public class NecrawFasciiEntity extends ZombieEntity implements IAnimatable, IAn
         if (source == DamageSource.WITHER)
             return false;
         return super.hurt(source, amount);
-    }
-
-    public void aiStep() {
-        super.aiStep();
-        for(int i = 0; i < 3; i++){
-            this.level.addParticle(ParticleTypes.FALLING_NECTAR, this.getRandomX(1.0), this.getRandomY(), this.getRandomZ(1.0), 0.0D, 0.0D, 0.0D);
-        }
     }
 
     @Nullable

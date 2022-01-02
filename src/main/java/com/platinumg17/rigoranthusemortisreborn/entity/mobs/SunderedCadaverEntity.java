@@ -368,8 +368,8 @@ public class SunderedCadaverEntity extends CreatureEntity implements IAnimatable
         public GroupData(boolean canBeJockey) {
             this.canSpawnJockey = canBeJockey;
         }
-        public void setRandomEffect(Random p_111104_1_) {
-            int i = p_111104_1_.nextInt(5);
+        public void setRandomEffect(Random rand) {
+            int i = rand.nextInt(5);
             if (i <= 1) {
                 this.effect = Effects.MOVEMENT_SPEED;
             } else if (i <= 2) {

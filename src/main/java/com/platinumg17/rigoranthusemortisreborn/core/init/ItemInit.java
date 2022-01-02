@@ -15,6 +15,7 @@ import com.platinumg17.rigoranthusemortisreborn.items.armor.RigoranthusArmorMate
 import com.platinumg17.rigoranthusemortisreborn.items.armor.armorsets.DwellerThoraxArmor;
 import com.platinumg17.rigoranthusemortisreborn.items.ingots.*;
 import com.platinumg17.rigoranthusemortisreborn.items.itemeffects.ItemRightClickEffect;
+import com.platinumg17.rigoranthusemortisreborn.items.pacts.PactOfServitudeItem;
 import com.platinumg17.rigoranthusemortisreborn.items.specialized.RazorToothItem;
 import com.platinumg17.rigoranthusemortisreborn.items.tooltypes.ToolRegistry;
 import com.platinumg17.rigoranthusemortisreborn.items.weapons.REWeaponItem;
@@ -38,7 +39,7 @@ public class ItemInit {
 					///_______________________  P A C T S  _______________________///
 
 	public static final RegistryObject<Item> PACT_OF_SERVITUDE = ITEMS.register("pact_of_servitude",
-			() -> new Item(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)));
+			() -> new PactOfServitudeItem(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)));
 
 	public static final RegistryObject<Item> PACT_OF_MYRMIDON = ITEMS.register("pact_of_myrmidon",
 			() -> new Item(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(1)));

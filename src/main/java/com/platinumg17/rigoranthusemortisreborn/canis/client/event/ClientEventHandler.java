@@ -91,7 +91,7 @@ public class ClientEventHandler {
             int guiLeft = (width - sizeX) / 2;
             int guiTop = (height - sizeY) / 2;
             int x = guiLeft + (creative ? 36 : sizeX / 2 - 10);
-            int y = guiTop + (creative ? 7 : 48);
+            int y = guiTop + (creative ? 39 : 7); // was   creative ? 7 : 48
             event.addWidget(new CanisInventoryButton(x, y, screen, (btn) -> {
                 CanisPacketHandler.send(PacketDistributor.SERVER.noArg(), new OpenCanisScreenData());
                 btn.active = false;

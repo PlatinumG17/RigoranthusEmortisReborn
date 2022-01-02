@@ -21,74 +21,74 @@ import software.bernie.geckolib3.core.IAnimatable;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class DominionExtractorTile extends DominionTile implements IAnimatable {
+//public class DominionExtractorTile extends DominionTile implements IAnimatable {
 
-    public DominionExtractorTile() {
-        super(BlockRegistry.DOMINION_EXTRACTOR_TILE);
-    }
+//    public DominionExtractorTile() {
+//        super(BlockRegistry.DOMINION_EXTRACTOR_TILE);
+//    }
 
-    @Override
-    public int getTransferRate() {
-        return 5000;
-    }
-
-    @Override
-    public void tick() {
-        super.tick();
-        if(level.isClientSide)
-            return;
-        if(level.getGameTime() % 20 == 0 && this.canAcceptDominion()){
-            for(ItemEntity i : level.getEntitiesOfClass(ItemEntity.class, new AxisAlignedBB(worldPosition).inflate(1.0))){
-                int dominion = getDominionValue(i.getItem());
-                if(dominion > 0) {
-                    this.addDominion(dominion);
-                    ItemStack containerItem = i.getItem().getContainerItem();
-                    i.getItem().shrink(1);
-                    if(!containerItem.isEmpty()){
-                        level.addFreshEntity(new ItemEntity(level, i.getX(), i.getY(), i.getZ(), containerItem));
-                    }
-                    Networking.sendToNearby(level, getBlockPos(),
-                            new PacketREEffect(PacketREEffect.EffectType.BURST, i.blockPosition(), new ParticleColor.IntWrapper(255, 0, 0)));
-                    return;
-                }
-            }
-            for(SplinteredPedestalTile i : getSurroundingPedestals()){
-                int dominionValue = getDominionValue(i.getItem(0));
-                if(dominionValue > 0){
-                    this.addDominion(dominionValue);
-                    ItemStack containerItem = i.getItem(0).getContainerItem();
-                    i.removeItem(0, 1);
-                    i.setItem(0, containerItem);
-                    Networking.sendToNearby(level, getBlockPos(),
-                            new PacketREEffect(PacketREEffect.EffectType.BURST, i.getBlockPos().above(), new ParticleColor.IntWrapper(255, 0, 0)));
-                }
-            }
-        }
-    }
-
-    public int getDominionValue(ItemStack i) {
-        int dominion = 0;
-        int progress = 0;
-        int burnTime = ForgeHooks.getBurnTime(i, null) ;
-        if(burnTime > 0) {
-            dominion = burnTime / 12; //TODO  --> Edit this value [12]
-            progress = 1;
-        }
-        if(i.getItem().getItem() == ItemInit.BUCKET_OF_CADAVEROUS_ICHOR.get().asItem()) {
-            dominion += 400;
-            progress += 10; // 5 used to be highest
-        }
-        if(i.getItem().getItem() == ItemInit.BLIGHT_ICHOR.get().asItem()) {
-            dominion += 200; // was 100
-            progress += 5;
-        }
-        else if(i.getItem().getItem() == MagicItemsRegistry.BOTTLE_OF_ICHOR) {
-            dominion += 100; //was 50
-            progress += 3;
-        }
-        this.progress += progress;
-        return dominion;
-    }
+//    @Override
+//    public int getTransferRate() {
+//        return 5000;
+//    }
+//
+//    @Override
+//    public void tick() {
+//        super.tick();
+//        if(level.isClientSide)
+//            return;
+//        if(level.getGameTime() % 20 == 0 && this.canAcceptDominion()){
+//            for(ItemEntity i : level.getEntitiesOfClass(ItemEntity.class, new AxisAlignedBB(worldPosition).inflate(1.0))){
+//                int dominion = getDominionValue(i.getItem());
+//                if(dominion > 0) {
+//                    this.addDominion(dominion);
+//                    ItemStack containerItem = i.getItem().getContainerItem();
+//                    i.getItem().shrink(1);
+//                    if(!containerItem.isEmpty()){
+//                        level.addFreshEntity(new ItemEntity(level, i.getX(), i.getY(), i.getZ(), containerItem));
+//                    }
+//                    Networking.sendToNearby(level, getBlockPos(),
+//                            new PacketREEffect(PacketREEffect.EffectType.BURST, i.blockPosition(), new ParticleColor.IntWrapper(255, 0, 0)));
+//                    return;
+//                }
+//            }
+//            for(SplinteredPedestalTile i : getSurroundingPedestals()){
+//                int dominionValue = getDominionValue(i.getItem(0));
+//                if(dominionValue > 0){
+//                    this.addDominion(dominionValue);
+//                    ItemStack containerItem = i.getItem(0).getContainerItem();
+//                    i.removeItem(0, 1);
+//                    i.setItem(0, containerItem);
+//                    Networking.sendToNearby(level, getBlockPos(),
+//                            new PacketREEffect(PacketREEffect.EffectType.BURST, i.getBlockPos().above(), new ParticleColor.IntWrapper(255, 0, 0)));
+//                }
+//            }
+//        }
+//    }
+//
+//    public int getDominionValue(ItemStack i) {
+//        int dominion = 0;
+//        int progress = 0;
+//        int burnTime = ForgeHooks.getBurnTime(i, null) ;
+//        if(burnTime > 0) {
+//            dominion = burnTime / 12; //TODO  --> Edit this value [12]
+//            progress = 1;
+//        }
+//        if(i.getItem().getItem() == ItemInit.BUCKET_OF_CADAVEROUS_ICHOR.get().asItem()) {
+//            dominion += 400;
+//            progress += 10; // 5 used to be highest
+//        }
+//        if(i.getItem().getItem() == ItemInit.BLIGHT_ICHOR.get().asItem()) {
+//            dominion += 200; // was 100
+//            progress += 5;
+//        }
+//        else if(i.getItem().getItem() == MagicItemsRegistry.BOTTLE_OF_ICHOR) {
+//            dominion += 100; //was 50
+//            progress += 3;
+//        }
+//        this.progress += progress;
+//        return dominion;
+//    }
 
 //    public void doRandomAction() {
 //        if(level.isClientSide)
@@ -130,18 +130,18 @@ public class DominionExtractorTile extends DominionTile implements IAnimatable {
 //        return posFound.get();
 //    }
 
-    public BlockPos getBlockInArea(Block block, int range){
-        AtomicReference<BlockPos> posFound = new AtomicReference<>();
-        BlockPos.betweenClosedStream(worldPosition.offset(range, -1, range), worldPosition.offset(-range, -1, -range)).forEach(blockPos -> {
-            blockPos = blockPos.immutable();
-            if(posFound.get() == null && level.getBlockState(blockPos).getBlock() == block)
-                posFound.set(blockPos);
-        });
-        return posFound.get();
-    }
-
-    @Override
-    public int getMaxDominion() {
-        return 1000;
-    }
-}
+//    public BlockPos getBlockInArea(Block block, int range){
+//        AtomicReference<BlockPos> posFound = new AtomicReference<>();
+//        BlockPos.betweenClosedStream(worldPosition.offset(range, -1, range), worldPosition.offset(-range, -1, -range)).forEach(blockPos -> {
+//            blockPos = blockPos.immutable();
+//            if(posFound.get() == null && level.getBlockState(blockPos).getBlock() == block)
+//                posFound.set(blockPos);
+//        });
+//        return posFound.get();
+//    }
+//
+//    @Override
+//    public int getMaxDominion() {
+//        return 1000;
+//    }
+//}

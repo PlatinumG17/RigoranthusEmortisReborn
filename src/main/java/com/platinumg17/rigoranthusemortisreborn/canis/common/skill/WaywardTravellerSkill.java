@@ -64,22 +64,6 @@ public class WaywardTravellerSkill extends SkillInstance {
     }
 
     @Override
-    public ActionResultType processInteract(AbstractCanisEntity canisIn, World worldIn, PlayerEntity playerIn, Hand handIn) {
-        ItemStack stack = playerIn.getItemInHand(handIn);
-        if (canisIn.isTame() && this.level() > 0) { // Canis requirements
-            if (playerIn.isShiftKeyDown() && stack.isEmpty()) { // Player requirements
-                if (canisIn.canInteract(playerIn)) {
-                    if (!playerIn.level.isClientSide) {
-                        playerIn.displayClientMessage(new TranslationTextComponent("skill.rigoranthusemortisreborn.wayward_traveller.version_migration"), false);
-                    }
-                    return ActionResultType.SUCCESS;
-                }
-            }
-        }
-        return ActionResultType.PASS;
-    }
-
-    @Override
     public void set(AbstractCanisEntity canis, int preLevel) {
         // No need to drop anything if canis didn't have wayward traveller skill
         if (preLevel > 0 && this.level == 0) {this.dropInventory(canis);}
@@ -106,11 +90,6 @@ public class WaywardTravellerSkill extends SkillInstance {
         super.readFromNBT(canisIn, compound);
         this.waywardTravellerHandler.deserializeNBT(compound);
     }
-    // Left in for backwards compatibility for versions <= 2.0.0.5
-//    @Override
-//    public void onRead(AbstractCanisEntity canisIn, CompoundNBT compound) {
-//        this.waywardTravellerHandler.deserializeNBT(compound);
-//    }
 
     @Override
     public <T> LazyOptional<T> getCapability(AbstractCanisEntity canisIn, Capability<T> cap, Direction side) {

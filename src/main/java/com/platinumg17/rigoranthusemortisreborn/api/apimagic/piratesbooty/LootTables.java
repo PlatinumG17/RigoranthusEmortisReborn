@@ -1,15 +1,14 @@
 package com.platinumg17.rigoranthusemortisreborn.api.apimagic.piratesbooty;
 
-import com.platinumg17.rigoranthusemortisreborn.api.RigoranthusEmortisRebornAPI;
+import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.Spell;
+import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.SpellCaster;
+import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.interfaces.ISpellCaster;
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
+import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.datagen.DungeonLootGenerator;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.items.RitualOffering;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.potions.ModPotions;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.BlockRegistry;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.MagicItemsRegistry;
-import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.interfaces.ISpellCaster;
-import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.Spell;
-import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.SpellCaster;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.potion.PotionUtils;
@@ -29,9 +28,10 @@ public class LootTables {
     public static List<Supplier<ItemStack>> RARE_LOOT = new ArrayList<>();
     public static Random r = new Random();
     static {
-        BASIC_LOOT.add(() -> new ItemStack(MagicItemsRegistry.dominionGem,1 + r.nextInt(5)));
+
         BASIC_LOOT.add(() -> new ItemStack(ItemInit.BONE_FRAGMENT.get(),1 + r.nextInt(3)));
         BASIC_LOOT.add(() -> new ItemStack(BlockRegistry.DOMINION_BERRY_BUSH, 1 + r.nextInt(3)));
+        BASIC_LOOT.add(() -> new ItemStack(BlockRegistry.SPECTABILIS_BUSH, 1 + r.nextInt(3)));
         BASIC_LOOT.add(() ->{
             ItemStack stack = new ItemStack(Items.POTION);
             PotionUtils.setPotion(stack, ModPotions.LONG_DOMINION_REGEN_POTION);
@@ -47,13 +47,30 @@ public class LootTables {
             PotionUtils.setPotion(stack, ModPotions.DOMINION_REGEN_POTION);
             return stack;
         });
-        UNCOMMON_LOOT.add(() -> new ItemStack(MagicItemsRegistry.BONE_ARROW, 16 + r.nextInt(16)));
+        BASIC_LOOT.add(() -> new ItemStack(MagicItemsRegistry.BONE_ARROW, 16 + r.nextInt(16)));
+        BASIC_LOOT.add(() -> new ItemStack(ItemInit.RAZORTOOTH_KUNAI.get(), 16 + r.nextInt(16)));
+        BASIC_LOOT.add(() -> new ItemStack(ItemInit.THROWING_KNIFE.get(), 16 + r.nextInt(16)));
+        BASIC_LOOT.add(() -> new ItemStack(ItemInit.RICOCHET_ROUND.get(), 16 + r.nextInt(16)));
 
-        UNCOMMON_LOOT.add(() ->{
-            List<RitualOffering> offerings = new ArrayList<>(RigoranthusEmortisRebornAPI.getInstance().getRitualItemMap().values());
-            return new ItemStack(offerings.get(r.nextInt(offerings.size())));
-        });
+        UNCOMMON_LOOT.add(() -> new ItemStack(ItemInit.BILI_BOMB.get(),1 + r.nextInt(2)));
+        UNCOMMON_LOOT.add(() -> new ItemStack(ItemInit.RAZORTOOTH_FRISBEE.get(),1));
+        UNCOMMON_LOOT.add(() -> new ItemStack(ItemInit.MORRAI.get(),1));
+        UNCOMMON_LOOT.add(() -> new ItemStack(ItemInit.ANDURIL.get(),1));
 
+        UNCOMMON_LOOT.add(() -> new ItemStack(MagicItemsRegistry.dominionGem,1 + r.nextInt(3)));
+        UNCOMMON_LOOT.add(() -> new ItemStack(Registration.SOUL_COAL,1 + r.nextInt(3)));
+        UNCOMMON_LOOT.add(() -> new ItemStack(MagicItemsRegistry.unadornedAmulet,1));
+        UNCOMMON_LOOT.add(() -> new ItemStack(MagicItemsRegistry.unadornedRing,1));
+
+        UNCOMMON_LOOT.add(() -> new ItemStack(ItemInit.PSYGLYPHIC_SCRIPT.get(),1));
+
+//        UNCOMMON_LOOT.add(() ->{
+//            List<RitualOffering> offerings = new ArrayList<>(RigoranthusEmortisRebornAPI.getInstance().getRitualItemMap().values());
+//            return new ItemStack(offerings.get(r.nextInt(offerings.size())));
+//        });
+
+        RARE_LOOT.add(() -> new ItemStack(ItemInit.MUSIC_DISK_KICKSTART.get(), 1));
+        RARE_LOOT.add(() -> new ItemStack(ItemInit.MUSIC_DISK_NEON_LIGHTS.get(), 1));
 //        RARE_LOOT.add(() -> makeTome("Xacris' Tiny Hut", new Spell()
 //                        .add(MethodUnderfoot.INSTANCE)
 //                        .add(EffectPhantomBlock.INSTANCE)

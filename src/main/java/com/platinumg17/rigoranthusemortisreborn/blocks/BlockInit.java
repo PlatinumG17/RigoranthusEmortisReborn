@@ -11,6 +11,7 @@ import com.platinumg17.rigoranthusemortisreborn.magica.common.lib.LibBlockNames;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -19,6 +20,7 @@ import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Util;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
@@ -58,6 +60,10 @@ public class BlockInit {
 	public static final RegistryObject<Block> FRAGMENTED_NETHERRACK = registerBlock("fragmented_netherrack",
 			() -> new GravelBlock(AbstractBlock.Properties.of(Material.SAND, MaterialColor.NETHER).strength(0.6f, 0.6f)
 					.harvestTool(ToolType.SHOVEL).harvestLevel(0).sound(SoundType.NETHERRACK)), "tooltip.block.rigoranthusemortisreborn.fragmented_netherrack");
+
+	public static final RegistryObject<Block> SOUL_COAL_BLOCK = registerBlock("soul_coal_block",
+			() -> new Block(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops().strength(5.0F, 12.0F)
+					.harvestTool(ToolType.PICKAXE).harvestLevel(1).sound(SoundType.SOUL_SAND)), "tooltip.rigoranthusemortisreborn.soul_coal");
 
 	public static final RegistryObject<Block> OPULENT_MAGMA = registerBlock("opulent_magma", () -> new OpulentMagmaBlock(), "tooltip.block.rigoranthusemortisreborn.opulent_magma");
 
@@ -105,7 +111,11 @@ public class BlockInit {
             	new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)) {
 			@Override
 			public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-				tooltip.add(new TranslationTextComponent(tooltipKey));
+				if (Screen.hasShiftDown()) {
+					tooltip.add(new TranslationTextComponent(tooltipKey));
+				} else {
+					tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".hold_shift").setStyle(Style.EMPTY));
+				}
 				super.appendHoverText(stack, worldIn, tooltip, flagIn);
 			}
 		});

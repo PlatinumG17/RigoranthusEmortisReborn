@@ -50,6 +50,7 @@ public class DominionJarTile extends AbstractDominionTile implements ITickableTi
     @Override
     public List<String> getTooltip() {
         List<String> list = new ArrayList<>();
+        list.add(new TranslationTextComponent("block.rigoranthusemortisreborn.dominion_jar").getString());
         list.add(new TranslationTextComponent("rigoranthusemortisreborn.dominion_jar.fullness", (getCurrentDominion()*100) / this.getMaxDominion()).getString());
         return list;
     }

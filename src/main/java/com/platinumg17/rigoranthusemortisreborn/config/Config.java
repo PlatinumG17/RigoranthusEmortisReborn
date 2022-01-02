@@ -206,7 +206,7 @@ public class Config {
         builder.pop();
 
         builder.push("Biome Config");
-        SPAWN_BERRIES = builder.comment(" Spawn Dominion Berry Bushes in the world").define("genBerries", true);
+        SPAWN_BERRIES = builder.comment(" Spawn Dominion & Spectabilis Berry Bushes in the world").define("genBerries", true);
         setupBiomeConfig(builder);
         builder.pop();
 
@@ -223,15 +223,15 @@ public class Config {
 
         builder.push("Tame Canis Settings");
         DISABLE_HUNGER = builder
-                .comment(" Disable hunger mode for the canis")
+                .comment(" Disable hunger for the canis")
                 .translation("rigoranthusemortisreborn.config.canis.disable_hunger")
                 .define("disable_hunger", false);
         STARTING_ITEMS = builder
-                .comment(" When enabled you will spawn with a guide, Canis Summoning Charm and Command Emblem.")
+                .comment(" When enabled you will spawn with a guide & Canis Summoning Charm.")
                 .translation("rigoranthusemortisreborn.config.enable_starting_items")
                 .define("enable_starting_items", false);
         CANIS_GENDER = builder
-                .comment(" When enabled, cani will be randomly assigned genders and will only mate and produce children with the opposite gender.")
+                .comment(" When enabled, cani will be randomly assigned genders and will only mate with the opposite gender.")
                 .translation("rigoranthusemortisreborn.config.enable_gender")
                 .define("enable_gender", true);
         CANIS_PUPS_GET_PARENT_LEVELS = builder
@@ -315,9 +315,9 @@ public class Config {
                 .define("datapack_stuff.bricks_enabled", true);
         builder.pop();
 
-        builder.comment("Magic").push("magic");
+        builder.comment("Magica").push("magica");
 
-        SPAWN_BOOK = builder.comment(" Spawn a book in the players inventory on login").define("spawnBook", true);
+        SPAWN_BOOK = builder.comment(" Spawn a patchouli book in the players inventory on login").define("spawnBook", true);
         SUMMON_FAMILIAR_DOMINION_COST = builder.comment("How much dominion it costs per generation").defineInRange("summonDominionCost",250,0,10000);
         MOB_WEIGHT = builder.comment(" How often Mob spawn").defineInRange("mobWeight",5,0,100);
         MOBS_ATTACK_ANIMALS = builder.comment(" Should Mobs from this mod attack animals?").define("mobsHuntAnimals", true);

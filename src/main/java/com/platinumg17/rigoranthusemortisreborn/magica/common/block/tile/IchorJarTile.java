@@ -49,6 +49,7 @@ public class IchorJarTile extends AbstractIchorTile implements ITickableTileEnti
     @Override
     public List<String> getTooltip() {
         List<String> list = new ArrayList<>();
+        list.add(new TranslationTextComponent("block.rigoranthusemortisreborn.ichor_jar").getString());
         list.add(new TranslationTextComponent("rigoranthusemortisreborn.ichor_jar.fullness", (getCurrentIchor()*100) / this.getMaxIchor()).getString());
         return list;
     }

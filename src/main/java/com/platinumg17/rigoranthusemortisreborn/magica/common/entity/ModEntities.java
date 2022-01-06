@@ -124,7 +124,7 @@ public class ModEntities {
                     EntityType.Builder.<EntityOrbitProjectile>of(EntityOrbitProjectile::new, EntityClassification.MISC).sized(0.5f, 0.5f)
                     .clientTrackingRange(20).updateInterval(20).setShouldReceiveVelocityUpdates(true).setCustomClientFactory(EntityOrbitProjectile::new));
 
-//                        cadaver.spell = new Spell(MethodProjectile.INSTANCE, EffectIgnite.INSTANCE, AugmentSensitive.INSTANCE, EffectFlare.INSTANCE);
+//                        cadaver.spell = new Spell(Projectile.INSTANCE, Ignite.INSTANCE, Sensitive.INSTANCE, Flare.INSTANCE);
 //                        cadaver.color = new ParticleColor(250, 15, 15);
 //                        return cadaver;
 

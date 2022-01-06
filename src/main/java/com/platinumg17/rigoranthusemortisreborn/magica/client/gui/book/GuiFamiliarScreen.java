@@ -29,7 +29,7 @@ public class GuiFamiliarScreen extends BaseBook {
         layoutParts();
     }
 
-    public void layoutParts(){
+    public void layoutParts() {
         int xStart = bookLeft + 20;
         int yStart = bookTop + 34;
         final int PER_ROW = 6;

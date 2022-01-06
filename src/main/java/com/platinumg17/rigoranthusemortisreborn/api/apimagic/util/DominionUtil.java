@@ -62,8 +62,8 @@ public class DominionUtil {
         }
         int tier = dominion.getBookTier();
         int numGlyphs = dominion.getGlyphBonus() > 5 ? dominion.getGlyphBonus() - 5 : 0;
-        max += numGlyphs * Config.GLYPH_MAX_BONUS.get();
-        max += tier * Config.TIER_MAX_BONUS.get();
+        max += numGlyphs * 1.1;//Config.GLYPH_MAX_BONUS.get();
+        max += tier * 1.1;//Config.TIER_MAX_BONUS.get();
 
         MaxDominionCalcEvent event = new MaxDominionCalcEvent(e, max);
         MinecraftForge.EVENT_BUS.post(event);
@@ -93,7 +93,7 @@ public class DominionUtil {
         }
         int tier = dominion.getBookTier();
         double numGlyphs = dominion.getGlyphBonus() > 5 ? dominion.getGlyphBonus() - 5 : 0;
-        regen += numGlyphs * Config.GLYPH_REGEN_BONUS.get();
+        regen += numGlyphs * 1;// Config.GLYPH_REGEN_BONUS.get();
         regen += tier;
         if(e.getEffect(ModPotions.DOMINION_REGEN_EFFECT) != null)
             regen += Config.DOMINION_REGEN_POTION.get() * (1 + e.getEffect(ModPotions.DOMINION_REGEN_EFFECT).getAmplifier());

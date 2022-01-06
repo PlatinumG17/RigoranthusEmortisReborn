@@ -10,7 +10,6 @@ import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstant
 import com.platinumg17.rigoranthusemortisreborn.canis.common.util.CanisBedUtil;
 import com.platinumg17.rigoranthusemortisreborn.config.ConfigValues;
 import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.crafting.CrushRecipe;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.potions.ModPotions;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.spell.effect.EffectCrush;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.BlockRegistry;
@@ -104,7 +103,7 @@ public class RigoranthusJEIPlugin implements IModPlugin {
 	public void registerRecipes(IRecipeRegistration registration) {
 		List<CraftingPressRecipe> pressRecipes = new ArrayList<>();
 		List<PsyglyphicAmalgamatorRecipe> amalgamator = new ArrayList<>();
-		List<CrushRecipe> crushRecipes = new ArrayList<>();
+//		List<CrushRecipe> crushRecipes = new ArrayList<>();
 		RecipeManager manager = Minecraft.getInstance().level.getRecipeManager();
 		for(IRecipe i : manager.getRecipes()){
 			if(i instanceof CraftingPressRecipe){

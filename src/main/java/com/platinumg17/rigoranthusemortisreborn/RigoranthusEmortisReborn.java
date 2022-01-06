@@ -15,7 +15,6 @@ import com.platinumg17.rigoranthusemortisreborn.canis.client.data.REBlockstatePr
 import com.platinumg17.rigoranthusemortisreborn.canis.client.data.REItemModelProvider;
 import com.platinumg17.rigoranthusemortisreborn.canis.client.entity.render.CanisBeamRenderer;
 import com.platinumg17.rigoranthusemortisreborn.canis.client.entity.render.CanisRenderer;
-import com.platinumg17.rigoranthusemortisreborn.canis.client.entity.render.world.HomeboundRenderer;
 import com.platinumg17.rigoranthusemortisreborn.canis.client.event.ClientEventHandler;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.Capabilities;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.SpecializedEntityTypes;
@@ -151,7 +150,7 @@ public class RigoranthusEmortisReborn {
             modEventBus.addListener(CanisItems::registerItemColors);
             modEventBus.addListener(ClientEventHandler::onModelBakeEvent);
                 forgeEventBus.register(new ClientEventHandler());
-                forgeEventBus.addListener(HomeboundRenderer::onWorldRenderLast);
+//                forgeEventBus.addListener(HomeboundRenderer::onWorldRenderLast);
 //            Minecraft mc = Minecraft.getInstance();
 //            if (mc != null) { // If mc is null we are running data gen so no need to add listener ((IReloadableResourceManager) mc.getResourceManager()).registerReloadListener(CanisTextureManager.INSTANCE);}
         });

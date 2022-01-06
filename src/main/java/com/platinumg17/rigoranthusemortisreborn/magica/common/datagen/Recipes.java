@@ -54,9 +54,9 @@ public class Recipes extends RecipeProvider {
             CookingRecipeBuilder.smelting(Ingredient.of(Registration.RECONDITE_ORE.get()), MagicItemsRegistry.dominionGem,0.5f, 200)
                     .unlockedBy("has_ore", InventoryChangeTrigger.Instance.hasItems(Registration.RECONDITE_ORE.get())).save(consumer);
 
-            ShapelessRecipeBuilder.shapeless(MagicItemsRegistry.emorticOrigins).unlockedBy("has_journal", InventoryChangeTrigger.Instance.hasItems(Items.CRAFTING_TABLE))
-                    .requires(DOMINION_GEM, 1)
-                    .requires(Items.BOOK).save(consumer);
+//            ShapelessRecipeBuilder.shapeless(MagicItemsRegistry.emorticOrigins).unlockedBy("has_journal", InventoryChangeTrigger.Instance.hasItems(Items.CRAFTING_TABLE))
+//                    .requires(DOMINION_GEM, 1)
+//                    .requires(Items.BOOK).save(consumer);
 
             ShapedRecipeBuilder.shaped(MagicItemsRegistry.unadornedRing).unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(Items.CRAFTING_TABLE))
                     .pattern("xyx")
@@ -141,11 +141,11 @@ public class Recipes extends RecipeProvider {
                     .requires(Ingredient.of(Tags.Items.INGOTS_GOLD), 3)
                     .save(consumer);
 
-            shapelessBuilder(getRitualItem(RitualLib.RESTORATION))
-                    .requires(BlockRegistry.ICHOR_JAR)
-                    .requires(Items.GOLDEN_APPLE)
-                    .requires(RigoranthusEmortisRebornAPI.getInstance().getGlyphItem(EffectHeal.INSTANCE), 1)
-                    .save(consumer);
+//            shapelessBuilder(getRitualItem(RitualLib.RESTORATION))
+//                    .requires(BlockRegistry.ICHOR_JAR)
+//                    .requires(Items.GOLDEN_APPLE)
+//                    .requires(RigoranthusEmortisRebornAPI.getInstance().getGlyphItem(EffectHeal.INSTANCE), 1)
+//                    .save(consumer);
 
             shapelessBuilder(MagicItemsRegistry.GREATER_EXPERIENCE_GEM)
                     .requires(MagicItemsRegistry.EXPERIENCE_GEM, 4)
@@ -165,18 +165,18 @@ public class Recipes extends RecipeProvider {
                     .define('b', Items.BLACKSTONE)
                     .save(consumer);
 
-            shapelessBuilder(getRitualItem(RitualLib.BINDING))
-                    .requires(BlockRegistry.ICHOR_JAR)
-                    .requires(MagicItemsRegistry.BLANK_PARCHMENT)
-                    .requires(Items.ENDER_PEARL, 1)
-                    .requires(DOMINION_GEM, 3)
-                    .save(consumer);
+//            shapelessBuilder(getRitualItem(RitualLib.BINDING))
+//                    .requires(BlockRegistry.ICHOR_JAR)
+//                    .requires(MagicItemsRegistry.BLANK_PARCHMENT)
+//                    .requires(Items.ENDER_PEARL, 1)
+//                    .requires(DOMINION_GEM, 3)
+//                    .save(consumer);
         }
     }
 
-    public Item getRitualItem(String id){
-        return RigoranthusEmortisRebornAPI.getInstance().getRitualItemMap().get(id);
-    }
+//    public Item getRitualItem(String id){
+//        return RigoranthusEmortisRebornAPI.getInstance().getRitualItemMap().get(id);
+//    }
 
     public static ShapedRecipeBuilder makeWood(IItemProvider logs, IItemProvider wood, int count){
         return ShapedRecipeBuilder.shaped(wood, count).unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(Items.CRAFTING_TABLE))

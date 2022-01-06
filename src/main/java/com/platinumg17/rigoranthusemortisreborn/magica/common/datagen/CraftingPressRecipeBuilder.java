@@ -24,10 +24,10 @@ public class CraftingPressRecipeBuilder {
         return this;
     }
 
-    public CraftingPressRecipeBuilder withCategory(RigoranthusEmortisRebornAPI.PatchouliCategories category){
-        this.recipe.category = category.name();
-        return this;
-    }
+//    public CraftingPressRecipeBuilder withCategory(RigoranthusEmortisRebornAPI.PatchouliCategories category){
+//        this.recipe.category = category.name();
+//        return this;
+//    }
 
     public CraftingPressRecipeBuilder withReagent(IItemProvider reagentProvider){
         this.recipe.reagent = Ingredient.of(reagentProvider);

@@ -158,13 +158,11 @@ public class Config {
     public static ForgeConfigSpec.IntValue languidDwellerMaxSpawnHeight;
 
     public static ForgeConfigSpec.BooleanValue SPAWN_ORE;                           public static ForgeConfigSpec.BooleanValue SPAWN_BERRIES;
-    public static ForgeConfigSpec.BooleanValue SPAWN_BOOK;                          public static ForgeConfigSpec.IntValue INIT_MAX_DOMINION;
-    public static ForgeConfigSpec.IntValue INIT_DOMINION_REGEN;                     public static ForgeConfigSpec.IntValue GLYPH_MAX_BONUS;
-    public static ForgeConfigSpec.IntValue TIER_MAX_BONUS;                          public static ForgeConfigSpec.IntValue DOMINION_BOOST_BONUS;
+    public static ForgeConfigSpec.IntValue DOMINION_BOOST_BONUS;
     public static ForgeConfigSpec.IntValue DOMINION_REGEN_ENCHANT_BONUS;            public static ForgeConfigSpec.IntValue DOMINION_REGEN_POTION;
-    public static ForgeConfigSpec.IntValue REGEN_INTERVAL;                          public static ForgeConfigSpec.IntValue SUMMON_FAMILIAR_DOMINION_COST;
-    public static ForgeConfigSpec.IntValue MOB_WEIGHT;                              public static ForgeConfigSpec.BooleanValue MOBS_ATTACK_ANIMALS;
-    public static ForgeConfigSpec.DoubleValue GLYPH_REGEN_BONUS;
+    public static ForgeConfigSpec.IntValue REGEN_INTERVAL;                          //public static ForgeConfigSpec.IntValue SUMMON_FAMILIAR_DOMINION_COST;
+    public static ForgeConfigSpec.IntValue INIT_MAX_DOMINION;                       public static ForgeConfigSpec.IntValue INIT_DOMINION_REGEN;
+//    public static ForgeConfigSpec.IntValue TIER_MAX_BONUS;                      public static ForgeConfigSpec.DoubleValue GLYPH_REGEN_BONUS;                  public static ForgeConfigSpec.BooleanValue SPAWN_BOOK;              public static ForgeConfigSpec.IntValue GLYPH_MAX_BONUS;
 
     public static ForgeConfigSpec.ConfigValue<List<? extends String>> DIMENSION_BLACKLIST;
     public static ForgeConfigSpec.ConfigValue<? extends String> CRYSTALLIZER_ITEM;
@@ -317,10 +315,10 @@ public class Config {
 
         builder.comment("Magica").push("magica");
 
-        SPAWN_BOOK = builder.comment(" Spawn a patchouli book in the players inventory on login").define("spawnBook", true);
-        SUMMON_FAMILIAR_DOMINION_COST = builder.comment("How much dominion it costs per generation").defineInRange("summonDominionCost",250,0,10000);
-        MOB_WEIGHT = builder.comment(" How often Mob spawn").defineInRange("mobWeight",5,0,100);
-        MOBS_ATTACK_ANIMALS = builder.comment(" Should Mobs from this mod attack animals?").define("mobsHuntAnimals", true);
+//        SPAWN_BOOK = builder.comment(" Spawn a patchouli book in the players inventory on login").define("spawnBook", true);
+//        SUMMON_FAMILIAR_DOMINION_COST = builder.comment("How much dominion it costs per summon").defineInRange("summonDominionCost",250,0,10000);
+//        MOB_WEIGHT = builder.comment(" How often Mob spawn").defineInRange("mobWeight",5,0,100);
+//        MOBS_ATTACK_ANIMALS = builder.comment(" Should Mobs from this mod attack animals?").define("mobsHuntAnimals", true);
 
         CRYSTALLIZER_ITEM = builder.comment(" Crystallizer output item. Do not use a wrong ID!").define("crystallizer_output", "rigoranthusemortisreborn:dominion_gem");
         builder.pop();
@@ -330,11 +328,11 @@ public class Config {
         INIT_MAX_DOMINION = builder.comment(" Base max dominion").defineInRange("baseMax", 100, 0, Integer.MAX_VALUE);
         REGEN_INTERVAL = builder.comment(" How often the Max & Regen Rate of Dominion will be calculated, in ticks.\n NOTE: The default base dominion regen is the lowest recommended rate.")
                 .defineInRange("updateInterval", 5, 1, 20);
-        GLYPH_MAX_BONUS = builder.comment(" Max dominion bonus per glyph").defineInRange("glyphmax", 15, 0, Integer.MAX_VALUE);
-        TIER_MAX_BONUS = builder.comment(" Max dominion bonus for tier of book").defineInRange("tierMax", 50, 0, Integer.MAX_VALUE);
+//        GLYPH_MAX_BONUS = builder.comment(" Max dominion bonus per glyph").defineInRange("glyphmax", 15, 0, Integer.MAX_VALUE);
+//        TIER_MAX_BONUS = builder.comment(" Max dominion bonus for tier of book").defineInRange("tierMax", 50, 0, Integer.MAX_VALUE);
         DOMINION_BOOST_BONUS = builder.comment(" Dominion Boost value per level").defineInRange("dominionBoost", 25, 0, Integer.MAX_VALUE);
         DOMINION_REGEN_ENCHANT_BONUS = builder.comment(" [Enchantment] Dominion regen per second per level").defineInRange("dominionRegenEnchantment", 2, 0, Integer.MAX_VALUE);
-        GLYPH_REGEN_BONUS = builder.comment(" Regen bonus per glyph").defineInRange("glyphRegen", 0.33, 0.0, Integer.MAX_VALUE);
+//        GLYPH_REGEN_BONUS = builder.comment(" Regen bonus per glyph").defineInRange("glyphRegen", 0.33, 0.0, Integer.MAX_VALUE);
         DOMINION_REGEN_POTION = builder.comment(" Regen bonus per potion level").defineInRange("potionRegen", 10, 0, Integer.MAX_VALUE);
         builder.pop();
 
@@ -809,13 +807,11 @@ public class Config {
         Config.sunderedCadaverMinGroupSize.get();             Config.necrawFasciiMinGroupSize.get();
         Config.sunderedCadaverMaxGroupSize.get();             Config.necrawFasciiMaxGroupSize.get();
         Config.dweller_thorax_knockback_resistance.get();     Config.SPAWN_ORE.get();
-        Config.SPAWN_BERRIES.get();                           Config.TIER_MAX_BONUS.get();
-        Config.INIT_MAX_DOMINION.get();                       Config.GLYPH_MAX_BONUS.get();
-        Config.INIT_DOMINION_REGEN.get();                     Config.GLYPH_REGEN_BONUS.get();
+        Config.SPAWN_BERRIES.get();                           Config.REGEN_INTERVAL.get();
+        Config.INIT_MAX_DOMINION.get();                       Config.INIT_DOMINION_REGEN.get();
         Config.DOMINION_BOOST_BONUS.get();                    Config.DOMINION_REGEN_POTION.get();
-        Config.SUMMON_FAMILIAR_DOMINION_COST.get();           Config.MOBS_ATTACK_ANIMALS.get();
-        Config.DOMINION_REGEN_ENCHANT_BONUS.get();            Config.REGEN_INTERVAL.get();
-
+        Config.DOMINION_REGEN_ENCHANT_BONUS.get();
+        //Config.SUMMON_FAMILIAR_DOMINION_COST.get();  Config.TIER_MAX_BONUS.get();  Config.GLYPH_REGEN_BONUS.get();  Config.GLYPH_MAX_BONUS.get();
     }
 
     @SubscribeEvent

@@ -37,13 +37,11 @@ import javax.annotation.Nullable;
 
 import com.platinumg17.rigoranthusemortisreborn.entity.mobs.FeralCanisEntity;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.IAnimationListener;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.ModEntities;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.AgeableEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
@@ -89,6 +87,8 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.Difficulty;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
@@ -115,6 +115,9 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
+/**
+ * @author PlatinumG17 edit of ProPercivalalb
+ */
 public class CanisEntity extends AbstractCanisEntity implements IAnimationListener {
 
     private final AnimationFactory animationFactory = new AnimationFactory(this);
@@ -244,7 +247,7 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new SwimGoal(this));
         this.goalSelector.addGoal(1, new FindWaterGoal(this));
-        //this.goalSelector.addGoal(1, new PatrolAreaGoal(this));
+//        this.goalSelector.addGoal(1, new PatrolAreaGoal(this));
         this.goalSelector.addGoal(2, new SitGoal(this));
         this.goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.4F));
         this.goalSelector.addGoal(5, new MeleeAttackGoal(this, 1.0D, true));
@@ -1925,17 +1928,25 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
 
     @Override
     public void untame() {
+
+        if(!(level instanceof ServerWorld))
+            return;
+        FeralCanisEntity feralCanis = ModEntities.FERAL_CANIS.create(level);
+        feralCanis.absMoveTo(this.getX(), this.getY(), this.getZ(), this.yRot, 0.0F);
+        feralCanis.finalizeSpawn((ServerWorld)level, level.getCurrentDifficultyAt(this.blockPosition()), SpawnReason.MOB_SUMMONED, (ILivingEntityData)null, (CompoundNBT)null);
+
         this.setTame(false);
         this.navigation.stop();
         this.setOrderedToSit(false);
-        this.setHealth(8);
-
+//        this.setHealth(8);
         this.getSkillMap().clear();
         this.markDataParameterDirty(SKILLS.get());
-
         this.setOwnerUUID(null);
         this.setWillObeyOthers(false);
-        this.setMode(EnumMode.DOCILE);
+//        this.setMode(EnumMode.DOCILE);
+        this.remove(false);
+
+        level.addFreshEntity(feralCanis);
     }
 
     public boolean canSpendPoints(int amount) {

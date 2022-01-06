@@ -113,14 +113,14 @@ public class RigoranthusEmortisRebornAPI {
         return brewingRecipes;
     }
 
-    public enum PatchouliCategories {
-        mobs,
-        spells,
-        machines,
-        equipment,
-        resources,
-        getting_started
-    }
+//    public enum PatchouliCategories {
+//        mobs,
+//        spells,
+//        machines,
+//        equipment,
+//        resources,
+//        getting_started
+//    }
 
     /**
      * Map of all spells to be registered in the spell system
@@ -133,7 +133,6 @@ public class RigoranthusEmortisRebornAPI {
     private HashMap<String, AbstractRitual> ritualMap;
 
     private HashMap<String, AbstractFamiliarHolder> familiarHolderMap;
-
 
 
     /**

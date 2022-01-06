@@ -44,7 +44,7 @@ public class GuiImageButton extends Button {
     }
 
     @Override
-    protected void renderBg(MatrixStack p_230441_1_, Minecraft p_230441_2_, int p_230441_3_, int p_230441_4_) {
+    protected void renderBg(MatrixStack matrixStack, Minecraft minecraft, int height, int width) {
     }
 
     @Override

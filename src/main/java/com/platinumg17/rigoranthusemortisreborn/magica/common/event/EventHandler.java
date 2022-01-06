@@ -65,19 +65,19 @@ public class EventHandler {
         e.getEntityLiving().setDeltaMovement(0,0,0);
     }
 
-    @SubscribeEvent
-    public static void playerLogin(PlayerEvent.PlayerLoggedInEvent e) {
-        if(e.getEntityLiving().getCommandSenderWorld().isClientSide || !Config.SPAWN_BOOK.get())
-            return;
-        CompoundNBT tag = e.getPlayer().getPersistentData().getCompound(PlayerEntity.PERSISTED_NBT_TAG);
-        String book_tag = "re_book_";
-        if(tag.getBoolean(book_tag))
-            return;
-        LivingEntity entity = e.getEntityLiving();
-        e.getEntityLiving().getCommandSenderWorld().addFreshEntity(new ItemEntity(entity.level, entity.getX(), entity.getY(), entity.getZ(), new ItemStack(MagicItemsRegistry.emorticOrigins)));
-        tag.putBoolean(book_tag, true);
-        e.getPlayer().getPersistentData().put(PlayerEntity.PERSISTED_NBT_TAG, tag);
-    }
+//    @SubscribeEvent
+//    public static void playerLogin(PlayerEvent.PlayerLoggedInEvent e) {
+//        if(e.getEntityLiving().getCommandSenderWorld().isClientSide || !Config.SPAWN_BOOK.get())
+//            return;
+//        CompoundNBT tag = e.getPlayer().getPersistentData().getCompound(PlayerEntity.PERSISTED_NBT_TAG);
+//        String book_tag = "re_book_";
+//        if(tag.getBoolean(book_tag))
+//            return;
+//        LivingEntity entity = e.getEntityLiving();
+//        e.getEntityLiving().getCommandSenderWorld().addFreshEntity(new ItemEntity(entity.level, entity.getX(), entity.getY(), entity.getZ(), new ItemStack(MagicItemsRegistry.emorticOrigins)));
+//        tag.putBoolean(book_tag, true);
+//        e.getPlayer().getPersistentData().put(PlayerEntity.PERSISTED_NBT_TAG, tag);
+//    }
 
     @SubscribeEvent
     public static void clientTickEnd(TickEvent.ClientTickEvent event) {

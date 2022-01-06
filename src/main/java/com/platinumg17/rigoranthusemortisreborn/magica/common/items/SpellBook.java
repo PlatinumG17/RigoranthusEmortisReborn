@@ -264,8 +264,8 @@ public class SpellBook extends Item implements ISpellTier, IScribeable, IDisplay
         super.appendHoverText(stack, world, tooltip, flag);
         if(stack.hasTag()) {
             tooltip.add(new StringTextComponent(SpellBook.getSpellName(stack.getTag())));
-            tooltip.add(new TranslationTextComponent("rigoranthusemortisreborn.spell_book.select", KeyBinding.createNameSupplier(REKeyBindings.OPEN_SPELL_SELECTION.getKeyBinding().getName()).get().getString()));
-            tooltip.add(new TranslationTextComponent("rigoranthusemortisreborn.spell_book.craft", KeyBinding.createNameSupplier(REKeyBindings.OPEN_BOOK.getKeyBinding().getName()).get().getString()));
+//            tooltip.add(new TranslationTextComponent("rigoranthusemortisreborn.spell_book.select", KeyBinding.createNameSupplier(REKeyBindings.OPEN_SPELL_SELECTION.getKeyBinding().getName()).get().getString()));
+//            tooltip.add(new TranslationTextComponent("rigoranthusemortisreborn.spell_book.craft", KeyBinding.createNameSupplier(REKeyBindings.OPEN_BOOK.getKeyBinding().getName()).get().getString()));
         }
         tooltip.add(new TranslationTextComponent("tooltip.rigoranthusemortisreborn.caster_level", getTier().ordinal() + 1).setStyle(Style.EMPTY.withColor(TextFormatting.BLUE)));
     }

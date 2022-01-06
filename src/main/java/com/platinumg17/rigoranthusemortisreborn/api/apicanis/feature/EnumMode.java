@@ -5,6 +5,9 @@ import com.platinumg17.rigoranthusemortisreborn.api.apicanis.entity.AbstractCani
 import java.util.Arrays;
 import java.util.Comparator;
 
+/**
+ * @author ProPercivalalb, edited by PlatinumG17
+ */
 public enum EnumMode {
 
     DOCILE(0, "docile"),
@@ -12,8 +15,8 @@ public enum EnumMode {
     AGGRESIVE(2, "aggressive"),
     BERSERKER(3, "berserker"),
     TACTICAL(4, "tactical"),
-    PATROL(5, "patrol"),
-    GUARD(6, "guard");
+//    PATROL(5, "patrol"),
+    GUARD(5, "guard");
 
     private int index;
     private String saveName;

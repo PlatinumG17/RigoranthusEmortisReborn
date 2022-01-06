@@ -30,7 +30,7 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.Color;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
-import vazkii.patchouli.api.PatchouliAPI;
+//import vazkii.patchouli.api.PatchouliAPI;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -293,7 +293,7 @@ public class GuiSpellBook extends BaseBook {
     }
 
     public void onDocumentationClick(Button button){
-        PatchouliAPI.get().openBookGUI(Registry.ITEM.getKey(MagicItemsRegistry.emorticOrigins));
+//        PatchouliAPI.get().openBookGUI(Registry.ITEM.getKey(MagicItemsRegistry.emorticOrigins));
     }
 
     public void onColorClick(Button button){

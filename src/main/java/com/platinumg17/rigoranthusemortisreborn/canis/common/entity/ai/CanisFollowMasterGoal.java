@@ -41,8 +41,8 @@ public class CanisFollowMasterGoal extends Goal {
         LivingEntity owner = this.canis.getOwner();
         if (owner == null) {
             return false;
-        } else if (this.canis.getMode() == EnumMode.PATROL) {
-            return false;
+//        } else if (this.canis.getMode() == EnumMode.PATROL) {
+//            return false;
         } else if (owner.isSpectator()) {
             return false;
         } else if (this.canis.isInSittingPose()) {

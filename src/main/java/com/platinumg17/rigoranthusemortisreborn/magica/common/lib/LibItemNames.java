@@ -44,7 +44,7 @@ public class LibItemNames {
     public static final String GREATER_EXP_GEM ="greater_experience_gem";
 
     public static final String LUSTERIC_SHIELD = "lusteric_shield";
-    public static final String CASTER_TOME = "caster_tome";
+    public static final String LOST_TOME = "lost_tome";
     public static final String SUMMONERS_STRENGTH = "summoners_strength";
 }
 

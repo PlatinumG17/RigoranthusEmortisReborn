@@ -28,10 +28,10 @@ public class PsyglyphicRecipeBuilder {
         return this;
     }
 
-    public PsyglyphicRecipeBuilder withCategory(RigoranthusEmortisRebornAPI.PatchouliCategories category){
-        this.recipe.category = category.name();
-        return this;
-    }
+//    public PsyglyphicRecipeBuilder withCategory(RigoranthusEmortisRebornAPI.PatchouliCategories category){
+//        this.recipe.category = category.name();
+//        return this;
+//    }
     public PsyglyphicRecipeBuilder withReagent(IItemProvider provider){
         this.recipe.reagent = Ingredient.of(provider);
         return this;

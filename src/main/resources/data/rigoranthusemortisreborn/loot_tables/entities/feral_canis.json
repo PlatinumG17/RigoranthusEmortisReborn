@@ -62,7 +62,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "rigoranthusemortisreborn:razortooth",
+          "name": "rigoranthusemortisreborn:razor_tooth",
           "weight": 1,
           "functions": [
             {

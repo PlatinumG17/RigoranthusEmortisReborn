@@ -5,11 +5,13 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.AbstractCastMethod;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.AbstractEffect;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.AbstractSpellPart;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.items.CommandWritItem;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.gui.book.GuiSpellBook;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.items.SpellBook;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.network.Networking;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.network.PacketSetBookMode;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.network.PacketSetCommandMode;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.GameSettings;
 import net.minecraft.client.Minecraft;
@@ -40,7 +42,6 @@ public class GuiRadialMenu extends Screen {
     private double startAnimation;
     private CompoundNBT tag;
     private int selectedItem;
-
 
     public GuiRadialMenu(CompoundNBT book_tag) {
         super(new StringTextComponent(""));
@@ -101,7 +102,7 @@ public class GuiRadialMenu extends Screen {
         int x = width / 2;
         int y = height / 2;
 
-        int numberOfSlices = 10;
+        int numberOfSlices = 6; //TODO  was  -->  int numberOfSlices = 10;
 
         double a = Math.toDegrees(Math.atan2(mouseY - y, mouseX - x));
         double d = Math.sqrt(Math.pow(mouseX - x, 2) + Math.pow(mouseY - y, 2));
@@ -115,7 +116,6 @@ public class GuiRadialMenu extends Screen {
         RenderSystem.enableBlend();
         RenderSystem.disableTexture();
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-
         RenderSystem.translated(0, animTop, 0);
 
         Tessellator tessellator = Tessellator.getInstance();
@@ -137,7 +137,6 @@ public class GuiRadialMenu extends Screen {
             }
         }
 
-
         for (int i = 0; i < numberOfSlices; i++) {
             float s = (((i - 0.5f) / (float) numberOfSlices) + 0.25f) * 360;
             float e = (((i + 0.5f) / (float) numberOfSlices) + 0.25f) * 360;
@@ -154,46 +153,28 @@ public class GuiRadialMenu extends Screen {
         RenderSystem.enableTexture();
 
         if (hasMouseOver && mousedOverSlot != -1) {
-            int adjusted =  (mousedOverSlot+ 6) % 10;
-            adjusted = adjusted == 0 ? 10 : adjusted;
-            drawCenteredString(ms,font, SpellBook.getSpellName(tag,  adjusted), width/2,(height - font.lineHeight) / 2,16777215);
+            int adjusted =  (mousedOverSlot + 3) % 6; // was % 10
+            adjusted = adjusted == 0 ? 5 : adjusted; // TODO was  -->       adjusted = adjusted == 0 ? 10 : adjusted;
+            drawCenteredString(ms,font, CommandWritItem.getModeName(tag,  adjusted), width/2,(height - font.lineHeight) / 2,16777215);
         }
 
         RenderHelper.turnBackOn();
         RenderSystem.popMatrix();
-        for(int i = 0; i< numberOfSlices; i++){
+        for(int i = 0; i < numberOfSlices; i++){
             ItemStack stack = new ItemStack(Blocks.DIRT);
             float angle1 = ((i / (float) numberOfSlices) - 0.25f) * 2 * (float) Math.PI;
             float posX = x - 8 + itemRadius * (float) Math.cos(angle1);
             float posY = y - 8 + itemRadius * (float) Math.sin(angle1);
-
-            String resourceIcon = "";
-            String castType = "";
-            for(AbstractSpellPart p : SpellBook.getRecipeFromTag(tag, i +1).recipe){
-                if(p instanceof AbstractCastMethod)
-                    castType = p.getIcon();
-
-                if(p instanceof AbstractEffect){
-                    resourceIcon = p.getIcon();
-                    break;
-                }
-            }
             RenderSystem.disableRescaleNormal();
             RenderHelper.turnOff();
             RenderSystem.disableLighting();
             RenderSystem.disableDepthTest();
-            if(!resourceIcon.isEmpty()) {
-                GuiSpellBook.drawFromTexture(new ResourceLocation(EmortisConstants.MOD_ID, "textures/items/" + resourceIcon),
-                        (int) posX, (int) posY, 0, 0, 16, 16, 16, 16,ms);
-                GuiSpellBook.drawFromTexture(new ResourceLocation(EmortisConstants.MOD_ID, "textures/items/" + castType),
-                        (int) posX +3 , (int) posY - 10, 0, 0, 10, 10, 10, 10,ms);
-            }
             this.itemRenderer.renderGuiItemDecorations(font, stack, (int) posX + 5, (int) posY, String.valueOf(i + 1));
         }
 
         if (mousedOverSlot != -1) {
-            int adjusted = (mousedOverSlot + 6) % 10;
-            adjusted = adjusted == 0 ? 10 : adjusted;
+            int adjusted = (mousedOverSlot + 3) % 6/*10*/;
+            adjusted = adjusted == 0 ? 5/*10*/ : adjusted;
             selectedItem = adjusted;
         }
     }
@@ -201,8 +182,8 @@ public class GuiRadialMenu extends Screen {
     @Override
     public boolean keyPressed(int key, int scanCode, int modifiers) {
         int adjustedKey = key - 48;
-        if(adjustedKey >= 0 && adjustedKey < 10){
-            selectedItem = adjustedKey == 0 ? 10 : adjustedKey;
+        if(adjustedKey >= 0 && adjustedKey < 6/*10*/){
+            selectedItem = adjustedKey == 0 ? 5/*10*/ : adjustedKey;
             mouseClicked(0,0,0);
             return true;
         }
@@ -212,8 +193,8 @@ public class GuiRadialMenu extends Screen {
     @Override
     public boolean mouseClicked(double p_mouseClicked_1_, double p_mouseClicked_3_, int p_mouseClicked_5_) {
         if(this.selectedItem != -1){
-            SpellBook.setMode(tag, selectedItem);
-            Networking.INSTANCE.sendToServer(new PacketSetBookMode(tag));
+            CommandWritItem.setMode(tag, (byte)selectedItem);
+            Networking.INSTANCE.sendToServer(new PacketSetCommandMode(tag));
             minecraft.player.closeContainer();
         }
         return true;

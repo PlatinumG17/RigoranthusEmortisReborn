@@ -3,6 +3,7 @@ package com.platinumg17.rigoranthusemortisreborn.canis.common.skill;
 import com.platinumg17.rigoranthusemortisreborn.api.apicanis.entity.AbstractCanisEntity;
 import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.Skill;
 import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.SkillInstance;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.potions.ModPotions;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -31,8 +32,9 @@ public class PerniciousFangsSkill extends SkillInstance {
                     return ActionResultType.FAIL;
                 }
                 if (!worldIn.isClientSide) {
-                    playerIn.removeAllEffects();
+                    playerIn.removeEffect(Effects.POISON);
                     canisIn.setCanisHunger(canisIn.getCanisHunger() - 30);
+                    playerIn.addEffect(new EffectInstance(ModPotions.PERNICIOUS_SET_BONUS, 5000));
                     canisIn.consumeItemFromStack(playerIn, stack);
                 }
                 return ActionResultType.SUCCESS;

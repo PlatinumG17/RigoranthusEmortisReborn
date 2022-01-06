@@ -28,8 +28,8 @@ import java.util.List;
 @OnlyIn(Dist.CLIENT)
 public abstract class SmelteryScreenBase<T extends MasterfulSmelteryContainerBase> extends ContainerScreen<T> {
 
-    public ResourceLocation GUI = new ResourceLocation(RigoranthusEmortisReborn.MOD_ID + ":" + "textures/gui/smeltery.png");
-    public static final ResourceLocation WIDGETS = new ResourceLocation(RigoranthusEmortisReborn.MOD_ID + ":" + "textures/gui/widgets.png");
+    public ResourceLocation GUI = RigoranthusEmortisReborn.rl(":textures/gui/smeltery.png");
+    public static final ResourceLocation WIDGETS = RigoranthusEmortisReborn.rl(":textures/gui/widgets.png");
     PlayerInventory playerInv;
     ITextComponent name;
 

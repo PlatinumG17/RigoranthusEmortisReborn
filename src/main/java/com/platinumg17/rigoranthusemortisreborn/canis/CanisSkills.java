@@ -21,7 +21,7 @@ public class CanisSkills {
     public static final RegistryObject<Skill> CAVALIER = registerInst("cavalier", CavalierSkill::new);
     public static final RegistryObject<Skill> CERBERUS = registerInst("cerberus", CerberusSkill::new);
     public static final RegistryObject<Skill> CHUNGUS_PUPPER = registerInst("chungus_pupper", ChungusPupperSkill::new);
-    public static final RegistryObject<Skill> HOMEBOUND = registerInst("homebound", HomeboundSkill::new);
+//    public static final RegistryObject<Skill> HOMEBOUND = registerInst("homebound", HomeboundSkill::new);
     public static final RegistryObject<Skill> IRIDESCENCE = registerInst("iridescence", IridescenceSkill::new);
     public static final RegistryObject<Skill> MAD_DASH = registerInst("mad_dash", MadDashSkill::new);
     public static final RegistryObject<Skill> NEPTUNES_BANE = registerInst("neptunes_bane", NeptunesBaneSkill::new);
@@ -31,7 +31,7 @@ public class CanisSkills {
     public static final RegistryObject<Skill> SAVIOR = registerInst("savior", SaviorSkill::new);
     public static final RegistryObject<Skill> SENTINEL = registerInst("sentinel", SentinelSkill::new);
     public static final RegistryObject<Skill> SUMMONER = registerInst("summoner", SummonerSkill::new);
-    public static final RegistryObject<Skill> TEMPEST = registerInst("tempest", TempestSkill::new);
+    public static final RegistryObject<Skill> SNARL = registerInst("snarl", SeizingSnarlSkill::new);
     public static final RegistryObject<Skill> UNDERTAKER = registerInst("undertaker", UndertakerSkill::new);
     public static final RegistryObject<Skill> PREDATOR = registerInst("predator", null);
     public static final RegistryObject<Skill> WAYWARD_TRAVELLER = registerInst("wayward_traveller", WaywardTravellerSkill::new);

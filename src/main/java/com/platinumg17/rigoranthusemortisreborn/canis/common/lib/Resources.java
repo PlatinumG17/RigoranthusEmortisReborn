@@ -30,7 +30,6 @@ public class Resources {
     public static final ResourceLocation GLASSES_SUNGLASSES = getEntity("canis", "canis_sunglasses");
     public static final ResourceLocation BOW_TIE = getEntity("canis", "canis_bowtie");
     public static final ResourceLocation CAPE = getEntity("canis", "canis_cape");
-//    public static final ResourceLocation RADIO_BAND = getEntity("canis", "canis_radio_collar");
     public static final ResourceLocation SKILL_SAVIOR = getEntity("canis/skills", "savior");
     public static final ResourceLocation SKILL_CHEST = getEntity("canis", "canis_chest");
 

@@ -123,6 +123,11 @@ public class Networking {
                 PacketTogglePathing::toBytes,
                 PacketTogglePathing::new,
                 PacketTogglePathing::handle);
+        INSTANCE.registerMessage(nextID(),
+                PacketSetCommandMode.class,
+                PacketSetCommandMode::toBytes,
+                PacketSetCommandMode::new,
+                PacketSetCommandMode::handle);
     }
 
     public static void sendToNearby(World world, BlockPos pos, Object toSend){

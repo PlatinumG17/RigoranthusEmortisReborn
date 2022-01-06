@@ -45,7 +45,7 @@ public class CanisItems {
 
     public static final RegistryObject<DyeableAccoutrementItem> WOOL_COLLAR = registerAccoutrementDyed("wool_collar", CanisAccouterments.DYEABLE_COLLAR);
     public static final RegistryObject<AccoutrementItem> CREATIVE_COLLAR = registerAccoutrement("creative_collar", CanisAccouterments.GOLDEN_COLLAR);
-    public static final RegistryObject<Item> WHISTLE = registerWith("whistle", WhistleItem::new, 1);
+    public static final RegistryObject<Item> WHISTLE = registerWith("whistle", CommandWritItem::new, 1);
     public static final RegistryObject<Item> TREAT_BAG = registerWith("treat_bag", TreatBagItem::new, 1);
     public static final RegistryObject<Item> CHEW_STICK = register("chew_stick", ChewStickItem::new);
 

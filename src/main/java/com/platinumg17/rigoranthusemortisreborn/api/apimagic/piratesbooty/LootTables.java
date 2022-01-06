@@ -205,7 +205,7 @@ public class LootTables {
     }
 
     public static ItemStack makeTome(String name, Spell spell){
-        ItemStack stack = new ItemStack(MagicItemsRegistry.CASTER_TOME);
+        ItemStack stack = new ItemStack(MagicItemsRegistry.LOST_TOME);
         ISpellCaster spellCaster = SpellCaster.deserialize(stack);
         spellCaster.setSpell(spell);
         stack.setHoverName(new StringTextComponent(name).setStyle(Style.EMPTY.withColor(TextFormatting.DARK_PURPLE).withItalic(true)));

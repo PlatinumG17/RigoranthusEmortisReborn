@@ -57,12 +57,12 @@ versionRange="[3.2.0,)"
 ordering="AFTER"
 side="BOTH"
 
-[[dependencies.rigoranthusemortisreborn]]
-modId="patchouli"
-mandatory=true
-versionRange="[1.16-42,)"
-ordering="AFTER"
-side="BOTH"
+#[[dependencies.rigoranthusemortisreborn]]
+#modId="patchouli"
+#mandatory=true
+#versionRange="[1.16-42,)"
+#ordering="AFTER"
+#side="BOTH"
 
 [[dependencies.rigoranthusemortisreborn]]
 modId="jei"

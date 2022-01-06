@@ -1,8 +1,6 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.setup;
 
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
-import com.platinumg17.rigoranthusemortisreborn.api.RigoranthusEmortisRebornAPI;
-import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.interfaces.ISpellTier;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.ModEntities;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.items.*;
@@ -26,8 +24,6 @@ import net.minecraftforge.registries.ObjectHolder;
 import java.util.HashSet;
 import java.util.Set;
 
-import static com.platinumg17.rigoranthusemortisreborn.magica.setup.InjectionUtil.Null;
-
 @ObjectHolder(EmortisConstants.MOD_ID)
 public class MagicItemsRegistry {
     @ObjectHolder("debug") public static REItemDebug debug;
@@ -39,7 +35,7 @@ public class MagicItemsRegistry {
     @ObjectHolder(LibItemNames.EMORTIC_SPELL_BOOK) public static SpellBook emorticSpellBook;
     @ObjectHolder(LibItemNames.CREATIVE_SPELL_BOOK) public static SpellBook creativeSpellBook;
     @ObjectHolder(LibItemNames.BUCKET_OF_DOMINION) public static ModItem bucketOfDominion;
-    @ObjectHolder(LibItemNames.EMORTIC_ORIGINS) public static EmorticOrigins emorticOrigins = Null();
+//    @ObjectHolder(LibItemNames.EMORTIC_ORIGINS) public static EmorticOrigins emorticOrigins = Null();
     @ObjectHolder(LibItemNames.UNADORNED_RING) public  static ModItem unadornedRing;
     @ObjectHolder(LibItemNames.RING_OF_LESSER_CONSERVATION) public static ConservationRing ringOfLesserConservation;
     @ObjectHolder(LibItemNames.RING_OF_GREATER_CONSERVATION) public static ConservationRing ringOfGreaterConservation;
@@ -48,14 +44,14 @@ public class MagicItemsRegistry {
     @ObjectHolder(LibItemNames.UNADORNED_AMULET) public static ModItem unadornedAmulet;
     @ObjectHolder(LibItemNames.DOMINION_WAND) public static DominionWand dominionWand;
     @ObjectHolder(LibItemNames.DOMINION_GEM) public static ModItem dominionGem;
-    @ObjectHolder(LibItemNames.BLANK_PARCHMENT) public static ModItem BLANK_PARCHMENT;
+//    @ObjectHolder(LibItemNames.BLANK_PARCHMENT) public static ModItem BLANK_PARCHMENT;
     @ObjectHolder(LibItemNames.ADONIS) public static Adonis ADONIS;
     @ObjectHolder(LibItemNames.BONE_ARROW) public static BoneArrow BONE_ARROW;
 
     @ObjectHolder(LibItemNames.EXP_GEM) public static ExperienceGem EXPERIENCE_GEM;
     @ObjectHolder(LibItemNames.GREATER_EXP_GEM) public static ExperienceGem GREATER_EXPERIENCE_GEM;
     @ObjectHolder(LibItemNames.LUSTERIC_SHIELD) public static LustericShield LUSTERIC_SHIELD;
-    @ObjectHolder(LibItemNames.CASTER_TOME) public static CasterTome CASTER_TOME;
+    @ObjectHolder(LibItemNames.LOST_TOME) public static LostTome LOST_TOME;
     @ObjectHolder(LibItemNames.SUMMONERS_STRENGTH) public static SummonersStrength SUMMONERS_STRENGTH;
 
     public static Food DOMINION_BERRY_FOOD = (new Food.Builder()).nutrition(2).saturationMod(0.1F).effect(() -> new EffectInstance(ModPotions.DOMINION_REGEN_EFFECT, 100), 1.0f).alwaysEat().build();
@@ -69,7 +65,7 @@ public class MagicItemsRegistry {
         public static void registerItems(final RegistryEvent.Register<Item> event) {
             Item[] items = {
                     new REItemDebug(),
-                    new EmorticOrigins().withTooltip(new TranslationTextComponent("tooltip.emortic_origins")),
+//                    new EmorticOrigins().withTooltip(new TranslationTextComponent("tooltip.emortic_origins")),
                     new GlassBottleItem(defaultItemProperties().stacksTo(16)).setRegistryName(LibItemNames.BOTTLE_OF_ICHOR),
                     new ModItem(defaultItemProperties().stacksTo(1), LibItemNames.BUCKET_OF_DOMINION),
                     new ModItem(LibItemNames.DWELLER_FLESH),
@@ -89,11 +85,11 @@ public class MagicItemsRegistry {
                     new BoneArrow(LibItemNames.BONE_ARROW),
                     new ExperienceGem(defaultItemProperties(), LibItemNames.EXP_GEM) { @Override public int getValue() { return 3; }},
                     new ExperienceGem(defaultItemProperties(), LibItemNames.GREATER_EXP_GEM) { @Override public int getValue() { return 12; }},
-                    new SpellBook(ISpellTier.Tier.THREE).setRegistryName(LibItemNames.EMORTIC_SPELL_BOOK),
-                    new SpellBook(ISpellTier.Tier.THREE).setRegistryName(LibItemNames.CREATIVE_SPELL_BOOK),
+//                    new SpellBook(ISpellTier.Tier.THREE).setRegistryName(LibItemNames.EMORTIC_SPELL_BOOK),
+//                    new SpellBook(ISpellTier.Tier.THREE).setRegistryName(LibItemNames.CREATIVE_SPELL_BOOK),
                     new DominionWand(),
-                    new ModItem(LibItemNames.BLANK_PARCHMENT),
-                    new CasterTome(defaultItemProperties().stacksTo(1), LibItemNames.CASTER_TOME),
+//                    new ModItem(LibItemNames.BLANK_PARCHMENT),
+                    new LostTome(defaultItemProperties().stacksTo(1), LibItemNames.LOST_TOME),
                     new SummonersStrength(defaultItemProperties().stacksTo(1), LibItemNames.SUMMONERS_STRENGTH),
             };
 
@@ -102,14 +98,14 @@ public class MagicItemsRegistry {
 //                registry.register(glyph);
 //                ITEMS.add(glyph);
 //            }
-            for(RitualOffering ritualParchment : RigoranthusEmortisRebornAPI.getInstance().getRitualItemMap().values()){
-                registry.register(ritualParchment);
-                ITEMS.add(ritualParchment);
-            }
-            for(FamiliarScript script : RigoranthusEmortisRebornAPI.getInstance().getFamiliarScriptMap().values()){
-                registry.register(script);
-                ITEMS.add(script);
-            }
+//            for(RitualOffering ritualParchment : RigoranthusEmortisRebornAPI.getInstance().getRitualItemMap().values()){
+//                registry.register(ritualParchment);
+//                ITEMS.add(ritualParchment);
+//            }
+//            for(FamiliarScript script : RigoranthusEmortisRebornAPI.getInstance().getFamiliarScriptMap().values()){
+//                registry.register(script);
+//                ITEMS.add(script);
+//            }
             for (final Item item : items) {
                 registry.register(item);
                 ITEMS.add(item);

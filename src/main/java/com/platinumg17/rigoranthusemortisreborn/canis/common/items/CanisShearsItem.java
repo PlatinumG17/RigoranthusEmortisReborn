@@ -37,7 +37,7 @@ public class CanisShearsItem extends Item implements ICanisItem {
                     int cooldownLeft = canisIn.getDataOrDefault(COOLDOWN, canisIn.tickCount) - canisIn.tickCount;
                     if (cooldownLeft <= 0) {
                         worldIn.broadcastEntityEvent(canisIn, EmortisConstants.EntityState.CANIS_SMOKE);
-                        if (playerIn.getOffhandItem() == ItemInit.PACT_OF_SERVITUDE.get().getDefaultInstance()) {
+                        if (playerIn.getOffhandItem().getItem() == ItemInit.PACT_OF_SERVITUDE.get()) {
                             canisIn.untame();
                         }
                     }

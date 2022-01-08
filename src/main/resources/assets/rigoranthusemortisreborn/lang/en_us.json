@@ -1074,6 +1074,7 @@
     "entity.rigoranthusemortisreborn.canis": "Canis",
     "entity.rigoranthusemortisreborn.canis.unknown_owner": "Master Unknown",
     "entity.rigoranthusemortisreborn.canis.untamed": "Untamed",
+    "entity.rigoranthusemortisreborn.canis.beware": "If Shears are used twice within a few seconds, your Canis will be UNTAMED",
 
     "rigoranthusemortisreborn.whistle.short": "Whistle Short",
     "rigoranthusemortisreborn.whistle.long": "Whistle Long",

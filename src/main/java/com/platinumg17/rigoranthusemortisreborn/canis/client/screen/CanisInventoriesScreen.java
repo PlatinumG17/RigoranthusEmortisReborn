@@ -10,6 +10,7 @@ import com.platinumg17.rigoranthusemortisreborn.canis.common.inventory.container
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.Resources;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.canisnetwork.CanisPacketHandler;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.canisnetwork.packet.data.CanisInventoryPageData;
+import com.platinumg17.rigoranthusemortisreborn.magica.client.keybinds.REKeyBindings;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.gui.screen.inventory.CreativeScreen;
 import net.minecraft.client.gui.screen.inventory.InventoryScreen;
@@ -18,11 +19,14 @@ import net.minecraft.client.util.InputMappings;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.PacketDistributor;
 import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.AccoutrementInstance;
 
 import java.util.Optional;
 
+@OnlyIn(Dist.CLIENT)
 public class CanisInventoriesScreen extends ContainerScreen<CanisInventoriesContainer> {
 
     private Button left, right;
@@ -107,6 +111,8 @@ public class CanisInventoriesScreen extends ContainerScreen<CanisInventoriesCont
             } else {
                 this.minecraft.setScreen(new InventoryScreen(this.inventory.player));
             }
+            return true;
+        } else if (REKeyBindings.OPEN_CANIS_INV.isActiveAndMatches(InputMappings.getKey(keyCode, scanCode))) {
             return true;
         }
         return super.keyPressed(keyCode, scanCode, modifiers);

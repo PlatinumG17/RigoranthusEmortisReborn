@@ -26,13 +26,13 @@ import java.util.Set;
 
 @ObjectHolder(EmortisConstants.MOD_ID)
 public class MagicItemsRegistry {
-    @ObjectHolder("debug") public static REItemDebug debug;
+//    @ObjectHolder("debug") public static REItemDebug debug;
 
     @ObjectHolder(LibItemNames.BOTTLE_OF_ICHOR) public static GlassBottleItem BOTTLE_OF_ICHOR;
     @ObjectHolder(LibItemNames.DWELLER_FLESH) public static ModItem DWELLER_FLESH;
-    @ObjectHolder(LibItemNames.NOVICE_SPELL_BOOK) public static SpellBook noviceSpellBook;
-    @ObjectHolder(LibItemNames.APPRENTICE_SPELL_BOOK) public static SpellBook apprenticeSpellBook;
-    @ObjectHolder(LibItemNames.EMORTIC_SPELL_BOOK) public static SpellBook emorticSpellBook;
+//    @ObjectHolder(LibItemNames.NOVICE_SPELL_BOOK) public static SpellBook noviceSpellBook;
+//    @ObjectHolder(LibItemNames.APPRENTICE_SPELL_BOOK) public static SpellBook apprenticeSpellBook;
+//    @ObjectHolder(LibItemNames.EMORTIC_SPELL_BOOK) public static SpellBook emorticSpellBook;
     @ObjectHolder(LibItemNames.CREATIVE_SPELL_BOOK) public static SpellBook creativeSpellBook;
     @ObjectHolder(LibItemNames.BUCKET_OF_DOMINION) public static ModItem bucketOfDominion;
 //    @ObjectHolder(LibItemNames.EMORTIC_ORIGINS) public static EmorticOrigins emorticOrigins = Null();
@@ -56,6 +56,7 @@ public class MagicItemsRegistry {
 
     public static Food DOMINION_BERRY_FOOD = (new Food.Builder()).nutrition(2).saturationMod(0.1F).effect(() -> new EffectInstance(ModPotions.DOMINION_REGEN_EFFECT, 100), 1.0f).alwaysEat().build();
     public static Food BILIS_BERRY_FOOD = (new Food.Builder()).nutrition(3).saturationMod(0.5F).build();
+    public static Food ICHOR_FOOD = (new Food.Builder()).nutrition(5).saturationMod(0.5F).meat().build();
 
     @Mod.EventBusSubscriber(modid = EmortisConstants.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class RegistrationHandler {
@@ -64,9 +65,9 @@ public class MagicItemsRegistry {
         @SubscribeEvent
         public static void registerItems(final RegistryEvent.Register<Item> event) {
             Item[] items = {
-                    new REItemDebug(),
+//                    new REItemDebug(),
 //                    new EmorticOrigins().withTooltip(new TranslationTextComponent("tooltip.emortic_origins")),
-                    new GlassBottleItem(defaultItemProperties().stacksTo(16)).setRegistryName(LibItemNames.BOTTLE_OF_ICHOR),
+                    new GlassBottleItem(defaultItemProperties().stacksTo(16).food(ICHOR_FOOD)).setRegistryName(LibItemNames.BOTTLE_OF_ICHOR),
                     new ModItem(defaultItemProperties().stacksTo(1), LibItemNames.BUCKET_OF_DOMINION),
                     new ModItem(LibItemNames.DWELLER_FLESH),
                     new ModItem(LibItemNames.UNADORNED_AMULET).withTooltip(new TranslationTextComponent("rigoranthusemortisreborn.tooltip.unadorned")),

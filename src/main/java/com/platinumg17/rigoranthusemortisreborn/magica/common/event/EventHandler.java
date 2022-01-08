@@ -2,7 +2,6 @@ package com.platinumg17.rigoranthusemortisreborn.magica.common.event;
 
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
-import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.ClientInfo;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.command.DataDumpCommand;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.command.PathCommand;
@@ -11,20 +10,17 @@ import com.platinumg17.rigoranthusemortisreborn.magica.common.compat.CaelusHandl
 import com.platinumg17.rigoranthusemortisreborn.magica.common.potions.ModPotions;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.MagicItemsRegistry;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHealEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -37,6 +33,15 @@ public class EventHandler {
 //        PlayerEntity player = event.getPlayer();
 //        ItemStack pickingUp = event.getItem().getItem();
 //    }
+
+    @SubscribeEvent
+    public static void livingEntityUseItemEvent(LivingEntityUseItemEvent.Finish e) {
+        if(!e.getEntityLiving().level.isClientSide && e.getEntityLiving() instanceof PlayerEntity) {
+            if(((PlayerEntity) e.getEntityLiving()).getUseItem() == MagicItemsRegistry.BOTTLE_OF_ICHOR.getDefaultInstance()) {
+                ((PlayerEntity) e.getEntityLiving()).addEffect(new EffectInstance(ModPotions.NECROTIZING_FASCIITIS_EFFECT, 100, 1));
+            }
+        }
+    }
 
     @SubscribeEvent
     public static void livingHurtEvent(LivingHurtEvent e){

@@ -57,6 +57,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * @author ProPerciliv
+ */
 public class CanisBedBlock extends Block {
 
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;

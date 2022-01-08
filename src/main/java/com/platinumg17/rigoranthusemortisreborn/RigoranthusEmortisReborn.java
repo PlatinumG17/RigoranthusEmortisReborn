@@ -39,11 +39,11 @@ import com.platinumg17.rigoranthusemortisreborn.core.events.advancements.REAdvan
 import com.platinumg17.rigoranthusemortisreborn.core.events.other.VanillaCompatRigoranthus;
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
 import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
-import com.platinumg17.rigoranthusemortisreborn.core.registry.fluid.FluidRegistry;
-import com.platinumg17.rigoranthusemortisreborn.core.registry.fluid.particles.EmortisParticleTypes;
 import com.platinumg17.rigoranthusemortisreborn.core.init.network.REPacketHandler;
 import com.platinumg17.rigoranthusemortisreborn.core.init.network.messages.Messages;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusSoundRegistry;
+import com.platinumg17.rigoranthusemortisreborn.core.registry.fluid.FluidRegistry;
+import com.platinumg17.rigoranthusemortisreborn.core.registry.fluid.particles.EmortisParticleTypes;
 import com.platinumg17.rigoranthusemortisreborn.magica.IProxy;
 import com.platinumg17.rigoranthusemortisreborn.magica.TextureEvent;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.ClientHandler;
@@ -52,8 +52,11 @@ import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.pathfinding
 import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.pathfinding.PathFMLEventHandler;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.network.Networking;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.potions.ModPotions;
+import com.platinumg17.rigoranthusemortisreborn.magica.setup.APIRegistry;
+import com.platinumg17.rigoranthusemortisreborn.magica.setup.ClientProxy;
+import com.platinumg17.rigoranthusemortisreborn.magica.setup.ModSetup;
+import com.platinumg17.rigoranthusemortisreborn.magica.setup.ServerProxy;
 import com.platinumg17.rigoranthusemortisreborn.world.WorldEvent;
-import com.platinumg17.rigoranthusemortisreborn.magica.setup.*;
 import com.platinumg17.rigoranthusemortisreborn.world.gen.EmortisBiomeGen;
 import com.platinumg17.rigoranthusemortisreborn.world.trees.RigoranthusWoodTypes;
 import net.minecraft.block.WoodType;
@@ -69,6 +72,7 @@ import net.minecraft.item.ItemModelsProperties;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
@@ -115,12 +119,10 @@ public class RigoranthusEmortisReborn {
 	public RigoranthusEmortisReborn() {
         caelusLoaded = ModList.get().isLoaded("caelus");
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
+
         REGISTRY_HELPER.register(modEventBus);
         modEventBus.addListener(this::gatherData);                  	modEventBus.addListener(this::enqueueIMC);
 		modEventBus.addListener(this::setup);                           modEventBus.addListener(this::processIMC);
-        forgeEventBus.addListener(this::onServerStarting);              forgeEventBus.addListener(this::registerCommands);
-        forgeEventBus.register(new CanisEventHandler());                modEventBus.addListener(this::doClientStuff);
         modEventBus.register(Registration.class);                       modEventBus.addListener(CanisRegistries::newRegistry);
 
         APIRegistry.registerSpells();                                   MappingUtil.setup();
@@ -136,13 +138,16 @@ public class RigoranthusEmortisReborn {
         CanisBedMaterials.CASINGS.register(modEventBus);                CanisBedMaterials.BEDDINGS.register(modEventBus);
 
         Messages.registerMessages("rigoranthusemortisreborn_network");
-
+        IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
+        forgeEventBus.addListener(this::onServerStarting);
+        forgeEventBus.addListener(this::registerCommands);
+        forgeEventBus.register(new CanisEventHandler());
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, Config.COMMON_CONFIG);
         Config.loadConfig(Config.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve("rigoranthusemortisreborn/RigoranthusEmortisReborn-common.toml"));
 
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> Mod.EventBusSubscriber.Bus.FORGE.bus().get().register(PathClientEventHandler.class));
         Mod.EventBusSubscriber.Bus.FORGE.bus().get().register(PathFMLEventHandler.class);
-        MinecraftForge.EVENT_BUS.register(this);
+//        MinecraftForge.EVENT_BUS.register(this);
         ModSetup.initGeckolib();
         //  Client Events  //
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
@@ -186,6 +191,7 @@ public class RigoranthusEmortisReborn {
     public void onServerStarting(final FMLServerStartingEvent event) {LOGGER.info("Ah baby! Da mod man make a message thing!");}
     public void registerCommands(final RegisterCommandsEvent event) {CanisReviveCommand.register(event.getDispatcher());}
 
+    @OnlyIn(Dist.CLIENT)
     public void doClientStuff(final FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
             ClientSetup.setupScreenManagers(event);

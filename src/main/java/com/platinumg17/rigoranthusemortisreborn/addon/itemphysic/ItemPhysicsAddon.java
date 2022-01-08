@@ -29,7 +29,7 @@ public class ItemPhysicsAddon implements Addon {
         Method addMethod = ReflectionUtil.getMethod(API_CLASS, methodName, paramTypes);
 
         ReflectionUtil.invokeStaticMethod(addMethod, swimmingItems,
-                CanisItems.BREEDING_BONE, CanisItems.HOMINI_TREAT, CanisItems.MASTER_TREAT,
+                CanisItems.HOMINI_TREAT, CanisItems.MASTER_TREAT,  //CanisItems.BREEDING_BONE,
                 CanisItems.REGULAR_TREAT, CanisItems.TRAINING_TREAT, CanisItems.COLLAR_SHEARS,
                 CanisItems.THROW_BONE, CanisItems.WOOL_COLLAR, CanisItems.TREAT_BAG,
                 CanisItems.CHEW_STICK,
@@ -39,7 +39,7 @@ public class ItemPhysicsAddon implements Addon {
         );
 
         ReflectionUtil.invokeStaticMethod(addMethod, burningItems,
-                CanisBlocks.CANIS_BED, CanisItems.BREEDING_BONE, CanisItems.HOMINI_TREAT,
+                CanisBlocks.CANIS_BED,  CanisItems.HOMINI_TREAT,  //CanisItems.BREEDING_BONE,
                 CanisItems.MASTER_TREAT, CanisItems.REGULAR_TREAT,  CanisItems.TRAINING_TREAT,
                 CanisItems.COLLAR_SHEARS, CanisItems.THROW_BONE,  CanisItems.WOOL_COLLAR,
                 CanisItems.TREAT_BAG, CanisItems.CHEW_STICK

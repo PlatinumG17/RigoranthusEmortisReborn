@@ -35,11 +35,11 @@ public class CanisItems {
     public static final RegistryObject<Item> THROW_BONE_WET = registerThrowBoneWet("throw_bone_wet");
     public static final RegistryObject<Item> THROW_STICK = registerThrowStick("throw_stick");
     public static final RegistryObject<Item> THROW_STICK_WET = registerThrowStickWet("throw_stick_wet");
-    public static final RegistryObject<Item> TRAINING_TREAT = registerTreat("training_treat", CanisLevel.Type.CHORDATA, 20);
-    public static final RegistryObject<Item> REGULAR_TREAT = registerTreat("regular_treat", CanisLevel.Type.CHORDATA, 40);
-    public static final RegistryObject<Item> MASTER_TREAT = registerTreat("master_treat", CanisLevel.Type.CHORDATA, 60);
-    public static final RegistryObject<Item> HOMINI_TREAT = registerTreat("homini_treat", CanisLevel.Type.HOMINI, 30);
-    public static final RegistryObject<Item> BREEDING_BONE = register("breeding_bone");
+    public static final RegistryObject<Item> TRAINING_TREAT = registerTreat("training_treat", CanisLevel.Type.CHORDATA, 25);
+    public static final RegistryObject<Item> REGULAR_TREAT = registerTreat("regular_treat", CanisLevel.Type.CHORDATA, 50);
+    public static final RegistryObject<Item> MASTER_TREAT = registerTreat("master_treat", CanisLevel.Type.CHORDATA, 75);
+    public static final RegistryObject<Item> HOMINI_TREAT = registerTreat("homini_treat", CanisLevel.Type.CHORDATA, 100);
+//    public static final RegistryObject<Item> BREEDING_BONE = register("breeding_bone");
     public static final RegistryObject<Item> COLLAR_SHEARS = registerWith("collar_shears", CanisShearsItem::new, 1);
     public static final RegistryObject<Item> CANIS_SUMMONING_CHARM = registerWith("canis_summoning_charm", CanisSummoningCharmItem::new, 1);
 
@@ -139,9 +139,5 @@ public class CanisItems {
 //            }, item);
 //        }, CanisBlocks::logError);
 
-//    public static final RegistryObject<AccoutrementItem> RADIO_COLLAR = registerAccoutrement("radio_collar", CanisAccouterments.RADIO_BAND);
-//    public static final RegistryObject<Item> RADAR = registerWith("radar", RadarItem::new, 1);
-//    public static final RegistryObject<Item> CREATIVE_RADAR = registerWith("creative_radar", RadarItem::new, 1);
 //    public static final RegistryObject<AccoutrementItem> CAPE = registerAccoutrement("cape", CanisAccouterments.CAPE);
-//    public static final RegistryObject<DyeableAccoutrementItem> CAPE_COLORED = registerAccoutrementDyed("cape_colored", CanisAccouterments.DYEABLE_CAPE);
 //    public static final RegistryObject<Item> PATROL = registerWith("patrol_item", PatrolItem::new, 1);

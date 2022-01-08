@@ -149,7 +149,7 @@ public class ServerEventHandler {
 //                }
 //            }
 //
-//            if(handItem.getItem() == ModItems.CRUEL_FATE_CRUCIBLE) {
+//            if(handItem.getItem() == ModItems.CRUEL_FATE) {
 //                activateThreshold = activateThreshold * 8 + injuredPlayer.getRandom().nextFloat() * .9F;
 //
 //                if((isDoom && activateThreshold >= 1.0F && injuredPlayer.getRandom().nextFloat() <= .2) || (!isDoom && activateThreshold >= 1.0F && injuredPlayer.getRandom().nextFloat() <= .05)) {

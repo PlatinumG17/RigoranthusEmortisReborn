@@ -10,7 +10,7 @@ public class ConfigValues {
 //_____________  C L I E N T     C O N F I G  _____________//
 
     public static boolean ALWAYS_SHOW_CANIS_NAME        = true;
-    public static boolean WHISTLE_SOUNDS                = true;
+    public static boolean WHISTLE_SOUNDS                = false;
     public static boolean HOMINI_PARTICLES              = true;
     public static boolean RENDER_CHEST                  = true;
     public static boolean SHOW_SMELTERY_ERRORS          = false;

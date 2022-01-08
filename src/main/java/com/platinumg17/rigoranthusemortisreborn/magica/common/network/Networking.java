@@ -103,11 +103,11 @@ public class Networking {
                 PacketClientDelayEffect::toBytes,
                 PacketClientDelayEffect::new,
                 PacketClientDelayEffect::handle);
-        INSTANCE.registerMessage(nextID(),
-                PacketTimedEvent.class,
-                PacketTimedEvent::toBytes,
-                PacketTimedEvent::new,
-                PacketTimedEvent::handle);
+//        INSTANCE.registerMessage(nextID(),
+//                PacketTimedEvent.class,
+//                PacketTimedEvent::toBytes,
+//                PacketTimedEvent::new,
+//                PacketTimedEvent::handle);
         INSTANCE.registerMessage(nextID(),
                 PacketSummonFamiliar.class,
                 PacketSummonFamiliar::toBytes,

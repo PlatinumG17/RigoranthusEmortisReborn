@@ -7,6 +7,9 @@ import java.util.Random;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 import org.apache.commons.lang3.tuple.Triple;
 import com.google.common.collect.Maps;
@@ -38,6 +41,10 @@ import net.minecraftforge.registries.IRegistryDelegate;
 import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.IBeddingMaterial;
 import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.ICasingMaterial;
 
+/**
+ * @author ProPerciliv
+ */
+@OnlyIn(Dist.CLIENT)
 public class CanisBedModel implements IBakedModel {
     public static CanisBedItemOverride ITEM_OVERIDE = new CanisBedItemOverride();
     private static final ResourceLocation MISSING_TEXTURE = new ResourceLocation("missingno");

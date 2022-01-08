@@ -1,108 +1,270 @@
 package com.platinumg17.rigoranthusemortisreborn.canis.client.entity.model;
 
 import com.google.common.collect.ImmutableList;
+import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.entity.model.TintedAgeableModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import com.platinumg17.rigoranthusemortisreborn.api.apicanis.entity.AbstractCanisEntity;
 import net.minecraft.util.math.MathHelper;
 
 public class CanisModel<T extends AbstractCanisEntity> extends TintedAgeableModel<T> {
-
     // Made by PlatinumG17  // Made with Blockbench 4.0.1
-    // Exported for Minecraft version 1.15 - 1.16 with MCP mappings
+    // Exported for Minecraft version 1.15 - 1.16 with Mojang mappings
+    public ModelRenderer whole_head;
     public ModelRenderer head;
-    public ModelRenderer body;
+    public ModelRenderer head_r1;
+    public ModelRenderer head_r2;
+    public ModelRenderer head_r3;
+    public ModelRenderer jaw;
+    public ModelRenderer jaw_r1;
+    public ModelRenderer bone2;
     public ModelRenderer legBackRight;
+    public ModelRenderer legBackRight_r1;
+    public ModelRenderer legBackRight_r2;
+    public ModelRenderer legBackRight_r3;
     public ModelRenderer legBackLeft;
+    public ModelRenderer legBackLeft_r1;
+    public ModelRenderer legBackLeft_r2;
+    public ModelRenderer legBackLeft_r3;
     public ModelRenderer legFrontRight;
+    public ModelRenderer legFrontRight_r1;
+    public ModelRenderer legFrontRight_r2;
     public ModelRenderer legFrontLeft;
-    public ModelRenderer mane;
+    public ModelRenderer legFrontLeft_r1;
+    public ModelRenderer legFrontLeft_r2;
     public ModelRenderer tail;
+    public ModelRenderer tail_r1;
+    public ModelRenderer tail_r2;
+    public ModelRenderer tail_r3;
+    public ModelRenderer tail_r4;
+    public ModelRenderer body;
+    public ModelRenderer body_r1;
+    public ModelRenderer body_r2;
+    public ModelRenderer body_r3;
+    public ModelRenderer mane;
+    public ModelRenderer mane_r1;
+    public ModelRenderer mane_r2;
 
     public CanisModel() {
-        this(1.0F);
+        this(0.0F);
     }
 
     public CanisModel(float scaleFactor) {
-        float f1 = 13.5F;
         texWidth = 128;
         texHeight = 128;
 
-        //_____ H E A D  _____//  can rotate:  X = +/- 25 deg   Y = +/- 20 deg    Z = +/- 20 deg
-        head = new ModelRenderer(this, 0, 0);
-        head.setPos(0.0F, f1, -15.0F);
-        head.texOffs(39, 59).addBox(-5.5F, -4.3133F, -4.5964F, 11.0F, 10.0F, 5.0F, scaleFactor);// neck   (not that it really ahs one)
-        head.texOffs(51, 0).addBox(-4.248F, -2.75F, -7.5964F, 8.0F, 8.0F, 4.0F, scaleFactor);// face-hole
-        head.texOffs(76, 0).addBox(-2.248F, 0.5F, -10.5964F, 4.0F, 2.0F, 3.0F, scaleFactor);// nose
-        head.texOffs(0, 6).addBox(-1.0F, -1.5F, -1.0F, 2.0F, 3.0F, 2.0F, scaleFactor);// nasal bridge
+        whole_head = new ModelRenderer(this);
+        whole_head.setPos(0.0F, 4.25F, -15.25F);
+        whole_head.texOffs(39, 59).addBox(-5.5F, -4.25F, -4.5F, 11.0F, 10.0F, 5.0F, scaleFactor);
 
-        //_____ E A R S _____// can rotate X axis -40 degrees
-        head.texOffs(1, 1).addBox(-5.0F, -6.8133F, -4.0964F, 3.0F, 3.0F, 1.0F, scaleFactor);// Right  -15 Z axis
-        head.texOffs(1, 1).addBox(2.0F, -6.8133F, -4.0964F, 3.0F, 3.0F, 1.0F, scaleFactor);// Left  +15 Z axis
+        head = new ModelRenderer(this);
+        head.setPos(0.0F, 22.5F, 12.0F);
+        whole_head.addChild(head);
+        head.texOffs(51, 0).addBox(-4.25F, -25.25F, -19.5F, 8.0F, 8.0F, 4.0F, scaleFactor);
+        head.texOffs(76, 0).addBox(-2.25F, -22.0F, -22.5F, 4.0F, 2.0F, 3.0F, scaleFactor);
+
+        head_r1 = new ModelRenderer(this);
+        head_r1.setPos(-0.25F, -21.993F, -20.2638F);
+        head.addChild(head_r1);
+        setRotationAngle(head_r1, -0.9163F, 0.0F, 0.0F);
+        head_r1.texOffs(0, 6).addBox(-1.0F, -1.75F, -1.0F, 2.0F, 3.0F, 2.0F, scaleFactor);
+
+        head_r2 = new ModelRenderer(this);
+        head_r2.setPos(-3.6784F, -25.9265F, -18.7192F);
+        head.addChild(head_r2);
+        setRotationAngle(head_r2, 0.2597F, 0.0338F, -0.3883F);
+        head_r2.texOffs(1, 1).addBox(-1.5F, -1.5F, -0.5F, 3.0F, 3.0F, 1.0F, scaleFactor);
+
+        head_r3 = new ModelRenderer(this);
+        head_r3.setPos(3.1411F, -25.9375F, -18.6847F);
+        head.addChild(head_r3);
+        setRotationAngle(head_r3, 0.2597F, -0.0338F, 0.3883F);
+        head_r3.texOffs(1, 1).addBox(-1.5F, -1.5F, -0.5F, 3.0F, 3.0F, 1.0F, scaleFactor);
+
+        jaw = new ModelRenderer(this);
+        jaw.setPos(0.0F, -19.03F, -19.5F);
+        head.addChild(jaw);
+        setRotationAngle(jaw, 0.3491F, 0.0F, 0.0F);
+        jaw.texOffs(47, 75).addBox(-2.25F, -0.97F, -3.0F, 4.0F, 2.0F, 4.0F, scaleFactor);
+
+        jaw_r1 = new ModelRenderer(this);
+        jaw_r1.setPos(-0.25F, 0.4591F, -1.2625F);
+        jaw.addChild(jaw_r1);
+        setRotationAngle(jaw_r1, -0.2182F, 0.0F, 0.0F);
+        jaw_r1.texOffs(76, 6).addBox(-1.5F, -1.0F, -1.5F, 3.0F, 2.0F, 3.0F, scaleFactor);
+
+        bone2 = new ModelRenderer(this);
+        bone2.setPos(0.0F, 0.0F, 0.0F);
+        whole_head.addChild(bone2);
+
+        legBackRight = new ModelRenderer(this);
+        legBackRight.setPos(-4.5F, 4.5F, 10.5F);
+        setRotationAngle(legBackRight, 0.0873F, 0.0F, 0.0F);
+
+        legBackRight_r1 = new ModelRenderer(this);
+        legBackRight_r1.setPos(-0.25F, 3.8647F, -1.271F);
+        legBackRight.addChild(legBackRight_r1);
+        setRotationAngle(legBackRight_r1, -0.4363F, 0.0F, 0.0F);
+        legBackRight_r1.texOffs(17, 69).addBox(-1.5F, -5.0F, -2.5F, 3.0F, 10.0F, 5.0F, scaleFactor);
+
+        legBackRight_r2 = new ModelRenderer(this);
+        legBackRight_r2.setPos(0.0F, 5.6769F, -3.5442F);
+        legBackRight.addChild(legBackRight_r2);
+        setRotationAngle(legBackRight_r2, 0.5672F, 0.0F, 0.0F);
+        legBackRight_r2.texOffs(34, 75).addBox(-1.5F, -0.0114F, -1.7613F, 3.0F, 8.0F, 3.0F, scaleFactor);
+
+        legBackRight_r3 = new ModelRenderer(this);
+        legBackRight_r3.setPos(-0.1F, 12.2537F, 0.2167F);
+        legBackRight.addChild(legBackRight_r3);
+        setRotationAngle(legBackRight_r3, 3.0543F, 0.0F, 0.0F);
+        legBackRight_r3.texOffs(0, 24).addBox(-1.5F, -7.3537F, -1.5548F, 3.0F, 8.0F, 3.0F, scaleFactor);
+
+        legBackLeft = new ModelRenderer(this);
+        legBackLeft.setPos(4.5F, 4.5F, 10.5F);
+        setRotationAngle(legBackLeft, 0.0873F, 0.0F, 0.0F);
 
 
-        //_____ B O T T O M   J A W _____// can rotate X axis -40 degrees
-        head.texOffs(47, 75).addBox(-2.248F, -0.97F, -3.0964F, 4.0F, 2.0F, 4.0F, scaleFactor);
-        head.texOffs(76, 6).addBox(-1.75F, -9.7975F, -24.8015F, 3.0F, 2.0F, 3.0F, scaleFactor);
+        legBackLeft_r1 = new ModelRenderer(this);
+        legBackLeft_r1.setPos(0.25F, 3.9611F, -1.2647F);
+        legBackLeft.addChild(legBackLeft_r1);
+        setRotationAngle(legBackLeft_r1, -0.4363F, 0.0F, 0.0F);
+        legBackLeft_r1.texOffs(17, 69).addBox(-1.5F, -5.0F, -2.5F, 3.0F, 10.0F, 5.0F, scaleFactor);
+
+        legBackLeft_r2 = new ModelRenderer(this);
+        legBackLeft_r2.setPos(0.0F, 5.7734F, -3.5378F);
+        legBackLeft.addChild(legBackLeft_r2);
+        setRotationAngle(legBackLeft_r2, 0.5672F, 0.0F, 0.0F);
+        legBackLeft_r2.texOffs(34, 75).addBox(-1.5F, -0.0114F, -1.7613F, 3.0F, 8.0F, 3.0F, scaleFactor);
+
+        legBackLeft_r3 = new ModelRenderer(this);
+        legBackLeft_r3.setPos(0.1F, 12.3502F, 0.223F);
+        legBackLeft.addChild(legBackLeft_r3);
+        setRotationAngle(legBackLeft_r3, 3.0543F, 0.0F, 0.0F);
+        legBackLeft_r3.texOffs(0, 24).addBox(-1.5F, -7.3537F, -1.5548F, 3.0F, 8.0F, 3.0F, scaleFactor);
+
+        legFrontRight = new ModelRenderer(this);
+        legFrontRight.setPos(-3.5F, 7.0F, -12.0F);
+        setRotationAngle(legFrontRight, 0.1745F, 0.0F, 0.0F);
 
 
-        //_____ B O D Y _____//  maybe 5 deg X and Z
-        this.body = new ModelRenderer(this, 18, 14);
-        body.setPos(0.0F, 2.0F, -3.0F);
-        body.texOffs(0, 24).addBox(-5.0F, -20.8114F, 4.0018F, 10.0F, 11.0F, 13.0F, scaleFactor);// shoulders
-        body.texOffs(41, 14).addBox(-5.998F, -19.9655F, 14.8897F, 12.0F, 9.0F, 10.0F, scaleFactor);// abdomen
-        body.texOffs(0, 50).addBox(-5.0F, -11.2114F, 6.9253F, 10.0F, 9.0F, 9.0F, scaleFactor);// pelvis
+        legFrontRight_r1 = new ModelRenderer(this);
+        legFrontRight_r1.setPos(-0.25F, 0.1449F, -2.0826F);
+        legFrontRight.addChild(legFrontRight_r1);
+        setRotationAngle(legFrontRight_r1, 0.3927F, 0.0F, 0.0F);
+        legFrontRight_r1.texOffs(0, 69).addBox(-1.5F, -2.3719F, -2.036F, 3.0F, 11.0F, 5.0F, scaleFactor);
+
+        legFrontRight_r2 = new ModelRenderer(this);
+        legFrontRight_r2.setPos(0.0F, 8.1594F, 0.0467F);
+        legFrontRight.addChild(legFrontRight_r2);
+        setRotationAngle(legFrontRight_r2, -0.1745F, 0.0F, 0.0F);
+        legFrontRight_r2.texOffs(72, 34).addBox(-1.5F, -1.0342F, -0.9779F, 3.0F, 10.0F, 3.0F, scaleFactor);
+
+        legFrontLeft = new ModelRenderer(this);
+        legFrontLeft.setPos(3.5F, 7.0F, -12.0F);
+        setRotationAngle(legFrontLeft, 0.1745F, 0.0F, 0.0F);
 
 
-        //_____ BACK RIGHT _____//
-        this.legBackRight = new ModelRenderer(this, 0, 18);
-        legBackRight.setPos(-4.5F, 6.0F, 11.0F);
-        legBackRight.texOffs(0, 24).addBox(-1.571F, 3.9787F, 2.589F, 3.0F, 8.0F, 3.0F, scaleFactor); // calf paw
-        legBackRight.texOffs(34, 75).addBox(-1.5F, -4.0F, -1.5F, 3.0F, 8.0F, 3.0F, scaleFactor); // calf
-        legBackRight.texOffs(17, 69).addBox(-1.5F, -5.5F, -2.5F, 3.0F, 11.0F, 5.0F, scaleFactor); // thigh
+        legFrontLeft_r1 = new ModelRenderer(this);
+        legFrontLeft_r1.setPos(0.25F, 0.1145F, -1.9854F);
+        legFrontLeft.addChild(legFrontLeft_r1);
+        setRotationAngle(legFrontLeft_r1, 0.3927F, 0.0F, 0.0F);
+        legFrontLeft_r1.texOffs(0, 69).addBox(-1.5F, -2.3719F, -2.036F, 3.0F, 11.0F, 5.0F, scaleFactor);
 
+        legFrontLeft_r2 = new ModelRenderer(this);
+        legFrontLeft_r2.setPos(0.0F, 8.1594F, 1.0467F);
+        legFrontLeft.addChild(legFrontLeft_r2);
+        setRotationAngle(legFrontLeft_r2, -0.1745F, 0.0F, 0.0F);
+        legFrontLeft_r2.texOffs(72, 34).addBox(-1.5F, -0.9037F, -1.9693F, 3.0F, 10.0F, 3.0F, scaleFactor);
 
-        //_____ BACK LEFT _____//
-        legBackLeft = new ModelRenderer(this, 0, 18);
-        legBackLeft.setPos(4.5F, 6.0F, 11.0F);
-        legBackLeft.texOffs(0, 24).addBox(-1.425F, 3.9787F, 2.589F, 3.0F, 8.0F, 3.0F, scaleFactor); // calf paw
-        legBackLeft.texOffs(34, 75).addBox(-1.5F, -4.0F, -1.5F, 3.0F, 8.0F, 3.0F, scaleFactor); // calf
-        legBackLeft.texOffs(17, 69).addBox(-1.5F, -5.5F, -2.5F, 3.0F, 11.0F, 5.0F, scaleFactor); // thigh
+        tail = new ModelRenderer(this);
+        tail.setPos(0.0F, 6.0F, 13.0F);
+        setRotationAngle(tail, 0.9675F, 0.0741F, 0.2054F);
 
+        tail_r1 = new ModelRenderer(this);
+        tail_r1.setPos(-2.194F, 1.9752F, 11.4316F);
+        tail.addChild(tail_r1);
+        setRotationAngle(tail_r1, 1.9756F, -0.3639F, 0.0728F);
+        tail_r1.texOffs(64, 75).addBox(-1.5F, -2.5F, -1.5F, 3.0F, 5.0F, 3.0F, scaleFactor);
 
-        //_____ FRONT RIGHT _____//
-        legFrontRight = new ModelRenderer(this, 0, 18);
-        legFrontRight.setPos(-3.8F, 11.0F, -10.5F);
-        legFrontRight.texOffs(72, 34).addBox(-1.5F, -1.0F, -1.5F, 3.0F, 10.0F, 3.0F, scaleFactor); // calf
-        legFrontRight.texOffs(0, 69).addBox(-1.5F, -6.0F, -2.5F, 3.0F, 12.0F, 5.0F, scaleFactor); // thigh
+        tail_r2 = new ModelRenderer(this);
+        tail_r2.setPos(-1.0319F, 3.2812F, 7.0949F);
+        tail.addChild(tail_r2);
+        setRotationAngle(tail_r2, 1.6799F, -0.1888F, 0.1091F);
+        tail_r2.texOffs(72, 59).addBox(-1.5F, -3.0F, -1.5F, 3.0F, 6.0F, 3.0F, scaleFactor);
 
+        tail_r3 = new ModelRenderer(this);
+        tail_r3.setPos(-0.3501F, 2.6437F, 2.9031F);
+        tail.addChild(tail_r3);
+        setRotationAngle(tail_r3, 1.0407F, -0.0096F, 0.1569F);
+        tail_r3.texOffs(72, 59).addBox(-1.5F, -2.5F, -1.5F, 3.0F, 5.0F, 3.0F, scaleFactor);
 
-        //_____ FRONT LEFT _____//
-        legFrontLeft = new ModelRenderer(this, 0, 18);
-        legFrontLeft.setPos(3.7F, 11.0F, -10.5F);
-        legFrontLeft.texOffs(72, 34).addBox(-1.5F, -1.0F, -1.5F, 3.0F, 10.0F, 3.0F, scaleFactor); // calf
-        legFrontLeft.texOffs(0, 69).addBox(-1.5F, -6.0F, -2.5F, 3.0F, 12.0F, 5.0F, scaleFactor); // thigh
+        tail_r4 = new ModelRenderer(this);
+        tail_r4.setPos(0.0798F, 0.2199F, 0.5744F);
+        tail.addChild(tail_r4);
+        setRotationAngle(tail_r4, 0.3924F, -0.0167F, 0.0403F);
+        tail_r4.texOffs(72, 59).addBox(-1.5F, -2.0F, -1.5F, 3.0F, 4.0F, 3.0F, scaleFactor);
 
+        body = new ModelRenderer(this);
+        body.setPos(0.0F, 1.2385F, -2.2138F);
+        setRotationAngle(body, 0.3491F, 0.0F, 0.0F);
 
-        //_____ MANE _____//
-        this.mane = new ModelRenderer(this, 21, 0);
-        mane.setPos(0.0F, 3.0F, -9.0F);
-        mane.texOffs(0, 0).addBox(-6.5F, -5.5F, -6.0F, 13.0F, 11.0F, 12.0F, scaleFactor);
-        mane.texOffs(36, 38).addBox(-6.0F, -4.5F, -5.5F, 12.0F, 9.0F, 11.0F, scaleFactor);
+        body_r1 = new ModelRenderer(this);
+        body_r1.setPos(0.0F, 8.1901F, 10.4007F);
+        body.addChild(body_r1);
+        setRotationAngle(body_r1, 0.7854F, 0.0F, 0.0F);
+        body_r1.texOffs(0, 50).addBox(-5.0F, -4.0F, -4.5F, 10.0F, 8.0F, 9.0F, scaleFactor);
 
+        body_r2 = new ModelRenderer(this);
+        body_r2.setPos(0.0F, 2.5755F, 4.7517F);
+        body.addChild(body_r2);
+        setRotationAngle(body_r2, 0.8727F, 0.0F, 0.0F);
+        body_r2.texOffs(41, 14).addBox(-6.0F, -4.5F, -5.0F, 12.0F, 9.0F, 10.0F, scaleFactor);
 
-        //_____ TAIL _____//
-        this.tail = new ModelRenderer(this, 9, 18);
-        tail.setPos(0.1498F, 6.6321F, 14.1299F);
-        tail.texOffs(64, 75).addBox(-1.5F, -2.5F, -1.5F, 3.0F, 5.0F, 3.0F, scaleFactor);
-        tail.texOffs(72, 59).addBox(-1.5F, -3.0F, -1.5F, 3.0F, 6.0F, 3.0F, scaleFactor);
-        tail.texOffs(72, 59).addBox(-1.5F, -2.5F, -1.5F, 3.0F, 5.0F, 3.0F, scaleFactor);
-        tail.texOffs(72, 59).addBox(-1.5F, -2.0F, -1.5F, 3.0F, 4.0F, 3.0F, scaleFactor);
+        body_r3 = new ModelRenderer(this);
+        body_r3.setPos(0.0F, -1.4198F, -6.4415F);
+        body.addChild(body_r3);
+        setRotationAngle(body_r3, 1.5708F, 0.0F, 0.0F);
+        body_r3.texOffs(2, 26).addBox(-5.0F, -4.75F, -5.25F, 10.0F, 8.0F, 11.0F, scaleFactor);
+
+        mane = new ModelRenderer(this);
+        mane.setPos(0.0F, -0.7588F, -5.4838F);
+        body.addChild(mane);
+        setRotationAngle(mane, -0.3927F, 0.0F, 0.0F);
+
+        mane_r1 = new ModelRenderer(this);
+        mane_r1.setPos(0.0F, -1.1936F, 3.8795F);
+        mane.addChild(mane_r1);
+        setRotationAngle(mane_r1, 1.5708F, 0.0F, 0.0F);
+        mane_r1.texOffs(0, 0).addBox(-6.5F, -5.0F, -6.0F, 13.0F, 10.0F, 12.0F, scaleFactor);
+
+        mane_r2 = new ModelRenderer(this);
+        mane_r2.setPos(0.0F, 1.0154F, -4.8478F);
+        mane.addChild(mane_r2);
+        setRotationAngle(mane_r2, 1.6144F, 0.0F, 0.0F);
+        mane_r2.texOffs(36, 38).addBox(-6.0F, -4.5F, -5.5F, 12.0F, 9.0F, 11.0F, scaleFactor);
+    }
+
+    @Override
+    public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
+        whole_head.render(matrixStack, buffer, packedLight, packedOverlay);
+        legBackRight.render(matrixStack, buffer, packedLight, packedOverlay);
+        legBackLeft.render(matrixStack, buffer, packedLight, packedOverlay);
+        legFrontRight.render(matrixStack, buffer, packedLight, packedOverlay);
+        legFrontLeft.render(matrixStack, buffer, packedLight, packedOverlay);
+        tail.render(matrixStack, buffer, packedLight, packedOverlay);
+        body.render(matrixStack, buffer, packedLight, packedOverlay);
+    }
+
+    public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
+        modelRenderer.xRot = x;
+        modelRenderer.yRot = y;
+        modelRenderer.zRot = z;
     }
 
     @Override
     protected Iterable<ModelRenderer> headParts() {
-        return ImmutableList.of(this.head);
+        return ImmutableList.of(this.whole_head);
     }
 
     @Override
@@ -110,182 +272,164 @@ public class CanisModel<T extends AbstractCanisEntity> extends TintedAgeableMode
         return ImmutableList.of(this.body, this.legBackRight, this.legBackLeft, this.legFrontRight, this.legFrontLeft, this.tail, this.mane);
     }
 
+
     @Override
     public void prepareMobModel(T canis, float limbSwing, float limbSwingAmount, float partialTickTime) {
         this.tail.zRot = canis.getWagAngle(limbSwing, limbSwingAmount, partialTickTime);
 
         if (canis.isInSittingPose()) {
-            if (canis.isLying()) {
-                this.legBackLeft.setPos(4.5F, 16.3995F, 5.7202F);
-//                this.legBackLeft.teexOffs(17, 69).addBox(-1.5F, -5.0F, -2.5F, 3.0F, 10.0F, 5.0F);
-//                this.legBackLeft.texOffs(34, 75).addBox(-1.5F, -3.0F, -1.5F, 3.0F, 6.0F, 3.0F);
-//                this.legBackLeft.texOffs(0, 24).addBox(-1.5F, -4.0F, -1.5F, 3.0F, 8.0F, 3.0F);
-                this.legFrontRight.setPos(-3.5F, 17.1527F, -13.1608F);
-//                this.legFrontRight.texOffs(0, 69).addBox(-1.5F, -2.1219F, -2.286F, 3.0F, 11.0F, 5.0F);
-//                this.legFrontRight.texOffs(72, 34).addBox(-1.5F, -5.0F, -1.5F, 3.0F, 10.0F, 3.0F);
+//            if (canis.isLying()) {
+//            } else {
+            whole_head.setPos(0.0F, 1.5F, -12.0F);
+            head.setPos(0.0F, 22.5F, 12.0F);
+            head_r1.setPos(-0.25F, -21.993F, -20.2638F);
+            setRotationAngle(head_r1, -0.9163F, 0.0F, 0.0F);
 
-                this.tail.setPos(0.0F, 16.9712F, 9.821F);
-//                this.tail.texOffs(64, 75).addBox(-1.5F, -2.5F, -1.5F, 3.0F, 5.0F, 3.0F);
-//                this.tail.texOffs(72, 59).addBox(-1.5F, -3.0F, -1.5F, 3.0F, 6.0F, 3.0F);
-//                this.tail.texOffs(72, 59).addBox(-1.5F, -2.5F, -1.5F, 3.0F, 5.0F, 3.0F);
-//                this.tail.texOffs(72, 59).addBox(-1.5F, -2.0F, -1.5F, 3.0F, 4.0F, 3.0F);
+            head_r2.setPos(-3.6784F, -25.9265F, -18.7192F);
+            setRotationAngle(head_r2, 0.2597F, 0.0338F, -0.3883F);
+            head_r3.setPos(3.1411F, -25.9375F, -18.6847F);
+            setRotationAngle(head_r3, 0.2597F, -0.0338F, 0.3883F);
 
-                this.legFrontLeft.setPos(3.5F, 16.9177F, -13.2464F);
-//                this.legFrontLeft.texOffs(0, 69).addBox(-1.5F, -5.5F, -2.5F, 3.0F, 11.0F, 5.0F);
-//                this.legFrontLeft.texOffs(72, 34).addBox(-1.5F, -5.0F, -1.5F, 3.0F, 10.0F, 3.0F);
-                this.legBackRight.setPos(-4.5F, 16.3995F, 5.7202F);
-//                this.legBackRight.texOffs(17, 69).addBox(-1.5F, -5.0F, -2.5F, 3.0F, 10.0F, 5.0F);
-//                this.legBackRight.texOffs(34, 75).addBox(-1.5F, -3.0F, -1.5F, 3.0F, 6.0F, 3.0F);
-//                this.legBackRight.texOffs(0, 24).addBox(-1.5F, -4.0F, -1.5F, 3.0F, 8.0F, 3.0F);
+            jaw.setPos(0.0F, -19.03F, -19.5F);
+            setRotationAngle(jaw, 0.3491F, 0.0F, 0.0F);
+            jaw_r1.setPos(-0.25F, 0.4591F, -1.2625F);
 
-                this.head.setPos(0.0F, 12.7755F, -17.9465F);
-//                this.head.texOffs(39, 59).addBox(-5.5F, -4.25F, -4.5F, 11.0F, 10.0F, 5.0F);
-//                this.head.texOffs(51, 0).addBox(-4.25F, -2.75F, -7.5F, 8.0F, 8.0F, 4.0F);
-//                this.head.texOffs(76, 0).addBox(-2.25F, 0.5F, -10.5F, 4.0F, 2.0F, 3.0F);
-//                this.head.texOffs(0, 6).addBox(-1.0F, -1.75F, -1.0F, 2.0F, 3.0F, 2.0F);
-//                this.head.texOffs(1, 1).addBox(-1.5F, -1.25F, -0.5F, 3.0F, 3.0F, 1.0F);
-//                this.head.texOffs(1, 1).addBox(-1.5F, -1.25F, -0.5F, 3.0F, 3.0F, 1.0F);
-//                this.head.texOffs(47, 75).addBox(-2.25F, -0.97F, -3.0F, 4.0F, 2.0F, 4.0F);
-//                this.head.texOffs(76, 6).addBox(-1.5F, -1.0F, -1.5F, 3.0F, 2.0F, 3.0F);
+            setRotationAngle(jaw_r1, -0.2182F, 0.0F, 0.0F);
+            bone2.setPos(0.0F, 0.0F, 0.0F);
+            legBackRight.setPos(-4.5F, 13.0F, 9.0F);
+            setRotationAngle(legBackRight, -0.5236F, 0.0F, 0.0F);
+            legBackRight_r1.setPos(-0.25F, 2.8647F, -1.271F);
+            setRotationAngle(legBackRight_r1, -0.4363F, 0.0F, 0.0F);
+            legBackRight_r2.setPos(0.25F, 5.6769F, 0.4558F);
+            setRotationAngle(legBackRight_r2, 1.658F, 0.0F, 0.0F);
+            legBackRight_r3.setPos(0.0F, 8.5037F, 2.7167F);
+            setRotationAngle(legBackRight_r3, -0.48F, 0.0F, 0.0F);
 
-                this.body.setPos(0.0F, 11.6598F, -6.8742F);
-//                this.body.texOffs(0, 50).addBox(-5.0F, -4.0F, -4.5F, 10.0F, 8.0F, 9.0F);
-//                this.body.texOffs(41, 14).addBox(-6.0F, -4.5F, -5.0F, 12.0F, 9.0F, 10.0F);
-//                this.body.texOffs(2, 26).addBox(-5.0F, -4.75F, -5.25F, 10.0F, 8.0F, 11.0F);
+            legBackLeft.setPos(4.5F, 13.0F, 9.0F);
+            setRotationAngle(legBackLeft, -0.5236F, 0.0F, 0.0F);
+            legBackLeft_r1.setPos(0.25F, 2.9611F, -1.2647F);
+            setRotationAngle(legBackLeft_r1, -0.4363F, 0.0F, 0.0F);
+            legBackLeft_r2.setPos(-0.25F, 5.7734F, 0.4622F);
+            setRotationAngle(legBackLeft_r2, 1.658F, 0.0F, 0.0F);
+            legBackLeft_r3.setPos(0.0F, 8.6002F, 2.723F);
+            setRotationAngle(legBackLeft_r3, -0.48F, 0.0F, 0.0F);
 
-                this.mane.setPos(0.0F, 12.8223F, -12.2868F);
-//                this.mane.texOffs(0, 0).addBox(-6.5F, -5.0F, -6.0F, 13.0F, 10.0F, 12.0F);
-//                this.mane.texOffs(36, 38).addBox(-6.0F, -4.5F, -5.5F, 12.0F, 9.0F, 11.0F);
+            legFrontRight.setPos(-3.5F, 7.0F, -9.0F);
+            legFrontRight_r1.setPos(-0.25F, 0.1449F, -1.0826F);
+            setRotationAngle(legFrontRight_r1, 0.1745F, 0.0F, 0.0F);
+            legFrontRight_r2.setPos(0.0F, 8.1594F, 0.0467F);
+            setRotationAngle(legFrontRight_r2, -0.1309F, 0.0F, 0.0F);
 
-                this.body.xRot = (float)Math.PI / 2F;
-                this.mane.xRot = this.body.xRot;
-                this.legBackRight.xRot = -(float)Math.PI / 2F;
-                this.legBackLeft.xRot = -(float)Math.PI / 2F;
-                this.legFrontRight.xRot = -(float)Math.PI / 2F;
-                this.legFrontLeft.xRot = -(float)Math.PI / 2F;
-            }
-            else if (canis.isLying() && false)
-            {
-                this.head.setPos(0.0F, 1.5F, -12.0F);
-//                this.head.texOffs(39, 59).addBox(-5.5F, -4.25F, -4.5F, 11.0F, 10.0F, 5.0F);
-//                this.head.texOffs(51, 0).addBox(-4.25F, -2.75F, -7.5F, 8.0F, 8.0F, 4.0F);
-//                this.head.texOffs(76, 0).addBox(-2.25F, 0.5F, -10.5F, 4.0F, 2.0F, 3.0F);
-//                this.head.texOffs(0, 6).addBox(-1.0F, -1.75F, -1.0F, 2.0F, 3.0F, 2.0F);
-//                this.head.texOffs(1, 1).addBox(-1.5F, -1.5F, -0.5F, 3.0F, 3.0F, 1.0F);
-//                this.head.texOffs(1, 1).addBox(-1.5F, -1.5F, -0.5F, 3.0F, 3.0F, 1.0F);
-//                this.head.texOffs(47, 75).addBox(-2.25F, -0.97F, -3.0F, 4.0F, 2.0F, 4.0F);
-//                this.head.texOffs(76, 6).addBox(-1.5F, -1.0F, -1.5F, 3.0F, 2.0F, 3.0F);
+            legFrontLeft.setPos(3.5F, 7.0F, -9.0F);
+            legFrontLeft_r1.setPos(0.25F, 0.1145F, -0.7354F);
+            setRotationAngle(legFrontLeft_r1, 0.1745F, 0.0F, 0.0F);
+            legFrontLeft_r2.setPos(0.0F, 8.1594F, 1.0467F);
+            setRotationAngle(legFrontLeft_r2, -0.1309F, 0.0F, 0.0F);
 
-                this.legBackRight.setPos(-4.5F, 13.0F, 9.0F);
-//                this.legBackRight.texOffs(17, 69).addBox(-1.5F, -5.0F, -2.5F, 3.0F, 10.0F, 5.0F);
-//                this.legBackRight.texOffs(34, 75).addBox(-1.5F, -3.0F, -1.5F, 3.0F, 6.0F, 3.0F);
-//                this.legBackRight.texOffs(0, 24).addBox(-1.5F, -4.0F, -1.5F, 3.0F, 8.0F, 3.0F);
+            tail.setPos(0.0F, 14.0F, 13.0F);
+            setRotationAngle(tail, 1.2293F, 0.0741F, 0.2054F);
+            tail_r1.setPos(-2.194F, 1.9752F, 11.4316F);
+            setRotationAngle(tail_r1, 1.9756F, -0.3639F, 0.0728F);
+            tail_r2.setPos(-1.0319F, 3.2812F, 7.0949F);
+            setRotationAngle(tail_r2, 1.6799F, -0.1888F, 0.1091F);
+            tail_r3.setPos(-0.3501F, 2.6437F, 2.9031F);
+            setRotationAngle(tail_r3, 1.0407F, -0.0096F, 0.1569F);
+            tail_r4.setPos(0.0798F, 0.2199F, 0.5744F);
+            setRotationAngle(tail_r4, 0.3924F, -0.0167F, 0.0403F);
 
-                this.legBackLeft.setPos(4.5F, 13.0F, 9.0F);
-//                this.legBackLeft.texOffs(17, 69).addBox(-1.5F, -5.0F, -2.5F, 3.0F, 10.0F, 5.0F);
-//                this.legBackLeft.texOffs(34, 75).addBox(-1.5F, -3.0F, -1.5F, 3.0F, 6.0F, 3.0F);
-//                this.legBackLeft.texOffs(0, 24).addBox(-1.5F, -4.0F, -1.5F, 3.0F, 8.0F, 3.0F);
+            body.setPos(0.0F, 4.2385F, -1.2138F);
+            body_r1.setPos(0.0F, 8.1901F, 10.4007F);
+            setRotationAngle(body_r1, 0.7854F, 0.0F, 0.0F);
+            body_r2.setPos(0.0F, 2.5755F, 4.7517F);
+            setRotationAngle(body_r2, 0.8727F, 0.0F, 0.0F);
+            body_r3.setPos(0.0F, -1.4198F, -5.4415F);
+            setRotationAngle(body_r3, 1.4399F, 0.0F, 0.0F);
 
-                this.legFrontRight.setPos(-3.5F, 7.0F, -9.0F);
-//                this.legFrontRight.texOffs(0, 69).addBox(-1.5F, -2.3719F, -2.036F, 3.0F, 11.0F, 5.0F);
-//                this.legFrontRight.texOffs(72, 34).addBox(-1.5F, -1.0342F, -0.9779F, 3.0F, 10.0F, 3.0F);
+            mane.setPos(0.0F, -0.7588F, -5.4838F);
+            setRotationAngle(mane, -0.3927F, 0.0F, 0.0F);
+            mane_r1.setPos(0.0F, -1.1936F, 4.8795F);
+            setRotationAngle(mane_r1, 1.5272F, 0.0F, 0.0F);
+            mane_r2.setPos(0.0F, 0.2654F, -2.8478F);
+            setRotationAngle(mane_r2, 1.5708F, 0.0F, 0.0F);
+        } else {
+            whole_head.setPos(0.0F, 4.25F, -15.25F);
+            head.setPos(0.0F, 22.5F, 12.0F);
+            head_r1.setPos(-0.25F, -21.993F, -20.2638F);
+            setRotationAngle(head_r1, -0.9163F, 0.0F, 0.0F);
+            head_r2.setPos(-3.6784F, -25.9265F, -18.7192F);
+            setRotationAngle(head_r2, 0.2597F, 0.0338F, -0.3883F);
+            head_r3.setPos(3.1411F, -25.9375F, -18.6847F);
+            setRotationAngle(head_r3, 0.2597F, -0.0338F, 0.3883F);
 
-                this.legFrontLeft.setPos(3.5F, 7.0F, -9.0F);
-//                this.legFrontLeft.texOffs(0, 69).addBox(-1.5F, -2.3719F, -2.036F, 3.0F, 11.0F, 5.0F);
-//                this.legFrontLeft.texOffs(72, 34).addBox(-1.5F, -0.9037F, -1.9693F, 3.0F, 10.0F, 3.0F);
+            jaw.setPos(0.0F, -19.03F, -19.5F);
+            setRotationAngle(jaw, 0.3491F, 0.0F, 0.0F);
+            jaw_r1.setPos(-0.25F, 0.4591F, -1.2625F);
+            setRotationAngle(jaw_r1, -0.2182F, 0.0F, 0.0F);
+            bone2.setPos(0.0F, 0.0F, 0.0F);
 
-                this.tail.setPos(0.0F, 14.0F, 13.0F);
-//                this.tail.texOffs(64, 75).addBox(-1.5F, -2.5F, -1.5F, 3.0F, 5.0F, 3.0F);
-//                this.tail.texOffs(72, 59).addBox(-1.5F, -3.0F, -1.5F, 3.0F, 6.0F, 3.0F);
-//                this.tail.texOffs(72, 59).addBox(-1.5F, -2.5F, -1.5F, 3.0F, 5.0F, 3.0F);
-//                this.tail.texOffs(72, 59).addBox(-1.5F, -2.0F, -1.5F, 3.0F, 4.0F, 3.0F);
+            legBackRight.setPos(-4.5F, 4.5F, 10.5F);
+            setRotationAngle(legBackRight, 0.0873F, 0.0F, 0.0F);
+            legBackRight_r1.setPos(-0.25F, 3.8647F, -1.271F);
+            setRotationAngle(legBackRight_r1, -0.4363F, 0.0F, 0.0F);
+            legBackRight_r2.setPos(0.0F, 5.6769F, -3.5442F);
+            setRotationAngle(legBackRight_r2, 0.5672F, 0.0F, 0.0F);
+            legBackRight_r3.setPos(-0.1F, 12.2537F, 0.2167F);
+            setRotationAngle(legBackRight_r3, 3.0543F, 0.0F, 0.0F);
 
-                this.mane.setPos(0.0F, 3.4797F, -6.6976F);
-//                this.mane.texOffs(0, 0).addBox(-6.5F, -5.0F, -6.0F, 13.0F, 10.0F, 12.0F);
-//                this.mane.texOffs(36, 38).addBox(-6.0F, -4.5F, -5.5F, 12.0F, 9.0F, 11.0F);
+            legBackLeft.setPos(4.5F, 4.5F, 10.5F);
+            setRotationAngle(legBackLeft, 0.0873F, 0.0F, 0.0F);
+            legBackLeft_r1.setPos(0.25F, 3.9611F, -1.2647F);
+            setRotationAngle(legBackLeft_r1, -0.4363F, 0.0F, 0.0F);
+            legBackLeft_r2.setPos(0.0F, 5.7734F, -3.5378F);
+            setRotationAngle(legBackLeft_r2, 0.5672F, 0.0F, 0.0F);
+            legBackLeft_r3.setPos(0.1F, 12.3502F, 0.223F);
+            setRotationAngle(legBackLeft_r3, 3.0543F, 0.0F, 0.0F);
 
-                this.body.setPos(0.0F, 4.2385F, -1.2138F);
-//                this.body.texOffs(0, 50).addBox(-5.0F, -4.0F, -4.5F, 10.0F, 8.0F, 9.0F);
-//                this.body.texOffs(41, 14).addBox(-6.0F, -4.5F, -5.0F, 12.0F, 9.0F, 10.0F);
-//                this.body.texOffs(0, 24).addBox(-5.0F, -4.75F, -5.25F, 10.0F, 8.0F, 11.0F);
+            legFrontRight.setPos(-3.5F, 7.0F, -12.0F);
+            setRotationAngle(legFrontRight, 0.1745F, 0.0F, 0.0F);
+            legFrontRight_r1.setPos(-0.25F, 0.1449F, -2.0826F);
+            setRotationAngle(legFrontRight_r1, 0.3927F, 0.0F, 0.0F);
+            legFrontRight_r2.setPos(0.0F, 8.1594F, 0.0467F);
+            setRotationAngle(legFrontRight_r2, -0.1745F, 0.0F, 0.0F);
 
-                this.legBackRight.xRot = -(float)Math.PI / 2.6F;
-                this.legBackLeft.xRot = -(float)Math.PI / 2.6F;
+            legFrontLeft.setPos(3.5F, 7.0F, -12.0F);
+            setRotationAngle(legFrontLeft, 0.1745F, 0.0F, 0.0F);
+            legFrontLeft_r1.setPos(0.25F, 0.1145F, -1.9854F);
+            setRotationAngle(legFrontLeft_r1, 0.3927F, 0.0F, 0.0F);
+            legFrontLeft_r2.setPos(0.0F, 8.1594F, 1.0467F);
+            setRotationAngle(legFrontLeft_r2, -0.1745F, 0.0F, 0.0F);
 
-                this.legFrontRight.xRot = -(float)Math.PI / 2;
-                this.legFrontRight.yRot = (float)Math.PI / 10;
-                this.legFrontLeft.xRot = -(float)Math.PI / 2;
-                this.legFrontLeft.yRot = -(float)Math.PI / 10;
-            } else {
-                legBackLeft.setPos(4.5F, 16.3995F, 5.7202F);
-//                legBackLeft.setPos(0.25F, 2.9611F, -1.2647F);
-//                legBackLeft.setPos(-0.25F, 5.7734F, 0.4622F);
-//                legBackLeft.setPos(0.0F, 8.6002F, 2.723F);
-                legBackRight.setPos(-4.5F, 16.3995F, 5.7202F);
-//                legBackRight.setPos(-0.25F, 2.8647F, -1.271F);
-//                legBackRight.setPos(0.25F, 5.6769F, 0.4558F);
-//                legBackRight.setPos(0.0F, 8.5037F, 2.7167F);
-                tail.setPos(0.0F, 22.5054F, 12.5969F);
-//                tail.setPos(-2.194F, 1.9752F, 11.4316F);
-//                tail.setPos(-1.0319F, 3.2812F, 7.0949F);
-//                tail.setPos(-0.3501F, 2.6437F, 2.9031F);
-//                tail.setPos(0.0798F, 0.2199F, 0.5744F);
-                legFrontRight.setPos(-3.5F, 11.1537F, -7.4207F);
-//                legFrontRight.setPos(-0.25F, 0.1449F, -1.0826F);
-//                legFrontRight.setPos(0.0F, 1.8133F, 6.3927F);
-                legFrontLeft.setPos(3.5F, 10.9096F, -7.3666F);
-//                legFrontLeft.setPos(0.25F, 0.1145F, -0.7354F);
-//                legFrontLeft.setPos(0.0F, 1.8648F, 6.3965F);
-                head.setPos(0.0F, 4.8907F, -9.105F);
-//                head.setPos(-0.25F, 0.507F, -8.2638F);
-//                head.setPos(-3.6784F, -3.4265F, -6.7192F);
-//                head.setPos(3.1411F, -3.4375F, -6.6847F);
-//                head.setPos(0.0F, 3.47F, -7.5F);
-//                head.setPos(-0.25F, 0.4591F, -1.2625F);
-                mane.setPos(0.0F, 7.9711F, -4.3568F);
-//                mane.setPos(0.0F, -1.1936F, 4.8795F);
-//                mane.setPos(0.0F, 0.2654F, -2.8478F);
-                body.setPos(0.0F, 9.8989F, 0.8328F);
-//                body.setPos(0.0F, 8.1901F, 10.4007F);
-//                body.setPos(0.0F, 2.5755F, 4.7517F);
-//                body.setPos(0.0F, -1.4198F, -5.4415F);
-//
-//                this.head.setPos(-1.0F, 13.5F, -7.0F);
-                this.legFrontRight.yRot = 0;
-                this.legFrontLeft.yRot = 0;
+            tail.setPos(0.0F, 6.0F, 13.0F);
+            setRotationAngle(tail, 0.9675F, 0.0741F, 0.2054F);
+            tail_r1.setPos(-2.194F, 1.9752F, 11.4316F);
+            setRotationAngle(tail_r1, 1.9756F, -0.3639F, 0.0728F);
+            tail_r2.setPos(-1.0319F, 3.2812F, 7.0949F);
+            setRotationAngle(tail_r2, 1.6799F, -0.1888F, 0.1091F);
+            tail_r3.setPos(-0.3501F, 2.6437F, 2.9031F);
+            setRotationAngle(tail_r3, 1.0407F, -0.0096F, 0.1569F);
+            tail_r4.setPos(0.0798F, 0.2199F, 0.5744F);
+            setRotationAngle(tail_r4, 0.3924F, -0.0167F, 0.0403F);
 
-                this.mane.xRot = ((float)Math.PI * 2F / 5F);
-                this.mane.yRot = 0.0F;
+            body.setPos(0.0F, 1.2385F, -2.2138F);
+            setRotationAngle(body, 0.3491F, 0.0F, 0.0F);
+            body_r1.setPos(0.0F, 8.1901F, 10.4007F);
+            setRotationAngle(body_r1, 0.7854F, 0.0F, 0.0F);
+            body_r2.setPos(0.0F, 2.5755F, 4.7517F);
+            setRotationAngle(body_r2, 0.8727F, 0.0F, 0.0F);
+            body_r3.setPos(0.0F, -1.4198F, -6.4415F);
+            setRotationAngle(body_r3, 1.5708F, 0.0F, 0.0F);
 
-                this.body.xRot = ((float)Math.PI / 4F);
-                this.legBackRight.xRot = ((float)Math.PI * 3F / 2F);
-                this.legBackLeft.xRot = ((float)Math.PI * 3F / 2F);
-                this.legFrontRight.xRot = 5.811947F;
-                this.legFrontLeft.xRot = 5.811947F;
-            }
-        }
-        else
-        {
-            this.body.setPos(0.0F, 14.0F, 2.0F);
-            this.body.xRot = ((float)Math.PI / 2F);
-            this.mane.setPos(-1.0F, 14.0F, -3.0F);
-            this.mane.xRot = this.body.xRot;
-            this.tail.setPos(-0.5F, 12.0F, 8.0F);
-            this.legBackRight.setPos(-2.5F, 16.0F, 7.0F);
-            this.legBackLeft.setPos(0.5F, 16.0F, 7.0F);
-            this.legFrontRight.setPos(-2.5F, 16.0F, -4.0F);
-            this.legFrontLeft.setPos(0.5F, 16.0F, -4.0F);
-            this.legBackRight.xRot = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-            this.legBackLeft.xRot = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
-            this.legFrontRight.xRot = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
-            this.legFrontLeft.xRot = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-
-            this.head.setPos(-1.0F, 13.5F, -7.0F);
-            this.legFrontRight.yRot = 0.0F;
-            this.legFrontLeft.yRot = 0.0F;
+            mane.setPos(0.0F, -0.7588F, -5.4838F);
+            setRotationAngle(mane, -0.3927F, 0.0F, 0.0F);
+            mane_r1.setPos(0.0F, -1.1936F, 3.8795F);
+            setRotationAngle(mane_r1, 1.5708F, 0.0F, 0.0F);
+            mane_r2.setPos(0.0F, 1.0154F, -4.8478F);
+            setRotationAngle(mane_r2, 1.6144F, 0.0F, 0.0F);
+//            this.legFrontRight.yRot = 0.0F;
+//            this.legFrontLeft.yRot = 0.0F;
         }
 
-        this.head.zRot = canis.getInterestedAngle(partialTickTime) + canis.getShakeAngle(partialTickTime, 0.0F);
+        this.whole_head.zRot = canis.getInterestedAngle(partialTickTime) + canis.getShakeAngle(partialTickTime, 0.0F);
         this.mane.zRot = canis.getShakeAngle(partialTickTime, -0.08F);
         this.body.zRot = canis.getShakeAngle(partialTickTime, -0.16F);
         this.tail.zRot = canis.getShakeAngle(partialTickTime, -0.2F);
@@ -293,13 +437,18 @@ public class CanisModel<T extends AbstractCanisEntity> extends TintedAgeableMode
 
     @Override
     public void setupAnim(T canisIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.head.xRot = headPitch * ((float)Math.PI / 180F);
-        this.head.yRot = netHeadYaw * (canisIn.isInSittingPose() && canisIn.isLying() ? 0.005F : (float)Math.PI / 180F);
+        this.legBackRight.xRot = MathHelper.cos(limbSwing * 0.3332F) * 1.1F * limbSwingAmount;
+        this.legBackLeft.xRot = MathHelper.cos(limbSwing * 0.3332F + (float)Math.PI) * 1.1F * limbSwingAmount;
+        this.legFrontRight.xRot = MathHelper.cos(limbSwing * 0.3332F + (float)Math.PI) * 1.1F * limbSwingAmount;
+        this.legFrontLeft.xRot = MathHelper.cos(limbSwing * 0.3332F) * 1.1F * limbSwingAmount;
+
+        this.whole_head.xRot = headPitch * ((float)Math.PI / 200F);
+        this.whole_head.yRot = netHeadYaw * (canisIn.isInSittingPose() && canisIn.isLying() ? 0.005F : (float)Math.PI / 200F);
         this.tail.xRot = ageInTicks;
     }
 
     public void setVisible(boolean visible) {
-        this.head.visible = visible;
+        this.whole_head.visible = visible;
         this.body.visible = visible;
         this.legBackRight.visible = visible;
         this.legBackLeft.visible = visible;
@@ -309,200 +458,3 @@ public class CanisModel<T extends AbstractCanisEntity> extends TintedAgeableMode
         this.mane.visible = visible;
     }
 }
-
-
-/*
-    public ModelRenderer head;
-    public ModelRenderer body;
-    public ModelRenderer legBackRight;
-    public ModelRenderer legBackLeft;
-    public ModelRenderer legFrontRight;
-    public ModelRenderer legFrontLeft;
-    public ModelRenderer tail;
-    public ModelRenderer mane;
-
-    public CanisModel() {
-        this(0.0F);
-    }
-
-    public CanisModel(float scaleFactor) {
-        float f1 = 13.5F;
-
-        // COORDS
-        // x is left/right of the canis
-        // y is back and forward
-
-        //Head
-        this.head = new ModelRenderer(this, 0, 0);
-        this.head.addBox(-2.0F, -3.0F, -2.0F, 6, 6, 4, scaleFactor);
-        this.head.setPos(-1.0F, f1, -7.0F);
-
-        //Body
-        this.body = new ModelRenderer(this, 18, 14);
-        this.body.addBox(-3.0F, -2.0F, -3.0F, 6, 9, 6, scaleFactor);
-        this.body.setPos(0.0F, 14.0F, 2.0F);
-
-        //Mane
-        this.mane = new ModelRenderer(this, 21, 0);
-        this.mane.addBox(-3.0F, -3.0F, -3.0F, 8, 6, 7, scaleFactor);
-        this.mane.setPos(-1.0F, 14.0F, 2.0F);
-
-        //Limbs
-        this.legBackRight = new ModelRenderer(this, 0, 18);
-        this.legBackRight.addBox(0.0F, 0.0F, -1.0F, 2, 8, 2, scaleFactor);
-        this.legBackRight.setPos(-2.5F, 16.0F, 7.0F);
-        this.legBackLeft = new ModelRenderer(this, 0, 18);
-        this.legBackLeft.addBox(0.0F, 0.0F, -1.0F, 2, 8, 2, scaleFactor);
-        this.legBackLeft.setPos(0.5F, 16.0F, 7.0F);
-        this.legFrontRight = new ModelRenderer(this, 0, 18);
-        this.legFrontRight.addBox(0.0F, 0.0F, -1.0F, 2, 8, 2, scaleFactor);
-        this.legFrontRight.setPos(-2.5F, 16.0F, -4.0F);
-        this.legFrontLeft = new ModelRenderer(this, 0, 18);
-        this.legFrontLeft.addBox(0.0F, 0.0F, -1.0F, 2, 8, 2, scaleFactor);
-        this.legFrontLeft.setPos(0.5F, 16.0F, -4.0F);
-
-        //Tail1
-        this.tail = new ModelRenderer(this, 9, 18);
-        this.tail.addBox(-0.5F, 0.0F, -1.0F, 2, 8, 2, scaleFactor);
-        this.tail.setPos(-0.5F, 12.0F, 8.0F);
-
-        //Tail2
-        this.tail.texOffs(45, 0).addBox(0.0F, 0.0F, 0.0F, 2, 3, 1).setPos(90.0F, 0.0F, 0.0F);
-
-        //Tail3
-        this.tail.texOffs(43, 19).addBox(-1.0F, 0F, -2F, 3, 10, 3).setPos(-1.0F, 12.0F, 8.0F);
-
-        //HeadMain EarsNormal
-        this.head.texOffs(16, 14).addBox(-2.0F, -5.0F, 0.0F, 2, 2, 1, scaleFactor);
-        this.head.texOffs(16, 14).addBox(2.0F, -5.0F, 0.0F, 2, 2, 1, scaleFactor);
-
-        //HeadMain EarsBoni
-        this.head.texOffs(52, 0).addBox(-3.0F, -3.0F, -1.5F, 1, 5, 3, scaleFactor);
-        this.head.texOffs(52, 0).addBox(4.0F, -3.0F, -1.5F, 1, 5, 3, scaleFactor);
-
-        //HeadMain EarsSmall
-        this.head.texOffs(18, 0).addBox(-2.8F, -3.5F, -1.0F, 2, 1, 2, scaleFactor);
-        this.head.texOffs(18, 0).addBox(2.8F, -3.5F, -1.0F, 2, 1, 2, scaleFactor);
-
-        //HeadMain Nose
-        this.head.texOffs(0, 10).addBox(-0.5F, 0.0F, -5.0F, 3, 3, 4, scaleFactor);
-    }
-
-    @Override
-    protected Iterable<ModelRenderer> headParts() {
-        return ImmutableList.of(this.head);
-    }
-
-    @Override
-    protected Iterable<ModelRenderer> bodyParts() {
-        return ImmutableList.of(this.body, this.legBackRight, this.legBackLeft, this.legFrontRight, this.legFrontLeft, this.tail, this.mane);
-    }
-
-    @Override
-    public void prepareMobModel(T canis, float limbSwing, float limbSwingAmount, float partialTickTime) {
-        this.tail.yRot = canis.getWagAngle(limbSwing, limbSwingAmount, partialTickTime);
-
-        if (canis.isInSittingPose()) {
-            if (canis.isLying()) {
-                this.head.setPos(-1, 19.5F, -7);
-                this.body.setPos(0, 20, 2);
-                this.body.xRot = (float)Math.PI / 2F;
-                this.mane.setPos(-1, 20, -2);
-                this.mane.xRot = this.body.xRot;
-                this.tail.setPos(-1, 18, 8);
-                this.legBackRight.setPos(-4.5F, 23, 7);
-                this.legBackRight.xRot = -(float)Math.PI / 2F;
-                this.legBackLeft.setPos(2.5F, 23, 7);
-                this.legBackLeft.xRot = -(float)Math.PI / 2F;
-                this.legFrontRight.setPos(-4.5F, 23, -4);
-                this.legFrontRight.xRot = -(float)Math.PI / 2F;
-                this.legFrontLeft.setPos(2.5F, 23, -4);
-                this.legFrontLeft.xRot = -(float)Math.PI / 2F;
-
-            }
-            else if (canis.isLying() && false) {
-                this.body.setPos(0.0F, 19.0F, 2.0F);
-                this.body.xRot = ((float)Math.PI / 2F);
-                this.mane.setPos(-1.0F, 19.0F, -3.0F);
-                this.mane.xRot = this.body.xRot;
-                this.head.setPos(-1.0F, 17.0F, -7.0F);
-
-                this.tail.setPos(-0.5F, 17.0F, 8.0F); // +4.0D
-                this.legBackRight.setPos(-4.5F, 20.0F, 7.0F);
-                this.legBackLeft.setPos(2.5F, 20.0F, 7.0F);
-                this.legFrontRight.setPos(-3.0F, 22.0F, -3.0F);
-                this.legFrontLeft.setPos(1.0F, 22.0F, -3.0F);
-
-                this.legBackRight.xRot = -(float)Math.PI / 2.6F;
-                this.legBackLeft.xRot = -(float)Math.PI / 2.6F;
-
-                this.legFrontRight.xRot = -(float)Math.PI / 2;
-                this.legFrontRight.yRot = (float)Math.PI / 10;
-                this.legFrontLeft.xRot = -(float)Math.PI / 2;
-                this.legFrontLeft.yRot = -(float)Math.PI / 10;
-            } else {
-                this.head.setPos(-1.0F, 13.5F, -7.0F);
-                this.mane.setPos(-1.0F, 16.0F, -3.0F);
-                this.mane.xRot = ((float)Math.PI * 2F / 5F);
-                this.mane.yRot = 0.0F;
-                this.body.setPos(0.0F, 18.0F, 0.0F);
-                this.body.xRot = ((float)Math.PI / 4F);
-                this.tail.setPos(-0.5F, 21.0F, 6.0F);
-                this.legBackRight.setPos(-2.5F, 22.0F, 2.0F);
-                this.legBackRight.xRot = ((float)Math.PI * 3F / 2F);
-                this.legBackLeft.setPos(0.5F, 22.0F, 2.0F);
-                this.legBackLeft.xRot = ((float)Math.PI * 3F / 2F);
-                this.legFrontRight.xRot = 5.811947F;
-                this.legFrontRight.setPos(-2.49F, 17.0F, -4.0F);
-                this.legFrontLeft.xRot = 5.811947F;
-                this.legFrontLeft.setPos(0.51F, 17.0F, -4.0F);
-
-
-                this.head.setPos(-1.0F, 13.5F, -7.0F);
-                this.legFrontRight.yRot = 0;
-                this.legFrontLeft.yRot = 0;
-            }
-        } else {
-            this.body.setPos(0.0F, 14.0F, 2.0F);
-            this.body.xRot = ((float)Math.PI / 2F);
-            this.mane.setPos(-1.0F, 14.0F, -3.0F);
-            this.mane.xRot = this.body.xRot;
-            this.tail.setPos(-0.5F, 12.0F, 8.0F);
-            this.legBackRight.setPos(-2.5F, 16.0F, 7.0F);
-            this.legBackLeft.setPos(0.5F, 16.0F, 7.0F);
-            this.legFrontRight.setPos(-2.5F, 16.0F, -4.0F);
-            this.legFrontLeft.setPos(0.5F, 16.0F, -4.0F);
-            this.legBackRight.xRot = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-            this.legBackLeft.xRot = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
-            this.legFrontRight.xRot = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
-            this.legFrontLeft.xRot = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-
-            this.head.setPos(-1.0F, 13.5F, -7.0F);
-            this.legFrontRight.yRot = 0.0F;
-            this.legFrontLeft.yRot = 0.0F;
-        }
-
-        this.head.zRot = canis.getInterestedAngle(partialTickTime) + canis.getShakeAngle(partialTickTime, 0.0F);
-        this.mane.zRot = canis.getShakeAngle(partialTickTime, -0.08F);
-        this.body.zRot = canis.getShakeAngle(partialTickTime, -0.16F);
-        this.tail.zRot = canis.getShakeAngle(partialTickTime, -0.2F);
-    }
-
-    @Override
-    public void setupAnim(T canisIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.head.xRot = headPitch * ((float)Math.PI / 180F);
-        this.head.yRot = netHeadYaw * (canisIn.isInSittingPose() && canisIn.isLying() ? 0.005F : (float)Math.PI / 180F);
-        this.tail.xRot = ageInTicks;
-    }
-
-    public void setVisible(boolean visible) {
-        this.head.visible = visible;
-        this.body.visible = visible;
-        this.legBackRight.visible = visible;
-        this.legBackLeft.visible = visible;
-        this.legFrontRight.visible = visible;
-        this.legFrontLeft.visible = visible;
-        this.tail.visible = visible;
-        this.mane.visible = visible;
-    }
-}*/

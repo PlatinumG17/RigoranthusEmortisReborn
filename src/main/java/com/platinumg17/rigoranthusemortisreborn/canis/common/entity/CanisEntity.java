@@ -87,8 +87,6 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.Difficulty;
-import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
@@ -331,7 +329,7 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
     }
 
     public float getTailRotation() {
-        return this.isTame() ? (0.55F - (this.getMaxHealth() - this.getHealth()) * 0.02F) * (float)Math.PI : ((float)Math.PI / 5F);
+        return this.isTame() ? (0.55F - (this.getMaxHealth() - (this.getHealth() / 3)) * 0.02F) * (float)Math.PI : ((float)Math.PI / 5F);
     }
 
     @Override
@@ -339,10 +337,10 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
         return MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
     }
 
-//    @Override
-//    protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
-//        return sizeIn.height * 0.8F;
-//    }
+    @Override
+    protected float getStandingEyeHeight(Pose pose, EntitySize size) {
+        return 1.15F;
+    }
 
     @Override
     public Vector3d getLeashOffset() {
@@ -445,7 +443,6 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
                 if (!this.isVehicle() && !this.isInSittingPose()) {
                     this.hungerTick += 1;
                 }
-
                 for (ICanisTransmogrification alter : this.transmogrifications) {
                     ActionResult<Integer> result = alter.hungerTick(this, this.hungerTick - this.prevHungerTick);
 
@@ -471,7 +468,6 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
                     this.healingTick = result.getObject() + this.prevHealingTick;
                 }
             }
-
             if (this.healingTick >= 6000) {
                 if (this.getHealth() < this.getMaxHealth()) {
                     this.heal(1);
@@ -531,14 +527,14 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
             }
         }
         Optional<ICanisFoodHandler> foodHandler = FoodHandler.getMatch(this, stack, player);
-        if (foodHandler.isPresent()) {
+        if (foodHandler.isPresent() && ((this.getCanisHunger() < this.getMaxHunger()) || (this.getHealth() < this.getMaxHealth()))) {
             this.playEatingSound();
             return foodHandler.get().consume(this, stack, player);
-
         }
         ActionResultType interactResult = InteractionHandler.getMatch(this, stack, player, hand);
-        if (interactResult != ActionResultType.PASS) {return interactResult;}
-
+        if (interactResult != ActionResultType.PASS) {
+            return interactResult;
+        }
         for (ICanisTransmogrification alter : this.transmogrifications) {
             ActionResultType result = alter.processInteract(this, this.level, player, hand);
             if (result != ActionResultType.PASS) {
@@ -547,7 +543,7 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
         }
         ActionResultType actionresulttype = super.mobInteract(player, hand);
         if ((!actionresulttype.consumesAction())/* || this.isBaby()) */ && this.canInteract(player)) {
-            this.setOrderedToSit(!this.isOrderedToSit());
+            this.setOrderedToSit((!this.isOrderedToSit()) && (!this.isVehicle()));
             this.jumping = false;
             this.navigation.stop();
             this.setTarget(null);
@@ -689,8 +685,8 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
                 return false;
             }
         }
-        // Stops Cani being able to attack creepers. If the canis has lvl 5 powderkeg then we will return true in the for loop above.
-        if (target instanceof CreeperEntity) {
+        // Stops Cani being able to attack creepers if their health is too low
+        if (target instanceof CreeperEntity && this.getHealth() <= 10) {
             return false;
         }
         return super.canAttack(target);
@@ -709,8 +705,8 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
                 return false;
             }
         } //  TODO -->  Make Cani hesitant to attack Sundered Cadavers  &  Languid Dwellers
-        // Stops Cani being able to attack creepers. If the canis has lvl 5 powderkeg then we will return true in the for loop above.
-        if (entityType == EntityType.CREEPER) {
+        // Stops Cani being able to attack creepers if their health is too low
+        if (entityType == EntityType.CREEPER && this.getHealth() <= 10) {
             return false;
         }
         return super.canAttackType(entityType);
@@ -732,7 +728,10 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
             }
         }
         // Stops Cani being able to attack creepers. If the canis has lvl 5 powderkeg then we will return true in the for loop above.
-        if (target instanceof CreeperEntity || target instanceof GhastEntity) {
+        if (target instanceof GhastEntity) {
+            return false;
+        }
+        if (target instanceof CreeperEntity && this.getHealth() <= 10) {
             return false;
         }
         if (target instanceof WolfEntity) {
@@ -1101,8 +1100,7 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
         this.transmogrifications.forEach((alter) -> alter.onDeath(this, cause));
         super.die(cause);
 
-        // Save inventory after onDeath is called so that pack puppy inventory
-        // can be dropped and not saved
+        // Save inventory after onDeath is called so that wayward-traveller inventory can be dropped and not saved
         if (this.level != null && !this.level.isClientSide) {
             CanisRespawnStorage.get(this.level).putData(this);
             CanisLocationStorage.get(this.level).remove(this);
@@ -1182,7 +1180,6 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
                 NBTUtilities.putBlockPos(bedNBT, "pos", entry.getValue());
                 bedsList.add(bedNBT);
             }
-
             compound.put("beds", bedsList);
         }
 
@@ -1197,12 +1194,9 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
                 NBTUtilities.putBlockPos(bowlsNBT, "pos", entry.getValue());
                 bowlsList.add(bowlsNBT);
             }
-
             compound.put("bowls", bowlsList);
         }
-
         this.statsTracker.writeAdditional(compound);
-
         this.transmogrifications.forEach((alter) -> alter.onWrite(this, compound));
     }
 
@@ -1264,7 +1258,6 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
                         case "generic.critChance": name = CanisAttributes.CRIT_CHANCE; break;
                         case "generic.critBonus": name = CanisAttributes.CRIT_BONUS; break;
                     }
-
                     ResourceLocation attributeRL = REUtil.getRegistryId(name);
 
                     if (attributeRL != null && ForgeRegistries.ATTRIBUTES.containsKey(attributeRL)) {
@@ -1302,10 +1295,8 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
             }
         }
 //        else {
-//            // Try to read old skill format if new one doesn't exist
 //            BackwardsCompat.readSkillMapping(compound, skillMap);
 //        }
-
         this.markDataParameterDirty(SKILLS.get(), false); // Mark dirty so data is synced to client
 
         List<AccoutrementInstance> accouterments = this.getAccouterments();
@@ -1318,14 +1309,8 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
                 // Add directly so that nothing is lost, if number allowed on changes
                 AccoutrementInstance.readInstance(accoutrementList.getCompound(i)).ifPresent(accouterments::add);
             }
-        }
-//        else {
-//            // Try to read old accouterments from their individual format
-//            BackwardsCompat.readAccouterments(compound, accouterments);
-//        }
-
+        }//else {BackwardsCompat.readAccouterments(compound, accouterments);}
         this.markDataParameterDirty(ACCOUTERMENTS.get(), false); // Mark dirty so data is synced to client
-
         // Does what notifyDataManagerChange would have done but this way only does it once
         this.recalculateTransmogrificationsCache();
         this.spendablePoints.markForRefresh();
@@ -1335,32 +1320,20 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
                 inst.init(this);
             }
         } catch (Exception e) {
-            RigoranthusEmortisReborn.LOGGER.error("Failed to init alteration: " + e.getMessage());
+            RigoranthusEmortisReborn.LOGGER.error("Failed to init transmogrification: " + e.getMessage());
             e.printStackTrace();
         }
-
         try {
             this.setGender(EnumGender.bySaveName(compound.getString("canisGender")));
-
             if (compound.contains("mode", Constants.NBT.TAG_STRING)) {
                 this.setMode(EnumMode.bySaveName(compound.getString("mode")));
-            } else {
-                // Read old mode id
-                BackwardsCompat.readMode(compound, this::setMode);
-            }
-
+            } //else {BackwardsCompat.readMode(compound, this::setMode);}
 //            if (compound.contains("customSkinHash", Constants.NBT.TAG_STRING)) {
 //                this.setSkinHash(compound.getString("customSkinHash"));
-//            } else {
-//                BackwardsCompat.readCanisTexture(compound, this::setSkinHash);
-//            }
-
+//            } else {BackwardsCompat.readCanisTexture(compound, this::setSkinHash);}
             if (compound.contains("fetchItem", Constants.NBT.TAG_COMPOUND)) {
                 this.setBoneVariant(NBTUtilities.readItemStack(compound, "fetchItem"));
-            } else {
-                BackwardsCompat.readHasBone(compound, this::setBoneVariant);
-            }
-
+            }// else {BackwardsCompat.readHasBone(compound, this::setBoneVariant);}
             this.setHungerDirectly(compound.getFloat("canisHunger"));
             this.setOwnersName(NBTUtilities.getTextComponent(compound, "lastKnownOwnerName"));
             this.setWillObeyOthers(compound.getBoolean("willObey"));
@@ -1372,13 +1345,11 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
             RigoranthusEmortisReborn.LOGGER.error("Failed to load levels: " + e.getMessage());
             e.printStackTrace();
         }
-
         try {
             if (compound.contains("level_normal", Constants.NBT.TAG_ANY_NUMERIC)) {
                 this.getLevel().setLevel(CanisLevel.Type.CHORDATA, compound.getInt("level_normal"));
                 this.markDataParameterDirty(CANIS_LEVEL.get());
             }
-
             if (compound.contains("level_homini", Constants.NBT.TAG_ANY_NUMERIC)) {
                 this.getLevel().setLevel(CanisLevel.Type.HOMINI, compound.getInt("level_homini"));
                 this.markDataParameterDirty(CANIS_LEVEL.get());
@@ -1401,14 +1372,11 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
                     Optional<BlockPos> pos = NBTUtilities.getBlockPos(bedNBT, "pos");
                     bedsData.put(type, pos);
                 }
-            } else {
-                BackwardsCompat.readBedLocations(compound, bedsData);
-            }
+            } //else {BackwardsCompat.readBedLocations(compound, bedsData);}
         } catch (Exception e) {
             RigoranthusEmortisReborn.LOGGER.error("Failed to load beds: " + e.getMessage());
             e.printStackTrace();
         }
-
         this.entityData.set(CANIS_BED_LOCATION.get(), bedsData);
 
         DimensionDependantArg<Optional<BlockPos>> bowlsData = this.entityData.get(CANIS_BOWL_LOCATION.get()).copyEmpty();
@@ -1424,10 +1392,7 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
                     Optional<BlockPos> pos = NBTUtilities.getBlockPos(bowlsNBT, "pos");
                     bowlsData.put(type, pos);
                 }
-            }
-            else {
-                BackwardsCompat.readBowlLocations(compound, bowlsData);
-            }
+            } //else {BackwardsCompat.readBowlLocations(compound, bowlsData);}
         } catch (Exception e) {
             RigoranthusEmortisReborn.LOGGER.error("Failed to load bowls: " + e.getMessage());
             e.printStackTrace();
@@ -1471,9 +1436,7 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
                 this.getAccouterments().sort(AccoutrementInstance.RENDER_SORTER);
             }
         }
-//        if (SIZE.equals(key)) {
-//            this.refreshDimensions();
-//        }
+//        if (SIZE.equals(key)) {this.refreshDimensions();}
     }
 
     public void recalculateTransmogrificationsCache() {
@@ -1524,11 +1487,8 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
         if (filtered.size() >= type.numberToPutOn()) {
             return false;
         }
-
         accouterments.add(accoutrementInst);
-
         this.markDataParameterDirty(ACCOUTERMENTS.get());
-
         return true;
     }
 
@@ -1690,20 +1650,11 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
         this.entityData.set(HUNGER_INT, hunger);
     }
 
-//    public boolean hasCustomSkin() {
-//        return !Strings.isNullOrEmpty(this.getSkinHash());
-//    }
-//
-//    public String getSkinHash() {
-//        return this.entityData.get(CUSTOM_SKIN);
-//    }
-
+//    public boolean hasCustomSkin() {return !Strings.isNullOrEmpty(this.getSkinHash());}
+//    public String getSkinHash() {return this.entityData.get(CUSTOM_SKIN);}
 //    public void setSkinHash(String hash) {
-//        if (hash == null) {
-//            hash = "";
-//        }
-//        this.entityData.set(CUSTOM_SKIN, hash);
-//    }
+//        if (hash == null) { hash = ""; }
+//        this.entityData.set(CUSTOM_SKIN, hash); }
 
     @Override
     public CanisLevel getLevel() {
@@ -1721,14 +1672,9 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
     }
 
 //    @Override
-//    public void setCanisSize(int value) {
-//        this.entityData.set(SIZE, (byte)Math.min(5, Math.max(1, value)));
-//    }
-//
+//    public void setCanisSize(int value) { this.entityData.set(SIZE, (byte)Math.min(5, Math.max(1, value))); }
 //    @Override
-//    public int getCanisSize() {
-//        return this.entityData.get(SIZE);
-//    }
+//    public int getCanisSize() { return this.entityData.get(SIZE); }
 
     public void setBoneVariant(ItemStack stack) {
         this.entityData.set(BONE_VARIANT, stack);

@@ -20,7 +20,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 public class CanisRenderer extends MobRenderer<CanisEntity, CanisModel<CanisEntity>> {
 
     public CanisRenderer(EntityRendererManager renderManagerIn) {
-        super(renderManagerIn, new CanisModel<>(), 0.5F);
+        super(renderManagerIn, new CanisModel<>(), 0.0F);
         this.addLayer(new CanisSkillLayer(this));
         this.addLayer(new CanisAccoutrementLayer(this));
         this.addLayer(new BoneLayer(this));

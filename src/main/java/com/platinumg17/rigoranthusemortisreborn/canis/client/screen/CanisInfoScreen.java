@@ -30,6 +30,8 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.PacketDistributor;
 
 import java.util.ArrayList;
@@ -41,6 +43,7 @@ import java.util.stream.Collectors;
 /**
  * @author PlatinumG17 edit of ProPerciliv
  */
+@OnlyIn(Dist.CLIENT)
 public class CanisInfoScreen extends CanisBaseBook {
     public final CanisEntity canis;
     public final PlayerEntity player;
@@ -209,6 +212,7 @@ public class CanisInfoScreen extends CanisBaseBook {
         }
     }
 
+    @OnlyIn(Dist.CLIENT)
     protected void renderBg(MatrixStack matrixStack, float partialTicks, int xMouse, int yMouse) {
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         this.minecraft.getTextureManager().bind(background);

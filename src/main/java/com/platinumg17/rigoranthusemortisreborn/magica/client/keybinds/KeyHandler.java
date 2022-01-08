@@ -1,13 +1,10 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.client.keybinds;
 
-import com.platinumg17.rigoranthusemortisreborn.api.RigoranthusEmortisRebornAPI;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.util.StackUtil;
+import com.platinumg17.rigoranthusemortisreborn.canis.client.screen.CanisInventoriesScreen;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.items.CommandWritItem;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.gui.GuiRadialMenu;
-import com.platinumg17.rigoranthusemortisreborn.magica.client.gui.book.GuiSpellBook;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.items.SpellBook;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.network.Networking;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.network.PacketUpdateSpellbook;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -19,53 +16,85 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = EmortisConstants.MOD_ID)
 public class KeyHandler {
     private static final Minecraft MINECRAFT = Minecraft.getInstance();
-
     public static void checkKeysPressed(int key){
-        ItemStack stack = StackUtil.getHeldSpellbook(MINECRAFT.player);
+//        ItemStack stack = StackUtil.getHeldSpellbook(MINECRAFT.player);
+        ItemStack whistle = StackUtil.getHeldWhistle(MINECRAFT.player);
 
-        if(key == REKeyBindings.NEXT_SLOT.getKey().getValue()  && stack.getItem() instanceof SpellBook){
-            if(!stack.hasTag())
+//        if(key == REKeyBindings.NEXT_SLOT.getKey().getValue()  && stack.getItem() instanceof SpellBook){
+//            if(!stack.hasTag())
+//                return;
+//            CompoundNBT tag = stack.getTag();
+//            int newMode = SpellBook.getMode(tag) + 1;
+//            if(newMode > 10)
+//                newMode = 0;
+//            sendUpdatePacket(tag, newMode);
+//            return;
+//        }
+//        if(key == REKeyBindings.PREVIOUS__SLOT.getKey().getValue()  && stack.getItem() instanceof SpellBook){
+//            if(!stack.hasTag())
+//                return;
+//            CompoundNBT tag = stack.getTag();
+//            int newMode = SpellBook.getMode(tag) - 1;
+//            if(newMode < 0)
+//                newMode = 10;
+//            sendUpdatePacket(tag, newMode);
+//            return;
+//        }
+        if(key == REKeyBindings.NEXT_COMMAND.getKey().getValue()  && whistle.getItem() instanceof CommandWritItem){
+            if(!whistle.hasTag())
                 return;
-            CompoundNBT tag = stack.getTag();
-            int newMode = SpellBook.getMode(tag) + 1;
-            if(newMode > 10)
+            CompoundNBT tag = whistle.getTag();
+            int newMode = CommandWritItem.getMode(tag) + 1;
+            if(newMode > 5)
                 newMode = 0;
 
             sendUpdatePacket(tag, newMode);
             return;
         }
 
-        if(key == REKeyBindings.PREVIOUS__SLOT.getKey().getValue()  && stack.getItem() instanceof SpellBook){
-            if(!stack.hasTag())
+        if(key == REKeyBindings.PREVIOUS__COMMAND.getKey().getValue()  && whistle.getItem() instanceof CommandWritItem){
+            if(!whistle.hasTag())
                 return;
-            CompoundNBT tag = stack.getTag();
-            int newMode = SpellBook.getMode(tag) - 1;
+            CompoundNBT tag = whistle.getTag();
+            int newMode = CommandWritItem.getMode(tag) - 1;
             if(newMode < 0)
-                newMode = 10;
+                newMode = 5;
 
             sendUpdatePacket(tag, newMode);
             return;
         }
 
-        if(key == REKeyBindings.OPEN_SPELL_SELECTION.getKey().getValue()){
+        if(key == REKeyBindings.OPEN_COMMAND_SELECTION.getKey().getValue()){
             if(MINECRAFT.screen instanceof GuiRadialMenu) {
                 MINECRAFT.player.closeContainer();
                 return;
             }
-            if(stack.getItem() instanceof SpellBook && stack.hasTag() && MINECRAFT.screen == null){
-                MINECRAFT.setScreen(new GuiRadialMenu(stack.getTag()));
+            if(whistle.getItem() instanceof CommandWritItem && whistle.hasTag() && MINECRAFT.screen == null){
+                MINECRAFT.setScreen(new GuiRadialMenu(whistle.getTag()));
             }
         }
 
-        if(key == REKeyBindings.OPEN_BOOK.getKey().getValue()){
-            if(MINECRAFT.screen instanceof GuiSpellBook && !((GuiSpellBook) MINECRAFT.screen).spell_name.isFocused()) {
+        if(key == REKeyBindings.OPEN_CANIS_INV.getKey().getValue()){
+            if(MINECRAFT.screen instanceof CanisInventoriesScreen) {
                 MINECRAFT.player.closeContainer();
                 return;
             }
-
-            if(stack.getItem() instanceof SpellBook && stack.hasTag() && MINECRAFT.screen == null){
-                GuiSpellBook.open(RigoranthusEmortisRebornAPI.getInstance(), stack.getTag(), ((SpellBook) stack.getItem()).getTier().ordinal(), SpellBook.getUnlockedSpellString(stack.getTag()));
-            }
+//            List<CanisEntity> cani;
+//            Minecraft mc = Minecraft.getInstance();
+//            cani = mc.level.getEntitiesOfClass(CanisEntity.class, mc.player.getBoundingBox().inflate(12D, 12D, 12D),
+//                    (canis) -> canis.canInteract(mc.player) && WaywardTravellerSkill.hasInventory(canis)
+//            );
+//            if (!cani.isEmpty() && MINECRAFT.screen == null) {
+//                IntArray array = new IntArray(cani.size());
+//                for (int i = 0; i < array.getCount(); i++) {
+//                    array.set(i, cani.get(i).getId());
+//                }
+//                Optional<CanisEntity> target = cani.stream().findFirst();
+//                MINECRAFT.setScreen(new CanisInventoriesScreen(new CanisInventoriesContainer(1, mc.player.inventory, array), mc.player.inventory, target.get().getDisplayName()));
+//            }
+//            if(stack.getItem() instanceof SpellBook && stack.hasTag() && MINECRAFT.screen == null){
+//                GuiSpellBook.open(RigoranthusEmortisRebornAPI.getInstance(), stack.getTag(), ((SpellBook) stack.getItem()).getTier().ordinal(), SpellBook.getUnlockedSpellString(stack.getTag()));
+//            }
         }
     }
     @SubscribeEvent
@@ -83,8 +112,8 @@ public class KeyHandler {
     }
 
     public static void sendUpdatePacket(CompoundNBT tag, int newMode){
-        String recipe = SpellBook.getRecipeString(tag, newMode);
-        String name = SpellBook.getSpellName(tag, newMode);
-        Networking.INSTANCE.sendToServer(new PacketUpdateSpellbook(recipe, newMode, name));
+        String name = CommandWritItem.getModeName(tag, newMode);
+//        String recipe = SpellBook.getRecipeString(tag, newMode);
+//        Networking.INSTANCE.sendToServer(new PacketUpdateSpellbook(recipe, newMode, name));
     }
 }

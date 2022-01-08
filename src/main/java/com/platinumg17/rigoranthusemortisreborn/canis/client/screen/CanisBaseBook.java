@@ -8,12 +8,15 @@ import com.platinumg17.rigoranthusemortisreborn.magica.client.gui.ModdedCanisScr
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.lwjgl.opengl.GL11;
 
 /**
  * @author BaileyHolley
  * lightly edited by PlatinumG17
  */
+@OnlyIn(Dist.CLIENT)
 public class CanisBaseBook extends ModdedCanisScreen {
 
     public final int FULL_WIDTH = 290;

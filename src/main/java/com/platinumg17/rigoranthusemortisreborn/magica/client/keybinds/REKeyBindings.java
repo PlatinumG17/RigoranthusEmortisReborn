@@ -39,7 +39,7 @@ public class REKeyBindings {
 
     @SubscribeEvent
     public static void registerKeyBindings(final FMLClientSetupEvent event) {
-//        ClientRegistry.registerKeyBinding(OPEN_CANIS_INV);
+        ClientRegistry.registerKeyBinding(OPEN_CANIS_INV);
         ClientRegistry.registerKeyBinding(OPEN_COMMAND_SELECTION);
 //        ClientRegistry.registerKeyBinding(PREVIOUS__COMMAND);
 //        ClientRegistry.registerKeyBinding(NEXT_COMMAND);

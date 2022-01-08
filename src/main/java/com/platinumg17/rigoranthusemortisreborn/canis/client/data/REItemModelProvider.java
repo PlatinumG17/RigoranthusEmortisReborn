@@ -37,21 +37,13 @@ public class REItemModelProvider extends ItemModelProvider {
         handheld(CanisItems.REGULAR_TREAT);
         handheld(CanisItems.MASTER_TREAT);
         handheld(CanisItems.HOMINI_TREAT);
-        handheld(CanisItems.BREEDING_BONE);
+//        handheld(CanisItems.BREEDING_BONE);
         handheld(CanisItems.CHEW_STICK);
-
-//        radar(CanisItems.CREATIVE_RADAR);
-//        radar(CanisItems.RADAR);
-
 //        generated(CanisItems.CAPE);
-//        generated(CanisItems.CAPE_COLORED);
         generated(CanisItems.COLLAR_SHEARS);
         generated(CanisItems.CREATIVE_COLLAR);
         generated(CanisItems.CANIS_SUMMONING_CHARM);
-//        generated(CanisItems.MULTICOLORED_COLLAR);
         generated(CanisItems.MASTER_CHANGE);
-//        generated(CanisItems.RADIO_COLLAR);
-//        generated(CanisItems.SPOTTED_COLLAR);
         generated(CanisItems.SUNGLASSES);
         generated(CanisItems.THROW_BONE);
         generated(CanisItems.THROW_BONE_WET);

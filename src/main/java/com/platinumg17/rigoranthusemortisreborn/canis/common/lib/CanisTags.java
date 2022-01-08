@@ -12,6 +12,7 @@ public class CanisTags {
     public static ITag.INamedTag<Item> BREEDING_ITEMS = tag("breeding_items");
     public static ITag.INamedTag<Item> WAYWARD_TRAVELLER_BLACKLIST = tag("wayward_traveller_blacklist");
     public static ITag.INamedTag<Item> TREATS = tag("treats");
+    public static ITag.INamedTag<Item> BONES = tag("bones");
 
     public static ITag.INamedTag<Item> JESSIC_LOGS = tag("jessic_logs");
     public static ITag.INamedTag<Item> JESSIC = tag("jessic");

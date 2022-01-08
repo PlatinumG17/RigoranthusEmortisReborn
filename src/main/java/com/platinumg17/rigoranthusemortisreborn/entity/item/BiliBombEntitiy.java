@@ -11,9 +11,12 @@ import net.minecraft.network.IPacket;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-public class BiliBombEntitiy extends ProjectileItemEntity implements IRendersAsItem {
+//@OnlyIn(value = Dist.CLIENT, _interface = IRendersAsItem.class)
+public class BiliBombEntitiy extends ProjectileItemEntity/* implements IRendersAsItem*/ {
     private boolean shouldDestroy = true;
 
     public BiliBombEntitiy(EntityType<? extends BiliBombEntitiy> type, World worldIn) {super(type, worldIn);}

@@ -7,7 +7,10 @@ import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.Resources;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class FoodBowlScreen extends ContainerScreen<FoodBowlContainer> {
 
     public FoodBowlScreen(FoodBowlContainer foodBowl, PlayerInventory playerInventory, ITextComponent displayName) {

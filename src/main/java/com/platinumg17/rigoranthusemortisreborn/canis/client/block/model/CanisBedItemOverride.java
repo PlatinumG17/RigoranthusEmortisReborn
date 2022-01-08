@@ -7,12 +7,15 @@ import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Direction;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.apache.commons.lang3.tuple.Pair;
 import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.IBeddingMaterial;
 import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.ICasingMaterial;
 
 import javax.annotation.Nullable;
 
+@OnlyIn(Dist.CLIENT)
 public class CanisBedItemOverride extends ItemOverrideList {
     @Override
     public IBakedModel resolve(IBakedModel modelOriginal, ItemStack stack, @Nullable ClientWorld world, @Nullable LivingEntity livingEntity) {

@@ -4,12 +4,15 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.MainWindow;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.List;
 
 /**
  * @author BaileyHolley
  */
+@OnlyIn(Dist.CLIENT)
 public class ModdedCanisScreen extends Screen {
 
     public int maxScale;

@@ -20,10 +20,11 @@ import net.minecraft.util.text.TranslationTextComponent;
 public class CanisRenderer extends MobRenderer<CanisEntity, CanisModel<CanisEntity>> {
 
     public CanisRenderer(EntityRendererManager renderManagerIn) {
-        super(renderManagerIn, new CanisModel<>(), 0.0F);
+        super(renderManagerIn, new CanisModel<>(), 0.5F);
         this.addLayer(new CanisSkillLayer(this));
         this.addLayer(new CanisAccoutrementLayer(this));
         this.addLayer(new BoneLayer(this));
+        this.shadowRadius = 0.7F;
     }
 
     @Override
@@ -42,7 +43,7 @@ public class CanisRenderer extends MobRenderer<CanisEntity, CanisModel<CanisEnti
             double d0 = this.entityRenderDispatcher.distanceToSqr(entityIn);
             if (d0 <= 64 * 64) {
                 String tip = entityIn.getMode().getTip();
-                String label = String.format(Config.CANIS_GENDER.get() ? "%s(%d)%s" : "%s(%d)",(new TranslationTextComponent(tip)).getString(), MathHelper.ceil(entityIn.getCanisHunger()), (new TranslationTextComponent(entityIn.getGender().getUnlocalisedTip())).getString());
+                String label = String.format(Config.CANIS_GENDER.get() ? "%s[%d]%s" : "%s[%d]",(new TranslationTextComponent(tip)).getString(), MathHelper.ceil(entityIn.getCanisHunger()), (new TranslationTextComponent(entityIn.getGender().getUnlocalisedTip())).getString());
                 RenderUtil.renderLabelWithScale(entityIn, this, label, matrixStackIn, bufferIn, packedLightIn, 0.01F, 0.12F);
                 if (d0 <= 5 * 5 && this.entityRenderDispatcher.camera.getEntity().isShiftKeyDown()) {
                     RenderUtil.renderLabelWithScale(entityIn, this, entityIn.getOwnersName().orElseGet(() -> this.getNameUnknown(entityIn)), matrixStackIn, bufferIn, packedLightIn, 0.01F, -0.25F);
@@ -61,11 +62,4 @@ public class CanisRenderer extends MobRenderer<CanisEntity, CanisModel<CanisEnti
     public ResourceLocation getTextureLocation(CanisEntity canisIn) {
         return Resources.CHORDATA_TEXTURE;//CanisTextureManager.INSTANCE.getTexture(canisIn);
     }
-
-//    @Override
-//    protected void scale(CanisEntity canisIn, MatrixStack matrixStackIn, float partialTickTime) {
-//        float size = (float)canisIn.getCanisSize() * 0.3F + 0.1F;
-//        matrixStackIn.scale(size, size, size);
-//        this.shadowRadius = size * 0.5F;
-//    }
 }

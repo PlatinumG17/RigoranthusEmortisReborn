@@ -27,7 +27,6 @@ public class CanisBaseBook extends ModdedCanisScreen {
     public int bookTop;
     public int bookRight;
     public int bookBottom;
-
     public int bookMiddle;
 
     public CanisBaseBook() {

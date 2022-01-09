@@ -215,18 +215,11 @@ public class CanisInfoScreen extends CanisBaseBook {
     @OnlyIn(Dist.CLIENT)
     protected void renderBg(MatrixStack matrixStack, float partialTicks, int xMouse, int yMouse) {
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.minecraft.getTextureManager().bind(background);
-        InventoryScreen.renderEntityInInventory(bookLeft + 73, bookTop + 133, 17, (float)(bookLeft + 30) - this.xMouse, (float)(bookTop + 175 - 150) - this.yMouse, this.canis);
+        InventoryScreen.renderEntityInInventory(bookLeft + 76, bookTop + 127, 17, (float)(bookLeft + 30) - this.xMouse, (float)(bookTop + 175 - 150) - this.yMouse, this.canis);
     }
+
     @Override
     public void render(MatrixStack stack, int mouseX, int mouseY, float partialTicks) {
-        //Background
-        int xStart = bookLeft + 20;
-        int yStart = bookTop + 34;
-        int xOffset = 20;
-        int yOffset = 18;
-        int topX = this.width / 2;
-        int topY = this.height / 2;
         this.renderBackground(stack);
         this.xMouse = (float)mouseX;
         this.yMouse = (float)mouseY;

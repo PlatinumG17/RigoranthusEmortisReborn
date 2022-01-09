@@ -329,7 +329,7 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
     }
 
     public float getTailRotation() {
-        return this.isTame() ? (0.55F - (this.getMaxHealth() - (this.getHealth() / 3)) * 0.02F) * (float)Math.PI : ((float)Math.PI / 5F);
+        return this.isTame() ? (1.55F - (this.getMaxHealth() - (this.getHealth())) * 0.02F) * (float)Math.PI : ((float)Math.PI / 5F);
     }
 
     @Override
@@ -527,7 +527,7 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
             }
         }
         Optional<ICanisFoodHandler> foodHandler = FoodHandler.getMatch(this, stack, player);
-        if (foodHandler.isPresent() && ((this.getCanisHunger() < this.getMaxHunger()) || (this.getHealth() < this.getMaxHealth()))) {
+        if (foodHandler.isPresent()) { // && ((this.getCanisHunger() < this.getMaxHunger()) || (this.getHealth() < this.getMaxHealth()))) {
             this.playEatingSound();
             return foodHandler.get().consume(this, stack, player);
         }

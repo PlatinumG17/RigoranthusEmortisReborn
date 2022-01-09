@@ -8,17 +8,10 @@ public class Resources {
     public static final ResourceLocation GUI_FOOD_BOWL = getGui("food_bowl");
     public static final ResourceLocation GUI_WAYWARD_TRAVELLER = getGui("wayward_traveller");
     public static final ResourceLocation GUI_TREAT_BAG = getGui("treat_bag");
-    public static final ResourceLocation GUI_RADAR = getGui("radar");
 
     public static final ResourceLocation CANIS_INVENTORY = getGui("canis_inventory");
     public static final ResourceLocation INVENTORY_BUTTON = getGui("canis_button");
     public static final ResourceLocation SMALL_WIDGETS = getGui("small_widgets");
-
-    // Vanilla wolf
-//    public static final ResourceLocation ENTITY_WOLF = REUtil.getResource(EmortisConstants.VANILLA_ID, "textures/entity/wolf/wolf_tame.png");
-//    public static final ResourceLocation ENTITY_WOLF_WILD = REUtil.getResource(EmortisConstants.VANILLA_ID, "textures/entity/wolf/wolf.png");
-//    public static final ResourceLocation ENTITY_WOLF_ANGRY = REUtil.getResource(EmortisConstants.VANILLA_ID, "textures/entity/wolf/wolf_angry.png");
-//    public static final ResourceLocation ENTITY_WOLF_COLLAR = REUtil.getResource(EmortisConstants.VANILLA_ID, "textures/entity/wolf/wolf_collar.png");
 
     public static final ResourceLocation CHORDATA_TEXTURE = getEntity("canis/evolutions", "tame_canis_chordata");
     public static final ResourceLocation KYPHOS_TEXTURE = getEntity("canis/evolutions", "canis_kyphos");
@@ -26,12 +19,12 @@ public class Resources {
     public static final ResourceLocation HOMINI_TEXTURE = getEntity("canis/evolutions", "canis_homini");
 
     public static final ResourceLocation COLLAR_DEFAULT = getEntity("canis", "canis_collar");
-    public static final ResourceLocation COLLAR_GOLDEN = getEntity("canis", "canis_collar_0");
-    public static final ResourceLocation GLASSES_SUNGLASSES = getEntity("canis", "canis_sunglasses");
+    public static final ResourceLocation COLLAR_GOLDEN = getEntity("canis", "canis_collar_gold");
+    public static final ResourceLocation GLASSES_SUNGLASSES = getEntity("canis", "cool_guy_sunglasses");
     public static final ResourceLocation BOW_TIE = getEntity("canis", "canis_bowtie");
     public static final ResourceLocation CAPE = getEntity("canis", "canis_cape");
     public static final ResourceLocation SKILL_SAVIOR = getEntity("canis/skills", "savior");
-    public static final ResourceLocation SKILL_CHEST = getEntity("canis", "canis_chest");
+    public static final ResourceLocation SKILL_CHEST = getEntity("canis", "canis_satchel");
 
     public static final ResourceLocation IRON_HELMET = getEntity("canis", "armor/iron_helmet");
     public static final ResourceLocation DIAMOND_HELMET = getEntity("canis", "armor/diamond_helmet");

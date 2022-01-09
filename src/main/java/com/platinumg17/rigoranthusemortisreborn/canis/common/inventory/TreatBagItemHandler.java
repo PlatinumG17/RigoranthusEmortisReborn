@@ -11,7 +11,7 @@ import javax.annotation.Nonnull;
 public class TreatBagItemHandler extends ItemStackHandler {
     private ItemStack bag;
     public TreatBagItemHandler(ItemStack bag) {
-        super(5);
+        super(7);
         this.bag = bag;
         CompoundNBT inventoryNBT = bag.getTagElement("inventory");
         if (inventoryNBT != null) {

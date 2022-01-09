@@ -24,7 +24,8 @@ public class TreatBagScreen extends ContainerScreen<TreatBagContainer> {
 
     @Override
     protected void renderLabels(MatrixStack stack, int var1, int var2) {
-        this.font.draw(stack, this.title.getString(), 10.0F, 8.0F, 4210752);
+        this.font.draw(stack, this.title.getString(), 24.0F, 9.0F, 0x000000);
+        this.font.draw(stack, this.title.getString(), 25.0F, 8.0F, 0xC0C0C0);
     }
 
     @Override

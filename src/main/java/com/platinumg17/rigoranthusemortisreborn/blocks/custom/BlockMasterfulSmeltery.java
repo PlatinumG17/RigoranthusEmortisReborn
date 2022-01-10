@@ -16,6 +16,10 @@ import net.minecraft.world.IBlockReader;
 import javax.annotation.Nullable;
 import java.util.stream.Stream;
 
+/**
+ * @author PlatinumG17
+ * https://github.com/PlatinumG17/RigoranthusEmortisReborn
+ * */
 public class BlockMasterfulSmeltery extends BlockMasterfulSmelteryBase {
 
     public static final DirectionProperty FACING = HorizontalBlock.FACING;

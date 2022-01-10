@@ -19,6 +19,10 @@ import net.minecraftforge.common.util.FakePlayer;
 import java.util.*;
 import java.util.function.Predicate;
 
+/**
+ * @author BaileyHolley
+ * https://github.com/baileyholl/Ars-Nouveau
+ * */
 public class SpellUtil {
 
     public static boolean postEvent(SpellCastEvent e){

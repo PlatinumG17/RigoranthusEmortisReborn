@@ -18,6 +18,10 @@ import software.bernie.geckolib3.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
 
+/**
+ * @author PlatinumG17
+ * https://github.com/PlatinumG17/RigoranthusEmortisReborn
+ * */
 public class HangingSkullTile extends TileEntity implements IAnimatable, ISyncable {
 
     public String controllerName = "swingController";

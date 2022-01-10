@@ -25,6 +25,10 @@ import com.google.common.collect.Lists;
 import net.minecraft.util.text.StringTextComponent;
 import java.util.List;
 
+/**
+ * @author Qelifern
+ * https://github.com/Qelifern/IronFurnaces
+ * */
 @OnlyIn(Dist.CLIENT)
 public abstract class SmelteryScreenBase<T extends MasterfulSmelteryContainerBase> extends ContainerScreen<T> {
 

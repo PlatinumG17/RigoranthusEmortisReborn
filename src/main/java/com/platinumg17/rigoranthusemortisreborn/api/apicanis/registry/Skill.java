@@ -17,7 +17,7 @@ public class Skill extends ForgeRegistryEntry<Skill> {
      * @param sup
      */
     public Skill(BiFunction<Skill, Integer, SkillInstance> sup) {this.create = sup;}
-    public int getMaxLevel() {return 4;}
+    public int getMaxLevel() {return 5;}
     public int getLevelCost(int toGoToLevel) {return toGoToLevel;}
     public int getCummulativeCost(int level) {return level * (level + 1) / 2;}
 

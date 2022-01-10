@@ -26,8 +26,10 @@ public class WaywardTravellerScreen extends ContainerScreen<WaywardTravellerCont
 
     @Override
     protected void renderLabels(MatrixStack stack, int par1, int par2) {
-        this.font.draw(stack, this.title.getString(), this.imageWidth / 2 - 10, 10, 4210752);
-        this.font.draw(stack, this.inventory.getDisplayName().getString(), 8.0F, this.imageHeight - 96 - 2, 4210752);
+        this.font.draw(stack, this.title.getString(), this.imageWidth / 2 - 10, 10, 0x000000);
+        this.font.draw(stack, this.title.getString(), this.imageWidth / 2 - 11, 9, 0xC0C0C0);
+        this.font.draw(stack, this.inventory.getDisplayName().getString(), 8.0F, this.imageHeight - 96 - 2, 0x000000);
+        this.font.draw(stack, this.inventory.getDisplayName().getString(), 9.0F, this.imageHeight - 95 - 2, 0xC0C0C0);
     }
 
     @Override

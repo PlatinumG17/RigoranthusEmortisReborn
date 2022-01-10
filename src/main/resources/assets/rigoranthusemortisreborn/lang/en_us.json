@@ -987,7 +987,7 @@
     "skill.rigoranthusemortisreborn.predator.description": "Every level grants a 10%% chance to make anything your Canis kills drop its loot twice, Level 5 grants an extra 10%%, bringing it up to a 60%% chance",
     "skill.rigoranthusemortisreborn.cerberus.description": "Allows your Canis set things on fire while attacking. The higher the level, the longer the fire lasts. Mastering the skill grants your Canis immunity to fire",
     "skill.rigoranthusemortisreborn.cavalier.description": "Allows you to ride your Canis. Every level increases the jump-strength of your Canis. To ride your Canis: With an empty hand, Jump & Right-Click the Canis while mid-air.",
-    "skill.rigoranthusemortisreborn.wayward_traveller.description": "Each level adds 3 inventory slots to the Wayward-Traveller GUI. To open the GUI: Sneak + Right-click your Canis. At level 5, your Canis will automatically pick up any nearby items. (If it has space in its inventory)",
+    "skill.rigoranthusemortisreborn.wayward_traveller.description": "Each level adds 3 inventory slots to the Wayward-Traveller GUI. At level 5, your Canis will automatically pick up any nearby items. (If it has space in its inventory)",
     "skill.rigoranthusemortisreborn.calloused_soles.description": "Every level allows your Canis fall 3 more blocks before it starts taking damage. Mastering the skill makes your Canis completely immune to fall damage, your canis will also utilize slowfalling",
     "skill.rigoranthusemortisreborn.rapid_recovery.description": "Improves the rate at which your Canis heals without needing to rest. Mastering the skill will heal your Canis 50%% faster while sitting.",
     "skill.rigoranthusemortisreborn.powderkeg.description": "A Canis with this skill can detect creepers in the area & will growl to warn you. The range at which your Canis, can detect creepers increases by 6 blocks per level, and mastering this skill will make your Canis capable of attacking creepers Your Canis will reset the creeper's detonation timer with each attack.",
@@ -1033,14 +1033,13 @@
     "canis.mode.patrol": "Patrol",
     "canis.mode.guard": "Guard",
 
-    "canis.mode.wandering.indicator": "(W)",
-    "canis.mode.tactical.indicator": "(T)",
-    "canis.mode.aggressive.indicator": "(A)",
-    "canis.mode.berserker.indicator": "(B)",
-    "canis.mode.docile.indicator": "(D)",
-    "canis.mode.patrol.indicator": "(P)",
-    "canis.mode.guard.indicator": "(G)",
-    "canis.mode.incapacitated.indicator": "(I)",
+    "canis.mode.wandering.indicator": "W ",
+    "canis.mode.tactical.indicator": "T ",
+    "canis.mode.aggressive.indicator": "A ",
+    "canis.mode.berserker.indicator": "B ",
+    "canis.mode.docile.indicator": "D ",
+    "canis.mode.patrol.indicator": "P ",
+    "canis.mode.guard.indicator": "G ",
 
     "canis.mode.wandering.description": "Your Canis will remain near it's bowl and await your next command. To set you Canis's bowl, bring your Canis within a few blocks of it.",
     "canis.mode.tactical.description": "Your Canis will follow you, but will not attack anything unless commanded to.",
@@ -1050,23 +1049,22 @@
     "canis.mode.patrol.description": "Use a command staff to set 2-4 points in which your Canis will patrol, attacking any monsters that try to pass.",
     "canis.mode.guard.description": "Your Canis will follow closely and attack any monsters that come too close.",
 
-    "canis.mode.incapacitated.help": "%s is incapacitated and requires a Bottle of Ichor to revive %s.",
     "canis.mode.docile.nobowl": "No food bowl currently set.",
     "canis.mode.docile.bowl": "Bowl distance: %d",
     "canis.mode.docile.distance": "Bowl to far away: %d",
 
     "canis.gender.female": "\u00A78Female",
-    "canis.gender.female.indicator": "(F)",
+    "canis.gender.female.indicator": " F",
     "canis.gender.female.pronoun": "her",
     "canis.gender.female.subject": "she",
     "canis.gender.female.title": "girl",
-    "canis.gender.male": "\u00A78  Male",
-    "canis.gender.male.indicator": "(M)",
+    "canis.gender.male": "\u00A78   Male",
+    "canis.gender.male.indicator": " M",
     "canis.gender.male.pronoun": "him",
     "canis.gender.male.subject": "he",
     "canis.gender.male.title": "boy",
     "canis.gender.unisex": "\u00A78Unisex",
-    "canis.gender.unisex.indicator": "(U)",
+    "canis.gender.unisex.indicator": " U",
     "canis.gender.unisex.pronoun": "them",
     "canis.gender.unisex.subject": "they",
     "canis.gender.unisex.title": "unisex",
@@ -1480,7 +1478,5 @@
 	"rigoranthusemortisreborn.decorative": "Decorative Blocks",
 	"rigoranthusemortisreborn.nothing": "Nothing",
 
-    "particle.rigoranthusemortisreborn.ichor": "Ichor",
-
-	"item.rigoranthusemortisreborn.blank_parchment":"Blank Parchment"
+    "particle.rigoranthusemortisreborn.ichor": "Ichor"
 }

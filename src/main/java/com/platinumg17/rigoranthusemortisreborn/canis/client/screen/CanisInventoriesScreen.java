@@ -2,7 +2,8 @@ package com.platinumg17.rigoranthusemortisreborn.canis.client.screen;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.platinumg17.rigoranthusemortisreborn.canis.client.screen.widget.SmallButton;
+import com.platinumg17.rigoranthusemortisreborn.canis.client.screen.widget.SmallBackButton;
+import com.platinumg17.rigoranthusemortisreborn.canis.client.screen.widget.SmallForwardButton;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.accouterments.CanisAccouterments;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.accouterments.DyeableAccoutrement.DyeableAccoutrementInstance;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.inventory.container.CanisInventoriesContainer;
@@ -11,6 +12,7 @@ import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.Resources;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.canisnetwork.CanisPacketHandler;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.canisnetwork.packet.data.CanisInventoryPageData;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.keybinds.REKeyBindings;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.gui.screen.inventory.CreativeScreen;
 import net.minecraft.client.gui.screen.inventory.InventoryScreen;
@@ -18,7 +20,6 @@ import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.client.util.InputMappings;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.PacketDistributor;
@@ -45,7 +46,7 @@ public class CanisInventoriesScreen extends ContainerScreen<CanisInventoriesCont
     @Override
     public void init() {
         super.init();
-        this.left = new SmallButton(this.leftPos + this.imageWidth - 29, this.topPos + 4, new StringTextComponent("<"), (btn) -> {
+        this.left = new SmallBackButton(this.leftPos + this.imageWidth - 31, this.topPos + 3, ITextComponent.nullToEmpty(""), (btn) -> {
             int page = this.getMenu().getPage();
             if (page > 0) {
                 CanisPacketHandler.send(PacketDistributor.SERVER.noArg(), new CanisInventoryPageData(--page));
@@ -53,7 +54,7 @@ public class CanisInventoriesScreen extends ContainerScreen<CanisInventoriesCont
             btn.active = page > 0;
             this.right.active = page < this.getMenu().getTotalNumColumns() - 9;
         });
-        this.right = new SmallButton(this.leftPos + this.imageWidth - 26 + 9, this.topPos + 4, new StringTextComponent(">"), (btn) -> {
+        this.right = new SmallForwardButton(this.leftPos + this.imageWidth - 26 + 9, this.topPos + 3, ITextComponent.nullToEmpty(""), (btn) -> {
             int page = this.getMenu().getPage();
 
             if (page < this.getMenu().getTotalNumColumns() - 9) {
@@ -75,8 +76,10 @@ public class CanisInventoriesScreen extends ContainerScreen<CanisInventoriesCont
 
     @Override
     protected void renderLabels(MatrixStack stack, int par1, int par2) {
-        this.font.draw(stack, this.title.getString(), 8, 6, 4210752);
-        this.font.draw(stack, this.inventory.getDisplayName().getString(), 8.0F, this.imageHeight - 96 + 2, 4210752);
+        this.font.draw(stack, this.title.getString(), 9, 5, 0x000000);
+        this.font.draw(stack, this.title.getString(), 8, 6, 0xFFFFFF);
+        this.font.draw(stack, this.inventory.getDisplayName().getString(), 9.0F, this.imageHeight - 96 + 2, 0x000000);
+        this.font.draw(stack, this.inventory.getDisplayName().getString(), 8.0F, this.imageHeight - 96 + 3, 0xFFFFFF);
     }
 
     @Override
@@ -112,7 +115,8 @@ public class CanisInventoriesScreen extends ContainerScreen<CanisInventoriesCont
                 this.minecraft.setScreen(new InventoryScreen(this.inventory.player));
             }
             return true;
-        } else if (REKeyBindings.OPEN_CANIS_INV.isActiveAndMatches(InputMappings.getKey(keyCode, scanCode))) {
+        }
+        if (InputMappings.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), REKeyBindings.OPEN_CANIS_INV.getKey().getValue())) {
             return true;
         }
         return super.keyPressed(keyCode, scanCode, modifiers);

@@ -23,6 +23,10 @@ import net.minecraftforge.items.wrapper.InvWrapper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
+/**
+ * @author Qelifern
+ * https://github.com/Qelifern/IronFurnaces
+ * */
 public abstract class MasterfulSmelteryContainerBase extends Container {
 
     protected SmelteryTileEntityBase te;

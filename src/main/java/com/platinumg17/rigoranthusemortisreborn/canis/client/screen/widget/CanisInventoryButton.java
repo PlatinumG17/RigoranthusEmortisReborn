@@ -27,7 +27,7 @@ public class CanisInventoryButton extends Button {
     private int baseX;
 
     public CanisInventoryButton(int x, int y, Screen parentIn, IPressable onPress) {
-        super(x, y, 13, 10, new StringTextComponent(""), onPress);
+        super(x, y, 17, 11, new StringTextComponent(""), onPress);
         this.baseX = x;
         this.parent = parentIn;
     }
@@ -42,7 +42,7 @@ public class CanisInventoryButton extends Button {
         if (this.parent instanceof InventoryScreen) {
             RecipeBookGui recipeBook = ((InventoryScreen) this.parent).getRecipeBookComponent();
             if (recipeBook.isVisible()) {
-                this.x = this.baseX + 77;
+                this.x = this.baseX + 78;
             } else {
                 this.x = this.baseX;
             }
@@ -66,7 +66,7 @@ public class CanisInventoryButton extends Button {
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
         RenderSystem.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-        this.blit(stack, this.x, this.y, 0, 36 + i * 10, this.width, this.height);
+        this.blit(stack, this.x, this.y, 0, 42 + i * 11, this.width, this.height);
         this.renderBg(stack, mc, mouseX, mouseY);
     }
 

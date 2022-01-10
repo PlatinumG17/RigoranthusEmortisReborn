@@ -3,7 +3,7 @@ package com.platinumg17.rigoranthusemortisreborn.canis.common.canisnetwork.packe
 import com.platinumg17.rigoranthusemortisreborn.canis.CanisItems;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.CanisTags;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
-import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
+import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.BlockRegistry;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.MagicItemsRegistry;
 import net.minecraft.data.BlockTagsProvider;
@@ -53,10 +53,11 @@ public class REItemTagsProvider extends ItemTagsProvider {
         tag(ItemTags.LOGS_THAT_BURN).addTags(CanisTags.AZULOREAL_LOGS, CanisTags.JESSIC_LOGS);
         tag(ItemTags.SAPLINGS).add(BlockRegistry.AZULOREAL_SAPLING.asItem()).add(BlockRegistry.JESSIC_SAPLING.asItem());
 
-        createTag(CanisTags.SNACK_ITEMS_TAMED, CanisItems.BREEDING_BONE, CanisItems.THROW_STICK, CanisItems.THROW_BONE, Items.BONE.delegate);
+        createTag(CanisTags.SNACK_ITEMS_TAMED, MagicItemsRegistry.BOTTLE_OF_ICHOR.delegate,/*CanisItems.BREEDING_BONE,*/ CanisItems.THROW_STICK, CanisItems.THROW_BONE, Items.BONE.delegate);
         appendToTag(CanisTags.TREATS);
         createTag(CanisTags.SNACK_ITEMS_UNTAMED, CanisItems.TRAINING_TREAT, Items.BONE.delegate);
-        createTag(CanisTags.BREEDING_ITEMS, CanisItems.BREEDING_BONE);
+        createTag(CanisTags.BREEDING_ITEMS, MagicItemsRegistry.BOTTLE_OF_ICHOR.delegate);//CanisItems.BREEDING_BONE);
+        createTag(CanisTags.BONES, ItemInit.BONE_FRAGMENT, CanisItems.BIG_BONE, CanisItems.TINY_BONE, Items.BONE.delegate);//CanisItems.BREEDING_BONE);
         createTag(CanisTags.WAYWARD_TRAVELLER_BLACKLIST, CanisItems.THROW_BONE, CanisItems.THROW_BONE_WET, CanisItems.THROW_STICK, CanisItems.THROW_STICK_WET);
         createTag(CanisTags.TREATS, CanisItems.TRAINING_TREAT, CanisItems.REGULAR_TREAT, CanisItems.MASTER_TREAT, CanisItems.HOMINI_TREAT);
     }

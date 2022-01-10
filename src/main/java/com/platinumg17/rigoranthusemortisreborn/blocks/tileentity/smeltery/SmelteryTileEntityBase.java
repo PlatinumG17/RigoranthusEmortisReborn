@@ -56,6 +56,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
+/**
+* @author Qelifern
+ * https://github.com/Qelifern/IronFurnaces
+* */
 public abstract class SmelteryTileEntityBase extends TileEntityInventory implements ITickableTileEntity, IRecipeHolder, IRecipeHelperPopulator {
     public final int[] provides = new int[Direction.values().length];
     private final int[] lastProvides = new int[this.provides.length];

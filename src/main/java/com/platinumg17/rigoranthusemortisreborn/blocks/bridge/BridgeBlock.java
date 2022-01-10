@@ -1,15 +1,6 @@
-package com.platinumg17.rigoranthusemortisreborn.blocks;
+package com.platinumg17.rigoranthusemortisreborn.blocks.bridge;
 
-import java.util.stream.Stream;
-
-import com.platinumg17.rigoranthusemortisreborn.blocks.bridge.BridgeBase;
-import com.platinumg17.rigoranthusemortisreborn.blocks.bridge.PartDefinition;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalBlock;
-import net.minecraft.block.IWaterLoggable;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.AbstractBlock.Properties;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
@@ -22,6 +13,8 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
+
+import java.util.stream.Stream;
 
 public class BridgeBlock extends BridgeBase implements IWaterLoggable {
     private static final EnumProperty<PartDefinition> PART = EnumProperty.create("part", PartDefinition.class);

@@ -10,8 +10,11 @@ public class Resources {
     public static final ResourceLocation GUI_TREAT_BAG = getGui("treat_bag");
 
     public static final ResourceLocation CANIS_INVENTORY = getGui("canis_inventory");
-    public static final ResourceLocation INVENTORY_BUTTON = getGui("canis_button");
     public static final ResourceLocation SMALL_WIDGETS = getGui("small_widgets");
+    public static final ResourceLocation PAGE_SELECTION = getGui("page_selection");
+    public static final ResourceLocation SKILL_BUTTON = getGui("skill_button");
+    public static final ResourceLocation MODE_BUTTON = getGui("mode_button");
+    public static final ResourceLocation BOOLEAN_BUTTON = getGui("boolean_button");
 
     public static final ResourceLocation CHORDATA_TEXTURE = getEntity("canis/evolutions", "tame_canis_chordata");
     public static final ResourceLocation KYPHOS_TEXTURE = getEntity("canis/evolutions", "canis_kyphos");

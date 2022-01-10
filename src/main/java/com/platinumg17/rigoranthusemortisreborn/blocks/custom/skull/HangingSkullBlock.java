@@ -26,6 +26,10 @@ import net.minecraftforge.common.ToolType;
 
 import javax.annotation.Nullable;
 
+/**
+ * @author PlatinumG17
+ * https://github.com/PlatinumG17/RigoranthusEmortisReborn
+ * */
 public class HangingSkullBlock extends Block implements IWaterLoggable {
 
     public static final DirectionProperty FACING = HorizontalBlock.FACING;

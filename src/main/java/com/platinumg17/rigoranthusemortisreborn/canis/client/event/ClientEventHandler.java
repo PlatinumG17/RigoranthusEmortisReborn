@@ -90,8 +90,8 @@ public class ClientEventHandler {
             int sizeY = creative ? 136 : 166;
             int guiLeft = (width - sizeX) / 2;
             int guiTop = (height - sizeY) / 2;
-            int x = guiLeft + (creative ? 36 : sizeX / 2 - 10);
-            int y = guiTop + (creative ? 39 : 7); // was   creative ? 7 : 48
+            int x = guiLeft + (creative ? 34 : sizeX / 2 - 10);
+            int y = guiTop + (creative ? 39 : 17); // was   creative ? 7 : 48
             event.addWidget(new CanisInventoryButton(x, y, screen, (btn) -> {
                 CanisPacketHandler.send(PacketDistributor.SERVER.noArg(), new OpenCanisScreenData());
                 btn.active = false;
@@ -123,7 +123,7 @@ public class ClientEventHandler {
                 if (!creative) {
                     RecipeBookGui recipeBook = ((InventoryScreen) screen).getRecipeBookComponent();
                     if (recipeBook.isVisible()) {
-                        guiLeft += 76;
+                        guiLeft += 78;
                     }
                 }
                 RenderSystem.translated(-guiLeft, -guiTop, 0);

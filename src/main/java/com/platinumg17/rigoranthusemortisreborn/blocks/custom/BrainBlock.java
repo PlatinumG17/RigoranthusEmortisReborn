@@ -25,6 +25,10 @@ import net.minecraft.world.IWorldReader;
 
 import java.util.Map;
 
+/**
+ * @author PlatinumG17
+ * https://github.com/PlatinumG17/RigoranthusEmortisReborn
+ * */
 public class BrainBlock extends Block implements IWaterLoggable {
 
     public BrainBlock(Properties properties) {

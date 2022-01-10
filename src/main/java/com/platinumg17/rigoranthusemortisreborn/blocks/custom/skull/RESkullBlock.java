@@ -22,6 +22,10 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 
+/**
+ * @author PlatinumG17
+ * https://github.com/PlatinumG17/RigoranthusEmortisReborn
+ * */
 public class RESkullBlock extends Block implements IWaterLoggable, IArmorVanishable {
 
     public static final DirectionProperty FACING = HorizontalBlock.FACING;

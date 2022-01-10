@@ -4,6 +4,10 @@ import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.config.ConfigValues;
 import net.minecraft.nbt.CompoundNBT;
 
+/**
+ * @author Qelifern
+ * https://github.com/Qelifern/IronFurnaces
+ * */
 public class SmelterySettings {
     public int[] settings;
     public int[] autoIO;

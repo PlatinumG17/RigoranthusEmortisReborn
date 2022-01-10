@@ -38,6 +38,10 @@ import com.platinumg17.rigoranthusemortisreborn.items.specialized.smeltery.ItemA
 import com.platinumg17.rigoranthusemortisreborn.items.specialized.smeltery.ItemSmelteryCopy;
 import com.platinumg17.rigoranthusemortisreborn.blocks.tileentity.smeltery.SmelteryTileEntityBase;
 
+/**
+ * @author Qelifern
+ * https://github.com/Qelifern/IronFurnaces
+ * */
 public abstract class BlockMasterfulSmelteryBase extends Block {
     public static final IntegerProperty TYPE = IntegerProperty.create("type", 0, 2);
 

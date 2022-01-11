@@ -52,14 +52,13 @@ public class CanisInfoScreen extends CanisBaseBook {
     public final PlayerEntity player;
     private int currentPage = 0;
     private int maxPages = 1;
-    private List<Widget> skillWidgets = new ArrayList<>(18);
+    private final List<Widget> skillWidgets;
     private BackButton leftButton;
     private ForwardButton rightButton;
-    private List<Skill> skillList;
+    private final List<Skill> skillList;
     private BooleanButton obeyBtn;
     private BooleanButton attackPlayerBtn;
     private ModeButton modeButton;
-    private Button skillButton;
     private float xMouse;
     private float yMouse;
     public NoShadowTextField nameTextField;
@@ -72,6 +71,7 @@ public class CanisInfoScreen extends CanisBaseBook {
                 .stream()
                 .sorted(Comparator.comparing((t) -> I18n.get(t.getTranslationKey())))
                 .collect(Collectors.toList());
+        this.skillWidgets = new ArrayList<>();
     }
 
     public static void open(CanisEntity canis) {
@@ -137,14 +137,14 @@ public class CanisInfoScreen extends CanisBaseBook {
         this.currentPage = 0;
         this.recalculatePage(perPage);
         if (perPage < size) {
-            this.leftButton = new BackButton(25, perPage * 20 + 10, ITextComponent.nullToEmpty(""), (btn) -> {
+            this.leftButton = new BackButton(bookLeft - 48, perPage * 20 + 10, ITextComponent.nullToEmpty(""), (btn) -> {
                 this.currentPage = Math.max(0, this.currentPage - 1);
                 btn.active = this.currentPage > 0;
                 this.rightButton.active = true;
                 this.recalculatePage(perPage);
             }) { @Override public void renderToolTip(MatrixStack stack, int mouseX, int mouseY) { CanisInfoScreen.this.renderTooltip(stack, new TranslationTextComponent("canisgui.prevpage").withStyle(TextFormatting.ITALIC), mouseX, mouseY); }};
             this.leftButton.active = false;
-            this.rightButton = new ForwardButton(48, perPage * 20 + 10, ITextComponent.nullToEmpty(""), (btn) -> {
+            this.rightButton = new ForwardButton(bookLeft - 25, perPage * 20 + 10, ITextComponent.nullToEmpty(""), (btn) -> {
                 this.currentPage = Math.min(this.maxPages - 1, this.currentPage + 1);
                 btn.active = this.currentPage < this.maxPages - 1;
                 this.leftButton.active = true;
@@ -158,6 +158,12 @@ public class CanisInfoScreen extends CanisBaseBook {
     }
 
     private void recalculatePage(int perPage) {
+        GlStateManager._pushMatrix();
+        if(scaleFactor != 1) {
+            GlStateManager._scalef(scaleFactor, scaleFactor, scaleFactor);
+            xMouse /= scaleFactor;
+            yMouse /= scaleFactor;
+        }
         this.skillWidgets.forEach(this::removeWidget);
         this.skillWidgets.clear();
         this.maxPages = MathHelper.ceil(this.skillList.size() / (double) perPage);
@@ -165,7 +171,7 @@ public class CanisInfoScreen extends CanisBaseBook {
             int index = this.currentPage * perPage + i;
             if (index >= this.skillList.size()) break;
             Skill skill = this.skillList.get(index);
-            skillButton = new SkillButton(25, 10 + i * 20, ITextComponent.nullToEmpty(""), skill, (btn) -> {
+            Button skillButton = new SkillButton(this.bookLeft - 135, 10 + i * 20, ITextComponent.nullToEmpty(""), skill, (btn) -> {
                 int level = CanisInfoScreen.this.canis.getLevel(skill);
                 if (level < skill.getMaxLevel() && CanisInfoScreen.this.canis.canSpendPoints(skill.getLevelCost(level + 1))) {
                     CanisPacketHandler.send(PacketDistributor.SERVER.noArg(), new CanisSkillData(CanisInfoScreen.this.canis.getId(), skill));
@@ -186,6 +192,7 @@ public class CanisInfoScreen extends CanisBaseBook {
             this.skillWidgets.add(skillButton);
             this.addButton(skillButton);
         }
+        GlStateManager._popMatrix();
     }
 
     @OnlyIn(Dist.CLIENT)

@@ -2,6 +2,7 @@ package com.platinumg17.rigoranthusemortisreborn.canis.client.entity.render.laye
 
 import com.platinumg17.rigoranthusemortisreborn.canis.client.entity.model.CanisModel;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.CanisEntity;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.accouterments.CanisAccouterments;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import net.minecraft.util.ResourceLocation;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
@@ -46,5 +47,6 @@ public class CanisShadesModel extends AnimatedGeoModel<CanisEntity> {
         float scale = 11f;
         head.setPositionY(canis.getPositionY() / 16f);
         head.setPositionZ(canis.getPositionZ() * -1.2f);
+        head.setHidden(!entity.getAccoutrement(CanisAccouterments.SUNGLASSES.get()).isPresent());
     }
 }

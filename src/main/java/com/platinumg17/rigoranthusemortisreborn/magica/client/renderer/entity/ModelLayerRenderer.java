@@ -1,6 +1,7 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.client.renderer.entity;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
+import com.platinumg17.rigoranthusemortisreborn.canis.client.entity.model.CanisModel;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
@@ -60,14 +61,22 @@ public class ModelLayerRenderer<T extends Entity & IAnimatable> extends GeoLayer
         entityModelData.netHeadYaw = netHeadYaw;
         GeoModel model = geoModelProvider.getModel(geoModelProvider.getModelLocation(entity));
         AnimationEvent predicate = new AnimationEvent((IAnimatable)entity, limbSwing, limbSwingAmount, partialTicks, !(limbSwingAmount > -0.15F && limbSwingAmount < 0.15F), Collections.singletonList(entityModelData));
-//        IBone canis = ((CanisGeoModel)getEntityModel()).getBone("canis");
-//        geoModelProvider.setLivingAnimations((IAnimatable) entity, this.getUniqueID((T) entity), predicate);
-//        IBone head = ((CanisGeoModel)getEntityModel()).getBone("head");
-//
-//        matrixStackIn.translate((canis.getPositionX())/32f, (canis.getPositionY())/16f ,
-//                (canis.getPositionZ()));
-//        Quaternion quaternion = Vector3f.ZP.rotationDegrees(canis.getRotationZ());
-//        matrixStackIn.mulPose(quaternion);
+        IBone canis = ((CanisModel)getEntityModel()).getBone("canis");
+        geoModelProvider.setLivingAnimations((IAnimatable) entity, this.getUniqueID((T) entity), predicate);
+        IBone head = ((CanisModel)getEntityModel()).getBone("head");
+//        IBone whole_body = ((CanisModel)getEntityModel()).getBone("whole_body");
+//        IBone body = ((CanisModel)getEntityModel()).getBone("body");
+//        IBone mane = ((CanisModel)getEntityModel()).getBone("mane");
+//        matrixStackIn.translate((head.getPositionX())/32f, (head.getPositionY())/16f ,
+//                (head.getPositionZ()));
+//        matrixStackIn.translate((body.getPositionX())/32f, (body.getPositionY())/16f ,
+//                (body.getPositionZ()));
+//        matrixStackIn.translate((mane.getPositionX())/32f, (mane.getPositionY())/16f ,
+//                (mane.getPositionZ()));
+        matrixStackIn.translate((canis.getPositionX())/32f, (canis.getPositionY())/16f ,
+                (canis.getPositionZ()));
+        Quaternion quaternion = Vector3f.ZP.rotationDegrees(canis.getRotationZ());
+        matrixStackIn.mulPose(quaternion);
 
         Minecraft.getInstance().textureManager.bind(getTextureLocation((T) entity));
         Color renderColor = getRenderColor((T) entity, partialTicks, matrixStackIn, bufferIn, null, packedLightIn);
@@ -75,5 +84,4 @@ public class ModelLayerRenderer<T extends Entity & IAnimatable> extends GeoLayer
         render(model, (T) entity, partialTicks, renderType, matrixStackIn, bufferIn, null, packedLightIn, OverlayTexture.NO_OVERLAY, (float) renderColor.getRed() / 255f, (float) renderColor.getGreen() / 255f, (float) renderColor.getBlue() / 255f, (float) renderColor.getAlpha() / 255);
         matrixStackIn.popPose();
     }
-
 }

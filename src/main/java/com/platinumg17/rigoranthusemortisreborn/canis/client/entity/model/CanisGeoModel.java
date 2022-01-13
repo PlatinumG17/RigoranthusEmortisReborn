@@ -17,7 +17,7 @@ public class CanisGeoModel<T extends AbstractCanisEntity> extends AnimatedGeoMod
 
     @Override
     public ResourceLocation getModelLocation(T canis) {
-        return new ResourceLocation(EmortisConstants.MOD_ID, "geo/chordata.geo.json");
+        return new ResourceLocation(EmortisConstants.MOD_ID, "geo/canis/feral_canis_chordata.geo.json");
     }
 
     @Override
@@ -27,7 +27,7 @@ public class CanisGeoModel<T extends AbstractCanisEntity> extends AnimatedGeoMod
 
     @Override
     public ResourceLocation getAnimationFileLocation(T canis) {
-        return new ResourceLocation(EmortisConstants.MOD_ID, "animations/chordata.animation.json");
+        return new ResourceLocation(EmortisConstants.MOD_ID, "animations/canis/feral_canis_chordata.json");
     }
 
     @Override

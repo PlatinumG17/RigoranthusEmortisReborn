@@ -147,7 +147,6 @@ public class RigoranthusEmortisReborn {
 
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> Mod.EventBusSubscriber.Bus.FORGE.bus().get().register(PathClientEventHandler.class));
         Mod.EventBusSubscriber.Bus.FORGE.bus().get().register(PathFMLEventHandler.class);
-//        MinecraftForge.EVENT_BUS.register(this);
         ModSetup.initGeckolib();
         //  Client Events  //
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
@@ -155,7 +154,6 @@ public class RigoranthusEmortisReborn {
             modEventBus.addListener(CanisItems::registerItemColors);
             modEventBus.addListener(ClientEventHandler::onModelBakeEvent);
                 forgeEventBus.register(new ClientEventHandler());
-//                forgeEventBus.addListener(HomeboundRenderer::onWorldRenderLast);
 //            Minecraft mc = Minecraft.getInstance();
 //            if (mc != null) { // If mc is null we are running data gen so no need to add listener ((IReloadableResourceManager) mc.getResourceManager()).registerReloadListener(CanisTextureManager.INSTANCE);}
         });
@@ -164,15 +162,13 @@ public class RigoranthusEmortisReborn {
         AddonManager.init();
     }
     @SubscribeEvent public static void registerItems(RegistryEvent.Register<Item> event) {Registration.registerItems(event);}
-//    @SubscribeEvent public static void registerBlocks(RegistryEvent.Register<Block> event) {Registration.registerBlocks(event);}
 
     private void setup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
+            Networking.registerMessages();
             VanillaCompatRigoranthus.registerCompostables();       VanillaCompatRigoranthus.registerFlammables();
             VanillaCompatRigoranthus.registerDispenserBehaviors(); REPacketHandler.setupChannel();
             DominionCapability.register();                         FamiliarCap.register();
-//            APIRegistry.registerAmalgamatorRecipes();
-            Networking.registerMessages();
             ModPotions.addRecipes();                               CanisReviveCommand.registerSerializers();
             CanisPacketHandler.init();                             InteractionHandler.registerHandler(new HelmetInteractionHandler());
             FoodHandler.registerHandler(new MeatFoodHandler());    FoodHandler.registerDynPredicate(ChungusPupperSkill.INNER_DYN_PRED);
@@ -180,7 +176,7 @@ public class RigoranthusEmortisReborn {
             CanisEntity.initDataParameters();                      Capabilities.init();
             WorldEvent.registerFeatures();                         EmortisBiomeGen.addBiomeTypes();
             WoodType.register(RigoranthusWoodTypes.AZULOREAL);     WoodType.register(RigoranthusWoodTypes.JESSIC);
-//            EmortisSurfaceBuilder.Configured.registerConfiguredSurfaceBuilders();
+//            EmortisSurfaceBuilder.Configured.registerConfiguredSurfaceBuilders(); //            APIRegistry.registerAmalgamatorRecipes();
             if (Config.verdurousWoodlandsSpawnWeight.get() > 0) {
                 BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(EmortisBiomeGen.verdurousWoodlandsKey, Config.verdurousWoodlandsSpawnWeight.get()));}
             if (Config.verdurousFieldsSpawnWeight.get() > 0) {
@@ -263,10 +259,6 @@ public class RigoranthusEmortisReborn {
             gen.addProvider(new RERecipeProvider(gen));
         }
     }
-//    @SubscribeEvent
-//    public static void onServerStopped(final FMLServerStoppingEvent event) {
-//        Pathfinding.shutdown();
-//    }
     public static ResourceLocation rl(String path) {
         return new ResourceLocation(EmortisConstants.MOD_ID, path);
     }

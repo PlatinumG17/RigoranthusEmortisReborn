@@ -51,6 +51,6 @@ public class RERecipeProvider extends RecipeProvider {
 
     @Override
     protected void saveAdvancement(DirectoryCache cache, JsonObject advancementJson, Path pathIn) {
-        //NOOP - We dont replace any of the advancement things yet...
+        // - We dont replace any of the advancement things yet...
     }
 }

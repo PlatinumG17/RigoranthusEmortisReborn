@@ -1,29 +1,18 @@
 package com.platinumg17.rigoranthusemortisreborn.canis.common.canisnetwork;
 
-import com.platinumg17.rigoranthusemortisreborn.canis.common.SpecializedEntityTypes;
+import com.platinumg17.rigoranthusemortisreborn.canis.CanisItems;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.CanisEntity;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.skill.PredatorSkill;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
-import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
-import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.CanisEntity;
-import com.platinumg17.rigoranthusemortisreborn.canis.CanisItems;
-import com.platinumg17.rigoranthusemortisreborn.entity.mobs.FeralCanisEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.entity.monster.AbstractSkeletonEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.world.World;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LootingLevelEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent.PlayerLoggedInEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class CanisEventHandler {

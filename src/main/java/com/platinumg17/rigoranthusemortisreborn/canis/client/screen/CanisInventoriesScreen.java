@@ -76,10 +76,12 @@ public class CanisInventoriesScreen extends ContainerScreen<CanisInventoriesCont
 
     @Override
     protected void renderLabels(MatrixStack stack, int par1, int par2) {
-        this.font.draw(stack, this.title.getString(), 9, 5, 0x000000);
-        this.font.draw(stack, this.title.getString(), 8, 6, 0xFFFFFF);
-        this.font.draw(stack, this.inventory.getDisplayName().getString(), 9.0F, this.imageHeight - 96 + 2, 0x000000);
-        this.font.draw(stack, this.inventory.getDisplayName().getString(), 8.0F, this.imageHeight - 96 + 3, 0xFFFFFF);
+
+        this.font.draw(stack, this.title.getString(), 8, 6, 0x000000);
+        this.font.draw(stack, this.title.getString(), 9, 5, 0xFFFFFF);
+
+        this.font.draw(stack, this.inventory.getDisplayName().getString(), 8.0F, this.imageHeight - 96 + 3, 0x000000);
+        this.font.draw(stack, this.inventory.getDisplayName().getString(), 9.0F, this.imageHeight - 96 + 2, 0xFFFFFF);
     }
 
     @Override

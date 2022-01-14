@@ -44,9 +44,9 @@ public class CanisShadesModel extends AnimatedGeoModel<CanisEntity> {
         head.setRotationX(parentHead.getRotationX());
         head.setRotationY(parentHead.getRotationY());
         head.setRotationZ(parentHead.getRotationZ());
-        float scale = 11f;
-        head.setPositionY(canis.getPositionY() / 16f);
-        head.setPositionZ(canis.getPositionZ() * -1.2f);
+//        float scale = 11f;
+//        head.setPositionY(canis.getPositionY() / 16f);
+//        head.setPositionZ(canis.getPositionZ() * -1.2f);
         head.setHidden(!entity.getAccoutrement(CanisAccouterments.SUNGLASSES.get()).isPresent());
     }
 }

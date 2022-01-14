@@ -17,6 +17,7 @@ public class CanisPacketHandler {
         registerPacket(new FriendlyFirePacket(), FriendlyFireData.class);
         registerPacket(new OpenCanisScreenPacket(), OpenCanisScreenData.class);
         registerPacket(new CanisInventoryPagePacket(), CanisInventoryPageData.class);
+        registerPacket(new CanisDisplaySaddleClothPacket(), CanisSaddleClothData.class);
 //        registerPacket(new SendSkinPacket(), SendSkinData.class);
 //        registerPacket(new RequestSkinPacket(), RequestSkinData.class);
 //        registerPacket(new CanisTexturePacket(), CanisTextureData.class);

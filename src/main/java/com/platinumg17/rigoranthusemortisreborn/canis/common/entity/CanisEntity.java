@@ -1,7 +1,8 @@
 package com.platinumg17.rigoranthusemortisreborn.canis.common.entity;
 
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
-import com.platinumg17.rigoranthusemortisreborn.canis.CanisBlocks;
+import com.platinumg17.rigoranthusemortisreborn.api.apimagic.util.BlockUtil;
+import com.platinumg17.rigoranthusemortisreborn.canis.*;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.ai.FindWaterGoal;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.util.*;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
@@ -11,10 +12,7 @@ import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusSoundRegistry;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.canis.client.screen.CanisInfoScreen;
-import com.platinumg17.rigoranthusemortisreborn.canis.CanisAttributes;
-import com.platinumg17.rigoranthusemortisreborn.canis.CanisItems;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.accouterments.CanisAccouterments;
-import com.platinumg17.rigoranthusemortisreborn.canis.CanisSerializers;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.serializers.DimensionDependantArg;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.stats.StatsTracker;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.canisnetwork.packet.data.storage.CanisLocationStorage;
@@ -22,14 +20,8 @@ import com.platinumg17.rigoranthusemortisreborn.canis.common.canisnetwork.packet
 import com.platinumg17.rigoranthusemortisreborn.canis.common.SpecializedEntityTypes;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.CanisTags;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Optional;
-import java.util.Set;
-import java.util.UUID;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
@@ -38,6 +30,9 @@ import javax.annotation.Nullable;
 import com.platinumg17.rigoranthusemortisreborn.entity.mobs.FeralCanisEntity;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.IAnimationListener;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.ModEntities;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.pathfinding.MovementHandler;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.network.Networking;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.network.PacketAnimEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
@@ -56,6 +51,7 @@ import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.passive.horse.AbstractHorseEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
+import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -68,7 +64,6 @@ import net.minecraft.network.datasync.EntityDataManager.DataEntry;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
-import net.minecraft.server.management.PreYggdrasilConverter;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.ActionResult;
@@ -91,13 +86,12 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.ForgeMod;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.ITeleporter;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.registries.ForgeRegistries;
 import com.platinumg17.rigoranthusemortisreborn.api.apicanis.feature.WetSource;
 import com.platinumg17.rigoranthusemortisreborn.api.apicanis.feature.*;
 import com.platinumg17.rigoranthusemortisreborn.api.apicanis.entity.AbstractCanisEntity;
@@ -116,13 +110,14 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 /**
  * @author PlatinumG17 edit of ProPercivalalb
  */
-public class CanisEntity extends AbstractCanisEntity implements IAnimationListener {
+public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAnimationListener {
 
     private final AnimationFactory animationFactory = new AnimationFactory(this);
 
     private static final DataParameter<Optional<ITextComponent>> LAST_KNOWN_NAME = EntityDataManager.defineId(CanisEntity.class, DataSerializers.OPTIONAL_COMPONENT);
     private static final DataParameter<Byte> CANIS_FLAGS = EntityDataManager.defineId(CanisEntity.class, DataSerializers.BYTE);
     private static final DataParameter<Float> HUNGER_INT = EntityDataManager.defineId(CanisEntity.class, DataSerializers.FLOAT);
+    public static final DataParameter<String> COLOR = EntityDataManager.defineId(CanisEntity.class, DataSerializers.STRING);
 //    private static final DataParameter<String> CUSTOM_SKIN = EntityDataManager.defineId(CanisEntity.class, DataSerializers.STRING);
 //    private static final DataParameter<Byte> SIZE = EntityDataManager.defineId(CanisEntity.class, DataSerializers.BYTE);
     private static final DataParameter<ItemStack> BONE_VARIANT = EntityDataManager.defineId(CanisEntity.class, DataSerializers.ITEM_STACK);
@@ -158,26 +153,50 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
     private float headRotationCourse;
     private float headRotationCourseOld;
     private WetSource wetSource;
-    private boolean isShaking;
+    public boolean isShaking;
     private float timeCanisIsShaking;
     private float prevTimeCanisIsShaking;
     protected boolean canisJumping;
     protected float jumpPower;
 
     protected BlockPos targetBlock;
+    public BlockPos jukeboxPos;
+    public boolean partyCanis;
 
     public CanisEntity(EntityType<? extends CanisEntity> type, World worldIn) {
         super(type, worldIn);
         this.setTame(false);
         this.setGender(EnumGender.random(this.getRandom()));
+        this.moveControl = new MovementHandler(this);
     }
 
     @Override
     public void registerControllers(AnimationData animationData) {
         animationData.addAnimationController(new AnimationController<>(this, "walkController", 0, this::walkPredicate));
+//        animationData.addAnimationController(new AnimationController<>(this, "runController", 0, this::runPredicate));
         animationData.addAnimationController(new AnimationController<>(this, "attackController", 1, this::attackPredicate));
         animationData.addAnimationController(new AnimationController<>(this, "idleController", 0, this::idlePredicate));
+        animationData.addAnimationController(new AnimationController<>(this, "danceController", 1, this::dancePredicate));
+        animationData.addAnimationController(new AnimationController<>(this, "shakeController", 1, this::shakePredicate));
     }
+
+    private PlayState shakePredicate(AnimationEvent event) { return PlayState.CONTINUE; }
+
+    private PlayState dancePredicate(AnimationEvent event) {
+        if (this.partyCanis && this.jukeboxPos != null && BlockUtil.distanceFrom(position, jukeboxPos) <= 8) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("party_pupper"));
+            return PlayState.CONTINUE;
+        }
+        return PlayState.STOP;
+    }
+
+//    private <E extends IAnimatable> PlayState runPredicate(AnimationEvent<E> event) {
+//        if (event.isMoving()) {
+//            event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));
+//            return PlayState.CONTINUE;
+//        }
+//        return PlayState.STOP;
+//    }
 
     private <E extends IAnimatable> PlayState walkPredicate(AnimationEvent<E> event) {
         if (event.isMoving()) {
@@ -196,10 +215,7 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
         return PlayState.CONTINUE;
     }
 
-    @Override
-    public AnimationFactory getFactory() {
-        return this.animationFactory;
-    }
+    @Override public AnimationFactory getFactory() { return this.animationFactory; }
 
     @Override
     protected void updateControlFlags() {
@@ -211,17 +227,26 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
 
     @Override
     public void startAnimation(int arg) {
-        try{
-            if(arg == Animations.BITING.ordinal()){
+        try {
+            if (arg == Animations.BITING.ordinal()) {
                 AnimationController controller = this.animationFactory.getOrCreateAnimationData(this.hashCode()).getAnimationControllers().get("attackController");
                 controller.markNeedsReload();
                 controller.setAnimation(new AnimationBuilder().addAnimation("attack", false));
             }
-        }catch (Exception e){
+            if (arg == Animations.SHAKING.ordinal()) {
+                AnimationController controller = this.animationFactory.getOrCreateAnimationData(this.hashCode()).getAnimationControllers().get("shakeController");
+                controller.markNeedsReload();
+                controller.setAnimation(new AnimationBuilder().addAnimation("soggy_boi", false));
+            }
+        } catch (Exception e){
             e.printStackTrace();
         }
     }
-    public enum Animations{ BITING }
+    public enum Animations{ BITING, SHAKING }
+
+    public boolean canAttack(){
+        return getTarget() != null && this.getHealth() >= 1 && !this.isMode(EnumMode.DOCILE) && !this.isOrderedToSit();
+    }
 
     @Override
     protected void defineSynchedData() {
@@ -233,6 +258,7 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
         this.entityData.define(GENDER.get(), EnumGender.UNISEX);
         this.entityData.define(MODE.get(), EnumMode.DOCILE);
         this.entityData.define(HUNGER_INT, 60F);
+        this.entityData.define(COLOR, COLORS.WHITE.name());
 //        this.entityData.define(CUSTOM_SKIN, "");
         this.entityData.define(CANIS_LEVEL.get(), new CanisLevel(0, 0));
 //        this.entityData.define(SIZE, (byte) 3);
@@ -245,25 +271,47 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new SwimGoal(this));
         this.goalSelector.addGoal(1, new FindWaterGoal(this));
-//        this.goalSelector.addGoal(1, new PatrolAreaGoal(this));
+            //        this.goalSelector.addGoal(1, new PatrolAreaGoal(this));
         this.goalSelector.addGoal(2, new SitGoal(this));
-        this.goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.4F));
-        this.goalSelector.addGoal(5, new MeleeAttackGoal(this, 1.0D, true));
+//        this.goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.4F));
+//        this.goalSelector.addGoal(5, new MeleeAttackGoal(this, 1.0D, true));
         this.goalSelector.addGoal(5, new CanisMoveToBlockGoal(this));
         this.goalSelector.addGoal(5, new CanisWanderGoal(this, 1.0D));
         this.goalSelector.addGoal(6, new FetchGoal(this, 1.0D, 32.0F));
         this.goalSelector.addGoal(6, new CanisFollowMasterGoal(this, 1.0D, 10.0F, 2.0F));
-//        this.goalSelector.addGoal(7, new CanisBreedGoal(this, 1.0D));
+            //        this.goalSelector.addGoal(7, new CanisBreedGoal(this, 1.0D));
         this.goalSelector.addGoal(8, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
         this.goalSelector.addGoal(9, new CanisBegGoal(this, 8.0F));
         this.goalSelector.addGoal(10, new LookAtGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.addGoal(10, new LookRandomlyGoal(this));
         this.targetSelector.addGoal(1, new MasterHurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new MasterHurtTargetGoal(this));
-//        this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setAlertOthers());
+            //        this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setAlertOthers());
         this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, AbstractSkeletonEntity.class, false));
         this.targetSelector.addGoal(6, new BerserkerModeGoal<>(this, MonsterEntity.class, false));
         this.targetSelector.addGoal(6, new SentinelModeGoal(this, false));
+    }
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    public void setRecordPlayingNearby(BlockPos pos, boolean hasSound) {
+        super.setRecordPlayingNearby(pos, hasSound);
+        this.jukeboxPos = pos;
+        this.partyCanis = hasSound;
+    }
+
+    @Override
+    protected float getWaterSlowDown() {
+        int skillLevel = this.getLevel(CanisSkills.NEPTUNES_BANE);
+        float slowdown = skillLevel;
+
+        switch (skillLevel) {
+            case 1: slowdown = 0.975f; break;
+            case 2: slowdown = 0.875f; break;
+            case 3: slowdown = 0.775f; break;
+            case 4: slowdown = 0.675f; break;
+            case 5: slowdown = 0.575f; break;
+        }
+        return slowdown;
     }
 
     @Override
@@ -354,7 +402,7 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
 
     @Override
     public double getMyRidingOffset() {
-        return this.getVehicle() instanceof PlayerEntity ? 0.5D : 0.0D;
+        return this.getVehicle() instanceof PlayerEntity ? 0.65D : 0.0D;
     }
 
     @Override
@@ -362,6 +410,10 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
         super.tick();
 
         if (this.isAlive()) {
+            if (!level.isClientSide && level.getGameTime() % 10 == 0 && this.getName().getString().toLowerCase(Locale.ROOT).equals("jeb_")) {
+                this.entityData.set(COLOR, canisColors[level.random.nextInt(canisColors.length)]);
+            }
+
             this.headRotationCourseOld = this.headRotationCourse;
             if (this.isBegging()) {
                 this.headRotationCourse += (1.0F - this.headRotationCourse) * 0.4F;
@@ -433,6 +485,7 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
         super.aiStep();
         if (!this.level.isClientSide && this.wetSource != null && !this.isShaking && !this.isPathFinding() && this.isOnGround()) {
             this.startShaking();
+            Networking.sendToNearby(this.level, this, new PacketAnimEntity(this.getId(), Animations.SHAKING.ordinal()));
             this.level.broadcastEntityEvent(this, EmortisConstants.EntityState.CANIS_START_SHAKING);
         }
 
@@ -477,7 +530,7 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
         }
         if(ConfigValues.HOMINI_PARTICLES && this.level.isClientSide && this.getLevel().isHominiCanis()) {
             for (int i = 0; i < 2; i++) {
-                this.level.addParticle(ParticleTypes.ENCHANT, this.getRandomX(0.5D), this.getRandomY() - 0.25D, this.getRandomZ(0.5D), (this.random.nextDouble() - 0.5D) * 2D, -this.random.nextDouble(), (this.random.nextDouble() - 0.5D) * 2D);
+                this.level.addParticle(ParticleTypes.ENCHANT, this.getRandomX(0.5D), this.getRandomY() + 1.25D, this.getRandomZ(0.5D), (this.random.nextDouble() - 0.5D) * 2D, -this.random.nextDouble(), (this.random.nextDouble() - 0.5D) * 2D);
             }
         }
         // Check if canis bowl still exists every 50t/2.5s, if not remove
@@ -526,8 +579,18 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
                 return ActionResultType.SUCCESS;
             }
         }
+
+        if (player.getMainHandItem().getItem().is(Tags.Items.DYES)) {
+            DyeColor color = DyeColor.getColor(stack);
+            if (color == null || this.entityData.get(COLOR).equals(color.getName()) || !Arrays.asList(canisColors).contains(color.getName()))
+                return ActionResultType.SUCCESS;
+            this.entityData.set(COLOR, color.getName());
+            player.getMainHandItem().shrink(1);
+            return ActionResultType.SUCCESS;
+        }
+
         Optional<ICanisFoodHandler> foodHandler = FoodHandler.getMatch(this, stack, player);
-        if (foodHandler.isPresent()) { // && ((this.getCanisHunger() < this.getMaxHunger()) || (this.getHealth() < this.getMaxHealth()))) {
+        if (foodHandler.isPresent() && (((this.getCanisHunger() < this.getMaxHunger()) || (this.getHealth() < this.getMaxHealth())))) {
             this.playEatingSound();
             return foodHandler.get().consume(this, stack, player);
         }
@@ -1140,7 +1203,6 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
             skills.get(i).writeInstance(this, skillTag);
             skillList.add(skillTag);
         }
-
         compound.put("skills", skillList);
 
         ListNBT accoutrementList = new ListNBT();
@@ -1151,7 +1213,6 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
             accouterments.get(i).writeInstance(accoutrementTag);
             accoutrementList.add(accoutrementTag);
         }
-
         compound.put("accouterments", accoutrementList);
 
         compound.putString("mode", this.getMode().getSaveName());
@@ -1162,6 +1223,7 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
         });
 
 //        compound.putString("customSkinHash", this.getSkinHash());
+        compound.putBoolean("displayCloth", this.doDisplayCloth());
         compound.putBoolean("willObey", this.willObeyOthers());
         compound.putBoolean("friendlyFire", this.canPlayersAttack());
 //        compound.putInt("canisSize", this.getCanisSize());
@@ -1196,88 +1258,88 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
             }
             compound.put("bowls", bowlsList);
         }
+        compound.putString("color", this.entityData.get(COLOR));
         this.statsTracker.writeAdditional(compound);
         this.transmogrifications.forEach((alter) -> alter.onWrite(this, compound));
     }
 
-    @Override
-    public void load(CompoundNBT compound) {
-
-        // DataFix uuid entries and attribute ids
-        try {
-            if (NBTUtilities.hasOldUniqueId(compound, "UUID")) {
-                UUID entityUUID = NBTUtilities.getOldUniqueId(compound, "UUID");
-
-                compound.putUUID("UUID", entityUUID);
-                NBTUtilities.removeOldUniqueId(compound, "UUID");
-            }
-
-            if (compound.contains("OwnerUUID", Constants.NBT.TAG_STRING)) {
-                UUID ownerUUID = UUID.fromString(compound.getString("OwnerUUID"));
-
-                compound.putUUID("Owner", ownerUUID);
-                compound.remove("OwnerUUID");
-            } else if (compound.contains("Owner", Constants.NBT.TAG_STRING)) {
-                UUID ownerUUID = PreYggdrasilConverter.convertMobOwnerIfNecessary(this.getServer(), compound.getString("Owner"));
-
-                compound.putUUID("Owner", ownerUUID);
-            }
-
-            if (NBTUtilities.hasOldUniqueId(compound, "LoveCause")) {
-                UUID entityUUID = NBTUtilities.getOldUniqueId(compound, "LoveCause");
-
-                compound.putUUID("LoveCause", entityUUID);
-                NBTUtilities.removeOldUniqueId(compound, "LoveCause");
-            }
-        } catch (Exception e) {
-            RigoranthusEmortisReborn.LOGGER.error("Failed to data fix UUIDs: " + e.getMessage());
-        }
-
-        try {
-            if (compound.contains("Attributes", Constants.NBT.TAG_LIST)) {
-                ListNBT attributeList = compound.getList("Attributes", Constants.NBT.TAG_COMPOUND);
-                for (int i = 0; i < attributeList.size(); i++) {
-                    CompoundNBT attributeData = attributeList.getCompound(i);
-                    String namePrev = attributeData.getString("Name");
-                    Object name = namePrev;
-
-                    switch (namePrev) {
-                        case "forge.swimSpeed": name = ForgeMod.SWIM_SPEED; break;
-                        case "forge.nameTagDistance": name = ForgeMod.NAMETAG_DISTANCE; break;
-                        case "forge.entity_gravity": name = ForgeMod.ENTITY_GRAVITY; break;
-                        case "forge.reachDistance": name = ForgeMod.REACH_DISTANCE; break;
-                        case "generic.maxHealth": name = Attributes.MAX_HEALTH; break;
-                        case "generic.knockbackResistance": name = Attributes.KNOCKBACK_RESISTANCE; break;
-                        case "generic.movementSpeed": name = Attributes.MOVEMENT_SPEED; break;
-                        case "generic.armor": name = Attributes.ARMOR; break;
-                        case "generic.armorToughness": name = Attributes.ARMOR_TOUGHNESS; break;
-                        case "generic.followRange": name = Attributes.FOLLOW_RANGE; break;
-                        case "generic.attackKnockback": name = Attributes.ATTACK_KNOCKBACK; break;
-                        case "generic.attackDamage": name = Attributes.ATTACK_DAMAGE; break;
-                        case "generic.jumpStrength": name = CanisAttributes.JUMP_POWER; break;
-                        case "generic.critChance": name = CanisAttributes.CRIT_CHANCE; break;
-                        case "generic.critBonus": name = CanisAttributes.CRIT_BONUS; break;
-                    }
-                    ResourceLocation attributeRL = REUtil.getRegistryId(name);
-
-                    if (attributeRL != null && ForgeRegistries.ATTRIBUTES.containsKey(attributeRL)) {
-                        attributeData.putString("Name", attributeRL.toString());
-                        ListNBT modifierList = attributeData.getList("Modifiers", Constants.NBT.TAG_COMPOUND);
-                        for (int j = 0; j < modifierList.size(); j++) {
-                            CompoundNBT modifierData = modifierList.getCompound(j);
-                            if (NBTUtilities.hasOldUniqueId(modifierData, "UUID")) {
-                                UUID entityUUID = NBTUtilities.getOldUniqueId(modifierData, "UUID");
-
-                                modifierData.putUUID("UUID", entityUUID);
-                                NBTUtilities.removeOldUniqueId(modifierData, "UUID");
-                            }
-                        }
-                    } else {RigoranthusEmortisReborn.LOGGER.warn("Failed to data fix '" + namePrev + "'");}
-                }
-            }
-        } catch (Exception e) {RigoranthusEmortisReborn.LOGGER.error("Failed to data fix attribute IDs: " + e.getMessage());}
-        super.load(compound);
-    }
+//    @Override
+//    public void load(CompoundNBT compound) {
+//        // DataFix uuid entries and attribute ids
+//        try {
+//            if (NBTUtilities.hasOldUniqueId(compound, "UUID")) {
+//                UUID entityUUID = NBTUtilities.getOldUniqueId(compound, "UUID");
+//
+//                compound.putUUID("UUID", entityUUID);
+//                NBTUtilities.removeOldUniqueId(compound, "UUID");
+//            }
+//
+//            if (compound.contains("OwnerUUID", Constants.NBT.TAG_STRING)) {
+//                UUID ownerUUID = UUID.fromString(compound.getString("OwnerUUID"));
+//
+//                compound.putUUID("Owner", ownerUUID);
+//                compound.remove("OwnerUUID");
+//            } else if (compound.contains("Owner", Constants.NBT.TAG_STRING)) {
+//                UUID ownerUUID = PreYggdrasilConverter.convertMobOwnerIfNecessary(this.getServer(), compound.getString("Owner"));
+//
+//                compound.putUUID("Owner", ownerUUID);
+//            }
+//
+//            if (NBTUtilities.hasOldUniqueId(compound, "LoveCause")) {
+//                UUID entityUUID = NBTUtilities.getOldUniqueId(compound, "LoveCause");
+//
+//                compound.putUUID("LoveCause", entityUUID);
+//                NBTUtilities.removeOldUniqueId(compound, "LoveCause");
+//            }
+//        } catch (Exception e) {
+//            RigoranthusEmortisReborn.LOGGER.error("Failed to data fix UUIDs: " + e.getMessage());
+//        }
+//
+//        try {
+//            if (compound.contains("Attributes", Constants.NBT.TAG_LIST)) {
+//                ListNBT attributeList = compound.getList("Attributes", Constants.NBT.TAG_COMPOUND);
+//                for (int i = 0; i < attributeList.size(); i++) {
+//                    CompoundNBT attributeData = attributeList.getCompound(i);
+//                    String namePrev = attributeData.getString("Name");
+//                    Object name = namePrev;
+//
+//                    switch (namePrev) {
+//                        case "forge.swimSpeed": name = ForgeMod.SWIM_SPEED; break;
+//                        case "forge.nameTagDistance": name = ForgeMod.NAMETAG_DISTANCE; break;
+//                        case "forge.entity_gravity": name = ForgeMod.ENTITY_GRAVITY; break;
+//                        case "forge.reachDistance": name = ForgeMod.REACH_DISTANCE; break;
+//                        case "generic.maxHealth": name = Attributes.MAX_HEALTH; break;
+//                        case "generic.knockbackResistance": name = Attributes.KNOCKBACK_RESISTANCE; break;
+//                        case "generic.movementSpeed": name = Attributes.MOVEMENT_SPEED; break;
+//                        case "generic.armor": name = Attributes.ARMOR; break;
+//                        case "generic.armorToughness": name = Attributes.ARMOR_TOUGHNESS; break;
+//                        case "generic.followRange": name = Attributes.FOLLOW_RANGE; break;
+//                        case "generic.attackKnockback": name = Attributes.ATTACK_KNOCKBACK; break;
+//                        case "generic.attackDamage": name = Attributes.ATTACK_DAMAGE; break;
+//                        case "generic.jumpStrength": name = CanisAttributes.JUMP_POWER; break;
+//                        case "generic.critChance": name = CanisAttributes.CRIT_CHANCE; break;
+//                        case "generic.critBonus": name = CanisAttributes.CRIT_BONUS; break;
+//                    }
+//                    ResourceLocation attributeRL = REUtil.getRegistryId(name);
+//
+//                    if (attributeRL != null && ForgeRegistries.ATTRIBUTES.containsKey(attributeRL)) {
+//                        attributeData.putString("Name", attributeRL.toString());
+//                        ListNBT modifierList = attributeData.getList("Modifiers", Constants.NBT.TAG_COMPOUND);
+//                        for (int j = 0; j < modifierList.size(); j++) {
+//                            CompoundNBT modifierData = modifierList.getCompound(j);
+//                            if (NBTUtilities.hasOldUniqueId(modifierData, "UUID")) {
+//                                UUID entityUUID = NBTUtilities.getOldUniqueId(modifierData, "UUID");
+//
+//                                modifierData.putUUID("UUID", entityUUID);
+//                                NBTUtilities.removeOldUniqueId(modifierData, "UUID");
+//                            }
+//                        }
+//                    } else {RigoranthusEmortisReborn.LOGGER.warn("Failed to data fix '" + namePrev + "'");}
+//                }
+//            }
+//        } catch (Exception e) {RigoranthusEmortisReborn.LOGGER.error("Failed to data fix attribute IDs: " + e.getMessage());}
+//        super.load(compound);
+//    }
 
     @Override
     public void readAdditionalSaveData(CompoundNBT compound) {
@@ -1294,9 +1356,7 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
                 SkillInstance.readInstance(this, skillList.getCompound(i)).ifPresent(skillMap::add);
             }
         }
-//        else {
-//            BackwardsCompat.readSkillMapping(compound, skillMap);
-//        }
+//        else { BackwardsCompat.readSkillMapping(compound, skillMap); }
         this.markDataParameterDirty(SKILLS.get(), false); // Mark dirty so data is synced to client
 
         List<AccoutrementInstance> accouterments = this.getAccouterments();
@@ -1309,7 +1369,7 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
                 // Add directly so that nothing is lost, if number allowed on changes
                 AccoutrementInstance.readInstance(accoutrementList.getCompound(i)).ifPresent(accouterments::add);
             }
-        }//else {BackwardsCompat.readAccouterments(compound, accouterments);}
+        }//else { BackwardsCompat.readAccouterments(compound, accouterments); }
         this.markDataParameterDirty(ACCOUTERMENTS.get(), false); // Mark dirty so data is synced to client
         // Does what notifyDataManagerChange would have done but this way only does it once
         this.recalculateTransmogrificationsCache();
@@ -1336,11 +1396,10 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
             }// else {BackwardsCompat.readHasBone(compound, this::setBoneVariant);}
             this.setHungerDirectly(compound.getFloat("canisHunger"));
             this.setOwnersName(NBTUtilities.getTextComponent(compound, "lastKnownOwnerName"));
+            this.setDisplayCloth(compound.getBoolean("displayCloth"));
             this.setWillObeyOthers(compound.getBoolean("willObey"));
             this.setCanPlayersAttack(compound.getBoolean("friendlyFire"));
-//            if (compound.contains("canisSize", Constants.NBT.TAG_ANY_NUMERIC)) {
-//                this.setCanisSize(compound.getInt("canisSize"));
-//            }
+//            if (compound.contains("canisSize", Constants.NBT.TAG_ANY_NUMERIC)) { this.setCanisSize(compound.getInt("canisSize")); }
         } catch (Exception e) {
             RigoranthusEmortisReborn.LOGGER.error("Failed to load levels: " + e.getMessage());
             e.printStackTrace();
@@ -1400,6 +1459,9 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
 
         this.entityData.set(CANIS_BOWL_LOCATION.get(), bowlsData);
 
+        if (compound.contains("color"))
+            this.entityData.set(COLOR, compound.getString("color"));
+
         try {
             this.statsTracker.readAdditional(compound);
         } catch (Exception e) {
@@ -1414,7 +1476,6 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
                 e.printStackTrace();
             }
         });
-
     }
 
     @Override
@@ -1745,6 +1806,33 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
     public boolean get64Flag() {
         return this.getCanisFlag(64);
     }
+    public void setDisplayCloth(boolean displayCloth) {
+        this.setCanisFlag(128, displayCloth);
+    }
+    public boolean doDisplayCloth() {
+        return this.getCanisFlag(128);
+    }
+
+    public static String[] canisColors = { "pink", "magenta", "purple", "blue", "light_blue", "cyan", "green", "lime", "yellow", "orange", "red", "brown", "black", "gray", "light_gray", "white" };
+
+    public enum COLORS {
+        WHITE,
+        LIGHT_GRAY,
+        GRAY,
+        BLACK,
+        BROWN,
+        RED,
+        ORANGE,
+        YELLOW,
+        LIME,
+        GREEN,
+        CYAN,
+        LIGHT_BLUE,
+        BLUE,
+        PURPLE,
+        MAGENTA,
+        PINK
+    }
 
     public List<SkillInstance> getSkillMap() {
         return this.entityData.get(SKILLS.get());
@@ -1884,12 +1972,10 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimationListen
         this.setTame(false);
         this.navigation.stop();
         this.setOrderedToSit(false);
-//        this.setHealth(8);
         this.getSkillMap().clear();
         this.markDataParameterDirty(SKILLS.get());
         this.setOwnerUUID(null);
         this.setWillObeyOthers(false);
-//        this.setMode(EnumMode.DOCILE);
         this.remove(false);
 
         level.addFreshEntity(feralCanis);

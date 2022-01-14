@@ -43,7 +43,7 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 /**
- * @author PlatinumG17 edit of ProPerciliv
+ * @author PlatinumG17
  */
 @OnlyIn(Dist.CLIENT)
 public class CanisInfoScreen extends CanisBaseBook {
@@ -62,6 +62,8 @@ public class CanisInfoScreen extends CanisBaseBook {
     private float xMouse;
     private float yMouse;
     public NoShadowTextField nameTextField;
+    public Button displayClothButton;
+    public boolean clothButtonToggled;
 
     public CanisInfoScreen(CanisEntity canis, PlayerEntity player) {
         this.canis = canis;
@@ -72,6 +74,7 @@ public class CanisInfoScreen extends CanisBaseBook {
                 .sorted(Comparator.comparing((t) -> I18n.get(t.getTranslationKey())))
                 .collect(Collectors.toList());
         this.skillWidgets = new ArrayList<>();
+        clothButtonToggled = false;
     }
 
     public static void open(CanisEntity canis) {
@@ -82,8 +85,8 @@ public class CanisInfoScreen extends CanisBaseBook {
     @Override
     public void init() {
         super.init();
-//        layoutParts();
-        this.minecraft.keyboardHandler.setSendRepeatsToGui(true);
+        clothButtonToggled = false;
+        CanisInfoScreen.this.minecraft.keyboardHandler.setSendRepeatsToGui(true);
         nameTextField = new NoShadowTextField(this.font, bookLeft + 56, bookTop + 5, 200, 20,  new TranslationTextComponent("canisgui.enter_name"));
         if(nameTextField.getValue().isEmpty())
             nameTextField.setSuggestion(new TranslationTextComponent("canisgui.enter_name").getString());
@@ -101,11 +104,26 @@ public class CanisInfoScreen extends CanisBaseBook {
                 CanisPacketHandler.send(PacketDistributor.SERVER.noArg(), new CanisObeyData(this.canis.getId(), !this.canis.willObeyOthers()));
             });
             this.addButton(obeyBtn);
+
             attackPlayerBtn = new BooleanButton(this.bookMiddle + 47, this.bookBottom - 83, new StringTextComponent(String.valueOf(this.canis.canPlayersAttack())), button -> {
                 button.setMessage(new StringTextComponent(String.valueOf(!this.canis.canPlayersAttack())));
                 CanisPacketHandler.send(PacketDistributor.SERVER.noArg(), new FriendlyFireData(this.canis.getId(), !this.canis.canPlayersAttack()));
             });
             this.addButton(attackPlayerBtn);
+
+            displayClothButton = new DisplayClothButton(this.bookLeft + 34, this.bookBottom - 105, new StringTextComponent(String.valueOf(this.canis.doDisplayCloth())), button -> {
+                clothButtonToggled = !this.canis.doDisplayCloth();
+                button.setMessage(new StringTextComponent(String.valueOf(!this.canis.doDisplayCloth())));
+                CanisPacketHandler.send(PacketDistributor.SERVER.noArg(), new CanisSaddleClothData(this.canis.getId(), !this.canis.doDisplayCloth()));
+            }) {
+                @Override
+                public void renderToolTip(MatrixStack stack, int mouseX, int mouseY) {
+                    List<ITextComponent> list = new ArrayList<>();
+                    if (this.active) { list.add(new StringTextComponent(String.valueOf(CanisInfoScreen.this.canis.doDisplayCloth()))); }
+                    CanisInfoScreen.this.renderComponentTooltip(stack, list, mouseX, mouseY);
+                }
+            };
+            this.addButton(displayClothButton);
         }
         modeButton = new ModeButton(this.bookLeft + 44, this.bookBottom - 48, new TranslationTextComponent(this.canis.getMode().getUnlocalisedName()), button -> {
             EnumMode mode = CanisInfoScreen.this.canis.getMode().nextMode();
@@ -122,9 +140,8 @@ public class CanisInfoScreen extends CanisBaseBook {
                 if (CanisInfoScreen.this.canis.getMode() == EnumMode.WANDERING) {
                     if (CanisInfoScreen.this.canis.getBowlPos().isPresent()) {
                         double distance = CanisInfoScreen.this.canis.blockPosition().distSqr(CanisInfoScreen.this.canis.getBowlPos().get());
-                        if (distance > 256D) {
-                            list.add(new TranslationTextComponent("canis.mode.docile.distance", (int) Math.sqrt(distance)).withStyle(TextFormatting.RED));
-                        } else { list.add(new TranslationTextComponent("canis.mode.docile.bowl", (int) Math.sqrt(distance)).withStyle(TextFormatting.GREEN)); }
+                        if (distance > 256D) { list.add(new TranslationTextComponent("canis.mode.docile.distance", (int) Math.sqrt(distance)).withStyle(TextFormatting.RED)); }
+                        else { list.add(new TranslationTextComponent("canis.mode.docile.bowl", (int) Math.sqrt(distance)).withStyle(TextFormatting.GREEN)); }
                     } else { list.add(new TranslationTextComponent("canis.mode.docile.nobowl").withStyle(TextFormatting.RED)); }
                 }
                 CanisInfoScreen.this.renderComponentTooltip(stack, list, mouseX, mouseY);
@@ -157,6 +174,8 @@ public class CanisInfoScreen extends CanisBaseBook {
         this.addButton(new CanisGuiImageButton(bookRight - 68, bookBottom - 7, 0,0,41, 12, 41, 12, "textures/gui/clear_icon.png", (e) -> {Minecraft.getInstance().setScreen(null);}));
     }
 
+    /**
+    * @author ProPerciliv*/
     private void recalculatePage(int perPage) {
         GlStateManager._pushMatrix();
         if(scaleFactor != 1) {
@@ -219,7 +238,11 @@ public class CanisInfoScreen extends CanisBaseBook {
         this.buttons.forEach(widget -> {
             if (widget instanceof SkillButton) {
                 SkillButton sklBTN = (SkillButton)widget;
-                this.font.draw(stack, I18n.get(sklBTN.skill.getTranslationKey()), sklBTN.x + 28, sklBTN.y + 6, 11141290);
+                if (CanisInfoScreen.this.canis.getSkill(sklBTN.skill).isPresent()) {
+                    if (CanisInfoScreen.this.canis.getSkill(sklBTN.skill).get().level() >= 5) {
+                        this.font.draw(stack, I18n.get(sklBTN.skill.getTranslationKey()), sklBTN.x + 28, sklBTN.y + 6, 11184810);
+                    } else { this.font.draw(stack, I18n.get(sklBTN.skill.getTranslationKey()), sklBTN.x + 28, sklBTN.y + 6, 11141290); }
+                } else { this.font.draw(stack, I18n.get(sklBTN.skill.getTranslationKey()), sklBTN.x + 28, sklBTN.y + 6, 11141290); }
             }
         });
         nameTextField.setSuggestion(nameTextField.getValue().isEmpty() ? new TranslationTextComponent("canisgui.enter_name").getString() : "");
@@ -273,7 +296,7 @@ public class CanisInfoScreen extends CanisBaseBook {
         minecraft.font.draw(stack, new TranslationTextComponent("canisgui.close"), 237, 186, -8355712);
     }
 
-    private static class SkillButton extends Button {
+    private class SkillButton extends Button {
         protected Skill skill;
         private SkillButton(int x, int y, ITextComponent buttonText, Skill skill, Consumer<SkillButton> onPress) {
             super(x, y, 130, 19, buttonText, button -> onPress.accept((SkillButton) button));
@@ -288,7 +311,30 @@ public class CanisInfoScreen extends CanisBaseBook {
             RenderSystem.enableBlend();
             RenderSystem.defaultBlendFunc();
             RenderSystem.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-            this.blit(stack, this.x, this.y, 0, i * 19, this.width, this.height);
+            if (CanisInfoScreen.this.canis.getSkill(this.skill).isPresent()) {
+                if (CanisInfoScreen.this.canis.getSkill(this.skill).get().level() >= 5) {
+                    this.blit(stack, this.x, this.y, 0, 0, this.width, this.height);
+                } else { this.blit(stack, this.x, this.y, 0, 38 + (i * 19), this.width, this.height); }
+            } else { this.blit(stack, this.x, this.y, 0, i * 19, this.width, this.height); }
+            this.renderBg(stack, mc, mouseX, mouseY);
+        }
+    }
+
+    public class DisplayClothButton extends Button {
+        public DisplayClothButton(int x, int y, ITextComponent text, IPressable onPress) {
+            super(x, y, 14, 14, text, onPress);
+        }
+        @Override
+        public void renderButton(MatrixStack stack, int mouseX, int mouseY, float partialTicks) {
+            Minecraft mc = Minecraft.getInstance();
+            mc.getTextureManager().bind(Resources.SMALL_WIDGETS);
+            RenderSystem.color4f(1.0F, 1.0F, 1.0F, this.alpha);
+            int i = this.getYImage(this.isHovered());
+            RenderSystem.enableBlend();
+            RenderSystem.defaultBlendFunc();
+            RenderSystem.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+            if (CanisInfoScreen.this.clothButtonToggled) { this.blit(stack, this.x, this.y, 48, 0, this.width, this.height); }
+                else { this.blit(stack, this.x, this.y, 48, i * 14, this.width, this.height); }
             this.renderBg(stack, mc, mouseX, mouseY);
         }
     }

@@ -13,13 +13,16 @@ license="GNU GENERAL PUBLIC LICENSE"
     displayURL="https://www.curseforge.com/members/platinumg17/projects"
     displayName=" Rigoranthus Emortis Reborn"
 description='''
-Adds unique and Nasty Mobs & a Pet with a 3 stage Evolution Line! 
-What more could you want?
+Adds unique and Nasty Mobs while exploring some of the lore
+behind the origins of enchantments in minecraft!
+Tame a monster and slay mobs to gain access to new crafting systems
+that you can use to explore new combat options!
 
-Additionally, this mod adds a number of:
+Additionally, this mod adds some:
     - Tools & Resources
     - Weapons & Armor-sets
     - Decorative Blocks
+    - Biomes
 '''
 
 [[dependencies.rigoranthusemortisreborn]]
@@ -57,24 +60,10 @@ versionRange="[3.2.0,)"
 ordering="AFTER"
 side="BOTH"
 
-#[[dependencies.rigoranthusemortisreborn]]
-#modId="patchouli"
-#mandatory=true
-#versionRange="[1.16-42,)"
-#ordering="AFTER"
-#side="BOTH"
-
 [[dependencies.rigoranthusemortisreborn]]
 modId="jei"
 mandatory=false
 versionRange="[7,)"
-ordering="NONE"
-side="BOTH"
-
-[[dependencies.rigoranthusemortisreborn]]
-modId="ftbguilibrary"
-mandatory=false
-versionRange="[1,)"
 ordering="NONE"
 side="BOTH"
 
@@ -89,12 +78,5 @@ side="BOTH"
 modId="pmmo"
 mandatory=false
 versionRange="[1.16.5-3,)"
-ordering="NONE"
-side="BOTH"
-
-[[dependencies.rigoranthusemortisreborn]]
-modId="libx"
-mandatory=false
-versionRange="[1.16.3-1.0.76,)"
 ordering="NONE"
 side="BOTH"

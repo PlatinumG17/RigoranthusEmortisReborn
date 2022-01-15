@@ -26,13 +26,13 @@ public class CanisFollowMasterGoal extends Goal {
     private int timeToRecalcPath;
     private float oldWaterCost;
 
-    public CanisFollowMasterGoal(CanisEntity canisIn, double speedIn, float minDistIn, float maxDistIn) {
+    public CanisFollowMasterGoal(CanisEntity canisIn, double speedIn, float startDist, float stopDist) {
         this.canis = canisIn;
         this.world = canisIn.level;
         this.followSpeed = speedIn;
         this.navigator = canisIn.getNavigation();
-        this.startDist = minDistIn;
-        this.stopDist = maxDistIn;
+        this.startDist = startDist;
+        this.stopDist = stopDist;
         this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
     }
 
@@ -63,6 +63,7 @@ public class CanisFollowMasterGoal extends Goal {
             return false;
         } else {
             return this.canis.distanceToSqr(this.owner) > this.stopDist * this.stopDist;
+//            return !(this.canis.distanceToSqr(this.owner) <= (double)(this.stopDist * this.stopDist));
         }
     }
 
@@ -107,7 +108,7 @@ public class CanisFollowMasterGoal extends Goal {
 
     public float getMinStartDistanceSq() {
         if (this.canis.isMode(EnumMode.GUARD)) {
-            return 6F;
+            return 3F;
         }
         return this.startDist * this.startDist;
     }

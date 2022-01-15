@@ -1,6 +1,5 @@
 package com.platinumg17.rigoranthusemortisreborn.canis.common.items;
 
-import com.platinumg17.rigoranthusemortisreborn.canis.common.SpecializedEntityTypes;
 import com.platinumg17.rigoranthusemortisreborn.entity.mobs.SummonedCadaver;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.ModEntities;
 import net.minecraft.block.BlockState;
@@ -21,6 +20,7 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.RayTraceContext;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.Style;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -57,7 +57,7 @@ public class CadaverSummoningCharmItem extends Item {
                 SummonedCadaver cadaver = (SummonedCadaver)entity;
                 if (player != null) {
                     cadaver.setTame(true);
-                    cadaver.setCustomName(new TranslationTextComponent("entity.rigoranthusemortisreborn.familiar_cadaver").withStyle(Style.EMPTY.withItalic(true)));
+                    cadaver.setCustomName(player.getDisplayName().copy().append(new TranslationTextComponent("entity.rigoranthusemortisreborn.familiar_cadaver")).setStyle(Style.EMPTY.withColor(TextFormatting.DARK_RED).withItalic(true)));
                     cadaver.setOwnerUUID(player.getUUID());
                 }
                 itemstack.shrink(1);
@@ -78,11 +78,11 @@ public class CadaverSummoningCharmItem extends Item {
                 if (!(worldIn.getBlockState(blockpos).getBlock() instanceof FlowingFluidBlock)) {
                     return new ActionResult<>(ActionResultType.PASS, itemstack);
                 } else if (worldIn.mayInteract(playerIn, blockpos) && playerIn.mayUseItemAt(blockpos, raytraceresult.getDirection(), itemstack)) {
-                    Entity entity = SpecializedEntityTypes.CANIS.get().spawn((ServerWorld) worldIn, itemstack, playerIn, blockpos, SpawnReason.SPAWN_EGG, false, false);
+                    Entity entity = ModEntities.SUMMONED_CADAVER.spawn((ServerWorld) worldIn, itemstack, playerIn, blockpos, SpawnReason.SPAWN_EGG, false, false);
                     if (entity instanceof SummonedCadaver) {
                         SummonedCadaver cadaver = (SummonedCadaver)entity;
                         cadaver.setTame(true);
-                        cadaver.setCustomName(new TranslationTextComponent("entity.rigoranthusemortisreborn.familiar_cadaver").withStyle(Style.EMPTY.withItalic(true)));
+                        cadaver.setCustomName(playerIn.getDisplayName().copy().append(new TranslationTextComponent("entity.rigoranthusemortisreborn.familiar_cadaver")).setStyle(Style.EMPTY.withColor(TextFormatting.DARK_RED).withItalic(true)));
                         cadaver.setOwnerUUID(playerIn.getUUID());
                         itemstack.shrink(1);
 

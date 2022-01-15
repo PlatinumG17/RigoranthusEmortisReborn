@@ -51,12 +51,12 @@ public class RigoranthusTagRegistry {
         public static final Tags.IOptionalNamedTag<Item> STORAGE_BLOCKS = createForgeTag("storage_blocks");
         public static final Tags.IOptionalNamedTag<Item> ESOTERICUM = createForgeTag("storage_blocks/esotericum");
 
-        public static final Tags.IOptionalNamedTag<Item> CRUSHING_HAMMER = createTag("crushing_hammer");
+//        public static final Tags.IOptionalNamedTag<Item> CRUSHING_HAMMER = createTag("crushing_hammer");
         public static final Tags.IOptionalNamedTag<Item> NETHERITE_INGOTS = createForgeTag("ingots/netherite");
         public static final Tags.IOptionalNamedTag<Item> AZULOREAL_FENCE = createForgeTag("wooden_fences/azuloreal");
         public static final Tags.IOptionalNamedTag<Item> AZULOREAL_FENCE_GATE = createForgeTag("fence_gates/azuloreal");
 
-        public static final Tags.IOptionalNamedTag<Item> CRUSHING_HAMMERS = createTag("crushing_hammers");
+//        public static final Tags.IOptionalNamedTag<Item> CRUSHING_HAMMERS = createTag("crushing_hammers");
         public static final Tags.IOptionalNamedTag<Item> RIGORANTHUS_INGOTS = createTag("rigoranthus_ingots");
         public static final Tags.IOptionalNamedTag<Item> APOGEAN_ARMOR_SET = createTag("armor/apogean_armor_set");
         public static final Tags.IOptionalNamedTag<Item> AQUEOUS_ARMOR_SET = createTag("armor/aqueous_armor_set");

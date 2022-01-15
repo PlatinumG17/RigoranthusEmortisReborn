@@ -182,8 +182,8 @@ public class RigoranthusEmortisReborn {
         });
     }
     @SubscribeEvent
-    public void onServerStarting(final FMLServerStartingEvent event) {LOGGER.info("Ah baby! Da mod man make a message thing!");}
-    public void registerCommands(final RegisterCommandsEvent event) {CanisReviveCommand.register(event.getDispatcher());}
+    public void onServerStarting(final FMLServerStartingEvent event) { LOGGER.info("Ah baby! Da mod man make a message thing!"); LOGGER.info("Wait... If I change the changelog, do I have to put that in the Changelog?"); }
+    public void registerCommands(final RegisterCommandsEvent event) { CanisReviveCommand.register(event.getDispatcher()); }
 
     @OnlyIn(Dist.CLIENT)
     public void doClientStuff(final FMLClientSetupEvent event) {

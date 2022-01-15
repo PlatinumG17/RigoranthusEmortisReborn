@@ -100,7 +100,7 @@ public class SummonedCadaver extends TameableEntity implements IAnimatable, IAni
                 if (this.getOwner() != null) {
                     this.setOwnersName(this.getOwner().getName());
                 }
-                if (this.tickCount >= 2400) {
+                if (this.tickCount >= 5000) {
                     ParticleUtil.spawnPoof((ServerWorld) level, blockPosition());
                     this.remove(false);
                 }
@@ -245,15 +245,14 @@ public class SummonedCadaver extends TameableEntity implements IAnimatable, IAni
 
     protected void addBehaviourGoals() {
         this.goalSelector.addGoal(1, new SummonedCadaverAttackGoal(this, false));
-        this.goalSelector.addGoal(2, new FollowMasterGoal(this,1, 10, 5));
+        this.goalSelector.addGoal(2, new FollowOwnerGoal(this, 1.0D, 8.0F, 2.0F, false));
         this.goalSelector.addGoal(2, new OwnerHurtByTargetGoal(this));
         this.goalSelector.addGoal(2, new OwnerHurtTargetGoal(this));
-        this.goalSelector.addGoal(5, new MoveTowardsTargetGoal(this, 1.0f, 8));
+        this.goalSelector.addGoal(3, new MoveTowardsTargetGoal(this, 1.0f, 8));
         this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
         this.goalSelector.addGoal(8, new RandomWalkingGoal(this, 1.0f));
         this.goalSelector.addGoal(8, new SwimGoal(this));
-        this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers(this.getClass()));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, MonsterEntity.class, true));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, MonsterEntity.class, false));
     }
 
     @Override
@@ -270,9 +269,9 @@ public class SummonedCadaver extends TameableEntity implements IAnimatable, IAni
             this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(Config.sunderedCadaverMaxHealth.get());
             this.setHealth(30.0F);
         } else {
-            this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(Config.sunderedCadaverMaxHealth.get()); // was 8
+            this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(Config.sunderedCadaverMaxHealth.get());
         }
-        this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(Config.sunderedCadaverAttackDamage.get()); // was 4
+        this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(Config.sunderedCadaverAttackDamage.get() + 1);
     }
 
     @Override
@@ -285,7 +284,7 @@ public class SummonedCadaver extends TameableEntity implements IAnimatable, IAni
 
     @Override // blockAttackFromPlayer
     public boolean skipAttackInteraction(Entity entityIn) {
-        return entityIn != this.getOwner();
+        return entityIn == this.getOwner();
     }
 
     @Override
@@ -538,12 +537,11 @@ public class SummonedCadaver extends TameableEntity implements IAnimatable, IAni
                     this.ticksUntilNextPathRecalculation += 15;
                 }
             }
-
             this.ticksUntilNextAttack = Math.max(this.ticksUntilNextAttack - 1, 0);
         }
 
         protected void attack(LivingEntity target) {
-            double d0 = 3;
+            double d0 = 4;
             if (BlockUtil.distanceFrom(target.position, this.mob.position) <= d0 ) {
                 this.ticksUntilNextAttack = 20;
                 this.mob.doHurtTarget(target);
@@ -551,7 +549,7 @@ public class SummonedCadaver extends TameableEntity implements IAnimatable, IAni
         }
 
         protected double getAttackReachSqr(LivingEntity targetEntity) {
-            return (double)(4.0F + targetEntity.getBbWidth());
+            return (double)(targetEntity.getBbWidth() * 2);
         }
     }
 }

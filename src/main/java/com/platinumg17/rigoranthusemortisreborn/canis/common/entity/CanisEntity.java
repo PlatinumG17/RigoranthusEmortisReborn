@@ -279,7 +279,7 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
         this.goalSelector.addGoal(5, new CanisMoveToBlockGoal(this));
         this.goalSelector.addGoal(5, new CanisWanderGoal(this, 1.0D));
         this.goalSelector.addGoal(6, new FetchGoal(this, 1.0D, 32.0F));
-        this.goalSelector.addGoal(6, new CanisFollowMasterGoal(this, 1.0D, 10.0F, 2.0F));
+        this.goalSelector.addGoal(6, new CanisFollowMasterGoal(this, 1.0D, 10.0F, 5.0F));
             //        this.goalSelector.addGoal(7, new CanisBreedGoal(this, 1.0D));
         this.goalSelector.addGoal(8, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
         this.goalSelector.addGoal(9, new CanisBegGoal(this, 8.0F));
@@ -306,11 +306,11 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
         float slowdown = skillLevel;
 
         switch (skillLevel) {
-            case 1: slowdown = 0.975f; break;
-            case 2: slowdown = 0.875f; break;
-            case 3: slowdown = 0.775f; break;
-            case 4: slowdown = 0.675f; break;
-            case 5: slowdown = 0.575f; break;
+            case 1: slowdown = 0.675f; break;
+            case 2: slowdown = 0.575f; break;
+            case 3: slowdown = 0.475f; break;
+            case 4: slowdown = 0.375f; break;
+            case 5: slowdown = 0.275f; break;
         }
         return slowdown;
     }
@@ -552,7 +552,7 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
                 if (!this.level.isClientSide) {
                     this.usePlayerItem(player, stack);
                     if (stack.getItem() == CanisItems.TRAINING_TREAT.get() || this.random.nextInt(3) == 0) {
-//                        this.tame(player);
+                        this.tame(player);
                         this.navigation.stop();
                         this.setTarget((LivingEntity) null);
                         this.setOrderedToSit(true);

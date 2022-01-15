@@ -18,7 +18,7 @@
 				{
 					"name": "helmet",
 					"parent": "armor",
-					"pivot": [-0.25, 16.63484, -21.36532],
+					"pivot": [-0.25, 17.38484, -15.11532],
 					"cubes": [
 						{
 							"origin": [-4.5, 19.3, -23],
@@ -135,7 +135,7 @@
 				{
 					"name": "chestplate",
 					"parent": "armor",
-					"pivot": [0, 0, 0],
+					"pivot": [0, 20, 0],
 					"cubes": [
 						{
 							"origin": [-6.3, 18.1, -16.75],

@@ -1,6 +1,6 @@
 package com.platinumg17.rigoranthusemortisreborn.entity.model.mobs.canis;
 
-import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
+import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.entity.mobs.FeralCanisEntity;
 import net.minecraft.util.ResourceLocation;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
@@ -10,20 +10,20 @@ import software.bernie.geckolib3.model.provider.data.EntityModelData;
 import javax.annotation.Nullable;
 
 public class FeralCanisGeoModel extends AnimatedGeoModel<FeralCanisEntity> {
-    private static final ResourceLocation TEXTURE_CANIS = new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/canis/feral_canis_chordata.png");
-    private static final ResourceLocation TEXTURE_KYPHOS = new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/kyphos.png");
-    private static final ResourceLocation TEXTURE_CAVALIER = new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/cavalier.png");
-    private static final ResourceLocation TEXTURE_HOMINI = new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/homini.png");
+    private static final ResourceLocation TEXTURE_CANIS = RigoranthusEmortisReborn.rl("textures/entity/canis/feral_canis_chordata.png");
+    private static final ResourceLocation TEXTURE_KYPHOS = RigoranthusEmortisReborn.rl("textures/entity/kyphos.png");
+    private static final ResourceLocation TEXTURE_CAVALIER = RigoranthusEmortisReborn.rl("textures/entity/cavalier.png");
+    private static final ResourceLocation TEXTURE_HOMINI = RigoranthusEmortisReborn.rl("textures/entity/homini.png");
 
-    private static final ResourceLocation ANIMATION_CANIS = new ResourceLocation(EmortisConstants.MOD_ID, "animations/canis/feral_canis_chordata.json");
-    private static final ResourceLocation ANIMATION_KYPHOS = new ResourceLocation(EmortisConstants.MOD_ID, "animations/kyphos.animation.json");
-    private static final ResourceLocation ANIMATION_CAVALIER = new ResourceLocation(EmortisConstants.MOD_ID, "animations/cavalier.animation.json");
-    private static final ResourceLocation ANIMATION_HOMINI = new ResourceLocation(EmortisConstants.MOD_ID, "animations/homini.animation.json");
+    private static final ResourceLocation ANIMATION_CANIS = RigoranthusEmortisReborn.rl("animations/canis/feral_canis_chordata.json");
+    private static final ResourceLocation ANIMATION_KYPHOS = RigoranthusEmortisReborn.rl("animations/kyphos.animation.json");
+    private static final ResourceLocation ANIMATION_CAVALIER = RigoranthusEmortisReborn.rl("animations/cavalier.animation.json");
+    private static final ResourceLocation ANIMATION_HOMINI = RigoranthusEmortisReborn.rl("animations/homini.animation.json");
 
-    private static final ResourceLocation MODEL_CANIS = new ResourceLocation(EmortisConstants.MOD_ID, "geo/canis/feral_canis_chordata.geo.json");
-    private static final ResourceLocation MODEL_KYPHOS = new ResourceLocation(EmortisConstants.MOD_ID, "geo/kyphos.geo.json");
-    private static final ResourceLocation MODEL_CAVALIER = new ResourceLocation(EmortisConstants.MOD_ID, "geo/cavalier.geo.json");
-    private static final ResourceLocation MODEL_HOMINI = new ResourceLocation(EmortisConstants.MOD_ID, "geo/homini.geo.json");
+    private static final ResourceLocation MODEL_CANIS = RigoranthusEmortisReborn.rl("geo/canis/feral_canis_chordata.geo.json");
+    private static final ResourceLocation MODEL_KYPHOS = RigoranthusEmortisReborn.rl("geo/kyphos.geo.json");
+    private static final ResourceLocation MODEL_CAVALIER = RigoranthusEmortisReborn.rl("geo/cavalier.geo.json");
+    private static final ResourceLocation MODEL_HOMINI = RigoranthusEmortisReborn.rl("geo/homini.geo.json");
 
     @Override
     public ResourceLocation getModelLocation(FeralCanisEntity canisChordataEntity) {

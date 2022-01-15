@@ -1,12 +1,10 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.common.datagen;
 
-import com.platinumg17.rigoranthusemortisreborn.api.RigoranthusEmortisRebornAPI;
+import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.recipe.CraftingPressRecipe;
-import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.IItemProvider;
-import net.minecraft.util.ResourceLocation;
 
 public class CraftingPressRecipeBuilder {
 
@@ -51,7 +49,7 @@ public class CraftingPressRecipeBuilder {
 
     public CraftingPressRecipe build(){
         if(recipe.id.getPath().equals("empty"))
-            recipe.id = new ResourceLocation(EmortisConstants.MOD_ID, recipe.output.getItem().getRegistryName().getPath());
+            recipe.id = RigoranthusEmortisReborn.rl(recipe.output.getItem().getRegistryName().getPath());
         return recipe;
     }
 }

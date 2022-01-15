@@ -18,6 +18,8 @@ public class CanisSerializers {
     public static final RegistryObject<DataSerializerEntry> ACCOUTREMENT_SERIALIZER = register2("accouterments", AccoutrementSerializer::new);
     public static final RegistryObject<DataSerializerEntry> GENDER_SERIALIZER = register2("gender", GenderSerializer::new);
     public static final RegistryObject<DataSerializerEntry> MODE_SERIALIZER = register2("mode", ModeSerializer::new);
+    public static final RegistryObject<DataSerializerEntry> CLOTH_COLOR_SERIALIZER = register2("cloth_color", ClothColorSerializer::new);
+    public static final RegistryObject<DataSerializerEntry> SHADES_COLOR_SERIALIZER = register2("shades_color", ShadesColorSerializer::new);
     public static final RegistryObject<DataSerializerEntry> CANIS_LEVEL_SERIALIZER = register2("canis_level", CanisLevelSerializer::new);
     public static final RegistryObject<DataSerializerEntry> BED_LOC_SERIALIZER = register2("canis_bed_location", BedLocationsSerializer::new);
 

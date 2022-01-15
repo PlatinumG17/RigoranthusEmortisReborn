@@ -14,8 +14,6 @@ import javax.annotation.Nullable;
 
 public class SunderedCadaverRenderer extends GeoEntityRenderer<SunderedCadaverEntity> {
 
-//    protected static final ResourceLocation TEXTURE = new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/sundered_cadaver.png");
-
     public SunderedCadaverRenderer(EntityRendererManager manager) {
         super(manager, new SunderedCadaverGeoModel());
         this.shadowRadius = 0.5F;

@@ -1,6 +1,6 @@
 package com.platinumg17.rigoranthusemortisreborn.core.registry;
 
-import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
+import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.tags.BlockTags;
@@ -30,7 +30,7 @@ public class RigoranthusTagRegistry {
         public static final Tags.IOptionalNamedTag<Block> STORAGE_BLOCKS = createForgeTag("storage_blocks");
 
         public static IOptionalNamedTag<Block> createTag(String name) {
-            return BlockTags.createOptional(new ResourceLocation(EmortisConstants.MOD_ID, name));
+            return BlockTags.createOptional(RigoranthusEmortisReborn.rl(name));
         }
         public static IOptionalNamedTag<Block> createForgeTag(String name) {
             return BlockTags.createOptional(new ResourceLocation("forge", name));
@@ -94,7 +94,7 @@ public class RigoranthusTagRegistry {
         public static final Tags.IOptionalNamedTag<Item> TOOLS = createForgeTag("tools");
 
         public static IOptionalNamedTag<Item> createTag(String name) {
-            return ItemTags.createOptional(new ResourceLocation(EmortisConstants.MOD_ID, name));
+            return ItemTags.createOptional(RigoranthusEmortisReborn.rl(name));
         }
         public static IOptionalNamedTag<Item> createForgeTag(String name) {
             return ItemTags.createOptional(new ResourceLocation("forge", name));

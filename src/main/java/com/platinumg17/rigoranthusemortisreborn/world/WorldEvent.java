@@ -2,6 +2,7 @@ package com.platinumg17.rigoranthusemortisreborn.world;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
+import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.DominionBerryBush;
@@ -106,7 +107,7 @@ public class WorldEvent {
                             new RuleEntry(new RandomBlockMatchRuleTest(Blocks.WHEAT, 0.3F), AlwaysTrueRuleTest.INSTANCE, Blocks.CARROTS.defaultBlockState()),
                             new RuleEntry(new RandomBlockMatchRuleTest(Blocks.WHEAT, 0.2F), AlwaysTrueRuleTest.INSTANCE, Blocks.POTATOES.defaultBlockState()),
                             new RuleEntry(new RandomBlockMatchRuleTest(Blocks.WHEAT, 0.1F), AlwaysTrueRuleTest.INSTANCE, Blocks.BEETROOTS.defaultBlockState())))));
-    public static final ResourceLocation EXTRA_RECONDITE_ORE = new ResourceLocation(EmortisConstants.MOD_ID, "recondite_ore_extra");
+    public static final ResourceLocation EXTRA_RECONDITE_ORE = RigoranthusEmortisReborn.rl("recondite_ore_extra");
 
     public static final Feature<BlockStateFeatureConfig> LIGHTS = new SingleBlockFeature(BlockStateFeatureConfig.CODEC) {
         public void onStatePlace(ISeedReader seed, ChunkGenerator chunkGenerator, Random rand, BlockPos pos, BlockStateFeatureConfig config) {

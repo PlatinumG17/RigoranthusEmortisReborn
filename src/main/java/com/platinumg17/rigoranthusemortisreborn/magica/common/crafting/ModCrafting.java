@@ -1,8 +1,8 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.common.crafting;
 
+import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -23,8 +23,8 @@ public class ModCrafting {
             BOOK_UPGRADE_RECIPE = new BookUpgradeRecipe.Serializer();
             DYE_RECIPE = new DyeRecipe.Serializer();
             event.getRegistry().registerAll(
-                    BOOK_UPGRADE_RECIPE.setRegistryName(new ResourceLocation(EmortisConstants.MOD_ID, "book_upgrade")),
-                    DYE_RECIPE.setRegistryName(new ResourceLocation(EmortisConstants.MOD_ID, "dye"))
+                    BOOK_UPGRADE_RECIPE.setRegistryName(RigoranthusEmortisReborn.rl("book_upgrade")),
+                    DYE_RECIPE.setRegistryName(RigoranthusEmortisReborn.rl("dye"))
             );
         }
     }

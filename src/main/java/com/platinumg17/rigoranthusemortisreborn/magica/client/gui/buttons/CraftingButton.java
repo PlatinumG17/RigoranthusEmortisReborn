@@ -1,11 +1,10 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.client.gui.buttons;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
-import com.platinumg17.rigoranthusemortisreborn.magica.client.gui.book.GuiSpellBook;
+import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.interfaces.SpellValidationError;
+import com.platinumg17.rigoranthusemortisreborn.magica.client.gui.book.GuiSpellBook;
 import net.minecraft.client.gui.widget.button.Button;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -45,7 +44,7 @@ public class CraftingButton extends GuiImageButton {
             }
             //GuiSpellBook.drawFromTexture(new ResourceLocation(ExampleMod.MODID, this.resourceIcon), x, y, 0, 0, 20, 20, 20, 20);
             if(!this.resourceIcon.equals("")){
-                GuiSpellBook.drawFromTexture(new ResourceLocation(EmortisConstants.MOD_ID, "textures/items/" + resourceIcon), x + 3, y + 2, u, v, 16, 16, 16, 16,ms);
+                GuiSpellBook.drawFromTexture(RigoranthusEmortisReborn.rl("textures/items/" + resourceIcon), x + 3, y + 2, u, v, 16, 16, 16, 16,ms);
             }
             if(parent.isMouseInRelativeRange(parX, parY, x, y, width, height)){
                 if(parent.api.getSpell_map().containsKey(this.spellTag)) {

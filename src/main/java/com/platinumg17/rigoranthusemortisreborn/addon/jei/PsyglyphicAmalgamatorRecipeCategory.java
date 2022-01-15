@@ -4,8 +4,8 @@ import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.mojang.blaze3d.matrix.MatrixStack;
+import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.psyglyphic_amalgamator.PsyglyphicAmalgamatorRecipe;
-import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.BlockRegistry;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;
@@ -27,7 +27,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class PsyglyphicAmalgamatorRecipeCategory implements IRecipeCategory<PsyglyphicAmalgamatorRecipe> {
-    public final static ResourceLocation UID = new ResourceLocation(EmortisConstants.MOD_ID, "amalgamator");
+    public final static ResourceLocation UID = RigoranthusEmortisReborn.rl("amalgamator");
 
     IGuiHelper helper;
     public IDrawable background;

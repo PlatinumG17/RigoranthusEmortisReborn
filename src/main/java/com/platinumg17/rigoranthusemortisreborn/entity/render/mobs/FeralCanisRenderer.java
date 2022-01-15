@@ -33,7 +33,7 @@ public class FeralCanisRenderer extends GeoEntityRenderer<FeralCanisEntity> {
 
 
 
-//    private static final ResourceLocation TEXTURE_CANIS = new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/chordata.png");
+//    private static final ResourceLocation TEXTURE_CANIS = RigoranthusEmortisReborn.rl("textures/entity/chordata.png");
 //    private static final RenderType[] GLOW = new RenderType[2];
 //
 //    protected final List<GeoLayerRenderer<T>> layerRenderers = Lists.newArrayList();

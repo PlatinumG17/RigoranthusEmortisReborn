@@ -1,5 +1,6 @@
 package com.platinumg17.rigoranthusemortisreborn.api.apimagic.entity.familiar;
 
+import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.util.NBTUtil;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.capability.SerializableCapabilityProvider;
@@ -71,7 +72,7 @@ public class FamiliarCap implements IFamiliarCap {
 
     public static final Direction DEFAULT_FACING = null;
 
-    public static final ResourceLocation ID = new ResourceLocation(EmortisConstants.MOD_ID, "familiar");
+    public static final ResourceLocation ID = RigoranthusEmortisReborn.rl("familiar");
 
     public static void register(){
         CapabilityManager.INSTANCE.register(IFamiliarCap.class, new Capability.IStorage<IFamiliarCap>() {

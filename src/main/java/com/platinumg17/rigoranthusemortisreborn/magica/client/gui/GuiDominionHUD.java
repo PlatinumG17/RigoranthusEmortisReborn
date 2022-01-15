@@ -1,15 +1,14 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.client.gui;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
+import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.client.renderer.IDisplayDominion;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.dominion.IDominion;
-import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.ClientInfo;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.capability.DominionCapability;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 
 public class GuiDominionHUD extends AbstractGui {
     private static final Minecraft minecraft = Minecraft.getInstance();
@@ -31,13 +30,13 @@ public class GuiDominionHUD extends AbstractGui {
         int dominionLength = 96;
         dominionLength = (int) ((dominionLength) * ((dominion.getCurrentDominion()) / ((double) dominion.getMaxDominion() - 0.0)));
         int height = minecraft.getWindow().getGuiScaledHeight() - 5;
-        Minecraft.getInstance().textureManager.bind(new ResourceLocation(EmortisConstants.MOD_ID, "textures/gui/dominionbar_gui_border.png"));
+        Minecraft.getInstance().textureManager.bind(RigoranthusEmortisReborn.rl("textures/gui/dominionbar_gui_border.png"));
         blit(ms,offsetLeft, height - 18, 0, 0, 108, 18, 256, 256);
         int dominionOffset = (int) (((ClientInfo.ticksInGame + pt) / 3 % (33))) * 6;
         // 96
-        Minecraft.getInstance().textureManager.bind(new ResourceLocation(EmortisConstants.MOD_ID, "textures/gui/dominionbar_gui_dominion.png"));
+        Minecraft.getInstance().textureManager.bind(RigoranthusEmortisReborn.rl("textures/gui/dominionbar_gui_dominion.png"));
         blit(ms,offsetLeft + 9, height - 9, 0, dominionOffset, dominionLength,6, 256, 256);
-        Minecraft.getInstance().textureManager.bind(new ResourceLocation(EmortisConstants.MOD_ID, "textures/gui/dominionbar_gui_border.png"));
+        Minecraft.getInstance().textureManager.bind(RigoranthusEmortisReborn.rl("textures/gui/dominionbar_gui_border.png"));
         blit(ms,offsetLeft, height - 17, 0, 18, 108, 20, 256, 256);
     }
 }

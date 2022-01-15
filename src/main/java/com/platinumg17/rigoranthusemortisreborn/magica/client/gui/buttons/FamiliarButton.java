@@ -1,13 +1,12 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.client.gui.buttons;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
+import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
+import com.platinumg17.rigoranthusemortisreborn.api.apimagic.entity.familiar.AbstractFamiliarHolder;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.gui.book.GuiFamiliarScreen;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.gui.book.GuiSpellBook;
-import com.platinumg17.rigoranthusemortisreborn.api.apimagic.entity.familiar.AbstractFamiliarHolder;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.button.Button;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
@@ -42,7 +41,7 @@ public class FamiliarButton extends Button {
     public void render(MatrixStack ms, int mouseX, int mouseY, float partialTicks) {
         if (visible) {
             if(this.resourceIcon != null && !this.resourceIcon.equals("")) {
-                GuiSpellBook.drawFromTexture(new ResourceLocation(EmortisConstants.MOD_ID, "textures/items/" + this.resourceIcon), x, y, 0, 0, 16, 16,16,16 , ms);
+                GuiSpellBook.drawFromTexture(RigoranthusEmortisReborn.rl("textures/items/" + this.resourceIcon), x, y, 0, 0, 16, 16,16,16 , ms);
             }
             if(parent.isMouseInRelativeRange(mouseX, mouseY, x, y, width, height)){
                 List<ITextComponent> tip = new ArrayList<>();

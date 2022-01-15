@@ -1,5 +1,6 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.common.capability;
 
+import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.dominion.IDominion;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import net.minecraft.entity.Entity;
@@ -30,7 +31,7 @@ public class DominionCapability {
 
     public static final Direction DEFAULT_FACING = null;
 
-    public static final ResourceLocation ID = new ResourceLocation(EmortisConstants.MOD_ID, "dominion");
+    public static final ResourceLocation ID = RigoranthusEmortisReborn.rl("dominion");
 
     public static void register(){
 

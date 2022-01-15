@@ -4,14 +4,16 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.platinumg17.rigoranthusemortisreborn.api.apicanis.interfaces.IThrowableItem;
 import com.platinumg17.rigoranthusemortisreborn.canis.client.entity.model.CanisModel;
+import com.platinumg17.rigoranthusemortisreborn.canis.client.entity.render.layer.CanisArmorModel;
 import com.platinumg17.rigoranthusemortisreborn.canis.client.entity.render.layer.CanisShadesModel;
 import com.platinumg17.rigoranthusemortisreborn.canis.client.entity.render.layer.SaddleModel;
 import com.platinumg17.rigoranthusemortisreborn.canis.client.entity.render.layer.SatchelModel;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.CanisEntity;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.accouterments.CanisAccouterments;
-import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.Resources;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.renderer.entity.ModelLayerRenderer;
+import com.platinumg17.rigoranthusemortisreborn.magica.client.renderer.entity.TransparentModelLayerRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
@@ -28,28 +30,15 @@ import software.bernie.geckolib3.util.RenderUtils;
 
 import javax.annotation.Nullable;
 
+import static com.platinumg17.rigoranthusemortisreborn.canis.common.lib.Resources.COLLAR_WHITE;
+import static com.platinumg17.rigoranthusemortisreborn.canis.common.lib.Resources.TAME_CANIS_TEXTURE;
+
 public class CanisRenderer extends GeoEntityRenderer<CanisEntity> {
-    private static final ResourceLocation WHITE = new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/canis/collar_colors/canis_white.png");
-    private static final ResourceLocation LIGHT_GRAY = new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/canis/collar_colors/canis_light_gray.png");
-    private static final ResourceLocation GRAY = new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/canis/collar_colors/canis_gray.png");
-    private static final ResourceLocation BLACK = new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/canis/collar_colors/canis_black.png");
-    private static final ResourceLocation BROWN = new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/canis/collar_colors/canis_brown.png");
-    private static final ResourceLocation RED = new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/canis/collar_colors/canis_red.png");
-    private static final ResourceLocation ORANGE = new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/canis/collar_colors/canis_orange.png");
-    private static final ResourceLocation YELLOW = new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/canis/collar_colors/canis_yellow.png");
-    private static final ResourceLocation LIME = new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/canis/collar_colors/canis_lime.png");
-    private static final ResourceLocation GREEN = new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/canis/collar_colors/canis_green.png");
-    private static final ResourceLocation CYAN = new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/canis/collar_colors/canis_cyan.png");
-    private static final ResourceLocation LIGHT_BLUE = new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/canis/collar_colors/canis_light_blue.png");
-    private static final ResourceLocation BLUE = new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/canis/collar_colors/canis_blue.png");
-    private static final ResourceLocation PURPLE = new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/canis/collar_colors/canis_purple.png");
-    private static final ResourceLocation MAGENTA = new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/canis/collar_colors/canis_magenta.png");
-    private static final ResourceLocation PINK = new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/canis/collar_colors/canis_pink.png");
-    private static final ResourceLocation CHORDATA = new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/canis/tame_canis_chordata.png");
 
     public CanisRenderer(EntityRendererManager renderManager) {
         super(renderManager, new CanisModel());
-        this.addLayer(new ModelLayerRenderer(this, new CanisShadesModel(this.getGeoModelProvider())));
+        this.addLayer(new ModelLayerRenderer(this, new CanisArmorModel(this.getGeoModelProvider())));
+        this.addLayer(new TransparentModelLayerRenderer(this, new CanisShadesModel(this.getGeoModelProvider())));
         this.addLayer(new ModelLayerRenderer(this, new SatchelModel(this.getGeoModelProvider())));
         this.addLayer(new ModelLayerRenderer(this, new SaddleModel(this.getGeoModelProvider())));
 //        this.addLayer(new CanisSkillLayer(this));
@@ -59,9 +48,9 @@ public class CanisRenderer extends GeoEntityRenderer<CanisEntity> {
     IRenderTypeBuffer buffer;
     ResourceLocation text;
 
-    private float r = 0.3F;
-    private float g = 0.3F;
-    private float b = 0.3F;
+    private float r;
+    private float g;
+    private float b;
 //    private float a = 0.3F;
 
     public void setColor(float red, float green, float blue/*, float alpha*/) {
@@ -86,12 +75,8 @@ public class CanisRenderer extends GeoEntityRenderer<CanisEntity> {
 
     @Override
     public void render(CanisEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
-        if (entityIn.isCanisWet()) {
-            float f = entityIn.getShadingWhileWet(partialTicks);
-            this.setColor(f, f, f);
-        }
         super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
-        if (this.shouldShowName(entityIn) && !entityIn.isVehicle()) {
+        if (this.shouldShowName(entityIn) && !entityIn.canBeControlledByRider()) {
             double d0 = this.entityRenderDispatcher.distanceToSqr(entityIn);
             if (d0 <= 64 * 64) {
                 String tip = entityIn.getMode().getTip();
@@ -102,14 +87,14 @@ public class CanisRenderer extends GeoEntityRenderer<CanisEntity> {
                 }
             }
         }
-        if (entityIn.isCanisWet()) {this.setColor(r, g, b);}
     }
 
     @Override
     public void renderRecursively(GeoBone bone, MatrixStack stack, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
-//        float r = canis.isCanisWet() ? 0.01F : 0.0F;
-//        float g = canis.isCanisWet() ? 0.01F : 0.0F;
-//        float b = canis.isCanisWet() ? 0.01F : 0.0F;
+        if (canis.isCanisWet()) {
+            float f = canis.getShadingWhileWet(140);
+            this.setColor(f, f, f);
+        }
         if (canis.hasBone()) {
             if (bone.getName().equals("jaw")) {
                 stack.pushPose();
@@ -117,26 +102,32 @@ public class CanisRenderer extends GeoEntityRenderer<CanisEntity> {
                 stack.translate(-0.1F, 0.05F, -0.22F);
                 stack.mulPose(Vector3f.YP.rotationDegrees(45.0F));
                 stack.mulPose(Vector3f.XP.rotationDegrees(90.0F));
-
                 IThrowableItem throwableItem = canis.getThrowableItem();
                 Minecraft.getInstance().getItemInHandRenderer().renderItem(canis, throwableItem != null ? throwableItem.getRenderStack(canis.getBoneVariant()) : canis.getBoneVariant(), ItemCameraTransforms.TransformType.GROUND, false, stack, this.buffer, packedLightIn);
                 stack.popPose();
-                bufferIn = buffer.getBuffer(RenderType.entityCutoutNoCull(text));
+                bufferIn = buffer.getBuffer(RenderType.entityTranslucent(text));
             }
         }
-        super.renderRecursively(bone, stack, bufferIn, packedLightIn, packedOverlayIn, red/* + r*/, green/* + g*/, blue/* + b*/, /*this.a **/ alpha);
+        if (bone.getName().equals("shades")) {
+            stack.pushPose();
+            RenderUtils.moveToPivot(bone, stack);
+            stack.popPose();
+            bufferIn = buffer.getBuffer(RenderType.entityCutoutNoCull(text));
+        }
+        if (canis.isCanisWet()) { this.setColor(0.9F, 0.9F, 0.9F); }
+        super.renderRecursively(bone, stack, bufferIn, packedLightIn, packedOverlayIn, this.r * red, this.g * green, this.b * blue, /*this.a **/ alpha);
     }
 
-    public ResourceLocation getColor(CanisEntity e){
+    public ResourceLocation getColor(CanisEntity e) {
         String color = e.getEntityData().get(CanisEntity.COLOR).toLowerCase();
         if(color.isEmpty())
-            return WHITE;
-        return new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/canis/collar_colors/canis_" + color +".png");
+            return COLLAR_WHITE;
+        return Resources.getCanisCollar(color);
     }
 
     @Override
     public ResourceLocation getTextureLocation(CanisEntity entity) {
-        return entity.getAccoutrement(CanisAccouterments.DYEABLE_COLLAR.get()).isPresent() ? getColor(entity) : CHORDATA;
+        return entity.getAccoutrement(CanisAccouterments.DYEABLE_COLLAR.get()).isPresent() ? getColor(entity) : TAME_CANIS_TEXTURE;
     }
 
     private ITextComponent getNameUnknown(CanisEntity canisIn) {

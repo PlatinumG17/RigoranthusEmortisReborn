@@ -1,5 +1,6 @@
 package com.platinumg17.rigoranthusemortisreborn.magica;
 
+import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -15,18 +16,18 @@ public class TextureEvent {
     @SubscribeEvent
     public static void textEvent(TextureStitchEvent.Pre event){
         if(event.getMap().location().toString().equals("minecraft:textures/atlas/chest.png")) {
-            ResourceLocation jessicNormal = new ResourceLocation(EmortisConstants.MOD_ID,"entity/chest/jessic/normal");
-            ResourceLocation jessicNormalLeft = new ResourceLocation(EmortisConstants.MOD_ID,"entity/chest/jessic/normal_left");
-            ResourceLocation jessicNormalRight = new ResourceLocation(EmortisConstants.MOD_ID,"entity/chest/jessic/normal_right");
-            ResourceLocation jessicTrapped = new ResourceLocation(EmortisConstants.MOD_ID,"entity/chest/jessic/trapped");
-            ResourceLocation jessicTrappedLeft = new ResourceLocation(EmortisConstants.MOD_ID,"entity/chest/jessic/trapped_left");
-            ResourceLocation jessicTrappedRight = new ResourceLocation(EmortisConstants.MOD_ID,"entity/chest/jessic/trapped_right");
-            ResourceLocation azulorealNormal = new ResourceLocation(EmortisConstants.MOD_ID,"entity/chest/azuloreal/normal");
-            ResourceLocation azulorealNormalLeft = new ResourceLocation(EmortisConstants.MOD_ID,"entity/chest/azuloreal/normal_left");
-            ResourceLocation azulorealNormalRight = new ResourceLocation(EmortisConstants.MOD_ID,"entity/chest/azuloreal/normal_right");
-            ResourceLocation azulorealTrapped = new ResourceLocation(EmortisConstants.MOD_ID,"entity/chest/azuloreal/trapped");
-            ResourceLocation azulorealTrappedLeft = new ResourceLocation(EmortisConstants.MOD_ID,"entity/chest/azuloreal/trapped_left");
-            ResourceLocation azulorealTrappedRight = new ResourceLocation(EmortisConstants.MOD_ID,"entity/chest/azuloreal/trapped_right");
+            ResourceLocation jessicNormal = RigoranthusEmortisReborn.rl("entity/chest/jessic/normal");
+            ResourceLocation jessicNormalLeft = RigoranthusEmortisReborn.rl("entity/chest/jessic/normal_left");
+            ResourceLocation jessicNormalRight = RigoranthusEmortisReborn.rl("entity/chest/jessic/normal_right");
+            ResourceLocation jessicTrapped = RigoranthusEmortisReborn.rl("entity/chest/jessic/trapped");
+            ResourceLocation jessicTrappedLeft = RigoranthusEmortisReborn.rl("entity/chest/jessic/trapped_left");
+            ResourceLocation jessicTrappedRight = RigoranthusEmortisReborn.rl("entity/chest/jessic/trapped_right");
+            ResourceLocation azulorealNormal = RigoranthusEmortisReborn.rl("entity/chest/azuloreal/normal");
+            ResourceLocation azulorealNormalLeft = RigoranthusEmortisReborn.rl("entity/chest/azuloreal/normal_left");
+            ResourceLocation azulorealNormalRight = RigoranthusEmortisReborn.rl("entity/chest/azuloreal/normal_right");
+            ResourceLocation azulorealTrapped = RigoranthusEmortisReborn.rl("entity/chest/azuloreal/trapped");
+            ResourceLocation azulorealTrappedLeft = RigoranthusEmortisReborn.rl("entity/chest/azuloreal/trapped_left");
+            ResourceLocation azulorealTrappedRight = RigoranthusEmortisReborn.rl("entity/chest/azuloreal/trapped_right");
             event.addSprite(jessicNormal);
             event.addSprite(jessicNormalLeft);
             event.addSprite(jessicNormalRight);
@@ -41,8 +42,8 @@ public class TextureEvent {
             event.addSprite(azulorealTrappedRight);
         }
         if(event.getMap().location().toString().equals("minecraft:textures/atlas/signs.png")) {
-            ResourceLocation jessicSign = new ResourceLocation(EmortisConstants.MOD_ID,"entity/signs/jessic");
-            ResourceLocation azulorealSign = new ResourceLocation(EmortisConstants.MOD_ID,"entity/signs/jessic");
+            ResourceLocation jessicSign = RigoranthusEmortisReborn.rl("entity/signs/jessic");
+            ResourceLocation azulorealSign = RigoranthusEmortisReborn.rl("entity/signs/jessic");
             event.addSprite(jessicSign);
             event.addSprite(azulorealSign);
         }

@@ -1,7 +1,7 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.client.renderer.item;
 
+import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.interfaces.ISpellTier;
-import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.items.SpellBook;
 import net.minecraft.client.renderer.model.ItemCameraTransforms;
 import net.minecraft.util.ResourceLocation;
@@ -9,12 +9,12 @@ import net.minecraft.util.ResourceLocation;
 import javax.annotation.Nullable;
 
 public class SpellBookModel extends TransformAnimatedModel<SpellBook> {
-    ResourceLocation T1 =  new ResourceLocation(EmortisConstants.MOD_ID , "geo/spellbook_tier1.geo.json");
-    ResourceLocation T2 =  new ResourceLocation(EmortisConstants.MOD_ID , "geo/spellbook_tier2.geo.json");
-    ResourceLocation T3 =  new ResourceLocation(EmortisConstants.MOD_ID , "geo/spellbook_tier3.geo.json");
-    ResourceLocation T3_CLOSED =  new ResourceLocation(EmortisConstants.MOD_ID , "geo/spellbook_tier3closed.geo.json");
-    ResourceLocation T1_CLOSED =  new ResourceLocation(EmortisConstants.MOD_ID , "geo/spellbook_tier1closed.geo.json");
-    ResourceLocation T2_CLOSED =  new ResourceLocation(EmortisConstants.MOD_ID , "geo/spellbook_tier2closed.geo.json");
+    ResourceLocation T1 =  RigoranthusEmortisReborn.rl("geo/spellbook_tier1.geo.json");
+    ResourceLocation T2 =  RigoranthusEmortisReborn.rl("geo/spellbook_tier2.geo.json");
+    ResourceLocation T3 =  RigoranthusEmortisReborn.rl("geo/spellbook_tier3.geo.json");
+    ResourceLocation T3_CLOSED =  RigoranthusEmortisReborn.rl("geo/spellbook_tier3closed.geo.json");
+    ResourceLocation T1_CLOSED =  RigoranthusEmortisReborn.rl("geo/spellbook_tier1closed.geo.json");
+    ResourceLocation T2_CLOSED =  RigoranthusEmortisReborn.rl("geo/spellbook_tier2closed.geo.json");
 
     public boolean isOpen;
 
@@ -44,11 +44,11 @@ public class SpellBookModel extends TransformAnimatedModel<SpellBook> {
 
     @Override
     public ResourceLocation getTextureLocation(SpellBook object){
-        return new ResourceLocation(EmortisConstants.MOD_ID, "textures/items/spellbook_purple.png");
+        return RigoranthusEmortisReborn.rl("textures/items/spellbook_purple.png");
     }
 
     @Override
     public ResourceLocation getAnimationFileLocation(SpellBook animatable) {
-        return new ResourceLocation(EmortisConstants.MOD_ID , "animations/spellbook_animations.json");
+        return RigoranthusEmortisReborn.rl("animations/spellbook_animations.json");
     }
 }

@@ -1,10 +1,9 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.common.network;
 
-import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
+import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
@@ -25,7 +24,7 @@ public class Networking {
     public static int nextID(){return ID++;}
     public static void registerMessages(){
         System.out.println("Registering Magic packets!");
-        INSTANCE = NetworkRegistry.newSimpleChannel(new ResourceLocation(EmortisConstants.MOD_ID, "magica_network"), () -> "1.0", s->true, s->true);
+        INSTANCE = NetworkRegistry.newSimpleChannel(RigoranthusEmortisReborn.rl("magica_network"), () -> "1.0", s->true, s->true);
 
         INSTANCE.registerMessage(nextID(),
                 PacketOpenSpellBook.class,

@@ -1,6 +1,8 @@
 package com.platinumg17.rigoranthusemortisreborn.addon.jei;
 
-import com.platinumg17.rigoranthusemortisreborn.api.RigoranthusEmortisRebornAPI;
+import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.IBeddingMaterial;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.ICasingMaterial;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.psyglyphic_amalgamator.PsyglyphicAmalgamatorRecipe;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.psyglyphic_amalgamator.PsyglyphicEnchantingRecipe;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.recipe.CraftingPressRecipe;
@@ -11,7 +13,6 @@ import com.platinumg17.rigoranthusemortisreborn.canis.common.util.CanisBedUtil;
 import com.platinumg17.rigoranthusemortisreborn.config.ConfigValues;
 import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.potions.ModPotions;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.spell.effect.EffectCrush;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.BlockRegistry;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.MagicItemsRegistry;
 import mezz.jei.api.IModPlugin;
@@ -29,8 +30,6 @@ import net.minecraft.potion.PotionUtils;
 import net.minecraft.potion.Potions;
 import net.minecraft.util.ResourceLocation;
 import org.apache.commons.lang3.tuple.Pair;
-import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.IBeddingMaterial;
-import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.ICasingMaterial;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -41,7 +40,7 @@ public class RigoranthusJEIPlugin implements IModPlugin {
 
 	@Override
 	public ResourceLocation getPluginUid() {
-		return new ResourceLocation(EmortisConstants.MOD_ID, "plugin_" + EmortisConstants.MOD_ID);
+		return RigoranthusEmortisReborn.rl("plugin_" + EmortisConstants.MOD_ID);
 	}
 
 	@Override
@@ -49,7 +48,6 @@ public class RigoranthusJEIPlugin implements IModPlugin {
 		registry.addRecipeCategories(
 				new CraftingPressRecipeCategory(registry.getJeiHelpers().getGuiHelper()),
 				new PsyglyphicAmalgamatorRecipeCategory(registry.getJeiHelpers().getGuiHelper())
-//				new CrushRecipeCategory(registry.getJeiHelpers().getGuiHelper())
 		);
 	}
 
@@ -62,7 +60,6 @@ public class RigoranthusJEIPlugin implements IModPlugin {
 		if (ConfigValues.enableJeiPlugin && ConfigValues.enableJeiCatalysts) {
 			registry.addRecipeCatalyst(new ItemStack(BlockRegistry.EMORTIC_CRAFTING_PRESS_BLOCK), CraftingPressRecipeCategory.UID);
 			registry.addRecipeCatalyst(new ItemStack(BlockRegistry.PSYGLYPHIC_AMALG_BLOCK), PsyglyphicAmalgamatorRecipeCategory.UID);
-//			registry.addRecipeCatalyst(new ItemStack(RigoranthusEmortisRebornAPI.getInstance().getGlyphItem(EffectCrush.INSTANCE)), CrushRecipeCategory.UID);
 
 			registry.addRecipeCatalyst(new ItemStack(Registration.MASTERFUL_SMELTERY.get()), VanillaRecipeCategoryUid.FURNACE);
 			registry.addRecipeCatalyst(new ItemStack(Registration.MASTERFUL_SMELTERY.get()), VanillaRecipeCategoryUid.FUEL);
@@ -103,7 +100,6 @@ public class RigoranthusJEIPlugin implements IModPlugin {
 	public void registerRecipes(IRecipeRegistration registration) {
 		List<CraftingPressRecipe> pressRecipes = new ArrayList<>();
 		List<PsyglyphicAmalgamatorRecipe> amalgamator = new ArrayList<>();
-//		List<CrushRecipe> crushRecipes = new ArrayList<>();
 		RecipeManager manager = Minecraft.getInstance().level.getRecipeManager();
 		for(IRecipe i : manager.getRecipes()){
 			if(i instanceof CraftingPressRecipe){
@@ -112,11 +108,7 @@ public class RigoranthusJEIPlugin implements IModPlugin {
 			if(i instanceof PsyglyphicAmalgamatorRecipe && !(i instanceof PsyglyphicEnchantingRecipe)){
 				amalgamator.add((PsyglyphicAmalgamatorRecipe) i);
 			}
-//			if(i instanceof CrushRecipe){
-//				crushRecipes.add((CrushRecipe) i);
-//			}
 		}
-//		registration.addRecipes(crushRecipes, CrushRecipeCategory.UID);
 		registration.addRecipes(pressRecipes, CraftingPressRecipeCategory.UID);
 		registration.addRecipes(amalgamator, PsyglyphicAmalgamatorRecipeCategory.UID);
 

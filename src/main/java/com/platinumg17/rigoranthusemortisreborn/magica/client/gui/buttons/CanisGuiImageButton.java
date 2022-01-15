@@ -1,8 +1,8 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.client.gui.buttons;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
+import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.canis.client.screen.CanisInfoScreen;
-import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.util.ResourceLocation;
@@ -38,7 +38,7 @@ public class CanisGuiImageButton extends Button {
         this.image_height = image_height;
         this.image_width = image_width;
 
-        image = new ResourceLocation(EmortisConstants.MOD_ID, resource_image);
+        image = RigoranthusEmortisReborn.rl(resource_image);
     }
 
     public CanisGuiImageButton withTooltip(CanisInfoScreen parent, TranslationTextComponent toolTip){

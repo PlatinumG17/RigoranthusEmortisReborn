@@ -11,24 +11,24 @@ import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import com.platinumg17.rigoranthusemortisreborn.api.apicanis.client.ISkillRenderer;
 import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.SkillInstance;
 
-public class CanisSkillLayer extends LayerRenderer<CanisEntity, CanisModel<CanisEntity>> {
-
-    public CanisSkillLayer(IEntityRenderer<CanisEntity, CanisModel<CanisEntity>> rendererIn) {
-        super(rendererIn);
-    }
-
-    @Override
-    public void render(MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn, CanisEntity canisIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
-        List<SkillInstance> skills = canisIn.getSkillMap();
-
-        for (SkillInstance inst : skills) {
-            if (inst.level() > 0 && inst.hasRenderer()) {
-                ISkillRenderer renderer = CollarRenderManager.getRendererFor(inst.getSkill());
-
-                if (renderer != null) {
-                    renderer.render(this, matrixStackIn, bufferIn, packedLightIn, canisIn, inst, limbSwing, limbSwingAmount, partialTicks, ageInTicks, netHeadYaw, headPitch);
-                }
-            }
-        };
-    }
-}
+//public class CanisSkillLayer extends LayerRenderer<CanisEntity, CanisModel> {
+//
+//    public CanisSkillLayer(IEntityRenderer<CanisEntity, CanisModel> rendererIn) {
+//        super(rendererIn);
+//    }
+//
+//    @Override
+//    public void render(MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn, CanisEntity canisIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
+//        List<SkillInstance> skills = canisIn.getSkillMap();
+//
+//        for (SkillInstance inst : skills) {
+//            if (inst.level() > 0 && inst.hasRenderer()) {
+//                ISkillRenderer renderer = CollarRenderManager.getRendererFor(inst.getSkill());
+//
+//                if (renderer != null) {
+//                    renderer.render(this, matrixStackIn, bufferIn, packedLightIn, canisIn, inst, limbSwing, limbSwingAmount, partialTicks, ageInTicks, netHeadYaw, headPitch);
+//                }
+//            }
+//        };
+//    }
+//}

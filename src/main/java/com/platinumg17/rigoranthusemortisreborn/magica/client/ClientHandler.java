@@ -1,5 +1,6 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.client;
 
+import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.renderer.tile.*;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.BlockRegistry;
@@ -7,7 +8,6 @@ import com.platinumg17.rigoranthusemortisreborn.magica.setup.MagicItemsRegistry;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.ItemModelsProperties;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -31,7 +31,6 @@ public class ClientHandler {
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.PHANTOM_TILE, PhantasmalBlockRenderer::new);
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.ICHOR_CRYSTALLIZER_TILE, IchorCrystallizerRenderer::new);
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.PSYGLYPHIC_TILE, CipherRenderer::new);
-//        ClientRegistry.bindTileEntityRenderer(BlockRegistry.DOMINION_EXTRACTOR_TILE, DominionExtractorRenderer::new);
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.ICHOR_EXTRACTOR_TILE, IchorExtractorRenderer::new);
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.EMORTIC_CORTEX_TILE, EmorticCortexRenderer::new);
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.RELAY_DEPOSIT_TILE, RelayDepositRenderer::new);
@@ -56,7 +55,6 @@ public class ClientHandler {
         RenderTypeLookup.setRenderLayer(BlockRegistry.RELAY_DEPOSIT, RenderType.translucent());
         RenderTypeLookup.setRenderLayer(BlockRegistry.EMORTIC_CORTEX_BLOCK, RenderType.translucent());
         RenderTypeLookup.setRenderLayer(BlockRegistry.ICHOR_CRYSTALLIZER_BLOCK, RenderType.translucent());
-//        RenderTypeLookup.setRenderLayer(BlockRegistry.DOMINION_EXTRACTOR_BLOCK, RenderType.cutout());
         RenderTypeLookup.setRenderLayer(BlockRegistry.ICHOR_EXTRACTOR_BLOCK, RenderType.translucent());
 
         RenderTypeLookup.setRenderLayer(BlockRegistry.CREATIVE_ICHOR_JAR, RenderType.translucent());
@@ -74,11 +72,20 @@ public class ClientHandler {
         RenderTypeLookup.setRenderLayer(BlockRegistry.DOMINION_GEM_BLOCK, RenderType.translucent());
         RenderTypeLookup.setRenderLayer(BlockRegistry.RITUAL_BLOCK, RenderType.cutout());
         event.enqueueWork(() -> {
-            ItemModelsProperties.register(MagicItemsRegistry.LUSTERIC_SHIELD, new ResourceLocation(EmortisConstants.MOD_ID,"blocking"), (item, resourceLoc, player) -> {
+            ItemModelsProperties.register(MagicItemsRegistry.LUSTERIC_SHIELD, RigoranthusEmortisReborn.rl("blocking"), (item, resourceLoc, player) -> {
                 return player != null && player.isUsingItem() && player.getUseItem() == item ? 1.0F : 0.0F;
             });
         });
     }
+}
+
+
+
+
+
+
+
+
 //    @SubscribeEvent
 //    public static void initColors(final ColorHandlerEvent.Item event) {
 //        event.getItemColors().register((stack, color) -> color > 0 ? -1 :
@@ -94,4 +101,3 @@ public class ClientHandler {
 //            reader != null && pos != null && reader.getBlockEntity(pos) instanceof JarTile
 //                ? ((JarTile) reader.getBlockEntity(pos)).getColor() : -1, BlockRegistry.JAR);
 //    }
-}

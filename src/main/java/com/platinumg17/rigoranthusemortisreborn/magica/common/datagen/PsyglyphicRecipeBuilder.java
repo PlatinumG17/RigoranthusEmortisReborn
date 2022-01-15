@@ -1,14 +1,12 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.common.datagen;
 
-import com.platinumg17.rigoranthusemortisreborn.api.RigoranthusEmortisRebornAPI;
+import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.psyglyphic_amalgamator.PsyglyphicAmalgamatorRecipe;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.psyglyphic_amalgamator.PsyglyphicEnchantingRecipe;
-import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.IItemProvider;
-import net.minecraft.util.ResourceLocation;
 
 public class PsyglyphicRecipeBuilder {
     PsyglyphicAmalgamatorRecipe recipe;
@@ -32,6 +30,7 @@ public class PsyglyphicRecipeBuilder {
 //        this.recipe.category = category.name();
 //        return this;
 //    }
+
     public PsyglyphicRecipeBuilder withReagent(IItemProvider provider){
         this.recipe.reagent = Ingredient.of(provider);
         return this;
@@ -65,7 +64,7 @@ public class PsyglyphicRecipeBuilder {
 
     public PsyglyphicAmalgamatorRecipe build(){
         if(recipe.id.getPath().equals("empty"))
-            recipe.id = new ResourceLocation(EmortisConstants.MOD_ID, recipe.result.getItem().getRegistryName().getPath());
+            recipe.id = RigoranthusEmortisReborn.rl(recipe.result.getItem().getRegistryName().getPath());
         return recipe;
     }
 

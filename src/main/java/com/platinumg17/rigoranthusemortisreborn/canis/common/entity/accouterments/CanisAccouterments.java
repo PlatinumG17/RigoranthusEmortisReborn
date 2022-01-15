@@ -16,13 +16,9 @@ public class CanisAccouterments {
 
     public static final RegistryObject<DyeableAccoutrement> DYEABLE_COLLAR = register("dyeable_collar", () -> new DyeableAccoutrement(CanisAccoutrementTypes.COLLAR, CanisItems.WOOL_COLLAR));
     public static final RegistryObject<Collar> GOLDEN_COLLAR = register("golden_collar", () -> new Collar(CanisItems.CREATIVE_COLLAR));
-//    public static final RegistryObject<Collar> SPOTTED_COLLAR = register("spotted_collar", () -> new Collar(CanisItems.SPOTTED_COLLAR));
-//    public static final RegistryObject<Collar> MULTICOLORED_COLLAR = register("multicolored_collar", () -> new Collar(CanisItems.MULTICOLORED_COLLAR));
-
     public static final RegistryObject<Glasses> SUNGLASSES = register("sunglasses", () -> new Glasses(CanisItems.SUNGLASSES));
 //    public static final RegistryObject<Garments> CAPE = register("cape", () -> new Garments(CanisItems.CAPE));
 //    public static final RegistryObject<DyeableAccoutrement> DYEABLE_CAPE = register("dyeable_cape", () -> new DyeableAccoutrement(CanisAccoutrementTypes.GARMENTS, CanisItems.CAPE_COLORED));
-//    public static final RegistryObject<Band> RADIO_BAND = register("radio_band", () -> new Band(CanisItems.RADIO_COLLAR));
 
     public static final RegistryObject<Helmet> IRON_HELMET = registerHelmet("iron_helmet", () -> Items.IRON_HELMET);
     public static final RegistryObject<Helmet> DIAMOND_HELMET = registerHelmet("diamond_helmet", () -> Items.DIAMOND_HELMET);

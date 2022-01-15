@@ -1,6 +1,6 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.common.datagen;
 
-import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
+import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.lib.LibBlockNames;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.BlockRegistry;
 import net.minecraft.block.Block;
@@ -42,6 +42,6 @@ public class BlockStatesDatagen extends BlockStateProvider {
     }
 
     public ResourceLocation getBlockLoc(String registryName){
-        return new ResourceLocation(EmortisConstants.MOD_ID, "blocks" + "/" +registryName);
+        return RigoranthusEmortisReborn.rl("blocks" + "/" +registryName);
     }
 }

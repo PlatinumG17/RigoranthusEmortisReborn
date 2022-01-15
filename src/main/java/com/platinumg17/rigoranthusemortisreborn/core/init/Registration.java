@@ -2,9 +2,8 @@ package com.platinumg17.rigoranthusemortisreborn.core.init;
 
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.blocks.custom.BlockMasterfulSmeltery;
-import com.platinumg17.rigoranthusemortisreborn.blocks.tileentity.smeltery.MasterfulSmelteryTile;
 import com.platinumg17.rigoranthusemortisreborn.blocks.tileentity.container.MasterfulSmelteryContainer;
-import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
+import com.platinumg17.rigoranthusemortisreborn.blocks.tileentity.smeltery.MasterfulSmelteryTile;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.items.RigoranthusItemTier;
 import com.platinumg17.rigoranthusemortisreborn.items.armor.RigoranthusArmorMaterial;
@@ -27,7 +26,6 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.*;
 import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
@@ -165,7 +163,7 @@ public class Registration {
     public static final Item BONE_SPEAR = new REWeaponItem(new REWeaponItem.Builder(RigoranthusItemTier.BONE, Config.bone_spear_damage.get(), Config.bone_spear_speed.get().floatValue()).set(ToolRegistry.SWORD_TOOL), new Item.Properties().rarity(Rarity.UNCOMMON).tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(1)).setRegistryName("bone_spear");
 
     public static void registerItemProperties() {
-        ItemModelsProperties.register(Items.CROSSBOW, new ResourceLocation(EmortisConstants.MOD_ID, "bone_arrow"), (stack, world, entity) -> {
+        ItemModelsProperties.register(Items.CROSSBOW, RigoranthusEmortisReborn.rl("bone_arrow"), (stack, world, entity) -> {
             return entity != null && CrossbowItem.isCharged(stack) && CrossbowItem.containsChargedProjectile(stack, MagicItemsRegistry.BONE_ARROW.getItem()) ? 1.0F : 0.0F;
         });
     }

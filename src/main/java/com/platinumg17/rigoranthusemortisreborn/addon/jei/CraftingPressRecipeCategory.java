@@ -4,8 +4,8 @@ import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.mojang.blaze3d.matrix.MatrixStack;
+import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.recipe.CraftingPressRecipe;
-import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.BlockRegistry;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;
@@ -30,7 +30,7 @@ public class CraftingPressRecipeCategory implements IRecipeCategory<CraftingPres
     public IDrawable background;
     public IDrawable icon;
     IGuiHelper helper;
-    public final static ResourceLocation UID = new ResourceLocation(EmortisConstants.MOD_ID, "crafting_press_recipe");
+    public final static ResourceLocation UID = RigoranthusEmortisReborn.rl("crafting_press_recipe");
     private final LoadingCache<Integer, IDrawableAnimated> cachedArrows;
 
     public CraftingPressRecipeCategory(IGuiHelper helper){

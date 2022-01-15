@@ -1,5 +1,6 @@
 package com.platinumg17.rigoranthusemortisreborn.api;
 
+import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.*;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.entity.familiar.AbstractFamiliarHolder;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.psyglyphic_amalgamator.IPsyglyphicRecipe;
@@ -11,7 +12,6 @@ import com.platinumg17.rigoranthusemortisreborn.api.apimagic.ritual.RitualContex
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.AbstractSpellPart;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.interfaces.ISpellValidator;
 import com.platinumg17.rigoranthusemortisreborn.canis.CanisItems;
-import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.RitualTile;
@@ -25,7 +25,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.brewing.BrewingRecipe;
 import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
@@ -113,14 +112,7 @@ public class RigoranthusEmortisRebornAPI {
         return brewingRecipes;
     }
 
-//    public enum PatchouliCategories {
-//        mobs,
-//        spells,
-//        machines,
-//        equipment,
-//        resources,
-//        getting_started
-//    }
+//    public enum PatchouliCategories { mobs, spells, machines, equipment, resources, getting_started }
 
     /**
      * Map of all spells to be registered in the spell system
@@ -187,7 +179,7 @@ public class RigoranthusEmortisRebornAPI {
 
     public Item getGlyphItem(String glyphName){
         for(Item i : MagicItemsRegistry.RegistrationHandler.ITEMS){
-            if(i.getRegistryName().equals(new ResourceLocation(EmortisConstants.MOD_ID, getSpellRegistryName(glyphName)))){
+            if(i.getRegistryName().equals(RigoranthusEmortisReborn.rl(getSpellRegistryName(glyphName)))){
                 return i;
             }
         }

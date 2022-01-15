@@ -42,6 +42,7 @@ public class CanisItems {
 //    public static final RegistryObject<Item> BREEDING_BONE = register("breeding_bone");
     public static final RegistryObject<Item> COLLAR_SHEARS = registerWith("collar_shears", CanisShearsItem::new, 1);
     public static final RegistryObject<Item> CANIS_SUMMONING_CHARM = registerWith("canis_summoning_charm", CanisSummoningCharmItem::new, 1);
+    public static final RegistryObject<Item> CADAVER_SUMMONING_CHARM = registerWith("cadaver_summoning_charm", CadaverSummoningCharmItem::new, 1);
 
     public static final RegistryObject<DyeableAccoutrementItem> WOOL_COLLAR = registerAccoutrementDyed("wool_collar", CanisAccouterments.DYEABLE_COLLAR);
     public static final RegistryObject<AccoutrementItem> CREATIVE_COLLAR = registerAccoutrement("creative_collar", CanisAccouterments.GOLDEN_COLLAR);

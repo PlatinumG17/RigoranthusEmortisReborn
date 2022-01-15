@@ -1,12 +1,10 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.common.entity;
 
+import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.entity.item.BoneArrowEntity;
-import com.platinumg17.rigoranthusemortisreborn.entity.mobs.FeralCanisEntity;
-import com.platinumg17.rigoranthusemortisreborn.entity.mobs.LanguidDwellerEntity;
-import com.platinumg17.rigoranthusemortisreborn.entity.mobs.NecrawFasciiEntity;
-import com.platinumg17.rigoranthusemortisreborn.entity.mobs.SunderedCadaverEntity;
+import com.platinumg17.rigoranthusemortisreborn.entity.mobs.*;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.familiar.FamiliarCadaver;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.familiar.FamiliarEntity;
 import net.minecraft.block.Blocks;
@@ -49,6 +47,9 @@ public class ModEntities {
             .setShouldReceiveVelocityUpdates(true));
     public static EntityType<LanguidDwellerEntity> LANGUID_DWELLER = build("languid_dweller", EntityType.Builder.<LanguidDwellerEntity>of(LanguidDwellerEntity::new, EntityClassification.MONSTER)
             .sized(1.8f, 1.8f).setTrackingRange(16)
+            .setShouldReceiveVelocityUpdates(true));
+    public static EntityType<SummonedCadaver> SUMMONED_CADAVER = build("summoned_cadaver", EntityType.Builder.<SummonedCadaver>of(SummonedCadaver::new, EntityClassification.CREATURE)
+            .sized(1f, 0.9f).setTrackingRange(30)
             .setShouldReceiveVelocityUpdates(true));
 
     public static EntityType<EntityProjectileSpell> SPELL_PROJ = null;
@@ -133,7 +134,8 @@ public class ModEntities {
                     FAMILIAR_CADAVER,           SUNDERED_CADAVER,       NECRAW_FASCII,          FERAL_CANIS,
                     ENTITY_FOLLOW_PROJ,         SPELL_PROJ,             ALLY_VEX,               LINGER_SPELL,
                     ENTITY_FLYING_ITEM,         ENTITY_RITUAL,          ENTITY_SPELL_ARROW,     SUMMON_WOLF,
-                    SUMMON_HORSE,               LIGHTNING_ENTITY,       EMINENTIAL_ENTITY,      ENTITY_WARD
+                    SUMMON_HORSE,               LIGHTNING_ENTITY,       EMINENTIAL_ENTITY,      ENTITY_WARD,
+                    SUMMONED_CADAVER
             );
             EntitySpawnPlacementRegistry.register(SUNDERED_CADAVER,   ON_GROUND, MOTION_BLOCKING_NO_LEAVES, ModEntities::canMonsterSpawnInLight);
             EntitySpawnPlacementRegistry.register(NECRAW_FASCII,      ON_GROUND, MOTION_BLOCKING_NO_LEAVES, ModEntities::canMonsterSpawnInLight);
@@ -144,6 +146,7 @@ public class ModEntities {
         public static void registerEntities(final EntityAttributeCreationEvent event) {
             event.put(FAMILIAR_CADAVER,     FamiliarEntity.familiarAttributes().build());
             event.put(SUNDERED_CADAVER,     SunderedCadaverEntity.attributes().build());
+            event.put(SUMMONED_CADAVER,     SummonedCadaver.attributes().build());
             event.put(NECRAW_FASCII,        NecrawFasciiEntity.attributes().build());
             event.put(FERAL_CANIS,          FeralCanisEntity.attributes().build());
             event.put(LANGUID_DWELLER,      LanguidDwellerEntity.attributes().build());
@@ -196,7 +199,7 @@ public class ModEntities {
      * @return The built entity type
      */
     private static <T extends Entity> EntityType<T> build(final String name, final EntityType.Builder<T> builder) {
-        final ResourceLocation registryName = new ResourceLocation(EmortisConstants.MOD_ID, name);
+        final ResourceLocation registryName = RigoranthusEmortisReborn.rl(name);
         final EntityType<T> entityType = builder
                 .build(registryName.toString());
         entityType.setRegistryName(registryName);

@@ -19,8 +19,8 @@ public class SentinelModeGoal extends NearestAttackableTargetGoal<MonsterEntity>
     @Override
     public boolean canUse() {
         LivingEntity owner = this.canis.getOwner();
-        if (owner == null) {return false;}
-        if (!this.canis.isMode(EnumMode.GUARD)) {return false;}
+        if (owner == null) { return false; }
+        if (!this.canis.isMode(EnumMode.GUARD)) { return false; }
         this.owner = owner;
         if (super.canUse()) {
             this.owner = owner;

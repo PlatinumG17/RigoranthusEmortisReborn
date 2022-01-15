@@ -1,32 +1,33 @@
 package com.platinumg17.rigoranthusemortisreborn.canis.common.entity;
 
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.entity.AbstractCanisEntity;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.feature.*;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.interfaces.ICanisFoodHandler;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.interfaces.ICanisTransmogrification;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.interfaces.IThrowableItem;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.*;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.util.BlockUtil;
 import com.platinumg17.rigoranthusemortisreborn.canis.*;
-import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.ai.FindWaterGoal;
-import com.platinumg17.rigoranthusemortisreborn.canis.common.util.*;
-import com.platinumg17.rigoranthusemortisreborn.config.Config;
-import com.platinumg17.rigoranthusemortisreborn.config.ConfigValues;
-import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.ai.*;
-import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
-import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusSoundRegistry;
-import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.canis.client.screen.CanisInfoScreen;
-import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.accouterments.CanisAccouterments;
-import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.serializers.DimensionDependantArg;
-import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.stats.StatsTracker;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.SpecializedEntityTypes;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.canisnetwork.packet.data.storage.CanisLocationStorage;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.canisnetwork.packet.data.storage.CanisRespawnStorage;
-import com.platinumg17.rigoranthusemortisreborn.canis.common.SpecializedEntityTypes;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.accouterments.CanisAccouterments;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.ai.FindWaterGoal;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.ai.*;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.serializers.DimensionDependantArg;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.stats.StatsTracker;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.CanisTags;
-
-import java.util.*;
-import java.util.Map.Entry;
-import java.util.function.Supplier;
-import java.util.stream.Collectors;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
+import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.util.Cache;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.util.NBTUtilities;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.util.WorldUtil;
+import com.platinumg17.rigoranthusemortisreborn.config.Config;
+import com.platinumg17.rigoranthusemortisreborn.config.ConfigValues;
+import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
+import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusSoundRegistry;
+import com.platinumg17.rigoranthusemortisreborn.entity.goals.TameCanisAttackGoal;
 import com.platinumg17.rigoranthusemortisreborn.entity.mobs.FeralCanisEntity;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.IAnimationListener;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.ModEntities;
@@ -54,7 +55,6 @@ import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.network.datasync.DataParameter;
@@ -66,15 +66,7 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
@@ -92,13 +84,6 @@ import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.ITeleporter;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fml.DistExecutor;
-import com.platinumg17.rigoranthusemortisreborn.api.apicanis.feature.WetSource;
-import com.platinumg17.rigoranthusemortisreborn.api.apicanis.feature.*;
-import com.platinumg17.rigoranthusemortisreborn.api.apicanis.entity.AbstractCanisEntity;
-import com.platinumg17.rigoranthusemortisreborn.api.apicanis.interfaces.ICanisFoodHandler;
-import com.platinumg17.rigoranthusemortisreborn.api.apicanis.interfaces.ICanisTransmogrification;
-import com.platinumg17.rigoranthusemortisreborn.api.apicanis.interfaces.IThrowableItem;
-import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.*;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -106,6 +91,13 @@ import software.bernie.geckolib3.core.controller.AnimationController;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.*;
+import java.util.Map.Entry;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 /**
  * @author PlatinumG17 edit of ProPercivalalb
@@ -118,7 +110,6 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
     private static final DataParameter<Byte> CANIS_FLAGS = EntityDataManager.defineId(CanisEntity.class, DataSerializers.BYTE);
     private static final DataParameter<Float> HUNGER_INT = EntityDataManager.defineId(CanisEntity.class, DataSerializers.FLOAT);
     public static final DataParameter<String> COLOR = EntityDataManager.defineId(CanisEntity.class, DataSerializers.STRING);
-//    private static final DataParameter<String> CUSTOM_SKIN = EntityDataManager.defineId(CanisEntity.class, DataSerializers.STRING);
 //    private static final DataParameter<Byte> SIZE = EntityDataManager.defineId(CanisEntity.class, DataSerializers.BYTE);
     private static final DataParameter<ItemStack> BONE_VARIANT = EntityDataManager.defineId(CanisEntity.class, DataSerializers.ITEM_STACK);
     // Use Cache.make to ensure static fields are not initialised too early (before Serializers have been registered)
@@ -127,6 +118,8 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
     private static final Cache<DataParameter<CanisLevel>> CANIS_LEVEL = Cache.make(() -> (DataParameter<CanisLevel>) EntityDataManager.defineId(CanisEntity.class, CanisSerializers.CANIS_LEVEL_SERIALIZER.get().getSerializer()));
     private static final Cache<DataParameter<EnumGender>> GENDER = Cache.make(() -> (DataParameter<EnumGender>) EntityDataManager.defineId(CanisEntity.class,  CanisSerializers.GENDER_SERIALIZER.get().getSerializer()));
     private static final Cache<DataParameter<EnumMode>> MODE = Cache.make(() -> (DataParameter<EnumMode>) EntityDataManager.defineId(CanisEntity.class, CanisSerializers.MODE_SERIALIZER.get().getSerializer()));
+    private static final Cache<DataParameter<EnumClothColor>> CLOTH_COLOR = Cache.make(() -> (DataParameter<EnumClothColor>) EntityDataManager.defineId(CanisEntity.class, CanisSerializers.CLOTH_COLOR_SERIALIZER.get().getSerializer()));
+    private static final Cache<DataParameter<EnumShadesColor>> SHADES_COLOR = Cache.make(() -> (DataParameter<EnumShadesColor>) EntityDataManager.defineId(CanisEntity.class, CanisSerializers.SHADES_COLOR_SERIALIZER.get().getSerializer()));
     private static final Cache<DataParameter<DimensionDependantArg<Optional<BlockPos>>>> CANIS_BED_LOCATION = Cache.make(() -> (DataParameter<DimensionDependantArg<Optional<BlockPos>>>) EntityDataManager.defineId(CanisEntity.class, CanisSerializers.BED_LOC_SERIALIZER.get().getSerializer()));
     private static final Cache<DataParameter<DimensionDependantArg<Optional<BlockPos>>>> CANIS_BOWL_LOCATION = Cache.make(() -> (DataParameter<DimensionDependantArg<Optional<BlockPos>>>) EntityDataManager.defineId(CanisEntity.class, CanisSerializers.BED_LOC_SERIALIZER.get().getSerializer()));
 
@@ -135,6 +128,8 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
         SKILLS.get();
         CANIS_LEVEL.get();
         GENDER.get();
+        SHADES_COLOR.get();
+        CLOTH_COLOR.get();
         MODE.get();
         CANIS_BED_LOCATION.get();
         CANIS_BOWL_LOCATION.get();
@@ -173,7 +168,7 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
     @Override
     public void registerControllers(AnimationData animationData) {
         animationData.addAnimationController(new AnimationController<>(this, "walkController", 0, this::walkPredicate));
-//        animationData.addAnimationController(new AnimationController<>(this, "runController", 0, this::runPredicate));
+        animationData.addAnimationController(new AnimationController<>(this, "runController", 0, this::runPredicate));
         animationData.addAnimationController(new AnimationController<>(this, "attackController", 1, this::attackPredicate));
         animationData.addAnimationController(new AnimationController<>(this, "idleController", 0, this::idlePredicate));
         animationData.addAnimationController(new AnimationController<>(this, "danceController", 1, this::dancePredicate));
@@ -190,13 +185,13 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
         return PlayState.STOP;
     }
 
-//    private <E extends IAnimatable> PlayState runPredicate(AnimationEvent<E> event) {
-//        if (event.isMoving()) {
-//            event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));
-//            return PlayState.CONTINUE;
-//        }
-//        return PlayState.STOP;
-//    }
+    private <E extends IAnimatable> PlayState runPredicate(AnimationEvent<E> event) { //return PlayState.CONTINUE; }
+        if (event.isMoving() && this.getSpeed() >= 0.34F) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("run", true));
+            return PlayState.CONTINUE;
+        }
+        return PlayState.STOP;
+    }
 
     private <E extends IAnimatable> PlayState walkPredicate(AnimationEvent<E> event) {
         if (event.isMoving()) {
@@ -238,13 +233,18 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
                 controller.markNeedsReload();
                 controller.setAnimation(new AnimationBuilder().addAnimation("soggy_boi", false));
             }
+            if (arg == Animations.RUNNING.ordinal()) {
+                AnimationController controller = this.animationFactory.getOrCreateAnimationData(this.hashCode()).getAnimationControllers().get("runController");
+                controller.markNeedsReload();
+                controller.setAnimation(new AnimationBuilder().addAnimation("run", true));
+            }
         } catch (Exception e){
             e.printStackTrace();
         }
     }
-    public enum Animations{ BITING, SHAKING }
+    public enum Animations{ BITING, SHAKING, RUNNING }
 
-    public boolean canAttack(){
+    public boolean canAttack() {
         return getTarget() != null && this.getHealth() >= 1 && !this.isMode(EnumMode.DOCILE) && !this.isOrderedToSit();
     }
 
@@ -256,10 +256,11 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
         this.entityData.define(LAST_KNOWN_NAME, Optional.empty());
         this.entityData.define(CANIS_FLAGS, (byte) 0);
         this.entityData.define(GENDER.get(), EnumGender.UNISEX);
+        this.entityData.define(CLOTH_COLOR.get(), EnumClothColor.RED);
+        this.entityData.define(SHADES_COLOR.get(), EnumShadesColor.BLACK);
         this.entityData.define(MODE.get(), EnumMode.DOCILE);
         this.entityData.define(HUNGER_INT, 60F);
         this.entityData.define(COLOR, COLORS.WHITE.name());
-//        this.entityData.define(CUSTOM_SKIN, "");
         this.entityData.define(CANIS_LEVEL.get(), new CanisLevel(0, 0));
 //        this.entityData.define(SIZE, (byte) 3);
         this.entityData.define(BONE_VARIANT, ItemStack.EMPTY);
@@ -271,10 +272,10 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new SwimGoal(this));
         this.goalSelector.addGoal(1, new FindWaterGoal(this));
-            //        this.goalSelector.addGoal(1, new PatrolAreaGoal(this));
         this.goalSelector.addGoal(2, new SitGoal(this));
 //        this.goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.4F));
 //        this.goalSelector.addGoal(5, new MeleeAttackGoal(this, 1.0D, true));
+        this.goalSelector.addGoal(5, new TameCanisAttackGoal(this, true));
         this.goalSelector.addGoal(5, new CanisMoveToBlockGoal(this));
         this.goalSelector.addGoal(5, new CanisWanderGoal(this, 1.0D));
         this.goalSelector.addGoal(6, new FetchGoal(this, 1.0D, 32.0F));
@@ -315,9 +316,7 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
     }
 
     @Override
-    public void playStepSound(BlockPos pos, BlockState blockIn) {
-        this.playSound(SoundEvents.WOLF_STEP, 0.15F, 1.0F);
-    }
+    public void playStepSound(BlockPos pos, BlockState blockIn) { this.playSound(SoundEvents.WOLF_STEP, 0.15F, 1.0F); }
 
     @Override
     protected SoundEvent getAmbientSound() {
@@ -334,13 +333,9 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
     protected void playEatingSound() {this.playSound(SoundEvents.GENERIC_EAT, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);}
 
     @Override
-    public float getSoundVolume() {
-        return 0.4F;
-    }
+    public float getSoundVolume() { return 0.4F; }
 
-    public boolean isCanisWet() {
-        return this.wetSource != null;
-    }
+    public boolean isCanisWet() { return this.wetSource != null; }
 
     @OnlyIn(Dist.CLIENT)
     public float getShadingWhileWet(float partialTicks) {
@@ -376,34 +371,25 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
         }
     }
 
-    public float getTailRotation() {
-        return this.isTame() ? (1.55F - (this.getMaxHealth() - (this.getHealth())) * 0.02F) * (float)Math.PI : ((float)Math.PI / 5F);
-    }
+    public float getTailRotation() { return this.isTame() ? (1.55F - (this.getMaxHealth() - (this.getHealth())) * 0.02F) * (float)Math.PI : ((float)Math.PI / 5F); }
 
     @Override
-    public float getWagAngle(float limbSwing, float limbSwingAmount, float partialTickTime) {
-        return MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-    }
+    public float getWagAngle(float limbSwing, float limbSwingAmount, float partialTickTime) { return MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount; }
 
     @Override
-    protected float getStandingEyeHeight(Pose pose, EntitySize size) {
-        return 1.15F;
-    }
+    protected float getStandingEyeHeight(Pose pose, EntitySize size) { return 1.15F; }
 
     @Override
-    public Vector3d getLeashOffset() {
-        return new Vector3d(0.0D, 0.6F * this.getEyeHeight(), this.getBbWidth() * 0.4F);
-    }
+    public Vector3d getLeashOffset() { return new Vector3d(0.0D, 0.6F * this.getEyeHeight(), this.getBbWidth() * 0.4F); }
 
     @Override
-    public int getMaxHeadXRot() {
-        return this.isInSittingPose() ? 20 : super.getMaxHeadXRot();
-    }
+    public int getMaxHeadXRot() { return this.isInSittingPose() ? 20 : super.getMaxHeadXRot(); }
 
     @Override
-    public double getMyRidingOffset() {
-        return this.getVehicle() instanceof PlayerEntity ? 0.65D : 0.0D;
-    }
+    public double getMyRidingOffset() { return this.getVehicle() instanceof PlayerEntity ? 0.65D : 0.3D; }
+
+    @Override
+    public double getPassengersRidingOffset() { return super.getPassengersRidingOffset() + 0.15D; }
 
     @Override
     public void tick() {
@@ -562,11 +548,11 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
         }
         ///       NOT NEEDED SINCE A TAME CANIS CANNOT SPAWN ON ITS OWN      /////
         else { // Not tamed
-            if (stack.getItem() == Items.BONE || stack.getItem() == CanisItems.TRAINING_TREAT.get()) {
+            if (stack.getItem() == CanisItems.TRAINING_TREAT.get()) {
                 if (!this.level.isClientSide) {
                     this.usePlayerItem(player, stack);
                     if (stack.getItem() == CanisItems.TRAINING_TREAT.get() || this.random.nextInt(3) == 0) {
-                        this.tame(player);
+//                        this.tame(player);
                         this.navigation.stop();
                         this.setTarget((LivingEntity) null);
                         this.setOrderedToSit(true);
@@ -653,7 +639,6 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
                 return false;
             }
         }
-//        return super.causeFallDamage(distance, damageMultiplier); //TODO   this was recently changed
         // Start: Logic copied from the super call and altered to apply the reduced fall damage to passengers too. #358
         float[] ret = net.minecraftforge.common.ForgeHooks.onLivingFall(this, distance, damageMultiplier);
         if (ret == null) return false;
@@ -679,7 +664,6 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
         // End: Logic copied from the super call and altered to apply the reduced fall damage to passengers too. #358
     }
 
-    // TODO
     @Override public int getMaxFallDistance() {return super.getMaxFallDistance();}
 
     @Override
@@ -767,7 +751,7 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
             } else if (result == ActionResultType.FAIL) {
                 return false;
             }
-        } //  TODO -->  Make Cani hesitant to attack Sundered Cadavers  &  Languid Dwellers
+        } //  TODO -->  Make Cani hesitant to attack Sundered Cadavers
         // Stops Cani being able to attack creepers if their health is too low
         if (entityType == EntityType.CREEPER && this.getHealth() <= 10) {
             return false;
@@ -790,10 +774,10 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
                 return false;
             }
         }
-        // Stops Cani being able to attack creepers. If the canis has lvl 5 powderkeg then we will return true in the for loop above.
         if (target instanceof GhastEntity) {
             return false;
         }
+        // Stops Cani being able to attack creepers if thier health is too low.
         if (target instanceof CreeperEntity && this.getHealth() <= 10) {
             return false;
         }
@@ -808,12 +792,6 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
             return !(target instanceof TameableEntity) || !((TameableEntity)target).isTame();
         }
     }
-
-    // TODO
-    //@Override
-//    public boolean canAttack(LivingEntity livingentityIn, EntityPredicate predicateIn) {
-//        return predicateIn.canTarget(this, livingentityIn);
-//     }
 
     @Override
     public boolean hurt(DamageSource source, float amount) {
@@ -990,8 +968,8 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
     public void setTame(boolean tamed) {
         super.setTame(tamed);
         if (tamed) {
-            this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(80.0D); // was 20
-            this.setHealth(80.0F); //was 20
+            this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(80.0D);
+            this.setHealth(70.0F);
         } else {
             this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(80.0D); // was 8
         }
@@ -1071,35 +1049,28 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
 
     @Override
     public boolean shouldShowName() {
-        return (ConfigValues.ALWAYS_SHOW_CANIS_NAME && this.hasCustomName()) || super.shouldShowName();
+        return (ConfigValues.ALWAYS_SHOW_CANIS_NAME && this.hasCustomName() && !this.isVehicle()) || super.shouldShowName();
     }
 
 //    @Override
 //    public float getScale() {
-//        if (this.isBaby()) {
-//            return 0.5F;
-//        } else {
-//            return this.getCanisSize() * 0.3F + 0.1F;
-//        }
+//        if (this.isBaby()) { return 0.5F;
+//        } else { return this.getCanisSize() * 0.3F + 0.1F; }
 //    }
 
     @Nonnull
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
-        // Any mod that tries to access capabilities from entity size/entity
-        // creation event will crash here because of the order java inits the
-        // classes fields and so will not have been initialised and are
-        // accessed during the classes super() call.
-        // Since this.transmogrifications will be empty anyway as we have not read
-        // NBT data at this point just avoid silent error
-        if (this.transmogrifications == null) {
-            return super.getCapability(cap, side);
-        }
+    /*  Any mod that tries to access capabilities from entity size/entity
+        creation event will crash here because of the order java inits the
+        classes fields and so will not have been initialised and are
+        accessed during the classes super() call.
+        Since this.transmogrifications will be empty anyway as we have not read
+        NBT data at this point just avoid silent error   */
+        if (this.transmogrifications == null) { return super.getCapability(cap, side); }
         for (ICanisTransmogrification alter : this.transmogrifications) {
             LazyOptional<T> result = alter.getCapability(this, cap, side);
-            if (result != null) {
-                return result;
-            }
+                if (result != null) { return result; }
         }
         return super.getCapability(cap, side);
     }
@@ -1124,7 +1095,7 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
     @Override public void onRemovedFromWorld() {super.onRemovedFromWorld();}
 
     /**
-     * When the entity is brought back to life
+     * When the canis is brought back to life
      */
     @Override public void revive() {super.revive();}
 
@@ -1134,12 +1105,10 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
             if (this.level != null && !this.level.isClientSide) {
 //                CanisRespawnStorage.get(this.world).putData(this);
 //                RigoranthusEmortisReborn.LOGGER.debug("Saved canis as they died {}", this);
-//
 //                CanisLocationStorage.get(this.world).remove(this);
 //                RigoranthusEmortisReborn.LOGGER.debug("Removed canis location as they were removed from the world {}", this);
             }
         }
-
         super.tickDeath();
     }
 
@@ -1162,7 +1131,6 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
 
         this.transmogrifications.forEach((alter) -> alter.onDeath(this, cause));
         super.die(cause);
-
         // Save inventory after onDeath is called so that wayward-traveller inventory can be dropped and not saved
         if (this.level != null && !this.level.isClientSide) {
             CanisRespawnStorage.get(this.level).putData(this);
@@ -1173,17 +1141,14 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
     @Override
     public void dropEquipment() {
         super.dropEquipment();
-
         this.transmogrifications.forEach((alter) -> alter.dropInventory(this));
     }
 
     /**
-     * When the entity is removed
+     * When the canis is removed
      */
     @Override
-    public void remove(boolean keepData) {
-        super.remove(keepData);
-    }
+    public void remove(boolean keepData) { super.remove(keepData); }
 
     @Override
     protected void invalidateCaps() {
@@ -1214,7 +1179,8 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
             accoutrementList.add(accoutrementTag);
         }
         compound.put("accouterments", accoutrementList);
-
+        compound.putString("clothColor", this.getClothColor().getSaveName());
+        compound.putString("shadesColor", this.getShadesColor().getSaveName());
         compound.putString("mode", this.getMode().getSaveName());
         compound.putString("canisGender", this.getGender().getSaveName());
         compound.putFloat("canisHunger", this.getCanisHunger());
@@ -1222,7 +1188,6 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
             NBTUtilities.putTextComponent(compound, "lastKnownOwnerName", comp);
         });
 
-//        compound.putString("customSkinHash", this.getSkinHash());
         compound.putBoolean("displayCloth", this.doDisplayCloth());
         compound.putBoolean("willObey", this.willObeyOthers());
         compound.putBoolean("friendlyFire", this.canPlayersAttack());
@@ -1263,88 +1228,9 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
         this.transmogrifications.forEach((alter) -> alter.onWrite(this, compound));
     }
 
-//    @Override
-//    public void load(CompoundNBT compound) {
-//        // DataFix uuid entries and attribute ids
-//        try {
-//            if (NBTUtilities.hasOldUniqueId(compound, "UUID")) {
-//                UUID entityUUID = NBTUtilities.getOldUniqueId(compound, "UUID");
-//
-//                compound.putUUID("UUID", entityUUID);
-//                NBTUtilities.removeOldUniqueId(compound, "UUID");
-//            }
-//
-//            if (compound.contains("OwnerUUID", Constants.NBT.TAG_STRING)) {
-//                UUID ownerUUID = UUID.fromString(compound.getString("OwnerUUID"));
-//
-//                compound.putUUID("Owner", ownerUUID);
-//                compound.remove("OwnerUUID");
-//            } else if (compound.contains("Owner", Constants.NBT.TAG_STRING)) {
-//                UUID ownerUUID = PreYggdrasilConverter.convertMobOwnerIfNecessary(this.getServer(), compound.getString("Owner"));
-//
-//                compound.putUUID("Owner", ownerUUID);
-//            }
-//
-//            if (NBTUtilities.hasOldUniqueId(compound, "LoveCause")) {
-//                UUID entityUUID = NBTUtilities.getOldUniqueId(compound, "LoveCause");
-//
-//                compound.putUUID("LoveCause", entityUUID);
-//                NBTUtilities.removeOldUniqueId(compound, "LoveCause");
-//            }
-//        } catch (Exception e) {
-//            RigoranthusEmortisReborn.LOGGER.error("Failed to data fix UUIDs: " + e.getMessage());
-//        }
-//
-//        try {
-//            if (compound.contains("Attributes", Constants.NBT.TAG_LIST)) {
-//                ListNBT attributeList = compound.getList("Attributes", Constants.NBT.TAG_COMPOUND);
-//                for (int i = 0; i < attributeList.size(); i++) {
-//                    CompoundNBT attributeData = attributeList.getCompound(i);
-//                    String namePrev = attributeData.getString("Name");
-//                    Object name = namePrev;
-//
-//                    switch (namePrev) {
-//                        case "forge.swimSpeed": name = ForgeMod.SWIM_SPEED; break;
-//                        case "forge.nameTagDistance": name = ForgeMod.NAMETAG_DISTANCE; break;
-//                        case "forge.entity_gravity": name = ForgeMod.ENTITY_GRAVITY; break;
-//                        case "forge.reachDistance": name = ForgeMod.REACH_DISTANCE; break;
-//                        case "generic.maxHealth": name = Attributes.MAX_HEALTH; break;
-//                        case "generic.knockbackResistance": name = Attributes.KNOCKBACK_RESISTANCE; break;
-//                        case "generic.movementSpeed": name = Attributes.MOVEMENT_SPEED; break;
-//                        case "generic.armor": name = Attributes.ARMOR; break;
-//                        case "generic.armorToughness": name = Attributes.ARMOR_TOUGHNESS; break;
-//                        case "generic.followRange": name = Attributes.FOLLOW_RANGE; break;
-//                        case "generic.attackKnockback": name = Attributes.ATTACK_KNOCKBACK; break;
-//                        case "generic.attackDamage": name = Attributes.ATTACK_DAMAGE; break;
-//                        case "generic.jumpStrength": name = CanisAttributes.JUMP_POWER; break;
-//                        case "generic.critChance": name = CanisAttributes.CRIT_CHANCE; break;
-//                        case "generic.critBonus": name = CanisAttributes.CRIT_BONUS; break;
-//                    }
-//                    ResourceLocation attributeRL = REUtil.getRegistryId(name);
-//
-//                    if (attributeRL != null && ForgeRegistries.ATTRIBUTES.containsKey(attributeRL)) {
-//                        attributeData.putString("Name", attributeRL.toString());
-//                        ListNBT modifierList = attributeData.getList("Modifiers", Constants.NBT.TAG_COMPOUND);
-//                        for (int j = 0; j < modifierList.size(); j++) {
-//                            CompoundNBT modifierData = modifierList.getCompound(j);
-//                            if (NBTUtilities.hasOldUniqueId(modifierData, "UUID")) {
-//                                UUID entityUUID = NBTUtilities.getOldUniqueId(modifierData, "UUID");
-//
-//                                modifierData.putUUID("UUID", entityUUID);
-//                                NBTUtilities.removeOldUniqueId(modifierData, "UUID");
-//                            }
-//                        }
-//                    } else {RigoranthusEmortisReborn.LOGGER.warn("Failed to data fix '" + namePrev + "'");}
-//                }
-//            }
-//        } catch (Exception e) {RigoranthusEmortisReborn.LOGGER.error("Failed to data fix attribute IDs: " + e.getMessage());}
-//        super.load(compound);
-//    }
-
     @Override
     public void readAdditionalSaveData(CompoundNBT compound) {
         super.readAdditionalSaveData(compound);
-
         List<SkillInstance> skillMap = this.getSkillMap();
         skillMap.clear();
 
@@ -1356,7 +1242,6 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
                 SkillInstance.readInstance(this, skillList.getCompound(i)).ifPresent(skillMap::add);
             }
         }
-//        else { BackwardsCompat.readSkillMapping(compound, skillMap); }
         this.markDataParameterDirty(SKILLS.get(), false); // Mark dirty so data is synced to client
 
         List<AccoutrementInstance> accouterments = this.getAccouterments();
@@ -1369,7 +1254,7 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
                 // Add directly so that nothing is lost, if number allowed on changes
                 AccoutrementInstance.readInstance(accoutrementList.getCompound(i)).ifPresent(accouterments::add);
             }
-        }//else { BackwardsCompat.readAccouterments(compound, accouterments); }
+        }
         this.markDataParameterDirty(ACCOUTERMENTS.get(), false); // Mark dirty so data is synced to client
         // Does what notifyDataManagerChange would have done but this way only does it once
         this.recalculateTransmogrificationsCache();
@@ -1387,13 +1272,16 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
             this.setGender(EnumGender.bySaveName(compound.getString("canisGender")));
             if (compound.contains("mode", Constants.NBT.TAG_STRING)) {
                 this.setMode(EnumMode.bySaveName(compound.getString("mode")));
-            } //else {BackwardsCompat.readMode(compound, this::setMode);}
-//            if (compound.contains("customSkinHash", Constants.NBT.TAG_STRING)) {
-//                this.setSkinHash(compound.getString("customSkinHash"));
-//            } else {BackwardsCompat.readCanisTexture(compound, this::setSkinHash);}
+            }
+            if (compound.contains("clothColor", Constants.NBT.TAG_STRING)) {
+                this.setClothColor(EnumClothColor.bySaveName(compound.getString("clothColor")));
+            }
+            if (compound.contains("shadesColor", Constants.NBT.TAG_STRING)) {
+                this.setShadesColor(EnumShadesColor.bySaveName(compound.getString("shadesColor")));
+            }
             if (compound.contains("fetchItem", Constants.NBT.TAG_COMPOUND)) {
                 this.setBoneVariant(NBTUtilities.readItemStack(compound, "fetchItem"));
-            }// else {BackwardsCompat.readHasBone(compound, this::setBoneVariant);}
+            }
             this.setHungerDirectly(compound.getFloat("canisHunger"));
             this.setOwnersName(NBTUtilities.getTextComponent(compound, "lastKnownOwnerName"));
             this.setDisplayCloth(compound.getBoolean("displayCloth"));
@@ -1431,7 +1319,7 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
                     Optional<BlockPos> pos = NBTUtilities.getBlockPos(bedNBT, "pos");
                     bedsData.put(type, pos);
                 }
-            } //else {BackwardsCompat.readBedLocations(compound, bedsData);}
+            }
         } catch (Exception e) {
             RigoranthusEmortisReborn.LOGGER.error("Failed to load beds: " + e.getMessage());
             e.printStackTrace();
@@ -1451,7 +1339,7 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
                     Optional<BlockPos> pos = NBTUtilities.getBlockPos(bowlsNBT, "pos");
                     bowlsData.put(type, pos);
                 }
-            } //else {BackwardsCompat.readBowlLocations(compound, bowlsData);}
+            }
         } catch (Exception e) {
             RigoranthusEmortisReborn.LOGGER.error("Failed to load bowls: " + e.getMessage());
             e.printStackTrace();
@@ -1589,30 +1477,18 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
         return Optional.empty();
     }
 
-    public Optional<ITextComponent> getOwnersName() {
-        return this.entityData.get(LAST_KNOWN_NAME);
-    }
+    public Optional<ITextComponent> getOwnersName() { return this.entityData.get(LAST_KNOWN_NAME); }
 
-    public void setOwnersName(@Nullable ITextComponent comp) {
-        this.setOwnersName(Optional.ofNullable(comp));
-    }
+    public void setOwnersName(@Nullable ITextComponent comp) { this.setOwnersName(Optional.ofNullable(comp)); }
 
-    public void setOwnersName(Optional<ITextComponent> collar) {
-        this.entityData.set(LAST_KNOWN_NAME, collar);
-    }
+    public void setOwnersName(Optional<ITextComponent> collar) { this.entityData.set(LAST_KNOWN_NAME, collar); }
 
-    public EnumGender getGender() {
-        return this.entityData.get(GENDER.get());
-    }
+    public EnumGender getGender() { return this.entityData.get(GENDER.get()); }
 
-    public void setGender(EnumGender collar) {
-        this.entityData.set(GENDER.get(), collar);
-    }
+    public void setGender(EnumGender collar) { this.entityData.set(GENDER.get(), collar); }
 
     @Override
-    public EnumMode getMode() {
-        return this.entityData.get(MODE.get());
-    }
+    public EnumMode getMode() { return this.entityData.get(MODE.get()); }
 
     public boolean isMode(EnumMode... modes) {
         EnumMode mode = this.getMode();
@@ -1624,49 +1500,57 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
         return false;
     }
 
-    public void setMode(EnumMode collar) {
-        this.entityData.set(MODE.get(), collar);
+    public void setMode(EnumMode color) { this.entityData.set(MODE.get(), color); }
+
+    @Override
+    public EnumClothColor getClothColor() { return this.entityData.get(CLOTH_COLOR.get()); }
+
+    public boolean isClothColor(EnumClothColor... colors) {
+        EnumClothColor color = this.getClothColor();
+        for (EnumClothColor test : colors) {
+            if (color == test) {
+                return true;
+            }
+        }
+        return false;
     }
 
-    public Optional<BlockPos> getBedPos() {
-        return this.getBedPos(this.level.dimension());
+    public void setClothColor(EnumClothColor color) { this.entityData.set(CLOTH_COLOR.get(), color); }
+
+    @Override
+    public EnumShadesColor getShadesColor() { return this.entityData.get(SHADES_COLOR.get()); }
+
+    public boolean isShadesColor(EnumShadesColor... colors) {
+        EnumShadesColor color = this.getShadesColor();
+        for (EnumShadesColor test : colors) {
+            if (color == test) {
+                return true;
+            }
+        }
+        return false;
     }
 
-    public Optional<BlockPos> getBedPos(RegistryKey<World> registryKey) {
-        return this.entityData.get(CANIS_BED_LOCATION.get()).getOrDefault(registryKey, Optional.empty());
-    }
+    public void setShadesColor(EnumShadesColor color) { this.entityData.set(SHADES_COLOR.get(), color); }
 
-    public void setBedPos(@Nullable BlockPos pos) {
-        this.setBedPos(this.level.dimension(), pos);
-    }
+    public Optional<BlockPos> getBedPos() { return this.getBedPos(this.level.dimension()); }
 
-    public void setBedPos(RegistryKey<World> registryKey, @Nullable BlockPos pos) {
-        this.setBedPos(registryKey, WorldUtil.toImmutable(pos));
-    }
+    public Optional<BlockPos> getBedPos(RegistryKey<World> registryKey) { return this.entityData.get(CANIS_BED_LOCATION.get()).getOrDefault(registryKey, Optional.empty()); }
 
-    public void setBedPos(RegistryKey<World> registryKey, Optional<BlockPos> pos) {
-        this.entityData.set(CANIS_BED_LOCATION.get(), this.entityData.get(CANIS_BED_LOCATION.get()).copy().set(registryKey, pos));
-    }
+    public void setBedPos(@Nullable BlockPos pos) { this.setBedPos(this.level.dimension(), pos); }
 
-    public Optional<BlockPos> getBowlPos() {
-        return this.getBowlPos(this.level.dimension());
-    }
+    public void setBedPos(RegistryKey<World> registryKey, @Nullable BlockPos pos) { this.setBedPos(registryKey, WorldUtil.toImmutable(pos)); }
 
-    public Optional<BlockPos> getBowlPos(RegistryKey<World> registryKey) {
-        return this.entityData.get(CANIS_BOWL_LOCATION.get()).getOrDefault(registryKey, Optional.empty());
-    }
+    public void setBedPos(RegistryKey<World> registryKey, Optional<BlockPos> pos) { this.entityData.set(CANIS_BED_LOCATION.get(), this.entityData.get(CANIS_BED_LOCATION.get()).copy().set(registryKey, pos)); }
 
-    public void setBowlPos(@Nullable BlockPos pos) {
-        this.setBowlPos(this.level.dimension(), pos);
-    }
+    public Optional<BlockPos> getBowlPos() { return this.getBowlPos(this.level.dimension()); }
 
-    public void setBowlPos(RegistryKey<World> registryKey, @Nullable BlockPos pos) {
-        this.setBowlPos(registryKey, WorldUtil.toImmutable(pos));
-    }
+    public Optional<BlockPos> getBowlPos(RegistryKey<World> registryKey) { return this.entityData.get(CANIS_BOWL_LOCATION.get()).getOrDefault(registryKey, Optional.empty()); }
 
-    public void setBowlPos(RegistryKey<World> registryKey, Optional<BlockPos> pos) {
-        this.entityData.set(CANIS_BOWL_LOCATION.get(), this.entityData.get(CANIS_BOWL_LOCATION.get()).copy().set(registryKey, pos));
-    }
+    public void setBowlPos(@Nullable BlockPos pos) { this.setBowlPos(this.level.dimension(), pos); }
+
+    public void setBowlPos(RegistryKey<World> registryKey, @Nullable BlockPos pos) { this.setBowlPos(registryKey, WorldUtil.toImmutable(pos)); }
+
+    public void setBowlPos(RegistryKey<World> registryKey, Optional<BlockPos> pos) { this.entityData.set(CANIS_BOWL_LOCATION.get(), this.entityData.get(CANIS_BOWL_LOCATION.get()).copy().set(registryKey, pos)); }
 
     @Override
     public float getMaxHunger() {
@@ -1683,14 +1567,10 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
     }
 
     @Override
-    public float getCanisHunger() {
-        return this.entityData.get(HUNGER_INT);
-    }
+    public float getCanisHunger() { return this.entityData.get(HUNGER_INT); }
 
     @Override
-    public void addHunger(float add) {
-        this.setCanisHunger(this.getCanisHunger() + add);
-    }
+    public void addHunger(float add) { this.setCanisHunger(this.getCanisHunger() + add); }
 
     @Override
     public void setCanisHunger(float hunger) {
@@ -1707,24 +1587,12 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
         this.setHungerDirectly(MathHelper.clamp(hunger, 0, this.getMaxHunger()));
     }
 
-    private void setHungerDirectly(float hunger) {
-        this.entityData.set(HUNGER_INT, hunger);
-    }
-
-//    public boolean hasCustomSkin() {return !Strings.isNullOrEmpty(this.getSkinHash());}
-//    public String getSkinHash() {return this.entityData.get(CUSTOM_SKIN);}
-//    public void setSkinHash(String hash) {
-//        if (hash == null) { hash = ""; }
-//        this.entityData.set(CUSTOM_SKIN, hash); }
+    private void setHungerDirectly(float hunger) { this.entityData.set(HUNGER_INT, hunger); }
 
     @Override
-    public CanisLevel getLevel() {
-        return this.entityData.get(CANIS_LEVEL.get());
-    }
+    public CanisLevel getLevel() { return this.entityData.get(CANIS_LEVEL.get()); }
 
-    public void setLevel(CanisLevel level) {
-        this.entityData.set(CANIS_LEVEL.get(), level);
-    }
+    public void setLevel(CanisLevel level) { this.entityData.set(CANIS_LEVEL.get(), level); }
 
     @Override
     public void increaseLevel(CanisLevel.Type typeIn) {
@@ -1732,18 +1600,12 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
         this.markDataParameterDirty(CANIS_LEVEL.get());
     }
 
-//    @Override
-//    public void setCanisSize(int value) { this.entityData.set(SIZE, (byte)Math.min(5, Math.max(1, value))); }
-//    @Override
-//    public int getCanisSize() { return this.entityData.get(SIZE); }
+//    @Override public void setCanisSize(int value) { this.entityData.set(SIZE, (byte)Math.min(5, Math.max(1, value))); }
+//    @Override public int getCanisSize() { return this.entityData.get(SIZE); }
 
-    public void setBoneVariant(ItemStack stack) {
-        this.entityData.set(BONE_VARIANT, stack);
-    }
+    public void setBoneVariant(ItemStack stack) { this.entityData.set(BONE_VARIANT, stack); }
 
-    public ItemStack getBoneVariant() {
-        return this.entityData.get(BONE_VARIANT);
-    }
+    public ItemStack getBoneVariant() { return this.entityData.get(BONE_VARIANT); }
 
     @Nullable
     public IThrowableItem getThrowableItem() {
@@ -1751,95 +1613,45 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
         return item instanceof IThrowableItem ? (IThrowableItem) item : null;
     }
 
-    public boolean hasBone() {
-        return !this.getBoneVariant().isEmpty();
-    }
+    public boolean hasBone() { return !this.getBoneVariant().isEmpty(); }
 
-    private boolean getCanisFlag(int bit) {
-        return (this.entityData.get(CANIS_FLAGS) & bit) != 0;
-    }
+    private boolean getCanisFlag(int bit) { return (this.entityData.get(CANIS_FLAGS) & bit) != 0; }
 
     private void setCanisFlag(int bits, boolean flag) {
         byte c = this.entityData.get(CANIS_FLAGS);
         this.entityData.set(CANIS_FLAGS, (byte)(flag ? c | bits : c & ~bits));
     }
 
-    public void setBegging(boolean begging) {
-        this.setCanisFlag(1, begging);
-    }
-    public boolean isBegging() {
-        return this.getCanisFlag(1);
-    }
-    public void setWillObeyOthers(boolean obeyOthers) {
-        this.setCanisFlag(2, obeyOthers);
-    }
-    public boolean willObeyOthers() {
-        return this.getCanisFlag(2);
-    }
-    public void setCanPlayersAttack(boolean flag) {
-        this.setCanisFlag(4, flag);
-    }
-    public boolean canPlayersAttack() {
-        return this.getCanisFlag(4);
-    }
-    public void set8Flag(boolean collar) {
-        this.setCanisFlag(8, collar);
-    }
-    public boolean get8Flag() {
-        return this.getCanisFlag(8);
-    }
-    public void setHasSunglasses(boolean sunglasses) {
-        this.setCanisFlag(16, sunglasses);
-    }
-    public boolean hasSunglasses() {
-        return this.getCanisFlag(16);
-    }
-    public void setLyingDown(boolean lying) {
-        this.setCanisFlag(32, lying);
-    }
-    public boolean isLyingDown() {
-        return this.getCanisFlag(32);
-    }
-    public void set64Flag(boolean lying) {
-        this.setCanisFlag(64, lying);
-    }
-    public boolean get64Flag() {
-        return this.getCanisFlag(64);
-    }
-    public void setDisplayCloth(boolean displayCloth) {
-        this.setCanisFlag(128, displayCloth);
-    }
-    public boolean doDisplayCloth() {
-        return this.getCanisFlag(128);
-    }
+    public void setBegging(boolean begging) { this.setCanisFlag(1, begging); }
+    public boolean isBegging() { return this.getCanisFlag(1); }
+    public void setWillObeyOthers(boolean obeyOthers) { this.setCanisFlag(2, obeyOthers); }
+    public boolean willObeyOthers() { return this.getCanisFlag(2); }
+    public void setCanPlayersAttack(boolean flag) { this.setCanisFlag(4, flag); }
+    public boolean canPlayersAttack() { return this.getCanisFlag(4); }
+    public void set8Flag(boolean collar) { this.setCanisFlag(8, collar); }
+    public boolean get8Flag() { return this.getCanisFlag(8); }
+    public void setHasSunglasses(boolean sunglasses) { this.setCanisFlag(16, sunglasses); }
+    public boolean hasSunglasses() { return this.getCanisFlag(16); }
+    public void setLyingDown(boolean lying) { this.setCanisFlag(32, lying); }
+    public boolean isLyingDown() { return this.getCanisFlag(32); }
+    public void set64Flag(boolean lying) { this.setCanisFlag(64, lying); }
+    public boolean get64Flag() { return this.getCanisFlag(64); }
+    public void setDisplayCloth(boolean displayCloth) { this.setCanisFlag(128, displayCloth); }
+    public boolean doDisplayCloth() { return this.getCanisFlag(128); }
 
     public static String[] canisColors = { "pink", "magenta", "purple", "blue", "light_blue", "cyan", "green", "lime", "yellow", "orange", "red", "brown", "black", "gray", "light_gray", "white" };
 
     public enum COLORS {
-        WHITE,
-        LIGHT_GRAY,
-        GRAY,
-        BLACK,
-        BROWN,
-        RED,
-        ORANGE,
-        YELLOW,
-        LIME,
-        GREEN,
-        CYAN,
-        LIGHT_BLUE,
-        BLUE,
-        PURPLE,
-        MAGENTA,
+        WHITE,      LIGHT_GRAY,     GRAY,
+        BLACK,      BROWN,          RED,
+        ORANGE,     YELLOW,         LIME,
+        GREEN,      CYAN,           LIGHT_BLUE,
+        BLUE,       PURPLE,         MAGENTA,
         PINK
     }
 
-    public List<SkillInstance> getSkillMap() {
-        return this.entityData.get(SKILLS.get());
-    }
-    public void setSkillMap(List<SkillInstance> map) {
-        this.entityData.set(SKILLS.get(), map);
-    }
+    public List<SkillInstance> getSkillMap() { return this.entityData.get(SKILLS.get()); }
+    public void setSkillMap(List<SkillInstance> map) { this.entityData.set(SKILLS.get(), map); }
 
     public ActionResultType setSkillLevel(Skill skill, int level) {
         if (0 > level || level > skill.getMaxLevel()) {
@@ -1858,7 +1670,6 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
             if (level == 0) {
                 return ActionResultType.PASS;
             }
-
             inst = skill.getDefault(level);
             activeSkills.add(inst);
             inst.init(this);
@@ -1879,15 +1690,10 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
         return ActionResultType.SUCCESS;
     }
 
-
-    public <T> void markDataParameterDirty(DataParameter<T> key) {
-        this.markDataParameterDirty(key, true);
-    }
+    public <T> void markDataParameterDirty(DataParameter<T> key) { this.markDataParameterDirty(key, true); }
 
     public <T> void markDataParameterDirty(DataParameter<T> key, boolean notify) {
-        if (notify) {
-            this.onSyncedDataUpdated(key);
-        }
+        if (notify) { this.onSyncedDataUpdated(key); }
         // Force the entry to update
         DataEntry<T> dataentry = this.entityData.getItem(key);
         dataentry.setDirty(true);
@@ -1962,7 +1768,6 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
 
     @Override
     public void untame() {
-
         if(!(level instanceof ServerWorld))
             return;
         FeralCanisEntity feralCanis = ModEntities.FERAL_CANIS.create(level);
@@ -1993,28 +1798,27 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
         }
         return totalPoints;
     }
-    public int getSpendablePoints() {return this.spendablePoints.get();}
-    @Override public boolean canRiderInteract() {return true;}
-    @Override public Entity getControllingPassenger() {return this.getPassengers().isEmpty() ? null : (Entity) this.getPassengers().get(0);}
-    @Override public boolean canBeControlledByRider() {return this.getControllingPassenger() instanceof LivingEntity;}
+    public int getSpendablePoints() { return this.spendablePoints.get(); }
+    @Override public boolean canRiderInteract() { return true; }
+    @Override public Entity getControllingPassenger() { return this.getPassengers().isEmpty() ? null : (Entity) this.getPassengers().get(0); }
+    @Override public boolean canBeControlledByRider() { return this.getControllingPassenger() instanceof LivingEntity && !this.isInSittingPose(); }
     //TODO
-    @Override public boolean isPickable() {return super.isPickable();}
-    @Override public boolean isPushable() {return !this.isVehicle() && super.isPushable();}
-    @Override public boolean isControlledByLocalInstance() {return super.isControlledByLocalInstance() && this.canInteract((LivingEntity) this.getControllingPassenger());}
-    public boolean isCanisJumping() {return this.canisJumping;}
-    public void setCanisJumping(boolean jumping) {this.canisJumping = jumping;}
+    @Override public boolean isPickable() { return super.isPickable(); }
+    @Override public boolean isPushable() { return !this.isVehicle() && super.isPushable(); }
+    @Override public boolean isControlledByLocalInstance() { return super.isControlledByLocalInstance() && this.canInteract((LivingEntity) this.getControllingPassenger()); }
+    public boolean isCanisJumping() { return this.canisJumping; }
+    public void setCanisJumping(boolean jumping) { this.canisJumping = jumping; }
 
 //    public double getCanisJumpStrength() {
-//        float verticalVelocity = 0.42F + 0.06F * this.SKILLS.getLevel(ModSkills.CANIS_MOUNT);
-//        if (this.SKILLS.getLevel(ModSkills.CANIS_MOUNT) == 5) verticalVelocity += 0.04F;
+//        float verticalVelocity = 0.42F + 0.06F * this.SKILLS.getLevel(ModSkills.CAVALIER);
+//        if (this.SKILLS.getLevel(ModSkills.CAVALIER) == 5) verticalVelocity += 0.04F;
 //        return verticalVelocity;
 //    }
     // 0 - 100 input
-    public void setJumpPower(int jumpPowerIn) {this.jumpPower = 1.0F;}
+    public void setJumpPower(int jumpPowerIn) { this.jumpPower = 1.0F; }
 
     public boolean canJump() {
         return true;
-        //TODO return this.SKILLS.getLevel(ModSkills.CANIS_MOUNT) > 0;
     }
 
     @Override
@@ -2030,11 +1834,12 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
                 this.setRot(this.yRot, this.xRot);
                 this.yBodyRot = this.yRot;
                 this.yHeadRot = this.yBodyRot;
-                this.maxUpStep = 1.0F;
+                this.maxUpStep = 1.1F;
 
                 float strafe = livingentity.xxa * 0.7F;
                 float forward = livingentity.zza;
 
+//                if (this.hasImpulse && forward >= 0.0F) { Networking.sendToNearby(this.level, this, new PacketAnimEntity(this.getId(), Animations.RUNNING.ordinal())); }
                 // If moving backwards half the speed
                 if (forward <= 0.0F) {
                     forward *= 0.5F;
@@ -2058,8 +1863,7 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
                         this.setDeltaMovement(this.getDeltaMovement().add(-amount * compX * this.jumpPower, 0.0D, amount * compZ * this.jumpPower));
                         //this.playJumpSound();
                     }
-                    // Mark as unable jump until reset
-                    this.jumpPower = 0.0F;
+                    this.jumpPower = 0.0F; // Mark as unable jump until reset
                 }
 
                 this.flyingSpeed = this.getSpeed() * 0.1F;
@@ -2069,7 +1873,7 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
                     super.travel(new Vector3d(strafe, positionIn.y, forward));
                     this.lerpSteps = 0;
                 } else if (livingentity instanceof PlayerEntity) {
-                    // A player is riding and can not control then
+                    // A player is riding and can not control them
                     this.setDeltaMovement(Vector3d.ZERO);
                 }
 
@@ -2154,6 +1958,10 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
     public void setTargetBlock(BlockPos pos) {this.targetBlock = pos;}
     public BlockPos getTargetBlock() {return this.targetBlock;}
 }
+
+
+
+
 //    private void setNewStatsByLevel(CanisEvolutionLevels levels) {
 //        int currentLevel = this.getCanisEvolutionData().getLevel();
 //        if (currentLevel == 1) {

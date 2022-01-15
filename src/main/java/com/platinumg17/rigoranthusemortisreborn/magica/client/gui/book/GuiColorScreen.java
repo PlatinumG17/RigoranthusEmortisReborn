@@ -1,7 +1,7 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.client.gui.book;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
+import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.gui.buttons.GuiImageButton;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.network.Networking;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.network.PacketUpdateSpellColors;
@@ -10,7 +10,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.OptionSlider;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.client.settings.SliderPercentageOption;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
@@ -97,7 +96,7 @@ public class GuiColorScreen extends BaseBook {
     @Override
     public void drawBackgroundElements(MatrixStack stack, int mouseX, int mouseY, float partialTicks) {
         super.drawBackgroundElements(stack, mouseX, mouseY, partialTicks);
-        drawFromTexture(new ResourceLocation(EmortisConstants.MOD_ID, "textures/gui/slider_gilding.png"), 22, 47, 0, 0, 112, 104,112,104, stack);
+        drawFromTexture(RigoranthusEmortisReborn.rl("textures/gui/slider_gilding.png"), 22, 47, 0, 0, 112, 104,112,104, stack);
         int color = -8355712;
         minecraft.font.draw(stack, new TranslationTextComponent("rigoranthusemortisreborn.color_gui.title").getString(), 51, 24,  color);
         minecraft.font.draw(stack, new TranslationTextComponent("rigoranthusemortisreborn.color_gui.presets").getString(), 159, 24,  color);

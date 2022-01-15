@@ -86,6 +86,7 @@ public class CanisEventHandler {
             if (!persistTag.getBoolean("gotCanisStartingItems")) {
                 persistTag.putBoolean("gotCanisStartingItems", true);
                 player.inventory.add(new ItemStack(CanisItems.CANIS_SUMMONING_CHARM.get()));
+                player.inventory.add(new ItemStack(CanisItems.CADAVER_SUMMONING_CHARM.get()));
                 player.inventory.add(new ItemStack(CanisItems.WHISTLE.get()));
             }
         }

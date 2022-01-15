@@ -1,6 +1,6 @@
 package com.platinumg17.rigoranthusemortisreborn.entity.model.mobs;
 
-import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
+import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.entity.mobs.SunderedCadaverEntity;
 import net.minecraft.util.ResourceLocation;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
@@ -10,11 +10,9 @@ import software.bernie.geckolib3.model.provider.data.EntityModelData;
 
 import javax.annotation.Nullable;
 
-public class SunderedCadaverGeoModel extends AnimatedGeoModel<SunderedCadaverEntity> {
+import static com.platinumg17.rigoranthusemortisreborn.canis.common.lib.Resources.*;
 
-    private static final ResourceLocation CADAVER_TEXTURE = new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/sundered_cadaver.png");
-    public static final ResourceLocation CADAVER_MODEL = new ResourceLocation(EmortisConstants.MOD_ID , "geo/sundered_cadaver.geo.json");
-    public static final ResourceLocation ANIMATIONS = new ResourceLocation(EmortisConstants.MOD_ID , "animations/sundered_cadaver.json");
+public class SunderedCadaverGeoModel extends AnimatedGeoModel<SunderedCadaverEntity> {
 
     @Override
     public ResourceLocation getModelLocation(SunderedCadaverEntity cadaver) {
@@ -28,7 +26,7 @@ public class SunderedCadaverGeoModel extends AnimatedGeoModel<SunderedCadaverEnt
 
     @Override
     public ResourceLocation getAnimationFileLocation(SunderedCadaverEntity animatable) {
-        return ANIMATIONS;
+        return CADAVER_ANIMATION;
     }
 
     @Override

@@ -47,6 +47,6 @@ package com.platinumg17.rigoranthusemortisreborn.api.apimagic.psyglyphic_amalgam
 //
 //    @Override
 //    public ResourceLocation getId() {
-//        return new ResourceLocation(EmortisConstants.MOD_ID, "reactive");
+//        return RigoranthusEmortisReborn.rl("reactive");
 //    }
 //}

@@ -3,6 +3,7 @@ package com.platinumg17.rigoranthusemortisreborn.api.apimagic.psyglyphic_amalgam
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.PsyglyphicAmalgamatorTile;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.RecipeRegistry;
@@ -38,7 +39,7 @@ public class PsyglyphicAmalgamatorRecipe implements IPsyglyphicRecipe {
         this.result = result;
         this.category = category;
         dominionCost = 0;
-        this.id = new ResourceLocation(EmortisConstants.MOD_ID, result.getItem().getRegistryName().getPath());
+        this.id = RigoranthusEmortisReborn.rl(result.getItem().getRegistryName().getPath());
     }
 
     public PsyglyphicAmalgamatorRecipe(ResourceLocation id, List<Ingredient> pedestalItems, Ingredient reagent, ItemStack result) {
@@ -59,7 +60,7 @@ public class PsyglyphicAmalgamatorRecipe implements IPsyglyphicRecipe {
         result = ItemStack.EMPTY;
         pedestalItems = new ArrayList<>();
         dominionCost = 0;
-        this.id = new ResourceLocation(EmortisConstants.MOD_ID, "empty");
+        this.id = RigoranthusEmortisReborn.rl("empty");
     }
 
     public PsyglyphicAmalgamatorRecipe(Item result, Item reagent, Item[] pedestalItems, String category){
@@ -72,7 +73,7 @@ public class PsyglyphicAmalgamatorRecipe implements IPsyglyphicRecipe {
         this.pedestalItems = stacks;
         this.category = category;
         dominionCost = 200;
-        this.id = new ResourceLocation(EmortisConstants.MOD_ID, result.getRegistryName().getPath());
+        this.id = RigoranthusEmortisReborn.rl(result.getRegistryName().getPath());
     }
 
     @Override
@@ -216,7 +217,7 @@ public class PsyglyphicAmalgamatorRecipe implements IPsyglyphicRecipe {
 
     @Override
     public IRecipeType<?> getType() {
-        return Registry.RECIPE_TYPE.get(new ResourceLocation(EmortisConstants.MOD_ID, "amalgamator_recipe"));
+        return Registry.RECIPE_TYPE.get(RigoranthusEmortisReborn.rl("amalgamator_recipe"));
     }
 
     public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<PsyglyphicAmalgamatorRecipe> {

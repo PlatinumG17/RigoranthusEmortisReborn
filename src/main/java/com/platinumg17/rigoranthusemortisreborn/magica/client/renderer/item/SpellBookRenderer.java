@@ -2,7 +2,7 @@ package com.platinumg17.rigoranthusemortisreborn.magica.client.renderer.item;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
+import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.items.SpellBook;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -62,6 +62,6 @@ public class SpellBookRenderer extends GeoItemRenderer<SpellBook> {
     public ResourceLocation getTextureLocation(SpellBook o) {
         String base = "textures/items/spellbook_";
         String color = !currentItemStack.hasTag() || !currentItemStack.getTag().contains("color") ? "purple" : DyeColor.byId(currentItemStack.getOrCreateTag().getInt("color")).getName();
-        return new ResourceLocation(EmortisConstants.MOD_ID, base + color +".png");
+        return RigoranthusEmortisReborn.rl(base + color +".png");
     }
 }

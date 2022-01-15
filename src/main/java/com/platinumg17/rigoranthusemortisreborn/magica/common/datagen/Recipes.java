@@ -1,14 +1,12 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.common.datagen;
 
-import com.platinumg17.rigoranthusemortisreborn.api.RigoranthusEmortisRebornAPI;
+import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.blocks.BlockInit;
 import com.platinumg17.rigoranthusemortisreborn.blocks.DecorativeOrStorageBlocks;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.CanisTags;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
 import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.lib.RitualLib;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.spell.effect.EffectHeal;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.BlockRegistry;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.MagicItemsRegistry;
 import net.minecraft.advancements.criterion.InventoryChangeTrigger;
@@ -21,7 +19,6 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.IItemProvider;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -34,13 +31,13 @@ public class Recipes extends RecipeProvider {
 
     public static ITag.INamedTag<Item> DOMINION_GEM_TAG = ItemTags.bind("forge:gems/mana");
     public static ITag.INamedTag<Item> DOMINION_GEM_BLOCK_TAG = ItemTags.bind("forge:storage_blocks/mana");
-    public static ITag.INamedTag<Block> DECORATIVE_RE =  BlockTags.createOptional(new ResourceLocation(EmortisConstants.MOD_ID, "re_decorative"));
-    public static ITag.INamedTag<Block> MAGIC_SAPLINGS =  BlockTags.createOptional(new ResourceLocation(EmortisConstants.MOD_ID, "magic_saplings"));
-    public static ITag.INamedTag<Block> MAGIC_PLANTS =  BlockTags.createOptional(new ResourceLocation(EmortisConstants.MOD_ID, "magic_plants"));
+    public static ITag.INamedTag<Block> DECORATIVE_RE =  BlockTags.createOptional(RigoranthusEmortisReborn.rl("re_decorative"));
+    public static ITag.INamedTag<Block> MAGIC_SAPLINGS =  BlockTags.createOptional(RigoranthusEmortisReborn.rl("magic_saplings"));
+    public static ITag.INamedTag<Block> MAGIC_PLANTS =  BlockTags.createOptional(RigoranthusEmortisReborn.rl("magic_plants"));
     public static ITag.INamedTag<Item> MAGIC_FOOD = ItemTags.bind("rigoranthusemortisreborn:magic_food");
 
-    public static ITag.INamedTag<Block> AZULOREAL_LOGS_TAG =  BlockTags.createOptional(new ResourceLocation(EmortisConstants.MOD_ID, "azuloreal_logs"));
-    public static ITag.INamedTag<Block> JESSIC_LOGS_TAG =  BlockTags.createOptional(new ResourceLocation(EmortisConstants.MOD_ID, "jessic_logs"));
+    public static ITag.INamedTag<Block> AZULOREAL_LOGS_TAG =  BlockTags.createOptional(RigoranthusEmortisReborn.rl("azuloreal_logs"));
+    public static ITag.INamedTag<Block> JESSIC_LOGS_TAG =  BlockTags.createOptional(RigoranthusEmortisReborn.rl("jessic_logs"));
 
     public static Ingredient DOMINION_GEM = Ingredient.of(MagicItemsRegistry.dominionGem);
     public static Ingredient DOMINION_GEM_BLOCK = Ingredient.of(BlockRegistry.DOMINION_GEM_BLOCK);
@@ -53,10 +50,6 @@ public class Recipes extends RecipeProvider {
 
             CookingRecipeBuilder.smelting(Ingredient.of(Registration.RECONDITE_ORE.get()), MagicItemsRegistry.dominionGem,0.5f, 200)
                     .unlockedBy("has_ore", InventoryChangeTrigger.Instance.hasItems(Registration.RECONDITE_ORE.get())).save(consumer);
-
-//            ShapelessRecipeBuilder.shapeless(MagicItemsRegistry.emorticOrigins).unlockedBy("has_journal", InventoryChangeTrigger.Instance.hasItems(Items.CRAFTING_TABLE))
-//                    .requires(DOMINION_GEM, 1)
-//                    .requires(Items.BOOK).save(consumer);
 
             ShapedRecipeBuilder.shaped(MagicItemsRegistry.unadornedRing).unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(Items.CRAFTING_TABLE))
                     .pattern("xyx")
@@ -104,26 +97,8 @@ public class Recipes extends RecipeProvider {
                     .pattern("ses").define('s',  Tags.Items.STONE).define('y', Tags.Items.GLASS).define('b', BlockInit.DWELLER_BRAIN.get().asItem())
                     .define('e', Registration.POWDERED_ESOTERICUM.get()).save(consumer);
 
-//            ShapedRecipeBuilder.shaped(MagicItemsRegistry.BLANK_PARCHMENT, 1).unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(Items.CRAFTING_TABLE))
-//                    .pattern("yyy")
-//                    .pattern("yxy")
-//                    .pattern("yyy").define('x', Items.PAPER).define('y', MagicItemsRegistry.DOMINION_FIBER).save(consumer);
-
-//            ShapelessRecipeBuilder.shapeless(MagicItemsRegistry.spellParchment, 1).unlockedBy("has_journal", InventoryChangeTrigger.Instance.hasItems(Items.CRAFTING_TABLE))
-//                    .requires(MagicItemsRegistry.BLANK_PARCHMENT, 1)
-//                    .requires(Ingredient.of(ItemTags.bind("forge:gems/mana")), 4)
-//                    .save(consumer);
-
-//            ShapedRecipeBuilder.shaped(BlockRegistry.DOMINION_EXTRACTOR_BLOCK).unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(Items.CRAFTING_TABLE))
-//                    .pattern(" s ")
-//                    .pattern("gig")
-//                    .pattern(" s ")
-//                    .define('g', Tags.Items.INGOTS_GOLD)
-//                    .define('s', DOMINION_GEM)
-//                    .define('i', Items.LAVA_BUCKET).save(consumer);
-
             shapelessBuilder(BlockRegistry.DOMINION_GEM_BLOCK,1).requires(DOMINION_GEM, 9).save(consumer);
-            shapelessBuilder(MagicItemsRegistry.dominionGem, 9).requires(BlockRegistry.DOMINION_GEM_BLOCK,1).save(consumer, new ResourceLocation(EmortisConstants.MOD_ID, "dominion_gem_from_block"));
+            shapelessBuilder(MagicItemsRegistry.dominionGem, 9).requires(BlockRegistry.DOMINION_GEM_BLOCK,1).save(consumer, RigoranthusEmortisReborn.rl("dominion_gem_from_block"));
 
             ShapedRecipeBuilder.shaped(Items.ARROW, 2)
                     .unlockedBy("has_journal", InventoryChangeTrigger.Instance.hasItems(Items.CRAFTING_TABLE))
@@ -133,7 +108,7 @@ public class Recipes extends RecipeProvider {
                     .define('x', ItemInit.RAZORTOOTH_KUNAI.get())
                     .define('y', Items.STICK)
                     .define('z', Items.FEATHER)
-                    .save(consumer, new ResourceLocation(EmortisConstants.MOD_ID, "razortooth_to_arrow"));
+                    .save(consumer, RigoranthusEmortisReborn.rl("razortooth_to_arrow"));
 
             shapelessBuilder(BlockRegistry.RITUAL_BLOCK)
                     .requires(BlockRegistry.SPLINTERED_PEDESTAL)
@@ -241,33 +216,33 @@ public class Recipes extends RecipeProvider {
 
     private static int STONECUTTER_COUNTER = 0;
     public static void makeStonecutter(Consumer<IFinishedRecipe> consumer, IItemProvider input, IItemProvider output, String reg){
-        SingleItemRecipeBuilder.stonecutting(Ingredient.of(input), output).unlocks("has_journal",InventoryChangeTrigger.Instance.hasItems(Items.CRAFTING_TABLE)).save(consumer, new ResourceLocation(EmortisConstants.MOD_ID, reg + "_"+STONECUTTER_COUNTER));
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(input), output).unlocks("has_journal",InventoryChangeTrigger.Instance.hasItems(Items.CRAFTING_TABLE)).save(consumer, RigoranthusEmortisReborn.rl(reg + "_"+STONECUTTER_COUNTER));
         STONECUTTER_COUNTER++;
     }
 
     public static void makeArmor(String prefix, Consumer<IFinishedRecipe> consumer, Item material){
-        ShapedRecipeBuilder.shaped(ForgeRegistries.ITEMS.getValue(new ResourceLocation(EmortisConstants.MOD_ID, prefix + "_boots")))
+        ShapedRecipeBuilder.shaped(ForgeRegistries.ITEMS.getValue(RigoranthusEmortisReborn.rl(prefix + "_boots")))
                 .pattern("   ")
                 .pattern("x x")
                 .pattern("x x").define('x', material).group(EmortisConstants.MOD_ID)
                 .unlockedBy("has_journal", InventoryChangeTrigger.Instance.hasItems(Items.CRAFTING_TABLE))
                 .save(consumer);
 
-        ShapedRecipeBuilder.shaped(ForgeRegistries.ITEMS.getValue(new ResourceLocation(EmortisConstants.MOD_ID, prefix + "_leggings")))
+        ShapedRecipeBuilder.shaped(ForgeRegistries.ITEMS.getValue(RigoranthusEmortisReborn.rl(prefix + "_leggings")))
                 .pattern("xxx")
                 .pattern("x x")
                 .pattern("x x").define('x', material).group(EmortisConstants.MOD_ID)
                 .unlockedBy("has_journal", InventoryChangeTrigger.Instance.hasItems(Items.CRAFTING_TABLE))
                 .save(consumer);
 
-        ShapedRecipeBuilder.shaped(ForgeRegistries.ITEMS.getValue(new ResourceLocation(EmortisConstants.MOD_ID, prefix + "_hood")))
+        ShapedRecipeBuilder.shaped(ForgeRegistries.ITEMS.getValue(RigoranthusEmortisReborn.rl(prefix + "_hood")))
                 .pattern("xxx")
                 .pattern("x x")
                 .pattern("   ").define('x', material).group(EmortisConstants.MOD_ID)
                 .unlockedBy("has_journal", InventoryChangeTrigger.Instance.hasItems(Items.CRAFTING_TABLE))
                 .save(consumer);
 
-        ShapedRecipeBuilder.shaped(ForgeRegistries.ITEMS.getValue(new ResourceLocation(EmortisConstants.MOD_ID, prefix + "_robes")))
+        ShapedRecipeBuilder.shaped(ForgeRegistries.ITEMS.getValue(RigoranthusEmortisReborn.rl(prefix + "_robes")))
                 .pattern("x x")
                 .pattern("xxx")
                 .pattern("xxx").define('x', material).group(EmortisConstants.MOD_ID)

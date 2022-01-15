@@ -154,8 +154,6 @@ public class RigoranthusEmortisReborn {
             modEventBus.addListener(CanisItems::registerItemColors);
             modEventBus.addListener(ClientEventHandler::onModelBakeEvent);
                 forgeEventBus.register(new ClientEventHandler());
-//            Minecraft mc = Minecraft.getInstance();
-//            if (mc != null) { // If mc is null we are running data gen so no need to add listener ((IReloadableResourceManager) mc.getResourceManager()).registerReloadListener(CanisTextureManager.INSTANCE);}
         });
         GLM.register(FMLJavaModLoadingContext.get().getModEventBus());
         ConfigHandler.init(modEventBus);
@@ -176,7 +174,7 @@ public class RigoranthusEmortisReborn {
             CanisEntity.initDataParameters();                      Capabilities.init();
             WorldEvent.registerFeatures();                         EmortisBiomeGen.addBiomeTypes();
             WoodType.register(RigoranthusWoodTypes.AZULOREAL);     WoodType.register(RigoranthusWoodTypes.JESSIC);
-//            EmortisSurfaceBuilder.Configured.registerConfiguredSurfaceBuilders(); //            APIRegistry.registerAmalgamatorRecipes();
+//            EmortisSurfaceBuilder.Configured.registerConfiguredSurfaceBuilders();
             if (Config.verdurousWoodlandsSpawnWeight.get() > 0) {
                 BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(EmortisBiomeGen.verdurousWoodlandsKey, Config.verdurousWoodlandsSpawnWeight.get()));}
             if (Config.verdurousFieldsSpawnWeight.get() > 0) {
@@ -232,8 +230,8 @@ public class RigoranthusEmortisReborn {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(TextureEvent::textEvent);
     }
     private void makeBow(Item item) {
-        ItemModelsProperties.register(item, new ResourceLocation("pull"), (p_239429_0_, p_239429_1_, p_239429_2_) -> {if (p_239429_2_ == null) {return 0.0F;} else {return p_239429_2_.getUseItem() != p_239429_0_ ? 0.0F : (float) (p_239429_0_.getUseDuration() - p_239429_2_.getUseItemRemainingTicks()) / 20.0F;}});
-        ItemModelsProperties.register(item, new ResourceLocation("pulling"), (p_239428_0_, p_239428_1_, p_239428_2_) -> p_239428_2_ != null && p_239428_2_.isUsingItem() && p_239428_2_.getUseItem() == p_239428_0_ ? 1.0F : 0.0F);
+        ItemModelsProperties.register(item, new ResourceLocation("pull"), (bow, world, entity) -> {if (entity == null) {return 0.0F;} else {return entity.getUseItem() != bow ? 0.0F : (float) (bow.getUseDuration() - entity.getUseItemRemainingTicks()) / 20.0F;}});
+        ItemModelsProperties.register(item, new ResourceLocation("pulling"), (bow, world, entity) -> entity != null && entity.isUsingItem() && entity.getUseItem() == bow ? 1.0F : 0.0F);
     }
     private void enqueueIMC(final InterModEnqueueEvent event) {
         ModSetup.sendIntercoms();

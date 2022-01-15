@@ -5,6 +5,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class EmortisConstants {
 
+    public static ResourceLocation resourceLoc(String name) { return new ResourceLocation(MOD_ID, name); }
+
     public static final String MOD_ID = "rigoranthusemortisreborn";
     public static final String MOD_NAME = "Rigoranthus Emortis Reborn";
 

@@ -3,19 +3,19 @@ package com.platinumg17.rigoranthusemortisreborn.canis.client.screen;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.api.RigoranthusEmortisRebornAPI;
 import com.platinumg17.rigoranthusemortisreborn.api.apicanis.feature.CanisLevel;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.feature.EnumClothColor;
 import com.platinumg17.rigoranthusemortisreborn.api.apicanis.feature.EnumMode;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.feature.EnumShadesColor;
 import com.platinumg17.rigoranthusemortisreborn.api.apicanis.registry.Skill;
-import com.platinumg17.rigoranthusemortisreborn.canis.client.screen.widget.BackButton;
-import com.platinumg17.rigoranthusemortisreborn.canis.client.screen.widget.BooleanButton;
-import com.platinumg17.rigoranthusemortisreborn.canis.client.screen.widget.ForwardButton;
-import com.platinumg17.rigoranthusemortisreborn.canis.client.screen.widget.ModeButton;
+import com.platinumg17.rigoranthusemortisreborn.canis.CanisSkills;
+import com.platinumg17.rigoranthusemortisreborn.canis.client.screen.widget.*;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.canisnetwork.CanisPacketHandler;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.canisnetwork.packet.data.*;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.CanisEntity;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.accouterments.CanisAccouterments;
-import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.Resources;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.util.REUtil;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
@@ -29,7 +29,6 @@ import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.*;
 import net.minecraftforge.api.distmarker.Dist;
@@ -63,6 +62,10 @@ public class CanisInfoScreen extends CanisBaseBook {
     private float yMouse;
     public NoShadowTextField nameTextField;
     public Button displayClothButton;
+    public SmallBackButton prevClothColorBtn;
+    public SmallForwardButton nextClothColorBtn;
+    public SmallBackButton prevShadesColorBtn;
+    public SmallForwardButton nextShadesColorBtn;
     public boolean clothButtonToggled;
 
     public CanisInfoScreen(CanisEntity canis, PlayerEntity player) {
@@ -74,7 +77,6 @@ public class CanisInfoScreen extends CanisBaseBook {
                 .sorted(Comparator.comparing((t) -> I18n.get(t.getTranslationKey())))
                 .collect(Collectors.toList());
         this.skillWidgets = new ArrayList<>();
-        clothButtonToggled = false;
     }
 
     public static void open(CanisEntity canis) {
@@ -85,7 +87,6 @@ public class CanisInfoScreen extends CanisBaseBook {
     @Override
     public void init() {
         super.init();
-        clothButtonToggled = false;
         CanisInfoScreen.this.minecraft.keyboardHandler.setSendRepeatsToGui(true);
         nameTextField = new NoShadowTextField(this.font, bookLeft + 56, bookTop + 5, 200, 20,  new TranslationTextComponent("canisgui.enter_name"));
         if(nameTextField.getValue().isEmpty())
@@ -110,7 +111,9 @@ public class CanisInfoScreen extends CanisBaseBook {
                 CanisPacketHandler.send(PacketDistributor.SERVER.noArg(), new FriendlyFireData(this.canis.getId(), !this.canis.canPlayersAttack()));
             });
             this.addButton(attackPlayerBtn);
+        }
 
+        if (this.canis.getLevel(CanisSkills.CAVALIER.get()) >= 1) {
             displayClothButton = new DisplayClothButton(this.bookLeft + 34, this.bookBottom - 105, new StringTextComponent(String.valueOf(this.canis.doDisplayCloth())), button -> {
                 clothButtonToggled = !this.canis.doDisplayCloth();
                 button.setMessage(new StringTextComponent(String.valueOf(!this.canis.doDisplayCloth())));
@@ -119,12 +122,68 @@ public class CanisInfoScreen extends CanisBaseBook {
                 @Override
                 public void renderToolTip(MatrixStack stack, int mouseX, int mouseY) {
                     List<ITextComponent> list = new ArrayList<>();
-                    if (this.active) { list.add(new StringTextComponent(String.valueOf(CanisInfoScreen.this.canis.doDisplayCloth()))); }
+                    if (this.active) {
+                        list.add(new StringTextComponent(String.valueOf(CanisInfoScreen.this.canis.doDisplayCloth())));
+                    }
                     CanisInfoScreen.this.renderComponentTooltip(stack, list, mouseX, mouseY);
                 }
             };
             this.addButton(displayClothButton);
+            nextClothColorBtn = new SmallForwardButton(this.bookLeft + 34, this.bookBottom - 90, new TranslationTextComponent(this.canis.getClothColor().getUnlocalisedName()), button -> {
+                EnumClothColor clothColor = CanisInfoScreen.this.canis.getClothColor().nextColor();
+                button.setMessage(new TranslationTextComponent(clothColor.getUnlocalisedName()));
+                CanisPacketHandler.send(PacketDistributor.SERVER.noArg(), new ClothColorData(CanisInfoScreen.this.canis.getId(), clothColor));
+            }) {
+                @Override
+                public void renderToolTip(MatrixStack stack, int mouseX, int mouseY) {
+                    String str = I18n.get(canis.getClothColor().getUnlocalisedName());
+                    CanisInfoScreen.this.renderTooltip(stack, new TranslationTextComponent(str).withStyle(TextFormatting.ITALIC), mouseX, mouseY);
+                }
+            };
+            this.addButton(nextClothColorBtn);
+
+            prevClothColorBtn = new SmallBackButton(this.bookLeft + 20, this.bookBottom - 90, new TranslationTextComponent(this.canis.getClothColor().getUnlocalisedName()), button -> {
+                EnumClothColor clothColor = CanisInfoScreen.this.canis.getClothColor().previousColor();
+                button.setMessage(new TranslationTextComponent(clothColor.getUnlocalisedName()));
+                CanisPacketHandler.send(PacketDistributor.SERVER.noArg(), new ClothColorData(CanisInfoScreen.this.canis.getId(), clothColor));
+            }) {
+                @Override
+                public void renderToolTip(MatrixStack stack, int mouseX, int mouseY) {
+                    String str = I18n.get(canis.getClothColor().getUnlocalisedName());
+                    CanisInfoScreen.this.renderTooltip(stack, new TranslationTextComponent(str).withStyle(TextFormatting.ITALIC), mouseX, mouseY);
+                }
+            };
+            this.addButton(prevClothColorBtn);
         }
+
+        if (this.canis.getAccoutrement(CanisAccouterments.SUNGLASSES.get()).isPresent()) {
+            nextShadesColorBtn = new SmallForwardButton(this.bookLeft + 34, this.bookBottom - 64, new TranslationTextComponent(this.canis.getShadesColor().getUnlocalisedName()), button -> {
+                EnumShadesColor shadesColor = CanisInfoScreen.this.canis.getShadesColor().nextColor();
+                button.setMessage(new TranslationTextComponent(shadesColor.getUnlocalisedName()));
+                CanisPacketHandler.send(PacketDistributor.SERVER.noArg(), new ShadesColorData(CanisInfoScreen.this.canis.getId(), shadesColor));
+            }) {
+                @Override
+                public void renderToolTip(MatrixStack stack, int mouseX, int mouseY) {
+                    String str = I18n.get(canis.getShadesColor().getUnlocalisedName());
+                    CanisInfoScreen.this.renderTooltip(stack, new TranslationTextComponent(str).withStyle(TextFormatting.ITALIC), mouseX, mouseY);
+                }
+            };
+            this.addButton(nextShadesColorBtn);
+
+            prevShadesColorBtn = new SmallBackButton(this.bookLeft + 20, this.bookBottom - 64, new TranslationTextComponent(this.canis.getShadesColor().getUnlocalisedName()), button -> {
+                EnumShadesColor shadesColor = CanisInfoScreen.this.canis.getShadesColor().previousColor();
+                button.setMessage(new TranslationTextComponent(shadesColor.getUnlocalisedName()));
+                CanisPacketHandler.send(PacketDistributor.SERVER.noArg(), new ShadesColorData(CanisInfoScreen.this.canis.getId(), shadesColor));
+            }) {
+                @Override
+                public void renderToolTip(MatrixStack stack, int mouseX, int mouseY) {
+                    String str = I18n.get(canis.getShadesColor().getUnlocalisedName());
+                    CanisInfoScreen.this.renderTooltip(stack, new TranslationTextComponent(str).withStyle(TextFormatting.ITALIC), mouseX, mouseY);
+                }
+            };
+            this.addButton(prevShadesColorBtn);
+        }
+
         modeButton = new ModeButton(this.bookLeft + 44, this.bookBottom - 48, new TranslationTextComponent(this.canis.getMode().getUnlocalisedName()), button -> {
             EnumMode mode = CanisInfoScreen.this.canis.getMode().nextMode();
             if (mode == EnumMode.WANDERING && !CanisInfoScreen.this.canis.getBowlPos().isPresent()) {
@@ -175,7 +234,8 @@ public class CanisInfoScreen extends CanisBaseBook {
     }
 
     /**
-    * @author ProPerciliv*/
+    * @author ProPerciliv
+    * */
     private void recalculatePage(int perPage) {
         GlStateManager._pushMatrix();
         if(scaleFactor != 1) {
@@ -275,7 +335,7 @@ public class CanisInfoScreen extends CanisBaseBook {
         }
         String speedValue = REUtil.format2DP(this.canis.getAttribute(Attributes.MOVEMENT_SPEED).getValue());
         String armorValue = REUtil.format2DP(this.canis.getAttribute(Attributes.ARMOR).getValue());
-        drawFromTexture(new ResourceLocation(EmortisConstants.MOD_ID, "textures/gui/create_paper.png"), 216, 181, 0, 0, 56, 15,56,15, stack);
+        drawFromTexture(RigoranthusEmortisReborn.rl("textures/gui/create_paper.png"), 216, 181, 0, 0, 56, 15,56,15, stack);
 
         this.font.draw(stack, I18n.get("canisgui.speed") + "     " + speedValue, 177, 40, 0xFFFFFF);
         this.font.draw(stack, I18n.get("canisgui.owner") + "     " + tamedString, 177, 52, 0xFFFFFF);

@@ -3,6 +3,7 @@ package com.platinumg17.rigoranthusemortisreborn.api.apimagic.recipe;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.EmorticCraftingPressTile;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.RecipeRegistry;
@@ -38,7 +39,7 @@ public class CraftingPressRecipe implements IIchoricRecipe {
         this.output = output;
         this.category = category;
         this.dominionCost = 0;
-        this.id = new ResourceLocation(EmortisConstants.MOD_ID, output.getItem().getRegistryName().getPath());
+        this.id = RigoranthusEmortisReborn.rl(output.getItem().getRegistryName().getPath());
     }
 
     public CraftingPressRecipe(ResourceLocation id, Ingredient base, Ingredient reagent, ItemStack output) {
@@ -59,7 +60,7 @@ public class CraftingPressRecipe implements IIchoricRecipe {
         reagent = Ingredient.EMPTY;
         output = ItemStack.EMPTY;
         dominionCost = 0;
-        this.id = new ResourceLocation(EmortisConstants.MOD_ID, "empty");
+        this.id = RigoranthusEmortisReborn.rl("empty");
     }
 
     public CraftingPressRecipe(Item output, Item base, Item reagent, String category) {
@@ -68,7 +69,7 @@ public class CraftingPressRecipe implements IIchoricRecipe {
         this.output = new ItemStack(output);
         this.category = category;
 
-        this.id = new ResourceLocation(EmortisConstants.MOD_ID, output.getRegistryName().getPath());
+        this.id = RigoranthusEmortisReborn.rl(output.getRegistryName().getPath());
     }
 
     @Override
@@ -182,7 +183,7 @@ public class CraftingPressRecipe implements IIchoricRecipe {
     public IRecipeSerializer<?> getSerializer() { return RecipeRegistry.CRAFTING_PRESS_SERIALIZER; }
     @Override
     public IRecipeType<?> getType() {
-        return Registry.RECIPE_TYPE.get(new ResourceLocation(EmortisConstants.MOD_ID, "crafting_press_recipe"));
+        return Registry.RECIPE_TYPE.get(RigoranthusEmortisReborn.rl("crafting_press_recipe"));
     }
 
     public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<CraftingPressRecipe> {

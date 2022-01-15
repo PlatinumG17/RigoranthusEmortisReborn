@@ -1,8 +1,6 @@
 package com.platinumg17.rigoranthusemortisreborn.api.apicanis.entity;
 
-import com.platinumg17.rigoranthusemortisreborn.api.apicanis.feature.CanisLevel;
-import com.platinumg17.rigoranthusemortisreborn.api.apicanis.feature.DataKey;
-import com.platinumg17.rigoranthusemortisreborn.api.apicanis.feature.EnumMode;
+import com.platinumg17.rigoranthusemortisreborn.api.apicanis.feature.*;
 import net.minecraft.entity.LivingEntity;
 import net.minecraftforge.fml.RegistryObject;
 import com.platinumg17.rigoranthusemortisreborn.api.apicanis.interfaces.ICanisFoodHandler;
@@ -20,6 +18,8 @@ public interface ICanis {
     public void untame();
     public boolean canInteract(LivingEntity playerIn);
     public EnumMode getMode();
+    public EnumClothColor getClothColor();
+    public EnumShadesColor getShadesColor();
     public CanisLevel getLevel();
 //    public CanisStage getStage();
     public void increaseLevel(CanisLevel.Type typeIn);

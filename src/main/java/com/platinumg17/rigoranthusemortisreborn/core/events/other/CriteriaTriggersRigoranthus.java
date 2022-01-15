@@ -1,6 +1,7 @@
 package com.platinumg17.rigoranthusemortisreborn.core.events.other;
 
 import com.minecraftabnormals.abnormals_core.common.advancement.EmptyTrigger;
+import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.util.ResourceLocation;
@@ -14,6 +15,6 @@ public class CriteriaTriggersRigoranthus {
     public static final EmptyTrigger LISTEN_TO_RECORD = CriteriaTriggers.register(new EmptyTrigger(prefix("listen_to_a_record")));
 
     private static ResourceLocation prefix(String name) {
-        return new ResourceLocation(EmortisConstants.MOD_ID, name);
+        return RigoranthusEmortisReborn.rl(name);
     }
 }

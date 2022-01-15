@@ -3,7 +3,7 @@ package com.platinumg17.rigoranthusemortisreborn.api.apimagic.psyglyphic_amalgam
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
+import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.PsyglyphicAmalgamatorTile;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.util.PortUtil;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.RecipeRegistry;
@@ -36,7 +36,7 @@ public class PsyglyphicEnchantingRecipe extends PsyglyphicAmalgamatorRecipe {
         this.enchantment = enchantment;
         this.enchantLevel = level;
         this.dominionCost = dominionCost;
-        this.id = new ResourceLocation(EmortisConstants.MOD_ID, enchantment.getRegistryName().getPath() +"_" + level);
+        this.id = RigoranthusEmortisReborn.rl(enchantment.getRegistryName().getPath() +"_" + level);
     }
 
     public PsyglyphicEnchantingRecipe(ItemStack[] pedestalItems, Enchantment enchantment, int level, int dominionCost){
@@ -48,7 +48,7 @@ public class PsyglyphicEnchantingRecipe extends PsyglyphicAmalgamatorRecipe {
         this.enchantment = enchantment;
         this.enchantLevel = level;
         this.dominionCost = dominionCost;
-        this.id = new ResourceLocation(EmortisConstants.MOD_ID, enchantment.getRegistryName().getPath() +"_" + level);
+        this.id = RigoranthusEmortisReborn.rl(enchantment.getRegistryName().getPath() +"_" + level);
     }
 
     public PsyglyphicEnchantingRecipe(Ingredient[] pedestalItems, Enchantment enchantment, int level, int dominionCost){
@@ -56,12 +56,12 @@ public class PsyglyphicEnchantingRecipe extends PsyglyphicAmalgamatorRecipe {
         this.enchantment = enchantment;
         this.enchantLevel = level;
         this.dominionCost = dominionCost;
-        this.id = new ResourceLocation(EmortisConstants.MOD_ID, enchantment.getRegistryName().getPath() +"_" + level);
+        this.id = RigoranthusEmortisReborn.rl(enchantment.getRegistryName().getPath() +"_" + level);
     }
 
     @Override
     public IRecipeType<?> getType() {
-        return Registry.RECIPE_TYPE.get(new ResourceLocation(EmortisConstants.MOD_ID, RECIPE_ID));
+        return Registry.RECIPE_TYPE.get(RigoranthusEmortisReborn.rl(RECIPE_ID));
     }
 
     public boolean doesReagentMatch(ItemStack stack, PlayerEntity playerEntity){

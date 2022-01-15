@@ -1,16 +1,15 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.client.gui.book;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
+import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.api.RigoranthusEmortisRebornAPI;
-import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
+import com.platinumg17.rigoranthusemortisreborn.api.apimagic.entity.familiar.AbstractFamiliarHolder;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.gui.buttons.FamiliarButton;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.gui.buttons.GuiImageButton;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.network.Networking;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.network.PacketSummonFamiliar;
-import com.platinumg17.rigoranthusemortisreborn.api.apimagic.entity.familiar.AbstractFamiliarHolder;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.Button;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.List;
@@ -47,7 +46,7 @@ public class GuiFamiliarScreen extends BaseBook {
     @Override
     public void drawBackgroundElements(MatrixStack stack, int mouseX, int mouseY, float partialTicks) {
         super.drawBackgroundElements(stack, mouseX, mouseY, partialTicks);
-        drawFromTexture(new ResourceLocation(EmortisConstants.MOD_ID, "textures/gui/create_paper.png"), 216, 179, 0, 0, 56, 15,56,15, stack);
+        drawFromTexture(RigoranthusEmortisReborn.rl("textures/gui/create_paper.png"), 216, 179, 0, 0, 56, 15,56,15, stack);
         minecraft.font.draw(stack,new TranslationTextComponent("rigoranthusemortisreborn.spell_book_gui.familiar").getString(), 20, 24, -8355712);
         minecraft.font.draw(stack, new TranslationTextComponent("rigoranthusemortisreborn.spell_book_gui.close"), 238, 183, -8355712);
     }

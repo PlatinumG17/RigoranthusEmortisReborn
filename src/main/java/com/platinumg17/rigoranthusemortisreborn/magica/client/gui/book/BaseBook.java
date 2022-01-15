@@ -3,7 +3,7 @@ package com.platinumg17.rigoranthusemortisreborn.magica.client.gui.book;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
+import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.gui.ModdedScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
@@ -14,7 +14,7 @@ public class BaseBook extends ModdedScreen {
 
     public final int FULL_WIDTH = 290;
     public final int FULL_HEIGHT = 194;
-    public static ResourceLocation background = new ResourceLocation(EmortisConstants.MOD_ID, "textures/gui/spell_book_template.png");
+    public static ResourceLocation background = RigoranthusEmortisReborn.rl("textures/gui/spell_book_template.png");
     public int bookLeft;
     public int bookTop;
     public int bookRight;

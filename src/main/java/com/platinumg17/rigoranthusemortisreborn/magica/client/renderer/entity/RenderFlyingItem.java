@@ -1,7 +1,7 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.client.renderer.entity;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
+import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.EntityFlyingItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -28,6 +28,6 @@ public class RenderFlyingItem extends EntityRenderer<EntityFlyingItem> {
 
     @Override
     public ResourceLocation getTextureLocation(EntityFlyingItem entity) {
-        return new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/spell_proj.png");
+        return RigoranthusEmortisReborn.rl("textures/entity/spell_proj.png");
     }
 }

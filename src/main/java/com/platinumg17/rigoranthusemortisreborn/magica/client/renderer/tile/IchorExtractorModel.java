@@ -1,8 +1,7 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.client.renderer.tile;
 
-import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
+import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.DominionTile;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.IchorTile;
 import net.minecraft.util.ResourceLocation;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 
@@ -10,11 +9,11 @@ public class IchorExtractorModel<T extends DominionTile> extends AnimatedGeoMode
 
     public ResourceLocation modelLocation;
     public ResourceLocation textLoc;
-    public ResourceLocation animationLoc = new ResourceLocation(EmortisConstants.MOD_ID, "animations/ichor_extractor_animations.json");
+    public ResourceLocation animationLoc = RigoranthusEmortisReborn.rl("animations/ichor_extractor_animations.json");
 
     public IchorExtractorModel(String name){
-        this.modelLocation = new ResourceLocation(EmortisConstants.MOD_ID, "geo/" + name + ".geo.json");
-        this.textLoc = new ResourceLocation(EmortisConstants.MOD_ID, "textures/blocks/" + "ichor_crystallizer" + ".png");
+        this.modelLocation = RigoranthusEmortisReborn.rl("geo/" + name + ".geo.json");
+        this.textLoc = RigoranthusEmortisReborn.rl("textures/blocks/" + "ichor_crystallizer" + ".png");
     }
 
     @Override

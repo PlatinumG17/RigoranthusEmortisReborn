@@ -385,10 +385,10 @@ public class GuiSpellBook extends BaseBook {
         minecraft.font.draw(stack,new TranslationTextComponent("rigoranthusemortisreborn.spell_book_gui.form").getString(), 20, 24, -8355712);
         minecraft.font.draw(stack,new TranslationTextComponent("rigoranthusemortisreborn.spell_book_gui.effect").getString(), 154, 24, -8355712);
         minecraft.font.draw(stack,new TranslationTextComponent("rigoranthusemortisreborn.spell_book_gui.augment").getString(), 20, 78, -8355712);
-        drawFromTexture(new ResourceLocation(EmortisConstants.MOD_ID, "textures/gui/spell_name_paper.png"), 16, 179, 0, 0, 109, 15,109,15, stack);
-        drawFromTexture(new ResourceLocation(EmortisConstants.MOD_ID, "textures/gui/search_paper.png"), 203, 0, 0, 0, 72, 15,72,15, stack);
-        drawFromTexture(new ResourceLocation(EmortisConstants.MOD_ID, "textures/gui/clear_paper.png"), 161, 179, 0, 0, 47, 15,47,15, stack);
-        drawFromTexture(new ResourceLocation(EmortisConstants.MOD_ID, "textures/gui/create_paper.png"), 216, 179, 0, 0, 56, 15,56,15, stack);
+        drawFromTexture(RigoranthusEmortisReborn.rl("textures/gui/spell_name_paper.png"), 16, 179, 0, 0, 109, 15,109,15, stack);
+        drawFromTexture(RigoranthusEmortisReborn.rl("textures/gui/search_paper.png"), 203, 0, 0, 0, 72, 15,72,15, stack);
+        drawFromTexture(RigoranthusEmortisReborn.rl("textures/gui/clear_paper.png"), 161, 179, 0, 0, 47, 15,47,15, stack);
+        drawFromTexture(RigoranthusEmortisReborn.rl("textures/gui/create_paper.png"), 216, 179, 0, 0, 56, 15,56,15, stack);
         if (validationErrors.isEmpty()) {
             minecraft.font.draw(stack, new TranslationTextComponent("rigoranthusemortisreborn.spell_book_gui.create"), 233, 183, -8355712);
         } else {

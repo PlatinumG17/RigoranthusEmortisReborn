@@ -39,7 +39,7 @@ import net.minecraftforge.fml.common.Mod;
 //        public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> VERDURE_FIELD = EmortisSurfaceBuilder.VERDURE_FIELD.configured(Configs.VERDURE_FIELD);
 //
 //        private static <SC extends ISurfaceBuilderConfig> void register(String key, ConfiguredSurfaceBuilder<SC> builder) {
-//            WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_SURFACE_BUILDER, new ResourceLocation(EmortisConstants.MOD_ID, key), builder);
+//            WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_SURFACE_BUILDER, RigoranthusEmortisReborn.rl(key), builder);
 //        }
 //        public static void registerConfiguredSurfaceBuilders() {
 //            register("verdure", VERDURE);
@@ -56,6 +56,6 @@ import net.minecraftforge.fml.common.Mod;
             Blocks.GRASS_BLOCK.defaultBlockState(), Blocks.DIRT.defaultBlockState(), BlockInit.FRAGMENTED_COBBLESTONE.get().defaultBlockState()
     )));
     private static <SC extends ISurfaceBuilderConfig>ConfiguredSurfaceBuilder<SC> register(String key, ConfiguredSurfaceBuilder<SC> builder) {
-        return WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_SURFACE_BUILDER, new ResourceLocation(EmortisConstants.MOD_ID, key), builder);
+        return WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_SURFACE_BUILDER, RigoranthusEmortisReborn.rl(key), builder);
     }
 */

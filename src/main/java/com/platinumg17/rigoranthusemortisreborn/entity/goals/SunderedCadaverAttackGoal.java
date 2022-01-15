@@ -1,7 +1,6 @@
 package com.platinumg17.rigoranthusemortisreborn.entity.goals;
 
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.util.BlockUtil;
-import com.platinumg17.rigoranthusemortisreborn.entity.mobs.FeralCanisEntity;
 import com.platinumg17.rigoranthusemortisreborn.entity.mobs.SunderedCadaverEntity;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.network.Networking;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.network.PacketAnimEntity;
@@ -23,7 +22,6 @@ public class SunderedCadaverAttackGoal extends Goal {
     private double pathedTargetZ;
     private int ticksUntilNextPathRecalculation;
     private int ticksUntilNextAttack;
-    private final int attackInterval = 20;
     private long lastCanUseCheck;
     private int failedPathFindingPenalty = 0;
     private boolean canPenalize = false;
@@ -126,7 +124,7 @@ public class SunderedCadaverAttackGoal extends Goal {
         this.ticksUntilNextPathRecalculation = Math.max(this.ticksUntilNextPathRecalculation - 1, 0);
         if(BlockUtil.distanceFrom(this.mob.position, livingentity.position) <= 3){
             this.arrived = true;
-            Networking.sendToNearby(mob.level, mob, new PacketAnimEntity(mob.getId(), FeralCanisEntity.Animations.BITING.ordinal()));
+            Networking.sendToNearby(mob.level, mob, new PacketAnimEntity(mob.getId(), SunderedCadaverEntity.Animations.POUNCING.ordinal()));
         }
         if ((this.followingTargetEvenIfNotSeen || this.mob.getSensing().canSee(livingentity)) && this.ticksUntilNextPathRecalculation <= 0 && (this.pathedTargetX == 0.0D && this.pathedTargetY == 0.0D && this.pathedTargetZ == 0.0D || livingentity.distanceToSqr(this.pathedTargetX, this.pathedTargetY, this.pathedTargetZ) >= 1.0D || this.mob.getRandom().nextFloat() < 0.05F)) {
             this.pathedTargetX = livingentity.getX();

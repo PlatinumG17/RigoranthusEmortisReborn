@@ -3,12 +3,14 @@ package com.platinumg17.rigoranthusemortisreborn.canis.client.entity.render.laye
 import com.platinumg17.rigoranthusemortisreborn.canis.client.entity.model.CanisModel;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.CanisEntity;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.accouterments.CanisAccouterments;
-import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
+import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.Resources;
 import net.minecraft.util.ResourceLocation;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.processor.IBone;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 import software.bernie.geckolib3.model.provider.GeoModelProvider;
+
+import static com.platinumg17.rigoranthusemortisreborn.canis.common.lib.Resources.*;
 
 public class CanisShadesModel extends AnimatedGeoModel<CanisEntity> {
     public GeoModelProvider<CanisEntity> modelProvider;
@@ -17,19 +19,18 @@ public class CanisShadesModel extends AnimatedGeoModel<CanisEntity> {
         this.modelProvider = geoModelProvider;
     }
 
-    @Override
-    public ResourceLocation getModelLocation(CanisEntity canis) {
-        return new ResourceLocation(EmortisConstants.MOD_ID, "geo/canis/shades.geo.json");
+    @Override public ResourceLocation getModelLocation(CanisEntity canis) { return SHADES_MODEL; }
+    @Override public ResourceLocation getAnimationFileLocation(CanisEntity canis) { return TAME_CANIS_ANIMATION; }
+
+    @Override public ResourceLocation getTextureLocation(CanisEntity canis) {
+        return getColor(canis);
     }
 
-    @Override
-    public ResourceLocation getTextureLocation(CanisEntity canis) {
-        return new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/canis/accessories/shades.png");
-    }
-
-    @Override
-    public ResourceLocation getAnimationFileLocation(CanisEntity canis) {
-        return new ResourceLocation(EmortisConstants.MOD_ID, "animations/canis/tame_canis_chordata.json");
+    public ResourceLocation getColor(CanisEntity e) {
+        String color = e.getShadesColor().getSaveName().toLowerCase();
+        if(color.isEmpty())
+            return SHADES_BLACK;
+        return Resources.getShadesColor(color);
     }
 
     @Override
@@ -47,6 +48,6 @@ public class CanisShadesModel extends AnimatedGeoModel<CanisEntity> {
 //        float scale = 11f;
 //        head.setPositionY(canis.getPositionY() / 16f);
 //        head.setPositionZ(canis.getPositionZ() * -1.2f);
-        head.setHidden(!entity.getAccoutrement(CanisAccouterments.SUNGLASSES.get()).isPresent());
+        head.setHidden(!entity.getAccoutrement(CanisAccouterments.SUNGLASSES.get()).isPresent() || entity.isInSittingPose() || entity.isBegging() || entity.isLying());
     }
 }

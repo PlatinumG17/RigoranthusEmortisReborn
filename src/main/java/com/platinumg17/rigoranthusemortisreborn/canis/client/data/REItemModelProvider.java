@@ -43,6 +43,7 @@ public class REItemModelProvider extends ItemModelProvider {
         generated(CanisItems.COLLAR_SHEARS);
         generated(CanisItems.CREATIVE_COLLAR);
         generated(CanisItems.CANIS_SUMMONING_CHARM);
+        generated(CanisItems.CADAVER_SUMMONING_CHARM);
         generated(CanisItems.MASTER_CHANGE);
         generated(CanisItems.SUNGLASSES);
         generated(CanisItems.THROW_BONE);

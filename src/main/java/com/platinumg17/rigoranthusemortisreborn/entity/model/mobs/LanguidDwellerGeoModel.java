@@ -1,6 +1,6 @@
 package com.platinumg17.rigoranthusemortisreborn.entity.model.mobs;
 
-import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
+import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.entity.mobs.LanguidDwellerEntity;
 import net.minecraft.util.ResourceLocation;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
@@ -10,11 +10,9 @@ import software.bernie.geckolib3.model.provider.data.EntityModelData;
 
 import javax.annotation.Nullable;
 
-public class LanguidDwellerGeoModel extends AnimatedGeoModel<LanguidDwellerEntity> {
+import static com.platinumg17.rigoranthusemortisreborn.canis.common.lib.Resources.*;
 
-    private static final ResourceLocation DWELLER_TEXTURE = new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/languid_dweller.png");
-    public static final ResourceLocation DWELLER_MODEL = new ResourceLocation(EmortisConstants.MOD_ID , "geo/languid_dweller.geo.json");
-    public static final ResourceLocation ANIMATIONS = new ResourceLocation(EmortisConstants.MOD_ID , "animations/languid_dweller.json");
+public class LanguidDwellerGeoModel extends AnimatedGeoModel<LanguidDwellerEntity> {
 
     @Override
     public ResourceLocation getModelLocation(LanguidDwellerEntity dweller) {
@@ -28,7 +26,7 @@ public class LanguidDwellerGeoModel extends AnimatedGeoModel<LanguidDwellerEntit
 
     @Override
     public ResourceLocation getAnimationFileLocation(LanguidDwellerEntity animatable) {
-        return ANIMATIONS;
+        return DWELLER_ANIMATION;
     }
 
     @Override

@@ -14,13 +14,12 @@ public class CanisPacketHandler {
         registerPacket(new CanisNamePacket(), CanisNameData.class);
         registerPacket(new CanisObeyPacket(), CanisObeyData.class);
         registerPacket(new CanisSkillPacket(), CanisSkillData.class);
+        registerPacket(new ClothColorPacket(), ClothColorData.class);
+        registerPacket(new ShadesColorPacket(), ShadesColorData.class);
         registerPacket(new FriendlyFirePacket(), FriendlyFireData.class);
         registerPacket(new OpenCanisScreenPacket(), OpenCanisScreenData.class);
         registerPacket(new CanisInventoryPagePacket(), CanisInventoryPageData.class);
         registerPacket(new CanisDisplaySaddleClothPacket(), CanisSaddleClothData.class);
-//        registerPacket(new SendSkinPacket(), SendSkinData.class);
-//        registerPacket(new RequestSkinPacket(), RequestSkinData.class);
-//        registerPacket(new CanisTexturePacket(), CanisTextureData.class);
     }
 
     public static <MSG> void send(PacketDistributor.PacketTarget target, MSG message) {

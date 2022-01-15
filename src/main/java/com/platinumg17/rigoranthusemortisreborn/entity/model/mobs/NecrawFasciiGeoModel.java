@@ -1,6 +1,5 @@
 package com.platinumg17.rigoranthusemortisreborn.entity.model.mobs;
 
-import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.entity.mobs.NecrawFasciiEntity;
 import net.minecraft.util.ResourceLocation;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
@@ -10,11 +9,9 @@ import software.bernie.geckolib3.model.provider.data.EntityModelData;
 
 import javax.annotation.Nullable;
 
-public class NecrawFasciiGeoModel extends AnimatedGeoModel<NecrawFasciiEntity> {
+import static com.platinumg17.rigoranthusemortisreborn.canis.common.lib.Resources.*;
 
-    private static final ResourceLocation NECRAW_TEXTURE = new ResourceLocation(EmortisConstants.MOD_ID, "textures/entity/necraw_fascii.png");
-    public static final ResourceLocation NECRAW_MODEL = new ResourceLocation(EmortisConstants.MOD_ID , "geo/necraw_fascii.geo.json");
-    public static final ResourceLocation ANIMATIONS = new ResourceLocation(EmortisConstants.MOD_ID , "animations/necraw_fascii.json");
+public class NecrawFasciiGeoModel extends AnimatedGeoModel<NecrawFasciiEntity> {
 
     @Override
     public ResourceLocation getModelLocation(NecrawFasciiEntity necraw) {
@@ -28,7 +25,7 @@ public class NecrawFasciiGeoModel extends AnimatedGeoModel<NecrawFasciiEntity> {
 
     @Override
     public ResourceLocation getAnimationFileLocation(NecrawFasciiEntity animatable) {
-        return ANIMATIONS;
+        return NECRAW_ANIMATION;
     }
 
     @Override

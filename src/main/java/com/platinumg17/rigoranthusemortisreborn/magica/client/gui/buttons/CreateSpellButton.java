@@ -1,7 +1,7 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.client.gui.buttons;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
+import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.gui.book.GuiSpellBook;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.interfaces.SpellValidationError;
 import net.minecraft.client.gui.widget.button.Button;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CreateSpellButton extends GuiImageButton {
-    private final ResourceLocation image = new ResourceLocation(EmortisConstants.MOD_ID, "textures/gui/create_icon.png");
+    private final ResourceLocation image = RigoranthusEmortisReborn.rl("textures/gui/create_icon.png");
 
     public CreateSpellButton(GuiSpellBook parent, int x, int y, Button.IPressable onPress) {
         super(x, y, 0,0,50, 12, 50, 12, "textures/gui/create_icon.png", onPress);

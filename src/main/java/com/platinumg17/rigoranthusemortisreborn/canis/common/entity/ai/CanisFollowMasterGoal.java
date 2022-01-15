@@ -107,7 +107,7 @@ public class CanisFollowMasterGoal extends Goal {
 
     public float getMinStartDistanceSq() {
         if (this.canis.isMode(EnumMode.GUARD)) {
-            return 4F;
+            return 6F;
         }
         return this.startDist * this.startDist;
     }

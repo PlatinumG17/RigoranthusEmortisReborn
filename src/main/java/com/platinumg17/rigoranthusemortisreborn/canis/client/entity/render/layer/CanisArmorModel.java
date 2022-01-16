@@ -46,7 +46,7 @@ public class CanisArmorModel extends AnimatedGeoModel<CanisEntity> {
 
     @Override
     public ResourceLocation getAnimationFileLocation(CanisEntity canis) {
-        return RigoranthusEmortisReborn.rl("animations/canis/tame_canis_chordata.json");
+        return TAME_CANIS_ANIMATION;
     }
 
     @Override

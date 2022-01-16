@@ -195,7 +195,7 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
 
     private <E extends IAnimatable> PlayState walkPredicate(AnimationEvent<E> event) {
         if (event.isMoving()) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("run", true));
             return PlayState.CONTINUE;
         }
         return PlayState.STOP;

@@ -2,7 +2,11 @@
   "type": "minecraft:entity",
   "pools": [
     {
-      "rolls": 1,
+      "rolls": {
+        "min": 1.0,
+        "max": 3.0,
+        "type": "minecraft:uniform"
+      },
       "entries": [
         {
           "type": "minecraft:item",
@@ -12,8 +16,16 @@
             {
               "function": "set_count",
               "count": {
-                "min": 0,
-                "max": 1
+                "min": 0.0,
+                "max": 1.0,
+                "type": "minecraft:uniform"
+              }
+            },
+            {
+              "function": "minecraft:looting_enchant",
+              "count": {
+                "min": 0.0,
+                "max": 1.0
               }
             }
           ]
@@ -26,8 +38,16 @@
             {
               "function": "set_count",
               "count": {
-                "min": 0,
-                "max": 1
+                "min": 0.0,
+                "max": 1.0,
+                "type": "minecraft:uniform"
+              }
+            },
+            {
+              "function": "minecraft:looting_enchant",
+              "count": {
+                "min": 0.0,
+                "max": 1.0
               }
             }
           ]
@@ -40,8 +60,16 @@
             {
               "function": "set_count",
               "count": {
-                "min": 0,
-                "max": 2
+                "min": 0.0,
+                "max": 2.0,
+                "type": "minecraft:uniform"
+              }
+            },
+            {
+              "function": "minecraft:looting_enchant",
+              "count": {
+                "min": 0.0,
+                "max": 1.0
               }
             }
           ]
@@ -54,8 +82,16 @@
             {
               "function": "set_count",
               "count": {
-                "min": 0,
-                "max": 2
+                "min": 0.0,
+                "max": 2.0,
+                "type": "minecraft:uniform"
+              }
+            },
+            {
+              "function": "minecraft:looting_enchant",
+              "count": {
+                "min": 0.0,
+                "max": 1.0
               }
             }
           ]
@@ -68,8 +104,16 @@
             {
               "function": "set_count",
               "count": {
-                "min": 0,
-                "max": 10
+                "min": 0.0,
+                "max": 10.0,
+                "type": "minecraft:uniform"
+              }
+            },
+            {
+              "function": "minecraft:looting_enchant",
+              "count": {
+                "min": 0.0,
+                "max": 1.0
               }
             }
           ]
@@ -82,8 +126,16 @@
             {
               "function": "set_count",
               "count": {
-                "min": 0,
-                "max": 5
+                "min": 0.0,
+                "max": 5.0,
+                "type": "minecraft:uniform"
+              }
+            },
+            {
+              "function": "minecraft:looting_enchant",
+              "count": {
+                "min": 0.0,
+                "max": 1.0
               }
             }
           ]
@@ -96,8 +148,16 @@
             {
               "function": "set_count",
               "count": {
-                "min": 1,
-                "max": 2
+                "min": 1.0,
+                "max": 2.0,
+                "type": "minecraft:uniform"
+              }
+            },
+            {
+              "function": "minecraft:looting_enchant",
+              "count": {
+                "min": 0.0,
+                "max": 1.0
               }
             }
           ]
@@ -110,8 +170,16 @@
             {
               "function": "set_count",
               "count": {
-                "min": 1,
-                "max": 2
+                "min": 1.0,
+                "max": 2.0,
+                "type": "minecraft:uniform"
+              }
+            },
+            {
+              "function": "minecraft:looting_enchant",
+              "count": {
+                "min": 0.0,
+                "max": 1.0
               }
             }
           ]
@@ -124,8 +192,9 @@
             {
               "function": "set_count",
               "count": {
-                "min": 1,
-                "max": 1
+                "min": 1.0,
+                "max": 1.0,
+                "type": "minecraft:uniform"
               }
             }
           ]

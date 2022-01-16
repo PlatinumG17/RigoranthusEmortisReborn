@@ -88,12 +88,12 @@ public class IchorCrystallizerTile extends AbstractDominionTile implements IInve
             }
         }
         if (this.getCurrentDominion() >= 1000 && (stack == null || stack.isEmpty())) {
-            Item foundItem = ForgeRegistries.ITEMS.getValue(new ResourceLocation(Config.CRYSTALLIZER_ITEM.get()));
-            if (foundItem == null) {
-                System.out.println("NULL ICHOR CRYSTALLIZER ITEM.");
-                foundItem = MagicItemsRegistry.dominionGem;
-            }
-            this.stack = new ItemStack(foundItem);
+//            Item foundItem = ForgeRegistries.ITEMS.getValue(new ResourceLocation(Config.CRYSTALLIZER_ITEM.get()));
+//            if (foundItem == null) {
+//                System.out.println("NULL ICHOR CRYSTALLIZER ITEM.");
+//                foundItem = MagicItemsRegistry.dominionGem;
+//            }
+            this.stack = new ItemStack(MagicItemsRegistry.dominionGem);
             this.setDominion(0);
         }
     }

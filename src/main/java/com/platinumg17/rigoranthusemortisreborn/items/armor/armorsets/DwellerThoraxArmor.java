@@ -27,7 +27,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class DwellerThoraxArmor extends ArmorItem {
-    private boolean previousEquip = false;
+//    private boolean previousEquip = false;
 
     public DwellerThoraxArmor(IArmorMaterial materialIn, EquipmentSlotType slot, Properties builder) {
         super(materialIn, slot, builder);
@@ -59,16 +59,16 @@ public class DwellerThoraxArmor extends ArmorItem {
     public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
         return RigoranthusEmortisReborn.MOD_ID + ":textures/models/armor/dweller_layer_1.png";
     }
-    public void onArmorTick(ItemStack itemStack, World world, PlayerEntity player) {
-        if (Config.enableArmorSetBonuses.get()) {
-            ItemStack chest = player.getItemBySlot(EquipmentSlotType.CHEST);
-            if (chest.getItem() == ItemInit.DWELLER_THORAX.get()) {
-                player.addEffect(new EffectInstance(ModPotions.DOMINION_REGEN_EFFECT, 5, 1));
-                this.previousEquip = true;
-            } else if (this.previousEquip) {
-                player.removeEffect(ModPotions.DOMINION_REGEN_EFFECT);
-                this.previousEquip = false;
-            }
-        }
-    }
+//    public void onArmorTick(ItemStack itemStack, World world, PlayerEntity player) {
+//        if (Config.enableArmorSetBonuses.get()) {
+//            ItemStack chest = player.getItemBySlot(EquipmentSlotType.CHEST);
+//            if (chest.getItem() == ItemInit.DWELLER_THORAX.get()) {
+//                player.addEffect(new EffectInstance(ModPotions.DOMINION_REGEN_EFFECT, 5, 1));
+//                this.previousEquip = true;
+//            } else if (this.previousEquip) {
+//                player.removeEffect(ModPotions.DOMINION_REGEN_EFFECT);
+//                this.previousEquip = false;
+//            }
+//        }
+//    }
 }

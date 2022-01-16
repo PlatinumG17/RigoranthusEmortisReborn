@@ -51,7 +51,7 @@ public class MagicItemsRegistry {
     @ObjectHolder(LibItemNames.EXP_GEM) public static ExperienceGem EXPERIENCE_GEM;
     @ObjectHolder(LibItemNames.GREATER_EXP_GEM) public static ExperienceGem GREATER_EXPERIENCE_GEM;
     @ObjectHolder(LibItemNames.LUSTERIC_SHIELD) public static LustericShield LUSTERIC_SHIELD;
-    @ObjectHolder(LibItemNames.LOST_TOME) public static LostTome LOST_TOME;
+//    @ObjectHolder(LibItemNames.LOST_TOME) public static LostTome LOST_TOME;
     @ObjectHolder(LibItemNames.SUMMONERS_STRENGTH) public static SummonersStrength SUMMONERS_STRENGTH;
 
     public static Food DOMINION_BERRY_FOOD = (new Food.Builder()).nutrition(2).saturationMod(0.1F).effect(() -> new EffectInstance(ModPotions.DOMINION_REGEN_EFFECT, 100), 1.0f).alwaysEat().build();
@@ -90,7 +90,7 @@ public class MagicItemsRegistry {
 //                    new SpellBook(ISpellTier.Tier.THREE).setRegistryName(LibItemNames.CREATIVE_SPELL_BOOK),
                     new DominionWand(),
 //                    new ModItem(LibItemNames.BLANK_PARCHMENT),
-                    new LostTome(defaultItemProperties().stacksTo(1), LibItemNames.LOST_TOME),
+//                    new LostTome(defaultItemProperties().stacksTo(1), LibItemNames.LOST_TOME),
                     new SummonersStrength(defaultItemProperties().stacksTo(1), LibItemNames.SUMMONERS_STRENGTH),
             };
 

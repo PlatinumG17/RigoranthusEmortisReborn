@@ -204,18 +204,18 @@ public class LootTables {
         return stacks;
     }
 
-    public static ItemStack makeTome(String name, Spell spell){
-        ItemStack stack = new ItemStack(MagicItemsRegistry.LOST_TOME);
-        ISpellCaster spellCaster = SpellCaster.deserialize(stack);
-        spellCaster.setSpell(spell);
-        stack.setHoverName(new StringTextComponent(name).setStyle(Style.EMPTY.withColor(TextFormatting.DARK_PURPLE).withItalic(true)));
-        return stack;
-    }
+//    public static ItemStack makeTome(String name, Spell spell){
+//        ItemStack stack = new ItemStack(MagicItemsRegistry.LOST_TOME);
+//        ISpellCaster spellCaster = SpellCaster.deserialize(stack);
+//        spellCaster.setSpell(spell);
+//        stack.setHoverName(new StringTextComponent(name).setStyle(Style.EMPTY.withColor(TextFormatting.DARK_PURPLE).withItalic(true)));
+//        return stack;
+//    }
 
-    public static ItemStack makeTome(String name, Spell spell, String flavorText){
-        ItemStack stack = makeTome(name, spell);
-        ISpellCaster spellCaster = SpellCaster.deserialize(stack);
-        spellCaster.setFlavorText(flavorText);
-        return stack;
-    }
+//    public static ItemStack makeTome(String name, Spell spell, String flavorText){
+//        ItemStack stack = makeTome(name, spell);
+//        ISpellCaster spellCaster = SpellCaster.deserialize(stack);
+//        spellCaster.setFlavorText(flavorText);
+//        return stack;
+//    }
 }

@@ -62,7 +62,7 @@ public class ItemInit {
 			() -> new Item(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)));
 
 	public static final RegistryObject<Item> RAZOR_TOOTH = ITEMS.register("razor_tooth",
-			() -> new RazorToothItem(new Item.Properties().defaultDurability(8).tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)));
+			() -> new RazorToothItem(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)));
 
 	public static final RegistryObject<Item> IRON_SLIME_BALL = ITEMS.register("iron_slime_ball",
 			() -> new Item(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)));

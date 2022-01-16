@@ -140,7 +140,8 @@ public class Registration {
 
     public static final ItemSoulCoal SOUL_COAL = new ItemSoulCoal(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP));
     public static final Item DEEPSLATE_IRON_ORE_FRAGMENT = new Item(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)).setRegistryName("deepslate_iron_ore_fragment");
-    public static final Item DEEPSLATE_GOLD_ORE_FRAGMENT = new Item(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)).setRegistryName("deepslate_gold_ore_fragment");
+    public static final RegistryObject<Item> DEEPSLATE_GOLD_ORE_FRAGMENT = ITEMS.register("deepslate_gold_ore_fragment", () -> new Item(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)));
+//    public static final Item DEEPSLATE_GOLD_ORE_FRAGMENT = new Item(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)).setRegistryName("deepslate_gold_ore_fragment");
     public static final Item DEEPSLATE_COPPER_ORE_FRAGMENT = new Item(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)).setRegistryName("deepslate_copper_ore_fragment");
     public static final Item TIN_ORE_FRAGMENT = new Item(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)).setRegistryName("tin_ore_fragment");
     public static final Item ZINC_ORE_FRAGMENT = new Item(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)).setRegistryName("zinc_ore_fragment");
@@ -212,7 +213,7 @@ public class Registration {
             event.getRegistry().register(ABYSSALITE_CRUSHING_HAMMER);
         }
         if (Config.enableModdedOreFragments.get()) {
-            event.getRegistry().register(DEEPSLATE_IRON_ORE_FRAGMENT);    event.getRegistry().register(DEEPSLATE_GOLD_ORE_FRAGMENT);
+            event.getRegistry().register(DEEPSLATE_IRON_ORE_FRAGMENT);    //event.getRegistry().register(DEEPSLATE_GOLD_ORE_FRAGMENT);
             event.getRegistry().register(DEEPSLATE_COPPER_ORE_FRAGMENT);  event.getRegistry().register(TIN_ORE_FRAGMENT);
             event.getRegistry().register(COPPER_ORE_FRAGMENT);            event.getRegistry().register(ZINC_ORE_FRAGMENT);
             event.getRegistry().register(SILVER_ORE_FRAGMENT);            event.getRegistry().register(OSMIUM_ORE_FRAGMENT);

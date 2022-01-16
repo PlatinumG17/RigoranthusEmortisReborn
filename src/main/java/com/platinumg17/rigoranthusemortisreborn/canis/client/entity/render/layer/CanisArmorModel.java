@@ -72,6 +72,8 @@ public class CanisArmorModel extends AnimatedGeoModel<CanisEntity> {
         helmet.setRotationX(parentHead.getRotationX());
         helmet.setRotationY(parentHead.getRotationY());
         helmet.setRotationZ(parentHead.getRotationZ());
+//        head.setPositionY(canis.getPositionY() / 16f);
+//        head.setPositionZ(canis.getPositionZ() * -1.2f);
 //        float scale = 11f;
 //        head.setPositionY(canis.getPositionY() / 16f);
 //        head.setPositionZ(canis.getPositionZ() * -1.2f);

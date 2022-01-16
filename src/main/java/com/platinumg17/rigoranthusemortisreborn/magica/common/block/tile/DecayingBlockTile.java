@@ -11,14 +11,14 @@ import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class PhantomBlockTile extends AnimatedTile implements ITickableTileEntity, IAnimatable {
+public class DecayingBlockTile extends AnimatedTile implements ITickableTileEntity, IAnimatable {
 
     int age;
     public boolean isPermanent;
     public double lengthModifier;
     public ParticleColor color = ParticleUtil.defaultParticleColor();
-    public PhantomBlockTile() {
-        super(BlockRegistry.PHANTOM_TILE);
+    public DecayingBlockTile() {
+        super(BlockRegistry.DECAYING_TILE);
     }
 
     @Override

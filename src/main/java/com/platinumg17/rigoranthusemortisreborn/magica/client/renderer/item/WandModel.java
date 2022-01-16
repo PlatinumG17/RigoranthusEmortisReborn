@@ -9,16 +9,16 @@ package com.platinumg17.rigoranthusemortisreborn.magica.client.renderer.item;
 //
 //    @Override
 //    public ResourceLocation getModelLocation(Wand wand) {
-//        return new ResourceLocation(EmortisConstants.MOD_ID , "geo/wand.geo.json");
+//        return RigoranthusEmortisReborn.rl("geo/wand.geo.json");
 //    }
 //
 //    @Override
 //    public ResourceLocation getTextureLocation(Wand wand) {
-//        return  new ResourceLocation(EmortisConstants.MOD_ID, "textures/items/wand.png");
+//        return  RigoranthusEmortisReborn.rl("textures/items/wand.png");
 //    }
 //
 //    @Override
 //    public ResourceLocation getAnimationFileLocation(Wand wand) {
-//        return new ResourceLocation(EmortisConstants.MOD_ID , "animations/wand_animation.json");
+//        return RigoranthusEmortisReborn.rl("animations/wand_animation.json");
 //    }
 //}

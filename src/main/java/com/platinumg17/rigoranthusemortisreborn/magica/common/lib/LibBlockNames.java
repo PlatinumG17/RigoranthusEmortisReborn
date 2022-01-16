@@ -35,7 +35,7 @@ public class LibBlockNames {
     public static final String ICHOR_CRYSTALLIZER = "ichor_crystallizer";
     public static final String STATE_PROVIDER = "re_stateprovider";
     public final static String DOMINION_JAR = "dominion_jar";
-    public final static String PHANTOM_BLOCK = "phantom_block";
+    public final static String DECAYING_BLOCK = "decaying_block";
     public final static String LIGHT_BLOCK = "light_block";
     public final static String ICHOR_JAR = "ichor_jar";
     public final static String PSYGLYPHIC_AMALGAMATOR = "psyglyphic_amalgamator";

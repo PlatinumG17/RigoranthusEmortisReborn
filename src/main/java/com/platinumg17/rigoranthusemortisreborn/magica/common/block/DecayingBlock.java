@@ -1,7 +1,6 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.common.block;
 
-import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.PhantomBlockTile;
-import net.minecraft.block.BlockRenderType;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.DecayingBlockTile;
 import net.minecraft.block.BlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
@@ -10,10 +9,10 @@ import net.minecraft.world.IBlockReader;
 
 import javax.annotation.Nullable;
 
-public class PhantomBlock extends ModBlock {
+public class DecayingBlock extends ModBlock {
 
-    public PhantomBlock() {
-        super(defaultProperties().lightLevel(bs -> 7).noOcclusion().dynamicShape(), "phantom_block");
+    public DecayingBlock() {
+        super(defaultProperties().lightLevel(bs -> 7).noOcclusion().dynamicShape(), "decaying_block");
     }
 
     @Override
@@ -24,7 +23,7 @@ public class PhantomBlock extends ModBlock {
     @Nullable
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new PhantomBlockTile();
+        return new DecayingBlockTile();
     }
 
     @Override

@@ -11,17 +11,15 @@ import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.interfaces.IS
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.util.MathUtil;
 
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.util.SpellRecipeUtil;
-import com.platinumg17.rigoranthusemortisreborn.magica.client.keybinds.REKeyBindings;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.particle.ParticleColor;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.renderer.item.SpellBookRenderer;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.IntangibleAirTile;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.PhantomBlockTile;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.DecayingBlockTile;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.TableTile;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.network.Networking;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.network.PacketOpenSpellBook;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.util.PortUtil;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.MagicItemsRegistry;
-import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -119,7 +117,7 @@ public class SpellBook extends Item implements ISpellTier, IScribeable, IDisplay
         if(result instanceof BlockRayTraceResult && !playerIn.isShiftKeyDown()){
             if(worldIn.getBlockEntity(((BlockRayTraceResult) result).getBlockPos()) != null &&
                     !(worldIn.getBlockEntity(((BlockRayTraceResult) result).getBlockPos()) instanceof IntangibleAirTile
-                            ||(worldIn.getBlockEntity(((BlockRayTraceResult) result).getBlockPos()) instanceof PhantomBlockTile))) {
+                            ||(worldIn.getBlockEntity(((BlockRayTraceResult) result).getBlockPos()) instanceof DecayingBlockTile))) {
                 return new ActionResult<>(ActionResultType.SUCCESS, stack);
             }
         }

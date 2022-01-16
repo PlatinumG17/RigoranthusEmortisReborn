@@ -9,7 +9,7 @@
       "item": "minecraft:dirt"
     },
     {
-      "tag": "forge:buckets/water"
+      "item": "minecraft:water_bucket"
     },
     {
       "item": "minecraft:dirt"

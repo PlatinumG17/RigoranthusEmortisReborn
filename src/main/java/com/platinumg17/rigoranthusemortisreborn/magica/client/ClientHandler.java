@@ -28,7 +28,7 @@ public class ClientHandler {
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.PORTAL_TILE_TYPE, PortalTileRenderer::new);
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.INTANGIBLE_AIR_TYPE, IntangibleAirRenderer::new);
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.RITUAL_TILE, RitualVesselRenderer::new);
-        ClientRegistry.bindTileEntityRenderer(BlockRegistry.PHANTOM_TILE, PhantasmalBlockRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(BlockRegistry.DECAYING_TILE, DecayingBlockRenderer::new);
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.ICHOR_CRYSTALLIZER_TILE, IchorCrystallizerRenderer::new);
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.PSYGLYPHIC_TILE, CipherRenderer::new);
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.ICHOR_EXTRACTOR_TILE, IchorExtractorRenderer::new);
@@ -64,7 +64,7 @@ public class ClientHandler {
         RenderTypeLookup.setRenderLayer(BlockRegistry.SPLINTERED_PEDESTAL, RenderType.translucent());
         RenderTypeLookup.setRenderLayer(BlockRegistry.PSYGLYPHIC_AMALG_BLOCK, RenderType.translucent());
         RenderTypeLookup.setRenderLayer(BlockRegistry.LIGHT_BLOCK, RenderType.translucent());
-        RenderTypeLookup.setRenderLayer(BlockRegistry.PHANTOM_BLOCK, RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(BlockRegistry.DECAYING_BLOCK, RenderType.cutout());
         RenderTypeLookup.setRenderLayer(BlockRegistry.TABLE_BLOCK, RenderType.translucent());
         RenderTypeLookup.setRenderLayer(BlockRegistry.DOMINION_BERRY_BUSH, RenderType.cutout());
 //        RenderTypeLookup.setRenderLayer(BlockRegistry.RE_LILLY_PAD, RenderType.cutout());

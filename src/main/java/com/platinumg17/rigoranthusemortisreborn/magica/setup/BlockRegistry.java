@@ -83,8 +83,8 @@ public class BlockRegistry {
     @ObjectHolder(LibBlockNames.POTTED_JESSIC_SAPLING) public static FlowerPotBlock POTTED_JESSIC_SAPLING;
 
     @ObjectHolder(LibBlockNames.FRAGMENTED_COBBLESTONE) public static FragmentedBlock FRAGMENTED_COBBLESTONE;
-    @ObjectHolder(LibBlockNames.PHANTOM_BLOCK) public static PhantomBlock PHANTOM_BLOCK;
-    @ObjectHolder(LibBlockNames.PHANTOM_BLOCK) public static TileEntityType<PhantomBlockTile> PHANTOM_TILE;
+    @ObjectHolder(LibBlockNames.DECAYING_BLOCK) public static DecayingBlock DECAYING_BLOCK;
+    @ObjectHolder(LibBlockNames.DECAYING_BLOCK) public static TileEntityType<DecayingBlockTile> DECAYING_TILE;
     @ObjectHolder(LibBlockNames.LIGHT_BLOCK) public static LightBlock LIGHT_BLOCK;
     @ObjectHolder(LibBlockNames.LIGHT_BLOCK) public static TileEntityType<LightTile> LIGHT_TILE;
     @ObjectHolder(LibBlockNames.PSYGLYPHIC_AMALGAMATOR) public static TileEntityType<PsyglyphicAmalgamatorTile> PSYGLYPHIC_AMALG_TILE;
@@ -181,7 +181,7 @@ public class BlockRegistry {
             registry.register(new IchorExtractorBlock());
             registry.register(new LightBlock());
             registry.register(new TableBlock());
-            registry.register(new PhantomBlock());
+            registry.register(new DecayingBlock());
             registry.register(new IntangibleAirBlock());
             registry.register(new PortalBlock());
 //            registry.register(new RELilyPad());
@@ -209,7 +209,7 @@ public class BlockRegistry {
 
             event.getRegistry().register(TileEntityType.Builder.of(HangingSkullTile::new, BlockRegistry.hangingCadaverSkull).build(null).setRegistryName(LibBlockNames.HANGING_CADAVER_SKULL));
 
-            event.getRegistry().register(TileEntityType.Builder.of(PhantomBlockTile::new, BlockRegistry.PHANTOM_BLOCK).build(null).setRegistryName(LibBlockNames.PHANTOM_BLOCK));
+            event.getRegistry().register(TileEntityType.Builder.of(DecayingBlockTile::new, BlockRegistry.DECAYING_BLOCK).build(null).setRegistryName(LibBlockNames.DECAYING_BLOCK));
             event.getRegistry().register(TileEntityType.Builder.of(DominionJarTile::new, BlockRegistry.DOMINION_JAR).build(null).setRegistryName(LibBlockNames.DOMINION_JAR));
             event.getRegistry().register(TileEntityType.Builder.of(LightTile::new, BlockRegistry.LIGHT_BLOCK).build(null).setRegistryName(LibBlockNames.LIGHT_BLOCK));
             event.getRegistry().register(TileEntityType.Builder.of(EmorticCraftingPressTile::new, BlockRegistry.EMORTIC_CRAFTING_PRESS_BLOCK).build(null).setRegistryName(LibBlockNames.EMORTIC_CRAFTING_PRESS));
@@ -265,7 +265,7 @@ public class BlockRegistry {
             registry.register(new BlockItem(BlockRegistry.CREATIVE_ICHOR_JAR, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.CREATIVE_ICHOR_JAR));
             registry.register(new AnimBlockItem(BlockRegistry.RITUAL_BLOCK, MagicItemsRegistry.defaultItemProperties().setISTER(() -> RitualVesselRenderer::getISTER)).setRegistryName(LibBlockNames.RITUAL_VESSEL));
             registry.register(new AnimBlockItem(BlockRegistry.TABLE_BLOCK, MagicItemsRegistry.defaultItemProperties().setISTER(() -> TableRenderer::getISTER)).setRegistryName(LibBlockNames.TABLE_BLOCK));
-            registry.register(new BlockItem(BlockRegistry.PHANTOM_BLOCK, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.PHANTOM_BLOCK));
+            registry.register(new BlockItem(BlockRegistry.DECAYING_BLOCK, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.DECAYING_BLOCK));
             registry.register(new BlockItem(BlockRegistry.LIGHT_BLOCK, new Item.Properties()).setRegistryName(LibBlockNames.LIGHT_BLOCK));
             registry.register(new BlockItem(BlockRegistry.PORTAL_BLOCK, new Item.Properties()).setRegistryName(LibBlockNames.PORTAL));
 //            registry.register(new FluidBlockItem(BlockRegistry.RE_LILLY_PAD, MagicItemsRegistry.defaultItemProperties().fireResistant()).setRegistryName(LibBlockNames.RE_LILLY_PAD));

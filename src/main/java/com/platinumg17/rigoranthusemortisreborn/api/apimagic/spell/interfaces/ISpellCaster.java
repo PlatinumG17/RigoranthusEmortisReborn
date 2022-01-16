@@ -6,7 +6,7 @@ import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.SpellResolver
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.util.MathUtil;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.particle.ParticleColor;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.IntangibleAirTile;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.PhantomBlockTile;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.DecayingBlockTile;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.TableTile;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.spell.augment.AugmentSensitive;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.util.PortUtil;
@@ -79,7 +79,7 @@ public interface ISpellCaster {
         if(result instanceof BlockRayTraceResult && !playerIn.isShiftKeyDown()){
             if(worldIn.getBlockEntity(((BlockRayTraceResult) result).getBlockPos()) != null &&
                     !(worldIn.getBlockEntity(((BlockRayTraceResult) result).getBlockPos()) instanceof IntangibleAirTile
-                            ||(worldIn.getBlockEntity(((BlockRayTraceResult) result).getBlockPos()) instanceof PhantomBlockTile))) {
+                            ||(worldIn.getBlockEntity(((BlockRayTraceResult) result).getBlockPos()) instanceof DecayingBlockTile))) {
                 return new ActionResult<>(ActionResultType.SUCCESS, stack);
             }
         }

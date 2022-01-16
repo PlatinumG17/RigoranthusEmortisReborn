@@ -76,6 +76,10 @@ public class CanisRenderer extends GeoEntityRenderer<CanisEntity> {
     @Override
     public void render(CanisEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
         super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
+        if (canis.isCanisWet()) {
+            float f = canis.getShadingWhileWet(partialTicks);
+            this.setColor(f, f, f);
+        }
         if (this.shouldShowName(entityIn) && !entityIn.canBeControlledByRider()) {
             double d0 = this.entityRenderDispatcher.distanceToSqr(entityIn);
             if (d0 <= 64 * 64) {
@@ -92,8 +96,8 @@ public class CanisRenderer extends GeoEntityRenderer<CanisEntity> {
     @Override
     public void renderRecursively(GeoBone bone, MatrixStack stack, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
         if (canis.isCanisWet()) {
-            float f = canis.getShadingWhileWet(140);
-            this.setColor(f, f, f);
+//            float f = canis.getShadingWhileWet(120);
+            this.setColor(red = this.r*red, green = this.g*green, blue = this.b*blue);
         }
         if (canis.hasBone()) {
             if (bone.getName().equals("jaw")) {
@@ -114,8 +118,16 @@ public class CanisRenderer extends GeoEntityRenderer<CanisEntity> {
             stack.popPose();
             bufferIn = buffer.getBuffer(RenderType.entityCutoutNoCull(text));
         }
-        if (canis.isCanisWet()) { this.setColor(0.9F, 0.9F, 0.9F); }
-        super.renderRecursively(bone, stack, bufferIn, packedLightIn, packedOverlayIn, this.r * red, this.g * green, this.b * blue, /*this.a **/ alpha);
+//        if (canis.isCanisWet()) {
+//            this.r = 1.0F;
+//            this.g = 1.0F;
+//            this.b = 1.0F;
+//        } else {
+//            this.r = 0F;
+//            this.g = 0F;
+//            this.b = 0F;
+//        }
+        super.renderRecursively(bone, stack, bufferIn, packedLightIn, packedOverlayIn, /*this.r * */red, /*this.g * */green, /*this.b * */blue, /*this.a **/ alpha);
     }
 
     public ResourceLocation getColor(CanisEntity e) {

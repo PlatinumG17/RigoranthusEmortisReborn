@@ -64,9 +64,9 @@ public class FoodBowlBlock extends Block {
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
         return new FoodBowlTileEntity();
     }
-    @Override public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext selectionContext) {return SHAPE;}
+    @Override public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext selectionContext) { return SHAPE; }
     @Override public BlockRenderType getRenderShape(BlockState state) {return BlockRenderType.MODEL;}
-    @Override public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {return Block.canSupportCenter(worldIn, pos.below(), Direction.UP);}
+    @Override public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) { return Block.canSupportCenter(worldIn, pos.below(), Direction.UP); }
 
     @Override
     public void setPlacedBy(World worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
@@ -157,6 +157,6 @@ public class FoodBowlBlock extends Block {
         FluidState FluidState = context.getLevel().getFluidState(context.getClickedPos());
         return this.defaultBlockState().setValue(WATERLOGGED, Boolean.valueOf(FluidState.getType() == Fluids.WATER));
     }
-    @Override public FluidState getFluidState(BlockState state) {return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);}
-    @Override protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {builder.add(WATERLOGGED);}
+    @Override public FluidState getFluidState(BlockState state) { return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state); }
+    @Override protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) { builder.add(WATERLOGGED); }
 }

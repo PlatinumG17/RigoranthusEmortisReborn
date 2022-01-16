@@ -77,6 +77,14 @@ public class CanisArmorModel extends AnimatedGeoModel<CanisEntity> {
 //        float scale = 11f;
 //        head.setPositionY(canis.getPositionY() / 16f);
 //        head.setPositionZ(canis.getPositionZ() * -1.2f);
-        head.setHidden(!entity.getAccoutrement(CanisAccouterments.CHAINMAIL_HELMET.get()).isPresent() || entity.isInSittingPose() || entity.isBegging() || entity.isLying());
+        head.setHidden(
+                !entity.getAccoutrement(CanisAccouterments.CHAINMAIL_HELMET.get()).isPresent() ||
+                !entity.getAccoutrement(CanisAccouterments.LEATHER_HELMET.get()).isPresent() ||
+                !entity.getAccoutrement(CanisAccouterments.IRON_HELMET.get()).isPresent() ||
+                !entity.getAccoutrement(CanisAccouterments.GOLDEN_HELMET.get()).isPresent() ||
+                !entity.getAccoutrement(CanisAccouterments.DIAMOND_HELMET.get()).isPresent() ||
+                !entity.getAccoutrement(CanisAccouterments.NETHERITE_HELMET.get()).isPresent() ||
+                !entity.getAccoutrement(CanisAccouterments.TURTLE_HELMET.get()).isPresent() ||
+                 entity.isInSittingPose() || entity.isBegging() || entity.isLying());
     }
 }

@@ -1,6 +1,6 @@
 modLoader="javafml"
 loaderVersion="[36,)"
-license="GNU GENERAL PUBLIC LICENSE"
+license="LESSER GENERAL PUBLIC LICENSE LGPL-2.1 License"
 
 [[mods]]
     modId="rigoranthusemortisreborn"

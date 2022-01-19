@@ -51,13 +51,11 @@ public class CanisRenderer extends GeoEntityRenderer<CanisEntity> {
     private float r;
     private float g;
     private float b;
-//    private float a = 0.3F;
 
-    public void setColor(float red, float green, float blue/*, float alpha*/) {
+    public void setColor(float red, float green, float blue) {
         this.r = red;
         this.g = green;
         this.b = blue;
-/*        this.a = alpha;*/
     }
 
     @Override
@@ -80,7 +78,7 @@ public class CanisRenderer extends GeoEntityRenderer<CanisEntity> {
             float f = canis.getShadingWhileWet(partialTicks);
             this.setColor(f, f, f);
         }
-        if (this.shouldShowName(entityIn) && !entityIn.canBeControlledByRider()) {
+        if (this.shouldShowName(entityIn) && !entityIn.canBeControlledByRider() && !entityIn.isVehicle()) {
             double d0 = this.entityRenderDispatcher.distanceToSqr(entityIn);
             if (d0 <= 64 * 64) {
                 String tip = entityIn.getMode().getTip();
@@ -95,10 +93,7 @@ public class CanisRenderer extends GeoEntityRenderer<CanisEntity> {
 
     @Override
     public void renderRecursively(GeoBone bone, MatrixStack stack, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
-        if (canis.isCanisWet()) {
-//            float f = canis.getShadingWhileWet(120);
-            this.setColor(red = this.r*red, green = this.g*green, blue = this.b*blue);
-        }
+
         if (canis.hasBone()) {
             if (bone.getName().equals("jaw")) {
                 stack.pushPose();
@@ -118,16 +113,19 @@ public class CanisRenderer extends GeoEntityRenderer<CanisEntity> {
             stack.popPose();
             bufferIn = buffer.getBuffer(RenderType.entityCutoutNoCull(text));
         }
-//        if (canis.isCanisWet()) {
-//            this.r = 1.0F;
-//            this.g = 1.0F;
-//            this.b = 1.0F;
-//        } else {
-//            this.r = 0F;
-//            this.g = 0F;
-//            this.b = 0F;
-//        }
-        super.renderRecursively(bone, stack, bufferIn, packedLightIn, packedOverlayIn, /*this.r * */red, /*this.g * */green, /*this.b * */blue, /*this.a **/ alpha);
+        if (bone.getName().equals("saddle")) {
+            if (bone.getName().equals("mane_rotation3")) {
+                stack.pushPose();
+                RenderUtils.moveToPivot(bone, stack);
+                stack.popPose();
+                bufferIn = buffer.getBuffer(RenderType.entityCutoutNoCull(text));
+            }
+        }
+        if (canis.isCanisWet()) {
+//            float f = canis.getShadingWhileWet(120);
+            this.setColor(red = this.r * red, green = this.g * green, blue = this.b * blue);
+        }
+        super.renderRecursively(bone, stack, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
     }
 
     public ResourceLocation getColor(CanisEntity e) {
@@ -151,35 +149,3 @@ public class CanisRenderer extends GeoEntityRenderer<CanisEntity> {
         return RenderType.entityCutoutNoCull(textureLocation);
     }
 }
-
-
-
-//public class CanisRenderer extends MobRenderer<CanisEntity, CanisModel<CanisEntity>> {
-//    public CanisRenderer(EntityRendererManager renderManagerIn) {
-//        super(renderManagerIn, new CanisModel<>(), 0.5F);
-//        this.addLayer(new CanisSkillLayer(this));
-//        this.addLayer(new CanisAccoutrementLayer(this));
-//        this.addLayer(new BoneLayer(this));
-//        this.shadowRadius = 0.7F;
-//    }
-//    @Override protected float getBob(CanisEntity livingBase, float partialTicks) { return livingBase.getTailRotation(); }
-//    @Override
-//    public void render(CanisEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
-//        if (entityIn.isCanisWet()) {
-//            float f = entityIn.getShadingWhileWet(partialTicks);
-//            this.model.setColor(f, f, f);
-//        }
-//        super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
-//        if (this.shouldShowName(entityIn)) {
-//            double d0 = this.entityRenderDispatcher.distanceToSqr(entityIn);
-//            if (d0 <= 64 * 64) {
-//                String tip = entityIn.getMode().getTip();
-//                String label = String.format(Config.CANIS_GENDER.get() ? "%s[%d]%s" : "%s[%d]",(new TranslationTextComponent(tip)).getString(), MathHelper.ceil(entityIn.getCanisHunger()), (new TranslationTextComponent(entityIn.getGender().getUnlocalisedTip())).getString());
-//                RenderUtil.renderLabelWithScale(entityIn, this, label, matrixStackIn, bufferIn, packedLightIn, 0.01F, 0.12F);
-//                if (d0 <= 5 * 5 && this.entityRenderDispatcher.camera.getEntity().isShiftKeyDown()) {
-//                    RenderUtil.renderLabelWithScale(entityIn, this, entityIn.getOwnersName().orElseGet(() -> this.getNameUnknown(entityIn)), matrixStackIn, bufferIn, packedLightIn, 0.01F, -0.25F);
-//                }
-//            }
-//        }
-//        if (entityIn.isCanisWet()) {this.model.setColor(1.0F, 1.0F, 1.0F);}
-//    }

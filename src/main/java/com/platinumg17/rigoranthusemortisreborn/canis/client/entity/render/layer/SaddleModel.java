@@ -37,6 +37,15 @@ public class SaddleModel extends AnimatedGeoModel<CanisEntity> {
         super.setLivingAnimations(entity, uniqueID, customPredicate);
         IBone saddle = this.getAnimationProcessor().getBone("saddle");
         IBone cloth = this.getAnimationProcessor().getBone("cloth");
+        /*
+        IBone canis = ((CanisModel) modelProvider).getBone("canis");
+        IBone parentMane = modelProvider.getModel(modelProvider.getModelLocation(entity)).getBone("mane").get();
+        saddle.setPivotX(parentMane.getPivotX());
+        saddle.setPivotY(parentMane.getPivotY());
+        saddle.setPivotZ(parentMane.getPivotZ());
+        saddle.setRotationX(parentMane.getRotationX());
+        saddle.setRotationY(parentMane.getRotationY());
+        saddle.setRotationZ(parentMane.getRotationZ());*/
 
         saddle.setHidden(!(entity.getLevel(CanisSkills.CAVALIER.get()) >= 1) || entity.isInSittingPose() || entity.isBegging() || entity.isLying());
         cloth.setHidden(!entity.doDisplayCloth());

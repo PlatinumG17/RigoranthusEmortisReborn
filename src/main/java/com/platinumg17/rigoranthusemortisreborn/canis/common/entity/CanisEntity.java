@@ -168,7 +168,7 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
     @Override
     public void registerControllers(AnimationData animationData) {
         animationData.addAnimationController(new AnimationController<>(this, "walkController", 0, this::walkPredicate));
-        animationData.addAnimationController(new AnimationController<>(this, "runController", 0, this::runPredicate));
+//        animationData.addAnimationController(new AnimationController<>(this, "runController", 0, this::runPredicate));
         animationData.addAnimationController(new AnimationController<>(this, "attackController", 1, this::attackPredicate));
         animationData.addAnimationController(new AnimationController<>(this, "idleController", 0, this::idlePredicate));
         animationData.addAnimationController(new AnimationController<>(this, "danceController", 1, this::dancePredicate));
@@ -185,13 +185,13 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
         return PlayState.STOP;
     }
 
-    private <E extends IAnimatable> PlayState runPredicate(AnimationEvent<E> event) { //return PlayState.CONTINUE; }
-        if (event.isMoving() && this.getSpeed() >= 0.34F) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("run", true));
-            return PlayState.CONTINUE;
-        }
-        return PlayState.STOP;
-    }
+//    private <E extends IAnimatable> PlayState runPredicate(AnimationEvent<E> event) { //return PlayState.CONTINUE; }
+//        if (event.isMoving() && this.getSpeed() >= 0.34F) {
+//            event.getController().setAnimation(new AnimationBuilder().addAnimation("run", true));
+//            return PlayState.CONTINUE;
+//        }
+//        return PlayState.STOP;
+//    }
 
     private <E extends IAnimatable> PlayState walkPredicate(AnimationEvent<E> event) {
         if (event.isMoving()) {
@@ -233,16 +233,16 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
                 controller.markNeedsReload();
                 controller.setAnimation(new AnimationBuilder().addAnimation("soggy_boi", false));
             }
-            if (arg == Animations.RUNNING.ordinal()) {
-                AnimationController controller = this.animationFactory.getOrCreateAnimationData(this.hashCode()).getAnimationControllers().get("runController");
-                controller.markNeedsReload();
-                controller.setAnimation(new AnimationBuilder().addAnimation("run", true));
-            }
+//            if (arg == Animations.RUNNING.ordinal()) {
+//                AnimationController controller = this.animationFactory.getOrCreateAnimationData(this.hashCode()).getAnimationControllers().get("runController");
+//                controller.markNeedsReload();
+//                controller.setAnimation(new AnimationBuilder().addAnimation("run", true));
+//            }
         } catch (Exception e){
             e.printStackTrace();
         }
     }
-    public enum Animations{ BITING, SHAKING, RUNNING }
+    public enum Animations{ BITING, SHAKING/*, RUNNING*/ }
 
     public boolean canAttack() {
         return getTarget() != null && this.getHealth() >= 1 && !this.isMode(EnumMode.DOCILE) && !this.isOrderedToSit();
@@ -302,17 +302,13 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
 
     @Override
     protected float getWaterSlowDown() {
-        int skillLevel = this.getLevel(CanisSkills.NEPTUNES_BANE);
-        float slowdown = skillLevel;
-
-        switch (skillLevel) {
-            case 1: slowdown = 0.675f; break;
-            case 2: slowdown = 0.575f; break;
-            case 3: slowdown = 0.475f; break;
-            case 4: slowdown = 0.375f; break;
-            case 5: slowdown = 0.275f; break;
-        }
-        return slowdown;
+        int skillLevel = this.getLevel(CanisSkills.NEPTUNES_BANE.get());
+        if (skillLevel == 1) { return 0.6f; }
+        else if (skillLevel == 2) { return 0.5f; }
+        else if (skillLevel == 3) { return 0.4f; }
+        else if (skillLevel == 4) { return 0.3f; }
+        else if (skillLevel == 5) { return 0.2f; }
+        else return 0.8f;
     }
 
     @Override
@@ -422,6 +418,7 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
                 }
             } else if ((this.wetSource != null || this.isShaking) && this.isShaking) {
                 if (this.timeCanisIsShaking == 0.0F) {
+                    Networking.sendToNearby(this.level, this, new PacketAnimEntity(this.getId(), Animations.SHAKING.ordinal()));
                     this.playSound(SoundEvents.WOLF_SHAKE, this.getSoundVolume(), (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
                 }
 
@@ -471,7 +468,6 @@ public class CanisEntity extends AbstractCanisEntity implements IAnimatable, IAn
         super.aiStep();
         if (!this.level.isClientSide && this.wetSource != null && !this.isShaking && !this.isPathFinding() && this.isOnGround()) {
             this.startShaking();
-            Networking.sendToNearby(this.level, this, new PacketAnimEntity(this.getId(), Animations.SHAKING.ordinal()));
             this.level.broadcastEntityEvent(this, EmortisConstants.EntityState.CANIS_START_SHAKING);
         }
 

@@ -1,9 +1,9 @@
 package com.platinumg17.rigoranthusemortisreborn.core.registry.fluid;
 
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
-import com.platinumg17.rigoranthusemortisreborn.blocks.BlockInit;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
+import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.FlowingFluidBlock;
 import net.minecraft.block.material.Material;
@@ -46,7 +46,7 @@ public class FluidRegistry {
                 .bucket(
         () -> ItemInit.BUCKET_OF_CADAVEROUS_ICHOR.get());
 
-    public static final RegistryObject<FlowingFluidBlock> CADAVEROUS_ICHOR_BLOCK = BlockInit.BLOCKS.register("cadaverous_ichor",
+    public static final RegistryObject<FlowingFluidBlock> CADAVEROUS_ICHOR_BLOCK = Registration.BLOCKS.register("cadaverous_ichor",
             () -> new FlowingFluidBlock(() -> FluidRegistry.CADAVEROUS_ICHOR_FLUID.get(), /*new Vector3d(0.8, 0.0, 0.0), 0.25f,*/ AbstractBlock.Properties.of(Material.WATER, MaterialColor.COLOR_RED)
                     .noOcclusion().strength(100f).noDrops()));
 

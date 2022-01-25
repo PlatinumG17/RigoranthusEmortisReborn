@@ -4,7 +4,7 @@ import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.AbstractAugme
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.AbstractCastMethod;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.SpellContext;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.SpellResolver;
-import com.platinumg17.rigoranthusemortisreborn.magica.GlyphLib;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.lib.GlyphLib;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;

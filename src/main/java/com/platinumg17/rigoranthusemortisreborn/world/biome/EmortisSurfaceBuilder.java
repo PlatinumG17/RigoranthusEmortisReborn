@@ -1,6 +1,5 @@
 package com.platinumg17.rigoranthusemortisreborn.world.biome;
 
-import com.platinumg17.rigoranthusemortisreborn.blocks.BlockInit;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.BlockRegistry;
 import net.minecraft.block.Blocks;

@@ -1,6 +1,6 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.common.spell.method;
 
-import com.platinumg17.rigoranthusemortisreborn.magica.GlyphLib;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.lib.GlyphLib;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.network.Networking;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.network.PacketREEffect;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.spell.augment.AugmentSensitive;

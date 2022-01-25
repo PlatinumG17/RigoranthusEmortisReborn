@@ -573,6 +573,7 @@
 
 
     "_comment": "TOOLTIPS",
+    "tooltip.rigoranthusemortisreborn.soul_coal_block": "§c§oBurns with the cries of lost souls.",
     "tooltip.rigoranthusemortisreborn.upgrade_right_click": "Sneak & right-click to upgrade",
     "tooltip.rigoranthusemortisreborn.augment_right_click": "Right-click to apply augment",
     "tooltip.rigoranthusemortisreborn.augment_speed_pro": "+Smeltery is made +150% Faster!",

@@ -1,6 +1,6 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.common.spell.augment;
 
-import com.platinumg17.rigoranthusemortisreborn.magica.GlyphLib;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.lib.GlyphLib;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.AbstractAugment;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.AbstractSpellPart;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.SpellStats;

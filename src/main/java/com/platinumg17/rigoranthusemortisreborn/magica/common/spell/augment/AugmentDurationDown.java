@@ -4,7 +4,7 @@ import com.platinumg17.rigoranthusemortisreborn.api.RigoranthusEmortisRebornAPI;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.AbstractAugment;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.AbstractSpellPart;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.SpellStats;
-import com.platinumg17.rigoranthusemortisreborn.magica.GlyphLib;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.lib.GlyphLib;
 import net.minecraft.item.Item;
 
 public class AugmentDurationDown extends AbstractAugment {

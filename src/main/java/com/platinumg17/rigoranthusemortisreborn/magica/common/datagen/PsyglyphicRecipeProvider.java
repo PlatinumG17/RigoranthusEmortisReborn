@@ -2,16 +2,11 @@ package com.platinumg17.rigoranthusemortisreborn.magica.common.datagen;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.platinumg17.rigoranthusemortisreborn.api.RigoranthusEmortisRebornAPI;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.psyglyphic_amalgamator.IPsyglyphicRecipe;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.psyglyphic_amalgamator.PsyglyphicAmalgamatorRecipe;
-import com.platinumg17.rigoranthusemortisreborn.blocks.BlockInit;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
 import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.enchantment.EnchantmentRegistry;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.spell.augment.AugmentAmplify;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.spell.augment.AugmentExtendTime;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.BlockRegistry;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.MagicItemsRegistry;
 import net.minecraft.data.DataGenerator;
@@ -75,7 +70,7 @@ public class PsyglyphicRecipeProvider implements IDataProvider {
 
         addRecipe(builder()
                 .withResult(ItemInit.CRY_OF_DESPERATION.get())
-                .withReagent(BlockInit.BLOCK_OF_ESOTERICUM.get().asItem())
+                .withReagent(BlockRegistry.BLOCK_OF_ESOTERICUM.asItem())
                 .withPedestalItem(2,  Ingredient.of(Tags.Items.STORAGE_BLOCKS_GOLD))
                 .withPedestalItem(4,  Ingredient.of(Items.DARK_OAK_PLANKS))
                 .withPedestalItem(2,  Recipes.DOMINION_GEM)
@@ -251,43 +246,6 @@ public class PsyglyphicRecipeProvider implements IDataProvider {
                 .withPedestalItem(2, Recipes.DOMINION_GEM_BLOCK)
                 .withPedestalItem(2, Ingredient.of(Tags.Items.STORAGE_BLOCKS_LAPIS))
                 .buildPsyglyphicRecipe(Enchantments.SMITE, 5, 8000));
-
-        addRecipe(builder()
-                .withPedestalItem(1, BlockRegistry.DOMINION_BERRY_BUSH)
-                .withPedestalItem(4, Recipes.DOMINION_GEM_BLOCK)
-                .buildPsyglyphicRecipe(EnchantmentRegistry.DOMINION_BOOST_ENCHANTMENT, 1, 2000));
-        addRecipe(builder()
-                .withPedestalItem(1, BlockRegistry.DOMINION_BERRY_BUSH)
-                .withPedestalItem(1, Ingredient.of(RigoranthusEmortisRebornAPI.getInstance().getGlyphItem(AugmentAmplify.INSTANCE)))
-                .withPedestalItem(4, Recipes.DOMINION_GEM_BLOCK)
-                .withPedestalItem(2, Ingredient.of(Tags.Items.STORAGE_BLOCKS_LAPIS))
-                .buildPsyglyphicRecipe(EnchantmentRegistry.DOMINION_BOOST_ENCHANTMENT, 2, 3500));
-
-        addRecipe(builder()
-                .withPedestalItem(1, BlockRegistry.DOMINION_BERRY_BUSH)
-                .withPedestalItem(2, Ingredient.of(RigoranthusEmortisRebornAPI.getInstance().getGlyphItem(AugmentAmplify.INSTANCE)))
-                .withPedestalItem(4, Recipes.DOMINION_GEM_BLOCK)
-                .withPedestalItem(1, Ingredient.of(Tags.Items.STORAGE_BLOCKS_LAPIS))
-                .buildPsyglyphicRecipe(EnchantmentRegistry.DOMINION_BOOST_ENCHANTMENT, 3, 5000));
-
-        addRecipe(builder()
-                .withPedestalItem(2, BlockRegistry.DOMINION_BERRY_BUSH)
-                .withPedestalItem(2, Recipes.DOMINION_GEM_BLOCK)
-                .withPedestalItem(2, Ingredient.of(Tags.Items.STORAGE_BLOCKS_LAPIS))
-                .buildPsyglyphicRecipe(EnchantmentRegistry.DOMINION_REGEN_ENCHANTMENT, 1, 2000));
-        addRecipe(builder()
-                .withPedestalItem(2, BlockRegistry.DOMINION_BERRY_BUSH)
-                .withPedestalItem(2, Ingredient.of(RigoranthusEmortisRebornAPI.getInstance().getGlyphItem(AugmentExtendTime.INSTANCE)))
-                .withPedestalItem(2, Recipes.DOMINION_GEM_BLOCK)
-                .withPedestalItem(2, Ingredient.of(Tags.Items.STORAGE_BLOCKS_LAPIS))
-                .buildPsyglyphicRecipe(EnchantmentRegistry.DOMINION_REGEN_ENCHANTMENT, 2, 3500));
-
-        addRecipe(builder()
-                .withPedestalItem(2, BlockRegistry.DOMINION_BERRY_BUSH)
-                .withPedestalItem(3, Ingredient.of(RigoranthusEmortisRebornAPI.getInstance().getGlyphItem(AugmentExtendTime.INSTANCE)))
-                .withPedestalItem(2, Recipes.DOMINION_GEM_BLOCK)
-                .withPedestalItem(1, Ingredient.of(Tags.Items.STORAGE_BLOCKS_LAPIS))
-                .buildPsyglyphicRecipe(EnchantmentRegistry.DOMINION_REGEN_ENCHANTMENT, 3, 5000));
 
         addRecipe(builder()
                 .withResult(MagicItemsRegistry.LUSTERIC_SHIELD)

@@ -31,8 +31,9 @@ import java.util.Map;
  * */
 public class BrainBlock extends Block implements IWaterLoggable {
 
-    public BrainBlock(Properties properties) {
+    public BrainBlock(Properties properties, String name) {
         super(properties);
+        setRegistryName(name);
         this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, Boolean.valueOf(false)));
     }
 

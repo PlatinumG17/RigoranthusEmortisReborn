@@ -1,7 +1,6 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.common.datagen;
 
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
-import com.platinumg17.rigoranthusemortisreborn.blocks.BlockInit;
 import com.platinumg17.rigoranthusemortisreborn.blocks.DecorativeOrStorageBlocks;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.CanisTags;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
@@ -64,7 +63,7 @@ public class Recipes extends RecipeProvider {
             ShapedRecipeBuilder.shaped(BlockRegistry.DOMINION_JAR).unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(Items.CRAFTING_TABLE))
                     .pattern("xyx")
                     .pattern("x x")
-                    .pattern("xxx").define('x', Tags.Items.GLASS).define('y', BlockInit.OPULENT_MAGMA.get()).save(consumer);
+                    .pattern("xxx").define('x', Tags.Items.GLASS).define('y', BlockRegistry.OPULENT_MAGMA).save(consumer);
 
             ShapedRecipeBuilder.shaped(BlockRegistry.EMORTIC_CRAFTING_PRESS_BLOCK).unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(Items.CRAFTING_TABLE))
                     .pattern("sgs")
@@ -94,7 +93,7 @@ public class Recipes extends RecipeProvider {
             ShapedRecipeBuilder.shaped(BlockRegistry.EMORTIC_CORTEX_BLOCK).unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(Items.CRAFTING_TABLE))
                     .pattern("sys")
                     .pattern("yby")
-                    .pattern("ses").define('s',  Tags.Items.STONE).define('y', Tags.Items.GLASS).define('b', BlockInit.DWELLER_BRAIN.get().asItem())
+                    .pattern("ses").define('s',  Tags.Items.STONE).define('y', Tags.Items.GLASS).define('b', BlockRegistry.DWELLER_BRAIN.asItem())
                     .define('e', Registration.POWDERED_ESOTERICUM.get()).save(consumer);
 
             shapelessBuilder(BlockRegistry.DOMINION_GEM_BLOCK,1).requires(DOMINION_GEM, 9).save(consumer);

@@ -3,7 +3,10 @@ package com.platinumg17.rigoranthusemortisreborn.magica.setup;
 import com.minecraftabnormals.abnormals_core.common.blocks.AbnormalsFlowerBlock;
 import com.minecraftabnormals.abnormals_core.common.blocks.wood.AbnormalsSaplingBlock;
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
+import com.platinumg17.rigoranthusemortisreborn.blocks.custom.BrainBlock;
+import com.platinumg17.rigoranthusemortisreborn.blocks.custom.OpulentMagmaBlock;
 import com.platinumg17.rigoranthusemortisreborn.blocks.custom.skull.HangingSkullBlock;
+import com.platinumg17.rigoranthusemortisreborn.blocks.custom.skull.RESkullBlock;
 import com.platinumg17.rigoranthusemortisreborn.blocks.tileentity.HangingSkullTile;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.renderer.tile.*;
@@ -49,14 +52,30 @@ import java.util.List;
 
 @ObjectHolder(EmortisConstants.MOD_ID)
 public class BlockRegistry {
-    public static AbstractBlock.Properties LOG_PROP = AbstractBlock.Properties.of(Material.WOOD).strength(2.0F).sound(SoundType.WOOD);
+    public static AbstractBlock.Properties LOG_PROP = AbstractBlock.Properties.of(Material.WOOD).harvestLevel(0).harvestTool(ToolType.AXE).strength(2.0F).sound(SoundType.WOOD);
     public static AbstractBlock.Properties SAP_PROP = AbstractBlock.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS);
     public static AbstractBlock.Properties FLOWER_POT_PROP = AbstractBlock.Properties.of(Material.DECORATION).strength(0.0F).noOcclusion();
+    public static AbstractBlock.Properties PLANKS = AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD);
 
-    @ObjectHolder(LibBlockNames.HANGING_CADAVER_SKULL) public static HangingSkullBlock hangingCadaverSkull;
-    @ObjectHolder(LibBlockNames.HANGING_CADAVER_SKULL) public static TileEntityType<HangingSkullTile> hangingCadaverSkullTile;
+    public static AbstractBlock.Properties LAMP_PROP = AbstractBlock.Properties.of(Material.DECORATION).strength(0.0F).noOcclusion();
+    public static AbstractBlock.Properties NETHERITE_PROP = AbstractBlock.Properties.of(Material.METAL, MaterialColor.METAL).lightLevel((value) -> { return 5; }).strength(25f, 30f).requiresCorrectToolForDrops().sound(SoundType.STONE);
 
-    ///    WOOD / TREES    /////
+    public static AbstractBlock.Properties ABYSSAL_PROP = AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).harvestTool(ToolType.PICKAXE).harvestLevel(3).strength(60f, 1800f).requiresCorrectToolForDrops().sound(SoundType.STONE);
+    public static AbstractBlock.Properties OXY_PROP = AbstractBlock.Properties.of(Material.ICE_SOLID, MaterialColor.COLOR_BLUE).harvestTool(ToolType.PICKAXE).harvestLevel(3).strength(12f, 20f).friction(0.5f).requiresCorrectToolForDrops().sound(SoundType.GLASS);
+    public static AbstractBlock.Properties FORTIFIED_PROP = AbstractBlock.Properties.of(Material.METAL, MaterialColor.STONE).harvestTool(ToolType.PICKAXE).harvestLevel(2).strength(8f, 10f).requiresCorrectToolForDrops().sound(SoundType.STONE);
+    public static AbstractBlock.Properties SOUL_PROP = AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).harvestTool(ToolType.PICKAXE).harvestLevel(1).requiresCorrectToolForDrops().strength(5.0F, 12.0F).sound(SoundType.SOUL_SAND);
+    public static AbstractBlock.Properties AMALGAM_PROP = AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).harvestTool(ToolType.PICKAXE).harvestLevel(1).strength(10f, 15f).requiresCorrectToolForDrops().sound(SoundType.STONE);
+    public static AbstractBlock.Properties HIMALAYAN_PROP = AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_PINK).harvestTool(ToolType.PICKAXE).harvestLevel(1).strength(7f, 10f).requiresCorrectToolForDrops().sound(SoundType.NETHER_ORE);
+    public static AbstractBlock.Properties BRAIN_PROP = AbstractBlock.Properties.of(Material.SPONGE, MaterialColor.COLOR_PINK).harvestLevel(0).strength(0.2f, 0.2f).noOcclusion().sound(SoundType.SLIME_BLOCK);
+
+    public static AbstractBlock.Properties FRAG_COBBLE_PROP =  AbstractBlock.Properties.of(Material.SAND, MaterialColor.STONE).harvestTool(ToolType.SHOVEL).harvestLevel(0).strength(0.8f, 0.8f).sound(SoundType.GRAVEL);
+    public static AbstractBlock.Properties FRAG_NETHER_PROP =  AbstractBlock.Properties.of(Material.SAND, MaterialColor.NETHER).harvestTool(ToolType.SHOVEL).harvestLevel(0).strength(0.6f, 0.6f).sound(SoundType.NETHERRACK);
+    public static AbstractBlock.Properties ESOTERIC_PROP = AbstractBlock.Properties.of(Material.SAND, MaterialColor.STONE).harvestTool(ToolType.SHOVEL).harvestLevel(0).strength(1.0f, 6.0f).sound(SoundType.GRAVEL);
+    public static AbstractBlock.Properties PINK_SALT_PROP =  AbstractBlock.Properties.of(Material.SAND, MaterialColor.COLOR_PINK).harvestTool(ToolType.SHOVEL).harvestLevel(0).strength(0.6f, 0.6f).sound(SoundType.GRAVEL);
+    public static AbstractBlock.Properties SANDESITE_PROP =  AbstractBlock.Properties.of(Material.SAND, MaterialColor.CLAY).harvestTool(ToolType.SHOVEL).harvestLevel(0).strength(0.6f, 0.6f).sound(SoundType.GRAVEL);
+
+
+    //____________________________ W O O D   T Y P E S ____________________________//
     @ObjectHolder(LibBlockNames.AZULOREAL_LOG) public static StrippableLog AZULOREAL_LOG;
     @ObjectHolder(LibBlockNames.AZULOREAL_LEAVES) public static VerdurousLeavesBlock AZULOREAL_LEAVES;
     @ObjectHolder(LibBlockNames.AZULOREAL_SAPLING) public static AbnormalsSaplingBlock AZULOREAL_SAPLING;
@@ -71,7 +90,8 @@ public class BlockRegistry {
     @ObjectHolder(LibBlockNames.STRIPPED_JESSIC_LOG) public static RotatedPillarBlock STRIPPED_JESSIC_LOG;
     @ObjectHolder(LibBlockNames.STRIPPED_JESSIC_WOOD) public static RotatedPillarBlock STRIPPED_JESSIC_WOOD;
 
-    ///    FLOWERS    /////
+
+    //____________________________ F L O W E R S ____________________________//
     @ObjectHolder(LibBlockNames.AZULOREAL_ORCHID) public static AbnormalsFlowerBlock AZULOREAL_ORCHID;
     @ObjectHolder(LibBlockNames.IRIDESCENT_SPROUTS) public static AbnormalsFlowerBlock IRIDESCENT_SPROUTS;
     @ObjectHolder(LibBlockNames.SPECTABILIS_BUSH) public static SpectabilisBushBlock SPECTABILIS_BUSH;
@@ -82,7 +102,43 @@ public class BlockRegistry {
     @ObjectHolder(LibBlockNames.POTTED_AZULOREAL_SAPLING) public static FlowerPotBlock POTTED_AZULOREAL_SAPLING;
     @ObjectHolder(LibBlockNames.POTTED_JESSIC_SAPLING) public static FlowerPotBlock POTTED_JESSIC_SAPLING;
 
-    @ObjectHolder(LibBlockNames.FRAGMENTED_COBBLESTONE) public static FragmentedBlock FRAGMENTED_COBBLESTONE;
+
+
+    //____________________________ B L O C K S ____________________________//
+    @ObjectHolder(LibBlockNames.AZULOREAL_LAMP) public static RedstoneLampBlock AZULOREAL_LAMP;
+    @ObjectHolder(LibBlockNames.JESSIC_LAMP) public static RedstoneLampBlock JESSIC_LAMP;
+
+    @ObjectHolder(LibBlockNames.APOGEAN_NETHERITE_BLOCK) public static ModBlock APOGEAN_NETHERITE_BLOCK;
+    @ObjectHolder(LibBlockNames.AQUEOUS_NETHERITE_BLOCK) public static ModBlock AQUEOUS_NETHERITE_BLOCK;
+    @ObjectHolder(LibBlockNames.ATROPHYING_NETHERITE_BLOCK) public static ModBlock ATROPHYING_NETHERITE_BLOCK;
+    @ObjectHolder(LibBlockNames.OPULENT_NETHERITE_BLOCK) public static ModBlock OPULENT_NETHERITE_BLOCK;
+    @ObjectHolder(LibBlockNames.PERNICIOUS_NETHERITE_BLOCK) public static ModBlock PERNICIOUS_NETHERITE_BLOCK;
+    @ObjectHolder(LibBlockNames.PHANTASMAL_NETHERITE_BLOCK) public static ModBlock PHANTASMAL_NETHERITE_BLOCK;
+    @ObjectHolder(LibBlockNames.INCORPOREAL_NETHERITE_BLOCK) public static ModBlock INCORPOREAL_NETHERITE_BLOCK;
+    @ObjectHolder(LibBlockNames.INFERNAL_NETHERITE_BLOCK) public static ModBlock INFERNAL_NETHERITE_BLOCK;
+    @ObjectHolder(LibBlockNames.REMEX_NETHERITE_BLOCK) public static ModBlock REMEX_NETHERITE_BLOCK;
+
+    @ObjectHolder(LibBlockNames.CADAVER_SKULL) public static RESkullBlock CADAVER_SKULL;
+    @ObjectHolder(LibBlockNames.DWELLER_BRAIN) public static BrainBlock DWELLER_BRAIN;
+    @ObjectHolder(LibBlockNames.OPULENT_MAGMA) public static OpulentMagmaBlock OPULENT_MAGMA;
+    @ObjectHolder(LibBlockNames.FRAGMENTED_COBBLESTONE) public static GravelBlock FRAGMENTED_COBBLESTONE;
+    @ObjectHolder(LibBlockNames.FRAGMENTED_NETHERRACK) public static GravelBlock FRAGMENTED_NETHERRACK;
+    @ObjectHolder(LibBlockNames.BLOCK_OF_ESOTERICUM) public static GravelBlock BLOCK_OF_ESOTERICUM;
+    @ObjectHolder(LibBlockNames.PINK_SALT) public static GravelBlock PINK_SALT;
+    @ObjectHolder(LibBlockNames.SANDESITE) public static GravelBlock SANDESITE;
+    @ObjectHolder(LibBlockNames.FORTIFIED_SANDESITE) public static ModBlock FORTIFIED_SANDESITE;
+    @ObjectHolder(LibBlockNames.ABYSSALITE) public static ModBlock ABYSSALITE;
+    @ObjectHolder(LibBlockNames.OXYLITE) public static ModBlock OXYLITE;
+
+    @ObjectHolder(LibBlockNames.SOUL_COAL_BLOCK) public static ModBlock SOUL_COAL_BLOCK;
+    @ObjectHolder(LibBlockNames.GOLD_AMALGAM) public static ModBlock GOLD_AMALGAM;
+    @ObjectHolder(LibBlockNames.HIMALAYAN_SALT) public static ModBlock HIMALAYAN_SALT;
+
+
+    //____________________________ T I L E   E N T I T Y   B L O C K S ____________________________//
+    @ObjectHolder(LibBlockNames.HANGING_CADAVER_SKULL) public static HangingSkullBlock hangingCadaverSkull;
+    @ObjectHolder(LibBlockNames.HANGING_CADAVER_SKULL) public static TileEntityType<HangingSkullTile> hangingCadaverSkullTile;
+
     @ObjectHolder(LibBlockNames.DECAYING_BLOCK) public static DecayingBlock DECAYING_BLOCK;
     @ObjectHolder(LibBlockNames.DECAYING_BLOCK) public static TileEntityType<DecayingBlockTile> DECAYING_TILE;
     @ObjectHolder(LibBlockNames.LIGHT_BLOCK) public static LightBlock LIGHT_BLOCK;
@@ -101,7 +157,7 @@ public class BlockRegistry {
     @ObjectHolder(LibBlockNames.PORTAL) public static TileEntityType<PortalTile> PORTAL_TILE_TYPE;
     @ObjectHolder(LibBlockNames.INTANGIBLE_AIR) public static IntangibleAirBlock INTANGIBLE_AIR;
     @ObjectHolder(LibBlockNames.INTANGIBLE_AIR) public static  TileEntityType<IntangibleAirTile> INTANGIBLE_AIR_TYPE;
-//    @ObjectHolder(LibBlockNames.RE_LILLY_PAD) public static RELilyPad RE_LILLY_PAD;
+    //    @ObjectHolder(LibBlockNames.RE_LILLY_PAD) public static RELilyPad RE_LILLY_PAD;
     @ObjectHolder(LibBlockNames.DOMINION_BERRY_BUSH) public static DominionBerryBush DOMINION_BERRY_BUSH;
     @ObjectHolder(LibBlockNames.CREATIVE_DOMINION_JAR) public static CreativeDominionJar CREATIVE_DOMINION_JAR;
     @ObjectHolder(LibBlockNames.CREATIVE_DOMINION_JAR) public static TileEntityType<CreativeDominionJarTile> CREATIVE_DOMINION_JAR_TILE;
@@ -131,6 +187,7 @@ public class BlockRegistry {
     @ObjectHolder(LibBlockNames.PSYGLYPHIC_CIPHER) public static CipherBlock PSYGLYPHIC_CIPHER;
     @ObjectHolder(LibBlockNames.PSYGLYPHIC_CIPHER) public static TileEntityType<PsyglyphicCipherTile> PSYGLYPHIC_TILE;
 
+
     @ObjectHolder(LibBlockNames.STATE_PROVIDER) public static BlockStateProviderType stateProviderType;
     @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
     public static class RegistryEvents {
@@ -158,7 +215,7 @@ public class BlockRegistry {
             registry.register(new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, () -> AZULOREAL_ORCHID, FLOWER_POT_PROP).setRegistryName(LibBlockNames.POTTED_AZULOREAL_ORCHID));
             registry.register(new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, () -> IRIDESCENT_SPROUTS, FLOWER_POT_PROP).setRegistryName(LibBlockNames.POTTED_IRIDESCENT_SPROUTS));
             registry.register(new TallFlowerBlock(SAP_PROP).setRegistryName(LibBlockNames.LISIANTHUS));
-            registry.register(new FragmentedBlock(AbstractBlock.Properties.of(Material.SAND, MaterialColor.STONE).strength(0.8f, 0.8f).harvestTool(ToolType.SHOVEL).harvestLevel(0).sound(SoundType.GRAVEL)));
+            registry.register(new GravelBlock(AbstractBlock.Properties.of(Material.SAND, MaterialColor.STONE).strength(0.8f, 0.8f).harvestTool(ToolType.SHOVEL).harvestLevel(0).sound(SoundType.GRAVEL)));
             registry.register(new DominionBerryBush(AbstractBlock.Properties.of(Material.PLANT).randomTicks().noCollission().sound(SoundType.SWEET_BERRY_BUSH)));
             registry.register(new SpectabilisBushBlock(AbstractBlock.Properties.of(Material.PLANT).randomTicks().noCollission().sound(SoundType.SWEET_BERRY_BUSH)));
 
@@ -185,6 +242,37 @@ public class BlockRegistry {
             registry.register(new IntangibleAirBlock());
             registry.register(new PortalBlock());
 //            registry.register(new RELilyPad());
+
+
+            registry.register(new RedstoneLampBlock(LAMP_PROP).setRegistryName(LibBlockNames.AZULOREAL_LAMP));
+            registry.register(new RedstoneLampBlock(LAMP_PROP).setRegistryName(LibBlockNames.JESSIC_LAMP));
+
+            registry.register(new GravelBlock(FRAG_COBBLE_PROP).setRegistryName(LibBlockNames.FRAGMENTED_COBBLESTONE));
+            registry.register(new GravelBlock(FRAG_NETHER_PROP).setRegistryName(LibBlockNames.FRAGMENTED_NETHERRACK));
+            registry.register(new GravelBlock(ESOTERIC_PROP).setRegistryName(LibBlockNames.BLOCK_OF_ESOTERICUM));
+            registry.register(new GravelBlock(PINK_SALT_PROP).setRegistryName(LibBlockNames.PINK_SALT));
+            registry.register(new GravelBlock(SANDESITE_PROP).setRegistryName(LibBlockNames.SANDESITE));
+
+            registry.register(new BrainBlock(BRAIN_PROP, LibBlockNames.DWELLER_BRAIN));
+            registry.register(new RESkullBlock(LibBlockNames.CADAVER_SKULL));
+            registry.register(new OpulentMagmaBlock(LibBlockNames.OPULENT_MAGMA));
+
+            registry.register(new ModBlock(FORTIFIED_PROP, LibBlockNames.FORTIFIED_SANDESITE));
+            registry.register(new ModBlock(ABYSSAL_PROP, LibBlockNames.ABYSSALITE));
+            registry.register(new ModBlock(OXY_PROP, LibBlockNames.OXYLITE));
+            registry.register(new ModBlock(SOUL_PROP, LibBlockNames.SOUL_COAL_BLOCK));
+            registry.register(new ModBlock(AMALGAM_PROP, LibBlockNames.GOLD_AMALGAM));
+            registry.register(new ModBlock(HIMALAYAN_PROP, LibBlockNames.HIMALAYAN_SALT));
+
+            registry.register(new ModBlock(NETHERITE_PROP, LibBlockNames.APOGEAN_NETHERITE_BLOCK));
+            registry.register(new ModBlock(NETHERITE_PROP, LibBlockNames.AQUEOUS_NETHERITE_BLOCK));
+            registry.register(new ModBlock(NETHERITE_PROP, LibBlockNames.ATROPHYING_NETHERITE_BLOCK));
+            registry.register(new ModBlock(NETHERITE_PROP, LibBlockNames.OPULENT_NETHERITE_BLOCK));
+            registry.register(new ModBlock(NETHERITE_PROP, LibBlockNames.PERNICIOUS_NETHERITE_BLOCK));
+            registry.register(new ModBlock(NETHERITE_PROP, LibBlockNames.PHANTASMAL_NETHERITE_BLOCK));
+            registry.register(new ModBlock(NETHERITE_PROP, LibBlockNames.INCORPOREAL_NETHERITE_BLOCK));
+            registry.register(new ModBlock(NETHERITE_PROP, LibBlockNames.INFERNAL_NETHERITE_BLOCK));
+            registry.register(new ModBlock(NETHERITE_PROP, LibBlockNames.REMEX_NETHERITE_BLOCK));
         }
         public static AbnormalsFlowerBlock createAzulorealOrchidBlock() {
             return new AbnormalsFlowerBlock(()-> Effects.HEAL, 8, AbstractBlock.Properties.copy(Blocks.AZURE_BLUET));
@@ -399,8 +487,6 @@ public class BlockRegistry {
                 }
             }.setRegistryName(LibBlockNames.EMORTIC_CRAFTING_PRESS);
 
-            registry.register(registerTooltipBlockItem(LibBlockNames.FRAGMENTED_COBBLESTONE, BlockRegistry.FRAGMENTED_COBBLESTONE,"fragmented_cobblestone", "fragmented_cobblestone2"));
-
             registry.register(hangingCadaverSkull);
             registry.register(emorticRelay);
             registry.register(relaySplitter);
@@ -413,6 +499,37 @@ public class BlockRegistry {
             registry.register(registerTooltipBlockItem(LibBlockNames.PSYGLYPHIC_AMALGAMATOR, BlockRegistry.PSYGLYPHIC_AMALG_BLOCK,"psyglyphic_amalgamator", "psyglyphic_amalgamator2"));
             registry.register(registerTooltipBlockItem(LibBlockNames.SPLINTERED_PEDESTAL, BlockRegistry.SPLINTERED_PEDESTAL,"splintered_pedestal", "splintered_pedestal2"));
             registry.register(craftingPress);
+
+
+            registry.register(getDefaultBlockItem(BlockRegistry.AZULOREAL_LAMP, LibBlockNames.AZULOREAL_LAMP));
+            registry.register(getDefaultBlockItem(BlockRegistry.JESSIC_LAMP, LibBlockNames.JESSIC_LAMP));
+
+            registry.register(registerTooltipBlockItem(LibBlockNames.FRAGMENTED_COBBLESTONE, BlockRegistry.FRAGMENTED_COBBLESTONE, LibBlockNames.FRAGMENTED_COBBLESTONE, "fragmented_cobblestone2"));
+            registry.register(registerTooltipBlockItem(LibBlockNames.FRAGMENTED_NETHERRACK, BlockRegistry.FRAGMENTED_NETHERRACK, LibBlockNames.FRAGMENTED_NETHERRACK, "fragmented_netherrack2"));
+
+            registry.register(registerSingleTooltipBlockItem(LibBlockNames.ABYSSALITE, BlockRegistry.ABYSSALITE, LibBlockNames.ABYSSALITE));
+            registry.register(registerSingleTooltipBlockItem(LibBlockNames.OXYLITE, BlockRegistry.OXYLITE, LibBlockNames.OXYLITE));
+            registry.register(registerSingleTooltipBlockItem(LibBlockNames.SOUL_COAL_BLOCK, BlockRegistry.SOUL_COAL_BLOCK, LibBlockNames.SOUL_COAL_BLOCK));
+            registry.register(registerSingleTooltipBlockItem(LibBlockNames.OPULENT_MAGMA, BlockRegistry.OPULENT_MAGMA, LibBlockNames.OPULENT_MAGMA));
+            registry.register(registerSingleTooltipBlockItem(LibBlockNames.DWELLER_BRAIN, BlockRegistry.DWELLER_BRAIN, LibBlockNames.DWELLER_BRAIN));
+            registry.register(registerSingleTooltipBlockItem(LibBlockNames.HIMALAYAN_SALT, BlockRegistry.HIMALAYAN_SALT, LibBlockNames.HIMALAYAN_SALT));
+            registry.register(registerSingleTooltipBlockItem(LibBlockNames.GOLD_AMALGAM, BlockRegistry.GOLD_AMALGAM, LibBlockNames.GOLD_AMALGAM));
+            registry.register(registerSingleTooltipBlockItem(LibBlockNames.BLOCK_OF_ESOTERICUM, BlockRegistry.BLOCK_OF_ESOTERICUM, LibBlockNames.BLOCK_OF_ESOTERICUM));
+
+            registry.register(registerSingleTooltipBlockItem(LibBlockNames.SANDESITE, BlockRegistry.SANDESITE, LibBlockNames.SANDESITE));
+            registry.register(registerSingleTooltipBlockItem(LibBlockNames.FORTIFIED_SANDESITE, BlockRegistry.FORTIFIED_SANDESITE, LibBlockNames.FORTIFIED_SANDESITE));
+            registry.register(registerSingleTooltipBlockItem(LibBlockNames.PINK_SALT, BlockRegistry.PINK_SALT, LibBlockNames.PINK_SALT));
+            registry.register(registerSingleTooltipBlockItem(LibBlockNames.CADAVER_SKULL, BlockRegistry.CADAVER_SKULL, LibBlockNames.CADAVER_SKULL));
+
+            registry.register(getDefaultBlockItem(BlockRegistry.APOGEAN_NETHERITE_BLOCK, LibBlockNames.APOGEAN_NETHERITE_BLOCK));
+            registry.register(getDefaultBlockItem(BlockRegistry.AQUEOUS_NETHERITE_BLOCK, LibBlockNames.AQUEOUS_NETHERITE_BLOCK));
+            registry.register(getDefaultBlockItem(BlockRegistry.ATROPHYING_NETHERITE_BLOCK, LibBlockNames.ATROPHYING_NETHERITE_BLOCK));
+            registry.register(getDefaultBlockItem(BlockRegistry.OPULENT_NETHERITE_BLOCK, LibBlockNames.OPULENT_NETHERITE_BLOCK));
+            registry.register(getDefaultBlockItem(BlockRegistry.PERNICIOUS_NETHERITE_BLOCK, LibBlockNames.PERNICIOUS_NETHERITE_BLOCK));
+            registry.register(getDefaultBlockItem(BlockRegistry.PHANTASMAL_NETHERITE_BLOCK, LibBlockNames.PHANTASMAL_NETHERITE_BLOCK));
+            registry.register(getDefaultBlockItem(BlockRegistry.INCORPOREAL_NETHERITE_BLOCK, LibBlockNames.INCORPOREAL_NETHERITE_BLOCK));
+            registry.register(getDefaultBlockItem(BlockRegistry.INFERNAL_NETHERITE_BLOCK, LibBlockNames.INFERNAL_NETHERITE_BLOCK));
+            registry.register(getDefaultBlockItem(BlockRegistry.REMEX_NETHERITE_BLOCK, LibBlockNames.REMEX_NETHERITE_BLOCK));
         }
         public static Item getDefaultBlockItem(Block block, String registry) {
             return new BlockItem(block, MagicItemsRegistry.defaultItemProperties()).setRegistryName(registry);
@@ -428,6 +545,19 @@ public class BlockRegistry {
                     if (Screen.hasShiftDown()) {
                         tooltip.add(new TranslationTextComponent("tooltip.block.rigoranthusemortisreborn." + tooltipKey));
                         tooltip.add(new TranslationTextComponent("tooltip.block.rigoranthusemortisreborn." + tooltipKey2));
+                    } else {
+                        tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".hold_shift").setStyle(Style.EMPTY));
+                    }
+                    super.appendHoverText(stack, worldIn, tooltip, flagIn);
+                }
+            }.setRegistryName(name);
+        }
+        private static Item registerSingleTooltipBlockItem(String name, Block block, String tooltipKey) {
+            return new BlockItem(block, new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)) {
+                @Override
+                public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+                    if (Screen.hasShiftDown()) {
+                        tooltip.add(new TranslationTextComponent("tooltip.block.rigoranthusemortisreborn." + tooltipKey));
                     } else {
                         tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".hold_shift").setStyle(Style.EMPTY));
                     }

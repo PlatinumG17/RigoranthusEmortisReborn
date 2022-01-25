@@ -1,6 +1,5 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile;
 
-import com.platinumg17.rigoranthusemortisreborn.blocks.BlockInit;
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
 import com.platinumg17.rigoranthusemortisreborn.entity.mobs.NecrawFasciiEntity;
 import com.platinumg17.rigoranthusemortisreborn.entity.mobs.SunderedCadaverEntity;
@@ -137,7 +136,7 @@ public class IchorExtractorTile extends DominionTile implements IAnimatable {
         if(level.isClientSide)
             return;
         BlockPos skullPos = getBlockInArea(BlockRegistry.hangingCadaverSkull, 2);
-        BlockPos skullPos2 = getBlockInArea(BlockInit.CADAVER_SKULL.get(), 2);
+        BlockPos skullPos2 = getBlockInArea(BlockRegistry.CADAVER_SKULL, 2);
         if((skullPos != null || skullPos2 != null) && progress >= 200) {
             SunderedCadaverEntity sunderedCadaver = ModEntities.SUNDERED_CADAVER.create(level);
             SunderedCadaverEntity sunderedCadaver2 = ModEntities.SUNDERED_CADAVER.create(level);

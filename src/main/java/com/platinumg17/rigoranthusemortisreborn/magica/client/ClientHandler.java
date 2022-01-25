@@ -40,6 +40,9 @@ public class ClientHandler {
 
         RenderTypeLookup.setRenderLayer(BlockRegistry.hangingCadaverSkull, RenderType.translucent());
 
+        RenderTypeLookup.setRenderLayer(BlockRegistry.DWELLER_BRAIN, RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(BlockRegistry.CADAVER_SKULL, RenderType.cutout());
+
         RenderTypeLookup.setRenderLayer(BlockRegistry.POTTED_JESSIC_SAPLING, RenderType.cutout());
         RenderTypeLookup.setRenderLayer(BlockRegistry.POTTED_AZULOREAL_SAPLING, RenderType.cutout());
         RenderTypeLookup.setRenderLayer(BlockRegistry.JESSIC_LEAVES, RenderType.cutoutMipped());

@@ -1,6 +1,8 @@
 package com.platinumg17.rigoranthusemortisreborn.blocks.custom.skull;
 
 import net.minecraft.block.*;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.material.MaterialColor;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.enchantment.IArmorVanishable;
 import net.minecraft.fluid.FluidState;
@@ -21,6 +23,7 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
+import net.minecraftforge.common.ToolType;
 
 /**
  * @author PlatinumG17
@@ -31,8 +34,9 @@ public class RESkullBlock extends Block implements IWaterLoggable, IArmorVanisha
     public static final DirectionProperty FACING = HorizontalBlock.FACING;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    public RESkullBlock(Properties properties) {
-        super(properties);
+    public RESkullBlock(String name) {
+        super(AbstractBlock.Properties.of(Material.DECORATION, MaterialColor.PODZOL).strength(1.0f, 6.0f).harvestTool(ToolType.PICKAXE).harvestLevel(0).noOcclusion().sound(SoundType.BONE_BLOCK));
+        setRegistryName(name);
         this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, Boolean.valueOf(false)));
     }
 

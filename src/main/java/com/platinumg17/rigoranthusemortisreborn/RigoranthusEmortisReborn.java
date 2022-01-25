@@ -6,7 +6,6 @@ import com.platinumg17.rigoranthusemortisreborn.api.apicanis.feature.FoodHandler
 import com.platinumg17.rigoranthusemortisreborn.api.apicanis.feature.InteractionHandler;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.entity.familiar.FamiliarCap;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.util.MappingUtil;
-import com.platinumg17.rigoranthusemortisreborn.blocks.BlockInit;
 import com.platinumg17.rigoranthusemortisreborn.blocks.BuildingBlockInit;
 import com.platinumg17.rigoranthusemortisreborn.blocks.DecorativeOrStorageBlocks;
 import com.platinumg17.rigoranthusemortisreborn.canis.*;
@@ -127,7 +126,7 @@ public class RigoranthusEmortisReborn {
 
         APIRegistry.registerSpells();                                   MappingUtil.setup();
         Registration.init();                                            FluidRegistry.register(modEventBus);
-        BlockInit.register(modEventBus);		                        ItemInit.ITEMS.register(modEventBus);
+        ItemInit.ITEMS.register(modEventBus);
         RigoranthusSoundRegistry.SOUND_EVENTS.register(modEventBus);    BuildingBlockInit.register(modEventBus);
         EmortisParticleTypes.PARTICLES.register(modEventBus);           CanisRecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
         CanisBlocks.BLOCKS.register(modEventBus);                       CanisItems.ITEMS.register(modEventBus);
@@ -213,8 +212,6 @@ public class RigoranthusEmortisReborn {
             RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.AZULOREAL_SLAB.get(), RenderType.cutout());
 //            RenderTypeLookup.setRenderLayer(Registration.LUMISHROOM.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(Registration.MASTERFUL_SMELTERY.get(), RenderType.cutout());
-            RenderTypeLookup.setRenderLayer(BlockInit.DWELLER_BRAIN.get(), RenderType.cutout());
-            RenderTypeLookup.setRenderLayer(BlockInit.CADAVER_SKULL.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(FluidRegistry.CADAVEROUS_ICHOR_FLUID.get(), RenderType.translucent());
             RenderTypeLookup.setRenderLayer(FluidRegistry.CADAVEROUS_ICHOR_BLOCK.get(), RenderType.translucent());
             RenderTypeLookup.setRenderLayer(FluidRegistry.CADAVEROUS_ICHOR_FLOWING.get(), RenderType.translucent());

@@ -27,9 +27,10 @@ import java.util.Random;
 
 public class OpulentMagmaBlock extends Block {
 
-    public OpulentMagmaBlock() {
-        super(AbstractBlock.Properties.of(Material.STONE, MaterialColor.GOLD).lightLevel((p_235452_0_) -> { return 15; }).strength(8f, 10f)
+    public OpulentMagmaBlock(String name) {
+        super(AbstractBlock.Properties.of(Material.STONE, MaterialColor.GOLD).lightLevel((value) -> { return 15; }).strength(8f, 10f)
                 .harvestTool(ToolType.PICKAXE).harvestLevel(2).requiresCorrectToolForDrops().sound(SoundType.LANTERN));
+        setRegistryName(name);
     }
 
     @Override

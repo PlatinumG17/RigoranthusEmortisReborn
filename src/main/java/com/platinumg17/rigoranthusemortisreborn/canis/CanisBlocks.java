@@ -23,7 +23,6 @@ public class CanisBlocks {
     public static final DeferredRegister<Item> ITEMS = CanisItems.ITEMS;
 
     public static final RegistryObject<CanisBedBlock> CANIS_BED = registerWithItem("canis_bed", CanisBedBlock::new, (prop) -> prop.tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP));
-//    public static final RegistryObject<CanisBathBlock> CANIS_BATH = registerWithItem("canis_bath", CanisBathBlock::new);
     public static final RegistryObject<FoodBowlBlock> FOOD_BOWL = registerWithItem("food_bowl", FoodBowlBlock::new);
 
     private static Item.Properties createInitialProp() {
@@ -57,21 +56,10 @@ public class CanisBlocks {
         return BLOCKS.register(name, blockSupplier);
     }
 
-//    public static void registerBlockColors(final ColorHandlerEvent.Block event) {
-//        BlockColors blockColors = event.getBlockColors();
-//
-////        REUtil.allMatch(CanisBlocks.CANIS_BATH, (block) -> {
-////            blockColors.register((state, world, pos, tintIndex) -> {
-////                return world != null && pos != null ? BiomeColors.getAverageWaterColor(world, pos) : -1;
-////            }, block);
-////        }, CanisBlocks::logError);
-//    }
-
     public static void logError() {
         // Only try to register if blocks were successfully registered
         // Trying to avoid as reports may say
         // Rigoranthus Emortis crashed but is not the CAUSE of the crash
-
         RigoranthusEmortisReborn.LOGGER.info("Items/Blocks were not registered for some reason... probably beacuse you didn't watch the bee movie in 3D");
     }
 }

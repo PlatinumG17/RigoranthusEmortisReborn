@@ -6,7 +6,6 @@ import com.platinumg17.rigoranthusemortisreborn.api.apicanis.feature.FoodHandler
 import com.platinumg17.rigoranthusemortisreborn.api.apicanis.feature.InteractionHandler;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.entity.familiar.FamiliarCap;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.util.MappingUtil;
-import com.platinumg17.rigoranthusemortisreborn.blocks.BuildingBlockInit;
 import com.platinumg17.rigoranthusemortisreborn.blocks.DecorativeOrStorageBlocks;
 import com.platinumg17.rigoranthusemortisreborn.canis.*;
 import com.platinumg17.rigoranthusemortisreborn.canis.client.ClientSetup;
@@ -126,8 +125,7 @@ public class RigoranthusEmortisReborn {
 
         APIRegistry.registerSpells();                                   MappingUtil.setup();
         Registration.init();                                            FluidRegistry.register(modEventBus);
-        ItemInit.ITEMS.register(modEventBus);
-        RigoranthusSoundRegistry.SOUND_EVENTS.register(modEventBus);    BuildingBlockInit.register(modEventBus);
+        ItemInit.ITEMS.register(modEventBus);                           RigoranthusSoundRegistry.SOUND_EVENTS.register(modEventBus);
         EmortisParticleTypes.PARTICLES.register(modEventBus);           CanisRecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
         CanisBlocks.BLOCKS.register(modEventBus);                       CanisItems.ITEMS.register(modEventBus);
         CanisTileEntityTypes.TILE_ENTITIES.register(modEventBus);       SpecializedEntityTypes.ENTITIES.register(modEventBus);

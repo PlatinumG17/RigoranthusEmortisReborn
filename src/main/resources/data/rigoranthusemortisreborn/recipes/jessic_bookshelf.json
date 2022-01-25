@@ -8,14 +8,14 @@
   ],
   "key": {
     "P": {
-      "item": "rigoranthusemortisreborn:azuloreal_planks"
+      "item": "rigoranthusemortisreborn:jessic_planks"
     },
     "B": {
       "item": "minecraft:book"
     }
   },
   "result": {
-    "item": "rigoranthusemortisreborn:azuloreal_bookshelf",
+    "item": "rigoranthusemortisreborn:jessic_bookshelf",
     "count": 1
   }
 }

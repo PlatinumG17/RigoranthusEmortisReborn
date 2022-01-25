@@ -648,6 +648,7 @@
   "tooltip.block.rigoranthusemortisreborn.fragmented_netherrack": "Smelt it to get Netherrack, or Combine with clay to get an Unfired Nether Brick",
   "tooltip.block.rigoranthusemortisreborn.gold_amalgam": "Is there a way to get my gold back from this? No?",
   "tooltip.block.rigoranthusemortisreborn.himalayan_salt": "Gives salt a purpose as a decorative/building block",
+  "tooltip.block.rigoranthusemortisreborn.soul_coal_block": "§\u00A7c\u00A7oBurns with the cries of lost souls.",
 
   "tooltip.block.rigoranthusemortisreborn.apogean_netherite_block": "§d§oApogean Storage Block",
   "tooltip.block.rigoranthusemortisreborn.aqueous_netherite_block": "§1§oAqueous Storage Block",
@@ -658,7 +659,7 @@
   "tooltip.block.rigoranthusemortisreborn.pernicious_netherite_block": "§a§oPernicious Storage Block",
   "tooltip.block.rigoranthusemortisreborn.phantasmal_netherite_block": "§6§oPhantasmal Storage Block",
   "tooltip.block.rigoranthusemortisreborn.remex_netherite_block": "§f§oRemex Storage Block",
-  "tooltip.block.rigoranthusemortisreborn.block_of_esotericum": "Block of Esotericum",
+  "tooltip.block.rigoranthusemortisreborn.block_of_esotericum": "Storage Block of Powdered Esotericum",
 
   "tooltip.block.rigoranthusemortisreborn.masterful_smeltery": "A Powerful configurable Furnace",
   "tooltip.block.rigoranthusemortisreborn.opulent_magma": "Turn Magma into a Fancy Lamp",
@@ -1066,6 +1067,7 @@
   "modgui.config.skills.tooltip": "Включить или отключить таланты",
   "canisbed.null": "Null",
   "canisbed.missing": "Missing: %s",
+
   "canisbed.bedding.minecraft.white_wool": "Подстилка из белой шерсти",
   "canisbed.bedding.minecraft.orange_wool": "Подстилка из оранжевой шерсти",
   "canisbed.bedding.minecraft.magenta_wool": "Подстилка из пурпурной шерсти",
@@ -1212,7 +1214,8 @@
   "canisbed.casing.botania:dreamwood.1": "Корпус из досок мечтаний",
   "canisbed.casing.botania:dreamwood.2": "Корпус из замшелых досок мечтаний",
 
-
+  "canisbed.casing.rigoranthusemortisreborn.azuloreal_planks": "Azuloreal Planks",
+  "canisbed.casing.rigoranthusemortisreborn.jessic_planks": "Jessic Planks",
 
 
 

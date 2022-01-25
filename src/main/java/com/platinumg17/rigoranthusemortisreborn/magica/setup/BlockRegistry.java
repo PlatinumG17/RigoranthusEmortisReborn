@@ -57,8 +57,8 @@ public class BlockRegistry {
     public static AbstractBlock.Properties FLOWER_POT_PROP = AbstractBlock.Properties.of(Material.DECORATION).strength(0.0F).noOcclusion();
     public static AbstractBlock.Properties PLANKS = AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD);
 
-    public static AbstractBlock.Properties LAMP_PROP = AbstractBlock.Properties.of(Material.DECORATION).strength(0.0F).noOcclusion();
-    public static AbstractBlock.Properties NETHERITE_PROP = AbstractBlock.Properties.of(Material.METAL, MaterialColor.METAL).lightLevel((value) -> { return 5; }).strength(25f, 30f).requiresCorrectToolForDrops().sound(SoundType.STONE);
+    public static AbstractBlock.Properties LAMP_PROP = AbstractBlock.Properties.of(Material.BUILDABLE_GLASS).lightLevel((value) -> { return 15; }).strength(0.3F).sound(SoundType.SHROOMLIGHT);
+    public static AbstractBlock.Properties NETHERITE_PROP = AbstractBlock.Properties.of(Material.METAL, MaterialColor.METAL).lightLevel((value) -> { return 5; }).harvestTool(ToolType.PICKAXE).harvestLevel(4).strength(25f, 30f).requiresCorrectToolForDrops().sound(SoundType.STONE);
 
     public static AbstractBlock.Properties ABYSSAL_PROP = AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).harvestTool(ToolType.PICKAXE).harvestLevel(3).strength(60f, 1800f).requiresCorrectToolForDrops().sound(SoundType.STONE);
     public static AbstractBlock.Properties OXY_PROP = AbstractBlock.Properties.of(Material.ICE_SOLID, MaterialColor.COLOR_BLUE).harvestTool(ToolType.PICKAXE).harvestLevel(3).strength(12f, 20f).friction(0.5f).requiresCorrectToolForDrops().sound(SoundType.GLASS);

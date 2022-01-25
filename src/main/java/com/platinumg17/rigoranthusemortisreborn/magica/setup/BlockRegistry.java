@@ -183,8 +183,8 @@ public class BlockRegistry {
     @ObjectHolder(LibBlockNames.ICHOR_EXTRACTOR) public static TileEntityType<IchorExtractorTile> ICHOR_EXTRACTOR_TILE;
     @ObjectHolder(LibBlockNames.EMORTIC_CORTEX) public static EmorticCortex EMORTIC_CORTEX_BLOCK;
     @ObjectHolder(LibBlockNames.EMORTIC_CORTEX) public static TileEntityType<EmorticCortexTile> EMORTIC_CORTEX_TILE;
-    @ObjectHolder(LibBlockNames.ICHOR_CRYSTALLIZER) public static IchorCrystallizerBlock ICHOR_CRYSTALLIZER_BLOCK;
-    @ObjectHolder(LibBlockNames.ICHOR_CRYSTALLIZER) public static TileEntityType<IchorCrystallizerTile> ICHOR_CRYSTALLIZER_TILE;
+    @ObjectHolder(LibBlockNames.DOMINION_CRYSTALLIZER) public static DominionCrystallizerBlock DOMINION_CRYSTALLIZER_BLOCK;
+    @ObjectHolder(LibBlockNames.DOMINION_CRYSTALLIZER) public static TileEntityType<DominionCrystallizerTile> DOMINION_CRYSTALLIZER_TILE;
 
     @ObjectHolder(LibBlockNames.PSYGLYPHIC_CIPHER) public static CipherBlock PSYGLYPHIC_CIPHER;
     @ObjectHolder(LibBlockNames.PSYGLYPHIC_CIPHER) public static TileEntityType<PsyglyphicCipherTile> PSYGLYPHIC_TILE;
@@ -235,7 +235,7 @@ public class BlockRegistry {
             registry.register(new EmorticRelay());
             registry.register(new RelayDepositBlock());
             registry.register(new RelaySplitterBlock());
-            registry.register(new IchorCrystallizerBlock());
+            registry.register(new DominionCrystallizerBlock());
             registry.register(new IchorExtractorBlock());
             registry.register(new LightBlock());
             registry.register(new TableBlock());
@@ -316,7 +316,7 @@ public class BlockRegistry {
             event.getRegistry().register(TileEntityType.Builder.of(IchorExtractorTile::new, BlockRegistry.ICHOR_EXTRACTOR_BLOCK).build(null).setRegistryName(LibBlockNames.ICHOR_EXTRACTOR));
             event.getRegistry().register(TileEntityType.Builder.of(RelaySplitterTile::new, BlockRegistry.RELAY_SPLITTER).build(null).setRegistryName(LibBlockNames.RELAY_SPLITTER));
             event.getRegistry().register(TileEntityType.Builder.of(EmorticCortexTile::new, BlockRegistry.EMORTIC_CORTEX_BLOCK).build(null).setRegistryName(LibBlockNames.EMORTIC_CORTEX));
-            event.getRegistry().register(TileEntityType.Builder.of(IchorCrystallizerTile::new, BlockRegistry.ICHOR_CRYSTALLIZER_BLOCK).build(null).setRegistryName(LibBlockNames.ICHOR_CRYSTALLIZER));
+            event.getRegistry().register(TileEntityType.Builder.of(DominionCrystallizerTile::new, BlockRegistry.DOMINION_CRYSTALLIZER_BLOCK).build(null).setRegistryName(LibBlockNames.DOMINION_CRYSTALLIZER));
             event.getRegistry().register(TileEntityType.Builder.of(PsyglyphicCipherTile::new, BlockRegistry.PSYGLYPHIC_CIPHER).build(null).setRegistryName(LibBlockNames.PSYGLYPHIC_CIPHER));
         }
         @SubscribeEvent
@@ -452,17 +452,17 @@ public class BlockRegistry {
                 }
             }.setRegistryName(LibBlockNames.PSYGLYPHIC_CIPHER);
 
-            Item ichorCrystallizer = new AnimBlockItem(BlockRegistry.ICHOR_CRYSTALLIZER_BLOCK, new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).fireResistant().setISTER(() -> IchorCrystallizerRenderer::getISTER)) {
+            Item ichorCrystallizer = new AnimBlockItem(BlockRegistry.DOMINION_CRYSTALLIZER_BLOCK, new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).fireResistant().setISTER(() -> DominionCrystallizerRenderer::getISTER)) {
                 @Override public void appendHoverText(ItemStack stack, @Nullable World worldIn, List< ITextComponent > tooltip, ITooltipFlag flagIn) {
                     if (Screen.hasShiftDown()) {
-                        tooltip.add(new TranslationTextComponent("tooltip.block." + EmortisConstants.MOD_ID + ".ichor_crystallizer"));
-                        tooltip.add(new TranslationTextComponent("tooltip.block." + EmortisConstants.MOD_ID + ".ichor_crystallizer2"));
-                        tooltip.add(new TranslationTextComponent("tooltip.block." + EmortisConstants.MOD_ID + ".ichor_crystallizer3"));
+                        tooltip.add(new TranslationTextComponent("tooltip.block." + EmortisConstants.MOD_ID + ".dominion_crystallizer"));
+                        tooltip.add(new TranslationTextComponent("tooltip.block." + EmortisConstants.MOD_ID + ".dominion_crystallizer2"));
+                        tooltip.add(new TranslationTextComponent("tooltip.block." + EmortisConstants.MOD_ID + ".dominion_crystallizer3"));
                     } else {
                         tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".hold_shift").setStyle(Style.EMPTY)); }
                     super.appendHoverText(stack, worldIn, tooltip, flagIn);
                 }
-            }.setRegistryName(LibBlockNames.ICHOR_CRYSTALLIZER);
+            }.setRegistryName(LibBlockNames.DOMINION_CRYSTALLIZER);
 
             Item craftingPress = new AnimBlockItem(BlockRegistry.EMORTIC_CRAFTING_PRESS_BLOCK, new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).fireResistant().setISTER(() -> EmorticCraftingPressRenderer::getISTER)) {
                 @Override public void appendHoverText(ItemStack stack, @Nullable World worldIn, List< ITextComponent > tooltip, ITooltipFlag flagIn) {

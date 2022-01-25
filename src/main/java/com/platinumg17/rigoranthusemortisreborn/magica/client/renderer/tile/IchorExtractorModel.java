@@ -13,7 +13,7 @@ public class IchorExtractorModel<T extends DominionTile> extends AnimatedGeoMode
 
     public IchorExtractorModel(String name){
         this.modelLocation = RigoranthusEmortisReborn.rl("geo/" + name + ".geo.json");
-        this.textLoc = RigoranthusEmortisReborn.rl("textures/blocks/ichor_crystallizer.png");
+        this.textLoc = RigoranthusEmortisReborn.rl("textures/blocks/dominion_crystallizer.png");
     }
 
     @Override

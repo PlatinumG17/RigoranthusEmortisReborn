@@ -3,7 +3,6 @@ package com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.dominion.AbstractDominionTile;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.util.DominionUtil;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.util.IchorUtil;
-import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.network.Networking;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.network.PacketOneShotAnimation;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.BlockRegistry;
@@ -12,21 +11,18 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
-import net.minecraftforge.registries.ForgeRegistries;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -38,7 +34,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class IchorCrystallizerTile extends AbstractDominionTile implements IInventory, IAnimatable, IAnimationListener {
+public class DominionCrystallizerTile extends AbstractDominionTile implements IInventory, IAnimatable, IAnimationListener {
     private final LazyOptional<IItemHandler> itemHandler = LazyOptional.of(() -> new InvWrapper(this));
     private final AnimationFactory animationFactory = new AnimationFactory(this);
     public String engageController = "engageController";
@@ -49,8 +45,8 @@ public class IchorCrystallizerTile extends AbstractDominionTile implements IInve
     public int timeAnimating = 0;
     public int timeWaiting = 0;
 
-    public IchorCrystallizerTile() {
-        super(BlockRegistry.ICHOR_CRYSTALLIZER_TILE);
+    public DominionCrystallizerTile() {
+        super(BlockRegistry.DOMINION_CRYSTALLIZER_TILE);
     }
 
     @Override

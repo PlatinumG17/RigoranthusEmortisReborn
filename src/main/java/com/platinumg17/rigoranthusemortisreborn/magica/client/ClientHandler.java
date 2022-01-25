@@ -29,7 +29,7 @@ public class ClientHandler {
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.INTANGIBLE_AIR_TYPE, IntangibleAirRenderer::new);
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.RITUAL_TILE, RitualVesselRenderer::new);
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.DECAYING_TILE, DecayingBlockRenderer::new);
-        ClientRegistry.bindTileEntityRenderer(BlockRegistry.ICHOR_CRYSTALLIZER_TILE, IchorCrystallizerRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(BlockRegistry.DOMINION_CRYSTALLIZER_TILE, DominionCrystallizerRenderer::new);
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.PSYGLYPHIC_TILE, CipherRenderer::new);
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.ICHOR_EXTRACTOR_TILE, IchorExtractorRenderer::new);
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.EMORTIC_CORTEX_TILE, EmorticCortexRenderer::new);
@@ -57,7 +57,7 @@ public class ClientHandler {
         RenderTypeLookup.setRenderLayer(BlockRegistry.EMORTIC_RELAY, RenderType.translucent());
         RenderTypeLookup.setRenderLayer(BlockRegistry.RELAY_DEPOSIT, RenderType.translucent());
         RenderTypeLookup.setRenderLayer(BlockRegistry.EMORTIC_CORTEX_BLOCK, RenderType.translucent());
-        RenderTypeLookup.setRenderLayer(BlockRegistry.ICHOR_CRYSTALLIZER_BLOCK, RenderType.translucent());
+        RenderTypeLookup.setRenderLayer(BlockRegistry.DOMINION_CRYSTALLIZER_BLOCK, RenderType.translucent());
         RenderTypeLookup.setRenderLayer(BlockRegistry.ICHOR_EXTRACTOR_BLOCK, RenderType.translucent());
 
         RenderTypeLookup.setRenderLayer(BlockRegistry.CREATIVE_ICHOR_JAR, RenderType.translucent());

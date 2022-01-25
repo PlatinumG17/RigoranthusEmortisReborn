@@ -6,7 +6,7 @@ import com.platinumg17.rigoranthusemortisreborn.magica.client.particle.ParticleC
 import com.platinumg17.rigoranthusemortisreborn.magica.client.particle.ParticleLineData;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.particle.ParticleUtil;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.renderer.item.FixedGeoBlockItemRenderer;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.IchorCrystallizerTile;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.DominionCrystallizerTile;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
@@ -27,10 +27,10 @@ import software.bernie.geckolib3.renderers.geo.GeoBlockRenderer;
 
 import java.util.Random;
 
-public class IchorCrystallizerRenderer extends GeoBlockRenderer<IchorCrystallizerTile> {
+public class DominionCrystallizerRenderer extends GeoBlockRenderer<DominionCrystallizerTile> {
 
-    public IchorCrystallizerRenderer(TileEntityRendererDispatcher rendererDispatcherIn) {
-        super(rendererDispatcherIn, new IchorCrystallizerModel());
+    public DominionCrystallizerRenderer(TileEntityRendererDispatcher rendererDispatcherIn) {
+        super(rendererDispatcherIn, new DominionCrystallizerModel());
     }
 
     @Override
@@ -39,23 +39,23 @@ public class IchorCrystallizerRenderer extends GeoBlockRenderer<IchorCrystallize
     }
 
     @Override
-    public void renderEarly(IchorCrystallizerTile ichorCrystallizerTile, MatrixStack ms, float ticks, IRenderTypeBuffer renderTypeBuffer, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float partialTicks) {
-        World world = ichorCrystallizerTile.getLevel();
-        BlockPos pos = ichorCrystallizerTile.getBlockPos();
+    public void renderEarly(DominionCrystallizerTile dominionCrystallizerTile, MatrixStack ms, float ticks, IRenderTypeBuffer renderTypeBuffer, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float partialTicks) {
+        World world = dominionCrystallizerTile.getLevel();
+        BlockPos pos = dominionCrystallizerTile.getBlockPos();
         Random rand = world.random;
         if(Minecraft.getInstance().isPaused())
             return;
-        double x = ichorCrystallizerTile.getBlockPos().getX();
-        double y = ichorCrystallizerTile.getBlockPos().getY();
-        double z = ichorCrystallizerTile.getBlockPos().getZ();
+        double x = dominionCrystallizerTile.getBlockPos().getX();
+        double y = dominionCrystallizerTile.getBlockPos().getY();
+        double z = dominionCrystallizerTile.getBlockPos().getZ();
 
-        boolean draining = (ichorCrystallizerTile.draining);
-        boolean fluidNearby = (ichorCrystallizerTile.isDrainingDominionPossible() || ichorCrystallizerTile.isDrainingIchorPossible());
+        boolean draining = (dominionCrystallizerTile.draining);
+        boolean fluidNearby = (dominionCrystallizerTile.isDrainingDominionPossible() || dominionCrystallizerTile.isDrainingIchorPossible());
         int baseAge = draining ? 20 : 40;
         int randBound = draining ? 3 : 6;
         int numParticles = draining ? 2 : 1;
         float scaleAge = draining ?(float) ParticleUtil.inRange(0.1, 0.2) : (float) ParticleUtil.inRange(0.05, 0.15);
-        if(world.random.nextInt(randBound)  == 0 && !Minecraft.getInstance().isPaused() && fluidNearby && ichorCrystallizerTile.stack.isEmpty()) {
+        if(world.random.nextInt(randBound)  == 0 && !Minecraft.getInstance().isPaused() && fluidNearby && dominionCrystallizerTile.stack.isEmpty()) {
             for(int i =0; i< numParticles; i++) {
                 Vector3d particlePos = new Vector3d(pos.getX(), pos.getY(), pos.getZ()).add(0.5, 0.5, 0.5);
                 particlePos = particlePos.add(ParticleUtil.pointInSphere());
@@ -64,7 +64,7 @@ public class IchorCrystallizerRenderer extends GeoBlockRenderer<IchorCrystallize
                         pos.getX() + 0.5  , pos.getY() +0.5 , pos.getZ()+ 0.5);
             }
         }
-        if(ichorCrystallizerTile.timeAnimating > 40 && ichorCrystallizerTile.timeAnimating < 90) {
+        if(dominionCrystallizerTile.timeAnimating > 40 && dominionCrystallizerTile.timeAnimating < 90) {
 //            if(world.getGameTime() % 8 != 0)
 //                return;
             for (int i = 0; i < 1; i++) {
@@ -81,16 +81,16 @@ public class IchorCrystallizerRenderer extends GeoBlockRenderer<IchorCrystallize
                 world.addParticle(ParticleTypes.SOUL, d0, d1, d2,  spdX * 0.05, 0.4,  spdZ * 0.05);
             }
         }
-        if(ichorCrystallizerTile.stack == null)
+        if(dominionCrystallizerTile.stack == null)
             return;
-        if (ichorCrystallizerTile.entity == null || !ItemStack.matches(ichorCrystallizerTile.entity.getItem(), ichorCrystallizerTile.stack)) {
-            ichorCrystallizerTile.entity = new ItemEntity(ichorCrystallizerTile.getLevel(), x ,y, z, ichorCrystallizerTile.stack);
+        if (dominionCrystallizerTile.entity == null || !ItemStack.matches(dominionCrystallizerTile.entity.getItem(), dominionCrystallizerTile.stack)) {
+            dominionCrystallizerTile.entity = new ItemEntity(dominionCrystallizerTile.getLevel(), x ,y, z, dominionCrystallizerTile.stack);
         }
         x = x + 0;
         y = y + 0.9;
         z = z + 0;
-        if(ichorCrystallizerTile.timeAnimating >= 90) {
-            renderPressedItem(x, y, z, ichorCrystallizerTile.stack.getItem(), ms, renderTypeBuffer,packedLightIn,packedOverlayIn);
+        if(dominionCrystallizerTile.timeAnimating >= 90) {
+            renderPressedItem(x, y, z, dominionCrystallizerTile.stack.getItem(), ms, renderTypeBuffer,packedLightIn,packedOverlayIn);
         }
     }
 
@@ -106,12 +106,12 @@ public class IchorCrystallizerRenderer extends GeoBlockRenderer<IchorCrystallize
     }
 
     @Override
-    public RenderType getRenderType(IchorCrystallizerTile animatable, float partialTicks, MatrixStack stack, IRenderTypeBuffer renderTypeBuffer, IVertexBuilder vertexBuilder, int packedLightIn, ResourceLocation textureLocation) {
+    public RenderType getRenderType(DominionCrystallizerTile animatable, float partialTicks, MatrixStack stack, IRenderTypeBuffer renderTypeBuffer, IVertexBuilder vertexBuilder, int packedLightIn, ResourceLocation textureLocation) {
         return RenderType.entityTranslucent(textureLocation);
     }
 
     public static FixedGeoBlockItemRenderer getISTER() {
-        return new FixedGeoBlockItemRenderer(new IchorCrystallizerModel());
+        return new FixedGeoBlockItemRenderer(new DominionCrystallizerModel());
     }
 }
 

@@ -73,7 +73,7 @@ public class CraftingPressRecipe implements IIchoricRecipe {
     }
 
     @Override
-    public boolean isMatch(ItemStack base, ItemStack reagent, EmorticCraftingPressTile crystallizerTile, @Nullable PlayerEntity player) {
+    public boolean isMatch(ItemStack base, ItemStack reagent, EmorticCraftingPressTile pressTile, @Nullable PlayerEntity player) {
         return doesReagentMatch(reagent) && doesBaseMatch(base);
     }
     public boolean doesReagentMatch(ItemStack reagent){
@@ -90,7 +90,7 @@ public class CraftingPressRecipe implements IIchoricRecipe {
         return isMatch(tile.baseMaterial, tile.reagentItem, tile, playerEntity);
     }
 
-    public ItemStack getResult(ItemStack base, ItemStack reagent, EmorticCraftingPressTile crystallizerTile) {
+    public ItemStack getResult(ItemStack base, ItemStack reagent, EmorticCraftingPressTile pressTile) {
         return output.copy();
     }
 

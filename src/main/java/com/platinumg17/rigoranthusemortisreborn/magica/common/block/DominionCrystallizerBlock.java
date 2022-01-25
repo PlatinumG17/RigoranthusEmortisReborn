@@ -1,6 +1,6 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.common.block;
 
-import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.IchorCrystallizerTile;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.DominionCrystallizerTile;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.lib.LibBlockNames;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
@@ -22,15 +22,15 @@ import net.minecraft.world.World;
 
 import java.util.stream.Stream;
 
-public class IchorCrystallizerBlock extends ModBlock {
+public class DominionCrystallizerBlock extends ModBlock {
 
-    public IchorCrystallizerBlock() {
-        super(defaultProperties().noOcclusion(), LibBlockNames.ICHOR_CRYSTALLIZER);
+    public DominionCrystallizerBlock() {
+        super(defaultProperties().noOcclusion(), LibBlockNames.DOMINION_CRYSTALLIZER);
     }
 
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new IchorCrystallizerTile();
+        return new DominionCrystallizerTile();
     }
 
     @Override
@@ -40,9 +40,9 @@ public class IchorCrystallizerBlock extends ModBlock {
 
     @Override
     public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if(!(worldIn.getBlockEntity(pos) instanceof IchorCrystallizerTile))
+        if(!(worldIn.getBlockEntity(pos) instanceof DominionCrystallizerTile))
             return super.use(state, worldIn, pos, player, handIn, hit);
-        IchorCrystallizerTile tile = (IchorCrystallizerTile) worldIn.getBlockEntity(pos);
+        DominionCrystallizerTile tile = (DominionCrystallizerTile) worldIn.getBlockEntity(pos);
         ItemStack stack = tile.stack;
         worldIn.addFreshEntity(new ItemEntity(worldIn, player.getX(), player.getY(), player.getZ(), stack.copy()));
         tile.stack = ItemStack.EMPTY;
@@ -52,9 +52,9 @@ public class IchorCrystallizerBlock extends ModBlock {
     @Override
     public void playerWillDestroy(World worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
         super.playerWillDestroy(worldIn, pos, state, player);
-        if(!(worldIn.getBlockEntity(pos) instanceof IchorCrystallizerTile))
+        if(!(worldIn.getBlockEntity(pos) instanceof DominionCrystallizerTile))
             return;
-        IchorCrystallizerTile tile = (IchorCrystallizerTile) worldIn.getBlockEntity(pos);
+        DominionCrystallizerTile tile = (DominionCrystallizerTile) worldIn.getBlockEntity(pos);
         ItemStack stack = tile.stack;
         worldIn.addFreshEntity(new ItemEntity(worldIn, pos.getX(), pos.getY(), pos.getZ(), stack.copy()));
         tile.stack = ItemStack.EMPTY;

@@ -685,9 +685,9 @@
   "tooltip.block.rigoranthusemortisreborn.ichor_extractor9": "    -Spider Eyes, Phantom Membranes",
   "tooltip.block.rigoranthusemortisreborn.ichor_extractor10": "\u00A76The Ichor extraction process attracts the undead, so be careful...",
 
-  "tooltip.block.rigoranthusemortisreborn.ichor_crystallizer": "Produces a steady supply of \u00A76Dominion Gems\u00A7f",
-  "tooltip.block.rigoranthusemortisreborn.ichor_crystallizer2": "by collecting & crystallizing Ichor over time.",
-  "tooltip.block.rigoranthusemortisreborn.ichor_crystallizer3": "Place above an \u00A76Ichor Jar\u00A7f for the Crystallizer to draw from.",
+  "tooltip.block.rigoranthusemortisreborn.dominion_crystallizer": "Produces a steady supply of \u00A76Dominion Gems\u00A7f",
+  "tooltip.block.rigoranthusemortisreborn.dominion_crystallizer2": "by collecting & crystallizing Dominion over time.",
+  "tooltip.block.rigoranthusemortisreborn.dominion_crystallizer3": "Place above a \u00A76Dominion Jar\u00A7f for the Crystallizer to draw from.",
   "tooltip.block.rigoranthusemortisreborn.splintered_pedestal": "Use in crafting rituals,",
   "tooltip.block.rigoranthusemortisreborn.splintered_pedestal2": "or to simply display items.",
   "tooltip.block.rigoranthusemortisreborn.psyglyphic_amalgamator": "Place above an \u00A76Emortic Cortex\u00A7f & surround with \u00A76Splintered Pedestals\u00A7f,",
@@ -1241,7 +1241,7 @@
   "block.rigoranthusemortisreborn.splintered_pedestal": "Splintered Pedestal",
   "block.rigoranthusemortisreborn.psyglyphic_amalgamator": "Psyglyphic Amalgamator",
   "block.rigoranthusemortisreborn.ichor_extractor": "Ichor Extractor",
-  "block.rigoranthusemortisreborn.ichor_crystallizer":"Ichoric Crystallizer",
+  "block.rigoranthusemortisreborn.dominion_crystallizer":"Dominion Crystallizer",
   "block.rigoranthusemortisreborn.emortic_crafting_press": "Emortic Crafting Press",
 
 
@@ -1268,7 +1268,7 @@
 
   "item.rigoranthusemortisreborn.dweller_brain":"Dweller's Brain",
   "item.rigoranthusemortisreborn.psyglyphic_cipher":"Psyglyphic Cipher",
-  "item.rigoranthusemortisreborn.ichor_crystallizer":"Ichoric Crystallizer",
+  "item.rigoranthusemortisreborn.dominion_crystallizer":"Dominion Crystallizer",
   "item.rigoranthusemortisreborn.emortic_crafting_press": "Emortic Crafting Press",
 
 
@@ -1295,8 +1295,8 @@
   "rigoranthusemortisreborn.on": "Active: Yes",
   "rigoranthusemortisreborn.off": "Active: No",
   "rigoranthusemortisreborn.amalgamator.norecipe": "No recipe found.",
-  "rigoranthusemortisreborn.amalgamator.nodominion": "Not enough dominion.",
-  "rigoranthusemortisreborn.crystallizer.noichor": "Not enough Cadaverous Ichor.",
+  "rigoranthusemortisreborn.amalgamator.nodominion": "Not enough Dominion.",
+  "rigoranthusemortisreborn.crystallizer.noichor": "Not enough Dominion.",
   "rigoranthusemortisreborn.connections.fail": "Too far away.",
 
   "rigoranthusemortisreborn.familiar_name.sundered_cadaver": "Sundered Cadaver",
@@ -1337,7 +1337,7 @@
 
   "rigoranthusemortisreborn.spell_arrow.desc": "Augments spells when used with the bow: The Adonis.",
 
-  "rigoranthusemortisreborn.ichor_crystallizer.no_dominion": "There is not enough Dominion nearby.",
+  "rigoranthusemortisreborn.dominion_crystallizer.no_dominion": "There is not enough Dominion nearby.",
   "rigoranthusemortisreborn.emortic_crafting_press.no_dominion": "There is not enough Dominion nearby.",
   "rigoranthusemortisreborn.dominion_jar.fullness": "%d%% full",
   "rigoranthusemortisreborn.ichor_jar.fullness": "%d%% full",

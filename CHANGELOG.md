@@ -1,7 +1,10 @@
 ## Update v.3.0.4
 + Fixed Ichor Extractor for real this time...
 + Added Recipe for Dominion Wand tool
++ Made Soul Coal Block a burnable fuel
++ Improved Whistle Texture
 + Removed useless potion
++ Improved some scaling of models in GUIs / on ground
 + Fixed some Lang stuff
 
 ## Update v.2.0.3
@@ -90,7 +93,7 @@
 ### NEW MACHINES / UTILITIES
 + Emortic Crafting Press
 + Ichor Extractor
-+ Ichoric Crystallizer
++ Dominion Crystallizer
 + Psyglyphic Amalgamator
   + Splintered Pedestals
   + Emortic Cortex

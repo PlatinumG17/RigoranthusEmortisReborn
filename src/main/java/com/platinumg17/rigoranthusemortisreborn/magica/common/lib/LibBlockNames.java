@@ -78,7 +78,7 @@ public class LibBlockNames {
     public static final String CREATIVE_ICHOR_JAR = "creative_ichor_jar";
 
     public static final String EMORTIC_CRAFTING_PRESS = "emortic_crafting_press";
-    public static final String ICHOR_CRYSTALLIZER = "ichor_crystallizer";
+    public static final String DOMINION_CRYSTALLIZER = "dominion_crystallizer";
     public static final String STATE_PROVIDER = "re_stateprovider";
     public final static String DOMINION_JAR = "dominion_jar";
     public final static String DECAYING_BLOCK = "decaying_block";

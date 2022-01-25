@@ -2,7 +2,7 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "name": "ichor_crystallizer",
+      "name": "dominion_crystallizer",
       "rolls": 1,
       "entries": [
         {
@@ -22,7 +22,7 @@
               ]
             }
           ],
-          "name": "rigoranthusemortisreborn:ichor_crystallizer"
+          "name": "rigoranthusemortisreborn:dominion_crystallizer"
         }
       ]
     }

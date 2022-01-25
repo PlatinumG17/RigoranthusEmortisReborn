@@ -55,9 +55,9 @@ public class ModPotions {
     @ObjectHolder(LibPotions.DOMINION_REGEN_LONG) public static Potion LONG_DOMINION_REGEN_POTION;
     @ObjectHolder(LibPotions.DOMINION_REGEN_STRONG) public static Potion STRONG_DOMINION_REGEN_POTION;
 
-    @ObjectHolder(LibPotions.SPELL_DAMAGE) public static Potion SPELL_DAMAGE_POTION;
-    @ObjectHolder(LibPotions.SPELL_DAMAGE_LONG) public static Potion SPELL_DAMAGE_POTION_LONG;
-    @ObjectHolder(LibPotions.SPELL_DAMAGE_STRONG) public static Potion SPELL_DAMAGE_POTION_STRONG;
+//    @ObjectHolder(LibPotions.SPELL_DAMAGE) public static Potion SPELL_DAMAGE_POTION;
+//    @ObjectHolder(LibPotions.SPELL_DAMAGE_LONG) public static Potion SPELL_DAMAGE_POTION_LONG;
+//    @ObjectHolder(LibPotions.SPELL_DAMAGE_STRONG) public static Potion SPELL_DAMAGE_POTION_STRONG;
 
     public static void addRecipes() {
         ItemStack AWKWARD = PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD);
@@ -76,15 +76,15 @@ public class ModPotions {
         BrewingRecipeRegistry.addRecipe(new BrewingRecipe(new PotionIngredient(dominionPot), Ingredient.of(Items.GLOWSTONE_DUST),  dominionPotStrong));
         BrewingRecipeRegistry.addRecipe(new BrewingRecipe(new PotionIngredient(dominionPot), Ingredient.of(Items.REDSTONE),  dominionPotLong));
 
-        ItemStack sDamagePot = PotionUtils.setPotion(new ItemStack(Items.POTION), ModPotions.SPELL_DAMAGE_POTION);
-        ItemStack sDamagePotLong = PotionUtils.setPotion(new ItemStack(Items.POTION), ModPotions.SPELL_DAMAGE_POTION_LONG);
-        ItemStack sDamagePotStrong = PotionUtils.setPotion(new ItemStack(Items.POTION), ModPotions.SPELL_DAMAGE_POTION_STRONG);
+//        ItemStack sDamagePot = PotionUtils.setPotion(new ItemStack(Items.POTION), ModPotions.SPELL_DAMAGE_POTION);
+//        ItemStack sDamagePotLong = PotionUtils.setPotion(new ItemStack(Items.POTION), ModPotions.SPELL_DAMAGE_POTION_LONG);
+//        ItemStack sDamagePotStrong = PotionUtils.setPotion(new ItemStack(Items.POTION), ModPotions.SPELL_DAMAGE_POTION_STRONG);
 
-        BrewingRecipeRegistry.addRecipe(new BrewingRecipe(new PotionIngredient(AWKWARD), Ingredient.of(MagicItemsRegistry.BOTTLE_OF_ICHOR),  sDamagePot));
-        BrewingRecipeRegistry.addRecipe(new BrewingRecipe(new PotionIngredient(sDamagePot), Ingredient.of(Items.GLOWSTONE_DUST),  sDamagePotStrong));
-        BrewingRecipeRegistry.addRecipe(new BrewingRecipe(new PotionIngredient(sDamagePot), Ingredient.of(Items.REDSTONE),  sDamagePotLong));
+//        BrewingRecipeRegistry.addRecipe(new BrewingRecipe(new PotionIngredient(AWKWARD), Ingredient.of(MagicItemsRegistry.BOTTLE_OF_ICHOR),  sDamagePot));
+//        BrewingRecipeRegistry.addRecipe(new BrewingRecipe(new PotionIngredient(sDamagePot), Ingredient.of(Items.GLOWSTONE_DUST),  sDamagePotStrong));
+//        BrewingRecipeRegistry.addRecipe(new BrewingRecipe(new PotionIngredient(sDamagePot), Ingredient.of(Items.REDSTONE),  sDamagePotLong));
 
-        ItemStack water = PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.WATER);
+//        ItemStack water = PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.WATER);
 //        BrewingRecipeRegistry.addRecipe(new BrewingRecipe(Ingredient.of(water), Ingredient.of(ItemInit.BOTTLE_OF_ICHOR.get()), PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.LEAPING)));
 //        BrewingRecipeRegistry.addRecipe(new BrewingRecipe(Ingredient.of(water), Ingredient.of(ItemInit.DWELLER_FLESH.get()), PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.STRENGTH)));
 //        BrewingRecipeRegistry.addRecipe(new BrewingRecipe(Ingredient.of(water), Ingredient.of(ItemInit.), PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.LONG_WATER_BREATHING)));
@@ -128,9 +128,9 @@ public class ModPotions {
             registry.register(new Potion(new EffectInstance(DOMINION_REGEN_EFFECT, 3600)).setRegistryName(LibPotions.DOMINION_REGEN));
             registry.register(new Potion(new EffectInstance(DOMINION_REGEN_EFFECT, 9600)).setRegistryName(LibPotions.DOMINION_REGEN_LONG));
             registry.register(new Potion(new EffectInstance(DOMINION_REGEN_EFFECT, 3600, 1)).setRegistryName(LibPotions.DOMINION_REGEN_STRONG));
-            registry.register(new Potion(new EffectInstance(SPELL_DAMAGE_EFFECT, 3600)).setRegistryName(LibPotions.SPELL_DAMAGE));
-            registry.register(new Potion(new EffectInstance(SPELL_DAMAGE_EFFECT, 9600)).setRegistryName(LibPotions.SPELL_DAMAGE_LONG));
-            registry.register(new Potion(new EffectInstance(SPELL_DAMAGE_EFFECT, 3600, 1)).setRegistryName(LibPotions.SPELL_DAMAGE_STRONG));
+//            registry.register(new Potion(new EffectInstance(SPELL_DAMAGE_EFFECT, 3600)).setRegistryName(LibPotions.SPELL_DAMAGE));
+//            registry.register(new Potion(new EffectInstance(SPELL_DAMAGE_EFFECT, 9600)).setRegistryName(LibPotions.SPELL_DAMAGE_LONG));
+//            registry.register(new Potion(new EffectInstance(SPELL_DAMAGE_EFFECT, 3600, 1)).setRegistryName(LibPotions.SPELL_DAMAGE_STRONG));
         }
     }
 }

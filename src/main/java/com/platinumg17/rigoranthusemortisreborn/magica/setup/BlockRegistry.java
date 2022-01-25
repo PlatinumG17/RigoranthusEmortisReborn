@@ -9,6 +9,7 @@ import com.platinumg17.rigoranthusemortisreborn.blocks.custom.skull.HangingSkull
 import com.platinumg17.rigoranthusemortisreborn.blocks.custom.skull.RESkullBlock;
 import com.platinumg17.rigoranthusemortisreborn.blocks.tileentity.HangingSkullTile;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
+import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.renderer.tile.*;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.*;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.*;
@@ -31,6 +32,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.BlockNamedItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.potion.Effects;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.math.BlockPos;
@@ -344,8 +346,6 @@ public class BlockRegistry {
             registry.register(getDefaultBlockItem(BlockRegistry.IRIDESCENT_SPROUTS, LibBlockNames.IRIDESCENT_SPROUTS));
             registry.register(getDefaultBlockItem(BlockRegistry.DOMINION_GEM_BLOCK, LibBlockNames.DOMINION_GEM_BLOCK));
 
-//            registry.register(new AnimBlockItem(BlockRegistry.hangingCadaverSkull, MagicItemsRegistry.defaultItemProperties().setISTER(() -> HangingSkullRenderer::getISTER)).setRegistryName(LibBlockNames.HANGING_CADAVER_SKULL));
-
             registry.register(new BlockItem(BlockRegistry.DOMINION_JAR, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.DOMINION_JAR));
             registry.register(new BlockItem(BlockRegistry.CREATIVE_DOMINION_JAR, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.CREATIVE_DOMINION_JAR));
             registry.register(new BlockItem(BlockRegistry.ICHOR_JAR, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.ICHOR_JAR));
@@ -508,7 +508,7 @@ public class BlockRegistry {
 
             registry.register(registerSingleTooltipBlockItem(LibBlockNames.ABYSSALITE, BlockRegistry.ABYSSALITE, LibBlockNames.ABYSSALITE));
             registry.register(registerSingleTooltipBlockItem(LibBlockNames.OXYLITE, BlockRegistry.OXYLITE, LibBlockNames.OXYLITE));
-            registry.register(registerSingleTooltipBlockItem(LibBlockNames.SOUL_COAL_BLOCK, BlockRegistry.SOUL_COAL_BLOCK, LibBlockNames.SOUL_COAL_BLOCK));
+            registry.register(registerSoulCoalBlockItem(LibBlockNames.SOUL_COAL_BLOCK, BlockRegistry.SOUL_COAL_BLOCK, LibBlockNames.SOUL_COAL_BLOCK));
             registry.register(registerSingleTooltipBlockItem(LibBlockNames.OPULENT_MAGMA, BlockRegistry.OPULENT_MAGMA, LibBlockNames.OPULENT_MAGMA));
             registry.register(registerSingleTooltipBlockItem(LibBlockNames.DWELLER_BRAIN, BlockRegistry.DWELLER_BRAIN, LibBlockNames.DWELLER_BRAIN));
             registry.register(registerSingleTooltipBlockItem(LibBlockNames.HIMALAYAN_SALT, BlockRegistry.HIMALAYAN_SALT, LibBlockNames.HIMALAYAN_SALT));
@@ -553,6 +553,24 @@ public class BlockRegistry {
         }
         private static Item registerSingleTooltipBlockItem(String name, Block block, String tooltipKey) {
             return new BlockItem(block, new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)) {
+                @Override
+                public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+                    if (Screen.hasShiftDown()) {
+                        tooltip.add(new TranslationTextComponent("tooltip.block.rigoranthusemortisreborn." + tooltipKey));
+                    } else {
+                        tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".hold_shift").setStyle(Style.EMPTY));
+                    }
+                    super.appendHoverText(stack, worldIn, tooltip, flagIn);
+                }
+            }.setRegistryName(name);
+        }
+        private static Item registerSoulCoalBlockItem(String name, Block block, String tooltipKey) {
+            return new BlockItem(block, new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)) {
+                @Override
+                public int getBurnTime(ItemStack itemStack, @Nullable IRecipeType<?> recipeType) {
+                    int coalBurnTime = Config.soulCoalBurnTime.get();
+                    return coalBurnTime * 10;
+                }
                 @Override
                 public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
                     if (Screen.hasShiftDown()) {

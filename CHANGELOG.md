@@ -1,3 +1,9 @@
+## Update v.3.0.4
++ Fixed Ichor Extractor for real this time...
++ Added Recipe for Dominion Wand tool
++ Removed useless potion
++ Fixed some Lang stuff
+
 ## Update v.2.0.3
 + Totally forgot to add a recipe for the Ichor Extractor... oops.
 

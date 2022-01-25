@@ -303,9 +303,9 @@ public class Config {
                 .translation("rigoranthusemortisreborn.config.server.soul_coal_enabled")
                 .define("soul_coal_enabled", true);
         soulCoalBurnTime = builder
-                .comment(" Set the Burn Time of Soul Coal in Ticks.\n [20 ticks = 1 second]\n Default: 3000")
+                .comment(" Set the Burn Time of Soul Coal in Ticks.\n [20 ticks = 1 second]\n Default: 3500 ticks [2.9 minutes] \n [Regular coal = 1600 ticks]")
                 .translation("rigoranthusemortisreborn.config.server.soul_coal_burn_time")
-                .defineInRange("soul_coal_burn_time", 3000, 10, 100000);
+                .defineInRange("soul_coal_burn_time", 3500, 20, 10000000);
         enableUnfiredBricks = builder
                 .comment(" Enable or disable Unfired Bricks and Mud Globs.\n (Unfired Bricks add an extra step to crafting bricks that makes it more realistic, mud is useless without this Mod's Datapack)")
                 .translation("rigoranthusemortisreborn.config.server.bricks_enabled")
@@ -316,9 +316,6 @@ public class Config {
 
 //        SPAWN_BOOK = builder.comment(" Spawn a patchouli book in the players inventory on login").define("spawnBook", true);
 //        SUMMON_FAMILIAR_DOMINION_COST = builder.comment("How much dominion it costs per summon").defineInRange("summonDominionCost",250,0,10000);
-//        MOB_WEIGHT = builder.comment(" How often Mob spawn").defineInRange("mobWeight",5,0,100);
-//        MOBS_ATTACK_ANIMALS = builder.comment(" Should Mobs from this mod attack animals?").define("mobsHuntAnimals", true);
-
 //        CRYSTALLIZER_ITEM = builder.comment(" Crystallizer output item. Do not use a wrong ID!").define("crystallizer_output", "rigoranthusemortisreborn:dominion_gem");
         builder.pop();
 
@@ -327,11 +324,9 @@ public class Config {
         INIT_MAX_DOMINION = builder.comment(" Base max dominion").defineInRange("baseMax", 100, 0, Integer.MAX_VALUE);
         REGEN_INTERVAL = builder.comment(" How often the Max & Regen Rate of Dominion will be calculated, in ticks.\n NOTE: The default base dominion regen is the lowest recommended rate.")
                 .defineInRange("updateInterval", 5, 1, 20);
-//        GLYPH_MAX_BONUS = builder.comment(" Max dominion bonus per glyph").defineInRange("glyphmax", 15, 0, Integer.MAX_VALUE);
-//        TIER_MAX_BONUS = builder.comment(" Max dominion bonus for tier of book").defineInRange("tierMax", 50, 0, Integer.MAX_VALUE);
+
         DOMINION_BOOST_BONUS = builder.comment(" Dominion Boost value per level").defineInRange("dominionBoost", 25, 0, Integer.MAX_VALUE);
         DOMINION_REGEN_ENCHANT_BONUS = builder.comment(" [Enchantment] Dominion regen per second per level").defineInRange("dominionRegenEnchantment", 2, 0, Integer.MAX_VALUE);
-//        GLYPH_REGEN_BONUS = builder.comment(" Regen bonus per glyph").defineInRange("glyphRegen", 0.33, 0.0, Integer.MAX_VALUE);
         DOMINION_REGEN_POTION = builder.comment(" Regen bonus per potion level").defineInRange("potionRegen", 10, 0, Integer.MAX_VALUE);
         builder.pop();
 

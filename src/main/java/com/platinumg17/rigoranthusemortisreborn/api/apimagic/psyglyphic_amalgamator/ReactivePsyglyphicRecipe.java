@@ -16,7 +16,7 @@ package com.platinumg17.rigoranthusemortisreborn.api.apimagic.psyglyphic_amalgam
 //
 //public class ReactivePsyglyphicRecipe extends PsyglyphicEnchantingRecipe {
 //    public ReactivePsyglyphicRecipe(ItemStack[] pedestalItems, int dominionCost) {
-//        super(pedestalItems,  EnchantmentRegistry.REACTIVE_ENCHANTMENT, 1, dominionCost);
+//        super(pedestalItems,  EnchantmentRegistry.REFLEX_SUMMON_ENCHANTMENT, 1, dominionCost);
 //    }
 //
 //    @Override

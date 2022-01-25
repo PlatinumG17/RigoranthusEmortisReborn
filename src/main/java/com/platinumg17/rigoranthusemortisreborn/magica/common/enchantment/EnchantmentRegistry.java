@@ -15,7 +15,7 @@ public class EnchantmentRegistry {
 
     public static DominionRegenEnchantment DOMINION_REGEN_ENCHANTMENT = Null();
     public static DominionBoost DOMINION_BOOST_ENCHANTMENT = Null();
-    public static ReactiveEnchantment REACTIVE_ENCHANTMENT = Null();
+    public static ReflexSummonEnchantment REFLEX_SUMMON_ENCHANTMENT = Null();
     @Mod.EventBusSubscriber(modid = EmortisConstants.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class RegistrationHandler {
 
@@ -23,11 +23,11 @@ public class EnchantmentRegistry {
         public static void registerEnchants(final RegistryEvent.Register<Enchantment> event) {
             DOMINION_REGEN_ENCHANTMENT = new DominionRegenEnchantment();
             DOMINION_BOOST_ENCHANTMENT = new DominionBoost();
-            REACTIVE_ENCHANTMENT = new ReactiveEnchantment();
+            REFLEX_SUMMON_ENCHANTMENT = new ReflexSummonEnchantment();
             final IForgeRegistry<Enchantment> registry = event.getRegistry();
             registry.register(DOMINION_REGEN_ENCHANTMENT);
             registry.register(DOMINION_BOOST_ENCHANTMENT);
-            registry.register(REACTIVE_ENCHANTMENT);
+            registry.register(REFLEX_SUMMON_ENCHANTMENT);
         }
     }
 }

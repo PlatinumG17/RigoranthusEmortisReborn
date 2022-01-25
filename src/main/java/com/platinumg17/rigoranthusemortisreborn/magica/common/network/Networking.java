@@ -57,10 +57,10 @@ public class Networking {
                 PacketREEffect::decode,
                 PacketREEffect.Handler::handle);
         INSTANCE.registerMessage(nextID(),
-                PacketReactiveSpell.class,
-                PacketReactiveSpell::toBytes,
-                PacketReactiveSpell::new,
-                PacketReactiveSpell::handle);
+                PacketReflexSummon.class,
+                PacketReflexSummon::toBytes,
+                PacketReflexSummon::new,
+                PacketReflexSummon::handle);
         INSTANCE.registerMessage(nextID(),
                 PacketWarpPosition.class,
                 PacketWarpPosition::encode,

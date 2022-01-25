@@ -130,7 +130,7 @@ public class SummonedCadaver extends TameableEntity implements IAnimatable, IAni
     @Override
     public void registerControllers(AnimationData animationData) {
         animationData.addAnimationController(new AnimationController<>(this, "walkController", 0, this::walkPredicate));
-        animationData.addAnimationController(new AnimationController<>(this, "attackController", 1, this::attackPredicate));
+//        animationData.addAnimationController(new AnimationController<>(this, "attackController", 1, this::attackPredicate));
         animationData.addAnimationController(new AnimationController<>(this, "idleController", 0, this::idlePredicate));
     }
 
@@ -244,6 +244,9 @@ public class SummonedCadaver extends TameableEntity implements IAnimatable, IAni
     }
 
     protected void addBehaviourGoals() {
+//        this.goalSelector.addGoal(1, new SummonedCadaverAttackGoal(this, false));
+        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0D,false));
+        this.goalSelector.addGoal(1, new LeapAtTargetGoal(this, 1.0F));
         this.goalSelector.addGoal(1, new SummonedCadaverAttackGoal(this, false));
         this.goalSelector.addGoal(2, new FollowOwnerGoal(this, 1.0D, 8.0F, 2.0F, false));
         this.goalSelector.addGoal(2, new OwnerHurtByTargetGoal(this));

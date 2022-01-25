@@ -1,6 +1,6 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.common.network;
 
-import com.platinumg17.rigoranthusemortisreborn.magica.common.event.ReactiveEvents;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.event.ReflexSummonEvents;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
@@ -8,12 +8,12 @@ import net.minecraftforge.fml.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
-public class PacketReactiveSpell {
+public class PacketReflexSummon {
 
-    public PacketReactiveSpell(){}
+    public PacketReflexSummon(){}
 
     //Decoder
-    public PacketReactiveSpell(PacketBuffer buf){
+    public PacketReflexSummon(PacketBuffer buf){
     }
 
     //Encoder
@@ -24,7 +24,7 @@ public class PacketReactiveSpell {
             ServerPlayerEntity serverPlayerEntity = ctx.get().getSender();
             if(serverPlayerEntity!= null){
                 ItemStack stack = serverPlayerEntity.getMainHandItem();
-                ReactiveEvents.castSpell(ctx.get().getSender(), stack);
+                ReflexSummonEvents.castSummon(ctx.get().getSender(), stack);
             }
         });
         ctx.get().setPacketHandled(true);

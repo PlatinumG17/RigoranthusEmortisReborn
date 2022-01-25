@@ -448,7 +448,7 @@ public class PsyglyphicRecipeProvider implements IDataProvider {
                 .withPedestalItem(RigoranthusEmortisRebornAPI.getInstance().getGlyphItem(AugmentExtendTime.INSTANCE))
                 .withPedestalItem(RigoranthusEmortisRebornAPI.getInstance().getGlyphItem(AugmentAOE.INSTANCE))
                 .withPedestalItem(RigoranthusEmortisRebornAPI.getInstance().getGlyphItem(AugmentDampen.INSTANCE))
-                .buildPsyglyphicRecipe(EnchantmentRegistry.REACTIVE_ENCHANTMENT, 2, 6000));
+                .buildPsyglyphicRecipe(EnchantmentRegistry.REFLEX_SUMMON_ENCHANTMENT, 2, 6000));
 
         addRecipe(builder()
                 .withPedestalItem(4, MagicItemsRegistry.DWELLER_FLESH)
@@ -456,7 +456,7 @@ public class PsyglyphicRecipeProvider implements IDataProvider {
                 .withPedestalItem(RigoranthusEmortisRebornAPI.getInstance().getGlyphItem(AugmentPierce.INSTANCE))
                 .withPedestalItem(RigoranthusEmortisRebornAPI.getInstance().getGlyphItem(AugmentExtract.INSTANCE))
                 .withPedestalItem(RigoranthusEmortisRebornAPI.getInstance().getGlyphItem(AugmentFortune.INSTANCE))
-                .buildPsyglyphicRecipe(EnchantmentRegistry.REACTIVE_ENCHANTMENT, 3, 9000));
+                .buildPsyglyphicRecipe(EnchantmentRegistry.REFLEX_SUMMON_ENCHANTMENT, 3, 9000));
 
         addRecipe(builder()
                 .withPedestalItem(2, Ingredient.of(Items.SPIDER_EYE))

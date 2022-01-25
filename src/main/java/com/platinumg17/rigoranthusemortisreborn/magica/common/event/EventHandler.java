@@ -43,16 +43,6 @@ public class EventHandler {
         }
     }
 
-    @SubscribeEvent
-    public static void livingHurtEvent(LivingHurtEvent e){
-        if(!e.getEntityLiving().level.isClientSide && e.getEntityLiving() instanceof PlayerEntity && e.getEntityLiving().isBlocking()){
-            if(e.getEntityLiving().isHolding(MagicItemsRegistry.LUSTERIC_SHIELD)){
-                e.getEntityLiving().addEffect(new EffectInstance(ModPotions.DOMINION_REGEN_EFFECT, 200, 1));
-                e.getEntityLiving().addEffect(new EffectInstance(ModPotions.SPELL_DAMAGE_EFFECT, 200, 1));
-            }
-        }
-    }
-
 //    @SubscribeEvent
 //    public static void livingAttackEvent(LivingAttackEvent e){
 //        if(e.getSource() == DamageSource.HOT_FLOOR && e.getEntityLiving() /* != null */ instanceof PlayerEntity && !e.getEntity().getCommandSenderWorld().isClientSide) {
@@ -128,25 +118,11 @@ public class EventHandler {
         }
     }
 
-/*    @SubscribeEvent
-    public static void dispelEvent(DispelEvent event){
-        if(event.rayTraceResult instanceof EntityRayTraceResult && ((EntityRayTraceResult) event.rayTraceResult).getEntity() instanceof LivingEntity){
-            LivingEntity entity = (LivingEntity) ((EntityRayTraceResult) event.rayTraceResult).getEntity();
-            if(entity instanceof WitchEntity){
-                if(entity.getHealth() <= entity.getMaxHealth()/2){
-                    entity.remove();
-                    ParticleUtil.spawnPoof((ServerWorld) event.world, entity.blockPosition());
-                    event.world.addFreshEntity(new ItemEntity(event.world, entity.getX(), entity.getY(), entity.getZ(), new ItemStack(ItemInit.ICE_SHARD.get())));
-                }
-            }
-        }
-    }*/
-
     @SubscribeEvent
     public static void commandRegister(RegisterCommandsEvent event){
         ResetCommand.register(event.getDispatcher());
-        DataDumpCommand.register(event.getDispatcher());
-        PathCommand.register(event.getDispatcher());
+//        DataDumpCommand.register(event.getDispatcher());
+//        PathCommand.register(event.getDispatcher());
     }
     private EventHandler(){}
 }

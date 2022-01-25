@@ -166,8 +166,10 @@
     "_comment": "ENCHANTMENTS",
     "enchantment.rigoranthusemortisreborn.dominion_boost": "Dominion Boost",
     "enchantment.rigoranthusemortisreborn.dominion_regen": "Dominion Regen",
+    "enchantment.rigoranthusemortisreborn.reflex_summon": "Summoner's Reflex",
     "enchantment.rigoranthusemortisreborn.dominion_regen.desc": "Increases the player's rate of dominion regeneration.",
     "enchantment.rigoranthusemortisreborn.dominion_boost.desc": "Increases the player's maximum dominion capacity.",
+    "enchantment.rigoranthusemortisreborn.reflex_summon_desc": "Gain a random chance to reflexively summon a sundered cadaver while being attacked, which will aid you in combat.",
 
 
     "_comment": "ENTITIES",
@@ -187,6 +189,7 @@
     "entity.rigoranthusemortisreborn.summoned_cadaver": "Summoned Cadaver",
     "entity.rigoranthusemortisreborn.summoned_servant": "\u00A74\u00A7oSummoned Servant",
     "entity.rigoranthusemortisreborn.familiar_cadaver": "\u00A74's Summoned Servant",
+    "entity.rigoranthusemortisreborn.covetous_fiend": "\u00A74\u00A7oCovetous Fiend",
 
 
     "_comment": "FLUIDS",
@@ -632,18 +635,21 @@
     "tooltip.rigoranthusemortisreborn.forgotten_record3": "of things long since forgotten",
     "tooltip.rigoranthusemortisreborn.forgotten_record_shift": "Hold \u00A76[SHIFT]\u00A7f for info.",
     "tooltip.rigoranthusemortisreborn.hold_shift": "Hold \u00A76[SHIFT]\u00A7f for info.",
+    "tooltip.rigoranthusemortisreborn.tooth.use": "While handling the tooth, you feel a sharp sting and drop it.",
+    "tooltip.rigoranthusemortisreborn.tooth.swing": "While handling the tooth, you accidentally cut yourself and drop it.",
 
 
     "_comment": "Block Tooltips",
-    "tooltip.rigoranthusemortisreborn.esotericum": "A powerful resource coveted by the Languid Dweller.",
-    "tooltip.rigoranthusemortisreborn.esotericum2": "Partially reponsible for the degredation of the species",
+    "tooltip.rigoranthusemortisreborn.esotericum": "A powerful resource used to revive the memories of the dead.",
+    "tooltip.rigoranthusemortisreborn.esotericum2": "Partially responsible for the degradation of the species",
     "tooltip.rigoranthusemortisreborn.esotericum_obfuscated": "\u00A7kA resource coveted by the Languid Dweller",
     "tooltip.rigoranthusemortisreborn.recondite_ore": "\u00A7kA resource coveted by the Languid Dweller",
-    "tooltip.block.rigoranthusemortisreborn.abyssalite": "Strengthen Obsidian Futher by Smelting it.",
+    "tooltip.block.rigoranthusemortisreborn.abyssalite": "Strengthen Obsidian Further by Smelting it.",
     "tooltip.block.rigoranthusemortisreborn.fortified_sandesite": "Sandesite that has been strengthened by melting the Zinc/Iron within it to create an amalgam.",
     "tooltip.block.rigoranthusemortisreborn.fragmented_cobblestone": "Smelt it to get stone, or combine",
     "tooltip.block.rigoranthusemortisreborn.fragmented_cobblestone2": "with clay to get an Unfired Brick",
-    "tooltip.block.rigoranthusemortisreborn.fragmented_netherrack": "Smelt it to get Netherrack, or Combine with clay to get an Unfired Nether Brick",
+    "tooltip.block.rigoranthusemortisreborn.fragmented_netherrack": "Smelt it to get Netherrack, or combine",
+    "tooltip.block.rigoranthusemortisreborn.fragmented_netherrack2": "with clay to get an Unfired Nether Brick",
     "tooltip.block.rigoranthusemortisreborn.gold_amalgam": "Is there a way to get my gold back from this? No?",
     "tooltip.block.rigoranthusemortisreborn.himalayan_salt": "Gives salt a purpose as a decorative/building block",
 
@@ -689,7 +695,7 @@
     "tooltip.block.rigoranthusemortisreborn.splintered_pedestal2": "or to simply display items.",
     "tooltip.block.rigoranthusemortisreborn.psyglyphic_amalgamator": "Place above an \u00A76Emortic Cortex\u00A7f & surround with \u00A76Splintered Pedestals\u00A7f,",
     "tooltip.block.rigoranthusemortisreborn.psyglyphic_amalgamator2": "atop which you can place ingredients for amalgamator recipes.",
-    "tooltip.block.rigoranthusemortisreborn.emortic_cortex": "An esoteric mechanism for propogating the faculties of",
+    "tooltip.block.rigoranthusemortisreborn.emortic_cortex": "An esoteric mechanism for propagating the faculties of",
     "tooltip.block.rigoranthusemortisreborn.emortic_cortex2": "encephali obtained from members of \u00A76'The Lost Species'\u00A7f,",
     "tooltip.block.rigoranthusemortisreborn.emortic_cortex3": "the progenitors to the art of enchantments.",
 
@@ -1131,6 +1137,8 @@
     "canisgui.close": "\u00A7oClose",
     "canisgui.enter_name": "New name",
     "canisgui.obey_others": "False",
+    "canisgui.food_level": "Canis Food Level",
+    "canisgui.air_level": "Canis Air Level",
 
     "title.rigoranthusemortisreborn.config": "Canis Skills Configurations",
     "modgui.config.canissettings": "Canis Behavior Settings",

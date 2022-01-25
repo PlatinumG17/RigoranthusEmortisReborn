@@ -25,7 +25,7 @@ package com.platinumg17.rigoranthusemortisreborn.api.apimagic.psyglyphic_amalgam
 //
 //    @Override
 //    public boolean isMatch(List<ItemStack> pedestalItems, ItemStack reagent, PsyglyphicAmalgamatorTile psyglyphicAmalgamatorTile, @Nullable PlayerEntity player) {
-//        int level = EnchantmentHelper.getEnchantments(reagent).getOrDefault(EnchantmentRegistry.REACTIVE_ENCHANTMENT, 0);
+//        int level = EnchantmentHelper.getEnchantments(reagent).getOrDefault(EnchantmentRegistry.REFLEX_SUMMON_ENCHANTMENT, 0);
 //        ItemStack parchment = getParchment(pedestalItems);
 //        return !parchment.isEmpty() && !SpellParchment.getSpell(parchment).isEmpty() && level > 0 && super.isMatch(pedestalItems, reagent, psyglyphicAmalgamatorTile, player);
 //    }

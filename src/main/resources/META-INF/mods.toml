@@ -1,6 +1,6 @@
 modLoader="javafml"
 loaderVersion="[36,)"
-license="LESSER GENERAL PUBLIC LICENSE LGPL-2.1 License"
+license="LGPLv.2.1"
 
 [[mods]]
     modId="rigoranthusemortisreborn"
@@ -9,9 +9,9 @@ license="LESSER GENERAL PUBLIC LICENSE LGPL-2.1 License"
     itemIcon="rigoranthusemortisreborn:assets/ftbchunks/textures/faces/rigoranthusemortisreborn/canis_chordata.png"
     configBackground = "rigoranthusemortisreborn:textures/gui/advancements/azuloreal.png"
     authors="PlatinumG17 (aka Matt)"
-    credits="Some code inspired by or sourced from: Percivalalb, Baileyholl & XenoMustache.\n "
+    credits="Some code inspired by or sourced from: Percivalalb, Baileyholl & XenoMustache."
     displayURL="https://www.curseforge.com/members/platinumg17/projects"
-    displayName=" Rigoranthus Emortis Reborn"
+    displayName="Rigoranthus Emortis Reborn"
 description='''
 Adds unique and Nasty Mobs while exploring some of the lore
 behind the origins of enchantments in minecraft!
@@ -35,7 +35,7 @@ side="BOTH"
 [[dependencies.rigoranthusemortisreborn]]
 modId="forge"
 mandatory=true
-versionRange="[36.2.0,)"
+versionRange="[36.2,)"
 ordering="NONE"
 side="BOTH"
 

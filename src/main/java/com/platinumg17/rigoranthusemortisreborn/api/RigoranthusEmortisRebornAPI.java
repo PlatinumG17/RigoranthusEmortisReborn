@@ -46,7 +46,7 @@ public class RigoranthusEmortisRebornAPI {
     /**
      * The version of the api classes - may not always match the mod's version
      */
-    public static final String API_VERSION = "2.0.1";
+    public static final String API_VERSION = "2.0.2";
     public static final String RIGORANTHUS_MODID = "rigoranthusemortisreborn";
 
     public static IForgeRegistry<Skill> SKILLS;
@@ -83,15 +83,6 @@ public class RigoranthusEmortisRebornAPI {
             ichorValueMap.put(MagicItemsRegistry.DWELLER_FLESH.getStack(), 500);
         return ichorValueMap;
     }
-
-//    public Integer n = ichorValueMap.get(Items.BONE);
-//
-//    public int getIchorItemValue(int ichorName) {
-//        if (ichorValueMap != null) {
-//            System.out.println(Items.BONE.getItem().toString() + n);
-//        }
-//        return ichorValueMap.get(ichorName);
-//    }
 
     public List<BrewingRecipe> getAllPotionRecipes() {
         if(brewingRecipes == null){
@@ -163,19 +154,6 @@ public class RigoranthusEmortisRebornAPI {
             throw new IllegalStateException("Attempted to add a starting spell for an unregistered spell. Spells must be added to the Spell Map first!");
         }
     }
-
-//    public static final Set<Item> ICHOR_ITEMS = new HashSet<>();
-//
-//    public Item getIchorItem(){
-//        ICHOR_ITEMS.add(Items.BONE);
-//
-//        for(Item i : ICHOR_ITEMS) {
-//            if(i.getRegistryName().equals(getIchorItem())){
-//                return i;
-//            }
-//        }
-//        return null;
-//    }
 
     public Item getGlyphItem(String glyphName){
         for(Item i : MagicItemsRegistry.RegistrationHandler.ITEMS){

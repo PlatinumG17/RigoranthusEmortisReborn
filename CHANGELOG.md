@@ -1,3 +1,18 @@
+## Update v.2.0.3
++ Totally forgot to add a recipe for the Ichor Extractor... oops.
+
+## Update v.2.0.2
++ Updated to Forge v.36.2.2
++ Added new Enchant: Summoner's Reflex
++ Added/Fixed some block/item tags
++ Added Feral Canis emissive eye layer for optifine
++ some lang fixes
+
+## Update v.2.0.1
++ Improved Canis Animations & Models
++ Mobs no longer spawn in the end
++ Added config to toggle mobs spawning in Nether
++ Fixed some spelling errors in lang
 
 ## 2.0.0 : Starting Anew
 ###### [ 9 / 18 / 2021 ]
@@ -68,7 +83,8 @@
 
 ### NEW MACHINES / UTILITIES
 + Emortic Crafting Press
-
++ Ichor Extractor
++ Ichoric Crystallizer
 + Psyglyphic Amalgamator
   + Splintered Pedestals
   + Emortic Cortex
@@ -113,4 +129,4 @@
     + Leaf Carpets (Azuloreal/Jessic)  ---  Quark compat.
 
 
- ######__Built Using Forge: Version.36.2.0__
+ ######__Built Using Forge: Version.36.2.2__

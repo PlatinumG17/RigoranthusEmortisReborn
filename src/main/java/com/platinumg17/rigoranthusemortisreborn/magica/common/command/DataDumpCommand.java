@@ -83,7 +83,7 @@ public class DataDumpCommand {
             }
             w.close();
         } catch (IOException ex) {
-            LogManager.getLogger(EmortisConstants.MOD_ID).error("Unable to dump augment compatibility chart", ex);
+            LogManager.getLogger(EmortisConstants.MOD_ID).error("Unable to dump aug compat chart", ex);
             context.getSource().sendFailure(new StringTextComponent("Error when trying to produce the data dump.  Check the logs."));
             // This is somewhat expected, just fail the command.  Logging took care of reporting.
             return 0;

@@ -166,8 +166,10 @@
   "_comment": "ENCHANTMENTS",
   "enchantment.rigoranthusemortisreborn.dominion_boost": "Dominion Boost",
   "enchantment.rigoranthusemortisreborn.dominion_regen": "Dominion Regen",
+  "enchantment.rigoranthusemortisreborn.reflex_summon": "Summoner's Reflex",
   "enchantment.rigoranthusemortisreborn.dominion_regen.desc": "Increases the player's rate of dominion regeneration.",
   "enchantment.rigoranthusemortisreborn.dominion_boost.desc": "Increases the player's maximum dominion capacity.",
+  "enchantment.rigoranthusemortisreborn.reflex_summon_desc": "Gain a random chance to reflexively summon a sundered cadaver while being attacked, which will aid you in combat.",
 
 
   "_comment": "ENTITIES",

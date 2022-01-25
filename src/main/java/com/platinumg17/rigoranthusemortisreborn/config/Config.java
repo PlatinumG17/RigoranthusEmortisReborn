@@ -134,6 +134,7 @@ public class Config {
     public static ForgeConfigSpec.IntValue loomingJessicSpawnWeight;                public static ForgeConfigSpec.IntValue loomingAzulorealSpawnWeight;
     public static ForgeConfigSpec.IntValue megaJessicSpawnWeight;                   public static ForgeConfigSpec.IntValue megaAzulorealSpawnWeight;
 
+    public static ForgeConfigSpec.BooleanValue allowCadaverNetherSpawns;            public static ForgeConfigSpec.BooleanValue allowNecrawNetherSpawns;
     public static ForgeConfigSpec.DoubleValue sunderedCadaverMovementSpeed;         public static ForgeConfigSpec.DoubleValue necrawFasciiMovementSpeed;
     public static ForgeConfigSpec.DoubleValue sunderedCadaverAttackDamage;          public static ForgeConfigSpec.DoubleValue necrawFasciiAttackDamage;
     public static ForgeConfigSpec.DoubleValue sunderedCadaverKnockbackResistance;   public static ForgeConfigSpec.DoubleValue necrawFasciiKnockbackResistance;
@@ -342,6 +343,8 @@ public class Config {
         return e.STARTER_SPELL != null && e.STARTER_SPELL.get();
     }
     private static void setupCadaverConfig(ForgeConfigSpec.Builder builder) {
+        allowCadaverNetherSpawns = builder.comment(" Are Cadavers allowed to spawn in the Nether?").define("cadaver.nether", true);
+        //allowCadaverEndSpawns = builder.comment(" Are Cadavers allowed to spawn in the End?").define("cadaver.end", false);
         sunderedCadaverSpawnWeight = builder.comment(" How often this mob Spawns.\n Higher Number = Spawn More Often\n Set to 0 to disable spawns.\n Default: 45").translation("rigoranthusemortisreborn.config.server.cadaver.spawn_weight").defineInRange("cadaver.spawn_weight", 45, 0, 10000);
         sunderedCadaverMinGroupSize = builder.comment(" Minimum Number of mobs that will Spawn Together in a Group.\n Set to 0 to disable spawns.\n Default: 1").translation("rigoranthusemortisreborn.config.server.cadaver.min_group_size").defineInRange("cadaver.min_group_size", 1, 0, 100);
         sunderedCadaverMaxGroupSize = builder.comment(" Maximum Number of mobs that will Spawn Together in a Group.\n Set to 0 to disable spawns.\n Default: 5").translation("rigoranthusemortisreborn.config.server.cadaver.max_group_size").defineInRange("cadaver.max_group_size", 5, 0, 100);
@@ -353,6 +356,8 @@ public class Config {
         sunderedCadaverKnockbackResistance = builder.comment(" How well does this mob stay in one place while players attack it.\n Default: 0.0").translation("rigoranthusemortisreborn.config.server.cadaver.knockback_resistance").defineInRange("cadaver.knockback_resistance", 0.0, 0.0, 100);
     }
     private static void setupNecrawConfig(ForgeConfigSpec.Builder builder) {
+        allowNecrawNetherSpawns = builder.comment(" Are Necraw allowed to spawn in the Nether?").define("necraw.nether", true);
+        //allowNecrawEndSpawns = builder.comment(" Are Necraw allowed to spawn in the End?").define("necraw.end", false);
         necrawFasciiSpawnWeight = builder.comment(" How often this mob Spawns.\n Higher Number = Spawn More Often\n Set to 0 to disable spawns.\n Default: 30").translation("rigoranthusemortisreborn.config.server.necraw.spawn_weight").defineInRange("necraw.spawn_weight", 30, 0, 10000);
         necrawFasciiMinGroupSize = builder.comment(" Minimum Number of mobs that will Spawn Together in a Group.\n Set to 0 to disable spawns.\n Default: 1").translation("rigoranthusemortisreborn.config.server.necraw.min_group_size").defineInRange("necraw.min_group_size", 1, 0, 100);
         necrawFasciiMaxGroupSize = builder.comment(" Maximum Number of mobs that will Spawn Together in a Group.\n Set to 0 to disable spawns.\n Default: 3").translation("rigoranthusemortisreborn.config.server.necraw.max_group_size").defineInRange("necraw.max_group_size", 3, 0, 100);
@@ -784,6 +789,7 @@ public class Config {
         Config.jessicSpawnWeight.get();                       Config.azulorealSpawnWeight.get();
         Config.loomingJessicSpawnWeight.get();                Config.loomingAzulorealSpawnWeight.get();
         Config.megaJessicSpawnWeight.get();                   Config.megaAzulorealSpawnWeight.get();
+        Config.allowCadaverNetherSpawns.get();                Config.allowNecrawNetherSpawns.get();
         Config.languidDwellerMaxSpawnHeight.get();
         Config.languidDwellerMovementSpeed.get();             Config.feralCanisChordataMovementSpeed.get();
         Config.languidDwellerAttackDamage.get();              Config.feralCanisChordataAttackDamage.get();

@@ -3,6 +3,7 @@ package com.platinumg17.rigoranthusemortisreborn.items.itemeffects;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusSoundRegistry;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.particle.ParticleUtil;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.EntityFollowProjectile;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.FireShotEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -40,55 +41,27 @@ public interface ItemRightClickEffect {
             if(player.isShiftKeyDown()) {
                 ItemStack newItem = new ItemStack(otherItem.get(), itemStackIn.getCount());
                 newItem.setTag(itemStackIn.getTag());
-
                 return ActionResult.success(newItem);
             }
             return ActionResult.pass(itemStackIn);
         };
     }
 
-
     static ItemRightClickEffect shootFireball() {
-
         return (world, player, hand) -> {
-
-            AxisAlignedBB axisalignedbb = player.getBoundingBox().inflate(20.0D, 20.0D, 20.0D);
-            List<MobEntity> list = player.level.getEntitiesOfClass(MobEntity.class, axisalignedbb);
-            list.remove(player);
-            list.remove(TameableEntity.class);
-            list.remove(CatEntity.class);
-            list.remove(SnowGolemEntity.class);
-            list.remove(BeeEntity.class);
-            list.remove(BatEntity.class);
-            list.remove(OcelotEntity.class);
-            list.remove(INPC.class);
-            list.remove(PandaEntity.class);
-
             ItemStack itemStackIn = player.getItemInHand(hand);
             world.playSound(null, player.getX(), player.getY(), player.getZ(), RigoranthusSoundRegistry.FIREBALL.get(), SoundCategory.PLAYERS, 1.2F, 1.0F);
             Vector3d vector3d = player.getViewVector(1.0F);
-
             if(!world.isClientSide) {
-//                for(MobEntity mobEntity : list) {
-                if(list.stream().findAny().isPresent()){
-                    MobEntity ent = list.stream().findFirst().get();
-                    double d2 = ent.getX() - (player.getX() + vector3d.x * 4.0D);
-                    double d3 = ent.getY(0.5D) - (0.5D + player.getY(0.5D));
-                    double d4 = ent.getZ() - (player.getZ() + vector3d.z * 4.0D);
-
-                    FireballEntity fireballentity = new FireballEntity(world, player, d2, d3, d4);//player.getX(), player.getY(), player.getZ());//
-                    fireballentity.explosionPower = 1;
-                    //fireballentity.shootFromRotation(player, player.xRot, player.yRot, 0.0F, -9.0F, 0.0F); //(player, player.xRot, player.yRot, 0.0F, 1.0F * 3.0F, 1.0F);
-                    fireballentity.setPos(player.getX() + vector3d.x * 4.0D, player.getY(0.5D) + 0.5D, fireballentity.getZ() + vector3d.z * 4.0D);
-                    ParticleUtil.spawnPoof((ServerWorld) world, player.blockPosition());
-                    player.swing(hand, true);
-                    player.getCooldowns().addCooldown(itemStackIn.getItem(), 60);
-                    itemStackIn.hurtAndBreak(2, player, playerEntity -> playerEntity.broadcastBreakEvent(Hand.MAIN_HAND));
-                    world.addFreshEntity(fireballentity);
-                    EntityFollowProjectile aoeProjectile = new EntityFollowProjectile(world, player.blockPosition(), fireballentity.blockPosition());
-                    world.addFreshEntity(aoeProjectile);
+                FireShotEntity fireballentity = new FireShotEntity(world, player, player.xxa, player.yya, player.zza);
+                fireballentity.setPos(player.getX() + vector3d.x * 4.0D, player.getY(0.5D) + 0.5D, fireballentity.getZ() + vector3d.z * 4.0D);
+                fireballentity.shootFromRotation(player, player.xRot, player.yRot, 0.0F, 2.5F, 1.0F);
+                ParticleUtil.spawnPoof((ServerWorld) world, player.blockPosition().offset(player.getLookAngle().x + 0.5F, player.getLookAngle().y + 0.7F, player.getLookAngle().z + 0.5F));
+                world.addFreshEntity(fireballentity);
+                player.swing(hand, true);
+                player.getCooldowns().addCooldown(itemStackIn.getItem(), 50);
+                itemStackIn.hurtAndBreak(2, player, playerEntity -> playerEntity.broadcastBreakEvent(Hand.MAIN_HAND));
                 }
-            }
             return ActionResult.pass(itemStackIn);
         };
     }
@@ -107,7 +80,7 @@ public interface ItemRightClickEffect {
                     FireballEntity fireball = new FireballEntity(world, player, 0, -8.0, 0);
                     fireball.explosionPower = 1;
                     fireball.setPos(livingentity.getX() + (player.getRandom().nextInt(6) - 3), livingentity.getY() + 40, livingentity.getZ() + (player.getRandom().nextInt(6) - 3));
-                    player.swing(hand, true);//TODO  recently added
+                    player.swing(hand, true);
                     player.getCooldowns().addCooldown(itemStackIn.getItem(), 600);
                     itemStackIn.hurtAndBreak(2, player, playerEntity -> playerEntity.broadcastBreakEvent(Hand.MAIN_HAND));
                     world.addFreshEntity(fireball);
@@ -116,7 +89,7 @@ public interface ItemRightClickEffect {
                 FireballEntity fireball = new FireballEntity(world, player, 0, -8.0, 0);
                 fireball.explosionPower = 1;
                 fireball.setPos(player.getX() + (player.getRandom().nextInt(20) - 10), player.getY() + 40, player.getZ() + (player.getRandom().nextInt(20) - 10));
-                player.swing(hand, true); //TODO   recently added
+                player.swing(hand, true);
                 player.getCooldowns().addCooldown(itemStackIn.getItem(), 600);
                 itemStackIn.hurtAndBreak(2, player, playerEntity -> playerEntity.broadcastBreakEvent(Hand.MAIN_HAND));
                 world.addFreshEntity(fireball);

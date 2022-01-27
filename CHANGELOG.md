@@ -1,6 +1,14 @@
-## Update v.3.0.4
-+ Fixed Ichor Extractor for real this time...
+## Update v.2.0.5
++ Finally Fixed the Ghastly Scepter!
+  + No longer possible to explode yourself :)
+    + (can still set ground around you on fire, this cannot be changed)
+  + Improved accuracy
+  + Improved Particle Effects
+
+## Update v.2.0.4
++ Added Crystallizer Recipe.. for real this time...
 + Added Recipe for Dominion Wand tool
++ Renamed Ichor Crystallizer to Dominion Crystallizer
 + Made Soul Coal Block a burnable fuel
 + Improved Whistle Texture
 + Removed useless potion
@@ -8,7 +16,7 @@
 + Fixed some Lang stuff
 
 ## Update v.2.0.3
-+ Totally forgot to add a recipe for the Ichor Extractor... oops.
++ Totally forgot to add a recipe for the Ichor Crystallizer... oops.
 
 ## Update v.2.0.2
 + Updated to Forge v.36.2.2

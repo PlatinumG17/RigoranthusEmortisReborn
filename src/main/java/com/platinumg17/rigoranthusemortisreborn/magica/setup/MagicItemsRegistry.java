@@ -27,7 +27,7 @@ import java.util.Set;
 @ObjectHolder(EmortisConstants.MOD_ID)
 public class MagicItemsRegistry {
 //    @ObjectHolder("debug") public static REItemDebug debug;
-
+    @ObjectHolder(LibItemNames.FIRE_SHOT) public static ModItem FIRE_SHOT;
     @ObjectHolder(LibItemNames.BOTTLE_OF_ICHOR) public static GlassBottleItem BOTTLE_OF_ICHOR;
     @ObjectHolder(LibItemNames.DWELLER_FLESH) public static ModItem DWELLER_FLESH;
 //    @ObjectHolder(LibItemNames.NOVICE_SPELL_BOOK) public static SpellBook noviceSpellBook;
@@ -92,6 +92,7 @@ public class MagicItemsRegistry {
 //                    new ModItem(LibItemNames.BLANK_PARCHMENT),
 //                    new LostTome(defaultItemProperties().stacksTo(1), LibItemNames.LOST_TOME),
                     new SummonersStrength(defaultItemProperties().stacksTo(1), LibItemNames.SUMMONERS_STRENGTH),
+                    new ModItem(LibItemNames.FIRE_SHOT)
             };
 
             final IForgeRegistry<Item> registry = event.getRegistry();

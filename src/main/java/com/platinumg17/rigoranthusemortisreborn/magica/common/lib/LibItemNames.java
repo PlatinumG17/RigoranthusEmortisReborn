@@ -8,6 +8,8 @@ public class LibItemNames {
     public static final String FUEL_AUGMENT = "augment_fuel";
     public static final String ITEM_COPY = "item_copy";
 
+    public static final String FIRE_SHOT = "fire_shot";
+
     public static final String BOTTLE_OF_ICHOR = "bottle_of_ichor";
     public static final String DWELLER_FLESH = "dweller_flesh";
     public static final String BONE_ARROW = "bone_arrow";

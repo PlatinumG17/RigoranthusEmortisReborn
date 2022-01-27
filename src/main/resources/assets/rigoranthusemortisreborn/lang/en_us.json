@@ -173,6 +173,7 @@
 
 
     "_comment": "ENTITIES",
+    "entity.rigoranthusemortisreborn.fire_shot_projectile": "Fire Shot",
     "entity.rigoranthusemortisreborn.feral_canis": "Feral Canis",
     "entity.rigoranthusemortisreborn.cavalier_canis": "§dCavalier Canis",
     "entity.rigoranthusemortisreborn.canis_chordata_sitting": "Canis Chordata",
@@ -261,6 +262,7 @@
     "item.rigoranthusemortisreborn.pagan_ash_wand": "Pagan Ash Wand",
     "item.rigoranthusemortisreborn.ghastly_scepter": "Ghastly Scepter",
     "item.rigoranthusemortisreborn.bili_bomb": "Bili-Bomb",
+    "item.rigoranthusemortisreborn.fire_shot": "Fire Shot",
 
     "item.rigoranthusemortisreborn.bilis_berry": "Bilis Berry",
     "item.rigoranthusemortisreborn.dominion_berry": "Dominion Berry",

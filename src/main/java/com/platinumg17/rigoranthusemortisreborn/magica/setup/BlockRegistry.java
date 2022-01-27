@@ -569,7 +569,7 @@ public class BlockRegistry {
                 @Override
                 public int getBurnTime(ItemStack itemStack, @Nullable IRecipeType<?> recipeType) {
                     int coalBurnTime = Config.soulCoalBurnTime.get();
-                    return coalBurnTime * 10;
+                    return coalBurnTime * 11;
                 }
                 @Override
                 public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {

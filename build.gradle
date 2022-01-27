@@ -32,7 +32,7 @@ apply plugin: "se.bjurr.gitchangelog.git-changelog-gradle-plugin"
 //println "On branch: ${branch.fullName}"
 //println "Pipeline branch: " + (System.getenv('CI_COMMIT_BRANCH') ?: 'NONE')
 
-version = "2.0.3"
+version = "2.0.5"
 group = 'com.platinumg17.rigoranthusemortisreborn'
 archivesBaseName = "RigoranthusEmortisReborn-${project.target_mc_version}"
 //version = (grgit.describe(longDescr: true, tags: true) ?: '0-0-0').split('-').with { it -> "${it[0]}.${it[1]}" }

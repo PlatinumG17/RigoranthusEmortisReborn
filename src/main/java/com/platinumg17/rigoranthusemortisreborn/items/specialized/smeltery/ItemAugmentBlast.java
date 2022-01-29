@@ -12,11 +12,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.List;
 
-import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
+public class ItemAugmentBlast extends ItemAugment {
 
-public class ItemAugmentBlasting extends ItemAugment {
-
-    public ItemAugmentBlasting(Properties properties) {
+    public ItemAugmentBlast(Properties properties) {
         super(properties);
     }
 
@@ -24,7 +22,7 @@ public class ItemAugmentBlasting extends ItemAugment {
     @Override
     public void appendHoverText(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".augment_blasting_pro").setStyle(Style.EMPTY.applyFormat((TextFormatting.GREEN))));
-        tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".augment_blasting_con").setStyle(Style.EMPTY.applyFormat(TextFormatting.DARK_RED)));
+        tooltip.add(new TranslationTextComponent("tooltip.rigoranthusemortisreborn.augment_blasting_pro").setStyle(Style.EMPTY.applyFormat((TextFormatting.GREEN))));
+        tooltip.add(new TranslationTextComponent("tooltip.rigoranthusemortisreborn.augment_blasting_con").setStyle(Style.EMPTY.applyFormat(TextFormatting.DARK_RED)));
     }
 }

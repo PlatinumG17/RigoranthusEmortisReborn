@@ -5,13 +5,12 @@ import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.blocks.DecorativeOrStorageBlocks;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
-import com.platinumg17.rigoranthusemortisreborn.core.registry.fluid.FluidRegistry;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusSoundRegistry;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.effects.weapons.OnHitEffect;
+import com.platinumg17.rigoranthusemortisreborn.core.registry.fluid.FluidRegistry;
 import com.platinumg17.rigoranthusemortisreborn.entity.item.GhastlyScepterItem;
 import com.platinumg17.rigoranthusemortisreborn.entity.item.GhastlyScepterRenderer;
 import com.platinumg17.rigoranthusemortisreborn.items.RigoranthusItemTier;
-import com.platinumg17.rigoranthusemortisreborn.items.armor.RigoranthusArmorMaterial;
 import com.platinumg17.rigoranthusemortisreborn.items.armor.armorsets.DwellerThoraxArmor;
 import com.platinumg17.rigoranthusemortisreborn.items.ingots.*;
 import com.platinumg17.rigoranthusemortisreborn.items.itemeffects.ItemRightClickEffect;
@@ -24,7 +23,6 @@ import com.platinumg17.rigoranthusemortisreborn.items.weapons.type.projectiles.b
 import com.platinumg17.rigoranthusemortisreborn.items.weapons.type.projectiles.basetype.ConsumableProjectileWeaponItem;
 import com.platinumg17.rigoranthusemortisreborn.items.weapons.type.projectiles.basetype.ReturningProjectileWeaponItem;
 import com.platinumg17.rigoranthusemortisreborn.items.weapons.type.strung.BoneBow;
-import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
@@ -42,13 +40,13 @@ public class ItemInit {
 			() -> new PactOfServitudeItem(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)));
 
 	public static final RegistryObject<Item> PACT_OF_MYRMIDON = ITEMS.register("pact_of_myrmidon",
-			() -> new Item(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(1)));
+			() -> new Item(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)));
 
 	public static final RegistryObject<Item> ROGUE_PACT_OF_MYRMIDON = ITEMS.register("rogue_pact_of_myrmidon",
-			() -> new Item(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(1)));
+			() -> new Item(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)));
 
 	public static final RegistryObject<Item> PACT_OF_PURTURBATION = ITEMS.register("pact_of_purturbation",
-			() -> new Item(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(1)));
+			() -> new Item(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(16)));
 
 
 
@@ -86,16 +84,16 @@ public class ItemInit {
 			() -> new BoneBow(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).stacksTo(1).durability(Config.bone_bow_durability.get())));
 
 	public static final RegistryObject<Item> RAZORTOOTH_KUNAI = ITEMS.register("razortooth_kunai",
-			() -> new ConsumableProjectileWeaponItem(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP), 1.5F, 2.4F,3));
+			() -> new ConsumableProjectileWeaponItem(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP), Config.razortooth_kunai_velocity.get().floatValue(), Config.razortooth_kunai_inaccuracy.get().floatValue(), Config.razortooth_kunai_damage.get()));
 
 	public static final RegistryObject<Item> THROWING_KNIFE = ITEMS.register("throwing_knife",
-			() -> new ConsumableProjectileWeaponItem(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP), 1.0F, 2.8F, 2));
+			() -> new ConsumableProjectileWeaponItem(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP), Config.throwing_knife_velocity.get().floatValue(), Config.throwing_knife_inaccuracy.get().floatValue(), Config.throwing_knife_damage.get()));
 
 	public static final RegistryObject<Item> RAZORTOOTH_FRISBEE = ITEMS.register("razortooth_frisbee",
-			() -> new ReturningProjectileWeaponItem(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).rarity(Rarity.RARE).durability(250), 1.3F, 1.0F,5, 60));
+			() -> new ReturningProjectileWeaponItem(new Item.Properties().stacksTo(1).durability(Config.razortooth_frisbee_durability.get()).tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).rarity(Rarity.RARE), Config.razortooth_frisbee_velocity.get().floatValue(), Config.razortooth_frisbee_inaccuracy.get().floatValue(), Config.razortooth_frisbee_damage.get(), Config.razortooth_frisbee_duration.get()));
 
 	public static final RegistryObject<Item> RICOCHET_ROUND = ITEMS.register("ricochet_round",
-			() -> new BouncingProjectileWeaponItem(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).durability(250), 1.5F, 1.0F,5, 20));
+			() -> new BouncingProjectileWeaponItem(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP), Config.ricochet_round_velocity.get().floatValue(), Config.ricochet_round_inaccuracy.get().floatValue(),Config.ricochet_round_damage.get(), Config.ricochet_round_duration.get()));
 
 	public static final RegistryObject<Item> BILI_BOMB = ITEMS.register("bili_bomb",
 			() -> new BiliBombItem(new Item.Properties().stacksTo(16).rarity(Rarity.UNCOMMON).tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).rarity(Rarity.UNCOMMON)));
@@ -109,12 +107,12 @@ public class ItemInit {
 //					OnHitEffect.SWEEP), new Item.Properties().defaultDurability(100).tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)));
 
 	public static final RegistryObject<Item> MORRAI = ITEMS.register("morrai",
-			() -> new REWeaponItem(new REWeaponItem.Builder(RigoranthusItemTier.RESILE_TIER, 6, -2.4F).efficiency(1.0F).set(ToolRegistry.SWORD_TOOL).add(
-					OnHitEffect.SWEEP).add(OnHitEffect.DISARM_ENEMY), new Item.Properties().defaultDurability(200).tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).rarity(Rarity.UNCOMMON)));
+			() -> new REWeaponItem(new REWeaponItem.Builder(RigoranthusItemTier.RESILE_TIER, Config.morrai_damage.get(), Config.morrai_speed.get().floatValue()).efficiency(3.0F).set(ToolRegistry.SWORD_TOOL).add(
+					OnHitEffect.SWEEP).add(OnHitEffect.onCrit(OnHitEffect.DISARM_ENEMY)), new Item.Properties().stacksTo(1).defaultDurability(Config.morrai_durability.get()).tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).rarity(Rarity.UNCOMMON)));
 
 	public static final RegistryObject<Item> ANDURIL = ITEMS.register("anduril",
-			() -> new REWeaponItem(new REWeaponItem.Builder(RigoranthusItemTier.GHAST_IRON, 4, -2.4F).efficiency(15.0F).set(ToolRegistry.SWORD_TOOL).add(
-					OnHitEffect.SWEEP).add(OnHitEffect.setOnFire(10)), new Item.Properties().defaultDurability(350).tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).rarity(Rarity.RARE)));
+			() -> new REWeaponItem(new REWeaponItem.Builder(RigoranthusItemTier.GHAST_IRON, Config.anduril_damage.get(), Config.anduril_speed.get().floatValue()).efficiency(4.0F).set(ToolRegistry.SWORD_TOOL).add(
+					OnHitEffect.SWEEP).add(OnHitEffect.onCrit(OnHitEffect.setOnFire(Config.anduril_fire_duration.get()))), new Item.Properties().stacksTo(1).defaultDurability(Config.anduril_durability.get()).tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).rarity(Rarity.RARE)));
 
 //	public static final RegistryObject<Item> LUCK_OF_HEPHAESTUS = ITEMS.register("luck_of_hephaestus",
 //			() -> new REWeaponItem(new REWeaponItem.Builder(RigoranthusItemTier.GHAST_IRON, 4, -2.4F).efficiency(15.0F).set(ToolRegistry.SWORD_TOOL).add(
@@ -180,8 +178,8 @@ public class ItemInit {
 			() -> new Item(new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)));
 
 	public static final RegistryObject<Item> CRY_OF_DESPERATION = ITEMS.register("cry_of_desperation",
-			() -> new REWeaponItem(new REWeaponItem.Builder(RigoranthusItemTier.GHAST_IRON, 8, -2.8F).efficiency(4.0F).set(ToolRegistry.MISC_TOOL)
-					.set(ItemRightClickEffect.summonFireball()), new Item.Properties().defaultDurability(40).tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).rarity(Rarity.EPIC)));
+			() -> new REWeaponItem(new REWeaponItem.Builder(RigoranthusItemTier.GHAST_IRON, Config.cry_of_desperation_damage.get(), Config.cry_of_desperation_speed.get().floatValue()).efficiency(4.0F).set(ToolRegistry.MISC_TOOL)
+					.set(ItemRightClickEffect.summonFireball()), new Item.Properties().stacksTo(1).defaultDurability(Config.cry_of_desperation_durability.get()).tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).rarity(Rarity.EPIC)));
 
 //	public static final RegistryObject<Item> GREENHORN_WAND = ITEMS.register("greenhorn_wand",
 //			() -> new REWeaponItem(new REWeaponItem.Builder(RigoranthusItemTier.SPLINTERED, 1, -1.0F).efficiency(1.0F).set(ToolRegistry.MISC_TOOL).set(
@@ -212,9 +210,8 @@ public class ItemInit {
 //					OnHitEffect.PSYCHO_BLIGHT).set(MagicAttackRightClickEffect.PSYCHO_BLIGHT_MAGIC), new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).rarity(Rarity.UNCOMMON)));
 
 	public static final RegistryObject<Item> GHASTLY_SCEPTER = ITEMS.register("ghastly_scepter",
-			() -> new GhastlyScepterItem(new REWeaponItem.Builder(RigoranthusItemTier.GHAST_IRON, 8, -2.8F).efficiency(4.0F).set(ToolRegistry.MISC_TOOL).set(
-					ItemRightClickEffect.shootFireball()), new Item.Properties().setISTER(() -> GhastlyScepterRenderer::new).tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).rarity(Rarity.EPIC)));
-
+			() -> new GhastlyScepterItem(new REWeaponItem.Builder(RigoranthusItemTier.GHAST_IRON, Config.ghastly_scepter_damage.get(), Config.ghastly_scepter_speed.get().floatValue()).efficiency(3.0F).set(ToolRegistry.MISC_TOOL).set(
+					ItemRightClickEffect.shootFireball()), new Item.Properties().stacksTo(1).durability(Config.ghastly_scepter_durability.get()).setISTER(() -> GhastlyScepterRenderer::new).tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).rarity(Rarity.EPIC)));
 
  /*
  .add(OnHitEffect.LIFE_SATURATION)
@@ -251,59 +248,70 @@ public class ItemInit {
 
 	///_______________________  D W E L L E R  S T U F F  _______________________///
 
+	public static final Item.Properties MusicDiscProp = new Item.Properties().stacksTo(1).fireResistant().rarity(Rarity.RARE).tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP);
+	public static final Item.Properties IngotProp = new Item.Properties().fireResistant().rarity(Rarity.EPIC).tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP);
 
 	public static final RegistryObject<Item> DWELLER_THORAX = ITEMS.register("dweller_thorax",
-			() -> new DwellerThoraxArmor(RigoranthusArmorMaterial.DWELLER, EquipmentSlotType.CHEST,
-					new Item.Properties().fireResistant().rarity(Rarity.RARE).tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)));
+			() -> new DwellerThoraxArmor(MusicDiscProp));
 
 	public static final RegistryObject<Item> FORGOTTEN_RECORD = ITEMS.register("forgotten_record",
-			() -> new MusicDiscItem(1, RigoranthusSoundRegistry.FORGOTTEN_RECORD, (new Item.Properties())
-					.stacksTo(1).tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).fireResistant().rarity(Rarity.RARE)));
+			() -> new MusicDiscItem(1, RigoranthusSoundRegistry.FORGOTTEN_RECORD, MusicDiscProp));
 
 	public static final RegistryObject<Item> MUSIC_DISK_KICKSTART = ITEMS.register("music_disk_kickstart",
-			() -> new MusicDiscItem(2, RigoranthusSoundRegistry.LEVEL_UP, (new Item.Properties())
-					.stacksTo(1).tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).fireResistant().rarity(Rarity.RARE)));
+			() -> new MusicDiscItem(2, RigoranthusSoundRegistry.LEVEL_UP, MusicDiscProp));
 
 	public static final RegistryObject<Item> MUSIC_DISK_NEON_LIGHTS = ITEMS.register("music_disk_neon_lights",
-			() -> new MusicDiscItem(3, RigoranthusSoundRegistry.NEON_LIGHTS, (new Item.Properties())
-					.stacksTo(1).tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP).fireResistant().rarity(Rarity.RARE)));
+			() -> new MusicDiscItem(3, RigoranthusSoundRegistry.NEON_LIGHTS, MusicDiscProp));
 
 
 
 					///_______________________  I N G O T S  _______________________///
 
 	public static final RegistryObject<Item> APOGEAN_NETHERITE_INGOT = ITEMS.register("apogean_netherite_ingot",
-			() -> new ApogeanIngotItem(new Item.Properties().fireResistant().rarity(Rarity.EPIC).tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)));
+			() -> new ApogeanIngotItem(IngotProp));
 
 	public static final RegistryObject<Item> AQUEOUS_NETHERITE_INGOT = ITEMS.register("aqueous_netherite_ingot",
-			() -> new AqueousIngotItem(new Item.Properties().fireResistant().rarity(Rarity.EPIC).tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)));
+			() -> new AqueousIngotItem(IngotProp));
 
 	public static final RegistryObject<Item> ATROPHYING_NETHERITE_INGOT = ITEMS.register("atrophying_netherite_ingot",
-			() -> new AtrophyingIngotItem(new Item.Properties().fireResistant().rarity(Rarity.EPIC).tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)));
+			() -> new AtrophyingIngotItem(IngotProp));
 
 	public static final RegistryObject<Item> INCORPOREAL_NETHERITE_INGOT = ITEMS.register("incorporeal_netherite_ingot",
-			() -> new IncorporealIngotItem(new Item.Properties().fireResistant().rarity(Rarity.EPIC).tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)));
+			() -> new IncorporealIngotItem(IngotProp));
 
 	public static final RegistryObject<Item> INFERNAL_NETHERITE_INGOT = ITEMS.register("infernal_netherite_ingot",
-			() -> new InfernalIngotItem(new Item.Properties().fireResistant().rarity(Rarity.EPIC).tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)));
+			() -> new InfernalIngotItem(IngotProp));
 
 	public static final RegistryObject<Item> OPULENT_NETHERITE_INGOT = ITEMS.register("opulent_netherite_ingot",
-			() -> new OpulentIngotItem(new Item.Properties().fireResistant().rarity(Rarity.EPIC).tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)));
+			() -> new OpulentIngotItem(IngotProp));
 
 	public static final RegistryObject<Item> PERNICIOUS_NETHERITE_INGOT = ITEMS.register("pernicious_netherite_ingot",
-			() -> new PerniciousIngotItem(new Item.Properties().fireResistant().rarity(Rarity.EPIC).tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)));
+			() -> new PerniciousIngotItem(IngotProp));
 
 	public static final RegistryObject<Item> PHANTASMAL_NETHERITE_INGOT = ITEMS.register("phantasmal_netherite_ingot",
-			() -> new PhantasmalIngotItem(new Item.Properties().fireResistant().rarity(Rarity.EPIC).tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)));
+			() -> new PhantasmalIngotItem(IngotProp));
 
 	public static final RegistryObject<Item> REMEX_NETHERITE_INGOT = ITEMS.register("remex_netherite_ingot",
-			() -> new RemexIngotItem(new Item.Properties().fireResistant().rarity(Rarity.EPIC).tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)));
+			() -> new RemexIngotItem(IngotProp));
 
 
 					///_______________________  M I S C E L L A N E O U S  _______________________///
 
 	public static final RegistryObject<Item> JESSIC_BOAT = HELPER.createBoatItem("jessic", DecorativeOrStorageBlocks.JESSIC_PLANKS);
 	public static final RegistryObject<Item> AZULOREAL_BOAT = HELPER.createBoatItem("azuloreal", DecorativeOrStorageBlocks.AZULOREAL_PLANKS);
+
+//	public static final RegistryObject<Item> AZULOREAL_BOAT = ITEMS.register("azuloreal_boat",
+//			() -> new REBoatItemAzuloreal(new Item.Properties().fireResistant().tab(ItemGroup.TAB_TRANSPORTATION), "azuloreal"));
+//
+//	public static final RegistryObject<Item> JESSIC_BOAT = ITEMS.register("jessic_boat",
+//			() -> new REBoatItemJessic(new Item.Properties().fireResistant().tab(ItemGroup.TAB_TRANSPORTATION), "jessic"));
+//	public static RegistryObject<Item> createBoatItem(String wood, Block block) {
+//		String type = "rigoranthusemortisreborn:" + wood;
+//		RegistryObject<Item> boat = ITEMS.register(wood + "_boat", ()  -> new BlueprintBoatItem(type, createSimpleItemProperty(1, CreativeModeTab.TAB_TRANSPORTATION)));
+//		REBoatRegistry.registerBoat(type, boat, block);
+//		return boat;
+//	}
+
 
 	public static void register(IEventBus modEventBus) {
 		ITEMS.register(modEventBus);

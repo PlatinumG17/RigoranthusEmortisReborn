@@ -1,15 +1,13 @@
 package com.platinumg17.rigoranthusemortisreborn.items.itemeffects;
 
+import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusSoundRegistry;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.particle.ParticleUtil;
-import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.EntityFollowProjectile;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.FireShotEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.INPC;
 import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.FireballEntity;
 import net.minecraft.item.Item;
@@ -71,28 +69,29 @@ public interface ItemRightClickEffect {
             ItemStack itemStackIn = player.getItemInHand(hand);
             world.playSound(null, player.getX(), player.getY(), player.getZ(), RigoranthusSoundRegistry.DESPERATE_CRIES.get(), SoundCategory.PLAYERS, 1.0F, 1.0F);
             world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BLAZE_SHOOT, SoundCategory.PLAYERS, 1.0F, 0.8F);
-
-            AxisAlignedBB axisalignedbb = player.getBoundingBox().inflate(32.0D, 32.0D, 32.0D);
-            List<MobEntity> list = player.level.getEntitiesOfClass(MobEntity.class, axisalignedbb);
+            if(Config.enable_hellfire_rain.get()) {
+                AxisAlignedBB axisalignedbb = player.getBoundingBox().inflate(32.0D, 32.0D, 32.0D);
+                List<MobEntity> list = player.level.getEntitiesOfClass(MobEntity.class, axisalignedbb);
 //            list.remove(player);
-            if(!list.isEmpty() && !world.isClientSide) {
-                for(MobEntity livingentity : list) {
+                if (!list.isEmpty() && !world.isClientSide) {
+                    for (MobEntity livingentity : list) {
+                        FireballEntity fireball = new FireballEntity(world, player, 0, -8.0, 0);
+                        fireball.explosionPower = 1;
+                        fireball.setPos(livingentity.getX() + (player.getRandom().nextInt(6) - 3), livingentity.getY() + 40, livingentity.getZ() + (player.getRandom().nextInt(6) - 3));
+                        player.swing(hand, true);
+                        player.getCooldowns().addCooldown(itemStackIn.getItem(), 600);
+                        itemStackIn.hurtAndBreak(2, player, playerEntity -> playerEntity.broadcastBreakEvent(Hand.MAIN_HAND));
+                        world.addFreshEntity(fireball);
+                    }
+                } else if (!world.isClientSide) {
                     FireballEntity fireball = new FireballEntity(world, player, 0, -8.0, 0);
                     fireball.explosionPower = 1;
-                    fireball.setPos(livingentity.getX() + (player.getRandom().nextInt(6) - 3), livingentity.getY() + 40, livingentity.getZ() + (player.getRandom().nextInt(6) - 3));
+                    fireball.setPos(player.getX() + (player.getRandom().nextInt(20) - 10), player.getY() + 40, player.getZ() + (player.getRandom().nextInt(20) - 10));
                     player.swing(hand, true);
                     player.getCooldowns().addCooldown(itemStackIn.getItem(), 600);
                     itemStackIn.hurtAndBreak(2, player, playerEntity -> playerEntity.broadcastBreakEvent(Hand.MAIN_HAND));
                     world.addFreshEntity(fireball);
                 }
-            } else if(!world.isClientSide) {
-                FireballEntity fireball = new FireballEntity(world, player, 0, -8.0, 0);
-                fireball.explosionPower = 1;
-                fireball.setPos(player.getX() + (player.getRandom().nextInt(20) - 10), player.getY() + 40, player.getZ() + (player.getRandom().nextInt(20) - 10));
-                player.swing(hand, true);
-                player.getCooldowns().addCooldown(itemStackIn.getItem(), 600);
-                itemStackIn.hurtAndBreak(2, player, playerEntity -> playerEntity.broadcastBreakEvent(Hand.MAIN_HAND));
-                world.addFreshEntity(fireball);
             }
             return ActionResult.pass(itemStackIn);
         };

@@ -31,6 +31,22 @@ public class Config {
     public static ForgeConfigSpec.BooleanValue enableSoulCoal;                      public static ForgeConfigSpec.IntValue soulCoalBurnTime;
     public static ForgeConfigSpec.BooleanValue enableNetheriteAdditions;            public static ForgeConfigSpec.BooleanValue enableArmorSetBonuses;
 
+    public static ForgeConfigSpec.IntValue morrai_durability;
+    public static ForgeConfigSpec.IntValue morrai_damage;                           public static ForgeConfigSpec.DoubleValue morrai_speed;
+    public static ForgeConfigSpec.IntValue anduril_durability;                      public static ForgeConfigSpec.IntValue anduril_fire_duration;
+    public static ForgeConfigSpec.IntValue anduril_damage;                          public static ForgeConfigSpec.DoubleValue anduril_speed;
+    public static ForgeConfigSpec.DoubleValue razortooth_kunai_velocity;            public static ForgeConfigSpec.DoubleValue razortooth_kunai_inaccuracy;
+    public static ForgeConfigSpec.IntValue razortooth_kunai_damage;                 public static ForgeConfigSpec.DoubleValue throwing_knife_velocity;
+    public static ForgeConfigSpec.IntValue throwing_knife_damage;                   public static ForgeConfigSpec.DoubleValue throwing_knife_inaccuracy;
+    public static ForgeConfigSpec.DoubleValue ghastly_scepter_speed;                public static ForgeConfigSpec.IntValue ghastly_scepter_damage;
+    public static ForgeConfigSpec.IntValue ghastly_scepter_durability;              public static ForgeConfigSpec.IntValue razortooth_frisbee_duration;
+    public static ForgeConfigSpec.DoubleValue razortooth_frisbee_velocity;          public static ForgeConfigSpec.DoubleValue razortooth_frisbee_inaccuracy;
+    public static ForgeConfigSpec.IntValue razortooth_frisbee_damage;               public static ForgeConfigSpec.IntValue razortooth_frisbee_durability;
+    public static ForgeConfigSpec.IntValue ricochet_round_duration;                 public static ForgeConfigSpec.DoubleValue ricochet_round_inaccuracy;
+    public static ForgeConfigSpec.DoubleValue ricochet_round_velocity;              public static ForgeConfigSpec.IntValue ricochet_round_damage;
+    public static ForgeConfigSpec.IntValue cry_of_desperation_durability;           public static ForgeConfigSpec.BooleanValue enable_hellfire_rain;
+    public static ForgeConfigSpec.DoubleValue cry_of_desperation_speed;             public static ForgeConfigSpec.IntValue cry_of_desperation_damage;
+
     public static ForgeConfigSpec.DoubleValue bone_spear_speed;                     public static ForgeConfigSpec.DoubleValue apogean_axe_speed;
     public static ForgeConfigSpec.IntValue bone_spear_damage;                       public static ForgeConfigSpec.IntValue apogean_axe_damage;
     public static ForgeConfigSpec.IntValue bone_tier_durability;                    public static ForgeConfigSpec.DoubleValue apogean_sword_speed;
@@ -339,7 +355,6 @@ public class Config {
     }
     private static void setupCadaverConfig(ForgeConfigSpec.Builder builder) {
         allowCadaverNetherSpawns = builder.comment(" Are Cadavers allowed to spawn in the Nether?").define("cadaver.nether", true);
-        //allowCadaverEndSpawns = builder.comment(" Are Cadavers allowed to spawn in the End?").define("cadaver.end", false);
         sunderedCadaverSpawnWeight = builder.comment(" How often this mob Spawns.\n Higher Number = Spawn More Often\n Set to 0 to disable spawns.\n Default: 45").translation("rigoranthusemortisreborn.config.server.cadaver.spawn_weight").defineInRange("cadaver.spawn_weight", 45, 0, 10000);
         sunderedCadaverMinGroupSize = builder.comment(" Minimum Number of mobs that will Spawn Together in a Group.\n Set to 0 to disable spawns.\n Default: 1").translation("rigoranthusemortisreborn.config.server.cadaver.min_group_size").defineInRange("cadaver.min_group_size", 1, 0, 100);
         sunderedCadaverMaxGroupSize = builder.comment(" Maximum Number of mobs that will Spawn Together in a Group.\n Set to 0 to disable spawns.\n Default: 5").translation("rigoranthusemortisreborn.config.server.cadaver.max_group_size").defineInRange("cadaver.max_group_size", 5, 0, 100);
@@ -352,7 +367,6 @@ public class Config {
     }
     private static void setupNecrawConfig(ForgeConfigSpec.Builder builder) {
         allowNecrawNetherSpawns = builder.comment(" Are Necraw allowed to spawn in the Nether?").define("necraw.nether", true);
-        //allowNecrawEndSpawns = builder.comment(" Are Necraw allowed to spawn in the End?").define("necraw.end", false);
         necrawFasciiSpawnWeight = builder.comment(" How often this mob Spawns.\n Higher Number = Spawn More Often\n Set to 0 to disable spawns.\n Default: 30").translation("rigoranthusemortisreborn.config.server.necraw.spawn_weight").defineInRange("necraw.spawn_weight", 30, 0, 10000);
         necrawFasciiMinGroupSize = builder.comment(" Minimum Number of mobs that will Spawn Together in a Group.\n Set to 0 to disable spawns.\n Default: 1").translation("rigoranthusemortisreborn.config.server.necraw.min_group_size").defineInRange("necraw.min_group_size", 1, 0, 100);
         necrawFasciiMaxGroupSize = builder.comment(" Maximum Number of mobs that will Spawn Together in a Group.\n Set to 0 to disable spawns.\n Default: 3").translation("rigoranthusemortisreborn.config.server.necraw.max_group_size").defineInRange("necraw.max_group_size", 3, 0, 100);
@@ -389,7 +403,6 @@ public class Config {
     private static void setupBiomeConfig(ForgeConfigSpec.Builder builder) {
         verdurousWoodlandsSpawnWeight = builder.comment(" How likely Verdurous Woodlands Biome is to Spawn.\n [Set to 0 to Disable Biome Generation]").translation("rigoranthusemortisreborn.config.server.biome.verdurous_woodlands_spawn_weight").defineInRange("biome.verdurous_woodlands_spawn_weight", 10, 0, 1000);
         verdurousFieldsSpawnWeight = builder.comment(" How likely Verdurous Fields Biome is to Spawn.\n [Set to 0 to Disable Biome Generation]").translation("rigoranthusemortisreborn.config.server.biome.verdurous_fields_spawn_weight").defineInRange("biome.verdurous_fields_spawn_weight", 8, 0, 1000);
-//        bambooSpawnWeight = builder.comment(" Spawn Weight of Bamboo in the Verdurous Woodlands Biome.\n [Set to 0 to Disable Bamboo Generation]").translation("rigoranthusemortisreborn.config.server.biome.bamboo_spawn_weight").defineInRange("biome.bamboo_spawn_weight", 50, 0, 1000);
         jessicSpawnWeight = builder.comment(" Spawn Weight of Jessic Trees in Verdurous Woodlands Biome.\n [Set to 0 to Disable Generation]").translation("rigoranthusemortisreborn.config.server.jessic.jessic_spawn_weight").defineInRange("jessic.jessic_spawn_weight", 10, 0, 1000);
         loomingJessicSpawnWeight = builder.comment(" Spawn Weight of Looming Jessic Trees in Verdurous Woodlands Biome.\n [Set to 0 to Disable Generation]").translation("rigoranthusemortisreborn.config.server.jessic.looming_jessic_spawn_weight").defineInRange("jessic.looming_jessic_spawn_weight", 8, 0, 1000);
         megaJessicSpawnWeight = builder.comment(" Spawn Weight of Mega Jessic Trees in Verdurous Woodlands Biome.\n [Set to 0 to Disable Generation]").translation("rigoranthusemortisreborn.config.server.jessic.mega_jessic_spawn_weight").defineInRange("jessic.mega_jessic_spawn_weight", 5, 0, 1000);
@@ -412,6 +425,43 @@ public class Config {
     }
 
     private static void setupWeaponConfig(ForgeConfigSpec.Builder builder) {
+        anduril_speed = builder.comment(" Default: -1.8").translation("rigoranthusemortisreborn.config.server.anduril.speed").defineInRange("anduril.speed", -1.8, -1000.0, 1000);
+        anduril_damage = builder.comment(" Default: 8").translation("rigoranthusemortisreborn.config.server.anduril.damage").defineInRange("anduril.damage", 8, 0, 1000);
+        anduril_durability = builder.comment(" Default: 400").translation("rigoranthusemortisreborn.config.server.anduril.durability").defineInRange("anduril.durability", 400, 0, 100000);
+        anduril_fire_duration = builder.comment(" When hitting with a Crit, how long are enemies set on fire?\n Default: 3 seconds").translation("rigoranthusemortisreborn.config.server.anduril.fire_duration").defineInRange("anduril.fire_duration", 3, 0, 100000);
+
+        morrai_speed = builder.comment(" Default: -2.2").translation("rigoranthusemortisreborn.config.server.morrai.speed").defineInRange("morrai.speed", -2.2, -1000.0, 1000);
+        morrai_damage = builder.comment(" Default: 6").translation("rigoranthusemortisreborn.config.server.morrai.damage").defineInRange("morrai.damage", 6, 0, 1000);
+        morrai_durability = builder.comment(" Default: 300").translation("rigoranthusemortisreborn.config.server.morrai.durability").defineInRange("morrai.durability", 300, 0, 100000);
+
+        razortooth_kunai_damage = builder.comment(" Default: 3").translation("rigoranthusemortisreborn.config.server.kunai.damage").defineInRange("kunai.damage", 3, 0, 1000);
+        razortooth_kunai_velocity = builder.comment(" How fast the weapon travels when thrown\n Default: 1.5").translation("rigoranthusemortisreborn.config.server.kunai.velocity").defineInRange("kunai.velocity", 1.5, 0.0, 1000.0);
+        razortooth_kunai_inaccuracy = builder.comment(" Higher number = Less accurate\n Default: 2.4").translation("rigoranthusemortisreborn.config.server.kunai.inaccuracy").defineInRange("kunai.inaccuracy", 2.4, 0, 100000);
+
+        throwing_knife_damage = builder.comment(" Default: 5").translation("rigoranthusemortisreborn.config.server.throwing_knife.damage").defineInRange("throwing_knife.damage", 5, 0, 1000);
+        throwing_knife_velocity = builder.comment(" How fast the weapon travels when thrown\n Default: 1.2").translation("rigoranthusemortisreborn.config.server.throwing_knife.velocity").defineInRange("throwing_knife.velocity", 1.2, 0.0, 1000.0);
+        throwing_knife_inaccuracy = builder.comment(" Higher number = Less accurate\n Default: 2.8").translation("rigoranthusemortisreborn.config.server.throwing_knife.inaccuracy").defineInRange("throwing_knife.inaccuracy", 2.8, 0, 100000);
+
+        razortooth_frisbee_damage = builder.comment(" Default: 5").translation("rigoranthusemortisreborn.config.server.razortooth_frisbee.damage").defineInRange("razortooth_frisbee.damage", 5, 0, 1000);
+        razortooth_frisbee_velocity = builder.comment(" How fast the weapon travels when thrown\n Default: 1.4").translation("rigoranthusemortisreborn.config.server.razortooth_frisbee.velocity").defineInRange("razortooth_frisbee.velocity", 1.4, 0.0, 1000.0);
+        razortooth_frisbee_inaccuracy = builder.comment(" Higher number = Less accurate\n Default: 1.0").translation("rigoranthusemortisreborn.config.server.razortooth_frisbee.inaccuracy").defineInRange("razortooth_frisbee.inaccuracy", 1.0, 0, 100000);
+        razortooth_frisbee_duration = builder.comment(" How long, in ticks, it will take for the weapon to either disappear, or return to the player once it has been thrown\n Default: 70").translation("rigoranthusemortisreborn.config.server.razortooth_frisbee.duration").defineInRange("razortooth_frisbee.duration", 70, 0, 100000);
+        razortooth_frisbee_durability = builder.comment(" Default: 250").translation("rigoranthusemortisreborn.config.server.razortooth_frisbee.durability").defineInRange("razortooth_frisbee.durability", 250, 0, 100000);
+
+        ricochet_round_damage = builder.comment(" Default: 4").translation("rigoranthusemortisreborn.config.server.ricochet_round.damage").defineInRange("ricochet_round.damage", 4, 0, 1000);
+        ricochet_round_velocity = builder.comment(" How fast the weapon travels when thrown\n Default: 1.5").translation("rigoranthusemortisreborn.config.server.ricochet_round.velocity").defineInRange("ricochet_round.velocity", 1.5, 0.0, 1000.0);
+        ricochet_round_inaccuracy = builder.comment(" Higher number = Less accurate\n Default: 1.0").translation("rigoranthusemortisreborn.config.server.ricochet_round.inaccuracy").defineInRange("ricochet_round.inaccuracy", 1.0, 0, 100000);
+        ricochet_round_duration = builder.comment(" How long, in ticks, it will take for the weapon to either disappear, or return to the player once it has been thrown.\n Default: 30").translation("rigoranthusemortisreborn.config.server.ricochet_round.duration").defineInRange("ricochet_round.duration", 30, 0, 100000);
+
+        ghastly_scepter_speed = builder.comment(" Default: -1.5").translation("rigoranthusemortisreborn.config.server.ghastly_scepter.speed").defineInRange("ghastly_scepter.speed", -1.5, -1000.0, 1000);
+        ghastly_scepter_damage = builder.comment(" Default: 8").translation("rigoranthusemortisreborn.config.server.ghastly_scepter.damage").defineInRange("ghastly_scepter.damage", 8, 0, 1000);
+        ghastly_scepter_durability = builder.comment(" Default: 500").translation("rigoranthusemortisreborn.config.server.ghastly_scepter.durability").defineInRange("ghastly_scepter.durability", 500, 0, 100000);
+
+        cry_of_desperation_speed = builder.comment(" Default: -2.5").translation("rigoranthusemortisreborn.config.server.cry_of_desperation.speed").defineInRange("cry_of_desperation.speed", -2.5, -1000.0, 1000);
+        cry_of_desperation_damage = builder.comment(" Default: 8").translation("rigoranthusemortisreborn.config.server.cry_of_desperation.damage").defineInRange("cry_of_desperation.damage", 8, 0, 1000);
+        cry_of_desperation_durability = builder.comment(" Default: 50").translation("rigoranthusemortisreborn.config.server.cry_of_desperation.durability").defineInRange("cry_of_desperation.durability", 50, 0, 100000);
+        enable_hellfire_rain = builder.comment(" Enable or Disable the ability for this weapon to call forth a rain of hellfire.\n Default: true").translation("rigoranthusemortisreborn.config.server.cry_of_desperation.enable_hellfire").define("cry_of_desperation.enable_hellfire", true);
+
         bone_spear_speed = builder.comment(" Default: 9.0").translation("rigoranthusemortisreborn.config.server.spear.speed").defineInRange("spear.speed", 9.0, 0.0, 1000);
         bone_spear_damage = builder.comment(" Default: 4.0").translation("rigoranthusemortisreborn.config.server.spear.damage").defineInRange("spear.damage", 2, 0, 1000);
         bone_tier_durability = builder.comment(" Default: 230").translation("rigoranthusemortisreborn.config.server.bone_tier.durability").defineInRange("bone_tier.durability", 230, 0, 100000);
@@ -691,124 +741,72 @@ public class Config {
 
     public static void refreshServer() {
         RigoranthusEmortisReborn.LOGGER.debug("Refreshing Server Config");
-        Config.DISABLE_HUNGER.get();                          Config.CANIS_PUPS_GET_PARENT_LEVELS.get();
-        Config.STARTING_ITEMS.get();                          Config.CANIS_GENDER.get();
-        Config.enableUnfiredBricks.get();                     Config.enableNetheriteAdditions.get();
-        Config.enableApogeanArmorClimmbingEffect.get();       Config.enableArmorSetBonuses.get();
-        Config.enableTreeGeneration.get();                    Config.enableBoneWeapons.get();
-        Config.enableModdedOreFragments.get();                Config.enableHammersAndVanillaOreFragments.get();
-        Config.soulCoalBurnTime.get();                        Config.enableSoulCoal.get();
-        Config.bone_spear_speed.get();                        Config.apogean_axe_speed.get();
-        Config.bone_spear_damage.get();                       Config.apogean_axe_damage.get();
-        Config.bone_tier_durability.get();                    Config.apogean_sword_speed.get();
-        Config.bone_tier_speed.get();                         Config.apogean_sword_damage.get();
-        Config.bone_tier_damage.get();                        Config.apogean_tier_durability.get();
-        Config.bone_tier_enchantability.get();                Config.apogean_tier_speed.get();
-        Config.bone_bow_projectile_range.get();               Config.apogean_tier_damage.get();
-        Config.bone_bow_durability.get();                     Config.apogean_tier_enchantability.get();
-        Config.aqueous_axe_speed.get();                       Config.atrophying_axe_speed.get();
-        Config.aqueous_axe_damage.get();                      Config.atrophying_axe_damage.get();
-        Config.aqueous_sword_speed.get();                     Config.atrophying_sword_speed.get();
-        Config.aqueous_sword_damage.get();                    Config.atrophying_sword_damage.get();
-        Config.aqueous_tier_durability.get();                 Config.atrophying_tier_durability.get();
-        Config.aqueous_tier_speed.get();                      Config.atrophying_tier_speed.get();
-        Config.aqueous_tier_damage.get();                     Config.atrophying_tier_damage.get();
-        Config.aqueous_tier_enchantability.get();             Config.atrophying_tier_enchantability.get();
-        Config.incorporeal_axe_speed.get();                   Config.infernal_axe_speed.get();
-        Config.incorporeal_axe_damage.get();                  Config.infernal_axe_damage.get();
-        Config.incorporeal_sword_speed.get();                 Config.infernal_sword_damage.get();
-        Config.incorporeal_sword_damage.get();                Config.infernal_sword_speed.get();
-        Config.incorporeal_tier_durability.get();             Config.infernal_tier_durability.get();
-        Config.incorporeal_tier_speed.get();                  Config.infernal_tier_speed.get();
-        Config.incorporeal_tier_damage.get();                 Config.infernal_tier_damage.get();
-        Config.incorporeal_tier_enchantability.get();         Config.infernal_tier_enchantability.get();
-        Config.opulent_axe_speed.get();                       Config.pernicious_axe_speed.get();
-        Config.opulent_axe_damage.get();                      Config.pernicious_axe_damage.get();
-        Config.opulent_sword_speed.get();                     Config.pernicious_sword_speed.get();
-        Config.opulent_sword_damage.get();                    Config.pernicious_sword_damage.get();
-        Config.opulent_tier_durability.get();                 Config.pernicious_tier_durability.get();
-        Config.opulent_tier_speed.get();                      Config.pernicious_tier_speed.get();
-        Config.opulent_tier_damage.get();                     Config.pernicious_tier_damage.get();
-        Config.opulent_tier_enchantability.get();             Config.pernicious_tier_enchantability.get();
-        Config.phantasmal_sword_speed.get();                  Config.remex_sword_speed.get();
-        Config.phantasmal_sword_damage.get();                 Config.remex_sword_damage.get();
-        Config.phantasmal_axe_speed.get();                    Config.remex_axe_speed.get();
-        Config.phantasmal_axe_damage.get();                   Config.remex_axe_damage.get();
-        Config.phantasmal_tier_durability.get();              Config.remex_tier_durability.get();
-        Config.phantasmal_tier_speed.get();                   Config.remex_tier_speed.get();
-        Config.phantasmal_tier_damage.get();                  Config.remex_tier_damage.get();
-        Config.phantasmal_tier_enchantability.get();          Config.remex_tier_enchantability.get();
-        Config.apogean_boots_damage_reduction.get();          Config.aqueous_boots_damage_reduction.get();
-        Config.apogean_leggings_damage_reduction.get();       Config.aqueous_leggings_damage_reduction.get();
-        Config.apogean_chestplate_damage_reduction.get();     Config.aqueous_chestplate_damage_reduction.get();
-        Config.apogean_helmet_damage_reduction.get();         Config.aqueous_helmet_damage_reduction.get();
-        Config.apogean_durability_multiplier.get();           Config.aqueous_durability_multiplier.get();
-        Config.apogean_armor_enchantability.get();            Config.aqueous_armor_enchantability.get();
-        Config.apogean_toughness.get();                       Config.aqueous_toughness.get();
-        Config.apogean_knockback_resistance.get();            Config.aqueous_knockback_resistance.get();
-        Config.atrophying_boots_damage_reduction.get();       Config.incorporeal_boots_damage_reduction.get();
-        Config.atrophying_leggings_damage_reduction.get();    Config.incorporeal_leggings_damage_reduction.get();
-        Config.atrophying_chestplate_damage_reduction.get();  Config.incorporeal_chestplate_damage_reduction.get();
-        Config.atrophying_helmet_damage_reduction.get();      Config.incorporeal_helmet_damage_reduction.get();
-        Config.atrophying_durability_multiplier.get();        Config.incorporeal_durability_multiplier.get();
-        Config.atrophying_armor_enchantability.get();         Config.incorporeal_armor_enchantability.get();
-        Config.atrophying_toughness.get();                    Config.incorporeal_toughness.get();
-        Config.atrophying_knockback_resistance.get();         Config.incorporeal_knockback_resistance.get();
-        Config.infernal_boots_damage_reduction.get();         Config.opulent_boots_damage_reduction.get();
-        Config.infernal_leggings_damage_reduction.get();      Config.opulent_leggings_damage_reduction.get();
-        Config.infernal_chestplate_damage_reduction.get();    Config.opulent_chestplate_damage_reduction.get();
-        Config.infernal_helmet_damage_reduction.get();        Config.opulent_helmet_damage_reduction.get();
-        Config.infernal_durability_multiplier.get();          Config.opulent_durability_multiplier.get();
-        Config.infernal_armor_enchantability.get();           Config.opulent_armor_enchantability.get();
-        Config.infernal_toughness.get();                      Config.opulent_toughness.get();
-        Config.infernal_knockback_resistance.get();           Config.opulent_knockback_resistance.get();
-        Config.pernicious_boots_damage_reduction.get();       Config.phantasmal_boots_damage_reduction.get();
-        Config.pernicious_leggings_damage_reduction.get();    Config.phantasmal_leggings_damage_reduction.get();
-        Config.pernicious_chestplate_damage_reduction.get();  Config.phantasmal_chestplate_damage_reduction.get();
-        Config.pernicious_helmet_damage_reduction.get();      Config.phantasmal_helmet_damage_reduction.get();
-        Config.pernicious_durability_multiplier.get();        Config.phantasmal_durability_multiplier.get();
-        Config.pernicious_armor_enchantability.get();         Config.phantasmal_armor_enchantability.get();
-        Config.pernicious_toughness.get();                    Config.phantasmal_toughness.get();
-        Config.pernicious_knockback_resistance.get();         Config.phantasmal_knockback_resistance.get();
-        Config.remex_boots_damage_reduction.get();            Config.remex_knockback_resistance.get();
-        Config.remex_leggings_damage_reduction.get();         Config.remex_chestplate_damage_reduction.get();
-        Config.remex_helmet_damage_reduction.get();           Config.dweller_thorax_damage_reduction.get();
-        Config.remex_durability_multiplier.get();             Config.dweller_thorax_durability_multiplier.get();
-        Config.remex_armor_enchantability.get();              Config.dweller_thorax_enchantability.get();
-        Config.remex_toughness.get();                         Config.dweller_thorax_toughness.get();
-        Config.stone_hammer_durability.get();                 Config.iron_hammer_durability.get();
-        Config.gold_hammer_durability.get();                  Config.diamond_hammer_durability.get();
-        Config.abyssalite_hammer_durability.get();            Config.maxVeinSize.get();
-        Config.minOreHeight.get();                            Config.maxOreHeight.get();
-        Config.verdurousWoodlandsSpawnWeight.get();           Config.verdurousFieldsSpawnWeight.get();
-        Config.jessicSpawnWeight.get();                       Config.azulorealSpawnWeight.get();
-        Config.loomingJessicSpawnWeight.get();                Config.loomingAzulorealSpawnWeight.get();
-        Config.megaJessicSpawnWeight.get();                   Config.megaAzulorealSpawnWeight.get();
-        Config.allowCadaverNetherSpawns.get();                Config.allowNecrawNetherSpawns.get();
-        Config.languidDwellerMaxSpawnHeight.get();
-        Config.languidDwellerMovementSpeed.get();             Config.feralCanisChordataMovementSpeed.get();
-        Config.languidDwellerAttackDamage.get();              Config.feralCanisChordataAttackDamage.get();
-        Config.languidDwellerKnockbackResistance.get();       Config.feralCanisChordataKnockbackResistance.get();
-        Config.languidDwellerAttackKnockback.get();           Config.feralCanisChordataAttackKnockback.get();
-        Config.languidDwellerArmorValue.get();                Config.feralCanisChordataArmorValue.get();
-        Config.languidDwellerMaxHealth.get();                 Config.feralCanisChordataMaxHealth.get();
-        Config.languidDwellerSpawnWeight.get();               Config.feralCanisChordataSpawnWeight.get();
-        Config.languidDwellerMinGroupSize.get();              Config.feralCanisChordataMinGroupSize.get();
-        Config.languidDwellerMaxGroupSize.get();              Config.feralCanisChordataMaxGroupSize.get();
-        Config.sunderedCadaverMovementSpeed.get();            Config.necrawFasciiMovementSpeed.get();
-        Config.sunderedCadaverAttackDamage.get();             Config.necrawFasciiAttackDamage.get();
-        Config.sunderedCadaverKnockbackResistance.get();      Config.necrawFasciiKnockbackResistance.get();
-        Config.sunderedCadaverAttackKnockback.get();          Config.necrawFasciiAttackKnockback.get();
-        Config.sunderedCadaverArmorValue.get();               Config.necrawFasciiArmorValue.get();
-        Config.sunderedCadaverMaxHealth.get();                Config.necrawFasciiMaxHealth.get();
-        Config.sunderedCadaverSpawnWeight.get();              Config.necrawFasciiSpawnWeight.get();
-        Config.sunderedCadaverMinGroupSize.get();             Config.necrawFasciiMinGroupSize.get();
-        Config.sunderedCadaverMaxGroupSize.get();             Config.necrawFasciiMaxGroupSize.get();
-        Config.dweller_thorax_knockback_resistance.get();     Config.SPAWN_ORE.get();
-        Config.SPAWN_BERRIES.get();                           Config.REGEN_INTERVAL.get();
-        Config.INIT_MAX_DOMINION.get();                       Config.INIT_DOMINION_REGEN.get();
-        Config.DOMINION_BOOST_BONUS.get();                    Config.DOMINION_REGEN_POTION.get();
-        Config.DOMINION_REGEN_ENCHANT_BONUS.get();
+        Config.DISABLE_HUNGER.get();                          Config.CANIS_PUPS_GET_PARENT_LEVELS.get();            Config.STARTING_ITEMS.get();                          Config.CANIS_GENDER.get();
+        Config.enableUnfiredBricks.get();                     Config.enableNetheriteAdditions.get();                Config.enableApogeanArmorClimmbingEffect.get();       Config.enableArmorSetBonuses.get();
+        Config.enableTreeGeneration.get();                    Config.enableBoneWeapons.get();                       Config.enableModdedOreFragments.get();                Config.enableHammersAndVanillaOreFragments.get();
+        Config.soulCoalBurnTime.get();                        Config.enableSoulCoal.get();                          Config.bone_spear_speed.get();                        Config.apogean_axe_speed.get();
+        Config.bone_spear_damage.get();                       Config.apogean_axe_damage.get();                      Config.bone_tier_durability.get();                    Config.apogean_sword_speed.get();
+        Config.bone_tier_speed.get();                         Config.apogean_sword_damage.get();                    Config.bone_tier_damage.get();                        Config.apogean_tier_durability.get();
+        Config.bone_tier_enchantability.get();                Config.apogean_tier_speed.get();                      Config.bone_bow_projectile_range.get();               Config.apogean_tier_damage.get();
+        Config.bone_bow_durability.get();                     Config.apogean_tier_enchantability.get();             Config.aqueous_axe_speed.get();                       Config.atrophying_axe_speed.get();
+        Config.aqueous_axe_damage.get();                      Config.atrophying_axe_damage.get();                   Config.aqueous_sword_speed.get();                     Config.atrophying_sword_speed.get();
+        Config.aqueous_sword_damage.get();                    Config.atrophying_sword_damage.get();                 Config.aqueous_tier_durability.get();                 Config.atrophying_tier_durability.get();
+        Config.aqueous_tier_speed.get();                      Config.atrophying_tier_speed.get();                   Config.aqueous_tier_damage.get();                     Config.atrophying_tier_damage.get();
+        Config.aqueous_tier_enchantability.get();             Config.atrophying_tier_enchantability.get();          Config.incorporeal_axe_speed.get();                   Config.infernal_axe_speed.get();
+        Config.incorporeal_axe_damage.get();                  Config.infernal_axe_damage.get();                     Config.incorporeal_sword_speed.get();                 Config.infernal_sword_damage.get();
+        Config.incorporeal_sword_damage.get();                Config.infernal_sword_speed.get();                    Config.incorporeal_tier_durability.get();             Config.infernal_tier_durability.get();
+        Config.incorporeal_tier_speed.get();                  Config.infernal_tier_speed.get();                     Config.incorporeal_tier_damage.get();                 Config.infernal_tier_damage.get();
+        Config.incorporeal_tier_enchantability.get();         Config.infernal_tier_enchantability.get();            Config.opulent_axe_speed.get();                       Config.pernicious_axe_speed.get();
+        Config.opulent_axe_damage.get();                      Config.pernicious_axe_damage.get();                   Config.opulent_sword_speed.get();                     Config.pernicious_sword_speed.get();
+        Config.opulent_sword_damage.get();                    Config.pernicious_sword_damage.get();                 Config.opulent_tier_durability.get();                 Config.pernicious_tier_durability.get();
+        Config.opulent_tier_speed.get();                      Config.pernicious_tier_speed.get();                   Config.opulent_tier_damage.get();                     Config.pernicious_tier_damage.get();
+        Config.opulent_tier_enchantability.get();             Config.pernicious_tier_enchantability.get();          Config.phantasmal_sword_speed.get();                  Config.remex_sword_speed.get();
+        Config.phantasmal_sword_damage.get();                 Config.remex_sword_damage.get();                      Config.phantasmal_axe_speed.get();                    Config.remex_axe_speed.get();
+        Config.phantasmal_axe_damage.get();                   Config.remex_axe_damage.get();                        Config.phantasmal_tier_durability.get();              Config.remex_tier_durability.get();
+        Config.phantasmal_tier_speed.get();                   Config.remex_tier_speed.get();                        Config.phantasmal_tier_damage.get();                  Config.remex_tier_damage.get();
+        Config.phantasmal_tier_enchantability.get();          Config.remex_tier_enchantability.get();               Config.apogean_boots_damage_reduction.get();          Config.aqueous_boots_damage_reduction.get();
+        Config.apogean_leggings_damage_reduction.get();       Config.aqueous_leggings_damage_reduction.get();       Config.apogean_chestplate_damage_reduction.get();     Config.aqueous_chestplate_damage_reduction.get();
+        Config.apogean_helmet_damage_reduction.get();         Config.aqueous_helmet_damage_reduction.get();         Config.apogean_durability_multiplier.get();           Config.aqueous_durability_multiplier.get();
+        Config.apogean_armor_enchantability.get();            Config.aqueous_armor_enchantability.get();            Config.apogean_toughness.get();                       Config.aqueous_toughness.get();
+        Config.apogean_knockback_resistance.get();            Config.aqueous_knockback_resistance.get();            Config.atrophying_boots_damage_reduction.get();       Config.incorporeal_boots_damage_reduction.get();
+        Config.atrophying_leggings_damage_reduction.get();    Config.incorporeal_leggings_damage_reduction.get();   Config.atrophying_chestplate_damage_reduction.get();  Config.incorporeal_chestplate_damage_reduction.get();
+        Config.atrophying_helmet_damage_reduction.get();      Config.incorporeal_helmet_damage_reduction.get();     Config.atrophying_durability_multiplier.get();        Config.incorporeal_durability_multiplier.get();
+        Config.atrophying_armor_enchantability.get();         Config.incorporeal_armor_enchantability.get();        Config.atrophying_toughness.get();                    Config.incorporeal_toughness.get();
+        Config.atrophying_knockback_resistance.get();         Config.incorporeal_knockback_resistance.get();        Config.infernal_boots_damage_reduction.get();         Config.opulent_boots_damage_reduction.get();
+        Config.infernal_leggings_damage_reduction.get();      Config.opulent_leggings_damage_reduction.get();       Config.infernal_chestplate_damage_reduction.get();    Config.opulent_chestplate_damage_reduction.get();
+        Config.infernal_helmet_damage_reduction.get();        Config.opulent_helmet_damage_reduction.get();         Config.infernal_durability_multiplier.get();          Config.opulent_durability_multiplier.get();
+        Config.infernal_armor_enchantability.get();           Config.opulent_armor_enchantability.get();            Config.infernal_toughness.get();                      Config.opulent_toughness.get();
+        Config.infernal_knockback_resistance.get();           Config.opulent_knockback_resistance.get();            Config.pernicious_boots_damage_reduction.get();       Config.phantasmal_boots_damage_reduction.get();
+        Config.pernicious_leggings_damage_reduction.get();    Config.phantasmal_leggings_damage_reduction.get();    Config.pernicious_chestplate_damage_reduction.get();  Config.phantasmal_chestplate_damage_reduction.get();
+        Config.pernicious_helmet_damage_reduction.get();      Config.phantasmal_helmet_damage_reduction.get();      Config.pernicious_durability_multiplier.get();        Config.phantasmal_durability_multiplier.get();
+        Config.pernicious_armor_enchantability.get();         Config.phantasmal_armor_enchantability.get();         Config.pernicious_toughness.get();                    Config.phantasmal_toughness.get();
+        Config.pernicious_knockback_resistance.get();         Config.phantasmal_knockback_resistance.get();         Config.remex_boots_damage_reduction.get();            Config.remex_knockback_resistance.get();
+        Config.remex_leggings_damage_reduction.get();         Config.remex_chestplate_damage_reduction.get();       Config.remex_helmet_damage_reduction.get();           Config.dweller_thorax_damage_reduction.get();
+        Config.remex_durability_multiplier.get();             Config.dweller_thorax_durability_multiplier.get();    Config.remex_armor_enchantability.get();              Config.dweller_thorax_enchantability.get();
+        Config.remex_toughness.get();                         Config.dweller_thorax_toughness.get();                Config.stone_hammer_durability.get();                 Config.iron_hammer_durability.get();
+        Config.gold_hammer_durability.get();                  Config.diamond_hammer_durability.get();               Config.abyssalite_hammer_durability.get();            Config.maxVeinSize.get();
+        Config.minOreHeight.get();                            Config.maxOreHeight.get();                            Config.verdurousWoodlandsSpawnWeight.get();           Config.verdurousFieldsSpawnWeight.get();
+        Config.jessicSpawnWeight.get();                       Config.azulorealSpawnWeight.get();                    Config.loomingJessicSpawnWeight.get();                Config.loomingAzulorealSpawnWeight.get();
+        Config.megaJessicSpawnWeight.get();                   Config.megaAzulorealSpawnWeight.get();                Config.allowCadaverNetherSpawns.get();                Config.allowNecrawNetherSpawns.get();
+        Config.languidDwellerMaxSpawnHeight.get();            Config.languidDwellerMovementSpeed.get();             Config.feralCanisChordataMovementSpeed.get();
+        Config.languidDwellerAttackDamage.get();              Config.feralCanisChordataAttackDamage.get();          Config.languidDwellerKnockbackResistance.get();       Config.feralCanisChordataKnockbackResistance.get();
+        Config.languidDwellerAttackKnockback.get();           Config.feralCanisChordataAttackKnockback.get();       Config.languidDwellerArmorValue.get();                Config.feralCanisChordataArmorValue.get();
+        Config.languidDwellerMaxHealth.get();                 Config.feralCanisChordataMaxHealth.get();             Config.languidDwellerSpawnWeight.get();               Config.feralCanisChordataSpawnWeight.get();
+        Config.languidDwellerMinGroupSize.get();              Config.feralCanisChordataMinGroupSize.get();          Config.languidDwellerMaxGroupSize.get();              Config.feralCanisChordataMaxGroupSize.get();
+        Config.sunderedCadaverMovementSpeed.get();            Config.necrawFasciiMovementSpeed.get();               Config.sunderedCadaverAttackDamage.get();             Config.necrawFasciiAttackDamage.get();
+        Config.sunderedCadaverKnockbackResistance.get();      Config.necrawFasciiKnockbackResistance.get();         Config.sunderedCadaverAttackKnockback.get();          Config.necrawFasciiAttackKnockback.get();
+        Config.sunderedCadaverArmorValue.get();               Config.necrawFasciiArmorValue.get();                  Config.sunderedCadaverMaxHealth.get();                Config.necrawFasciiMaxHealth.get();
+        Config.sunderedCadaverSpawnWeight.get();              Config.necrawFasciiSpawnWeight.get();                 Config.sunderedCadaverMinGroupSize.get();             Config.necrawFasciiMinGroupSize.get();
+        Config.sunderedCadaverMaxGroupSize.get();             Config.necrawFasciiMaxGroupSize.get();                Config.dweller_thorax_knockback_resistance.get();     Config.SPAWN_ORE.get();
+        Config.SPAWN_BERRIES.get();                           Config.REGEN_INTERVAL.get();                          Config.INIT_MAX_DOMINION.get();                       Config.INIT_DOMINION_REGEN.get();
+        Config.DOMINION_BOOST_BONUS.get();                    Config.DOMINION_REGEN_POTION.get();                   Config.DOMINION_REGEN_ENCHANT_BONUS.get();            Config.morrai_durability.get();
+        Config.morrai_damage.get();                           Config.morrai_speed.get();                            Config.anduril_durability.get();                      Config.anduril_fire_duration.get();
+        Config.anduril_damage.get();                          Config.anduril_speed.get();                           Config.razortooth_kunai_velocity.get();               Config.razortooth_kunai_inaccuracy.get();
+        Config.razortooth_kunai_damage.get();                 Config.throwing_knife_velocity.get();                 Config.throwing_knife_damage.get();                   Config.throwing_knife_inaccuracy.get();
+        Config.ghastly_scepter_speed.get();                   Config.ghastly_scepter_damage.get();                  Config.ghastly_scepter_durability.get();              Config.razortooth_frisbee_duration.get();
+        Config.razortooth_frisbee_velocity.get();             Config.razortooth_frisbee_inaccuracy.get();           Config.razortooth_frisbee_damage.get();               Config.razortooth_frisbee_durability.get();
+        Config.ricochet_round_duration.get();                 Config.ricochet_round_inaccuracy.get();               Config.ricochet_round_velocity.get();                 Config.ricochet_round_damage.get();
+        Config.cry_of_desperation_durability.get();           Config.enable_hellfire_rain.get();                    Config.cry_of_desperation_speed.get();                Config.cry_of_desperation_damage.get();
         //Config.SUMMON_FAMILIAR_DOMINION_COST.get();  Config.TIER_MAX_BONUS.get();  Config.GLYPH_REGEN_BONUS.get();  Config.GLYPH_MAX_BONUS.get();
     }
 

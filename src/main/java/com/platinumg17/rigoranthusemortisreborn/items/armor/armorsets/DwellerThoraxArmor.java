@@ -16,6 +16,7 @@ import net.minecraft.item.ArmorItem;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.EffectInstance;
+import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -26,22 +27,29 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.List;
 
+import static com.platinumg17.rigoranthusemortisreborn.core.init.Registration.BONE_PROP;
+import static com.platinumg17.rigoranthusemortisreborn.items.armor.RigoranthusArmorMaterial.DWELLER;
+
 public class DwellerThoraxArmor extends ArmorItem {
 //    private boolean previousEquip = false;
 
-    public DwellerThoraxArmor(IArmorMaterial materialIn, EquipmentSlotType slot, Properties builder) {
-        super(materialIn, slot, builder);
+    public DwellerThoraxArmor(Properties properties) {
+        super(DWELLER, EquipmentSlotType.CHEST, properties);
     }
 
-    public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        super.appendHoverText(stack, worldIn, tooltip, flagIn);
+    public static IFormattableTextComponent newTip(String tip) {
+        return new TranslationTextComponent("tooltip.rigoranthusemortisreborn" + tip).setStyle(Style.EMPTY);
+    }
+
+    public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tip, ITooltipFlag flagIn) {
+        super.appendHoverText(stack, worldIn, tip, flagIn);
         if (Screen.hasShiftDown()) {
-            tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".dweller_thorax").setStyle(Style.EMPTY));
-            tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".dweller_thorax2").setStyle(Style.EMPTY));
-            tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".dweller_thorax3").setStyle(Style.EMPTY));
-            tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".dweller_thorax4").setStyle(Style.EMPTY));
+            tip.add(newTip(".dweller_thorax"));
+            tip.add(newTip(".dweller_thorax2"));
+            tip.add(newTip(".dweller_thorax3"));
+            tip.add(newTip(".dweller_thorax4"));
         } else {
-            tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".hold_shift").setStyle(Style.EMPTY));
+            tip.add(newTip(".hold_shift"));
         }
     }
     @Override

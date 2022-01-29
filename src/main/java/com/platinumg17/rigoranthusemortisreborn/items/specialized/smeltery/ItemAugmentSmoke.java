@@ -11,9 +11,9 @@ import java.util.List;
 
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 
-public class ItemAugmentSmoking extends ItemAugment {
+public class ItemAugmentSmoke extends ItemAugment {
 
-    public ItemAugmentSmoking(Properties properties) {
+    public ItemAugmentSmoke(Properties properties) {
         super(properties);
     }
 
@@ -21,7 +21,7 @@ public class ItemAugmentSmoking extends ItemAugment {
     @Override
     public void appendHoverText(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".augment_smoking_pro").setStyle(Style.EMPTY.applyFormat((TextFormatting.GREEN))));
-        tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".augment_smoking_con").setStyle(Style.EMPTY.applyFormat(TextFormatting.DARK_RED)));
+        tooltip.add(new TranslationTextComponent("tooltip.rigoranthusemortisreborn.augment_smoking_pro").setStyle(Style.EMPTY.applyFormat((TextFormatting.GREEN))));
+        tooltip.add(new TranslationTextComponent("tooltip.rigoranthusemortisreborn.augment_smoking_con").setStyle(Style.EMPTY.applyFormat(TextFormatting.DARK_RED)));
     }
 }

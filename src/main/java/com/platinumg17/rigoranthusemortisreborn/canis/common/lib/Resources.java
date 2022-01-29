@@ -125,11 +125,11 @@ public class Resources {
 
     public static final ResourceLocation COLLAR_DEFAULT = getEntity("canis", "canis_collar");
     public static final ResourceLocation COLLAR_GOLDEN = getEntity("canis", "canis_collar_gold");
-    public static final ResourceLocation GLASSES_SUNGLASSES = getEntity("canis", "cool_guy_sunglasses");
+    public static final ResourceLocation GLASSES_SUNGLASSES = getEntity("canis", "accessories/shades");
     public static final ResourceLocation BOW_TIE = getEntity("canis", "canis_bowtie");
     public static final ResourceLocation CAPE = getEntity("canis", "canis_cape");
     public static final ResourceLocation SKILL_SAVIOR = getEntity("canis/skills", "savior");
-    public static final ResourceLocation SKILL_CHEST = getEntity("canis", "canis_satchel");
+    public static final ResourceLocation SKILL_CHEST = getEntity("canis/skills", "canis_satchel");
 
     public static final ResourceLocation IRON_ARMOR = getCanisArmor("iron");
     public static final ResourceLocation DIAMOND_ARMOR = getCanisArmor("diamond");

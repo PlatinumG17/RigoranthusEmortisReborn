@@ -25,7 +25,7 @@ public class RigoranthusEventBusEvents {
 
     @SubscribeEvent
     public void onPlayerAttackEntityEvent(AttackEntityEvent event) {
-        if (event.getPlayer().getItemBySlot(EquipmentSlotType.HEAD).getItem() == Registration.INCORPOREAL_NETHERITE_HELMET && event.getTarget() instanceof LivingEntity) {
+        if (event.getPlayer().getItemBySlot(EquipmentSlotType.HEAD).getItem() == Registration.INCORPOREAL_N_HELMET && event.getTarget() instanceof LivingEntity) {
             float f1 = 2;
             ((LivingEntity) event.getTarget()).knockback(f1 * 0.5F, MathHelper.sin(event.getPlayer().yRot * ((float) Math.PI / 180F)), -MathHelper.cos(event.getPlayer().yRot * ((float) Math.PI / 180F)));
         }

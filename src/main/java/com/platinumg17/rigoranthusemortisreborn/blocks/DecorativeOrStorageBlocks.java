@@ -38,14 +38,14 @@ public class DecorativeOrStorageBlocks {
     /////    AZULOREAL    /////
 
     public static final RegistryObject<Block> AZULOREAL_PLANKS = HELPER.createBlock("azuloreal_planks", ()->new PlanksBlock(Properties.PLANKS), ItemGroup.TAB_BUILDING_BLOCKS);
-    public static final RegistryObject<Block> AZULOREAL_SLAB = HELPER.createBlock("azuloreal_slab", ()->new WoodSlabBlock(Properties.PLANKS), ItemGroup.TAB_BUILDING_BLOCKS);
-    public static final RegistryObject<Block> AZULOREAL_STAIRS = HELPER.createBlock("azuloreal_stairs", ()->new WoodStairsBlock(AZULOREAL_PLANKS.get().defaultBlockState(), Properties.PLANKS), ItemGroup.TAB_BUILDING_BLOCKS);
-    public static final RegistryObject<Block> AZULOREAL_PRESSURE_PLATE = HELPER.createBlock("azuloreal_pressure_plate", ()->new WoodPressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, Properties.PRESSURE_PLATE), ItemGroup.TAB_REDSTONE);
-    public static final RegistryObject<Block> AZULOREAL_FENCE = HELPER.createFuelBlock("azuloreal_fence", ()->new WoodFenceBlock(Properties.PLANKS), 300, ItemGroup.TAB_DECORATIONS);
-    public static final RegistryObject<Block> AZULOREAL_FENCE_GATE = HELPER.createFuelBlock("azuloreal_fence_gate", ()->new WoodFenceGateBlock(Properties.PLANKS), 300, ItemGroup.TAB_REDSTONE);
-    public static final RegistryObject<Block> AZULOREAL_BUTTON = HELPER.createBlock("azuloreal_button", ()->new AbnormalsWoodButtonBlock(Properties.BUTTON), ItemGroup.TAB_REDSTONE);
-    public static final RegistryObject<Block> AZULOREAL_DOOR = HELPER.createBlock("azuloreal_door", ()->new WoodDoorBlock(Properties.DOOR), ItemGroup.TAB_REDSTONE);
-    public static final RegistryObject<Block> AZULOREAL_TRAPDOOR = HELPER.createBlock("azuloreal_trapdoor", ()->new WoodTrapDoorBlock(Properties.DOOR), ItemGroup.TAB_REDSTONE);
+//    public static final RegistryObject<Block> AZULOREAL_SLAB = HELPER.createBlock("azuloreal_slab", ()->new WoodSlabBlock(Properties.PLANKS), ItemGroup.TAB_BUILDING_BLOCKS);
+//    public static final RegistryObject<Block> AZULOREAL_STAIRS = HELPER.createBlock("azuloreal_stairs", ()->new WoodStairsBlock(AZULOREAL_PLANKS.get().defaultBlockState(), Properties.PLANKS), ItemGroup.TAB_BUILDING_BLOCKS);
+//    public static final RegistryObject<Block> AZULOREAL_PRESSURE_PLATE = HELPER.createBlock("azuloreal_pressure_plate", ()->new WoodPressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, Properties.PRESSURE_PLATE), ItemGroup.TAB_REDSTONE);
+//    public static final RegistryObject<Block> AZULOREAL_FENCE = HELPER.createFuelBlock("azuloreal_fence", ()->new WoodFenceBlock(Properties.PLANKS), 300, ItemGroup.TAB_DECORATIONS);
+//    public static final RegistryObject<Block> AZULOREAL_FENCE_GATE = HELPER.createFuelBlock("azuloreal_fence_gate", ()->new WoodFenceGateBlock(Properties.PLANKS), 300, ItemGroup.TAB_REDSTONE);
+//    public static final RegistryObject<Block> AZULOREAL_BUTTON = HELPER.createBlock("azuloreal_button", ()->new AbnormalsWoodButtonBlock(Properties.BUTTON), ItemGroup.TAB_REDSTONE);
+//    public static final RegistryObject<Block> AZULOREAL_DOOR = HELPER.createBlock("azuloreal_door", ()->new WoodDoorBlock(Properties.DOOR), ItemGroup.TAB_REDSTONE);
+//    public static final RegistryObject<Block> AZULOREAL_TRAPDOOR = HELPER.createBlock("azuloreal_trapdoor", ()->new WoodTrapDoorBlock(Properties.DOOR), ItemGroup.TAB_REDSTONE);
     public static final Pair<RegistryObject<AbnormalsStandingSignBlock>, RegistryObject<AbnormalsWallSignBlock>> AZULOREAL_SIGNS = HELPER.createSignBlock("azuloreal", MaterialColor.COLOR_CYAN);
 
     public static final RegistryObject<Block> AZULOREAL_BOOKSHELF = HELPER.createCompatFuelBlock("quark", "azuloreal_bookshelf", () -> new BookshelfBlock(Properties.BOOKSHELF), 300, ItemGroup.TAB_BUILDING_BLOCKS);
@@ -61,14 +61,14 @@ public class DecorativeOrStorageBlocks {
     /////    JESSIC    /////
 
     public static final RegistryObject<Block> JESSIC_PLANKS = HELPER.createBlock("jessic_planks", ()->new PlanksBlock(Properties.PLANKS), ItemGroup.TAB_BUILDING_BLOCKS);
-    public static final RegistryObject<Block> JESSIC_SLAB = HELPER.createBlock("jessic_slab", ()->new WoodSlabBlock(Properties.PLANKS), ItemGroup.TAB_BUILDING_BLOCKS);
-    public static final RegistryObject<Block> JESSIC_STAIRS = HELPER.createBlock("jessic_stairs", ()->new WoodStairsBlock(JESSIC_PLANKS.get().defaultBlockState(), Properties.PLANKS), ItemGroup.TAB_BUILDING_BLOCKS);
-    public static final RegistryObject<Block> JESSIC_PRESSURE_PLATE = HELPER.createBlock("jessic_pressure_plate", ()->new WoodPressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, Properties.PRESSURE_PLATE), ItemGroup.TAB_REDSTONE);
-    public static final RegistryObject<Block> JESSIC_FENCE = HELPER.createFuelBlock("jessic_fence", ()->new WoodFenceBlock(Properties.PLANKS), 300, ItemGroup.TAB_DECORATIONS);
-    public static final RegistryObject<Block> JESSIC_FENCE_GATE = HELPER.createFuelBlock("jessic_fence_gate", ()->new WoodFenceGateBlock(Properties.PLANKS), 300, ItemGroup.TAB_REDSTONE);
-    public static final RegistryObject<Block> JESSIC_BUTTON = HELPER.createBlock("jessic_button", ()->new AbnormalsWoodButtonBlock(Properties.BUTTON), ItemGroup.TAB_REDSTONE);
-    public static final RegistryObject<Block> JESSIC_DOOR = HELPER.createBlock("jessic_door", ()->new WoodDoorBlock(Properties.DOOR), ItemGroup.TAB_REDSTONE);
-    public static final RegistryObject<Block> JESSIC_TRAPDOOR = HELPER.createBlock("jessic_trapdoor", ()->new WoodTrapDoorBlock(Properties.DOOR), ItemGroup.TAB_REDSTONE);
+//    public static final RegistryObject<Block> JESSIC_SLAB = HELPER.createBlock("jessic_slab", ()->new WoodSlabBlock(Properties.PLANKS), ItemGroup.TAB_BUILDING_BLOCKS);
+//    public static final RegistryObject<Block> JESSIC_STAIRS = HELPER.createBlock("jessic_stairs", ()->new WoodStairsBlock(JESSIC_PLANKS.get().defaultBlockState(), Properties.PLANKS), ItemGroup.TAB_BUILDING_BLOCKS);
+//    public static final RegistryObject<Block> JESSIC_PRESSURE_PLATE = HELPER.createBlock("jessic_pressure_plate", ()->new WoodPressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, Properties.PRESSURE_PLATE), ItemGroup.TAB_REDSTONE);
+//    public static final RegistryObject<Block> JESSIC_FENCE = HELPER.createFuelBlock("jessic_fence", ()->new WoodFenceBlock(Properties.PLANKS), 300, ItemGroup.TAB_DECORATIONS);
+//    public static final RegistryObject<Block> JESSIC_FENCE_GATE = HELPER.createFuelBlock("jessic_fence_gate", ()->new WoodFenceGateBlock(Properties.PLANKS), 300, ItemGroup.TAB_REDSTONE);
+//    public static final RegistryObject<Block> JESSIC_BUTTON = HELPER.createBlock("jessic_button", ()->new AbnormalsWoodButtonBlock(Properties.BUTTON), ItemGroup.TAB_REDSTONE);
+//    public static final RegistryObject<Block> JESSIC_DOOR = HELPER.createBlock("jessic_door", ()->new WoodDoorBlock(Properties.DOOR), ItemGroup.TAB_REDSTONE);
+//    public static final RegistryObject<Block> JESSIC_TRAPDOOR = HELPER.createBlock("jessic_trapdoor", ()->new WoodTrapDoorBlock(Properties.DOOR), ItemGroup.TAB_REDSTONE);
     public static final Pair<RegistryObject<AbnormalsStandingSignBlock>, RegistryObject<AbnormalsWallSignBlock>> JESSIC_SIGNS = HELPER.createSignBlock("jessic", MaterialColor.TERRACOTTA_MAGENTA);
 
     public static final RegistryObject<Block> JESSIC_BOOKSHELF = HELPER.createCompatFuelBlock("quark", "jessic_bookshelf", () -> new BookshelfBlock(Properties.BOOKSHELF), 300, ItemGroup.TAB_BUILDING_BLOCKS);

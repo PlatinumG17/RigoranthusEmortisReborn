@@ -35,7 +35,8 @@ public interface ICasterTool extends IScribeable, IDisplayDominion {
             spell = SpellBook.getRecipeFromTag(heldStack.getTag(), SpellBook.getMode(heldStack.getTag()));
             caster.setColor(SpellBook.getSpellColor(heldStack.getTag(), SpellBook.getMode(heldStack.getTag())));
             caster.setFlavorText(SpellBook.getSpellName(heldStack.getTag()));
-        }else if(heldStack.getItem() instanceof ICasterTool){
+        }
+        else if(heldStack.getItem() instanceof ICasterTool){
             SpellCaster heldCaster = SpellCaster.deserialize(heldStack);
             spell = heldCaster.getSpell();
             caster.setColor(heldCaster.getColor());
@@ -80,18 +81,18 @@ public interface ICasterTool extends IScribeable, IDisplayDominion {
     }
 
     default void getInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip2, ITooltipFlag flagIn) {
-        if(worldIn == null)
-            return;
-        ISpellCaster caster = getSpellCaster(stack);
-
-        if(caster.getSpell().isEmpty()){
+//        if(worldIn == null)
+//            return;
+//        ISpellCaster caster = getSpellCaster(stack);
+//
+//        if(caster.getSpell().isEmpty()){
 //            tooltip2.add(new TranslationTextComponent("rigoranthusemortisreborn.tooltip.can_inscribe"));
-            return;
-        }
-
-        Spell spell = caster.getSpell();
-        tooltip2.add(new StringTextComponent(spell.getDisplayString()));
-        if(!caster.getFlavorText().isEmpty())
-            tooltip2.add(new StringTextComponent(caster.getFlavorText()).withStyle(Style.EMPTY.withItalic(true).withColor(TextFormatting.BLUE)));
+//            return;
+//        }
+//
+//        Spell spell = caster.getSpell();
+//        tooltip2.add(new StringTextComponent(spell.getDisplayString()));
+//        if(!caster.getFlavorText().isEmpty())
+//            tooltip2.add(new StringTextComponent(caster.getFlavorText()).withStyle(Style.EMPTY.withItalic(true).withColor(TextFormatting.BLUE)));
     }
 }

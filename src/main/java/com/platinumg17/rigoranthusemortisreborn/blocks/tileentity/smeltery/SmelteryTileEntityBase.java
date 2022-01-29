@@ -4,11 +4,8 @@ import com.google.common.collect.Lists;
 import com.platinumg17.rigoranthusemortisreborn.blocks.custom.BlockMasterfulSmelteryBase;
 import com.platinumg17.rigoranthusemortisreborn.config.ConfigValues;
 import com.platinumg17.rigoranthusemortisreborn.core.init.Registration;
-import com.platinumg17.rigoranthusemortisreborn.items.specialized.smeltery.ItemAugment;
-import com.platinumg17.rigoranthusemortisreborn.items.specialized.smeltery.ItemAugmentBlasting;
-import com.platinumg17.rigoranthusemortisreborn.items.specialized.smeltery.ItemAugmentFuel;
-import com.platinumg17.rigoranthusemortisreborn.items.specialized.smeltery.ItemAugmentSmoking;
-import com.platinumg17.rigoranthusemortisreborn.items.specialized.smeltery.ItemAugmentSpeed;
+import com.platinumg17.rigoranthusemortisreborn.items.specialized.smeltery.*;
+import com.platinumg17.rigoranthusemortisreborn.items.specialized.smeltery.ItemAugmentBlast;
 import com.platinumg17.rigoranthusemortisreborn.util.DirectionUtil;
 
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
@@ -106,17 +103,17 @@ public abstract class SmelteryTileEntityBase extends TileEntityInventory impleme
 
     private LRUCache<Item, Optional<AbstractCookingRecipe>> getCache() {
         ItemStack stack = this.getItem(3);
-        if (stack.getItem() instanceof ItemAugmentBlasting) {
+        if (stack.getItem() instanceof ItemAugmentBlast) {
             if (this.recipeType != IRecipeType.BLASTING) {
                 this.recipeType = IRecipeType.BLASTING;
             }
         }
-        if (stack.getItem() instanceof ItemAugmentSmoking) {
+        if (stack.getItem() instanceof ItemAugmentSmoke) {
             if (this.recipeType != IRecipeType.SMOKING) {
                 this.recipeType = IRecipeType.SMOKING;
             }
         }
-        if (!(stack.getItem() instanceof ItemAugmentSmoking) && !(stack.getItem() instanceof ItemAugmentBlasting))
+        if (!(stack.getItem() instanceof ItemAugmentSmoke) && !(stack.getItem() instanceof ItemAugmentBlast))
         {
             if (this.recipeType != IRecipeType.SMELTING) {
                 this.recipeType = IRecipeType.SMELTING;
@@ -175,7 +172,7 @@ public abstract class SmelteryTileEntityBase extends TileEntityInventory impleme
             return -1;
         }
         if (!stack.isEmpty()) {
-            if (stack.getItem() instanceof ItemAugmentSpeed || stack.getItem() instanceof ItemAugmentBlasting || stack.getItem() instanceof ItemAugmentSmoking) {
+            if (stack.getItem() instanceof ItemAugmentSpeed || stack.getItem() instanceof ItemAugmentBlast || stack.getItem() instanceof ItemAugmentSmoke) {
                 speed = Math.max(1, (speed / 2));
             }
             if (stack.getItem() instanceof ItemAugmentFuel) {
@@ -253,9 +250,9 @@ public abstract class SmelteryTileEntityBase extends TileEntityInventory impleme
     };
 
     private int getAugment(ItemStack stack) {
-        if (stack.getItem() instanceof ItemAugmentBlasting) {
+        if (stack.getItem() instanceof ItemAugmentBlast) {
             return 1;
-        } else if (stack.getItem() instanceof ItemAugmentSmoking) {
+        } else if (stack.getItem() instanceof ItemAugmentSmoke) {
             return 2;
         } else if (stack.getItem() instanceof ItemAugmentSpeed) {
             return 3;
@@ -292,17 +289,17 @@ public abstract class SmelteryTileEntityBase extends TileEntityInventory impleme
             --this.furnaceBurnTime;
         }
         ItemStack stack = this.getItem(3);
-        if (stack.getItem() instanceof ItemAugmentBlasting) {
+        if (stack.getItem() instanceof ItemAugmentBlast) {
             if (this.recipeType != IRecipeType.BLASTING) {
                 this.recipeType = IRecipeType.BLASTING;
             }
         }
-        if (stack.getItem() instanceof ItemAugmentSmoking) {
+        if (stack.getItem() instanceof ItemAugmentSmoke) {
             if (this.recipeType != IRecipeType.SMOKING) {
                 this.recipeType = IRecipeType.SMOKING;
             }
         }
-        if (!(stack.getItem() instanceof ItemAugmentSmoking) && !(stack.getItem() instanceof ItemAugmentBlasting))
+        if (!(stack.getItem() instanceof ItemAugmentSmoke) && !(stack.getItem() instanceof ItemAugmentBlast))
         {
             if (this.recipeType != IRecipeType.SMELTING) {
                 this.recipeType = IRecipeType.SMELTING;

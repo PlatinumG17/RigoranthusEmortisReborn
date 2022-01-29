@@ -50,10 +50,7 @@ import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.pathfinding
 import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.pathfinding.PathFMLEventHandler;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.network.Networking;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.potions.ModPotions;
-import com.platinumg17.rigoranthusemortisreborn.magica.setup.APIRegistry;
-import com.platinumg17.rigoranthusemortisreborn.magica.setup.ClientProxy;
-import com.platinumg17.rigoranthusemortisreborn.magica.setup.ModSetup;
-import com.platinumg17.rigoranthusemortisreborn.magica.setup.ServerProxy;
+import com.platinumg17.rigoranthusemortisreborn.magica.setup.*;
 import com.platinumg17.rigoranthusemortisreborn.world.WorldEvent;
 import com.platinumg17.rigoranthusemortisreborn.world.gen.EmortisBiomeGen;
 import com.platinumg17.rigoranthusemortisreborn.world.trees.RigoranthusWoodTypes;
@@ -186,7 +183,6 @@ public class RigoranthusEmortisReborn {
     public void doClientStuff(final FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
             ClientSetup.setupScreenManagers(event);
-            ClientSetup.setupCollarRenderers(event);
             ClientSetup.setupTileEntityRenderers(event);
             makeBow(ItemInit.BONE_BOW.get());
             Atlases.addWoodType(RigoranthusWoodTypes.AZULOREAL);
@@ -199,15 +195,6 @@ public class RigoranthusEmortisReborn {
             RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.AZULOREAL_POST.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.STRIPPED_AZULOREAL_POST.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.AZULOREAL_HEDGE.get(), RenderType.cutoutMipped());
-
-            RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.JESSIC_DOOR.get(), RenderType.cutout());
-            RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.JESSIC_TRAPDOOR.get(), RenderType.cutout());
-            RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.JESSIC_STAIRS.get(), RenderType.cutout());
-            RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.JESSIC_SLAB.get(), RenderType.cutout());
-            RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.AZULOREAL_DOOR.get(), RenderType.cutout());
-            RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.AZULOREAL_TRAPDOOR.get(), RenderType.cutout());
-            RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.AZULOREAL_STAIRS.get(), RenderType.cutout());
-            RenderTypeLookup.setRenderLayer(DecorativeOrStorageBlocks.AZULOREAL_SLAB.get(), RenderType.cutout());
 //            RenderTypeLookup.setRenderLayer(Registration.LUMISHROOM.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(Registration.MASTERFUL_SMELTERY.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(FluidRegistry.CADAVEROUS_ICHOR_FLUID.get(), RenderType.translucent());
@@ -220,6 +207,8 @@ public class RigoranthusEmortisReborn {
         RenderingRegistry.registerEntityRenderingHandler(SpecializedEntityTypes.BILI_BOMB.get(), manager -> new SpriteRenderer<>(manager, Minecraft.getInstance().getItemRenderer()));
 //        RenderingRegistry.registerEntityRenderingHandler(SpecializedEntityTypes.PAINTING, manager -> new RenderHangingArt<>(manager, new ResourceLocation("rigoranthusemortisreborn:painting")));
         RenderingRegistry.registerEntityRenderingHandler(SpecializedEntityTypes.CANIS.get(), CanisRenderer::new);
+//        RenderingRegistry.registerEntityRenderingHandler(SpecializedEntityTypes.AZULOREAL_BOAT.get(), REBoatRendererAzuloreal::new);
+//        RenderingRegistry.registerEntityRenderingHandler(SpecializedEntityTypes.JESSIC_BOAT.get(), REBoatRendererJessic::new);
         RenderingRegistry.registerEntityRenderingHandler(SpecializedEntityTypes.CANIS_BEAM.get(), manager -> new CanisBeamRenderer<>(manager, event.getMinecraftSupplier().get().getItemRenderer()));
         FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientHandler::init);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(TextureEvent::textEvent);

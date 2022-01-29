@@ -21,7 +21,6 @@ public class CanisSkills {
     public static final RegistryObject<Skill> CAVALIER = registerInst("cavalier", CavalierSkill::new);
     public static final RegistryObject<Skill> CERBERUS = registerInst("cerberus", CerberusSkill::new);
     public static final RegistryObject<Skill> CHUNGUS_PUPPER = registerInst("chungus_pupper", ChungusPupperSkill::new);
-//    public static final RegistryObject<Skill> HOMEBOUND = registerInst("homebound", HomeboundSkill::new);
     public static final RegistryObject<Skill> IRIDESCENCE = registerInst("iridescence", IridescenceSkill::new);
     public static final RegistryObject<Skill> MAD_DASH = registerInst("mad_dash", MadDashSkill::new);
     public static final RegistryObject<Skill> NEPTUNES_BANE = registerInst("neptunes_bane", NeptunesBaneSkill::new);

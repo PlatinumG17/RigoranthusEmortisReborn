@@ -35,6 +35,14 @@ public class SpecializedEntityTypes {
             .setCustomClientFactory(CanisBeamEntity::new)
             .noSummon());
 
+//    public static final RegistryObject<EntityType<REBoatEntityAzuloreal>> AZULOREAL_BOAT =
+//            ENTITIES.register("azuloreal_boat", () -> EntityType.Builder.<REBoatEntityAzuloreal>of(REBoatEntityAzuloreal::new,
+//                    EntityClassification.MISC).sized(0.5f, 0.5f).build(RigoranthusEmortisReborn.rl("azuloreal_boat").toString()));
+//
+//    public static final RegistryObject<EntityType<REBoatEntityJessic>> JESSIC_BOAT =
+//            ENTITIES.register("jessic_boat", () -> EntityType.Builder.<REBoatEntityJessic>of(REBoatEntityJessic::new,
+//                    EntityClassification.MISC).sized(0.5f, 0.5f).build(RigoranthusEmortisReborn.rl("jessic_boat").toString()));
+
     public static final RegistryObject<EntityType<ConsumableProjectileEntity>> CONSUMABLE_PROJECTILE = register("consumable_projectile", ConsumableProjectileEntity::new, EntityClassification.MISC, (b) -> b
             .sized(0.25F, 0.25F).setUpdateInterval(10).setTrackingRange(4));
 

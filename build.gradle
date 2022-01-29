@@ -22,6 +22,7 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
+apply plugin: 'idea'
 apply plugin: 'maven-publish'
 apply plugin: 'org.spongepowered.mixin'
 apply plugin: 'com.matthewprenger.cursegradle'
@@ -32,7 +33,7 @@ apply plugin: "se.bjurr.gitchangelog.git-changelog-gradle-plugin"
 //println "On branch: ${branch.fullName}"
 //println "Pipeline branch: " + (System.getenv('CI_COMMIT_BRANCH') ?: 'NONE')
 
-version = "2.0.5"
+version = "1.16.5-2.0.7"
 group = 'com.platinumg17.rigoranthusemortisreborn'
 archivesBaseName = "RigoranthusEmortisReborn-${project.target_mc_version}"
 //version = (grgit.describe(longDescr: true, tags: true) ?: '0-0-0').split('-').with { it -> "${it[0]}.${it[1]}" }
@@ -107,22 +108,22 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 dependencies {
     minecraft 'net.minecraftforge:forge:1.16.5-36.2.2'
-    implementation fg.deobf("software.bernie.geckolib:geckolib-forge-1.16.5:3.0.45")
-    implementation fg.deobf("com.minecraftabnormals:abnormals-core:1.16.5-3.2.0")
-    runtimeOnly fg.deobf("curse.maven:autoreglib-250363:3128555")
-    runtimeOnly fg.deobf("curse.maven:quark-243121:3221260")
-    compileOnly fg.deobf("curse.maven:exp-238222:3530253") // JEI
-    runtimeOnly fg.deobf("curse.maven:exp-238222:3530253")
+    implementation fg.deobf("software.bernie.geckolib:geckolib-forge-1.16.5:3.0.63") // was 1.16.5:3.0.45
+    implementation fg.deobf("com.minecraftabnormals:abnormals-core:1.16.5-3.3.1") // was 1.16.5-3.2.0
+    runtimeOnly fg.deobf("curse.maven:autoreglib-250363:3326041")// was 3128555
+    runtimeOnly fg.deobf("curse.maven:quark-243121:3538744") // was 3221260
+    compileOnly fg.deobf("curse.maven:exp-238222:3607578") // was 3530253 // JEI
+    runtimeOnly fg.deobf("curse.maven:exp-238222:3607578") // was 3530253
     compileOnly fg.deobf("top.theillusivec4.caelus:caelus-forge:1.16.5-2.1.3.0:api")
     runtimeOnly fg.deobf("curse.maven:exp-406201:3419814") // Blame
     runtimeOnly fg.deobf("curse.maven:exp-248787:3395800") // Appleskin
     runtimeOnly fg.deobf("curse.maven:exp-407174:3188120") // Shutup experimental settings
-    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.16.3-4.0.1.0:api")
-    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.16.3-4.0.1.0")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.2")
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.2")
-//    compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.16.4-50")
-//    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:1.16.4-50")
+    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.16.5-4.0.5.3:api") // was 4.0.1.0
+    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.16.5-4.0.5.3")
+    testRuntimeOnly('org.junit.jupiter:junit-jupiter-engine:5.8.2')
+    testImplementation('org.junit.jupiter:junit-jupiter-api:5.8.2')
+    //compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.16.4-50")
+    //runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:1.16.4-50")
     //compileOnly fg.deobf("curse.maven:project-mmo:${version}")
     //runtimeOnly fg.deobf("curse.maven:project-mmo:${version}")
     //compileOnly fg.deobf("curse.maven:obfuscate-289380:3000205")
@@ -201,7 +202,7 @@ tasks.named('jar') {
 
     manifest {
         attributes([
-            "Specification-Title"     : "Rigoranthus Emortis Reborn",
+            "Specification-Title"     : "rigoranthusemortisreborn",
             "Specification-Vendor"    : "platinumg17",
             "Specification-Version"   : "${version}",
             "Implementation-Title"    : project.name,

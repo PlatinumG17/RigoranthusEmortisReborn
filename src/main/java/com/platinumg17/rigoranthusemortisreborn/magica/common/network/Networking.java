@@ -127,6 +127,16 @@ public class Networking {
                 PacketSetCommandMode::toBytes,
                 PacketSetCommandMode::new,
                 PacketSetCommandMode::handle);
+        INSTANCE.registerMessage(nextID(),
+                PacketIncorporealDoubleJump.class,
+                PacketIncorporealDoubleJump::encode,
+                PacketIncorporealDoubleJump::new,
+                PacketIncorporealDoubleJump::handle);
+        INSTANCE.registerMessage(nextID(),
+                PacketApogeanDoubleJump.class,
+                PacketApogeanDoubleJump::encode,
+                PacketApogeanDoubleJump::new,
+                PacketApogeanDoubleJump::handle);
     }
 
     public static void sendToNearby(World world, BlockPos pos, Object toSend){

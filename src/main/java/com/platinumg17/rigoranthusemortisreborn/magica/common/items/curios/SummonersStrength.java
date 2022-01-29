@@ -5,6 +5,7 @@ import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstant
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.event.SpellCastEvent;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.event.SummonEvent;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.items.ModItem;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.lib.LibItemNames;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.spell.method.MethodOrbit;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.spell.method.MethodSelf;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.item.ISpellModifierItem;
@@ -32,16 +33,10 @@ import java.util.List;
 
 @Mod.EventBusSubscriber(modid = EmortisConstants.MOD_ID)
 public class SummonersStrength extends ModItem implements ISpellModifierItem {
+
     public SummonersStrength(Properties properties) {
         super(properties);
-    }
-
-    public SummonersStrength(Properties properties, String registryName) {
-        super(properties, registryName);
-    }
-
-    public SummonersStrength(String registryName) {
-        super(registryName);
+        setRegistryName(LibItemNames.SUMMONERS_STRENGTH);
     }
 
     public static List<AbstractCastMethod> sympatheticMethods = new ArrayList<>();

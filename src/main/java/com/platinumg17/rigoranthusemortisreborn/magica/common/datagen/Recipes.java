@@ -86,7 +86,7 @@ public class Recipes extends RecipeProvider {
             ShapedRecipeBuilder.shaped(BlockRegistry.TABLE_BLOCK).unlockedBy("has_journal",InventoryChangeTrigger.Instance.hasItems(Items.CRAFTING_TABLE))
                     .pattern("xxx")
                     .pattern("yzy")
-                    .pattern("y y").define('x',Ingredient.of(DecorativeOrStorageBlocks.AZULOREAL_SLAB.get()))
+                    .pattern("y y").define('x',Ingredient.of(BlockRegistry.AZULOREAL_SLAB))
                     .define('y', Items.STICK)
                     .define('z', Ingredient.of(CanisTags.AZULOREAL_LOGS)).save(consumer);
 

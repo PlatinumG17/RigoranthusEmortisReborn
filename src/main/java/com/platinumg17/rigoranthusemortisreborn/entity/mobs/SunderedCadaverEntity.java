@@ -7,6 +7,7 @@ import com.platinumg17.rigoranthusemortisreborn.magica.client.particle.ParticleC
 import com.platinumg17.rigoranthusemortisreborn.magica.client.particle.ParticleUtil;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.IAnimationListener;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.ModEntities;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.pathfinding.MovementHandler;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -68,6 +69,7 @@ public class SunderedCadaverEntity extends CreatureEntity implements IAnimatable
 
     public SunderedCadaverEntity(EntityType<SunderedCadaverEntity> type, World worldIn) {
         super(type, worldIn);
+        this.moveControl = new MovementHandler(this);
         this.noCulling = true;
     }
 
@@ -129,7 +131,7 @@ public class SunderedCadaverEntity extends CreatureEntity implements IAnimatable
         return PlayState.STOP;
     }
 
-    private <E extends Entity> PlayState attackPredicate(AnimationEvent event) {
+    private <E extends IAnimatable> PlayState attackPredicate(AnimationEvent<E> event) {
         return PlayState.CONTINUE;
     }
 
@@ -238,11 +240,14 @@ public class SunderedCadaverEntity extends CreatureEntity implements IAnimatable
         this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
         this.goalSelector.addGoal(8, new RandomWalkingGoal(this, 1.0f));
         this.goalSelector.addGoal(8, new SwimGoal(this));
-        this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers(this.getClass()));
+        this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers(SunderedCadaverEntity.class));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillagerEntity.class, false));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
     }
+
+    @Override
+    public double getMyRidingOffset() { return super.getMyRidingOffset() + 0.2D; }
 
     public boolean canBreakDoors() {
         return this.canBreakDoors;

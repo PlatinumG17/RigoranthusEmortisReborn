@@ -24,6 +24,7 @@ public class Config {
 
     public static ForgeConfigSpec COMMON_CONFIG;
 
+    public static ForgeConfigSpec.BooleanValue DISABLE_TAMING;
     public static ForgeConfigSpec.BooleanValue DISABLE_HUNGER;                      public static ForgeConfigSpec.BooleanValue STARTING_ITEMS;
     public static ForgeConfigSpec.BooleanValue CANIS_GENDER;                        public static ForgeConfigSpec.BooleanValue CANIS_PUPS_GET_PARENT_LEVELS;
 
@@ -235,6 +236,10 @@ public class Config {
         builder.pop();
 
         builder.push("Tame Canis Settings");
+        DISABLE_TAMING = builder
+                .comment(" Disable the ability of players to tame a feral Canis")
+                .translation("rigoranthusemortisreborn.config.canis.disable_taming")
+                .define("disable_taming", false);
         DISABLE_HUNGER = builder
                 .comment(" Disable hunger for the canis")
                 .translation("rigoranthusemortisreborn.config.canis.disable_hunger")

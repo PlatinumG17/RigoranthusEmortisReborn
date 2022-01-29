@@ -17,7 +17,6 @@ public class OpulentSetBonus extends Effect {
         this.addAttributeModifier(Attributes.LUCK, "03C3C89D-7037-4B42-869F-B146BCB64D2E", 2.0F, AttributeModifier.Operation.MULTIPLY_BASE);
         this.addAttributeModifier(Attributes.ATTACK_SPEED, "AF8B6E3F-3328-4C0A-AA36-5BA2BB9DBEF3",2.0F, AttributeModifier.Operation.MULTIPLY_BASE);
         this.setRegistryName(EmortisConstants.MOD_ID, "opulent_set_bonus");
-
     }
     private static int effectTimer = 400;
     public void applyEffectTick(LivingEntity player, int amplifier) {

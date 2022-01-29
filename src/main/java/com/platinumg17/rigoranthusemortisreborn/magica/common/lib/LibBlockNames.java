@@ -21,14 +21,6 @@ public class LibBlockNames {
     public static final String STRIPPED_JESSIC_LOG = "stripped_jessic_log";
     public static final String STRIPPED_JESSIC_WOOD = "stripped_jessic_wood";
 
-    public static final String AZULOREAL_PLANKS = "azuloreal_planks";
-    public static final String JESSIC_PLANKS = "jessic_planks";
-
-    public static final String AZULOREAL_STANDING_SIGN = "azuloreal_sign";
-    public static final String JESSIC_STANDING_SIGN = "jessic_sign";
-
-    public static final String AZULOREAL_WALL_SIGN = "azuloreal_wall_sign";
-    public static final String JESSIC_WALL_SIGN = "jessic_wall_sign";
 
     //___________________ P L A N T S ___________________//
 
@@ -41,8 +33,38 @@ public class LibBlockNames {
 
     //___________________ B L O C K S ___________________//
 
+    public static final String AZULOREAL_STANDING_SIGN = "azuloreal_sign";
+    public static final String AZULOREAL_WALL_SIGN = "azuloreal_wall_sign";
     public static final String AZULOREAL_LAMP = "azuloreal_lamp";
+    public static final String AZULOREAL_PLANKS = "azuloreal_planks";
+    public static final String AZULOREAL_SLAB = "azuloreal_slab";
+    public static final String AZULOREAL_STAIRS = "azuloreal_stairs";
+    public static final String AZULOREAL_PRESSURE_PLATE = "azuloreal_pressure_plate";
+    public static final String AZULOREAL_FENCE = "azuloreal_fence";
+    public static final String AZULOREAL_FENCE_GATE = "azuloreal_fence_gate";
+    public static final String AZULOREAL_BUTTON = "azuloreal_button";
+    public static final String AZULOREAL_DOOR = "azuloreal_door";
+    public static final String AZULOREAL_TRAPDOOR = "azuloreal_trapdoor";
+    public static final String AZULOREAL_BOOKSHELF = "azuloreal_bookshelf";
+    public static final String AZULOREAL_BOAT = "azuloreal_boat";
+
+    public static final String JESSIC_STANDING_SIGN = "jessic_sign";
+    public static final String JESSIC_WALL_SIGN = "jessic_wall_sign";
     public static final String JESSIC_LAMP = "jessic_lamp";
+    public static final String JESSIC_PLANKS = "jessic_planks";
+    public static final String JESSIC_SLAB = "jessic_slab";
+    public static final String JESSIC_STAIRS = "jessic_stairs";
+    public static final String JESSIC_PRESSURE_PLATE = "jessic_pressure_plate";
+    public static final String JESSIC_FENCE = "jessic_fence";
+    public static final String JESSIC_FENCE_GATE = "jessic_fence_gate";
+    public static final String JESSIC_BUTTON = "jessic_button";
+    public static final String JESSIC_DOOR = "jessic_door";
+    public static final String JESSIC_TRAPDOOR = "jessic_trapdoor";
+    public static final String JESSIC_BOOKSHELF = "jessic_bookshelf";
+
+
+
+
 
     public static final String APOGEAN_NETHERITE_BLOCK = "apogean_netherite_block";
     public static final String AQUEOUS_NETHERITE_BLOCK = "aqueous_netherite_block";

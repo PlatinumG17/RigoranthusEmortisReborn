@@ -1,4 +1,4 @@
-package com.platinumg17.rigoranthusemortisreborn.canis.client.entity.render.layer;
+package com.platinumg17.rigoranthusemortisreborn.canis.client.entity.model.layer;
 
 import com.platinumg17.rigoranthusemortisreborn.canis.client.entity.model.CanisModel;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.CanisEntity;
@@ -7,12 +7,12 @@ import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.Resources;
 import net.minecraft.util.ResourceLocation;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.processor.IBone;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib3.model.AnimatedTickingGeoModel;
 import software.bernie.geckolib3.model.provider.GeoModelProvider;
 
 import static com.platinumg17.rigoranthusemortisreborn.canis.common.lib.Resources.*;
 
-public class CanisShadesModel extends AnimatedGeoModel<CanisEntity> {
+public class CanisShadesModel extends AnimatedTickingGeoModel<CanisEntity> {
     public GeoModelProvider<CanisEntity> modelProvider;
 
     public CanisShadesModel(GeoModelProvider<CanisEntity> geoModelProvider) {
@@ -45,7 +45,6 @@ public class CanisShadesModel extends AnimatedGeoModel<CanisEntity> {
         head.setRotationX(parentHead.getRotationX());
         head.setRotationY(parentHead.getRotationY());
         head.setRotationZ(parentHead.getRotationZ());
-//        float scale = 11f;
 //        head.setPositionY(canis.getPositionY() / 16f);
 //        head.setPositionZ(canis.getPositionZ() * -1.2f);
         head.setHidden(!entity.getAccoutrement(CanisAccouterments.SUNGLASSES.get()).isPresent() || entity.isInSittingPose() || entity.isBegging() || entity.isLying());

@@ -4,14 +4,14 @@ import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.CanisEntity;
 import net.minecraft.util.ResourceLocation;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.processor.IBone;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib3.model.AnimatedTickingGeoModel;
 import software.bernie.geckolib3.model.provider.data.EntityModelData;
 
 import javax.annotation.Nullable;
 
 import static com.platinumg17.rigoranthusemortisreborn.canis.common.lib.Resources.*;
 
-public class CanisModel extends AnimatedGeoModel<CanisEntity> {
+public class CanisModel extends AnimatedTickingGeoModel<CanisEntity> {
 
     @Override
     public void setLivingAnimations(CanisEntity entity, Integer uniqueID, @Nullable AnimationEvent customPredicate) {
@@ -19,9 +19,12 @@ public class CanisModel extends AnimatedGeoModel<CanisEntity> {
         if(entity.partyCanis)
             return;
         IBone head = this.getAnimationProcessor().getBone("head");
-        EntityModelData extraData = (EntityModelData) customPredicate.getExtraDataOfType(EntityModelData.class).get(0);
-        head.setRotationX(extraData.headPitch * 0.017453292F);
-        head.setRotationY(extraData.netHeadYaw * 0.017453292F);
+        if (customPredicate != null) {
+            EntityModelData extraData = (EntityModelData) customPredicate.getExtraDataOfType(EntityModelData.class).get(0);
+            head.setRotationX(extraData.headPitch * 0.017453292F);
+            head.setRotationY(extraData.netHeadYaw * 0.017453292F);
+        }
+//        EntityModelData extraData = (EntityModelData) customPredicate.getExtraDataOfType(EntityModelData.class).get(0);
     }
 
     @Override
@@ -46,6 +49,14 @@ public class CanisModel extends AnimatedGeoModel<CanisEntity> {
         return TAME_CANIS_ANIMATION;
     }
 }
+
+
+
+
+
+
+
+
 
 //    @Override
 //    public void prepareMobModel(T canis, float limbSwing, float limbSwingAmount, float partialTickTime) {

@@ -29,7 +29,7 @@ public class PhantasmalSetBonus extends Effect {
                 player.addEffect(new EffectInstance(Effects.INVISIBILITY, 400, 1));
                 player.addEffect(new EffectInstance(Effects.JUMP, 400, 6));
                 player.addEffect(new EffectInstance(Effects.SLOW_FALLING, 400, 2));
-                player.addEffect(new EffectInstance(Effects.DIG_SLOWDOWN, 400, 6));
+                player.addEffect(new EffectInstance(Effects.DIG_SLOWDOWN, 400, 2));
                 effectTimer = 400;
             }
         }

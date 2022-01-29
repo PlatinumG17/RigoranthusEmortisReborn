@@ -2,8 +2,6 @@ package com.platinumg17.rigoranthusemortisreborn.entity.mobs;
 
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusSoundRegistry;
-import com.platinumg17.rigoranthusemortisreborn.magica.client.particle.ParticleColor;
-import com.platinumg17.rigoranthusemortisreborn.magica.client.particle.ParticleUtil;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.IAnimationListener;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.ModEntities;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.potions.ModPotions;
@@ -15,23 +13,20 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
 import net.minecraft.entity.monster.ZombieEntity;
-import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.FluidState;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
-import net.minecraft.util.*;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -39,11 +34,9 @@ import software.bernie.geckolib3.core.controller.AnimationController;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.core.processor.IBone;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.List;
-import java.util.Random;
 
 public class NecrawFasciiEntity extends ZombieEntity implements IAnimatable, IAnimationListener {
 
@@ -59,7 +52,8 @@ public class NecrawFasciiEntity extends ZombieEntity implements IAnimatable, IAn
     }
 
     @Override
-    public EntityType<?> getType() {
+    public @Nonnull
+    EntityType<?> getType() {
         return ModEntities.NECRAW_FASCII;
     }
 
@@ -72,11 +66,12 @@ public class NecrawFasciiEntity extends ZombieEntity implements IAnimatable, IAn
     public void tick() {
         super.tick();
         if (!this.level.isClientSide) {
-            if (level.getGameTime() % 20 == 0 && !this.isDeadOrDying() && this.hasCustomName()) {
+            if (this.hasCustomName() && level.getGameTime() % 20 == 0 && !this.isDeadOrDying()) {
                 this.heal(0.1f);
             }
         }
     }
+    @Override
     protected boolean isSunSensitive() {
         return !this.hasCustomName();
     }
@@ -84,8 +79,8 @@ public class NecrawFasciiEntity extends ZombieEntity implements IAnimatable, IAn
     @Override
     public void aiStep() {
         if (this.isAlive()) {
-            for(int i = 0; i < 3; i++){
-                this.level.addParticle(ParticleTypes.FALLING_NECTAR, this.getRandomX(1.0), this.getRandomY(), this.getRandomZ(1.0), 0.0D, 0.0D, 0.0D);
+            for(int i = 0; i < 0.75; i++){
+                this.level.addParticle(ParticleTypes.FALLING_NECTAR, this.getRandomX(0.7), this.getRandomY(), this.getRandomZ(0.7), 0.0D, 0.0D, 0.0D);
             }
             boolean flag = this.isSunSensitive() && this.isSunBurnTick();
             if (flag) {
@@ -119,9 +114,9 @@ public class NecrawFasciiEntity extends ZombieEntity implements IAnimatable, IAn
         return PlayState.STOP;
     }
 
-    private <E extends Entity> PlayState attackPredicate(AnimationEvent event) {
-        return PlayState.CONTINUE;
-    }
+//    private <E extends Entity> PlayState attackPredicate(AnimationEvent event) {
+//        return PlayState.CONTINUE;
+//    }
 
     private <E extends Entity> PlayState idlePredicate(AnimationEvent event) {
         event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", true));
@@ -166,15 +161,15 @@ public class NecrawFasciiEntity extends ZombieEntity implements IAnimatable, IAn
     @Override
     protected void registerGoals() {
         super.registerGoals();
-        this.goalSelector.addGoal( 1, new NearestAttackableTargetGoal<>( this, PlayerEntity.class, true));
+//        this.goalSelector.addGoal( 1, new NearestAttackableTargetGoal<>( this, PlayerEntity.class, true));
         this.goalSelector.addGoal(2, new ZombieAttackGoal(this, 1.0D, false));
         this.goalSelector.addGoal(5, new MoveTowardsTargetGoal(this, 1.0f, 8));
         this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
         this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 0.8D));
         this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers(this.getClass()));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true, false));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillagerEntity.class, false));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true, true));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillagerEntity.class, true));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, false));
     }
 
     @Override
@@ -217,7 +212,7 @@ public class NecrawFasciiEntity extends ZombieEntity implements IAnimatable, IAn
             return false;
         } else {
             if (entityIn instanceof PlayerEntity) {
-                ((PlayerEntity)entityIn).addEffect(new EffectInstance(ModPotions.NECROTIZING_FASCIITIS_EFFECT, 5000));
+                ((PlayerEntity)entityIn).addEffect(new EffectInstance(ModPotions.NECROTIZING_FASCIITIS_EFFECT, 1800));
             }
             return true;
         }
@@ -238,7 +233,7 @@ public class NecrawFasciiEntity extends ZombieEntity implements IAnimatable, IAn
         this.handleAttributes(f);
         return entityData;
     }
-
+    @Override
     protected void handleAttributes(float multiplier) {
         this.randomizeReinforcementsChance();
         this.getAttribute(Attributes.KNOCKBACK_RESISTANCE).addPermanentModifier(new AttributeModifier("Random spawn bonus", this.random.nextDouble() * (double)0.05F, AttributeModifier.Operation.ADDITION));

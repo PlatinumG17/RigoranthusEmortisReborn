@@ -3,6 +3,7 @@ package com.platinumg17.rigoranthusemortisreborn.items;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
 import com.platinumg17.rigoranthusemortisreborn.items.tooltypes.ToolRegistry;
+import com.platinumg17.rigoranthusemortisreborn.magica.setup.MagicItemsRegistry;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.Items;
@@ -13,23 +14,23 @@ import java.util.function.Supplier;
 
 public enum RigoranthusItemTier implements IItemTier {
     APOGEAN(4, Config.apogean_tier_durability.get(), Config.apogean_tier_speed.get().floatValue(), Config.apogean_tier_damage.get().floatValue(), Config.apogean_tier_enchantability.get(),
-            () -> Ingredient.of(ItemInit.APOGEAN_NETHERITE_INGOT.get())),
+            () -> Ingredient.of(MagicItemsRegistry.ApogeanIngotItem)),
     AQUEOUS(4, Config.aqueous_tier_durability.get(), Config.aqueous_tier_speed.get().floatValue(), Config.aqueous_tier_damage.get().floatValue(), Config.aqueous_tier_enchantability.get(),
-            () -> Ingredient.of(ItemInit.AQUEOUS_NETHERITE_INGOT.get())),
+            () -> Ingredient.of(MagicItemsRegistry.AqueousIngotItem)),
     ATROPHYING(4, Config.atrophying_tier_durability.get(), Config.atrophying_tier_speed.get().floatValue(), Config.atrophying_tier_damage.get().floatValue(), Config.atrophying_tier_enchantability.get(),
-            () -> Ingredient.of(ItemInit.ATROPHYING_NETHERITE_INGOT.get())),
+            () -> Ingredient.of(MagicItemsRegistry.AtrophyingIngotItem)),
     INCORPOREAL(4, Config.incorporeal_tier_durability.get(), Config.incorporeal_tier_speed.get().floatValue(), Config.incorporeal_tier_damage.get().floatValue(), Config.incorporeal_tier_enchantability.get(),
-            () -> Ingredient.of(ItemInit.INCORPOREAL_NETHERITE_INGOT.get())),
+            () -> Ingredient.of(MagicItemsRegistry.IncorporealIngotItem)),
     INFERNAL(4, Config.infernal_tier_durability.get(), Config.infernal_tier_speed.get().floatValue(), Config.infernal_tier_damage.get().floatValue(), Config.infernal_tier_enchantability.get(),
-            () -> Ingredient.of(ItemInit.INFERNAL_NETHERITE_INGOT.get())),
+            () -> Ingredient.of(MagicItemsRegistry.InfernalIngotItem)),
     OPULENT(4, Config.opulent_tier_durability.get(), Config.opulent_tier_speed.get().floatValue(), Config.opulent_tier_damage.get().floatValue(), Config.opulent_tier_enchantability.get(),
-            () -> Ingredient.of(ItemInit.OPULENT_NETHERITE_INGOT.get())),
+            () -> Ingredient.of(MagicItemsRegistry.OpulentIngotItem)),
     PERNICIOUS(4, Config.pernicious_tier_durability.get(), Config.pernicious_tier_speed.get().floatValue(), Config.pernicious_tier_damage.get().floatValue(), Config.pernicious_tier_enchantability.get(),
-            () -> Ingredient.of(ItemInit.PERNICIOUS_NETHERITE_INGOT.get())),
+            () -> Ingredient.of(MagicItemsRegistry.PerniciousIngotItem)),
     PHANTASMAL(4, Config.phantasmal_tier_durability.get(), Config.phantasmal_tier_speed.get().floatValue(), Config.phantasmal_tier_damage.get().floatValue(), Config.phantasmal_tier_enchantability.get(),
-            () -> Ingredient.of(ItemInit.PHANTASMAL_NETHERITE_INGOT.get())),
+            () -> Ingredient.of(MagicItemsRegistry.PhantasmalIngotItem)),
     REMEX(4, Config.remex_tier_durability.get(), Config.remex_tier_speed.get().floatValue(), Config.remex_tier_damage.get().floatValue(), Config.remex_tier_enchantability.get(),
-            () -> Ingredient.of(ItemInit.REMEX_NETHERITE_INGOT.get())),
+            () -> Ingredient.of(MagicItemsRegistry.RemexIngotItem)),
     BONE(2, Config.bone_tier_durability.get(), Config.bone_tier_speed.get().floatValue(), Config.bone_tier_damage.get().floatValue(), Config.bone_tier_enchantability.get(),
             () -> Ingredient.of(ItemInit.BONE_FRAGMENT.get())),
 

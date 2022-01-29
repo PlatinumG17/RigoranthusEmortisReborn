@@ -1,15 +1,14 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.common.items;
 
+import com.platinumg17.rigoranthusemortisreborn.api.apimagic.item.ICasterTool;
 import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.*;
-import com.platinumg17.rigoranthusemortisreborn.core.registry.RigoranthusSoundRegistry;
+import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.interfaces.ISpellCaster;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.renderer.item.AdonisRenderer;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.EntitySpellArrow;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.spell.augment.AugmentSplit;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.spell.method.MethodProjectile;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.util.PortUtil;
 import com.platinumg17.rigoranthusemortisreborn.magica.setup.MagicItemsRegistry;
-import com.platinumg17.rigoranthusemortisreborn.api.apimagic.item.ICasterTool;
-import com.platinumg17.rigoranthusemortisreborn.api.apimagic.spell.interfaces.ISpellCaster;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -34,6 +33,7 @@ import java.util.function.Predicate;
 public class Adonis extends BowItem implements IAnimatable, ICasterTool {
     public Adonis() {
         super(MagicItemsRegistry.defaultItemProperties().stacksTo(1).setISTER(() -> AdonisRenderer::new));
+        setRegistryName("adonis");
     }
     public boolean canPlayerCastSpell(ItemStack bow, PlayerEntity playerentity){
         ISpellCaster caster = getSpellCaster(bow);

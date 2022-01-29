@@ -42,7 +42,7 @@ import java.util.function.Predicate;
 
 public class LanguidDwellerEntity extends MonsterEntity implements IAnimatable, IAnimationListener {
 
-    private static final Predicate<Difficulty> DOOR_BREAKING_PREDICATE = (p_213697_0_) -> {return p_213697_0_ == Difficulty.HARD;};
+    private static final Predicate<Difficulty> DOOR_BREAKING_PREDICATE = (difficulty) -> {return difficulty == Difficulty.HARD;};
     private final AnimationFactory animationFactory = new AnimationFactory(this);
     private final BreakDoorGoal breakDoorGoal = new BreakDoorGoal(this, DOOR_BREAKING_PREDICATE);
     private boolean canBreakDoors;
@@ -121,7 +121,7 @@ public class LanguidDwellerEntity extends MonsterEntity implements IAnimatable, 
     @Override
     protected void registerGoals() {
         super.registerGoals();
-        this.goalSelector.addGoal( 1, new NearestAttackableTargetGoal<>( this, PlayerEntity.class, true));
+//        this.goalSelector.addGoal( 1, new NearestAttackableTargetGoal<>( this, PlayerEntity.class, true));
         this.goalSelector.addGoal(2, new DwellerAttackGoal(this,true));
         this.goalSelector.addGoal(5, new MoveTowardsTargetGoal(this, 1.0f, 8));
         this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
@@ -216,8 +216,11 @@ public class LanguidDwellerEntity extends MonsterEntity implements IAnimatable, 
 
     public void aiStep() {
         super.aiStep();
-        for(int i = 0; i < 10; i++){
-            this.level.addParticle(ParticleTypes.ENCHANT, this.getRandomX(1.0), this.getRandomY(), this.getRandomZ(1.0), 0.0D, 0.0D, 0.0D);
+        for(int i = 0; i < 2; i++){
+            this.level.addParticle(ParticleTypes.ENCHANT, this.getRandomX(0.75), this.getRandomY() + 0.3, this.getRandomZ(0.75), 0.0D, 0.0D, 0.0D);
+        }
+        for(int i = 0; i < 1; i++){
+            this.level.addParticle(ParticleTypes.REVERSE_PORTAL, this.getRandomX(0.75), this.getRandomY() + 0.3, this.getRandomZ(0.75), 0.0D, 0.0D, 0.0D);
         }
     }
 

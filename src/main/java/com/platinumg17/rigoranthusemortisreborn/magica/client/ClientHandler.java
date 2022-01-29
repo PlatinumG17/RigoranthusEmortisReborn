@@ -39,7 +39,14 @@ public class ClientHandler {
         ClientRegistry.bindTileEntityRenderer(BlockRegistry.hangingCadaverSkullTile, HangingSkullRenderer::new);
 
         RenderTypeLookup.setRenderLayer(BlockRegistry.hangingCadaverSkull, RenderType.translucent());
-
+        RenderTypeLookup.setRenderLayer(BlockRegistry.JESSIC_DOOR, RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(BlockRegistry.JESSIC_TRAPDOOR, RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(BlockRegistry.JESSIC_STAIRS, RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(BlockRegistry.JESSIC_SLAB, RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(BlockRegistry.AZULOREAL_DOOR, RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(BlockRegistry.AZULOREAL_TRAPDOOR, RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(BlockRegistry.AZULOREAL_STAIRS, RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(BlockRegistry.AZULOREAL_SLAB, RenderType.cutout());
         RenderTypeLookup.setRenderLayer(BlockRegistry.DWELLER_BRAIN, RenderType.cutout());
         RenderTypeLookup.setRenderLayer(BlockRegistry.CADAVER_SKULL, RenderType.cutout());
 

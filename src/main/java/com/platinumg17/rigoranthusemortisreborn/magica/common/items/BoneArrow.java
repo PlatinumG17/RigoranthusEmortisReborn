@@ -12,9 +12,9 @@ import net.minecraft.world.World;
 
 public class BoneArrow extends ArrowItem {
 
-    public BoneArrow(String registryName) {
+    public BoneArrow() {
         super(MagicItemsRegistry.defaultItemProperties());
-        setRegistryName(EmortisConstants.MOD_ID, registryName);
+        setRegistryName("bone_arrow");
     }
 
     @Override

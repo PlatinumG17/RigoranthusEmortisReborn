@@ -19,15 +19,15 @@ public class EffectNecrotizingFasciitis extends Effect {
     }
     private static int damageTimer = 100;
     public void applyEffectTick(LivingEntity player, int amplifier) {
-        for(int i = 0; i < 3; i++){
-            player.level.addParticle(ParticleTypes.FALLING_NECTAR, player.getRandomX(1.0), player.getRandomY(), player.getRandomZ(1.0), 0, 0, 0);
+        for(int i = 0; i < 2; i++){
+            player.level.addParticle(ParticleTypes.FALLING_NECTAR, player.getRandomX(0.7), player.getRandomY(), player.getRandomZ(0.7), 0, 0, 0);
         }
         if(player.getDeltaMovement().y > 0 && !player.isInWaterOrBubble()) {
-            player.setDeltaMovement(player.getDeltaMovement().multiply(0.25, 0, 0.25));
+            player.setDeltaMovement(player.getDeltaMovement().multiply(0.7, 1, 0.7));
         }
         damageTimer--;
         if (damageTimer < 0) {
-            player.hurt(RigoranthusDamageSources.NECROTIZING_FASCIITIS,  0.1f);
+            player.hurt(RigoranthusDamageSources.NECROTIZING_FASCIITIS,  0.2f);
             damageTimer = 100;
         }
     }

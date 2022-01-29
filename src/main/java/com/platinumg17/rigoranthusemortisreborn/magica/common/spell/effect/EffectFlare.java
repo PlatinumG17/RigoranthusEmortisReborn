@@ -38,7 +38,7 @@ public class EffectFlare extends AbstractEffect {
         float damage = (float) (DAMAGE.get() + AMP_VALUE.get() * spellStats.getAmpMultiplier());
         int range = 3 + spellStats.getBuffCount(AugmentAOE.INSTANCE);
         int fireSec = (int) (5.0 + EXTEND_TIME.get() * spellStats.getDurationMultiplier());
-        DamageSource source =  buildDamageSource(world, shooter).setIsFire();
+        DamageSource source = buildDamageSource(world, shooter).setIsFire();
         if(livingEntity.isOnFire()){
             dealDamage(world, shooter, damage, spellStats, livingEntity,source);
             ((ServerWorld)world).sendParticles(ParticleTypes.FLAME, vec.x, vec.y +0.5, vec.z,50,

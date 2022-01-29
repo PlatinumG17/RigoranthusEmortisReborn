@@ -1,6 +1,5 @@
-package com.platinumg17.rigoranthusemortisreborn.canis.client.entity.render.layer;
+package com.platinumg17.rigoranthusemortisreborn.canis.client.entity.model.layer;
 
-import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.canis.CanisSkills;
 import com.platinumg17.rigoranthusemortisreborn.canis.client.entity.model.CanisModel;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.CanisEntity;
@@ -46,9 +45,12 @@ public class SatchelModel extends AnimatedGeoModel<CanisEntity> {
 //        body.setPivotX(parentBody.getPivotX());
 //        body.setPivotY(parentBody.getPivotY());
 //        body.setPivotZ(parentBody.getPivotZ());
-//        body.setRotationX(parentBody.getRotationX() + 5);
+//        body.setRotationX(parentBody.getRotationX());// + 5);
 //        body.setRotationY(parentBody.getRotationY());
 //        body.setRotationZ(parentBody.getRotationZ());
+//        body.setScaleX(parentBody.getScaleX());// + 5);
+//        body.setScaleY(parentBody.getScaleY());
+//        body.setScaleZ(parentBody.getScaleZ());
 //        body.setPositionY(canis.getPositionY() / 16f);
 //        body.setPositionZ(canis.getPositionZ() * -1.2f);
         body.setHidden(!(entity.getLevel(CanisSkills.WAYWARD_TRAVELLER.get()) >= 1) || entity.isInSittingPose() || entity.isBegging() || entity.isLying());

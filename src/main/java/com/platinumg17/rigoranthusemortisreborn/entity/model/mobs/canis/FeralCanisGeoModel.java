@@ -5,11 +5,12 @@ import com.platinumg17.rigoranthusemortisreborn.entity.mobs.FeralCanisEntity;
 import net.minecraft.util.ResourceLocation;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.processor.IBone;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib3.model.AnimatedTickingGeoModel;
 import software.bernie.geckolib3.model.provider.data.EntityModelData;
+
 import javax.annotation.Nullable;
 
-public class FeralCanisGeoModel extends AnimatedGeoModel<FeralCanisEntity> {
+public class FeralCanisGeoModel extends AnimatedTickingGeoModel<FeralCanisEntity> {
     private static final ResourceLocation TEXTURE_CANIS = RigoranthusEmortisReborn.rl("textures/entity/canis/feral_canis_chordata.png");
     private static final ResourceLocation TEXTURE_KYPHOS = RigoranthusEmortisReborn.rl("textures/entity/kyphos.png");
     private static final ResourceLocation TEXTURE_CAVALIER = RigoranthusEmortisReborn.rl("textures/entity/cavalier.png");
@@ -27,44 +28,17 @@ public class FeralCanisGeoModel extends AnimatedGeoModel<FeralCanisEntity> {
 
     @Override
     public ResourceLocation getModelLocation(FeralCanisEntity canisChordataEntity) {
-//        if (canisChordataEntity.isCanis()) {
-            return MODEL_CANIS;
-//        } else if (canisChordataEntity.isKyphos()) {
-//            return MODEL_KYPHOS;
-//        } else if (canisChordataEntity.isCavalier()) {
-//            return MODEL_CAVALIER;
-//        } else if (canisChordataEntity.isHomini()) {
-//            return MODEL_HOMINI;
-//        }
-//        return null;
+        return MODEL_CANIS;
     }
 
     @Override
     public ResourceLocation getTextureLocation(FeralCanisEntity canisChordataEntity) {
-//        if (canisChordataEntity.isCanis()) {
-            return TEXTURE_CANIS;
-//        } else if (canisChordataEntity.isKyphos()) {
-//            return TEXTURE_KYPHOS;
-//        } else if (canisChordataEntity.isCavalier()) {
-//            return TEXTURE_CAVALIER;
-//        } else if (canisChordataEntity.isHomini()) {
-//            return TEXTURE_HOMINI;
-//        }
-//        return null;
+        return TEXTURE_CANIS;
     }
 
     @Override
     public ResourceLocation getAnimationFileLocation(FeralCanisEntity canisChordataEntity) {
-//        if (canisChordataEntity.isCanis()) {
-            return ANIMATION_CANIS;
-//        } else if (canisChordataEntity.isKyphos()) {
-//            return ANIMATION_KYPHOS;
-//        } else if (canisChordataEntity.isCavalier()) {
-//            return ANIMATION_CAVALIER;
-//        } else if (canisChordataEntity.isHomini()) {
-//            return ANIMATION_HOMINI;
-//        }
-//        return null;
+        return ANIMATION_CANIS;
     }
     @Override
     public void setLivingAnimations(FeralCanisEntity entity, Integer uniqueID, @Nullable AnimationEvent customPredicate) {
@@ -72,8 +46,10 @@ public class FeralCanisGeoModel extends AnimatedGeoModel<FeralCanisEntity> {
         IBone head = this.getAnimationProcessor().getBone("head");
         if (customPredicate != null) {
             EntityModelData extraData = (EntityModelData) customPredicate.getExtraDataOfType(EntityModelData.class).get(0);
-            head.setRotationY(extraData.netHeadYaw * ((float) Math.PI / 120F));
-            head.setRotationX(extraData.headPitch * ((float) Math.PI / 120F));
+            head.setRotationX(extraData.headPitch * 0.017453292F);
+            head.setRotationY(extraData.netHeadYaw * 0.017453292F);
         }
+//            head.setRotationY(extraData.netHeadYaw * ((float) Math.PI / 120F));
+//            head.setRotationX(extraData.headPitch * ((float) Math.PI / 120F));
     }
 }

@@ -1,4 +1,4 @@
-package com.platinumg17.rigoranthusemortisreborn.canis.client.entity.render.layer;
+package com.platinumg17.rigoranthusemortisreborn.canis.client.entity.model.layer;
 
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
 import com.platinumg17.rigoranthusemortisreborn.canis.client.entity.model.CanisModel;

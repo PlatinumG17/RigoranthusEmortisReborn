@@ -25,7 +25,6 @@ public class ModRenderers {
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.LANGUID_DWELLER, LanguidDwellerRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.FAMILIAR_CADAVER, FamiliarCadaverRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.BONE_ARROW_ENTITY, TippedArrowRenderer::new);
-
         RenderingRegistry.registerEntityRenderingHandler( ModEntities.SPELL_PROJ,
                 renderManager -> new RenderSpell(renderManager, RigoranthusEmortisReborn.rl("textures/entity/spell_proj.png")));
         RenderingRegistry.registerEntityRenderingHandler( ModEntities.ENTITY_FOLLOW_PROJ,

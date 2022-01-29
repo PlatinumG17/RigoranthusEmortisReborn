@@ -7,6 +7,7 @@ import com.platinumg17.rigoranthusemortisreborn.core.init.ItemInit;
 import com.platinumg17.rigoranthusemortisreborn.entity.goals.FeralCanisAttackGoal;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.block.tile.IAnimationListener;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.ModEntities;
+import com.platinumg17.rigoranthusemortisreborn.magica.common.entity.pathfinding.MovementHandler;
 import com.platinumg17.rigoranthusemortisreborn.magica.common.util.PortUtil;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -31,6 +32,7 @@ import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import software.bernie.geckolib3.core.IAnimatable;
+import software.bernie.geckolib3.core.IAnimationTickable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
 import software.bernie.geckolib3.core.controller.AnimationController;
@@ -41,7 +43,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 import javax.annotation.Nullable;
 import java.util.function.Predicate;
 
-public class FeralCanisEntity extends MonsterEntity implements IAnimatable, IAnimationListener {
+public class FeralCanisEntity extends MonsterEntity implements IAnimatable, IAnimationListener, IAnimationTickable {
 
     private static final Predicate<Difficulty> DOOR_BREAKING_PREDICATE = (p_213697_0_) -> {return p_213697_0_ == Difficulty.HARD;};
     private final AnimationFactory animationFactory = new AnimationFactory(this);
@@ -50,6 +52,7 @@ public class FeralCanisEntity extends MonsterEntity implements IAnimatable, IAni
 
     public FeralCanisEntity(EntityType<FeralCanisEntity> entity, World worldIn) {
         super(entity, worldIn);
+        this.moveControl = new MovementHandler(this);
         this.noCulling = true;
     }
 
@@ -100,10 +103,10 @@ public class FeralCanisEntity extends MonsterEntity implements IAnimatable, IAni
     }
 
     @Override
-    public void registerControllers(AnimationData animationData) {
-        animationData.addAnimationController(new AnimationController<>(this, "walkController", 0, this::walkPredicate));
-        animationData.addAnimationController(new AnimationController<>(this, "attackController", 1, this::attackPredicate));
-        animationData.addAnimationController(new AnimationController<>(this, "idleController", 0, this::idlePredicate));
+    public void registerControllers(AnimationData data) {
+        data.addAnimationController(new AnimationController<>(this, "walkController", 0, this::walkPredicate));
+        data.addAnimationController(new AnimationController<>(this, "attackController", 1, this::attackPredicate));
+        data.addAnimationController(new AnimationController<>(this, "idleController", 0, this::idlePredicate));
     }
 
     @Override
@@ -197,7 +200,7 @@ public class FeralCanisEntity extends MonsterEntity implements IAnimatable, IAni
             if (!player.level.isClientSide) {
 
                 level.playSound(player, blockpos, SoundEvents.BOOK_PAGE_TURN, SoundCategory.NEUTRAL, 1.0F, (level.random.nextFloat() - level.random.nextFloat()) * 0.8F + 1.0F);
-                if ((Math.random() <= 0.15)) {
+                if ((Math.random() <= 0.15) && !Config.DISABLE_TAMING.get()) {
 
                     level.addParticle(ParticleTypes.SOUL, this.getRandomX(1.0D), this.getRandomY() + 0.5D, this.getRandomZ(1.0D), 0.0D, 0.0D, 0.0D);
                     level.addParticle(ParticleTypes.SOUL, this.getRandomX(1.5D), this.getRandomY() + 0.8D, this.getRandomZ(1.5D), 0.0D, 0.0D, 0.0D);
@@ -314,6 +317,12 @@ public class FeralCanisEntity extends MonsterEntity implements IAnimatable, IAni
             e.printStackTrace();
         }
     }
+
+    @Override
+    public int tickTimer() {
+        return this.tickCount;
+    }
+
     public enum Animations{ BITING }
 
     @Nullable

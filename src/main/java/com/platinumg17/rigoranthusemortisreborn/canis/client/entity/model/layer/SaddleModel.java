@@ -1,6 +1,7 @@
-package com.platinumg17.rigoranthusemortisreborn.canis.client.entity.render.layer;
+package com.platinumg17.rigoranthusemortisreborn.canis.client.entity.model.layer;
 
 import com.platinumg17.rigoranthusemortisreborn.canis.CanisSkills;
+import com.platinumg17.rigoranthusemortisreborn.canis.client.entity.model.CanisModel;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.CanisEntity;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.Resources;
 import net.minecraft.util.ResourceLocation;
@@ -37,15 +38,19 @@ public class SaddleModel extends AnimatedGeoModel<CanisEntity> {
         super.setLivingAnimations(entity, uniqueID, customPredicate);
         IBone saddle = this.getAnimationProcessor().getBone("saddle");
         IBone cloth = this.getAnimationProcessor().getBone("cloth");
-        /*
+
         IBone canis = ((CanisModel) modelProvider).getBone("canis");
         IBone parentMane = modelProvider.getModel(modelProvider.getModelLocation(entity)).getBone("mane").get();
-        saddle.setPivotX(parentMane.getPivotX());
-        saddle.setPivotY(parentMane.getPivotY());
-        saddle.setPivotZ(parentMane.getPivotZ());
-        saddle.setRotationX(parentMane.getRotationX());
-        saddle.setRotationY(parentMane.getRotationY());
-        saddle.setRotationZ(parentMane.getRotationZ());*/
+//        saddle.setPivotX(parentMane.getPivotX());
+//        saddle.setPivotY(parentMane.getPivotY());
+//        saddle.setPivotZ(parentMane.getPivotZ());
+//        saddle.setRotationX(parentMane.getRotationX());
+//        saddle.setRotationY(parentMane.getRotationY());
+//        saddle.setRotationZ(parentMane.getRotationZ());
+//
+//        saddle.setScaleX(parentMane.getScaleX());
+//        saddle.setScaleY(parentMane.getScaleY());
+//        saddle.setScaleZ(parentMane.getScaleZ());
 
         saddle.setHidden(!(entity.getLevel(CanisSkills.CAVALIER.get()) >= 1) || entity.isInSittingPose() || entity.isBegging() || entity.isLying());
         cloth.setHidden(!entity.doDisplayCloth());

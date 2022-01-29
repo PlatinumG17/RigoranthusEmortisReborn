@@ -4,16 +4,15 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.platinumg17.rigoranthusemortisreborn.api.apicanis.interfaces.IThrowableItem;
 import com.platinumg17.rigoranthusemortisreborn.canis.client.entity.model.CanisModel;
-import com.platinumg17.rigoranthusemortisreborn.canis.client.entity.render.layer.CanisArmorModel;
-import com.platinumg17.rigoranthusemortisreborn.canis.client.entity.render.layer.CanisShadesModel;
-import com.platinumg17.rigoranthusemortisreborn.canis.client.entity.render.layer.SaddleModel;
-import com.platinumg17.rigoranthusemortisreborn.canis.client.entity.render.layer.SatchelModel;
+import com.platinumg17.rigoranthusemortisreborn.canis.client.entity.model.layer.CanisArmorModel;
+import com.platinumg17.rigoranthusemortisreborn.canis.client.entity.model.layer.CanisShadesModel;
+import com.platinumg17.rigoranthusemortisreborn.canis.client.entity.model.layer.SaddleModel;
+import com.platinumg17.rigoranthusemortisreborn.canis.client.entity.model.layer.SatchelModel;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.CanisEntity;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.entity.accouterments.CanisAccouterments;
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.Resources;
 import com.platinumg17.rigoranthusemortisreborn.config.Config;
 import com.platinumg17.rigoranthusemortisreborn.magica.client.renderer.entity.ModelLayerRenderer;
-import com.platinumg17.rigoranthusemortisreborn.magica.client.renderer.entity.TransparentModelLayerRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
@@ -38,25 +37,25 @@ public class CanisRenderer extends GeoEntityRenderer<CanisEntity> {
     public CanisRenderer(EntityRendererManager renderManager) {
         super(renderManager, new CanisModel());
         this.addLayer(new ModelLayerRenderer(this, new CanisArmorModel(this.getGeoModelProvider())));
-        this.addLayer(new TransparentModelLayerRenderer(this, new CanisShadesModel(this.getGeoModelProvider())));
+//        this.addLayer(new TransparentModelLayerRenderer(this, new CanisShadesModel(this.getGeoModelProvider())));
+        this.addLayer(new ModelLayerRenderer(this, new CanisShadesModel(this.getGeoModelProvider())));
         this.addLayer(new ModelLayerRenderer(this, new SatchelModel(this.getGeoModelProvider())));
         this.addLayer(new ModelLayerRenderer(this, new SaddleModel(this.getGeoModelProvider())));
-//        this.addLayer(new CanisSkillLayer(this));
         this.shadowRadius = 0.7F;
     }
     CanisEntity canis;
     IRenderTypeBuffer buffer;
     ResourceLocation text;
 
-    private float r;
-    private float g;
-    private float b;
-
-    public void setColor(float red, float green, float blue) {
-        this.r = red;
-        this.g = green;
-        this.b = blue;
-    }
+//    private float r;
+//    private float g;
+//    private float b;
+//
+//    public void setColor(float red, float green, float blue) {
+//        this.r = red;
+//        this.g = green;
+//        this.b = blue;
+//    }
 
     @Override
     protected void applyRotations(CanisEntity entityLiving, MatrixStack matrixStackIn, float ageInTicks, float rotationYaw, float partialTicks) {
@@ -74,10 +73,10 @@ public class CanisRenderer extends GeoEntityRenderer<CanisEntity> {
     @Override
     public void render(CanisEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
         super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
-        if (canis.isCanisWet()) {
-            float f = canis.getShadingWhileWet(partialTicks);
-            this.setColor(f, f, f);
-        }
+//        if (canis.isCanisWet()) {
+//            float f = canis.getShadingWhileWet(partialTicks);
+//            this.setColor(f, f, f);
+//        }
         if (this.shouldShowName(entityIn) && !entityIn.canBeControlledByRider() && !entityIn.isVehicle()) {
             double d0 = this.entityRenderDispatcher.distanceToSqr(entityIn);
             if (d0 <= 64 * 64) {
@@ -111,20 +110,40 @@ public class CanisRenderer extends GeoEntityRenderer<CanisEntity> {
             stack.pushPose();
             RenderUtils.moveToPivot(bone, stack);
             stack.popPose();
-            bufferIn = buffer.getBuffer(RenderType.entityCutoutNoCull(text));
+            bufferIn = buffer.getBuffer(RenderType.entityTranslucent(text));
         }
+//        if (bone.getName().equals("tail")) {//(1.55F - (this.getMaxHealth() - (this.getHealth())) * 0.02F) * (float)Math.PI
+//            stack.pushPose();
+//            bone.setRotationX((1.55F - (canis.getMaxHealth() - (canis.getHealth())) * 0.02F) * (float)Math.PI);
+////            bone.setPositionZ(MathHelper.cos(canis.moveDist * 0.6662F) * 1.4F);
+////            RenderUtils.moveToPivot(bone, stack);
+//            stack.popPose();
+//            bufferIn = buffer.getBuffer(RenderType.entityTranslucent()(text));
+//        }
+//        if (bone.getName().equals("armor")) {
+//            stack.pushPose();
+//            RenderUtils.moveToPivot(bone, stack);
+//            stack.popPose();
+//            bufferIn = buffer.getBuffer(RenderType.entityTranslucent(text));
+//        }
+//        if (bone.getName().equals("satchel")) {
+//            stack.pushPose();
+//            RenderUtils.moveToPivot(bone, stack);
+//            stack.popPose();
+//            bufferIn = buffer.getBuffer(RenderType.entityTranslucent(text));
+//        }
         if (bone.getName().equals("saddle")) {
             if (bone.getName().equals("mane_rotation3")) {
                 stack.pushPose();
                 RenderUtils.moveToPivot(bone, stack);
                 stack.popPose();
-                bufferIn = buffer.getBuffer(RenderType.entityCutoutNoCull(text));
+                bufferIn = buffer.getBuffer(RenderType.entityTranslucent(text));
             }
         }
-        if (canis.isCanisWet()) {
-//            float f = canis.getShadingWhileWet(120);
-            this.setColor(red = this.r * red, green = this.g * green, blue = this.b * blue);
-        }
+//        if (canis.isCanisWet()) {
+////            float f = canis.getShadingWhileWet(120);
+//            this.setColor(red = this.r * red, green = this.g * green, blue = this.b * blue);
+//        }
         super.renderRecursively(bone, stack, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
     }
 
@@ -146,6 +165,6 @@ public class CanisRenderer extends GeoEntityRenderer<CanisEntity> {
 
     @Override
     public RenderType getRenderType(CanisEntity animatable, float partialTicks, MatrixStack stack, @Nullable IRenderTypeBuffer renderTypeBuffer, @Nullable IVertexBuilder vertexBuilder, int packedLightIn, ResourceLocation textureLocation) {
-        return RenderType.entityCutoutNoCull(textureLocation);
+        return RenderType.entityTranslucent(textureLocation);
     }
 }

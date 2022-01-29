@@ -4,7 +4,7 @@
     "item": "minecraft:ladder"
   },
   "addition": {
-    "item": "minecraft:iron_nugget"
+    "tag": "forge:nuggets/iron"
   },
   "result": {
     "item": "rigoranthusemortisreborn:azuloreal_ladder"

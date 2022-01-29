@@ -10,7 +10,7 @@
       "item": "rigoranthusemortisreborn:jessic_planks"
     },
     "1": {
-      "item": "minecraft:stick"
+      "tag": "forge:rods/wooden"
     }
   },
   "result": {

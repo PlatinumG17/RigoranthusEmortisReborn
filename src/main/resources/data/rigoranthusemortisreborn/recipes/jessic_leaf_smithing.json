@@ -4,7 +4,7 @@
     "tag": "minecraft:leaves"
   },
   "addition": {
-    "item": "minecraft:gold_nugget"
+    "tag": "forge:nuggets/gold"
   },
   "result": {
     "item": "rigoranthusemortisreborn:jessic_leaves"

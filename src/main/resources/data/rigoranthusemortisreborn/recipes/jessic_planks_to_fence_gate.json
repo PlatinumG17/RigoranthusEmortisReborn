@@ -7,7 +7,7 @@
   ],
   "key": {
     "0": {
-      "item": "minecraft:stick"
+      "tag": "forge:rods/wooden"
     },
     "1": {
       "item": "rigoranthusemortisreborn:jessic_planks"

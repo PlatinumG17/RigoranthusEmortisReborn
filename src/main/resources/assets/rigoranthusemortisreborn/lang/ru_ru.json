@@ -1520,5 +1520,8 @@
   "canis.color.light_gray": "Light Gray",
   "canis.color.white": "White",
   "canisgui.food_level": "Canis Food Level",
-  "canisgui.air_level": "Canis Air Level"
+  "canisgui.air_level": "Canis Air Level",
+  "item.rigoranthusemortisreborn.fire_shot": "Fire Shot",
+  "canisgui.prevcolor": "§oPrevious Color",
+  "canisgui.nextcolor": "§oNext Color"
 }

@@ -31,7 +31,7 @@
     }
   ],
   "result": {
-    "item": "minecraft:iron_nugget",
+    "tag": "forge:nuggets/iron",
     "count": 12
   }
 }

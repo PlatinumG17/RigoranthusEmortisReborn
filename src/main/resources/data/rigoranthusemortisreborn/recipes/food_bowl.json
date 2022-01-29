@@ -7,7 +7,7 @@
   ],
   "key": {
     "X": {
-      "item": "minecraft:iron_ingot"
+      "tag": "forge:ingots/iron"
     },
     "Y": {
       "item": "rigoranthusemortisreborn:bone_fragment"

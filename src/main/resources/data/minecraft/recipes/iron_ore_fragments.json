@@ -7,6 +7,6 @@
     "item": "rigoranthusemortisreborn:iron_ore_fragment"
   },
   "result": {
-    "item": "minecraft:iron_nugget"
+    "tag": "forge:nuggets/iron"
   }
 }

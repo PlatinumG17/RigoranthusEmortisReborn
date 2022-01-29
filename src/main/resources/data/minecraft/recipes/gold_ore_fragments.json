@@ -7,6 +7,6 @@
     "item": "rigoranthusemortisreborn:gold_ore_fragment"
   },
   "result": {
-    "item": "minecraft:gold_nugget"
+    "tag": "forge:nuggets/gold"
   }
 }

@@ -11,7 +11,7 @@
       "item": "rigoranthusemortisreborn:bone_fragment"
     },
     "I": {
-      "item": "minecraft:iron_ingot"
+      "tag": "forge:ingots/iron"
     },
     "S": {
       "tag": "forge:string"

@@ -11,7 +11,7 @@
       "item": "rigoranthusemortisreborn:pernicious_netherite_ingot"
     },
     "1": {
-      "item": "minecraft:iron_ingot"
+      "tag": "forge:ingots/iron"
     }
   },
   "result": {

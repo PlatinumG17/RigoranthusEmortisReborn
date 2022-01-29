@@ -11,7 +11,7 @@
       "item": "rigoranthusemortisreborn:opulent_netherite_ingot"
     },
     "1": {
-      "item": "minecraft:gold_ingot"
+      "tag": "forge:ingots/gold"
     }
   },
   "result": {

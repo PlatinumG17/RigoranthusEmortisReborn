@@ -6,7 +6,7 @@
       "item": "rigoranthusemortisreborn:razor_tooth"
     },
     {
-      "item": "minecraft:iron_nugget"
+      "tag": "forge:nuggets/iron"
     }
   ],
   "result": {

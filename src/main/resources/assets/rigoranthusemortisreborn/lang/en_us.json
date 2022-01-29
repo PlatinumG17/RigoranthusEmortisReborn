@@ -1112,8 +1112,8 @@
     "canis.color.light_gray": "Light Gray",
     "canis.color.white": "White",
 
-    "canisgui.prevpage": "\u00A7oPrevious Color",
-    "canisgui.nextpage": "\u00A7oNext Color",
+    "canisgui.prevcolor": "\u00A7oPrevious Color",
+    "canisgui.nextcolor": "\u00A7oNext Color",
     "canisgui.prevpage": "\u00A7o\u00A74Previous Page",
     "canisgui.nextpage": "\u00A7o\u00A72Next Page",
     "canisgui.newname": "\u00A70New name:",

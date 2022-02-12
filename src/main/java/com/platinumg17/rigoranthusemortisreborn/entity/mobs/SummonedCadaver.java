@@ -70,7 +70,7 @@ public class SummonedCadaver extends TameableEntity implements IAnimatable, IAni
 
     public SummonedCadaver(EntityType<SummonedCadaver> type, World worldIn) {
         super(type, worldIn);
-        this.moveControl = new MovementHandler(this);
+//        this.moveControl = new MovementHandler(this);
         this.noCulling = true;
     }
 

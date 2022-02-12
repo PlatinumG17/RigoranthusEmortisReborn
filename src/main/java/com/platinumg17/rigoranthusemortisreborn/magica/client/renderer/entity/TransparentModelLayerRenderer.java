@@ -22,7 +22,7 @@ import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
 import software.bernie.geckolib3.renderers.geo.GeoLayerRenderer;
 import software.bernie.geckolib3.renderers.geo.IGeoRenderer;
 
-import java.awt.*;
+import software.bernie.geckolib3.core.util.Color;
 import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

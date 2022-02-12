@@ -21,20 +21,14 @@ public class ApogeanSetBonus extends Effect {
         this.setRegistryName(EmortisConstants.MOD_ID, "apogean_set_bonus");
     }
     private static int healTimer = 80;
-    private static int effectTimer = 400;
-    private static int bubbleTimer = 200;
+    private static int bubbleTimer = 20;
     public void applyEffectTick(LivingEntity player, int amplifier) {
-//        effectTimer--;
-//        if (effectTimer < 0) {
-//            player.addEffect(new EffectInstance(Effects.JUMP, 400, 2));
-//            // List as many other effects as you want here. This is for effects that do not have Conditions that need to be met before the effect is applied.
-//            effectTimer = 400;
-//        }
+
         if (player.isOnFire() || player.isInLava()) {
             healTimer--;
             if (healTimer < 0) {
                 player.heal(1f);
-                healTimer = 40;
+                healTimer = 20;
             }
         }
         if (player.isInWaterOrBubble()) {
@@ -44,7 +38,7 @@ public class ApogeanSetBonus extends Effect {
                 //player.getAirSupply();
                 player.setAirSupply((player.getAirSupply()) + 1);
                 // Im trying to make a system where it adds 1 air bubble to the player's air supply in set intervals (Instead of giving Water Breathing)
-                bubbleTimer = 400;
+                bubbleTimer = 40;
             }
         }
         if ((player.level.getMaxLocalRawBrightness(player.getEntity().blockPosition()) < 5) || player.level.isNight()) {

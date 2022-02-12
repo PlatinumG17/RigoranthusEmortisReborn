@@ -1,8 +1,8 @@
 package com.platinumg17.rigoranthusemortisreborn.magica.setup;
 
-import com.minecraftabnormals.abnormals_core.common.blocks.AbnormalsFlowerBlock;
-import com.minecraftabnormals.abnormals_core.common.blocks.wood.AbnormalsSaplingBlock;
+import com.minecraftabnormals.abnormals_core.core.util.item.filling.TargetedItemGroupFiller;
 import com.platinumg17.rigoranthusemortisreborn.RigoranthusEmortisReborn;
+import com.platinumg17.rigoranthusemortisreborn.blocks.DecorativeOrStorageBlocks;
 import com.platinumg17.rigoranthusemortisreborn.blocks.custom.BrainBlock;
 import com.platinumg17.rigoranthusemortisreborn.blocks.custom.OpulentMagmaBlock;
 import com.platinumg17.rigoranthusemortisreborn.blocks.custom.skull.HangingSkullBlock;
@@ -28,13 +28,12 @@ import net.minecraft.block.material.MaterialColor;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityType;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.BlockNamedItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.item.crafting.IRecipeType;
+import net.minecraft.potion.Effect;
 import net.minecraft.potion.Effects;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.Style;
@@ -54,48 +53,72 @@ import java.util.List;
 
 @ObjectHolder(EmortisConstants.MOD_ID)
 public class BlockRegistry {
-    public static AbstractBlock.Properties LOG_PROP = AbstractBlock.Properties.of(Material.WOOD).harvestLevel(0).harvestTool(ToolType.AXE).strength(2.0F).sound(SoundType.WOOD);
-    public static AbstractBlock.Properties SAP_PROP = AbstractBlock.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS);
-    public static AbstractBlock.Properties FLOWER_POT_PROP = AbstractBlock.Properties.of(Material.DECORATION).strength(0.0F).noOcclusion();
-    public static AbstractBlock.Properties PLANKS = AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD);
+    public static Block.Properties LOG_PROP = AbstractBlock.Properties.of(Material.WOOD).harvestLevel(0).harvestTool(ToolType.AXE).strength(2.0F).sound(SoundType.WOOD);
+    public static Block.Properties SAP_PROP = AbstractBlock.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS);
+    public static Block.Properties FLOWER_POT_PROP = AbstractBlock.Properties.of(Material.DECORATION).strength(0.0F).noOcclusion();
+    public static Block.Properties PLANKS = AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD);
 
-    public static AbstractBlock.Properties LAMP_PROP = AbstractBlock.Properties.of(Material.BUILDABLE_GLASS).lightLevel((value) -> { return 15; }).strength(0.3F).sound(SoundType.SHROOMLIGHT);
-    public static AbstractBlock.Properties NETHERITE_PROP = AbstractBlock.Properties.of(Material.METAL, MaterialColor.METAL).lightLevel((value) -> { return 5; }).harvestTool(ToolType.PICKAXE).harvestLevel(4).strength(25f, 30f).requiresCorrectToolForDrops().sound(SoundType.STONE);
+    public static Block.Properties LAMP_PROP = AbstractBlock.Properties.of(Material.BUILDABLE_GLASS).lightLevel((value) -> { return 15; }).strength(0.3F).sound(SoundType.SHROOMLIGHT);
+    public static Block.Properties NETHERITE_PROP = AbstractBlock.Properties.of(Material.METAL, MaterialColor.METAL).lightLevel((value) -> { return 5; }).harvestTool(ToolType.PICKAXE).harvestLevel(4).strength(25f, 30f).requiresCorrectToolForDrops().sound(SoundType.STONE);
 
-    public static AbstractBlock.Properties ABYSSAL_PROP = AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).harvestTool(ToolType.PICKAXE).harvestLevel(3).strength(60f, 1800f).requiresCorrectToolForDrops().sound(SoundType.STONE);
-    public static AbstractBlock.Properties OXY_PROP = AbstractBlock.Properties.of(Material.ICE_SOLID, MaterialColor.COLOR_BLUE).harvestTool(ToolType.PICKAXE).harvestLevel(3).strength(12f, 20f).friction(0.5f).requiresCorrectToolForDrops().sound(SoundType.GLASS);
-    public static AbstractBlock.Properties FORTIFIED_PROP = AbstractBlock.Properties.of(Material.METAL, MaterialColor.STONE).harvestTool(ToolType.PICKAXE).harvestLevel(2).strength(8f, 10f).requiresCorrectToolForDrops().sound(SoundType.STONE);
-    public static AbstractBlock.Properties SOUL_PROP = AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).harvestTool(ToolType.PICKAXE).harvestLevel(1).requiresCorrectToolForDrops().strength(5.0F, 12.0F).sound(SoundType.SOUL_SAND);
-    public static AbstractBlock.Properties AMALGAM_PROP = AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).harvestTool(ToolType.PICKAXE).harvestLevel(1).strength(10f, 15f).requiresCorrectToolForDrops().sound(SoundType.STONE);
-    public static AbstractBlock.Properties HIMALAYAN_PROP = AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_PINK).harvestTool(ToolType.PICKAXE).harvestLevel(1).strength(7f, 10f).requiresCorrectToolForDrops().sound(SoundType.NETHER_ORE);
-    public static AbstractBlock.Properties BRAIN_PROP = AbstractBlock.Properties.of(Material.SPONGE, MaterialColor.COLOR_PINK).harvestLevel(0).strength(0.2f, 0.2f).noOcclusion().sound(SoundType.SLIME_BLOCK);
+    public static Block.Properties ABYSSAL_PROP = AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).harvestTool(ToolType.PICKAXE).harvestLevel(3).strength(60f, 1800f).requiresCorrectToolForDrops().sound(SoundType.STONE);
+    public static Block.Properties OXY_PROP = AbstractBlock.Properties.of(Material.ICE_SOLID, MaterialColor.COLOR_BLUE).harvestTool(ToolType.PICKAXE).harvestLevel(3).strength(12f, 20f).friction(0.5f).requiresCorrectToolForDrops().sound(SoundType.GLASS);
+    public static Block.Properties FORTIFIED_PROP = AbstractBlock.Properties.of(Material.METAL, MaterialColor.STONE).harvestTool(ToolType.PICKAXE).harvestLevel(2).strength(8f, 10f).requiresCorrectToolForDrops().sound(SoundType.STONE);
+    public static Block.Properties SOUL_PROP = AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).harvestTool(ToolType.PICKAXE).harvestLevel(1).requiresCorrectToolForDrops().strength(5.0F, 12.0F).sound(SoundType.SOUL_SAND);
+    public static Block.Properties AMALGAM_PROP = AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).harvestTool(ToolType.PICKAXE).harvestLevel(1).strength(10f, 15f).requiresCorrectToolForDrops().sound(SoundType.STONE);
+    public static Block.Properties HIMALAYAN_PROP = AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_PINK).harvestTool(ToolType.PICKAXE).harvestLevel(1).strength(7f, 10f).requiresCorrectToolForDrops().sound(SoundType.NETHER_ORE);
+    public static Block.Properties BRAIN_PROP = AbstractBlock.Properties.of(Material.SPONGE, MaterialColor.COLOR_PINK).harvestLevel(0).strength(0.2f, 0.2f).noOcclusion().sound(SoundType.SLIME_BLOCK);
 
-    public static AbstractBlock.Properties FRAG_COBBLE_PROP =  AbstractBlock.Properties.of(Material.SAND, MaterialColor.STONE).harvestTool(ToolType.SHOVEL).harvestLevel(0).strength(0.8f, 0.8f).sound(SoundType.GRAVEL);
-    public static AbstractBlock.Properties FRAG_NETHER_PROP =  AbstractBlock.Properties.of(Material.SAND, MaterialColor.NETHER).harvestTool(ToolType.SHOVEL).harvestLevel(0).strength(0.6f, 0.6f).sound(SoundType.NETHERRACK);
-    public static AbstractBlock.Properties ESOTERIC_PROP = AbstractBlock.Properties.of(Material.SAND, MaterialColor.STONE).harvestTool(ToolType.SHOVEL).harvestLevel(0).strength(1.0f, 6.0f).sound(SoundType.GRAVEL);
-    public static AbstractBlock.Properties PINK_SALT_PROP =  AbstractBlock.Properties.of(Material.SAND, MaterialColor.COLOR_PINK).harvestTool(ToolType.SHOVEL).harvestLevel(0).strength(0.6f, 0.6f).sound(SoundType.GRAVEL);
-    public static AbstractBlock.Properties SANDESITE_PROP =  AbstractBlock.Properties.of(Material.SAND, MaterialColor.CLAY).harvestTool(ToolType.SHOVEL).harvestLevel(0).strength(0.6f, 0.6f).sound(SoundType.GRAVEL);
+    public static Block.Properties FRAG_COBBLE_PROP =  AbstractBlock.Properties.of(Material.SAND, MaterialColor.STONE).harvestTool(ToolType.SHOVEL).harvestLevel(0).strength(0.8f, 0.8f).sound(SoundType.GRAVEL);
+    public static Block.Properties FRAG_NETHER_PROP =  AbstractBlock.Properties.of(Material.SAND, MaterialColor.NETHER).harvestTool(ToolType.SHOVEL).harvestLevel(0).strength(0.6f, 0.6f).sound(SoundType.NETHERRACK);
+    public static Block.Properties ESOTERIC_PROP = AbstractBlock.Properties.of(Material.SAND, MaterialColor.STONE).harvestTool(ToolType.SHOVEL).harvestLevel(0).strength(1.0f, 6.0f).sound(SoundType.GRAVEL);
+    public static Block.Properties PINK_SALT_PROP =  AbstractBlock.Properties.of(Material.SAND, MaterialColor.COLOR_PINK).harvestTool(ToolType.SHOVEL).harvestLevel(0).strength(0.6f, 0.6f).sound(SoundType.GRAVEL);
+    public static Block.Properties SANDESITE_PROP =  AbstractBlock.Properties.of(Material.SAND, MaterialColor.CLAY).harvestTool(ToolType.SHOVEL).harvestLevel(0).strength(0.6f, 0.6f).sound(SoundType.GRAVEL);
 
 
     //____________________________ W O O D   T Y P E S ____________________________//
     @ObjectHolder(LibBlockNames.AZULOREAL_LOG) public static StrippableLog AZULOREAL_LOG;
     @ObjectHolder(LibBlockNames.AZULOREAL_LEAVES) public static VerdurousLeavesBlock AZULOREAL_LEAVES;
-    @ObjectHolder(LibBlockNames.AZULOREAL_SAPLING) public static AbnormalsSaplingBlock AZULOREAL_SAPLING;
+    @ObjectHolder(LibBlockNames.AZULOREAL_SAPLING) public static SaplingBlock AZULOREAL_SAPLING;
     @ObjectHolder(LibBlockNames.AZULOREAL_WOOD) public static StrippableLog AZULOREAL_WOOD;
     @ObjectHolder(LibBlockNames.STRIPPED_AZULOREAL_LOG) public static RotatedPillarBlock STRIPPED_AZULOREAL_LOG;
     @ObjectHolder(LibBlockNames.STRIPPED_AZULOREAL_WOOD) public static RotatedPillarBlock STRIPPED_AZULOREAL_WOOD;
 
+//    @ObjectHolder(LibBlockNames.AZULOREAL_PLANKS) public static REPlank AZULOREAL_PLANKS;
+    @ObjectHolder(LibBlockNames.AZULOREAL_SLAB) public static SlabBlock AZULOREAL_SLAB;
+    @ObjectHolder(LibBlockNames.AZULOREAL_STAIRS) public static StairsBlock AZULOREAL_STAIRS;
+    @ObjectHolder(LibBlockNames.AZULOREAL_PRESSURE_PLATE) public static PressurePlateBlock AZULOREAL_PRESSURE_PLATE;
+    @ObjectHolder(LibBlockNames.AZULOREAL_FENCE) public static FenceBlock AZULOREAL_FENCE;
+    @ObjectHolder(LibBlockNames.AZULOREAL_FENCE_GATE) public static FenceGateBlock AZULOREAL_FENCE_GATE;
+    @ObjectHolder(LibBlockNames.AZULOREAL_BUTTON) public static WoodButtonBlock AZULOREAL_BUTTON;
+    @ObjectHolder(LibBlockNames.AZULOREAL_DOOR) public static DoorBlock AZULOREAL_DOOR;
+    @ObjectHolder(LibBlockNames.AZULOREAL_TRAPDOOR) public static TrapDoorBlock AZULOREAL_TRAPDOOR;
+    //    @ObjectHolder(LibBlockNames.AZULOREAL_STANDING_SIGN) public static AzulorealStandingSignBlock AZULOREAL_STANDING_SIGN;
+    //    @ObjectHolder(LibBlockNames.AZULOREAL_WALL_SIGN) public static AzulorealWallSignBlock AZULOREAL_WALL_SIGN;
+
     @ObjectHolder(LibBlockNames.JESSIC_LOG) public static StrippableLog JESSIC_LOG;
     @ObjectHolder(LibBlockNames.JESSIC_LEAVES) public static VerdurousLeavesBlock JESSIC_LEAVES;
-    @ObjectHolder(LibBlockNames.JESSIC_SAPLING) public static AbnormalsSaplingBlock JESSIC_SAPLING;
+    @ObjectHolder(LibBlockNames.JESSIC_SAPLING) public static SaplingBlock JESSIC_SAPLING;
     @ObjectHolder(LibBlockNames.JESSIC_WOOD) public static StrippableLog JESSIC_WOOD;
     @ObjectHolder(LibBlockNames.STRIPPED_JESSIC_LOG) public static RotatedPillarBlock STRIPPED_JESSIC_LOG;
     @ObjectHolder(LibBlockNames.STRIPPED_JESSIC_WOOD) public static RotatedPillarBlock STRIPPED_JESSIC_WOOD;
 
+//    @ObjectHolder(LibBlockNames.JESSIC_PLANKS) public static REPlank JESSIC_PLANKS;
+    @ObjectHolder(LibBlockNames.JESSIC_SLAB) public static SlabBlock JESSIC_SLAB;
+    @ObjectHolder(LibBlockNames.JESSIC_STAIRS) public static StairsBlock JESSIC_STAIRS;
+    @ObjectHolder(LibBlockNames.JESSIC_PRESSURE_PLATE) public static PressurePlateBlock JESSIC_PRESSURE_PLATE;
+    @ObjectHolder(LibBlockNames.JESSIC_FENCE) public static FenceBlock JESSIC_FENCE;
+    @ObjectHolder(LibBlockNames.JESSIC_FENCE_GATE) public static FenceGateBlock JESSIC_FENCE_GATE;
+    @ObjectHolder(LibBlockNames.JESSIC_BUTTON) public static WoodButtonBlock JESSIC_BUTTON;
+    @ObjectHolder(LibBlockNames.JESSIC_DOOR) public static DoorBlock JESSIC_DOOR;
+    @ObjectHolder(LibBlockNames.JESSIC_TRAPDOOR) public static TrapDoorBlock JESSIC_TRAPDOOR;
+//    @ObjectHolder(LibBlockNames.JESSIC_STANDING_SIGN) public static JessicStandingSignBlock JESSIC_STANDING_SIGN;
+//    @ObjectHolder(LibBlockNames.JESSIC_WALL_SIGN) public static JessicWallSignBlock JESSIC_WALL_SIGN;
+
 
     //____________________________ F L O W E R S ____________________________//
-    @ObjectHolder(LibBlockNames.AZULOREAL_ORCHID) public static AbnormalsFlowerBlock AZULOREAL_ORCHID;
-    @ObjectHolder(LibBlockNames.IRIDESCENT_SPROUTS) public static AbnormalsFlowerBlock IRIDESCENT_SPROUTS;
+    @ObjectHolder(LibBlockNames.AZULOREAL_ORCHID) public static FlowerBlock AZULOREAL_ORCHID;
+    @ObjectHolder(LibBlockNames.IRIDESCENT_SPROUTS) public static FlowerBlock IRIDESCENT_SPROUTS;
     @ObjectHolder(LibBlockNames.SPECTABILIS_BUSH) public static SpectabilisBushBlock SPECTABILIS_BUSH;
     @ObjectHolder(LibBlockNames.LISIANTHUS) public static TallFlowerBlock LISIANTHUS;
 
@@ -138,9 +161,9 @@ public class BlockRegistry {
 
 
     //____________________________ T I L E   E N T I T Y   B L O C K S ____________________________//
+
     @ObjectHolder(LibBlockNames.HANGING_CADAVER_SKULL) public static HangingSkullBlock hangingCadaverSkull;
     @ObjectHolder(LibBlockNames.HANGING_CADAVER_SKULL) public static TileEntityType<HangingSkullTile> hangingCadaverSkullTile;
-
     @ObjectHolder(LibBlockNames.DECAYING_BLOCK) public static DecayingBlock DECAYING_BLOCK;
     @ObjectHolder(LibBlockNames.DECAYING_BLOCK) public static TileEntityType<DecayingBlockTile> DECAYING_TILE;
     @ObjectHolder(LibBlockNames.LIGHT_BLOCK) public static LightBlock LIGHT_BLOCK;
@@ -159,33 +182,28 @@ public class BlockRegistry {
     @ObjectHolder(LibBlockNames.PORTAL) public static TileEntityType<PortalTile> PORTAL_TILE_TYPE;
     @ObjectHolder(LibBlockNames.INTANGIBLE_AIR) public static IntangibleAirBlock INTANGIBLE_AIR;
     @ObjectHolder(LibBlockNames.INTANGIBLE_AIR) public static  TileEntityType<IntangibleAirTile> INTANGIBLE_AIR_TYPE;
-    //    @ObjectHolder(LibBlockNames.RE_LILLY_PAD) public static RELilyPad RE_LILLY_PAD;
     @ObjectHolder(LibBlockNames.DOMINION_BERRY_BUSH) public static DominionBerryBush DOMINION_BERRY_BUSH;
     @ObjectHolder(LibBlockNames.CREATIVE_DOMINION_JAR) public static CreativeDominionJar CREATIVE_DOMINION_JAR;
     @ObjectHolder(LibBlockNames.CREATIVE_DOMINION_JAR) public static TileEntityType<CreativeDominionJarTile> CREATIVE_DOMINION_JAR_TILE;
     @ObjectHolder(LibBlockNames.RITUAL_VESSEL) public static RitualVesselBlock RITUAL_BLOCK;
     @ObjectHolder(LibBlockNames.RITUAL_VESSEL) public static TileEntityType<RitualTile> RITUAL_TILE;
     @ObjectHolder(LibBlockNames.DOMINION_GEM_BLOCK) public static ModBlock DOMINION_GEM_BLOCK;
-
     @ObjectHolder(LibBlockNames.ICHOR_JAR) public static IchorJar ICHOR_JAR;
     @ObjectHolder(LibBlockNames.ICHOR_JAR) public static TileEntityType<IchorJarTile> ICHOR_JAR_TILE;
     @ObjectHolder(LibBlockNames.CREATIVE_ICHOR_JAR) public static CreativeIchorJar CREATIVE_ICHOR_JAR;
     @ObjectHolder(LibBlockNames.CREATIVE_ICHOR_JAR) public static TileEntityType<CreativeIchorJarTile> CREATIVE_ICHOR_JAR_TILE;
-
     @ObjectHolder(LibBlockNames.RELAY_DEPOSIT) public static RelayDepositBlock RELAY_DEPOSIT;
     @ObjectHolder(LibBlockNames.RELAY_DEPOSIT) public static TileEntityType<RelayDepositTile> RELAY_DEPOSIT_TILE;
     @ObjectHolder(LibBlockNames.EMORTIC_RELAY) public static TileEntityType<EmorticRelayTile> EMORTIC_RELAY_TILE;
     @ObjectHolder(LibBlockNames.EMORTIC_RELAY) public static EmorticRelay EMORTIC_RELAY;
     @ObjectHolder(LibBlockNames.RELAY_SPLITTER) public static RelaySplitterBlock RELAY_SPLITTER;
     @ObjectHolder(LibBlockNames.RELAY_SPLITTER) public static TileEntityType<RelaySplitterTile> RELAY_SPLITTER_TILE;
-
     @ObjectHolder(LibBlockNames.ICHOR_EXTRACTOR) public static IchorExtractorBlock ICHOR_EXTRACTOR_BLOCK;
     @ObjectHolder(LibBlockNames.ICHOR_EXTRACTOR) public static TileEntityType<IchorExtractorTile> ICHOR_EXTRACTOR_TILE;
     @ObjectHolder(LibBlockNames.EMORTIC_CORTEX) public static EmorticCortex EMORTIC_CORTEX_BLOCK;
     @ObjectHolder(LibBlockNames.EMORTIC_CORTEX) public static TileEntityType<EmorticCortexTile> EMORTIC_CORTEX_TILE;
     @ObjectHolder(LibBlockNames.DOMINION_CRYSTALLIZER) public static DominionCrystallizerBlock DOMINION_CRYSTALLIZER_BLOCK;
     @ObjectHolder(LibBlockNames.DOMINION_CRYSTALLIZER) public static TileEntityType<DominionCrystallizerTile> DOMINION_CRYSTALLIZER_TILE;
-
     @ObjectHolder(LibBlockNames.PSYGLYPHIC_CIPHER) public static CipherBlock PSYGLYPHIC_CIPHER;
     @ObjectHolder(LibBlockNames.PSYGLYPHIC_CIPHER) public static TileEntityType<PsyglyphicCipherTile> PSYGLYPHIC_TILE;
 
@@ -196,20 +214,44 @@ public class BlockRegistry {
         @SubscribeEvent
         public static void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {
             IForgeRegistry<Block> registry = blockRegistryEvent.getRegistry();
+            registry.register(new RedstoneLampBlock(LAMP_PROP).setRegistryName(LibBlockNames.AZULOREAL_LAMP));
+//            registry.register(new REPlank(PLANKS).setRegistryName(LibBlockNames.AZULOREAL_PLANKS));
+            registry.register(new SlabBlock(woodProp).setRegistryName(LibBlockNames.AZULOREAL_SLAB));
+            registry.register(new StairsBlock(()-> DecorativeOrStorageBlocks.AZULOREAL_PLANKS.get().defaultBlockState(),woodProp).setRegistryName(LibBlockNames.AZULOREAL_STAIRS));
+            registry.register(new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, woodProp).setRegistryName(LibBlockNames.AZULOREAL_PRESSURE_PLATE));
+            registry.register(new FenceBlock(woodProp).setRegistryName(LibBlockNames.AZULOREAL_FENCE));
+            registry.register(new FenceGateBlock(woodProp).setRegistryName(LibBlockNames.AZULOREAL_FENCE_GATE));
+            registry.register(new WoodButtonBlock(Block.Properties.of(Material.DECORATION).noCollission().strength(0.5F).sound(SoundType.WOOD)).setRegistryName(LibBlockNames.AZULOREAL_BUTTON));
+            registry.register(new DoorBlock(woodProp).setRegistryName(LibBlockNames.AZULOREAL_DOOR));
+            registry.register(new TrapDoorBlock(woodProp).setRegistryName(LibBlockNames.AZULOREAL_TRAPDOOR));
+//            registry.register(new AzulorealStandingSignBlock(PLANKS, RigoranthusWoodTypes.AZULOREAL).setRegistryName(LibBlockNames.AZULOREAL_STANDING_SIGN));
+//            registry.register(new AzulorealWallSignBlock(PLANKS, RigoranthusWoodTypes.AZULOREAL).setRegistryName(LibBlockNames.AZULOREAL_WALL_SIGN));
             registry.register(new StrippableLog(LOG_PROP, LibBlockNames.AZULOREAL_LOG, () -> BlockRegistry.STRIPPED_AZULOREAL_LOG));
             registry.register(new RotatedPillarBlock(LOG_PROP).setRegistryName(LibBlockNames.STRIPPED_AZULOREAL_LOG));
             registry.register(createAzulorealLeavesBlock().setRegistryName(LibBlockNames.AZULOREAL_LEAVES));
             registry.register(new StrippableLog(LOG_PROP, LibBlockNames.AZULOREAL_WOOD, () -> BlockRegistry.STRIPPED_AZULOREAL_WOOD));
             registry.register(new RotatedPillarBlock(LOG_PROP).setRegistryName(LibBlockNames.STRIPPED_AZULOREAL_WOOD));
-            registry.register(new AbnormalsSaplingBlock(new AzulorealTree(), SAP_PROP).setRegistryName(LibBlockNames.AZULOREAL_SAPLING));
+            registry.register(new SaplingBlock(new AzulorealTree(), SAP_PROP).setRegistryName(LibBlockNames.AZULOREAL_SAPLING));
             registry.register(new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, () -> AZULOREAL_SAPLING, FLOWER_POT_PROP).setRegistryName(LibBlockNames.POTTED_AZULOREAL_SAPLING));
 
+            registry.register(new RedstoneLampBlock(LAMP_PROP).setRegistryName(LibBlockNames.JESSIC_LAMP));
+//            registry.register(new REPlank(PLANKS).setRegistryName(LibBlockNames.JESSIC_PLANKS));
+            registry.register(new SlabBlock(woodProp).setRegistryName(LibBlockNames.JESSIC_SLAB));
+            registry.register(new StairsBlock(()-> DecorativeOrStorageBlocks.JESSIC_PLANKS.get().defaultBlockState(),woodProp).setRegistryName(LibBlockNames.JESSIC_STAIRS));
+            registry.register(new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, woodProp).setRegistryName(LibBlockNames.JESSIC_PRESSURE_PLATE));
+            registry.register(new FenceBlock(woodProp).setRegistryName(LibBlockNames.JESSIC_FENCE));
+            registry.register(new FenceGateBlock(woodProp).setRegistryName(LibBlockNames.JESSIC_FENCE_GATE));
+            registry.register(new WoodButtonBlock(Block.Properties.of(Material.DECORATION).noCollission().strength(0.5F).sound(SoundType.WOOD)).setRegistryName(LibBlockNames.JESSIC_BUTTON));
+            registry.register(new DoorBlock(woodProp).setRegistryName(LibBlockNames.JESSIC_DOOR));
+            registry.register(new TrapDoorBlock(woodProp).setRegistryName(LibBlockNames.JESSIC_TRAPDOOR));
+//            registry.register(new JessicStandingSignBlock(PLANKS, RigoranthusWoodTypes.JESSIC).setRegistryName(LibBlockNames.JESSIC_STANDING_SIGN));
+//            registry.register(new JessicWallSignBlock(PLANKS, RigoranthusWoodTypes.JESSIC).setRegistryName(LibBlockNames.JESSIC_WALL_SIGN));
             registry.register(new StrippableLog(LOG_PROP, LibBlockNames.JESSIC_LOG, () -> BlockRegistry.STRIPPED_JESSIC_LOG));
             registry.register(new RotatedPillarBlock(LOG_PROP).setRegistryName(LibBlockNames.STRIPPED_JESSIC_LOG));
             registry.register(createJessicLeavesBlock().setRegistryName(LibBlockNames.JESSIC_LEAVES));
             registry.register(new StrippableLog(LOG_PROP, LibBlockNames.JESSIC_WOOD, () -> BlockRegistry.STRIPPED_JESSIC_WOOD));
             registry.register(new RotatedPillarBlock(LOG_PROP).setRegistryName(LibBlockNames.STRIPPED_JESSIC_WOOD));
-            registry.register(new AbnormalsSaplingBlock(new JessicTree(), SAP_PROP).setRegistryName(LibBlockNames.JESSIC_SAPLING));
+            registry.register(new SaplingBlock(new JessicTree(), SAP_PROP).setRegistryName(LibBlockNames.JESSIC_SAPLING));
             registry.register(new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, () -> JESSIC_SAPLING, FLOWER_POT_PROP).setRegistryName(LibBlockNames.POTTED_JESSIC_SAPLING));
 
             registry.register(createAzulorealOrchidBlock().setRegistryName(LibBlockNames.AZULOREAL_ORCHID));
@@ -242,11 +284,6 @@ public class BlockRegistry {
             registry.register(new DecayingBlock());
             registry.register(new IntangibleAirBlock());
             registry.register(new PortalBlock());
-//            registry.register(new RELilyPad());
-
-
-            registry.register(new RedstoneLampBlock(LAMP_PROP).setRegistryName(LibBlockNames.AZULOREAL_LAMP));
-            registry.register(new RedstoneLampBlock(LAMP_PROP).setRegistryName(LibBlockNames.JESSIC_LAMP));
 
             registry.register(new GravelBlock(FRAG_COBBLE_PROP).setRegistryName(LibBlockNames.FRAGMENTED_COBBLESTONE));
             registry.register(new GravelBlock(FRAG_NETHER_PROP).setRegistryName(LibBlockNames.FRAGMENTED_NETHERRACK));
@@ -257,7 +294,6 @@ public class BlockRegistry {
             registry.register(new BrainBlock(BRAIN_PROP, LibBlockNames.DWELLER_BRAIN));
             registry.register(new RESkullBlock(LibBlockNames.CADAVER_SKULL));
             registry.register(new OpulentMagmaBlock(LibBlockNames.OPULENT_MAGMA));
-
             registry.register(new ModBlock(FORTIFIED_PROP, LibBlockNames.FORTIFIED_SANDESITE));
             registry.register(new ModBlock(ABYSSAL_PROP, LibBlockNames.ABYSSALITE));
             registry.register(new ModBlock(OXY_PROP, LibBlockNames.OXYLITE));
@@ -275,11 +311,23 @@ public class BlockRegistry {
             registry.register(new ModBlock(NETHERITE_PROP, LibBlockNames.INFERNAL_NETHERITE_BLOCK));
             registry.register(new ModBlock(NETHERITE_PROP, LibBlockNames.REMEX_NETHERITE_BLOCK));
         }
-        public static AbnormalsFlowerBlock createAzulorealOrchidBlock() {
-            return new AbnormalsFlowerBlock(()-> Effects.HEAL, 8, AbstractBlock.Properties.copy(Blocks.AZURE_BLUET));
+//        public static AbnormalsFlowerBlock createAzulorealOrchidBlock() {
+//            return new AbnormalsFlowerBlock(()-> Effects.HEAL, 8, AbstractBlock.Properties.copy(Blocks.AZURE_BLUET));
+//        }
+//        public static AbnormalsFlowerBlock createIridescentSproutBlock() {
+//            return new AbnormalsFlowerBlock(()-> Effects.NIGHT_VISION, 10, AbstractBlock.Properties.copy(Blocks.NETHER_SPROUTS));
+//        }
+        public static FlowerBlock createAzulorealOrchidBlock() {
+            return new FlowerBlock(Effects.HEAL, 8, Block.Properties.copy(Blocks.AZURE_BLUET)) {
+                @Override public Effect getSuspiciousStewEffect() { return Effects.HEAL; }
+                @Override public int getEffectDuration() { return this.getSuspiciousStewEffect().isInstantenous() ? 8 : 8 * 20; }
+            };
         }
-        public static AbnormalsFlowerBlock createIridescentSproutBlock() {
-            return new AbnormalsFlowerBlock(()-> Effects.NIGHT_VISION, 10, AbstractBlock.Properties.copy(Blocks.NETHER_SPROUTS));
+        public static FlowerBlock createIridescentSproutBlock() {
+            return new FlowerBlock(Effects.NIGHT_VISION, 10, Block.Properties.copy(Blocks.NETHER_SPROUTS)) {
+                @Override public Effect getSuspiciousStewEffect() { return Effects.NIGHT_VISION; }
+                @Override public int getEffectDuration() { return this.getSuspiciousStewEffect().isInstantenous() ? 10 : 10 * 20; }
+            };
         }
         static Block.Properties woodProp = AbstractBlock.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD);
         public static VerdurousLeavesBlock createAzulorealLeavesBlock() {
@@ -329,23 +377,8 @@ public class BlockRegistry {
             ComposterBlock.COMPOSTABLES.putIfAbsent(bilisBerry, 0.3f);
             registry.register(dominionBerry);
             registry.register(bilisBerry);
-            registry.register(getDefaultBlockItem(BlockRegistry.JESSIC_LEAVES, LibBlockNames.JESSIC_LEAVES));
-            registry.register(getDefaultBlockItem(BlockRegistry.JESSIC_LOG, LibBlockNames.JESSIC_LOG));
-            registry.register(getDefaultBlockItem(BlockRegistry.JESSIC_SAPLING, LibBlockNames.JESSIC_SAPLING));
-            registry.register(getDefaultBlockItem(BlockRegistry.JESSIC_WOOD, LibBlockNames.JESSIC_WOOD));
-            registry.register(getDefaultBlockItem(BlockRegistry.AZULOREAL_LEAVES, LibBlockNames.AZULOREAL_LEAVES));
-            registry.register(getDefaultBlockItem(BlockRegistry.AZULOREAL_LOG, LibBlockNames.AZULOREAL_LOG));
-            registry.register(getDefaultBlockItem(BlockRegistry.AZULOREAL_SAPLING, LibBlockNames.AZULOREAL_SAPLING));
-            registry.register(getDefaultBlockItem(BlockRegistry.AZULOREAL_WOOD, LibBlockNames.AZULOREAL_WOOD));
-            registry.register(getDefaultBlockItem(BlockRegistry.STRIPPED_JESSIC_LOG, LibBlockNames.STRIPPED_JESSIC_LOG));
-            registry.register(getDefaultBlockItem(BlockRegistry.STRIPPED_JESSIC_WOOD, LibBlockNames.STRIPPED_JESSIC_WOOD));
-            registry.register(getDefaultBlockItem(BlockRegistry.STRIPPED_AZULOREAL_LOG, LibBlockNames.STRIPPED_AZULOREAL_LOG));
-            registry.register(getDefaultBlockItem(BlockRegistry.STRIPPED_AZULOREAL_WOOD, LibBlockNames.STRIPPED_AZULOREAL_WOOD));
-            registry.register(getDefaultBlockItem(BlockRegistry.LISIANTHUS, LibBlockNames.LISIANTHUS));
-            registry.register(getDefaultBlockItem(BlockRegistry.AZULOREAL_ORCHID, LibBlockNames.AZULOREAL_ORCHID));
-            registry.register(getDefaultBlockItem(BlockRegistry.IRIDESCENT_SPROUTS, LibBlockNames.IRIDESCENT_SPROUTS));
-            registry.register(getDefaultBlockItem(BlockRegistry.DOMINION_GEM_BLOCK, LibBlockNames.DOMINION_GEM_BLOCK));
 
+            registry.register(getDefaultBlockItem(BlockRegistry.DOMINION_GEM_BLOCK, LibBlockNames.DOMINION_GEM_BLOCK));
             registry.register(new BlockItem(BlockRegistry.DOMINION_JAR, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.DOMINION_JAR));
             registry.register(new BlockItem(BlockRegistry.CREATIVE_DOMINION_JAR, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.CREATIVE_DOMINION_JAR));
             registry.register(new BlockItem(BlockRegistry.ICHOR_JAR, MagicItemsRegistry.defaultItemProperties()).setRegistryName(LibBlockNames.ICHOR_JAR));
@@ -490,7 +523,6 @@ public class BlockRegistry {
             registry.register(emorticRelay);
             registry.register(relaySplitter);
             registry.register(relayDeposit);
-
             registry.register(cipherBlock);
             registry.register(ichorExtractor);
             registry.register(ichorCrystallizer);
@@ -499,26 +531,284 @@ public class BlockRegistry {
             registry.register(registerTooltipBlockItem(LibBlockNames.SPLINTERED_PEDESTAL, BlockRegistry.SPLINTERED_PEDESTAL,"splintered_pedestal", "splintered_pedestal2"));
             registry.register(craftingPress);
 
-
-            registry.register(getDefaultBlockItem(BlockRegistry.AZULOREAL_LAMP, LibBlockNames.AZULOREAL_LAMP));
-            registry.register(getDefaultBlockItem(BlockRegistry.JESSIC_LAMP, LibBlockNames.JESSIC_LAMP));
-
-            registry.register(registerTooltipBlockItem(LibBlockNames.FRAGMENTED_COBBLESTONE, BlockRegistry.FRAGMENTED_COBBLESTONE, LibBlockNames.FRAGMENTED_COBBLESTONE, "fragmented_cobblestone2"));
-            registry.register(registerTooltipBlockItem(LibBlockNames.FRAGMENTED_NETHERRACK, BlockRegistry.FRAGMENTED_NETHERRACK, LibBlockNames.FRAGMENTED_NETHERRACK, "fragmented_netherrack2"));
-
-            registry.register(registerSingleTooltipBlockItem(LibBlockNames.ABYSSALITE, BlockRegistry.ABYSSALITE, LibBlockNames.ABYSSALITE));
-            registry.register(registerSingleTooltipBlockItem(LibBlockNames.OXYLITE, BlockRegistry.OXYLITE, LibBlockNames.OXYLITE));
-            registry.register(registerSoulCoalBlockItem(LibBlockNames.SOUL_COAL_BLOCK, BlockRegistry.SOUL_COAL_BLOCK, LibBlockNames.SOUL_COAL_BLOCK));
-            registry.register(registerSingleTooltipBlockItem(LibBlockNames.OPULENT_MAGMA, BlockRegistry.OPULENT_MAGMA, LibBlockNames.OPULENT_MAGMA));
-            registry.register(registerSingleTooltipBlockItem(LibBlockNames.DWELLER_BRAIN, BlockRegistry.DWELLER_BRAIN, LibBlockNames.DWELLER_BRAIN));
-            registry.register(registerSingleTooltipBlockItem(LibBlockNames.HIMALAYAN_SALT, BlockRegistry.HIMALAYAN_SALT, LibBlockNames.HIMALAYAN_SALT));
-            registry.register(registerSingleTooltipBlockItem(LibBlockNames.GOLD_AMALGAM, BlockRegistry.GOLD_AMALGAM, LibBlockNames.GOLD_AMALGAM));
+//            registry.register(registerTooltipBlockItem(LibBlockNames.FRAGMENTED_COBBLESTONE, BlockRegistry.FRAGMENTED_COBBLESTONE, LibBlockNames.FRAGMENTED_COBBLESTONE, "fragmented_cobblestone2"));
+//            registry.register(registerTooltipBlockItem(LibBlockNames.FRAGMENTED_NETHERRACK, BlockRegistry.FRAGMENTED_NETHERRACK, LibBlockNames.FRAGMENTED_NETHERRACK, "fragmented_netherrack2"));
+//            registry.register(registerSingleTooltipBlockItem(LibBlockNames.ABYSSALITE, BlockRegistry.ABYSSALITE, LibBlockNames.ABYSSALITE));
+//            registry.register(registerSingleTooltipBlockItem(LibBlockNames.OXYLITE, BlockRegistry.OXYLITE, LibBlockNames.OXYLITE));
+//            registry.register(registerSoulCoalBlockItem(LibBlockNames.SOUL_COAL_BLOCK, BlockRegistry.SOUL_COAL_BLOCK, LibBlockNames.SOUL_COAL_BLOCK));
+//            registry.register(registerSingleTooltipBlockItem(LibBlockNames.OPULENT_MAGMA, BlockRegistry.OPULENT_MAGMA, LibBlockNames.OPULENT_MAGMA));
+//            registry.register(registerSingleTooltipBlockItem(LibBlockNames.GOLD_AMALGAM, BlockRegistry.GOLD_AMALGAM, LibBlockNames.GOLD_AMALGAM));
             registry.register(registerSingleTooltipBlockItem(LibBlockNames.BLOCK_OF_ESOTERICUM, BlockRegistry.BLOCK_OF_ESOTERICUM, LibBlockNames.BLOCK_OF_ESOTERICUM));
-
             registry.register(registerSingleTooltipBlockItem(LibBlockNames.SANDESITE, BlockRegistry.SANDESITE, LibBlockNames.SANDESITE));
             registry.register(registerSingleTooltipBlockItem(LibBlockNames.FORTIFIED_SANDESITE, BlockRegistry.FORTIFIED_SANDESITE, LibBlockNames.FORTIFIED_SANDESITE));
             registry.register(registerSingleTooltipBlockItem(LibBlockNames.PINK_SALT, BlockRegistry.PINK_SALT, LibBlockNames.PINK_SALT));
+            registry.register(registerSingleTooltipBlockItem(LibBlockNames.HIMALAYAN_SALT, BlockRegistry.HIMALAYAN_SALT, LibBlockNames.HIMALAYAN_SALT));
+            registry.register(registerSingleTooltipBlockItem(LibBlockNames.DWELLER_BRAIN, BlockRegistry.DWELLER_BRAIN, LibBlockNames.DWELLER_BRAIN));
             registry.register(registerSingleTooltipBlockItem(LibBlockNames.CADAVER_SKULL, BlockRegistry.CADAVER_SKULL, LibBlockNames.CADAVER_SKULL));
+
+            Item fragmentedCobblestone = new BlockItem(BlockRegistry.FRAGMENTED_COBBLESTONE, new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS)) {
+                private final TargetedItemGroupFiller FILLER = new TargetedItemGroupFiller(() -> Items.COBBLESTONE);
+                public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) { FILLER.fillItem(this.asItem(), group, items); }
+                @Override
+                public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+                    if (Screen.hasShiftDown()) {
+                        tooltip.add(new TranslationTextComponent("tooltip.block.rigoranthusemortisreborn.fragmented_cobblestone"));
+                        tooltip.add(new TranslationTextComponent("tooltip.block.rigoranthusemortisreborn.fragmented_cobblestone2"));
+                    } else { tooltip.add(new TranslationTextComponent("tooltip.rigoranthusemortisreborn.hold_shift").setStyle(Style.EMPTY)); }
+                    super.appendHoverText(stack, worldIn, tooltip, flagIn);
+                }
+            }.setRegistryName(LibBlockNames.FRAGMENTED_COBBLESTONE);
+
+            Item fragmentedNetherrack = new BlockItem(BlockRegistry.FRAGMENTED_NETHERRACK, new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS)) {
+                private final TargetedItemGroupFiller FILLER = new TargetedItemGroupFiller(() -> Items.NETHERRACK);
+                public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) { FILLER.fillItem(this.asItem(), group, items); }
+                @Override
+                public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+                    if (Screen.hasShiftDown()) {
+                        tooltip.add(new TranslationTextComponent("tooltip.block.rigoranthusemortisreborn.fragmented_netherrack"));
+                        tooltip.add(new TranslationTextComponent("tooltip.block.rigoranthusemortisreborn.fragmented_netherrack2"));
+                    } else { tooltip.add(new TranslationTextComponent("tooltip.rigoranthusemortisreborn.hold_shift").setStyle(Style.EMPTY)); }
+                    super.appendHoverText(stack, worldIn, tooltip, flagIn);
+                }
+            }.setRegistryName(LibBlockNames.FRAGMENTED_NETHERRACK);
+
+            Item abyssalite = new BlockItem(BlockRegistry.ABYSSALITE, new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS)) {
+                private final TargetedItemGroupFiller FILLER = new TargetedItemGroupFiller(() -> Items.OBSIDIAN);
+                public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) { FILLER.fillItem(this.asItem(), group, items); }
+                @Override
+                public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+                    if (Screen.hasShiftDown()) { tooltip.add(new TranslationTextComponent("tooltip.block.rigoranthusemortisreborn.abyssalite")); }
+                    else { tooltip.add(new TranslationTextComponent("tooltip.rigoranthusemortisreborn.hold_shift").setStyle(Style.EMPTY)); }
+                    super.appendHoverText(stack, worldIn, tooltip, flagIn);
+                }
+            }.setRegistryName(LibBlockNames.ABYSSALITE);
+
+            Item oxylite = new BlockItem(BlockRegistry.OXYLITE, new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS)) {
+                private final TargetedItemGroupFiller FILLER = new TargetedItemGroupFiller(() -> Items.OBSIDIAN);
+                public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) { FILLER.fillItem(this.asItem(), group, items); }
+                @Override
+                public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+                    if (Screen.hasShiftDown()) { tooltip.add(new TranslationTextComponent("tooltip.block.rigoranthusemortisreborn.oxylite")); }
+                    else { tooltip.add(new TranslationTextComponent("tooltip.rigoranthusemortisreborn.hold_shift").setStyle(Style.EMPTY)); }
+                    super.appendHoverText(stack, worldIn, tooltip, flagIn);
+                }
+            }.setRegistryName(LibBlockNames.OXYLITE);
+
+            Item soulCoal = new BlockItem(BlockRegistry.SOUL_COAL_BLOCK, new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS)) {
+                private final TargetedItemGroupFiller FILLER = new TargetedItemGroupFiller(() -> Items.COAL_BLOCK);
+                public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) { FILLER.fillItem(this.asItem(), group, items); }
+                @Override
+                public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+                    if (Screen.hasShiftDown()) { tooltip.add(new TranslationTextComponent("tooltip.block.rigoranthusemortisreborn.soul_coal_block")); }
+                    else { tooltip.add(new TranslationTextComponent("tooltip.rigoranthusemortisreborn.hold_shift").setStyle(Style.EMPTY)); }
+                    super.appendHoverText(stack, worldIn, tooltip, flagIn);
+                }
+            }.setRegistryName(LibBlockNames.SOUL_COAL_BLOCK);
+
+            Item opulentMagma = new BlockItem(BlockRegistry.OPULENT_MAGMA, new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS)) {
+                private final TargetedItemGroupFiller FILLER = new TargetedItemGroupFiller(() -> Items.MAGMA_BLOCK);
+                public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) { FILLER.fillItem(this.asItem(), group, items); }
+                @Override
+                public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+                    if (Screen.hasShiftDown()) { tooltip.add(new TranslationTextComponent("tooltip.block.rigoranthusemortisreborn.opulent_magma")); }
+                    else { tooltip.add(new TranslationTextComponent("tooltip.rigoranthusemortisreborn.hold_shift").setStyle(Style.EMPTY)); }
+                    super.appendHoverText(stack, worldIn, tooltip, flagIn);
+                }
+            }.setRegistryName(LibBlockNames.OPULENT_MAGMA);
+
+            Item goldAmalgam = new BlockItem(BlockRegistry.GOLD_AMALGAM, new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS)) {
+                private final TargetedItemGroupFiller FILLER = new TargetedItemGroupFiller(() -> Items.GILDED_BLACKSTONE);
+                public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) { FILLER.fillItem(this.asItem(), group, items); }
+                @Override
+                public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+                    if (Screen.hasShiftDown()) { tooltip.add(new TranslationTextComponent("tooltip.block.rigoranthusemortisreborn.gold_amalgam")); }
+                    else { tooltip.add(new TranslationTextComponent("tooltip.rigoranthusemortisreborn.hold_shift").setStyle(Style.EMPTY)); }
+                    super.appendHoverText(stack, worldIn, tooltip, flagIn);
+                }
+            }.setRegistryName(LibBlockNames.GOLD_AMALGAM);
+
+            Item azulorealOrchid = new BlockItem(BlockRegistry.AZULOREAL_ORCHID, new Item.Properties().tab(ItemGroup.TAB_DECORATIONS)) {
+                private final TargetedItemGroupFiller FILLER = new TargetedItemGroupFiller(() -> Items.LILY_OF_THE_VALLEY);
+                public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) { FILLER.fillItem(this.asItem(), group, items); }
+            }.setRegistryName(LibBlockNames.AZULOREAL_ORCHID);
+            Item iridescentSprouts = new BlockItem(BlockRegistry.IRIDESCENT_SPROUTS, new Item.Properties().tab(ItemGroup.TAB_DECORATIONS)) {
+                private final TargetedItemGroupFiller FILLER = new TargetedItemGroupFiller(() -> Items.WARPED_ROOTS);
+                public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) { FILLER.fillItem(this.asItem(), group, items); }
+            }.setRegistryName(LibBlockNames.IRIDESCENT_SPROUTS);
+            Item lisianthus = new BlockItem(BlockRegistry.LISIANTHUS, new Item.Properties().tab(ItemGroup.TAB_DECORATIONS)) {
+                private final TargetedItemGroupFiller FILLER = new TargetedItemGroupFiller(() -> Items.PEONY);
+                public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) { FILLER.fillItem(this.asItem(), group, items); }
+            }.setRegistryName(LibBlockNames.LISIANTHUS);
+
+            Item jessicLeaf = new BlockItem(BlockRegistry.JESSIC_LEAVES, new Item.Properties().tab(ItemGroup.TAB_DECORATIONS)) {
+                private final TargetedItemGroupFiller FILLER = new TargetedItemGroupFiller(() -> Items.DARK_OAK_LEAVES);
+                public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) { FILLER.fillItem(this.asItem(), group, items); }
+            }.setRegistryName(LibBlockNames.JESSIC_LEAVES);
+            Item jessicSapling = new BlockItem(BlockRegistry.JESSIC_SAPLING, new Item.Properties().tab(ItemGroup.TAB_DECORATIONS)) {
+                private final TargetedItemGroupFiller FILLER = new TargetedItemGroupFiller(() -> Items.DARK_OAK_SAPLING);
+                public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) { FILLER.fillItem(this.asItem(), group, items); }
+            }.setRegistryName(LibBlockNames.JESSIC_SAPLING);
+            Item jessicLog = new BlockItem(BlockRegistry.JESSIC_LOG, new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS)) {
+                private final TargetedItemGroupFiller FILLER = new TargetedItemGroupFiller(() -> Items.WARPED_STEM);
+                public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) { FILLER.fillItem(this.asItem(), group, items); }
+            }.setRegistryName(LibBlockNames.JESSIC_LOG);
+            Item jessicWood = new BlockItem(BlockRegistry.JESSIC_WOOD, new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS)) {
+                private final TargetedItemGroupFiller FILLER = new TargetedItemGroupFiller(() -> Items.WARPED_HYPHAE);
+                public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) { FILLER.fillItem(this.asItem(), group, items); }
+            }.setRegistryName(LibBlockNames.JESSIC_WOOD);
+            Item strippedJessicLog = new BlockItem(BlockRegistry.STRIPPED_JESSIC_LOG, new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS)) {
+                private final TargetedItemGroupFiller FILLER = new TargetedItemGroupFiller(() -> Items.STRIPPED_WARPED_STEM);
+                public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) { FILLER.fillItem(this.asItem(), group, items); }
+            }.setRegistryName(LibBlockNames.STRIPPED_JESSIC_LOG);
+            Item strippedJessicWood = new BlockItem(BlockRegistry.STRIPPED_JESSIC_WOOD, new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS)) {
+                private final TargetedItemGroupFiller FILLER = new TargetedItemGroupFiller(() -> Items.STRIPPED_WARPED_HYPHAE);
+                public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) { FILLER.fillItem(this.asItem(), group, items); }
+            }.setRegistryName(LibBlockNames.STRIPPED_JESSIC_WOOD);
+            Item jessicSlab = new BlockItem(BlockRegistry.JESSIC_SLAB, new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS)) {
+                private final TargetedItemGroupFiller FILLER = new TargetedItemGroupFiller(() -> Items.WARPED_SLAB);
+                public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) { FILLER.fillItem(this.asItem(), group, items); }
+            }.setRegistryName(LibBlockNames.JESSIC_SLAB);
+            Item jessicStair = new BlockItem(BlockRegistry.JESSIC_STAIRS, new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS)) {
+                private final TargetedItemGroupFiller FILLER = new TargetedItemGroupFiller(() -> Items.WARPED_STAIRS);
+                public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) { FILLER.fillItem(this.asItem(), group, items); }
+            }.setRegistryName(LibBlockNames.JESSIC_STAIRS);
+            Item jessicFence = new BlockItem(BlockRegistry.JESSIC_FENCE, new Item.Properties().tab(ItemGroup.TAB_DECORATIONS)) {
+                private final TargetedItemGroupFiller FILLER = new TargetedItemGroupFiller(() -> Items.WARPED_FENCE);
+                public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) { FILLER.fillItem(this.asItem(), group, items); }
+            }.setRegistryName(LibBlockNames.JESSIC_FENCE);
+            Item jessicFenceGate = new BlockItem(BlockRegistry.JESSIC_FENCE_GATE, new Item.Properties().tab(ItemGroup.TAB_REDSTONE)) {
+                private final TargetedItemGroupFiller FILLER = new TargetedItemGroupFiller(() -> Items.WARPED_FENCE_GATE);
+                public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) { FILLER.fillItem(this.asItem(), group, items); }
+            }.setRegistryName(LibBlockNames.JESSIC_FENCE_GATE);
+            Item jessicDoor = new BlockItem(BlockRegistry.JESSIC_DOOR, new Item.Properties().tab(ItemGroup.TAB_REDSTONE)) {
+                private final TargetedItemGroupFiller FILLER = new TargetedItemGroupFiller(() -> Items.WARPED_DOOR);
+                public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) { FILLER.fillItem(this.asItem(), group, items); }
+            }.setRegistryName(LibBlockNames.JESSIC_DOOR);
+            Item jessicTrapdoor = new BlockItem(BlockRegistry.JESSIC_TRAPDOOR, new Item.Properties().tab(ItemGroup.TAB_REDSTONE)) {
+                private final TargetedItemGroupFiller FILLER = new TargetedItemGroupFiller(() -> Items.WARPED_TRAPDOOR);
+                public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) { FILLER.fillItem(this.asItem(), group, items); }
+            }.setRegistryName(LibBlockNames.JESSIC_TRAPDOOR);
+            Item jessicPressurePlate = new BlockItem(BlockRegistry.JESSIC_PRESSURE_PLATE, new Item.Properties().tab(ItemGroup.TAB_REDSTONE)) {
+                private final TargetedItemGroupFiller FILLER = new TargetedItemGroupFiller(() -> Items.WARPED_PRESSURE_PLATE);
+                public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) { FILLER.fillItem(this.asItem(), group, items); }
+            }.setRegistryName(LibBlockNames.JESSIC_PRESSURE_PLATE);
+            Item jessicButton = new BlockItem(BlockRegistry.JESSIC_BUTTON, new Item.Properties().tab(ItemGroup.TAB_REDSTONE)) {
+                private final TargetedItemGroupFiller FILLER = new TargetedItemGroupFiller(() -> Items.WARPED_BUTTON);
+                public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) { FILLER.fillItem(this.asItem(), group, items); }
+            }.setRegistryName(LibBlockNames.JESSIC_BUTTON);
+            Item jessicLamp = new BlockItem(BlockRegistry.JESSIC_LAMP, new Item.Properties().tab(ItemGroup.TAB_REDSTONE)) {
+                private final TargetedItemGroupFiller FILLER = new TargetedItemGroupFiller(() -> Items.REDSTONE_LAMP);
+                public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) { FILLER.fillItem(this.asItem(), group, items); }
+            }.setRegistryName(LibBlockNames.JESSIC_LAMP);
+
+
+            Item azulorealLeaf = new BlockItem(BlockRegistry.AZULOREAL_LEAVES, new Item.Properties().tab(ItemGroup.TAB_DECORATIONS)) {
+                private final TargetedItemGroupFiller FILLER = new TargetedItemGroupFiller(() -> Items.DARK_OAK_LEAVES);
+                public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) { FILLER.fillItem(this.asItem(), group, items); }
+            }.setRegistryName(LibBlockNames.AZULOREAL_LEAVES);
+            Item azulorealSapling = new BlockItem(BlockRegistry.AZULOREAL_SAPLING, new Item.Properties().tab(ItemGroup.TAB_DECORATIONS)) {
+                private final TargetedItemGroupFiller FILLER = new TargetedItemGroupFiller(() -> Items.DARK_OAK_SAPLING);
+                public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) { FILLER.fillItem(this.asItem(), group, items); }
+            }.setRegistryName(LibBlockNames.AZULOREAL_SAPLING);
+            Item azulorealLog = new BlockItem(BlockRegistry.AZULOREAL_LOG, new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS)) {
+                private final TargetedItemGroupFiller FILLER = new TargetedItemGroupFiller(() -> Items.WARPED_STEM);
+                public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) { FILLER.fillItem(this.asItem(), group, items); }
+            }.setRegistryName(LibBlockNames.AZULOREAL_LOG);
+            Item azulorealWood = new BlockItem(BlockRegistry.AZULOREAL_WOOD, new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS)) {
+                private final TargetedItemGroupFiller FILLER = new TargetedItemGroupFiller(() -> Items.WARPED_HYPHAE);
+                public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) { FILLER.fillItem(this.asItem(), group, items); }
+            }.setRegistryName(LibBlockNames.AZULOREAL_WOOD);
+            Item strippedAzulorealLog = new BlockItem(BlockRegistry.STRIPPED_AZULOREAL_LOG, new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS)) {
+                private final TargetedItemGroupFiller FILLER = new TargetedItemGroupFiller(() -> Items.STRIPPED_WARPED_STEM);
+                public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) { FILLER.fillItem(this.asItem(), group, items); }
+            }.setRegistryName(LibBlockNames.STRIPPED_AZULOREAL_LOG);
+            Item strippedAzulorealWood = new BlockItem(BlockRegistry.STRIPPED_AZULOREAL_WOOD, new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS)) {
+                private final TargetedItemGroupFiller FILLER = new TargetedItemGroupFiller(() -> Items.STRIPPED_WARPED_HYPHAE);
+                public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) { FILLER.fillItem(this.asItem(), group, items); }
+            }.setRegistryName(LibBlockNames.STRIPPED_AZULOREAL_WOOD);
+            Item azulorealSlab = new BlockItem(BlockRegistry.AZULOREAL_SLAB, new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS)) {
+                private final TargetedItemGroupFiller FILLER = new TargetedItemGroupFiller(() -> Items.WARPED_SLAB);
+                public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) { FILLER.fillItem(this.asItem(), group, items); }
+            }.setRegistryName(LibBlockNames.AZULOREAL_SLAB);
+            Item azulorealStair = new BlockItem(BlockRegistry.AZULOREAL_STAIRS, new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS)) {
+                private final TargetedItemGroupFiller FILLER = new TargetedItemGroupFiller(() -> Items.WARPED_STAIRS);
+                public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) { FILLER.fillItem(this.asItem(), group, items); }
+            }.setRegistryName(LibBlockNames.AZULOREAL_STAIRS);
+            Item azulorealFence = new BlockItem(BlockRegistry.AZULOREAL_FENCE, new Item.Properties().tab(ItemGroup.TAB_DECORATIONS)) {
+                private final TargetedItemGroupFiller FILLER = new TargetedItemGroupFiller(() -> Items.WARPED_FENCE);
+                public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) { FILLER.fillItem(this.asItem(), group, items); }
+            }.setRegistryName(LibBlockNames.AZULOREAL_FENCE);
+            Item azulorealFenceGate = new BlockItem(BlockRegistry.AZULOREAL_FENCE_GATE, new Item.Properties().tab(ItemGroup.TAB_REDSTONE)) {
+                private final TargetedItemGroupFiller FILLER = new TargetedItemGroupFiller(() -> Items.WARPED_FENCE_GATE);
+                public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) { FILLER.fillItem(this.asItem(), group, items); }
+            }.setRegistryName(LibBlockNames.AZULOREAL_FENCE_GATE);
+            Item azulorealDoor = new BlockItem(BlockRegistry.AZULOREAL_DOOR, new Item.Properties().tab(ItemGroup.TAB_REDSTONE)) {
+                private final TargetedItemGroupFiller FILLER = new TargetedItemGroupFiller(() -> Items.WARPED_DOOR);
+                public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) { FILLER.fillItem(this.asItem(), group, items); }
+            }.setRegistryName(LibBlockNames.AZULOREAL_DOOR);
+            Item azulorealTrapdoor = new BlockItem(BlockRegistry.AZULOREAL_TRAPDOOR, new Item.Properties().tab(ItemGroup.TAB_REDSTONE)) {
+                private final TargetedItemGroupFiller FILLER = new TargetedItemGroupFiller(() -> Items.WARPED_TRAPDOOR);
+                public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) { FILLER.fillItem(this.asItem(), group, items); }
+            }.setRegistryName(LibBlockNames.AZULOREAL_TRAPDOOR);
+            Item azulorealPressurePlate = new BlockItem(BlockRegistry.AZULOREAL_PRESSURE_PLATE, new Item.Properties().tab(ItemGroup.TAB_REDSTONE)) {
+                private final TargetedItemGroupFiller FILLER = new TargetedItemGroupFiller(() -> Items.WARPED_PRESSURE_PLATE);
+                public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) { FILLER.fillItem(this.asItem(), group, items); }
+            }.setRegistryName(LibBlockNames.AZULOREAL_PRESSURE_PLATE);
+            Item azulorealButton = new BlockItem(BlockRegistry.AZULOREAL_BUTTON, new Item.Properties().tab(ItemGroup.TAB_REDSTONE)) {
+                private final TargetedItemGroupFiller FILLER = new TargetedItemGroupFiller(() -> Items.WARPED_BUTTON);
+                public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) { FILLER.fillItem(this.asItem(), group, items); }
+            }.setRegistryName(LibBlockNames.AZULOREAL_BUTTON);
+            Item azulorealLamp = new BlockItem(BlockRegistry.AZULOREAL_LAMP, new Item.Properties().tab(ItemGroup.TAB_REDSTONE)) {
+                private final TargetedItemGroupFiller FILLER = new TargetedItemGroupFiller(() -> Items.REDSTONE_LAMP);
+                public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) { FILLER.fillItem(this.asItem(), group, items); }
+            }.setRegistryName(LibBlockNames.AZULOREAL_LAMP);
+
+            registry.register(fragmentedCobblestone);
+            registry.register(fragmentedNetherrack);
+            registry.register(abyssalite);
+            registry.register(oxylite);
+            registry.register(soulCoal);
+            registry.register(opulentMagma);
+            registry.register(goldAmalgam);
+
+            registry.register(azulorealOrchid);
+            registry.register(iridescentSprouts);
+            registry.register(lisianthus);
+
+            registry.register(azulorealSapling);
+            registry.register(azulorealLeaf);
+            registry.register(azulorealLog);
+            registry.register(azulorealWood);
+            registry.register(strippedAzulorealLog);
+            registry.register(strippedAzulorealWood);
+            registry.register(azulorealSlab);
+            registry.register(azulorealStair);
+            registry.register(azulorealFence);
+            registry.register(azulorealFenceGate);
+            registry.register(azulorealDoor);
+            registry.register(azulorealTrapdoor);
+            registry.register(azulorealPressurePlate);
+            registry.register(azulorealButton);
+            registry.register(azulorealLamp);
+
+            registry.register(jessicSapling);
+            registry.register(jessicLeaf);
+            registry.register(jessicLog);
+            registry.register(jessicWood);
+            registry.register(strippedJessicLog);
+            registry.register(strippedJessicWood);
+            registry.register(jessicSlab);
+            registry.register(jessicStair);
+            registry.register(jessicFence);
+            registry.register(jessicFenceGate);
+            registry.register(jessicDoor);
+            registry.register(jessicTrapdoor);
+            registry.register(jessicPressurePlate);
+            registry.register(jessicButton);
+            registry.register(jessicLamp);
+
+////            registry.register(getDefaultBlockItem(BlockRegistry.JESSIC_PLANKS, LibBlockNames.JESSIC_PLANKS));
+////            registry.register(getDefaultBlockItem(BlockRegistry.AZULOREAL_PLANKS, LibBlockNames.AZULOREAL_PLANKS));
 
             registry.register(getDefaultBlockItem(BlockRegistry.APOGEAN_NETHERITE_BLOCK, LibBlockNames.APOGEAN_NETHERITE_BLOCK));
             registry.register(getDefaultBlockItem(BlockRegistry.AQUEOUS_NETHERITE_BLOCK, LibBlockNames.AQUEOUS_NETHERITE_BLOCK));
@@ -533,20 +823,15 @@ public class BlockRegistry {
         public static Item getDefaultBlockItem(Block block, String registry) {
             return new BlockItem(block, MagicItemsRegistry.defaultItemProperties()).setRegistryName(registry);
         }
-//        private static void createTooltipList(List<ITextComponent> tooltip, String... tooltips) {
-//            String textComp = new TranslationTextComponent(Arrays.stream(tooltips).toArray(String[]::new));
-//            tooltip.add(textComp);
-//        }
+
         private static Item registerTooltipBlockItem(String name, Block block, String tooltipKey, String tooltipKey2) {
             return new BlockItem(block, new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)) {
                 @Override
                 public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
                     if (Screen.hasShiftDown()) {
                         tooltip.add(new TranslationTextComponent("tooltip.block.rigoranthusemortisreborn." + tooltipKey));
-                        tooltip.add(new TranslationTextComponent("tooltip.block.rigoranthusemortisreborn." + tooltipKey2));
-                    } else {
-                        tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".hold_shift").setStyle(Style.EMPTY));
-                    }
+                        tooltip.add(new TranslationTextComponent("tooltip.block.rigoranthusemortisreborn." + tooltipKey2)); }
+                    else { tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".hold_shift").setStyle(Style.EMPTY)); }
                     super.appendHoverText(stack, worldIn, tooltip, flagIn);
                 }
             }.setRegistryName(name);
@@ -555,11 +840,8 @@ public class BlockRegistry {
             return new BlockItem(block, new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)) {
                 @Override
                 public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-                    if (Screen.hasShiftDown()) {
-                        tooltip.add(new TranslationTextComponent("tooltip.block.rigoranthusemortisreborn." + tooltipKey));
-                    } else {
-                        tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".hold_shift").setStyle(Style.EMPTY));
-                    }
+                    if (Screen.hasShiftDown()) { tooltip.add(new TranslationTextComponent("tooltip.block.rigoranthusemortisreborn." + tooltipKey)); }
+                    else { tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".hold_shift").setStyle(Style.EMPTY)); }
                     super.appendHoverText(stack, worldIn, tooltip, flagIn);
                 }
             }.setRegistryName(name);
@@ -573,11 +855,8 @@ public class BlockRegistry {
                 }
                 @Override
                 public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-                    if (Screen.hasShiftDown()) {
-                        tooltip.add(new TranslationTextComponent("tooltip.block.rigoranthusemortisreborn." + tooltipKey));
-                    } else {
-                        tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".hold_shift").setStyle(Style.EMPTY));
-                    }
+                    if (Screen.hasShiftDown()) { tooltip.add(new TranslationTextComponent("tooltip.block.rigoranthusemortisreborn." + tooltipKey)); }
+                    else { tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".hold_shift").setStyle(Style.EMPTY)); }
                     super.appendHoverText(stack, worldIn, tooltip, flagIn);
                 }
             }.setRegistryName(name);
@@ -586,11 +865,8 @@ public class BlockRegistry {
             return new AnimBlockItem(block, new Item.Properties().tab(RigoranthusEmortisReborn.RIGORANTHUS_EMORTIS_GROUP)) {
                 @Override
                 public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-                    if (Screen.hasShiftDown()) {
-                        tooltip.add(new TranslationTextComponent(tooltipKey));
-                    } else {
-                        tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".hold_shift").setStyle(Style.EMPTY));
-                    }
+                    if (Screen.hasShiftDown()) { tooltip.add(new TranslationTextComponent(tooltipKey)); }
+                    else { tooltip.add(new TranslationTextComponent("tooltip." + RigoranthusEmortisReborn.MOD_ID + ".hold_shift").setStyle(Style.EMPTY)); }
                     super.appendHoverText(stack, worldIn, tooltip, flagIn);
                 }
             }.setRegistryName(name);
@@ -607,49 +883,3 @@ public class BlockRegistry {
         return false;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-//            registry.register(new WoodButtonBlock(AbstractBlock.Properties.of(Material.DECORATION).noCollission().strength(0.5F).sound(SoundType.WOOD)).setRegistryName(LibBlockNames.JESSIC_BUTTON));
-//            registry.register(new StairsBlock(()-> JESSIC_PLANKS.defaultBlockState(),woodProp).setRegistryName(LibBlockNames.JESSIC_STAIRS));
-//            registry.register(new SlabBlock(woodProp).setRegistryName(LibBlockNames.JESSIC_SLAB));
-//            registry.register(new FenceGateBlock(woodProp).setRegistryName(LibBlockNames.JESSIC_FENCE_GATE));
-//            registry.register(new FenceBlock(woodProp).setRegistryName(LibBlockNames.JESSIC_FENCE));
-//            registry.register(new DoorBlock(woodProp).setRegistryName(LibBlockNames.JESSIC_DOOR));
-//            registry.register(new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, woodProp).setRegistryName(LibBlockNames.JESSIC_PRESSURE_PLATE));
-//            registry.register(new TrapDoorBlock(woodProp).setRegistryName(LibBlockNames.JESSIC_TRAPDOOR));
-//            registry.register(new WoodButtonBlock(AbstractBlock.Properties.of(Material.DECORATION).noCollission().strength(0.5F).sound(SoundType.WOOD)).setRegistryName(LibBlockNames.AZULOREAL_BUTTON));
-//            registry.register(new StairsBlock(()-> AZULOREAL_PLANKS.defaultBlockState(),woodProp).setRegistryName(LibBlockNames.AZULOREAL_STAIRS));
-//            registry.register(new SlabBlock(woodProp).setRegistryName(LibBlockNames.AZULOREAL_SLAB));
-//            registry.register(new FenceGateBlock(woodProp).setRegistryName(LibBlockNames.AZULOREAL_FENCE_GATE));
-//            registry.register(new FenceBlock(woodProp).setRegistryName(LibBlockNames.AZULOREAL_FENCE));
-//            registry.register(new DoorBlock(woodProp).setRegistryName(LibBlockNames.AZULOREAL_DOOR));
-//            registry.register(new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, woodProp).setRegistryName(LibBlockNames.AZULOREAL_PRESSURE_PLATE));
-//            registry.register(new TrapDoorBlock(woodProp).setRegistryName(LibBlockNames.AZULOREAL_TRAPDOOR));
-
-//            registry.register(getDefaultBlockItem(BlockRegistry.JESSIC_PLANKS, LibBlockNames.JESSIC_PLANKS));
-//            registry.register(getDefaultBlockItem(BlockRegistry.JESSIC_BUTTON, LibBlockNames.JESSIC_BUTTON));
-//            registry.register(getDefaultBlockItem(BlockRegistry.JESSIC_STAIRS, LibBlockNames.JESSIC_STAIRS));
-//            registry.register(getDefaultBlockItem(BlockRegistry.JESSIC_SLAB, LibBlockNames.JESSIC_SLAB));
-//            registry.register(getDefaultBlockItem(BlockRegistry.JESSIC_FENCE_GATE, LibBlockNames.JESSIC_FENCE_GATE));
-//            registry.register(getDefaultBlockItem(BlockRegistry.JESSIC_FENCE, LibBlockNames.JESSIC_FENCE));
-//            registry.register(getDefaultBlockItem(BlockRegistry.JESSIC_TRAPDOOR, LibBlockNames.JESSIC_TRAPDOOR));
-//            registry.register(getDefaultBlockItem(BlockRegistry.JESSIC_DOOR, LibBlockNames.JESSIC_DOOR));
-//            registry.register(getDefaultBlockItem(BlockRegistry.JESSIC_PRESSURE_PLATE, LibBlockNames.JESSIC_PRESSURE_PLATE));
-//            registry.register(getDefaultBlockItem(BlockRegistry.AZULOREAL_PLANKS, LibBlockNames.AZULOREAL_PLANKS));
-//            registry.register(getDefaultBlockItem(BlockRegistry.AZULOREAL_BUTTON, LibBlockNames.AZULOREAL_BUTTON));
-//            registry.register(getDefaultBlockItem(BlockRegistry.AZULOREAL_STAIRS, LibBlockNames.AZULOREAL_STAIRS));
-//            registry.register(getDefaultBlockItem(BlockRegistry.AZULOREAL_SLAB, LibBlockNames.AZULOREAL_SLAB));
-//            registry.register(getDefaultBlockItem(BlockRegistry.AZULOREAL_FENCE_GATE, LibBlockNames.AZULOREAL_FENCE_GATE));
-//            registry.register(getDefaultBlockItem(BlockRegistry.AZULOREAL_FENCE, LibBlockNames.AZULOREAL_FENCE));
-//            registry.register(getDefaultBlockItem(BlockRegistry.AZULOREAL_TRAPDOOR, LibBlockNames.AZULOREAL_TRAPDOOR));
-//            registry.register(getDefaultBlockItem(BlockRegistry.AZULOREAL_DOOR, LibBlockNames.AZULOREAL_DOOR));
-//            registry.register(getDefaultBlockItem(BlockRegistry.AZULOREAL_PRESSURE_PLATE, LibBlockNames.AZULOREAL_PRESSURE_PLATE));

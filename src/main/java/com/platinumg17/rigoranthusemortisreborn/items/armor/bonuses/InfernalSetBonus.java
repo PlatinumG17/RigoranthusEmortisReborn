@@ -1,6 +1,8 @@
 package com.platinumg17.rigoranthusemortisreborn.items.armor.bonuses;
 
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -24,7 +26,12 @@ public class InfernalSetBonus extends Effect {
     public void applyEffectTick(LivingEntity player, int amplifier) {
         if (player.isOnFire() || player.isInLava()) {
             player.clearFire();
-            this.addAttributeModifier(Attributes.MOVEMENT_SPEED, "91AEAA56-376B-4498-935B-2F7F68070635", 1.0F, AttributeModifier.Operation.MULTIPLY_BASE);
+            if(player.level.isClientSide) {
+                ClientPlayerEntity playerClient = Minecraft.getInstance().player;
+                if (playerClient != null && (playerClient.input.up || playerClient.input.down || playerClient.input.left || playerClient.input.right)) {
+                    player.setDeltaMovement(player.getDeltaMovement().multiply(1.1, 1.1, 1.1));
+                }
+            }
             healTimer--;
             if (healTimer < 0) {
                 player.heal(1f);
@@ -32,7 +39,12 @@ public class InfernalSetBonus extends Effect {
             }
         }
         if (player.isInWaterRainOrBubble()) {
-            this.addAttributeModifier(Attributes.MOVEMENT_SPEED, "7107DE5E-7CE8-4030-940E-514C1F160890",-0.3F, AttributeModifier.Operation.MULTIPLY_BASE);
+            if(player.level.isClientSide) {
+                ClientPlayerEntity playerClient = Minecraft.getInstance().player;
+                if (playerClient != null && (playerClient.input.up || playerClient.input.down || playerClient.input.left || playerClient.input.right)) {
+                    player.setDeltaMovement(player.getDeltaMovement().multiply(0.8, 0.8, 0.8));
+                }
+            }
             damageTimer--;
             if (damageTimer < 0) {
                 player.hurt(DamageSource.GENERIC,  1f);

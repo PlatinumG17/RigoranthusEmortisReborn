@@ -1,9 +1,9 @@
 package com.platinumg17.rigoranthusemortisreborn.items.armor.bonuses;
 
 import com.platinumg17.rigoranthusemortisreborn.canis.common.lib.EmortisConstants;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
@@ -15,8 +15,8 @@ public class IncorporealSetBonus extends Effect {
     public IncorporealSetBonus() {
         super(EffectType.BENEFICIAL, 0X51FFAF);
         this.setRegistryName(EmortisConstants.MOD_ID, "incorporeal_set_bonus");
-
     }
+
     private static int healTimer = 80;
     private static int damageTimer = 10;
     public void applyEffectTick(LivingEntity player, int amplifier) {
@@ -34,7 +34,12 @@ public class IncorporealSetBonus extends Effect {
             }
         }
         if (player.isInWaterRainOrBubble()) {
-            this.addAttributeModifier(Attributes.MOVEMENT_SPEED, "7107DE5E-7CE8-4030-940E-514C1F160890",-0.3F, AttributeModifier.Operation.MULTIPLY_BASE);
+            if(player.level.isClientSide) {
+                ClientPlayerEntity playerClient = Minecraft.getInstance().player;
+                if (playerClient != null && playerClient.input.jumping) {
+                    player.setDeltaMovement(player.getDeltaMovement().multiply(0.8, 0.8, 0.8));
+                } else player.setDeltaMovement(player.getDeltaMovement().multiply(0.8, 2.2, 0.8));
+            }
             damageTimer--;
             if (damageTimer < 0) {
                 player.hurt(DamageSource.GENERIC,  1f);

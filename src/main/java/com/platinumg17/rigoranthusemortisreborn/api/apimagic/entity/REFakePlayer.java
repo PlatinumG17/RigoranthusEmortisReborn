@@ -33,7 +33,16 @@ public class REFakePlayer extends FakePlayer {
         connection = new FakePlayNetHandler(world.getServer(), this);
     }
     private static WeakReference<REFakePlayer> FAKE_PLAYER = null;
-    public static REFakePlayer getPlayer(ServerWorld world) {return new REFakePlayer(world);}
+    public static REFakePlayer getPlayer(ServerWorld world) {
+        REFakePlayer ret = FAKE_PLAYER != null ? FAKE_PLAYER.get() : null;
+        if (ret == null)
+        {
+            ret = new REFakePlayer(world);
+            FAKE_PLAYER = new WeakReference<>(ret);
+        }
+        FAKE_PLAYER.get().level = world;
+        return FAKE_PLAYER.get();
+    }
     @Override public OptionalInt openMenu(INamedContainerProvider container) {
         return OptionalInt.empty();
     }

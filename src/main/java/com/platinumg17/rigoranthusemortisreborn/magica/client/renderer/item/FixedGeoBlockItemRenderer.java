@@ -19,7 +19,7 @@ import software.bernie.geckolib3.model.AnimatedGeoModel;
 import software.bernie.geckolib3.renderers.geo.GeoItemRenderer;
 
 import javax.annotation.Nullable;
-import java.awt.*;
+import software.bernie.geckolib3.core.util.Color;
 import java.util.Collections;
 
 public class FixedGeoBlockItemRenderer<T extends AnimBlockItem & IAnimatable> extends GeoItemRenderer<AnimBlockItem> {

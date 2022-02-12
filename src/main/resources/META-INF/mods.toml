@@ -42,7 +42,7 @@ side="BOTH"
 [[dependencies.rigoranthusemortisreborn]]
 modId="geckolib3"
 mandatory=true
-versionRange="[geckolib-forge-1.16.5:3.0.33,)"
+versionRange="[3.0.64)"
 ordering="AFTER"
 side="BOTH"
 

@@ -108,7 +108,7 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 dependencies {
     minecraft 'net.minecraftforge:forge:1.16.5-36.2.2'
-    implementation fg.deobf("software.bernie.geckolib:geckolib-forge-1.16.5:3.0.45") // was 1.16.5:3.0.45
+    implementation fg.deobf("software.bernie.geckolib:geckolib-forge-1.16.5:3.0.64") // was 1.16.5:3.0.45
     implementation fg.deobf("com.minecraftabnormals:abnormals-core:1.16.5-3.3.1") // was 1.16.5-3.2.0
     runtimeOnly fg.deobf("curse.maven:autoreglib-250363:3326041")// was 3128555
     runtimeOnly fg.deobf("curse.maven:quark-243121:3538744") // was 3221260

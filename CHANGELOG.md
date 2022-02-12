@@ -1,4 +1,6 @@
 ## Update v.2.0.7
++ Hopefully fixed incompatibility with newer versions of Geckolib 
+  + (Sadly this has broken attack animations + some canis model layer anims)
 + Nerfed Necrotizing fasciitis Effect again.
 + Reorganized some items
 + Added config to Enable/Disable ability to tame a Feral Canis

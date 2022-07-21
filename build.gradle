@@ -33,7 +33,7 @@ apply plugin: "se.bjurr.gitchangelog.git-changelog-gradle-plugin"
 //println "On branch: ${branch.fullName}"
 //println "Pipeline branch: " + (System.getenv('CI_COMMIT_BRANCH') ?: 'NONE')
 
-version = "1.16.5-2.0.7"
+version = "2.1.1"
 group = 'com.platinumg17.rigoranthusemortisreborn'
 archivesBaseName = "RigoranthusEmortisReborn-${project.target_mc_version}"
 //version = (grgit.describe(longDescr: true, tags: true) ?: '0-0-0').split('-').with { it -> "${it[0]}.${it[1]}" }
@@ -107,7 +107,7 @@ minecraft {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.16.5-36.2.2'
+    minecraft 'net.minecraftforge:forge:1.16.5-36.2.34'
     implementation fg.deobf("software.bernie.geckolib:geckolib-forge-1.16.5:3.0.64") // was 1.16.5:3.0.45
     implementation fg.deobf("com.minecraftabnormals:abnormals-core:1.16.5-3.3.1") // was 1.16.5-3.2.0
     runtimeOnly fg.deobf("curse.maven:autoreglib-250363:3326041")// was 3128555

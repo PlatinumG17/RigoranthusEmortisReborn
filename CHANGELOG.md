@@ -1,3 +1,8 @@
+## Update v.2.1.1
++ Fixed Masterful Smeltery Crash
++ Got rid of some unused files
+
+
 ## Update v.2.0.7
 + Hopefully fixed incompatibility with newer versions of Geckolib 
   + (Sadly this has broken attack animations + some canis model layer anims)
